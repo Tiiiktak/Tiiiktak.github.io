@@ -2,14 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TiBlog钛</title>
-    <link>/</link>
+    <link>/index.html</link>
     <description>Recent content on TiBlog钛</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Tiiktak</copyright>
-    <lastBuildDate>Thu, 06 Jun 2019 00:35:00 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>pe="application/rss+xml" />
     
     
     <item>
