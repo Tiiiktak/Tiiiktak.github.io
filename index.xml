@@ -2,14 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TiBlog钛</title>
-    <link>/index.html</link>
+    <link>/</link>
     <description>Recent content on TiBlog钛</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Tiiktak</copyright>
+    <lastBuildDate>Mon, 03 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About Me</title>
+      <link>/about/</link>
+      <pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description> :D 获取中&amp;hellip;
+&amp;hellip;
+fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  </description>
+    </item>
     
   </channel>
 </rss>
