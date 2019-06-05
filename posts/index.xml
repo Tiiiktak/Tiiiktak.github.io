@@ -1,0 +1,28 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on TiBlog钛</title>
+        <link>https://Tiiiktak.github.io/posts/</link>
+        <description>Recent content in Posts on TiBlog钛</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Tiiktak</copyright>
+        <lastBuildDate>Mon, 03 Jun 2019 17:34:33 +0800</lastBuildDate>
+        <atom:link href="https://Tiiiktak.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>First</title>
+            <link>https://Tiiiktak.github.io/posts/2019/06/first/</link>
+            <pubDate>Mon, 03 Jun 2019 17:34:33 +0800</pubDate>
+            
+            <guid>https://Tiiiktak.github.io/posts/2019/06/first/</guid>
+            <description> Hello,World 你好，世界 </description>
+            <content type="html"><![CDATA[
+
+<h1 id="hello-world">Hello,World</h1>
+
+<h2 id="你好-世界">你好，世界</h2>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>
