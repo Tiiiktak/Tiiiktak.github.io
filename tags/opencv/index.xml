@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>TiBlog钛</title>
-    <link>/</link>
-    <description>Recent content on TiBlog钛</description>
+    <title>opencv on TiBlog钛</title>
+    <link>/tags/opencv/</link>
+    <description>Recent content in opencv on TiBlog钛</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Tiiktak</copyright>
     <lastBuildDate>Thu, 06 Jun 2019 00:35:00 +0800</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/opencv/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -46,26 +46,6 @@
  在MATLAB中用cat操作将3通道合成彩色图像：rab_image = cat(3, R, G, B);
  MATLAB中用下面这些命令可以提取出三个通道的图像：
 R = rgb_image（：，：，1）; G = rgb_image（：，：，2）; B = rgb_image（：，：，3）;   </description>
-    </item>
-    
-    <item>
-      <title>First</title>
-      <link>/posts/2019/06/first/</link>
-      <pubDate>Mon, 03 Jun 2019 17:34:33 +0800</pubDate>
-      
-      <guid>/posts/2019/06/first/</guid>
-      <description> Hello,World 你好，世界 </description>
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>/about/</link>
-      <pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description> :D 获取中&amp;hellip;
-&amp;hellip;
-fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  </description>
     </item>
     
   </channel>
