@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="TiBlog" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/blog/links/" />
-<meta property="og:title" content="Links" />
-<meta property="twitter:title" content="Links">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" />
+<meta property="og:title" content="图像基础-图像分类" />
+<meta property="twitter:title" content="图像基础-图像分类">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     TiBlog - Links 
+     TiBlog - 图像基础-图像分类 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/blog/links/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/">
 
 
 <style media="screen">
@@ -1120,14 +1120,14 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    Links
+    图像基础-图像分类
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Sun June 12 9069 00:00:00 UTC">June 12, 9069</div>
+                    <div class="date" title="Thu June 12 6069 00:00:49 CST">June 12, 6069</div>
                     
                         
                     
@@ -1138,6 +1138,8 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                       <div class="tags">
                     
                         <ul>
+                          
+                            <li class="middot"><a href="https://tiiiktak.github.io/tags/opencv">opencv</a> </li>
                           
                         </ul>
                     </div>
@@ -1152,7 +1154,62 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
             <div class="markdown">
                 
     
-    <p>Ritchie and his friends.</p>
+    
+
+<blockquote>
+<p><em>部分内容引用 <a href="https://blog.csdn.net/u012771236/article/details/35630903">CSDN爬金字塔的人</a></em></p>
+</blockquote>
+
+<p>计算机中， 通常以矩阵形式存储图像，根据颜色和灰度多少可以分为灰度图像、二值图像、索引图像和RGB图像</p>
+
+<h2 id="灰度图像">灰度图像</h2>
+
+<ul>
+<li><p>矩阵元素取值范围为[0, 255] （0-黑，255-白），数据类型一般为8位无符号整数【unit8】</p></li>
+
+<li><p>某些领域（如医学成像）采用【unit16】和【int16】数据类型</p></li>
+
+<li><p>对于计算灰度的操作（如<strong><a href="https://www.jianshu.com/p/77e9b6b75d8b">傅里叶变换</a></strong>），使用【double】和【single】类型；若图像是【double】或【single】，灰度图像的值通常被归一化标定位【0-1】范围内，<strong>0代表黑色，1代表白色</strong>，0到1之间的小数表示不同的灰度等级。</p></li>
+
+<li><p>二值图像可以看成是灰度图像的一个特例。</p></li>
+</ul>
+
+<h2 id="二值图像">二值图像</h2>
+
+<ul>
+<li><p>一幅二值图像的二维矩阵<strong>仅由0、1两个值构成</strong>，计算机中二值图像的数据类型通常为1个二进制位</p></li>
+
+<li><p><em>在MATLAB中，二值图像具有非常特殊的意义，只有逻辑数据类型【logical】才被认为是二值图像，就算是只包含0和1的数据类的数组（例如【uint8】），在MATLAB中都不认为是二值图像。可以使用logical将其他类型的数组转换为二值图像：B = logical（A）</em></p></li>
+</ul>
+
+<h2 id="索引图像">索引图像</h2>
+
+<ul>
+<li><p>包括一个<strong>数据矩阵X</strong>，一个<strong>颜色映像矩阵Map</strong>。Map是一个包含三列，若干行的数据阵列，其中每个元素的值均为[0，1]之间的双精度浮点型数据。每一行分别表示红， 绿，蓝的颜色值。</p></li>
+
+<li><p><em>在MATLAB中，索引图像是从像素值到颜色映射表值的“直接映射”。像素颜色由数据矩阵X作为索引指向矩阵Map进行索引，例如，值1指向矩阵Map中的第一行，值2指向第二行，以此类推。</em></p></li>
+
+<li><p>一般索引图像只能显示256种颜色（由数据矩阵X的取值范围决定），与灰度图像不同的是，<strong>灰度图像</strong>的颜色表的值是<strong>从0到255连续的值</strong>，所以灰度图像的数据我们即可以看成是实际的像素值，也可以看成是索引值。</p></li>
+
+<li><p>索引图的<strong>优点</strong>是存储<strong>所需容量小</strong>，且索引图像一般用于存放<strong>色彩要求比较简单</strong>的图像，如Windows中色彩构成比较简单的壁纸多采用索引图像存放，如果图像的色彩比较复杂，就要用到RGB真彩色图像。</p></li>
+</ul>
+
+<h2 id="rgb图像">RGB图像</h2>
+
+<ul>
+<li><p>RGB图像每一个像素的颜色值（由RGB三原色表示）直接存放在图像矩阵中</p></li>
+
+<li><p>一副大小为M*N的RGB图像需要3个M*N大小的矩阵表示，每一个矩阵代表一个颜色通道。RGB图像的数据类型一般为【unit】（或【double】），通常用于表示和存放真彩色图像（2^24种颜色），也可存灰度图像（三个通道的值都一样）</p></li>
+
+<li><p>在MATLAB中用cat操作将3通道合成彩色图像：rab_image = cat(3, R, G, B);</p></li>
+
+<li><p>MATLAB中用下面这些命令可以提取出三个通道的图像：</p>
+
+<pre><code class="language-c">R = rgb_image（：，：，1）;
+G = rgb_image（：，：，2）;
+B = rgb_image（：，：，3）;
+</code></pre></li>
+</ul>
 
 
 
@@ -1178,12 +1235,12 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
             <br>
             <div class="navigation">
                 
-                <div>
-                    <img class="icon" src="https://tiiiktak.github.io/img/back.svg" alt="back" />
-                    <a href="https://tiiiktak.github.io/blog/shell%E5%AD%A6%E4%B9%A0/">Shell学习</a>
-                </div>
-                
                 <div style="width: 100%;"></div>
+                
+                <div>
+                    <a href="https://tiiiktak.github.io/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/">图像基础-图像矩阵</a>
+                    <img class="icon" src="https://tiiiktak.github.io/img/next.svg" alt="next" />
+                </div>
                 
             </div>
             
