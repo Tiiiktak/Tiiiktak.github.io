@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Cocoa Enhanced" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/" />
-<meta property="og:title" content="Posts" />
-<meta property="twitter:title" content="Posts">
+<meta property="og:url" content="https://example.com/vim%E5%AD%A6%E4%B9%A0/" />
+<meta property="og:title" content="Vim学习" />
+<meta property="twitter:title" content="Vim学习">
 
     <meta property="og:image" content="https://example.com/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Cocoa Enhanced - Posts 
+     Cocoa Enhanced - Vim学习 
 
 </title>
-<link rel="canonical" href="https://example.com/posts/">
+<link rel="canonical" href="https://example.com/vim%E5%AD%A6%E4%B9%A0/">
 
 
 <style media="screen">
@@ -1065,8 +1065,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://example.com/posts/index.xml" rel="alternate" type="application/rss+xml" title="Cocoa Enhanced" />
-
 
 </head>
 
@@ -1074,7 +1072,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1155,57 +1153,143 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
+
+
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts</div>
+            <div class="page-heading">
 
+    
+    Draft::Vim学习
+    
+
+</div>
+
+            <div class="markdown">
                 
+    
+    
 
-                
-                <ul>
-                    
-                      
-                        <li class="groupby">Jun, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/"><span>Draft::图像基础-图像矩阵</span></a>
-    
-</li>
+<p><img src="https://bl4tqa.bl.files.1drv.com/y4mcmHzQgxxtfA6CCUgyJayLWoRW8OAWSyuVw3JKRcYuJa0xhG7PtGBWT15n6mf7bBqZDxQslemwAZrZojYuWarDsb-ukBsmcNb8WB1e1byilK8eduQSjkbjQ-cp8PPZR4nsq_dtgS0Kuv5ZW_ygxIJxDiy6FkmpPzFGVE5R7B1F3dW7XPL8T_rBRkBVEf_W7xOYhRssMifmmOcZWw7VNOHMg?width=1024&amp;height=724&amp;cropmode=none" alt="键盘图" /></p>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"><span>Draft::图像基础-图像分类</span></a>
-    
-</li>
+<p>vim分为三种模式，分别是<strong>命令模式（Command mode），输入模式（Insert mode），底线命令（Last line
+ mode）</strong></p>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 3, 2019</span>
-    
-    <a href="https://example.com/posts/first/"><span>Draft::First</span></a>
-    
-</li>
+<h2 id="命令模式">命令模式</h2>
 
-                          
-                        
-                      
-                    
-                </ul>
+<p>此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。</p>
+
+<p>常用命令：</p>
+
+<ul>
+<li>i 切换到输入模式，以输入字符</li>
+<li>x 删除当前光标所在处的字符</li>
+<li>: 切换到底线命令模式，以在最底一行输入命令</li>
+</ul>
+
+<p>命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令</p>
+
+<h2 id="输入模式">输入模式</h2>
+
+<p>常用：</p>
+
+<ul>
+<li>Esc 退出输入模式，切换到命令模式</li>
+<li>Insert 切换光标为输入/替换模式，光标变成竖线/下划线</li>
+</ul>
+
+<h2 id="底线命令模式">底线命令模式</h2>
+
+<p>基本命令：
+* q 退出程序
+* w 保存文件</p>
+
+<p><img src="https://bzpvsg.bl.files.1drv.com/y4maST4_GSqnZ50z6aXCCWhjzwPgIkxVt4hQDB7zIR7EEjYnrXHgWCKmA_dNAg_bm8WOEtRobPRE_tW2_ojpbbpQwzHECS3UqJMoh_PK26PCo5mTFd7OFY4nzk4PIlt-CPfmXi9hR5XfMHLhoXLjfGcVxVxPdroSYLSA2JZUiVwq4omUzbvBO8AHnm-XwpI6b9yNRCEXz22n5_Zx0tGQ27-Rw?width=787&amp;height=531&amp;cropmode=none" alt="vim工作模式" /></p>
+
+<h2 id="vim按键">vim按键</h2>
+
+<h3 id="移动光标">移动光标</h3>
+
+<p>要进行多次移动，例如向下移动30行，可使用“30↓”的组合按键</p>
+
+<ul>
+<li>[Ctrl]+[f] 下一页</li>
+<li>[Ctrl]+[b] 上一页</li>
+<li>[Ctrl]+[d] 向下半页</li>
+<li>[Ctrl]+[u] 向上半页</li>
+<li>0 移动到该行最前面字符处</li>
+<li>$ 移动到该行最后字符处</li>
+<li>G 移动到档案最后一行</li>
+<li>nG 一赌东道档案第n行</li>
+<li>gg 移动到档案第一行</li>
+</ul>
+
+<h3 id="搜索替换">搜索替换</h3>
+
+<ul>
+<li>/word 向光标之下寻找名称为word的字符串</li>
+<li>？word 向光标之上寻找名称为word的字符串</li>
+<li>n 重复前一个搜寻的动作</li>
+<li>N 反向进行前一个搜寻动作</li>
+<li>:n1,n2s/word1/word2/g 在n1与n2行之间寻找word1字符串，并用word2取代</li>
+<li>:1,$s/word1/word2/g 或 :%s/word1/word2/g
+从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2</li>
+<li>:1,$s/word1/word2/gc 或 :%s/word1/word2/gc
+从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2，并显示提示字符确认</li>
+</ul>
+
+<h3 id="删除-复制-粘贴">删除、复制、粘贴</h3>
+
+<ul>
+<li>x,X x相当于del，X相当于Backspace</li>
+<li>dd 删除光标所在行</li>
+<li>ndd 删除光标所在向下n行</li>
+<li>d1G 删除光标所在到第一行所有数据</li>
+<li>dG 删除光标所在到最后一行所有数据</li>
+<li>yy 复制光标所在行</li>
+<li>nyy 复制光标所在的向下n行</li>
+<li>p,P p为将已复制的数据在光标下一行粘贴，P为粘贴在上一行</li>
+<li>u 撤销</li>
+<li>[Ctrl]+r 重做</li>
+<li>. 重复前一动作</li>
+</ul>
+
+<h3 id="一般模式切换到编辑模式">一般模式切换到编辑模式</h3>
+
+<ul>
+<li>i,I i 为『从目前光标所在处输入』， I 为『在目前所在行的第一个非空格符处开始输入』</li>
+<li>a,A a 为『从目前光标所在的下一个字符处开始输入』， A 为『从光标所在行的最后一个字符处开始输入』</li>
+<li>o,O o 为『在目前光标所在的下一行处输入新的一行』, O 为在目前光标所在处的上一行输入新的一行</li>
+<li>r,R r会取代光标所在字符一次，R会一直取代光标所在的文字，知道按下[Esc]</li>
+</ul>
+
+<h3 id="一般模式切换到命令模式">一般模式切换到命令模式</h3>
+
+<ul>
+<li>:w! 若文档为只读属性，强制写入该文档，不过仍与权限有关</li>
+<li>:q! 离开而不存储文档</li>
+<li>wq! 强制存储后离开</li>
+<li>ZZ 若档案没有更动，则不储存离开，若档案已经被更动过，则储存后离开</li>
+<li>:w [filename] 将编辑的数据另存为filename</li>
+<li>:r [filename] 将 『filename』 这个档案内容加到光标所在行后面</li>
+<li>n1,n2 w [filename] 将n1到n2的内容另存为filename</li>
+
+<li><p>:! command 暂时离开vi到指令模式下执行command的显示结果，如[:! ls/home] 即可在vi中查看/home下以ls输出的文档信息</p></li>
+
+<li><p>:set nu 显示行号，在每一行的前缀显示该行行号</p></li>
+
+<li><p>:set nonu 取消行号</p></li>
+</ul>
+
+
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 

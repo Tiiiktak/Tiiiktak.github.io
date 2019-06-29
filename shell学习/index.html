@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Cocoa Enhanced" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/" />
-<meta property="og:title" content="Posts" />
-<meta property="twitter:title" content="Posts">
+<meta property="og:url" content="https://example.com/shell%E5%AD%A6%E4%B9%A0/" />
+<meta property="og:title" content="Shell学习" />
+<meta property="twitter:title" content="Shell学习">
 
     <meta property="og:image" content="https://example.com/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Cocoa Enhanced - Posts 
+     Cocoa Enhanced - Shell学习 
 
 </title>
-<link rel="canonical" href="https://example.com/posts/">
+<link rel="canonical" href="https://example.com/shell%E5%AD%A6%E4%B9%A0/">
 
 
 <style media="screen">
@@ -1065,8 +1065,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://example.com/posts/index.xml" rel="alternate" type="application/rss+xml" title="Cocoa Enhanced" />
-
 
 </head>
 
@@ -1074,7 +1072,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1155,57 +1153,264 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
+
+
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts</div>
+            <div class="page-heading">
 
+    
+    Draft::Shell学习
+    
+
+</div>
+
+            <div class="markdown">
                 
+    
+    
 
-                
-                <ul>
-                    
-                      
-                        <li class="groupby">Jun, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/"><span>Draft::图像基础-图像矩阵</span></a>
-    
-</li>
+<h2 id="shell脚本">Shell脚本</h2>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"><span>Draft::图像基础-图像分类</span></a>
-    
-</li>
+<p>是一种为shell编写的脚本程序</p>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 3, 2019</span>
-    
-    <a href="https://example.com/posts/first/"><span>Draft::First</span></a>
-    
-</li>
+<p>使用文本编辑器既能编写，<strong>拓展名不影响脚本执行</strong></p>
 
-                          
-                        
-                      
-                    
-                </ul>
+<p>实例：</p>
+
+<pre><code class="language-sh">#!/bin/bash
+echo &quot;Hello World&quot;
+</code></pre>
+
+<blockquote>
+<pre><code class="language-#!```告诉系统这个脚本需要什么解释器执行">
+### 运行脚本
+
+#### 作为可执行程序
+
+将代码保存后，给文件添加可执行权限```+x```
+```sh
+chmod +x ./test.sh #
+./test.sh #执行脚本
+</code></pre>
+
+<h4 id="作为解释器参数">作为解释器参数</h4>
+</blockquote>
+
+<p>直接运行解释器，将文件作为其参数
+这种方式不需要在文件开头指定解释器信息</p>
+
+<pre><code class="language-sh">/bin/sh test.sh
+</code></pre>
+
+<h2 id="shell变量">Shell变量</h2>
+
+<h3 id="定义变量">定义变量</h3>
+
+<pre><code class="language-sh">your_name=&quot;Tom&quot;
+</code></pre>
+
+<p><strong>注意：</strong>等号不能有空格</p>
+
+<h3 id="使用变量">使用变量</h3>
+
+<p>在变量前加美元符号<code>$</code>
+还可在变量外添加大括号<code>{}</code></p>
+
+<pre><code class="language-sh">echo $your_name
+echo ${your_name}
+</code></pre>
+
+<h3 id="只读变量">只读变量</h3>
+
+<p>使用readonly命令将变量定义为只读变量，值不能被改变</p>
+
+<pre><code class="language-sh">url=&quot;baidu.com&quot;
+readonly url
+</code></pre>
+
+<h3 id="删除变量">删除变量</h3>
+
+<p>使用unset变量删除变量</p>
+
+<pre><code class="language-sh">unset url
+</code></pre>
+
+<h2 id="shell字符串">Shell字符串</h2>
+
+<p>可用单引号，或双引号，也可不用引号</p>
+
+<h3 id="单引号">单引号</h3>
+
+<ul>
+<li>单引号内任何字符都会原样输出，单引号字符串中变量无效</li>
+<li>单引号字符串中不能出现单独一个的单引号，但可成对出现</li>
+</ul>
+
+<h3 id="双引号">双引号</h3>
+
+<ul>
+<li>双引号里可以有变量</li>
+<li>双引号里可以出现转义字符</li>
+</ul>
+
+<h3 id="拼接字符串">拼接字符串</h3>
+
+<pre><code class="language-sh">text1='123'
+text2='456'
+echo ${text1}${text2}
+#输出123456
+</code></pre>
+
+<h3 id="字符串长度">字符串长度</h3>
+
+<pre><code class="language-sh">str1=&quot;abcd&quot;
+echo ${#str1} #输出4
+</code></pre>
+
+<h3 id="提取子字符串">提取子字符串</h3>
+
+<p>从字符串第2个字符开始截取4个字符：</p>
+
+<pre><code class="language-sh">str2=&quot;hello world&quot;
+echo ${str2:1:4} #输出ello
+</code></pre>
+
+<h3 id="查找子字符串">查找子字符串</h3>
+
+<p>查找字符<code>a</code>或<code>o</code>的位置（哪个字母先出现就计算哪个）</p>
+
+<pre><code class="language-sh">str3=&quot;how are you&quot;
+echo `expr index &quot;$str3&quot; ao` #输出2
+</code></pre>
+
+<h2 id="shell数组">Shell数组</h2>
+
+<p>只支持一维数组</p>
+
+<h3 id="定义数组">定义数组</h3>
+
+<pre><code class="language-sh">my_arr1=(1 2 'A' &quot;BC&quot;)
+my_arr2=(
+	1
+	'a'
+	&quot;cc&quot;
+	)
+</code></pre>
+
+<h3 id="读取数组">读取数组</h3>
+
+<p>使用<code>@</code>符号获取数组中所有元素</p>
+
+<pre><code class="language-sh">echo ${my_arr1[@]}
+#输出1 2 A BC
+</code></pre>
+
+<h3 id="数组长度">数组长度</h3>
+
+<pre><code class="language-sh">length=${#my_arr1[@]}
+length=${#my_arr2[*]}
+</code></pre>
+
+<h2 id="shell传参">Shell传参</h2>
+
+<p>执行脚本时，向脚本传递参数，脚本内获取参数的格式为：$n，n代表数字，代表执行脚本的第n个参数，$0为执行的文件名</p>
+
+<h3 id="实例">实例</h3>
+
+<p>定义文件：</p>
+
+<pre><code class="language-sh">#!/bin/bash
+
+echo &quot;执行的文件名: $0&quot;
+echo &quot;第一个参数: $1&quot;
+echo &quot;第二个参数: $2&quot;
+</code></pre>
+
+<p>执行脚本：</p>
+
+<pre><code class="language-sh">$ chmod +x text.sh
+$ ./test.sh 1 A
+执行的文件名: ./test.sh
+第一个参数: 1
+第二个参数: A
+</code></pre>
+
+<h3 id="特殊参数">特殊参数</h3>
+
+<ul>
+<li>$# 传递到脚本的参数个数</li>
+<li>$* 以一个单字符串显示所有向脚本传递的参数。
+如&rdquo;$* &ldquo;用「&rdquo;」括起来的情况、以&rdquo;$1 $2 … $n&rdquo;的形式输出所有参数。</li>
+<li>$$ 脚本运行的当前进程ID号</li>
+<li>$! 后台运行的最后一个进程的ID号
+$@  与$* 相同，但是使用时加引号，并在引号中返回每个参数。</li>
+<li>如&rdquo;$@&ldquo;用「&rdquo;」括起来的情况、以&rdquo;$1&rdquo; &ldquo;$2&rdquo; … &ldquo;$n&rdquo; 的形式输出所有参数。</li>
+<li>$- 显示Shell使用的当前选项，与set命令功能相同。</li>
+<li>$? 显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。</li>
+</ul>
+
+<h2 id="shell基本运算符">Shell基本运算符</h2>
+
+<p>原生bah不支持简单的数学运算，但可以使用awk或expr实现，expr最常用。</p>
+
+<p>expr是一款表达式计算工具，使用它能完成表达式的求值操作</p>
+
+<p>两数相加：</p>
+
+<pre><code class="language-sh">#!/bin/bash
+val=`expr 2 + 2`
+echo &quot;2 + 2 = $val&quot;
+</code></pre>
+
+<p>注意：
+* 表达式和运算符之间要有空格
+* 完整表达式要被<code>` `</code>包含</p>
+
+<h3 id="关系运算符">关系运算符</h3>
+
+<ul>
+<li>-eq 是否相等</li>
+<li>-ne 是否不等</li>
+<li>-gt 左边是否大于右边</li>
+<li>lt 左边是否小于右边</li>
+<li>-ge 左边是否大于等于右边</li>
+<li>-le 左边是否小于等于右边</li>
+</ul>
+
+<h3 id="布尔运算符">布尔运算符</h3>
+
+<ul>
+<li>! 非</li>
+<li>-o 或</li>
+<li>-a 与</li>
+</ul>
+
+<h3 id="文件测试运算符">文件测试运算符</h3>
+
+<ul>
+<li>-b file 是否是块设备文件</li>
+<li>-c file 是否是字符设备文件</li>
+<li>-d file 是否是目录</li>
+<li>-f file 是否是普通文件</li>
+<li>-g file 是否设置了SGID位</li>
+<li>-k file 是否设置了粘着位</li>
+<li>-r file 是否可读</li>
+<li>-w file 是否可写</li>
+<li>-x file 是否可执行</li>
+<li>-s file 是否为空</li>
+<li>-e file 是否存在</li>
+</ul>
+
+
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 

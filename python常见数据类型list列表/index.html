@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Cocoa Enhanced" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/" />
-<meta property="og:title" content="Posts" />
-<meta property="twitter:title" content="Posts">
+<meta property="og:url" content="https://example.com/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/" />
+<meta property="og:title" content="Python常见数据类型——List列表" />
+<meta property="twitter:title" content="Python常见数据类型——List列表">
 
     <meta property="og:image" content="https://example.com/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Cocoa Enhanced - Posts 
+     Cocoa Enhanced - Python常见数据类型——List列表 
 
 </title>
-<link rel="canonical" href="https://example.com/posts/">
+<link rel="canonical" href="https://example.com/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/">
 
 
 <style media="screen">
@@ -1065,8 +1065,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://example.com/posts/index.xml" rel="alternate" type="application/rss+xml" title="Cocoa Enhanced" />
-
 
 </head>
 
@@ -1074,7 +1072,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1155,57 +1153,211 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
+
+
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts</div>
+            <div class="page-heading">
 
+    
+    Draft::Python常见数据类型——List列表
+    
+
+</div>
+
+            <div class="markdown">
                 
+    
+    
 
-                
-                <ul>
-                    
-                      
-                        <li class="groupby">Jun, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/"><span>Draft::图像基础-图像矩阵</span></a>
-    
-</li>
+<h1 id="python常见数据类型-list列表">Python常见数据类型——List列表</h1>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"><span>Draft::图像基础-图像分类</span></a>
-    
-</li>
+<p>list是一种有序的集合，可随时增删元素</p>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 3, 2019</span>
-    
-    <a href="https://example.com/posts/first/"><span>Draft::First</span></a>
-    
-</li>
+<p>[toc]</p>
 
-                          
-                        
-                      
-                    
-                </ul>
+<h2 id="创建list">创建list</h2>
+
+<pre><code class="language-python">&gt;&gt;&gt; classmates = ['A', 'B', 'C']
+&gt;&gt;&gt; classmates
+['A', 'B', 'C']
+&gt;&gt;&gt; len(classmates)
+3
+</code></pre>
+
+<h2 id="访问某个位置元素">访问某个位置元素</h2>
+
+<p>使用索引地址访问</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; classmates[0]
+'A'
+&gt;&gt;&gt; classmates[-1] #返回最后一项元素
+'C'
+</code></pre>
+
+<h2 id="追加元素到末尾">追加元素到末尾</h2>
+
+<pre><code class="language-python">&gt;&gt;&gt; classmates.append('D')
+&gt;&gt;&gt; classmates
+['A', 'B', 'C', 'D']
+</code></pre>
+
+<h2 id="插入元素到指定位置">插入元素到指定位置</h2>
+
+<pre><code class="language-python">&gt;&gt;&gt; classmates.insert(1, 'Here') #在指定位置放入元素
+&gt;&gt;&gt; classmates
+['A', 'Here', 'B', 'C', 'D']
+</code></pre>
+
+<h2 id="删除元素">删除元素</h2>
+
+<p><img src="https://jpibea.bl.files.1drv.com/y4mcd36jkxW3r3hjuqVolPWm8HXzyrZoJrMBKG3_rwFcxB0cRNmxxa9rQgJQAZWQUMlbP00WbwT6xnK0P0_eGsM8dLtospiUfvv90Fj5vRPgZPkuWSKuboRjnb5nPBl0X8nX_KNfIdYwt1-i9lGrfy8OTGhT5s2Q1pNZgjL4IR6IGZr94th_lJN7puSROxpBjdzcB5QqVm-BfGXSeIMNZ34eQ?width=900&amp;height=409&amp;cropmode=none" alt="图示" /></p>
+
+<h3 id="使用pop">使用pop</h3>
+
+<p>指定<strong>索引地址</strong>删除，返回删除的值</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; classmates.pop(0)
+'A'
+&gt;&gt;&gt; classmates
+['Here', 'B', 'C', 'D']
+</code></pre>
+
+<h3 id="使用del">使用del</h3>
+
+<p>指定<strong>索引地址</strong>删除，无返回值</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; del classmates[1]
+&gt;&gt;&gt;classmates
+['Here', 'C', 'D']
+</code></pre>
+
+<h3 id="使用remove">使用remove</h3>
+
+<p>删除<strong>指定值</strong>的第一次出现，无返回值</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; classmates.remove('C')
+&gt;&gt;&gt;classmates
+['Here', 'D']
+</code></pre>
+
+<h2 id="list的截取与拼接">list的截取与拼接</h2>
+
+<h3 id="截取">截取</h3>
+
+<p>将冒号<code>:</code>分别放在索引地址前（后），即可截取该位置之前（之后）的元素</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; t = ['a', 'b', 'c', 'd']
+&gt;&gt;&gt; t[1:]
+['b', 'c', 'd'] #截取后面会包含当前元素
+&gt;&gt;&gt; t[:1]
+['a']
+</code></pre>
+
+<h3 id="拼接">拼接</h3>
+
+<pre><code class="language-python">&gt;&gt;&gt;t += [1, 2, 3]
+['a', 'b', 'c', 'd', 1, 2, 3]
+</code></pre>
+
+<h2 id="list中元素为list">list中元素为list</h2>
+
+<p>list元素可以是另外一个list，类似二元数组</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; partner = [1, 2, 3]
+[1, 2, 3]
+&gt;&gt;&gt; classmates.append(partner)
+['Here', 'D', [1, 2, 3]]
+</code></pre>
+
+<p>此时<code>classmates</code>只有<strong>3个</strong>元素</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; len(classmates)
+3
+&gt;&gt;&gt;len (partner)
+3
+</code></pre>
+
+<p><strong>要访问<code>partner</code>中元素</strong></p>
+
+<pre><code class="language-python">&gt;&gt;&gt; classmates[2][1]
+2
+</code></pre>
+
+<p>类似还可以成为三维、四维……数组</p>
+
+<h2 id="list中元素的数据类型不同">list中元素的数据类型不同</h2>
+
+<p>同一list中可包含不同数据类型元素</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; classmates.append(True)
+['Here', 'D', [1, 2, 3], True]
+</code></pre>
+
+<h2 id="空的list">空的list</h2>
+
+<p>如果一个list中一个元素也没有，就是一个空的list，它的长度为0</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; test = []
+&gt;&gt;&gt; len(test)
+0
+</code></pre>
+
+<h2 id="list相关函数-方法">list相关函数&amp;方法</h2>
+
+<h3 id="函数">函数</h3>
+
+<ul>
+<li><p>len(list)
+list元素个数</p></li>
+
+<li><p>max(list)
+返回list元素最大值</p></li>
+
+<li><p>min(list)
+返回list元素最小值</p></li>
+
+<li><p>list(seq)
+将元组tuble转换成list</p></li>
+</ul>
+
+<h3 id="方法">方法</h3>
+
+<ul>
+<li>list.append(obj)
+在列表末尾添加新的对象</li>
+<li>list.count(obj)
+统计某个元素在列表中出现的次数</li>
+<li>list.extend(seq)
+在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）</li>
+<li>list.index(obj)
+从列表中找出某个值<strong>第一个匹配项</strong>的索引位置</li>
+<li>list.insert(index, obj)
+将对象插入列表</li>
+<li>list.pop([index=-1])
+移除列表中的一个元素<strong>（默认最后一个元素）</strong>，并且返回该元素的值</li>
+<li>list.remove(obj)
+移除列表中某个值的<strong>第一个匹配项</strong></li>
+<li>list.reverse()
+<strong>反向</strong>列表中元素</li>
+<li>list.sort( key=None, reverse=False)
+对原列表进行排序
+<em>key &ndash; 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序
+reverse &ndash; 排序规则，reverse = True 降序， reverse = False 升序（默认）</em></li>
+<li>list.clear()
+清空列表</li>
+<li>list.copy()</li>
+</ul>
+
+
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 

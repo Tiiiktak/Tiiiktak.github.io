@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Cocoa Enhanced" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/" />
-<meta property="og:title" content="Posts" />
-<meta property="twitter:title" content="Posts">
+<meta property="og:url" content="https://example.com/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" />
+<meta property="og:title" content="Python函数式编程" />
+<meta property="twitter:title" content="Python函数式编程">
 
     <meta property="og:image" content="https://example.com/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Cocoa Enhanced - Posts 
+     Cocoa Enhanced - Python函数式编程 
 
 </title>
-<link rel="canonical" href="https://example.com/posts/">
+<link rel="canonical" href="https://example.com/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">
 
 
 <style media="screen">
@@ -1065,8 +1065,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://example.com/posts/index.xml" rel="alternate" type="application/rss+xml" title="Cocoa Enhanced" />
-
 
 </head>
 
@@ -1074,7 +1072,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1155,57 +1153,344 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
+
+
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts</div>
+            <div class="page-heading">
 
+    
+    Draft::Python函数式编程
+    
+
+</div>
+
+            <div class="markdown">
                 
+    
+    
 
-                
-                <ul>
-                    
-                      
-                        <li class="groupby">Jun, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/"><span>Draft::图像基础-图像矩阵</span></a>
-    
-</li>
+<p>[toc]</p>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"><span>Draft::图像基础-图像分类</span></a>
-    
-</li>
+<h2 id="什么是函数式编程">什么是函数式编程？</h2>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 3, 2019</span>
-    
-    <a href="https://example.com/posts/first/"><span>Draft::First</span></a>
-    
-</li>
+<p>函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。</p>
 
-                          
-                        
-                      
-                    
-                </ul>
+<p>而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的</p>
+
+<p>函数式编程的一个<strong>特点</strong>就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！</p>
+
+<p>Python对函数式编程提供<strong>部分支持</strong>。由于Python允许使用变量，因此，Python不是纯函数式编程语言</p>
+
+<h2 id="高阶函数">高阶函数</h2>
+
+<p><strong>Python中函数两个特性</strong>
+&gt; ### 变量可以指向函数
+函数本身可以赋值给变量，通过变量可以调用函数</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; f = abs
+&gt;&gt;&gt; f(-10)
+10
+</code></pre>
+
+<blockquote>
+<h3 id="函数名是变量">函数名是变量</h3>
+
+<p>把函数名看作变量，可将其指向其他对象，则无法调用原函数</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; abs = 10
+&gt;&gt;&gt; abs(-10)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: 'int' object is not callable
+</code></pre>
+</blockquote>
+
+<h3 id="传入函数">传入函数</h3>
+
+<p>由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为<strong>高阶函数</strong></p>
+
+<p>一个最简单的高阶函数：</p>
+
+<pre><code class="language-python">def add(x, y, f)
+	return f(x) + f(y)
+</code></pre>
+
+<p>当调用<code>add(-5, -6, abs)</code>时，函数计算<code>abs(-5)+abs(-6)</code>，返回<code>11</code></p>
+
+<blockquote>
+<p><strong>把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程凡事</strong></p>
+</blockquote>
+
+<hr />
+
+<h2 id="python内建高阶函数">Python内建高阶函数</h2>
+
+<h3 id="map-函数">map()函数</h3>
+
+<pre><code class="language-map()```">
+![图](https://a2w0fa.bl.files.1drv.com/y4mcJHdrB6oWGYuqkMFD82wH6Jh1WYgIe-J0xEea07ClUdCO7wiGO0Layy4v0OG-fkz3SUQKLrcRl4OgHeurB_5kokXmufjt1Jd3Q5jDN-qfKJ-PfgokGplh35ysv5PBziGSNX2VlU0XOehT1hfdV8nOyhEG9wDcG1xR7x85-SVIACFFlKMTc1bpjQks_w7etOIQmIMxsnLZhp4ytdVpl_Xmw?width=454&amp;height=322&amp;cropmode=none)
+
+```python
+def f(x):
+	return x * x
+&gt;&gt;&gt; r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+&gt;&gt;&gt; list(r)
+[1, 4, 9, 16, 25, 36, 49, 64, 81]
+</code></pre>
+
+<h3 id="reduce-函数">reduce()函数</h3>
+
+<pre><code class="language-reduce```">
+```python
+reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
+</code></pre>
+
+<h3 id="filter-函数">filter()函数</h3>
+
+<p>该函用于过滤序列。</p>
+
+<pre><code class="language-filter()```">
+例如，删掉list中的偶数，保留奇数
+```python
+def is_odd(n):
+	return n % 2 == 1
+&gt;&gt;&gt; list(filter(is_odd, [1, 2, 3, 4, 5]))
+[1, 3, 5]
+</code></pre>
+
+<h4 id="用filter求素数">用filter求素数</h4>
+
+<p>利用<a href="https://baike.baidu.com/item/%E5%9F%83%E6%8B%89%E6%89%98%E8%89%B2%E5%B0%BC%E7%AD%9B%E9%80%89%E6%B3%95"><strong>埃氏筛法</strong></a></p>
+
+<ul>
+<li><p>先构造一个从<code>3</code>开始的<strong>奇数序列</strong>
+利用生成器</p>
+
+<pre><code class="language-python">def _odd_iter():
+	n = 1
+	while 1:
+		n += 2
+		yield n
+</code></pre>
+
+<ul>
+<li>定义一个<strong>筛选函数</strong>
+<code>python
+def _not_divisible(n):
+	return lambda x: x % n &gt; 0
+</code></li>
+</ul></li>
+
+<li><p>最后定义一个生成器，不断返回下一素数</p>
+
+<pre><code class="language-python">def primes():
+	yield 2
+	it = _odd_iter()
+	while 1:
+		n = next(it)
+		yield n
+		it = filter(_not_divisible(n), it)
+</code></pre>
+
+<ul>
+<li>调用得到1000内素数
+<code>python
+for n in primes():
+	if (n &lt; 1000):
+		print(n)
+	else:
+		break
+</code></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<pre><code class="language-filter()```的作用是从一个序列中筛出符合条件的元素。由于```filter()```使用了惰性计算，所以只有在取```filter()```结果的时候，才会真正筛选并每次返回下一个筛出的元素。">
+
+### sorted()函数
+
+它可以接收一个```key```函数来实现自定义的排序，例如按绝对值大小排序：
+```python
+&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)
+[5, 9, -12, -21, 36]
+</code></pre>
+
+<p>key指定的函数将作用于list的每一个元素上，并根据key函数返回的结果进行排序。
+然后<code>sorted()</code>函数按照keys进行排序，并按照对应关系返回list相应的元素</p>
+
+<h2 id="返回函数-闭包">返回函数&amp;闭包</h2>
+
+<h3 id="函数作为返回值">函数作为返回值</h3>
+
+<pre><code class="language-python">def lazy_f(x, y):
+	def f():
+		return x + y
+	return f1	#返回函数
+&gt;&gt;&gt; f1 = lazy_f(1, 2) 
+&gt;&gt;&gt; f2 = lazy_f(1, 2)
+&gt;&gt;&gt; f1 == f2
+False	#两次返回的函数并不同
+&gt;&gt;&gt; f1() #调用函数时，才真正计算求和结果
+3
+&gt;&gt;&gt; f2()
+3
+</code></pre>
+</blockquote>
+
+<h3 id="闭包">闭包</h3>
+
+<p>当<code>lazy_f</code>返回函数<code>f</code>时，相关参数和变量都保存在返回的函数中，这种称为“<strong>闭包（Closure）</strong>”的程序结构拥有极大的威力。</p>
+
+<p>需要注意的是，返回的函数并没有立刻执行，而是直到调用了<code>f()</code>才执行
+如</p>
+
+<pre><code class="language-python">def count():
+    fs = []
+    for i in range(1, 4):
+        def f():
+             return i*i
+        fs.append(f)
+    return fs
+f1, f2, f3 = count()
+</code></pre>
+
+<p>在实际调用中</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; f1()
+9
+&gt;&gt;&gt; f2()
+9
+&gt;&gt;&gt; f3()
+9
+</code></pre>
+
+<blockquote>
+<p><strong>注意：返回函数不要引用任何循环变量，或者后续会发生变化的变量</strong></p>
+</blockquote>
+
+<h2 id="匿名函数">匿名函数</h2>
+
+<p>如匿名函数<code>lambda x: x * x</code></p>
+
+<p>关键字<code>lambda</code>表示匿名函数，冒号前面的<code>x</code>表示函数参数。</p>
+
+<p>匿名函数只能有一个表达式，不写<code>return</code>，返回值就是该表达式的结果</p>
+
+<p>Python对匿名函数的支持有限，只有一些简单的情况下可以使用匿名函数。</p>
+
+<h2 id="装饰器">装饰器</h2>
+
+<p>函数对像有一个<code>__name__</code>属性，可以返回函数的名字</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; now.__name__
+'now'
+</code></pre>
+
+<p>现在，假设我们要增强<code>now()</code>函数的功能，比如，在函数调用前后自动打印日志，但又不希望修改<code>now()</code>函数的定义，这种在代码运行期间动态增加功能的方式，称之为“<strong>装饰器（Decorator）</strong>”。</p>
+
+<p>定义一个能打印日志的decorator</p>
+
+<pre><code class="language-python">def log(func):
+	def wrapper(*args, **kw):	#*args是非关键字参数，用于元组，**kw是关键字参数，用于字典
+		print('class %s():' % func.__name__)
+		return func(*args, **kw)
+	return wrapper
+</code></pre>
+
+<p>借助Python的@语法，把decorator置于函数的定义处：</p>
+
+<pre><code class="language-python">@log
+def now():
+	print('2019/6/21')
+</code></pre>
+
+<p>调用函数<code>now()</code>，不仅会运行<code>now()</code>本身，还会在其之前打印一行日志</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; now()
+call now():
+2019/6/21
+</code></pre>
+
+<p>相当于执行了语句：</p>
+
+<pre><code class="language-python">now = log(now)
+</code></pre>
+
+<p>如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数，写出来会更复杂。比如，要自定义log的文本：</p>
+
+<pre><code class="language-python">def log(text):
+	def decorator(func):
+		def wrapper(*args, **kw):
+			print('%s %s():' % (text, func.__name__))
+			return func(*args, **kw)
+		return wrapper
+	return decorator
+</code></pre>
+
+<p>使用</p>
+
+<pre><code class="language-python">@log('execute')
+def now():
+	print('2019/6/21')
+#相当于now = log('excute')(now)
+</code></pre>
+
+<p>以上两种decorator的定义都没有问题，但还差最后一步。因为我们讲了函数也是对象，它有<code>__name__</code>等属性，但你去看经过decorator装饰之后的函数，它们的<code>__name__</code>已经从原来的<code>'now'</code>变成了<code>'wrapper'</code>：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; now.__name__
+'wrapper'
+</code></pre>
+
+<p>因为返回的那个<code>wrapper()</code>函数名字就是<code>'wrapper'</code>，所以，需要把原始函数的<code>__name__</code>等属性复制到<code>wrapper()</code>函数中，否则，有些依赖函数签名的代码执行就会出错。</p>
+
+<p>不需要编写<code>wrapper.__name__ = func.__name__</code>这样的代码，Python内置的<code>functools.wraps</code>就是干这个事的，所以，一个完整的decorator的写法如下：</p>
+
+<pre><code class="language-python">import functools
+
+def log(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+</code></pre>
+
+<p>或者针对带参数的decorator：</p>
+
+<pre><code class="language-python">import functools
+def log(text):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+</code></pre>
+
+<h2 id="偏函数">偏函数</h2>
+
+<p>可借助<code>functools.partial</code>创建偏函数：把一个函数的某些参数设为某个默认值，返回一个新的函数，调用这个新函数会更简单</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; int2 = functools.partial(int, base = 2)
+&gt;&gt;&gt; int2('10000')
+16
+</code></pre>
+
+<blockquote>
+<p>当函数的参数个数太多，需要简化时，使用<code>functools.partial</code>可以创建一个新的函数，这个新函数可以固定住原函数的部分参数，从而在调用时更简单。</p>
+</blockquote>
+
+
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 

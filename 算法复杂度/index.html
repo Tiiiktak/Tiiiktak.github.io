@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Cocoa Enhanced" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/" />
-<meta property="og:title" content="Posts" />
-<meta property="twitter:title" content="Posts">
+<meta property="og:url" content="https://example.com/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/" />
+<meta property="og:title" content="算法复杂度" />
+<meta property="twitter:title" content="算法复杂度">
 
     <meta property="og:image" content="https://example.com/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Cocoa Enhanced - Posts 
+     Cocoa Enhanced - 算法复杂度 
 
 </title>
-<link rel="canonical" href="https://example.com/posts/">
+<link rel="canonical" href="https://example.com/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/">
 
 
 <style media="screen">
@@ -1065,8 +1065,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://example.com/posts/index.xml" rel="alternate" type="application/rss+xml" title="Cocoa Enhanced" />
-
 
 </head>
 
@@ -1074,7 +1072,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1155,57 +1153,61 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
+
+
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts</div>
+            <div class="page-heading">
 
+    
+    Draft::算法复杂度
+    
+
+</div>
+
+            <div class="markdown">
                 
+    
+    
 
-                
-                <ul>
-                    
-                      
-                        <li class="groupby">Jun, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/"><span>Draft::图像基础-图像矩阵</span></a>
-    
-</li>
+<h1 id="算法复杂度">算法复杂度</h1>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"><span>Draft::图像基础-图像分类</span></a>
-    
-</li>
+<ul>
+<li>总共N个数据</li>
+<li>一次操作记为O(1)</li>
+<li>N次操作记为O(n)</li>
+<li>在大部分oj判题系统中时间限制为10^6 =1s</li>
+</ul>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 3, 2019</span>
-    
-    <a href="https://example.com/posts/first/"><span>Draft::First</span></a>
-    
-</li>
+<h2 id="冒泡排序">冒泡排序</h2>
 
-                          
-                        
-                      
-                    
-                </ul>
+<ul>
+<li>操作次数: n+(n-1)+(n-2)+&hellip;+n(n-1)/2</li>
+</ul>
+
+<h2 id="快速排序">快速排序</h2>
+
+<ul>
+<li><p>递归处理数组，每次将数组按照key值在其左右区分出来：比key小放左边，比key大放右边</p></li>
+
+<li><h3 id="例-5-6-2-4-3-8">例: 5 6 2 4 3 8</h3></li>
+
+<li><p>取首位（5）为key值</p></li>
+
+<li><p>4 3 2 5 6 8</p></li>
+
+<li><p>4 3 2 5 6 8</p></li>
+</ul>
+
+
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 

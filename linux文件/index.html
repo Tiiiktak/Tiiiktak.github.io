@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Cocoa Enhanced" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/" />
-<meta property="og:title" content="Posts" />
-<meta property="twitter:title" content="Posts">
+<meta property="og:url" content="https://example.com/linux%E6%96%87%E4%BB%B6/" />
+<meta property="og:title" content="Linux文件" />
+<meta property="twitter:title" content="Linux文件">
 
     <meta property="og:image" content="https://example.com/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Cocoa Enhanced - Posts 
+     Cocoa Enhanced - Linux文件 
 
 </title>
-<link rel="canonical" href="https://example.com/posts/">
+<link rel="canonical" href="https://example.com/linux%E6%96%87%E4%BB%B6/">
 
 
 <style media="screen">
@@ -1065,8 +1065,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://example.com/posts/index.xml" rel="alternate" type="application/rss+xml" title="Cocoa Enhanced" />
-
 
 </head>
 
@@ -1074,7 +1072,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1155,57 +1153,393 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
+
+
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts</div>
+            <div class="page-heading">
 
+    
+    Draft::Linux文件
+    
+
+</div>
+
+            <div class="markdown">
                 
+    
+    
 
-                
-                <ul>
-                    
-                      
-                        <li class="groupby">Jun, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/"><span>Draft::图像基础-图像矩阵</span></a>
-    
-</li>
+<p>[toc]</p>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://example.com/posts/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"><span>Draft::图像基础-图像分类</span></a>
-    
-</li>
+<h2 id="linux文件基本属性">Linux文件基本属性</h2>
 
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 3, 2019</span>
-    
-    <a href="https://example.com/posts/first/"><span>Draft::First</span></a>
-    
-</li>
+<p>在Linux中可以使用<code>ll</code>或者<code>ls –l</code>命令来显示一个<strong>文件的属性以及文件所属的用户和组</strong>，如：</p>
 
-                          
-                        
-                      
-                    
-                </ul>
+<pre><code class="language-c">[root@www /]# ls -l
+total 64
+dr-xr-xr-x   2 root root 4096 Dec 14  2012 bin
+dr-xr-xr-x   4 root root 4096 Apr 19  2012 boot
+……
+</code></pre>
+
+<p>bin文件的第一个属性用<code>d</code>表示，<code>d</code>在Linux中代表该文件是一个目录文件
+<em>Linux中第一个字符代表这个文件时目录、文件、链接文件等</em>
+&gt;* 当为[d]则是目录
+&gt;* 当为[-]则是文件
+&gt;* 若是[l]则表示为链接文档(link file)
+&gt;* 若是[b]则表示为装置文件里面的可供储存的接口设备(可随机存取装置)
+&gt;* 若是[c]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)</p>
+
+<p>接下来的字符中，<strong>三个为一组</strong>，且均为『rwx』 的三个参数的组合。其中，<strong>[r]代表可读(read)、[w]代表可写(write)、[x]代表可执行(execute)</strong>。 要注意的是，这三个权限的<strong>位置不会改变</strong>，如果没有权限，就会出现减号[-]，如图</p>
+
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/06/363003_1227493859FdXT.png" alt="文件属性" /></p>
+
+<h2 id="linux链接">Linux链接</h2>
+
+<p>Linux链接分为硬链接（Hard Link）和软链接（Symbolic Link）。默认情况，<code>ln</code>命令创建硬链接</p>
+
+<h3 id="硬链接">硬链接</h3>
+
+<p>硬连接指通过索引节点来进行连接，多个文件名可以指向同一索引节点，删除其中任何一个不会影响其余文件名的访问，只有当最后一个连接被删除时，文件的数据块及其目录的连接才被释放</p>
+
+<h3 id="软链接">软链接</h3>
+
+<p>即符号链接，类似于Windows中快捷方式。两个文件名指向两个不同的节点号，若被指向的文件删除，链接仍存在，但指向一个无效的链接</p>
+
+<h2 id="linux文件属主和属组">Linux文件属主和属组</h2>
+
+<p>Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。</p>
+
+<pre><code class="language-c">[root@www /]# ls -l
+total 64
+drwxr-xr-x 2 root  root  4096 Feb 15 14:46 cron
+drwxr-xr-x 3 mysql mysql 4096 Apr 21  2014 mysql
+……
+</code></pre>
+
+<p>mysql 文件是一个目录文件，属主和属组都为 mysql，属主有可读、可写、可执行的权限；与属主同组的其他用户有可读和可执行的权限；其他用户也有可读和可执行的权限。</p>
+
+<p>对于 root 用户来说，一般情况下，文件的权限对其不起作用。</p>
+
+<h3 id="更改文件属性">更改文件属性</h3>
+
+<h4 id="chgrp更改文件属组">chgrp更改文件属组</h4>
+
+<pre><code class="language-c">chgrp [-R] 属组名 文件名
+</code></pre>
+
+<blockquote>
+<p>-R: 递归更改文件属性，更改属组时加上该参数，可更改该目录下所有文件的属组</p>
+</blockquote>
+
+<h4 id="chown更改文件属住-也可同时更改属组">chown更改文件属住（也可同时更改属组）</h4>
+
+<pre><code class="language-c">chown [-R] 属主名 文件名
+chown [-R] 属主名: 属组名 文件名
+</code></pre>
+
+<ul>
+<li><p>进入 /root 目录（<code>~</code>）将<code>install.log</code>的拥有者改为bin这个账号：</p>
+
+<pre><code class="language-C">[root@www ~] cd ~
+[root@www ~]# chown bin install.log
+[root@www ~]# ls -l
+-rw-r--r--  1 bin  users 68495 Jun 25 08:53 install.log
+</code></pre>
+
+<ul>
+<li>将install.log的拥有者与群组改回为root：
+<code>C
+[root@www ~]# chown root:root install.log
+[root@www ~]# ls -l
+-rw-r--r--  1 root root 68495 Jun 25 08:53 install.log
+</code></li>
+</ul></li>
+</ul>
+
+<h4 id="chmod更改文件9个属性">chmod更改文件9个属性</h4>
+
+<p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
+
+<p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
+
+<h5 id="数字类型改变文件权限">数字类型改变文件权限</h5>
+
+<p>文件的权限字符为3 * 3的字符（r\w\x）组合，可用数字代表各个权限：
+&gt;* r-4
+&gt;* w-2
+&gt;* x-1</p>
+
+<p>每种身份各自的三个权限分数需要累加，例如当权限为： [-rwxrwx&mdash;] 是的分数则是：
+&gt;* owner = rwx = 4+2+1 = 7
+&gt;* group = rwx = 4+2+1 = 7
+&gt;* others= &mdash; = 0+0+0 = 0</p>
+
+<p>之后可以使用权限数字770修改权限</p>
+
+<pre><code class="language-c">chmod [-R] xyz 文件或目录
+</code></pre>
+
+<p>例如：</p>
+
+<pre><code class="language-c">[root@www ~]# ls -al .bashrc
+-rw-r--r--  1 root root 395 Jul  4 11:45 .bashrc
+[root@www ~]# chmod 777 .bashrc
+[root@www ~]# ls -al .bashrc
+-rwxrwxrwx  1 root root 395 Jul  4 11:45 .bashrc
+</code></pre>
+
+<h5 id="符号类型改变文件权限">符号类型改变文件权限</h5>
+
+<p>用<code>u, g, o</code>代表三种身份的权限，此外<code>a</code>代表all，即全部身份。读写权限可以写成<code>r, w, x</code></p>
+
+<p>| chmod | u | +（加入） | r | 文件或目录 |
+| &mdash;&ndash; | &mdash;&ndash; | &mdash;&ndash; |
+|  | g | -（除去）| w |
+|  | o | =（设定）| x |
+|  | a | | |</p>
+
+<p>如果我们需要将文件权限设置为<code>-rwxr-xr--</code> ，可以使用 <code>chmod u=rwx,g=rx,o=r 文件名</code> 来设定</p>
+
+<p>要去掉权限而不改变其他已存在的权限，例如要拿掉全部人的可执行权限：</p>
+
+<pre><code class="language-c">#  chmod  a-x test1
+# ls -al test1
+-rw-r--r-- 1 root root 0 Nov 15 10:32 test1
+</code></pre>
+
+<h2 id="linux文件与目录管理">Linux文件与目录管理</h2>
+
+<blockquote>
+<ul>
+<li>绝对路径：路径的写法，由根目录 / 写起，例如：<code>/usr/share/doc</code>这个目录。
+&gt;* 相对路径：
+路径的写法，不是由 / 写起，例如由<code>/usr/share/doc</code>要到<code>/usr/share/man</code>底下时，可以写成： <code>cd ../man</code></li>
+</ul>
+
+<h3 id="处理目录的常用命令">处理目录的常用命令</h3>
+
+<ul>
+<li>ls: 列出目录</li>
+<li>cd：切换目录</li>
+<li>pwd：显示目前的目录</li>
+<li>mkdir：创建一个新的目录</li>
+<li>rmdir：删除一个空的目录</li>
+<li>cp: 复制文件或目录</li>
+<li>rm: 移除文件或目录</li>
+<li>mv: 移动文件与目录，或修改文件与目录的名称</li>
+</ul>
+
+<p>使用<code>man [命令]</code>查看各个命令的使用文档</p>
+
+<h4 id="ls列出目录">ls列出目录</h4>
+
+<p>选项与参数：
+* -a：全部文件（包括隐藏的文件）
+* -d：仅列出目录本身，而不列出目录内的文件数据
+* -l：长数据串列出（包括文件的属性与权限等数据）</p>
+
+<h4 id="cd切换目录">cd切换目录</h4>
+
+<pre><code class="language-python">cd /root/test1/ #使用绝对路径切换到test1目录
+cd ./test1/ #使用相对路径
+cd ~ #回到自己的home目录，此处即/root
+cd .. #返回上一级
+</code></pre>
+</blockquote>
+
+<h4 id="pwd显示目前所在目录">pwd显示目前所在目录</h4>
+
+<pre><code class="language-c">pwd [-P]
+</code></pre>
+
+<ul>
+<li>-P：显示出确实的路径，而非使用连结（link）路径</li>
+</ul>
+
+<h4 id="mkdir创建新目录">mkdir创建新目录</h4>
+
+<pre><code class="language-c">mkdir [-mp] 目录名称
+</code></pre>
+
+<p>选项与参数：
+* -m：配置文件的权限
+* -p：一次性递归创建多层目录</p>
+
+<h4 id="rmdir删除空目录">rmdir删除空目录</h4>
+
+<pre><code class="language-c">rmdir [-p] 目录名称
+</code></pre>
+
+<p>选项与参数：
+* -p：连同上一级“空的”目录一起删除</p>
+
+<h4 id="cp复制文件或目录">cp复制文件或目录</h4>
+
+<pre><code class="language-c">cp [-adfilprsu] 来源档（source） 目标档（destination）
+cp [options] source1 source2 source3 .... directory
+</code></pre>
+
+<p>选项与参数：</p>
+
+<ul>
+<li>-a：相当于-pdr</li>
+<li>-d：若来源档为连结档的属性，则只复制属性</li>
+<li>-f：强制，若目标文件已存在且无法开启，则移除后载尝试一次</li>
+<li>-i：若目标档已存在，在覆盖时先询问动作的进行</li>
+<li>-l：进行硬式连结(hard link)的连结档创建，而非复制文件本身；</li>
+<li>-p：连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li>-r：递归持续复制，用於目录的复制行为；(常用)</li>
+<li>-s：复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+<li>-u：若 destination 比 source 旧才升级 destination ！</li>
+</ul>
+
+<p>用 root 身份，将 root 目录下的 .bashrc 复制到 /tmp 下，并命名为 bashrc</p>
+
+<pre><code class="language-c">[root@www ~]# cp ~/.bashrc /tmp/bashrc
+[root@www ~]# cp -i ~/.bashrc /tmp/bashrc
+cp: overwrite `/tmp/bashrc'? n  &lt;==n不覆盖，y为覆盖
+</code></pre>
+
+<h4 id="rm移除文件或目录">rm移除文件或目录</h4>
+
+<pre><code class="language-c">rm [-fir] 文件或目录
+</code></pre>
+
+<p>选项与参数：</p>
+
+<ul>
+<li>-f：忽略不存在的文件，不出现警告信息</li>
+<li>-i：互动模式，在删除前询问是否操作</li>
+<li>-r：递归删除</li>
+</ul>
+
+<h4 id="mv移动文件与目录-或修改名称">mv移动文件与目录，或修改名称</h4>
+
+<pre><code class="language-c">mv [-fiu] source destination
+mv [options] source1 source2 source3 .... directory
+</code></pre>
+
+<p>选项与参数：</p>
+
+<ul>
+<li>-f：强制，若目标文件已存在，不会询问而直接覆盖</li>
+<li>-i：若目标文件已存在，则询问</li>
+<li>-u：若目标文件已经存在，且 source 比较新，才会升级 (update)</li>
+</ul>
+
+<h2 id="linux文件内容查看">Linux文件内容查看</h2>
+
+<blockquote>
+<ul>
+<li>cat：由第一行开始显示文件内容</li>
+<li>tac：从最后一行开始显示，是 cat 的倒著写</li>
+<li>nl：显示的时候，同时输出行号</li>
+<li>more：一页一页的显示文件内容</li>
+<li>less：与 more 类似，但是比 more 更好的是，他可以往前翻页！</li>
+<li>head：只看头几行</li>
+<li>tail：只看末尾几行</li>
+</ul>
+</blockquote>
+
+<p>使用<code>man [命令]</code>查看使用文档</p>
+
+<h3 id="cat-tac">cat / tac</h3>
+
+<pre><code class="language-c">cat [-AbEnTv]
+</code></pre>
+
+<p>选项与参数：</p>
+
+<ul>
+<li>-A：相当于-vET，可列出一些特殊字符而非空白</li>
+<li>-b：列出行号（仅空白行标出）</li>
+<li>-E：显示结尾断行字节$</li>
+<li>-n：列出行号（非空白行也有）</li>
+<li>-T：将[tab]键以^|显示</li>
+<li>-v：列出特殊字符</li>
+</ul>
+
+<h3 id="nl">nl</h3>
+
+<pre><code class="language-c">nl [-bnw] 文件
+</code></pre>
+
+<p>选项与参数：</p>
+
+<ul>
+<li>-b ：指定行号指定的方式，主要有两种：
+<strong>-b a ：</strong>表示不论是否为空行，也同样列出行号(类似 cat -n)
+<strong>-b t ：</strong>如果有空行，空的那一行不要列出行号(默认值)</li>
+<li>-n ：列出行号表示的方法，主要有三种：
+<strong>-n ln ：</strong>行号在荧幕的最左方显示
+<strong>-n rn ：</strong>行号在自己栏位的最右方显示，且不加 0
+<strong>-n rz ：</strong>行号在自己栏位的最右方显示，且加 0</li>
+<li>-w ：行号栏位的占用的位数。</li>
+</ul>
+
+<h3 id="more">more</h3>
+
+<p>more运行时可使用操作：</p>
+
+<ul>
+<li>空白键 (space)：代表向下翻一页</li>
+<li>Enter：代表向下翻『一行』</li>
+<li>/字串：代表在这个显示的内容当中，向下搜寻『字串』这个关键字</li>
+<li>:f：立刻显示出档名以及目前显示的行数</li>
+<li>q：代表立刻离开 more ，不再显示该文件内容</li>
+<li>b 或 [ctrl]-b：代表往回翻页，不过这动作只对文件有用，对管线无用。</li>
+</ul>
+
+<h3 id="less">less</h3>
+
+<p>less运行时可使用操作：</p>
+
+<ul>
+<li>空白键：向下翻动一页</li>
+<li>[pagedown]：向下翻动一页</li>
+<li>[pageup]：向上翻动一页</li>
+<li>/字串：向下搜寻『字串』的功能</li>
+<li>?字串：向上搜寻『字串』的功能</li>
+<li>n：重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>N：反向的重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>q：离开 less 这个程序</li>
+</ul>
+
+<h3 id="less-1">less</h3>
+
+<pre><code class="language-c">head [-n number] 文件
+</code></pre>
+
+<p>选项与参数：</p>
+
+<ul>
+<li>-n：后接数字，代表显示几行
+默认显示10行</li>
+</ul>
+
+<h3 id="tail">tail</h3>
+
+<pre><code class="language-c">tail [-n number] 文件
+</code></pre>
+
+<p>选项与参数：</p>
+
+<ul>
+<li>-n</li>
+<li>-f：持续侦测后面所接的文档名，直到按下[ctrl]-c结束侦测</li>
+</ul>
+
+
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 
