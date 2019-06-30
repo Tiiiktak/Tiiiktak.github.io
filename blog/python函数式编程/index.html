@@ -1167,6 +1167,10 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     
                         <ul>
                           
+                            <li class="middot"><a href="https://tiiiktak.github.io/tags/python">Python</a> </li>
+                          
+                            <li class="middot"><a href="https://tiiiktak.github.io/tags/%E5%AD%A6%E4%B9%A0">学习</a> </li>
+                          
                         </ul>
                     </div>
                     <div class="tags">
@@ -1231,7 +1235,7 @@ TypeError: 'int' object is not callable
 <p>当调用<code>add(-5, -6, abs)</code>时，函数计算<code>abs(-5)+abs(-6)</code>，返回<code>11</code></p>
 
 <blockquote>
-<p><strong>把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程凡事</strong></p>
+<p><strong>把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式</strong></p>
 </blockquote>
 
 <hr />
@@ -1240,11 +1244,11 @@ TypeError: 'int' object is not callable
 
 <h3 id="map-函数">map()函数</h3>
 
-<pre><code class="language-map()```">
-![图](https://a2w0fa.bl.files.1drv.com/y4mcJHdrB6oWGYuqkMFD82wH6Jh1WYgIe-J0xEea07ClUdCO7wiGO0Layy4v0OG-fkz3SUQKLrcRl4OgHeurB_5kokXmufjt1Jd3Q5jDN-qfKJ-PfgokGplh35ysv5PBziGSNX2VlU0XOehT1hfdV8nOyhEG9wDcG1xR7x85-SVIACFFlKMTc1bpjQks_w7etOIQmIMxsnLZhp4ytdVpl_Xmw?width=454&amp;height=322&amp;cropmode=none)
+<p>|<code>map()</code> 函数接收两个参数，一个是函数，一个是<code>Iterable</code>，<code>map</code>将传入的函数<strong>依次作用</strong>到序列的每个元素，并把结果作为新的<code>Iterator</code>返回</p>
 
-```python
-def f(x):
+<p><img src="https://a2w0fa.bl.files.1drv.com/y4mcJHdrB6oWGYuqkMFD82wH6Jh1WYgIe-J0xEea07ClUdCO7wiGO0Layy4v0OG-fkz3SUQKLrcRl4OgHeurB_5kokXmufjt1Jd3Q5jDN-qfKJ-PfgokGplh35ysv5PBziGSNX2VlU0XOehT1hfdV8nOyhEG9wDcG1xR7x85-SVIACFFlKMTc1bpjQks_w7etOIQmIMxsnLZhp4ytdVpl_Xmw?width=454&amp;height=322&amp;cropmode=none" alt="image" /></p>
+
+<pre><code class="language-python">def f(x):
 	return x * x
 &gt;&gt;&gt; r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 &gt;&gt;&gt; list(r)
@@ -1253,19 +1257,20 @@ def f(x):
 
 <h3 id="reduce-函数">reduce()函数</h3>
 
-<pre><code class="language-reduce```">
-```python
-reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
+<p>|<code>reduce</code> 把一个函数作用在一个序列<code>[x1, x2, x3, ...]</code>上，这个函数必须接收两个参数，<code>reduce</code>把结果继续和序列的下一个元素做累积计算，其效果就是：</p>
+
+<pre><code class="language-python">reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
 </code></pre>
 
 <h3 id="filter-函数">filter()函数</h3>
 
 <p>该函用于过滤序列。</p>
 
-<pre><code class="language-filter()```">
-例如，删掉list中的偶数，保留奇数
-```python
-def is_odd(n):
+<p>|<code>filter()</code> 接收一个函数和一个序列，<code>filter()</code>把传入的函数依次作用于每个元素，然后根据返回值是<code>True</code>还时<code>False</code>决定保留还是丢弃该元素。</p>
+
+<p>例如，删掉list中的偶数，保留奇数</p>
+
+<pre><code class="language-python">def is_odd(n):
 	return n % 2 == 1
 &gt;&gt;&gt; list(filter(is_odd, [1, 2, 3, 4, 5]))
 [1, 3, 5]
@@ -1276,8 +1281,10 @@ def is_odd(n):
 <p>利用<a href="https://baike.baidu.com/item/%E5%9F%83%E6%8B%89%E6%89%98%E8%89%B2%E5%B0%BC%E7%AD%9B%E9%80%89%E6%B3%95"><strong>埃氏筛法</strong></a></p>
 
 <ul>
-<li><p>先构造一个从<code>3</code>开始的<strong>奇数序列</strong>
-利用生成器</p>
+<li>先构造一个从<code>3</code>开始的<strong>奇数序列</strong></li>
+</ul>
+
+<p>利用生成器</p>
 
 <pre><code class="language-python">def _odd_iter():
 	n = 1
@@ -1287,14 +1294,16 @@ def is_odd(n):
 </code></pre>
 
 <ul>
-<li>定义一个<strong>筛选函数</strong>
-<code>python
-def _not_divisible(n):
-	return lambda x: x % n &gt; 0
-</code></li>
-</ul></li>
+<li>定义一个<strong>筛选函数</strong></li>
+</ul>
 
-<li><p>最后定义一个生成器，不断返回下一素数</p>
+<pre><code class="language-python">def _not_divisible(n):
+	return lambda x: x % n &gt; 0
+</code></pre>
+
+<ul>
+<li>最后定义一个生成器，不断返回下一素数</li>
+</ul>
 
 <pre><code class="language-python">def primes():
 	yield 2
@@ -1306,25 +1315,23 @@ def _not_divisible(n):
 </code></pre>
 
 <ul>
-<li>调用得到1000内素数
-<code>python
-for n in primes():
+<li>调用得到1000内素数</li>
+</ul>
+
+<pre><code class="language-python">for n in primes():
 	if (n &lt; 1000):
 		print(n)
 	else:
 		break
-</code></li>
-</ul></li>
-</ul>
+</code></pre>
 
-<blockquote>
-<pre><code class="language-filter()```的作用是从一个序列中筛出符合条件的元素。由于```filter()```使用了惰性计算，所以只有在取```filter()```结果的时候，才会真正筛选并每次返回下一个筛出的元素。">
+<p>|<code>filter()</code>的作用是从一个序列中筛出符合条件的元素。由于<code>filter()</code>使用了惰性计算，所以只有在取<code>filter()</code>结果的时候，才会真正筛选并每次返回下一个筛出的元素。</p>
 
-### sorted()函数
+<h3 id="sorted-函数">sorted()函数</h3>
 
-它可以接收一个```key```函数来实现自定义的排序，例如按绝对值大小排序：
-```python
-&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)
+<p>它可以接收一个<code>key</code>函数来实现自定义的排序，例如按绝对值大小排序：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)
 [5, 9, -12, -21, 36]
 </code></pre>
 
@@ -1348,7 +1355,6 @@ False	#两次返回的函数并不同
 &gt;&gt;&gt; f2()
 3
 </code></pre>
-</blockquote>
 
 <h3 id="闭包">闭包</h3>
 
