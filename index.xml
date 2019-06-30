@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>TiBlog</title>
+    <title>Tiiktak&#39;s</title>
     <link>https://tiiiktak.github.io/</link>
-    <description>Recent content on TiBlog</description>
+    <description>Recent content on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 29 Jun 2019 09:12:40 +0800</lastBuildDate>
@@ -28,7 +28,7 @@
       <guid>https://tiiiktak.github.io/about/</guid>
       <description>:D 获取中&amp;hellip;
 &amp;hellip;
-fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  </description>
+fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });     (adsbygoogle = window.adsbygoogle || []).push({});  </description>
     </item>
     
     <item>
@@ -37,9 +37,18 @@ fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.js
       <pubDate>Sat, 29 Jun 2019 09:12:40 +0800</pubDate>
       
       <guid>https://tiiiktak.github.io/home/</guid>
-      <description>:D 获取中&amp;hellip;
-&amp;hellip;
+      <description>:D 获取中...
 fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })  </description>
+    </item>
+    
+    <item>
+      <title>灰度重心法</title>
+      <link>https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</guid>
+      <description> 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫*密度质心算法*。
+将灰度值分布中的质心记作光条纹的中心 对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为： 灰度重心法公式 型心法 只可用于二值图像 灰度重心法version 1 灰度重心法version 2 </description>
     </item>
     
     <item>

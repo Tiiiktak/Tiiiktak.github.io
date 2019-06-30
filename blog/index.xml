@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog on TiBlog</title>
+    <title>Blog on Tiiktak&#39;s</title>
     <link>https://tiiiktak.github.io/blog/</link>
-    <description>Recent content in Blog on TiBlog</description>
+    <description>Recent content in Blog on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 26 Jun 2019 15:38:32 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,16 @@
       
       <guid>https://tiiiktak.github.io/blog/links/</guid>
       <description>Ritchie and his friends.</description>
+    </item>
+    
+    <item>
+      <title>灰度重心法</title>
+      <link>https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</guid>
+      <description> 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫*密度质心算法*。
+将灰度值分布中的质心记作光条纹的中心 对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为： 灰度重心法公式 型心法 只可用于二值图像 灰度重心法version 1 灰度重心法version 2 </description>
     </item>
     
     <item>
