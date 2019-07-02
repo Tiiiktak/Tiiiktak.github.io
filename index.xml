@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 29 Jun 2019 09:12:40 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jul 2019 15:27:39 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -29,6 +29,43 @@
       <description>:D 获取中&amp;hellip;
 &amp;hellip;
 fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });     (adsbygoogle = window.adsbygoogle || []).push({});  </description>
+    </item>
+    
+    <item>
+      <title>树莓派配置摄像头</title>
+      <link>https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</link>
+      <pubDate>Mon, 01 Jul 2019 15:27:39 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</guid>
+      <description>注意：树莓派插电时千万不要插拔摄像头！据说十有八九摄像头会GG，我差点就中招了
+安装驱动 首先使用ls指令查看是否加载到了对应的video device设备：
+ls -al /etc  没有看到设备开始安装驱动
+添加驱动设备到文件夹 sudo vim /etc/modules  在文件末尾添加
+bcm2835-v412  修改raspberry的启动配置 进入管理中心开启pi camera
+sudo raspi-config  选择interfacing option 开启Camera后重启
+检查/dev ls -al /dev/ | grep video  有video设备则成功
+使用树莓派摄像头 使用raspistill指令
+测试 raspistill -o image.jpg   在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
+ raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为&amp;rsquo;-&amp;lsquo;，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720  错误 在第一次成功调用后，之后再次调用时多次报错：
+mmal: No data received from sensor.</description>
+    </item>
+    
+    <item>
+      <title>树莓派安装opencv4.1</title>
+      <link>https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv4.1/</link>
+      <pubDate>Mon, 01 Jul 2019 15:25:47 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv4.1/</guid>
+      <description>主要参考opencv官网文档和博客树莓派+Opencv（一）图像处理
+下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev  从opencv官网下载v4.1.0的源码 官网
+使用CMake编译源码 先解压并进入文件夹 unzip opencv-4.1.0.zip cd opencv-4.1.0  创建一个build文件夹用于编译 mkdir build cd build  运行cmake-gui cmake-gui  选择源码路径和编译路径后电子config开始编译
+编译结束后点击generate完成
+建立 在build目录执行make开始编译 -j表示使用多少线程编译，树莓派用-j1较稳定，不加数字表示不限制线程
+sudo make -j1  博主在这一步编译了四个小时
+安装库 在build目录执行
+sudo make install  完成后opencv就已经配好了
+测试 Python运行 使用这里提供的测试程序测试opencv是否正常
+# -*- coding:utf-8 -*- import cv2 import numpy as np cv2.</description>
     </item>
     
     <item>
