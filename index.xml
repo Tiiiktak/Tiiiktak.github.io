@@ -131,9 +131,11 @@ init接下来会打开6个终端，以便用户登录系统，即inittab中以�
       <pubDate>Fri, 21 Jun 2019 15:23:06 +0800</pubDate>
       
       <guid>https://tiiiktak.github.io/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
-      <description> 类和实例 定义类 使用class关键字
-class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &amp;quot;&amp;quot;&amp;quot;docstring for Student&amp;quot;&amp;quot;&amp;quot; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score  实例化 类名+（）
-&amp;gt;&amp;gt;&amp;gt; bob = Student(&#39;Bob&#39;, 98)  </description>
+      <description>类和实例 定义类 使用class关键字
+class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &amp;quot;&amp;quot;&amp;quot;docstring for Student&amp;quot;&amp;quot;&amp;quot; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score))  实例化 类名+（）
+&amp;gt;&amp;gt;&amp;gt; bob = Student(&#39;Bob&#39;, 98) &amp;gt;&amp;gt;&amp;gt; bob.print_score() Bob: 98  创建实例后，可以自由地给一个实例变量绑定属性，如
+&amp;gt;&amp;gt;&amp;gt; bob.school = &#39;SWUST&#39; &amp;gt;&amp;gt;&amp;gt; bob.school &#39;SWUST&#39;  访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
+class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子类：</description>
     </item>
     
     <item>

@@ -1199,6 +1199,8 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 		super (Student, self).__init__()
 		self.name = name
 		self.score = score
+	def print_score(self)
+		print('%s: %s' % (self.name, self.score))
 </code></pre>
 
 <h3 id="实例化">实例化</h3>
@@ -1206,7 +1208,53 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <p>类名+（）</p>
 
 <pre><code class="language-python">&gt;&gt;&gt; bob = Student('Bob', 98)
+&gt;&gt;&gt; bob.print_score()
+Bob: 98
 </code></pre>
+
+<p>创建实例后，可以自由地给一个实例变量绑定属性，如</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; bob.school = 'SWUST'
+&gt;&gt;&gt; bob.school
+'SWUST'
+</code></pre>
+
+<h3 id="访问限制">访问限制</h3>
+
+<ul>
+<li>private<strong>私有变量</strong>：变量名以<code>__</code>开头
+注意：<code>__name__</code>外部可以访问，是<strong>特殊变量</strong></li>
+</ul>
+
+<h3 id="继承和多态">继承和多态</h3>
+
+<p>基类：</p>
+
+<pre><code class="language-python">class Animal(object):
+	def run(self):
+		print('Animal is running...')
+</code></pre>
+
+<p>子类：</p>
+
+<pre><code class="language-python">class Dog(Animal)
+	pass
+</code></pre>
+
+<p>子类调用父类方法：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; dog = Dog()
+&gt;&gt;&gt; dog.run()
+Animal is running...
+</code></pre>
+
+<p>同样支持多态</p>
+
+<h3 id="动态语言">动态语言</h3>
+
+<p>对于动态语言，传入时不一定需要<code>Animal</code>类型，只需要保证传入的对象有<code>run()</code>方法即可</p>
+
+<h2 id="获取对象信息">获取对象信息</h2>
 
 
 
