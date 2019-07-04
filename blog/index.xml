@@ -31,7 +31,8 @@
 ls -al /etc  没有看到设备开始安装驱动
 添加驱动设备到文件夹 sudo vim /etc/modules  在文件末尾添加
 bcm2835-v412  修改raspberry的启动配置 进入管理中心开启pi camera
-sudo raspi-config  选择interfacing option 开启Camera后重启
+sudo raspi-config  选择interfacing option
+开启Camera后重启
 检查/dev ls -al /dev/ | grep video  有video设备则成功
 使用树莓派摄像头 使用raspistill指令
 测试 raspistill -o image.jpg   在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面

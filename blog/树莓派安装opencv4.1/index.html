@@ -1299,13 +1299,13 @@ int main(int argc, char const *argv[])
 	waitKey(0); 
 	return 0; 
 }
+</code></pre>
 
-### 在同目录创建CMakeLists.txt文件
+<h3 id="在同目录创建cmakelists-txt文件">在同目录创建CMakeLists.txt文件</h3>
 
-内容：
+<p>内容：</p>
 
-```sh
-cmake_minimum_required(VERSION 2.6)
+<pre><code class="language-sh">cmake_minimum_required(VERSION 2.6)
 project(test_opencv) #项目名 可改
 find_package(OpenCV REQUIRED)
 add_executable(test_opencv test_opencv.cpp) 
