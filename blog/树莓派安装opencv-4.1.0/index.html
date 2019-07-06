@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/" />
-<meta property="og:title" content="灰度重心法" />
-<meta property="twitter:title" content="灰度重心法">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/" />
+<meta property="og:title" content="树莓派安装opencv-4.1.0" />
+<meta property="twitter:title" content="树莓派安装opencv-4.1.0">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s - 灰度重心法 
+     Tiiktak&#39;s - 树莓派安装opencv-4.1.0 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/">
 
 
 <style media="screen">
@@ -1148,14 +1148,14 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    灰度重心法
+    树莓派安装opencv-4.1.0
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Fri Jun 28 2019 00:00:00 UTC">Jun 28, 2019</div>
+                    <div class="date" title="Mon Jul 1 2019 15:25:47 CST">Jul 1, 2019</div>
                     
                         
                     
@@ -1182,80 +1182,159 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
-<h1 id="概念">概念</h1>
+<p>主要参考opencv官网<a href="https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html">文档</a>和博客<a href="https://blog.csdn.net/naohmurderer/article/details/84780455">树莓派+Opencv（一）图像处理</a></p>
 
-<p>对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按<strong>目标光强分布</strong>求出<strong>光强权重质心坐标</strong>作为<strong>跟踪点</strong>，也叫*密度质心算法*。</p>
+<h1 id="下载安装依赖项">下载安装依赖项</h1>
 
-<p>将灰度值分布中的质心记作光条纹的中心</p>
+<pre><code class="language-sh">sudo apt-get install build-essential
+sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+</code></pre>
 
-<p><img src="https://2jdpmg.bl.files.1drv.com/y4mEofqGL32IymzwFYs1ldwreel2Rh87SQZkC_cirJayoYaXLlvU5hJivKA1efE0SIHHWlW5qHlyjvNp12KimxjYHrEfxz1z4sOhXQHAuOlL-CwOS3AvO-EKqYh6UgnUWqNA1zDDFh7OgW1Ss_H4QQcMuAk4qs8Ak2k1yYoaLrl95AFeMB_DZjmWlmHYmvDFN6kEA0a_4kQneMtHBDlE1Ts2Q?width=945&amp;height=606&amp;cropmode=none" alt="表" /></p>
+<h1 id="从opencv官网下载v4-1-0的源码">从opencv官网下载v4.1.0的源码</h1>
 
-<p>对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：</p>
+<p><a href="https://opencv.org/releases/">官网</a></p>
 
-<p><img src="https://zxfreg.bl.files.1drv.com/y4m5iNL4aElPK1ADuC2npUTcSplMHK_ljxDug_ld_xQqBwIYzAfzRsZ6wV4_FTyRG2XwQx8VGoJhZkqBw5MEsL8qLzykjS-LwZdIZgOXXLP-oYbJYhvOe-ES0sP_t-92-DTlx_AHb7HfNJL23Sp5rfDX6rkgAEJj3FGdvKbJLxPkrOIVlB21GmCyQd7XVOrdr6_ghtofPy7hH4brEiD6JNEug?width=316&amp;height=130&amp;cropmode=none" alt="x" />
-<img src="https://aoyshq.bl.files.1drv.com/y4mGRqw5fzKp7QD-pcKhwzrz53vEbOxaOm2A3WuCquHkLXTDthg_DGHAboNzbUN06FthKNXL0hRVGvaEbAT9eu2x6ytnW3kT4AUoZSsVglrWLMfDskvnJcns2hx6Oliq86qQ9tiE02gP57lN1f0546L4kVHAcgFOQ_2-Dd-ekA4GgV63a4KfgzeBK012WloG6NGPnBRk-SmNE4FUgAe72agUA?width=283&amp;height=146&amp;cropmode=none" alt="y" />
-<img src="https://prwoka.bl.files.1drv.com/y4mJIDNhOx79MFzQ5-nh5P1TDOIS5y0Ep0GUFR6_aQIFIjxakZLAbIfAldq0NHugIdkxLO1Z0LDGyVT0wrKkdg3pzE84QfytAUk1d_2Aausn5kOV7awMJMqL2IsFLj1uVbxy3kVTFiy6ee2Ea54rrYO2xftehI9LUfebmvLcaKJqowLlR2nSkdaBZHImZs_mdDqsM7FP7Sug-7ppI29mVexig?width=321&amp;height=105&amp;cropmode=none" alt="fij" /></p>
+<h1 id="使用cmake编译源码">使用CMake编译源码</h1>
 
-<h1 id="灰度重心法公式">灰度重心法公式</h1>
+<h2 id="先解压并进入文件夹">先解压并进入文件夹</h2>
 
-<h2 id="型心法">型心法</h2>
+<pre><code class="language-sh">unzip opencv-4.1.0.zip
+cd opencv-4.1.0
+</code></pre>
 
-<p>只可用于二值图像</p>
+<h2 id="创建一个build文件夹用于编译">创建一个build文件夹用于编译</h2>
 
-<p><img src="https://zkmgbq.bl.files.1drv.com/y4mo-Wkxs8KqRu-g0zwlk9L5OLjAFAw2GrEwpFI_RpHARan1oZm5S2PIHPHs6su7TS4iR6DA7aYWDqZd0zPQTGdN6bke4nEmoWsQF0hsOUxWpkmjtdz4KRgykavlyW8pOMdHD_lo1_c77ToXN4Hytp02Quzlu2oywNVy6PabvEOTJ4U2JubsKAFfhYtUmxUQM4ReZd6jDi9JK3sVuT17wo7SA?width=1007&amp;height=476&amp;cropmode=none" alt="型心法" /></p>
+<pre><code class="language-sh">mkdir build
+cd build
+</code></pre>
 
-<h2 id="灰度重心法version-1">灰度重心法version 1</h2>
+<h2 id="运行cmake-gui">运行cmake-gui</h2>
 
-<p><img src="https://ab4tqa.bl.files.1drv.com/y4mDJ9bvGYor-NOt5UyxFQQZl3km9vqfOrx0zEipg7RFq1BQ_bMrpStWceTDev3twFbiP3jyq0Am6dG57kaCf3Ceu-s3R5GOWeQD3NpEL82upA3I02YWGBchnmz0pLm1UXKwGUA0dndNuxjsbStxiEaELaJza6SbEK3ZysPaRyfRfK47pgjVFxkvKwf7w9g7yrcOcJu3TfvCUvMOqazTt-Cjg?width=1008&amp;height=618&amp;cropmode=none" alt="灰度重心法v1" /></p>
+<pre><code class="language-sh">cmake-gui
+</code></pre>
 
-<h2 id="灰度重心法version-2">灰度重心法version 2</h2>
+<p>选择源码路径和编译路径后电子config开始编译</p>
 
-<p><img src="https://bdpvsg.bl.files.1drv.com/y4mBU1TwevsltBM2uBFGPgzS63c9ioY1zvRKjUFXxvoZ9VCybENdILXAAJK1GfwWvoAqBIYf_uv7TP8eylvGvDEE85PRp8F4FexHuAIgGReBlYsI0LX6PNHXglRQF1Mk15B85PjLXahan1JU5vDW2X03tew0VStz04meEpK5ZtG1uGgnkCvoLCR0BSIEF7eyc3fuoTDmENG-59xsTfeNn4o5w?width=952&amp;height=327&amp;cropmode=none" alt="灰度重心法v2" /></p>
+<p><img src="https://1jdjmg.bl.files.1drv.com/y4mM9sX-i_YBkO1rf2NCPi9-EwKQnZH2HPOlryh4R_W-lvxyK63Vp7D2lGhMvbrx8S4ORyj6PMwnuHuSK9IyfhjUd0ZXeWMbU3EaaiqRP-9BUx8IzaBmHmanlK9_buf_XhlT4p2PpXXreZwGiNPCeGu3wAkKSp6VAzu0q0v7E9ru1OhKAfb8k_wiBU68YGgTkR87Gut3Ub2gxH12eMefGV2fQ?width=665&amp;height=726&amp;cropmode=none" alt="cmake-gui" /></p>
 
-<h1 id="使用visual-studio-2019测试">使用Visual Studio 2019测试</h1>
+<p>编译结束后点击generate完成</p>
 
-<p>根据灰度重心法version 1找光斑中心</p>
+<p><img src="https://bwvx1q.bl.files.1drv.com/y4m4o5FXBFor6_InGIVOHKTZ8hNPs-OmlK6TYAfgeD4b_YhRbAW3-CzEWbFnb9FjPDVCP_O8HuzOfnUJFMhp4ueBgKkuBLbIsTmonJmwzBsNKegn1j1af23hLe5FQwUWyhmyNe7dkgxbhj1nuaWgiO016HZaZxCf6gion5OSSRlMvjdJvhaQxVdjR16YY7dzFxuURblHeEE2Nbw8wlDcNOqmQ?width=735&amp;height=726&amp;cropmode=none" alt="generate" /></p>
 
-<p>代码：</p>
+<h1 id="建立">建立</h1>
 
-<pre><code class="language-cpp">Point grayCenter(Mat&amp; img)
+<p>在build目录执行make开始编译
+-j表示使用多少线程编译，树莓派用-j1较稳定，不加数字表示不限制线程</p>
+
+<pre><code class="language-sh">sudo make -j1
+</code></pre>
+
+<p><img src="https://cnoyea.bl.files.1drv.com/y4mskZoTEaDwLwpQaKSe83p6ipcG12GNUV1l31yTOJtFMOQqWQChM1e30c_opNkFOD-lm50VlDMiwKc3FBjKGdCtsXU10i8HdJL5fMk2ZBughbHH_Qqw8Xn2nmxBVOrUcHhIoA_D5rPjSkeIohg_VXRbniSV_RF6OFylmJXAb767QYmXLnhEv8rcPT39sS3aWkxwZyMwVmM4TdLKCsLiOnmfQ?width=761&amp;height=834&amp;cropmode=none" alt="make" /></p>
+
+<p>博主在这一步编译了四个小时</p>
+
+<h1 id="安装库">安装库</h1>
+
+<p>在build目录执行</p>
+
+<pre><code class="language-sh">sudo make install
+</code></pre>
+
+<p>完成后opencv就已经配好了</p>
+
+<h1 id="测试">测试</h1>
+
+<h2 id="python运行">Python运行</h2>
+
+<p>使用<a href="https://blog.csdn.net/leaves_joe/article/details/67656340">这里</a>提供的测试程序测试opencv是否正常</p>
+
+<pre><code class="language-python"># -*- coding:utf-8 -*-
+import cv2
+import numpy as np
+cv2.namedWindow(&quot;gray&quot;)
+img = np.zeros((512,512),np.uint8)#生成一张空的灰度图像
+cv2.line(img,(0,0),(511,511),255,5)#绘制一条白色直线
+cv2.imshow(&quot;gray&quot;,img)#显示图像
+#循环等待，按q键退出
+while True:
+	key=cv2.waitKey(1)
+	if key==ord(&quot;q&quot;):
+		break
+cv2.destoryWindow(&quot;gray&quot;)
+</code></pre>
+
+<p>最后运行正常，如图</p>
+
+<p><img src="https://azpwsg.bl.files.1drv.com/y4mvDMgOaIoh-v1yLocQJXFIyoXP_QISC_wFE599ue20PatmgGqFJrymrLUGmiqj-7YFRbIztfLN8T4K9qVNY892VhsshjUO5pXn0_UlSZaPx4coZSxq7pH_iZS-TG9wrtWlNH4yrlLiCJ0W17GkagsyRSgwnz17f5bBbRNPNdZvmw_OB2I-J4SQVVTm0dBEqZTKw1raV51rRTkfkrn5vylBQ?width=1026&amp;height=807&amp;cropmode=none" alt="python-opencv" /></p>
+
+<h2 id="c-运行">C++运行</h2>
+
+<p>先使用cmake编译，再使用make编译</p>
+
+<h3 id="编写cpp代码">编写cpp代码</h3>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+using namespace std; 
+using namespace cv; 
+
+int main(int argc, char const *argv[])
 {
-	Point Center; //中心点
-	int i, j;
-	Scalar cs = sum(img); //获取图像各点灰度值总和
-	Center.x = Center.y = 0;
-	double x = 0, y = 0;
-	for (int i = 0; i &lt; img.cols; i++)
+	Mat img = imread(&quot;image.jpg&quot;); 
+	if (img.empty())
 	{
-		for (int j = 0; j &lt; img.rows; j++)
-		{
-			Scalar s = img.at&lt;Vec3b&gt;(j, i); //取当前点灰度值
-			x += i * s.val[0] / cs.val[0]; 
-			y += j * s.val[0] / cs.val[0];
-		}
+		cout &lt;&lt; &quot;error!&quot; &lt;&lt; endl; 
+		exit(0)
 	}
-	Center.x = cvRound(x);
-	Center.y = cvRound(y);
-	return Center; 
+	namedWindow(&quot;image1&quot;, WINDOW_NORMAL); 
+	namedWindow(&quot;image2&quot;, WINDOW_NORMAL); 
+	imshow(&quot;image1&quot;, img); 
+	cvtColor(img, img, COLOR_BGR2GRAY); 
+	blur(img, img, Size(7, 7)); 
+	Mat edges; 
+	Canny(img, edges, 3, 9, 3); 
+	imshow(&quot;image2&quot;, edges); 
+
+	waitKey(0); 
+	return 0; 
 }
 </code></pre>
 
-<p>运行结果:</p>
+<h3 id="在同目录创建cmakelists-txt文件">在同目录创建CMakeLists.txt文件</h3>
 
-<p>成功找到光斑中心（绿点）</p>
+<p>内容：</p>
 
-<h1 id="在树莓派上测试">在树莓派上测试</h1>
+<pre><code class="language-sh">cmake_minimum_required(VERSION 2.6)
+project(test_opencv) #项目名 可改
+find_package(OpenCV REQUIRED)
+add_executable(test_opencv test_opencv.cpp) 
+	#项目名和cpp文件名
+target_link_libraries(test_opencv ${OpenCV_LIBS}) #项目名
+</code></pre>
 
-<p>同样，在树莓派上</p>
+<h3 id="之后就能用cmake编译啦">之后就能用cmake编译啦</h3>
 
 <pre><code class="language-sh">cmake .
 make
 </code></pre>
 
-<p>执行!
-成功！</p>
+<h3 id="运行">运行</h3>
 
-<p>![raspipoint]()</p>
+<p>编译完成后，使<code>ls</code>查看目录下文件</p>
+
+<p><img src="https://cnobea.bl.files.1drv.com/y4mpCnCgVaeQl4nHlJl8IqyEH8Hbo43ipHFvuy2J8qJyiLaU9s-u85gfhGgs5WOrTt8Qo8sjR82InUUR3MzNP8XdTIHhAglx5BI1toCNMpaQm8iSuPymSni2ZiOrr1lOAlYqHr0FSaUDke_ifubVOfO2hM-gckqR-hCJRidTtsD6YmmAQkqUdIhV6dSIu1ARV82ZJ6zxOsvInV4VxmO6wWH0w?width=619&amp;height=53&amp;cropmode=none" alt="ls-opencv_test" /></p>
+
+<p>绿色的就是编译生成的文件</p>
+
+<p>运行试试</p>
+
+<pre><code class="language-sh">./opencvtest
+</code></pre>
+
+<p><img src="https://zumhbq.bl.files.1drv.com/y4mOkBJG4npbLKUbEeHDpMKl_Zm2BSEixto7i6BA-BHnUfbuoOTwg3rCbihOKj88p3Crs_P3IrCXgSNyxn5l0oYUhTc0eCH92SOEaHfbr42J6yYnLlB4Nj2uIn6yOymcDQwLb4bIzs9k-c0RRdbEGHk_iy3kqDr0I0QzwyYuYMmtKWmnv1AeyuOY0u-32qgasIqJRmHvOBd7Gugtxr1VQ9-wA?width=668&amp;height=300&amp;cropmode=none" alt="opencv+cpp_test" /></p>
+
+<p>于是树莓派的opencv终于安装完成啦，接下来就要<a href="https://tiiiktak.github.io/blog/树莓派配置摄像头">调用树莓派摄像头</a>啦</p>
 
 
 
@@ -1283,13 +1362,13 @@ make
                 
                 <div>
                     <img class="icon" src="https://tiiiktak.github.io/img/back.svg" alt="back" />
-                    <a href="https://tiiiktak.github.io/blog/shell%E5%AD%A6%E4%B9%A0/">Shell学习</a>
+                    <a href="https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/">灰度重心法</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
                 
                 <div>
-                    <a href="https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/">树莓派安装opencv-4.1.0</a>
+                    <a href="https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/">树莓派配置摄像头</a>
                     <img class="icon" src="https://tiiiktak.github.io/img/next.svg" alt="next" />
                 </div>
                 
