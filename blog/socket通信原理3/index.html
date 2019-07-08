@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
 <meta charset="utf-8">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -15,24 +14,24 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/" />
-<meta property="og:title" content="Tiiktak&#39;s" />
-<meta property="twitter:title" content="Tiiktak&#39;s">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/" />
+<meta property="og:title" content="Socket通信原理(3)" />
+<meta property="twitter:title" content="Socket通信原理(3)">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
     <meta property="twitter:image" content="https://tiiiktak.github.io/img/banner.png">
 
-<meta property="og:description" content="Hey You">
-<meta property="twitter:description" content="Hey You">
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
 
 <title>
 
 
-    Tiiktak&#39;s
+     Tiiktak&#39;s - Socket通信原理(3) 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/">
 
 
 <style media="screen">
@@ -1067,8 +1066,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://tiiiktak.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Tiiktak&#39;s" />
-
 
 
 </head>
@@ -1139,100 +1136,283 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
           enable_page_level_ads: true
      });
 </script>
-<div class="main column">
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            
-                <div class="markdown">
-                <p id="hitokoto">:D 获取中...</p>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
-<script type="text/javascript">
-  fetch('https://v1.hitokoto.cn/?c=a')
-    .then(function (res){
-      return res.json();
-    })
-    .then(function (data) {
-      var hitokoto = document.getElementById('hitokoto');
-      var hitokotofrom = document.getElementById('from');
-      hitokoto.innerText = data.hitokoto; 
-      hitokotofrom.innerText = data.from;
-    })
-    .catch(function (err) {
-      console.error(err);
-    })
-</script>
+    
+    Socket通信原理(3)
+    
 
-<p><img src="https://n6ea7q.bl.files.1drv.com/y4mKZi9GR6J7Vz0uI97Jp4sABIpzpSaJzCABueRRwHdq14kMzv9tkfAlIkXrazXzq4m-21IKkP_rfRm-nPglzj2wyRYQKyRaT_5bjebVunPMDtoaZLyq8oXDslKn0lICC7u6_-8j4huBhoRjh9P9Gp5XU0KZuzWSx3P9PliyGywnNcnuvML-kmLreP0OT38dd_wPkJW5F2_9-4VKjmzE60aXg?width=3839&amp;height=1408&amp;cropmode=none" alt="头图" /></p>
+</div>
 
                 </div>
-            
-
-            
-                <div class="posts">
-                
-                
-                    <div class="page-heading">Latest posts</div>
-                    <ul>
+                <div class="meta">
+                    <div class="date" title="Mon Jul 8 2019 15:38:20 CST">Jul 8, 2019</div>
                     
-                        <li class="groupby">Jul, 2019</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 8, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/"><span>Socket通信原理(3)</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 8, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/"><span>Socket通信原理(2)</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 7, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/"><span>Socket通信原理(1)</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 1, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/"><span>树莓派配置摄像头</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 1, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/"><span>树莓派安装opencv-4.1.0</span></a>
-    
-</li>
-
                         
                     
-                    </ul>
-
                     
-                        <a href="./blog/" class="see-more">See more ...</a>
+                    <div class="reading-time middot">2 minute read</div>
                     
-                
+                    
+                      <div class="tags">
+                    
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
                 </div>
-            
-
-            <div class="best-posts">
-            
-            
             </div>
+            <div class="markdown">
+                
+    
+    
+
+<p>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别</p>
+
+<p>这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息</p>
+
+<h1 id="服务端-树莓派-socket-server-sms-cpp">服务端-树莓派 socket_server_sms.cpp</h1>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;unistd.h&gt;
+#include &lt;cstring&gt;
+#include &lt;string&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;arpa/inet.h&gt;
+using namespace std; 
+#define USEPORT 1234
+
+int main()
+{
+//****创建套接字
+	int serverSock = socket(AF_INET, SOCK_STREAM, 0); 
+	//Windows中，AF_INET==PF_INET
+	//Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF
+	if (serverSock &lt; 0)
+	{
+		cout &lt;&lt; &quot;socket creation failed&quot; &lt;&lt; endl; 
+		exit(-1); 
+	}
+	cout &lt;&lt; &quot;socket creation successfully&quot; &lt;&lt; endl; 
+//****绑定ip和端口
+	struct sockaddr_in serverAddr; 
+	memset(&amp;serverAddr, 0, sizeof(serverAddr)); 
+	serverAddr.sin_family = AF_INET; 
+	serverAddr.sin_port = htons(USEPORT); 
+	//INADDR_ANY绑定所有IP
+	serverAddr.sin_addr.s_addr = htonl(INADDR_ANY); 
+//****绑定套接字
+	if (bind(serverSock, 
+		(struct sockaddr*)&amp;serverAddr, 
+		sizeof(struct sockaddr)) == -1)
+	{
+		cout &lt;&lt; &quot;Bind error, Port[&quot;&lt;&lt; USEPORT &lt;&lt; &quot;]&quot; &lt;&lt; endl; 
+	       exit(-1); 
+    }
+	cout &lt;&lt; &quot;Bind successfully&quot; &lt;&lt; endl; 
+	
+//****监听
+	if (listen(serverSock, 10) == -1)
+	{
+		cout &lt;&lt; &quot;Listen error!&quot; &lt;&lt; endl; 
+	}
+	cout &lt;&lt; &quot;Listening on port[&quot; &lt;&lt; USEPORT &lt;&lt; &quot;]&quot; &lt;&lt; endl; 
+
+//****开始接收accept()
+	struct sockaddr clientAddr; 
+	int size = sizeof(struct sockaddr); 
+
+	int clientSock = accept(serverSock, (struct sockaddr*)&amp;clientAddr, (socklen_t*)&amp;size); 
+
+	cout &lt;&lt; &quot;****NEW client touched****&quot; &lt;&lt; endl; 
+
+//****通信
+	while (1)
+	{
+		string input; 
+		cout &lt;&lt; &quot;input something ('quit' to shutdown)&quot; &lt;&lt; endl; 
+		cin &gt;&gt; input; 
+		send(clientSock, input.c_str(), input.length(), 0); 
+		if (input == &quot;quit&quot;)
+		{
+			cout &lt;&lt; &quot;shutdown&quot;&lt;&lt;endl;
+			break; 
+		}
+	}
+	
+	close(serverSock); 
+	return 0; 
+}
+</code></pre>
+
+<h1 id="客户端-pc-socket-client-raspi-cpp">客户端-PC socket_client_raspi.cpp</h1>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;WinSock2.h&gt; //包含WinSock2.h头文件
+using namespace std;
+#pragma comment(lib, &quot;ws2_32.lib&quot;) //加载 ws2_32.dll 
+#pragma warning(disable:4996)
+
+int main()
+{
+//****初始化
+	WSADATA wsaData;
+	WSAStartup(MAKEWORD(2, 2), &amp;wsaData);		
+	
+//****创建套接字
+	SOCKET sock = socket(PF_INET, SOCK_STREAM, 0);
+
+//****创建sockAddr结构体
+	sockaddr_in sockAddr;						
+	memset(&amp;sockAddr, 0, sizeof(sockAddr));	
+	sockAddr.sin_family = PF_INET;
+	sockAddr.sin_port = htons(1234);
+	sockAddr.sin_addr.s_addr = inet_addr(RASPI_IP); //树莓派的局域网IP
+
+//****建立连接
+	connect(sock, (SOCKADDR*)&amp; sockAddr, sizeof(SOCKADDR));		
+	cout &lt;&lt; &quot;客户端发送链接请求&quot; &lt;&lt; endl;
+
+//****接收服务器传回的数据	
+	while (1)
+	{
+		cout &lt;&lt; &quot;等待服务端发送信息..&quot; &lt;&lt; endl;
+		
+		char tack[MAXBYTE] = { 0 };
+		recv(sock, tack, MAXBYTE, NULL); 
+		
+		//输出接收到的数据
+		cout &lt;&lt; &quot;服务器: &quot; &lt;&lt; tack &lt;&lt; endl;
+		
+		if (strcmp(tack, &quot;quit&quot;) == 0)
+		{
+			cout &lt;&lt; &quot;shutdown&quot; &lt;&lt; endl; 
+			break;
+		}
+	}
+
+	//关闭套接字、终止使用 DLL
+	closesocket(sock);
+	WSACleanup();
+
+	return 0;
+}
+</code></pre>
+
+<h1 id="运行测试">运行测试</h1>
+
+<p>在树莓派编译运行socket_server_sms.cpp，开始监听</p>
+
+<pre><code class="language-sh">cmake .
+make
+./socket_server_sms
+</code></pre>
+
+<p><img src="https://i.loli.net/2019/07/08/5d230cdfa9c3b34633.png" alt="raspi-server" /></p>
+
+<p>PC编译运行socket_client_raspi.cpp</p>
+
+<p><img src="https://i.loli.net/2019/07/08/5d230d4da4f9e73074.png" alt="pc-client" /></p>
+
+<p>服务端发送信息测试</p>
+
+<p><img src="https://i.loli.net/2019/07/08/5d230d963f6ba15253.png" alt="test" /></p>
+
+<p>测试成功</p>
+
+<hr />
+
+<p>树莓派与计算机简单通信成功，接下来是通过树莓派传送摄像头图像和使用<a href="https://tiiiktak.github.io/blog/灰度重心法">灰度重心法</a>找到的光斑中心信息到计算机</p>
+
+
+
+            </div>
+            
+            <br>
+            <div class="share">
+                  
+                  <a href="" class="ssk ssk-facebook"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-twitter"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-google-plus"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-linkedin"></a>
+                  
+            </div>
+            
+            
+            <br>
+            <div class="navigation">
+                
+                <div>
+                    <img class="icon" src="https://tiiiktak.github.io/img/back.svg" alt="back" />
+                    <a href="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/">Socket通信原理(2)</a>
+                </div>
+                
+                <div style="width: 100%;"></div>
+                
+            </div>
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+            
+
+            
+
+            
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 
@@ -1344,6 +1524,3 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 </body>
 </html>
 
-
-<script type="text/javascript" color="255,120,86" opacity='0.7' zIndex="-2" count="130" src="http://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js">
-</script>

@@ -6,19 +6,10 @@
     <description>Recent content on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 01 Jul 2019 15:27:39 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2019 15:38:20 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Links</title>
-      <link>https://tiiiktak.github.io/blog/links/</link>
-      <pubDate>Sun, 09 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://tiiiktak.github.io/blog/links/</guid>
-      <description>Ritchie and his friends.</description>
-    </item>
     
     <item>
       <title>About</title>
@@ -29,6 +20,53 @@
       <description>:D 获取中&amp;hellip;
 &amp;hellip;
 fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });     (adsbygoogle = window.adsbygoogle || []).push({});  </description>
+    </item>
+    
+    <item>
+      <title>Socket通信原理(3)</title>
+      <link>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</link>
+      <pubDate>Mon, 08 Jul 2019 15:38:20 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</guid>
+      <description>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
+这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
+服务端-树莓派 socket_server_sms.cpp #include &amp;lt;iostream&amp;gt; #include &amp;lt;unistd.h&amp;gt; #include &amp;lt;cstring&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;sys/types.h&amp;gt; #include &amp;lt;sys/socket.h&amp;gt; #include &amp;lt;netinet/in.h&amp;gt; #include &amp;lt;arpa/inet.h&amp;gt; using namespace std; #define USEPORT 1234 int main() { //****创建套接字 int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET //Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF if (serverSock &amp;lt; 0) { cout &amp;lt;&amp;lt; &amp;quot;socket creation failed&amp;quot; &amp;lt;&amp;lt; endl; exit(-1); } cout &amp;lt;&amp;lt; &amp;quot;socket creation successfully&amp;quot; &amp;lt;&amp;lt; endl; //****绑定ip和端口 struct sockaddr_in serverAddr; memset(&amp;amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr.</description>
+    </item>
+    
+    <item>
+      <title>Socket通信原理(2)</title>
+      <link>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</link>
+      <pubDate>Mon, 08 Jul 2019 13:21:57 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</guid>
+      <description>本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
+ 系统：Windows 10
+软件：Visual studio 2019
+语言：C++
+ Socket通信实现步骤  创建ServerSocket和Socket
+ 打开连接到的Socket的输入/输出流
+ 按照协议对Socket进行读/写操作
+ 关闭输入/输出流和Socket
+  本文的程序由服务端发送信息到客户端，若用户输入quit则结束客户端与服务端程序
+服务端Server 由于Windows下的socket程序依赖Winsock.dll或ws2_32.dll，所以必须提前加载
+#include &amp;lt;iostream&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;winsock2.h&amp;gt; //包含socket的头文件 #pragma comment (lib, &amp;quot;ws2_32.lib&amp;quot;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 //-&amp;gt;MSKEWORD(2,2)主版本号2，副版本号2 if (WSAStartup(MAKEWORD(2, 2), &amp;amp;wsaData) != 0)	{	return 0; } //****创建套接字 SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&amp;gt;IPv6，PF_INET-&amp;gt;IPv4 //参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM //参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 //判断无效套接字 if (servSock == INVALID_SOCKET) { cout &amp;lt;&amp;lt; &amp;quot;socket error!</description>
+    </item>
+    
+    <item>
+      <title>Socket通信原理(1)</title>
+      <link>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</link>
+      <pubDate>Sun, 07 Jul 2019 11:24:59 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</guid>
+      <description>最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
+TCP/IP、UDP 在开始之前，先听两个笑话😏
+TCP
+&amp;gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &amp;gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &amp;gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &amp;gt; “好的，我会给你讲一个TCP 的笑话。” &amp;gt; “好的，我会听一个TCP 的笑话。” &amp;gt; “你准备好听一个TCP 的笑话么？” &amp;gt; “嗯，我准备好听一个TCP 的笑话” &amp;gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &amp;gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &amp;gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？”  UDP
+&amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！  学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
+TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种
+OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。
+从网络角度观察：
+ 下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主</description>
     </item>
     
     <item>
