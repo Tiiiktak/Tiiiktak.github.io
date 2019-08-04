@@ -1218,25 +1218,38 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 <p>代码：</p>
 
-<pre><code class="language-cpp">Point grayCenter(Mat&amp; img)
+<pre><code class="language-cpp">#define T 20 //根据实际情况设定固定阈值
+Point grayCenter(Mat&amp; img)
 {
+	Mat img_gray; 
+	cvtColor(img, img_gray, COLOR_BGR2GRAY, 0);
 	Point Center; //中心点
 	int i, j;
-	Scalar cs = sum(img); //获取图像各点灰度值总和
+	double sumval = 0; 
+	MatIterator_&lt;uchar&gt; it, end;
+	//获取图像各点灰度值总和
+	for (it = img_gray.begin&lt;uchar&gt;(), end = img_gray.end&lt;uchar&gt;(); it != end; it++)
+	{
+		((*it) &gt; T) ? sumval += (*it) : NULL; //小于阈值，取0
+	}
 	Center.x = Center.y = 0;
 	double x = 0, y = 0;
-	for (int i = 0; i &lt; img.cols; i++)
+	for (int i = 0; i &lt; img_gray.cols; i++)
 	{
-		for (int j = 0; j &lt; img.rows; j++)
+		for (int j = 0; j &lt; img_gray.rows; j++)
 		{
-			Scalar s = img.at&lt;Vec3b&gt;(j, i); //取当前点灰度值
-			x += i * s.val[0] / cs.val[0]; 
-			y += j * s.val[0] / cs.val[0];
+			double s = img_gray.at&lt;uchar&gt;(j, i); //取当前点灰度值
+			if (s &lt; T) 
+				s = 0; 
+			x += i * s / sumval;
+			y += j * s / sumval;
 		}
 	}
 	Center.x = cvRound(x);
 	Center.y = cvRound(y);
-	return Center; 
+	cout &lt;&lt; &quot;rows=&quot; &lt;&lt; img_gray.rows &lt;&lt; &quot;  cols=&quot; &lt;&lt; img_gray.cols &lt;&lt; endl; 
+	cout &lt;&lt; &quot;x=&quot; &lt;&lt; x &lt;&lt; &quot;  y=&quot; &lt;&lt; y &lt;&lt; endl; 
+	return Center;
 }
 </code></pre>
 
@@ -1254,8 +1267,6 @@ make
 
 <p>执行!
 成功！</p>
-
-<p>![raspipoint]()</p>
 
 
 
