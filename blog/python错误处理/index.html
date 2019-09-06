@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
 <meta charset="utf-8">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -15,24 +14,24 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/" />
-<meta property="og:title" content="Tiiktak&#39;s" />
-<meta property="twitter:title" content="Tiiktak&#39;s">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" />
+<meta property="og:title" content="Python错误处理" />
+<meta property="twitter:title" content="Python错误处理">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
     <meta property="twitter:image" content="https://tiiiktak.github.io/img/banner.png">
 
-<meta property="og:description" content="Hey You">
-<meta property="twitter:description" content="Hey You">
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
 
 <title>
 
 
-    Tiiktak&#39;s
+     Tiiktak&#39;s - Python错误处理 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">
 
 
 <style media="screen">
@@ -1067,8 +1066,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://tiiiktak.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Tiiktak&#39;s" />
-
 
 
 </head>
@@ -1139,103 +1136,296 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
           enable_page_level_ads: true
      });
 </script>
-<div class="main column">
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            
-                <div class="markdown">
-                <p id="hitokoto">:D 获取中...</p>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
-<script type="text/javascript">
-  fetch('https://v1.hitokoto.cn/?c=a')
-    .then(function (res){
-      return res.json();
-    })
-    .then(function (data) {
-      var hitokoto = document.getElementById('hitokoto');
-      var hitokotofrom = document.getElementById('from');
-      hitokoto.innerText = data.hitokoto; 
-      hitokotofrom.innerText = data.from;
-    })
-    .catch(function (err) {
-      console.error(err);
-    })
-</script>
+    
+    Python错误处理
+    
 
-<p><img src="https://n6ea7q.bl.files.1drv.com/y4mKZi9GR6J7Vz0uI97Jp4sABIpzpSaJzCABueRRwHdq14kMzv9tkfAlIkXrazXzq4m-21IKkP_rfRm-nPglzj2wyRYQKyRaT_5bjebVunPMDtoaZLyq8oXDslKn0lICC7u6_-8j4huBhoRjh9P9Gp5XU0KZuzWSx3P9PliyGywnNcnuvML-kmLreP0OT38dd_wPkJW5F2_9-4VKjmzE60aXg?width=3839&amp;height=1408&amp;cropmode=none" alt="home-page" /></p>
+</div>
 
                 </div>
-            
-
-            
-                <div class="posts">
-                
-                
-                    <div class="page-heading">Latest posts</div>
-                    <ul>
+                <div class="meta">
+                    <div class="date" title="Fri Sep 6 2019 19:14:26 CST">Sep 6, 2019</div>
                     
-                        <li class="groupby">Sep, 2019</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Sep 6, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"><span>Python错误处理</span></a>
-    
-</li>
-
                         
                     
-                        <li class="groupby">Jul, 2019</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 9, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/"><span>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 8, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/"><span>Socket通信原理(3)</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 8, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/"><span>Socket通信原理(2)</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 7, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/"><span>Socket通信原理(1)</span></a>
-    
-</li>
-
-                        
                     
-                    </ul>
-
+                    <div class="reading-time middot">2 minute read</div>
                     
-                        <a href="./blog/" class="see-more">See more ...</a>
                     
-                
+                      <div class="tags">
+                    
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
                 </div>
-            
-
-            <div class="best-posts">
-            
-            
             </div>
+            <div class="markdown">
+                
+    
+    
+
+<p>在Python中也同样使用<code>try...except...finally...</code>的错误处理机制</p>
+
+<h1 id="try">try</h1>
+
+<h2 id="except">except</h2>
+
+<pre><code class="language-py">try:
+    print('try...')
+    r = 10/0
+    print('result:', r)
+except ZeroDivisionError as e:
+    print('except:', e)
+finally:
+    print('finally...')
+print('END')
+</code></pre>
+
+<p>当认为某一块代码有错误时，就可以用<code>try</code>来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到<code>except</code>块，执行完<code>except</code>后，若后续有<code>finally</code>片段，则执行<code>finally</code>块</p>
+
+<p>上面的代码中有一个除0的错误，运行结果:</p>
+
+<pre><code>try...
+except: division by zero 
+finally...
+END
+</code></pre>
+
+<p>当计算r后，捕捉到<code>ZeroDivisionError</code>错误，执行   <code>except</code>语句段，之后执行<code>finally</code></p>
+
+<h2 id="else">else</h2>
+
+<p>可以在<code>except</code>后面加上<code>else</code>，当没有错误发生时将执行<code>else</code>语句块</p>
+
+<pre><code class="language-py">try:
+    print('try...')
+    r = 10/5
+    print('result:', r)
+except ZeroDivisionError as e:
+    print('except:', e)
+else:
+	print('no error')
+print('END')
+</code></pre>
+
+<p>结果:</p>
+
+<pre><code>try...
+result: 2.0
+no error
+END
+</code></pre>
+
+<blockquote>
+<p>Python的错误是一个class，所有错误类型都继承自<code>BaseException</code>，故使用<code>except</code>时需注意它会也会捕获该类型的子类。</p>
+
+<blockquote>
+<p>常见错误类型及继承关系（中文）：<a href="https://docs.python.org/zh-cn/3/library/exceptions.html?highlight=aseexception#BaseException">官方文档</a>
+```</p>
+</blockquote>
+</blockquote>
+
+<h2 id="优势">优势</h2>
+
+<p>使用<code>try...except</code>捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数<code>main()</code>调用<code>fun()</code>，<code>fun()</code>调用<code>bar()</code>，结果<code>bar()</code>出错了，这时，只要<code>main()</code>捕获到了，就可以处理</p>
+
+<pre><code class="language-py">def fun(s):
+    return 10/int(s)
+
+def bar(s):
+    return fun(s) * 2
+
+def main():
+    try:
+        print('try...')
+        bar('0')
+    except Exception as e:
+        print('Error:', e)
+    finally:
+        print('finally...')
+</code></pre>
+
+<p>结果:</p>
+
+<pre><code>try...
+Error: division by zero
+finally...
+</code></pre>
+
+<h2 id="栈输出">栈输出</h2>
+
+<p>若错误没有被捕捉，会一直往上抛，最终会被Python解释器捕获，打印一个错误信息，之后程序会退出</p>
+
+<p>文件hello.py</p>
+
+<pre><code class="language-py">def fun(s):
+    return 10/int(s)
+
+def bar(s):
+    return fun(s) * 2
+
+def main():
+    bar('0')
+
+main()
+</code></pre>
+
+<p>在Python终端中运行文件，输出：</p>
+
+<pre><code class="language-py">Traceback (most recent call last): #错误跟踪信息
+  File &quot;hello.py&quot;, line 19, in &lt;module&gt;
+    main() #错误原因
+  File &quot;hello.py&quot;, line 13, in main
+    bar('0')
+  File &quot;hello.py&quot;, line 7, in bar
+    return fun(s) * 2
+  File &quot;hello.py&quot;, line 3, in fun
+    return 10/int(s)
+ZeroDivisionError: division by zero #错误类型
+</code></pre>
+
+<p>错误信息以栈的形式按顺序输出，由此可以找到错误源头</p>
+
+<h2 id="错误记录">错误记录</h2>
+
+<p>可以使用Python内置的<code>logging</code>模块记录错误信息</p>
+
+<pre><code class="language-py">import logging
+
+def fun(s):
+    return 10/int(s)
+
+def bar(s):
+    return fun(s) * 2
+
+def main():
+    try:
+        print('try...')
+        bar('0')
+    except BaseException as e:
+        logging.exception(e)
+    finally:
+        print('finally...')
+</code></pre>
+
+<p>这样运行，程序会在打印完错误信息后继续运行：</p>
+
+<pre><code class="language-py">try...
+ERROR:root:division by zero
+Traceback (most recent call last):
+  File &quot;hello.py&quot;, line 16, in main
+    bar('0')
+  File &quot;hello.py&quot;, line 10, in bar
+    return fun(s) * 2
+  File &quot;hello.py&quot;, line 6, in fun
+    return 10/int(s)
+ZeroDivisionError: division by zero
+finally...
+</code></pre>
+
+<h2 id="抛出错误">抛出错误</h2>
+
+<p>常常使用<code>raise</code>函数抛出错误，当前函数不知道怎么处理错误时，将其向上抛，交给上层函数来处理</p>
+
+<p>|<code>raise</code>语句如果不带参数，就会把当前错误原样抛出。此外在<code>except</code>中<code>raise</code>一个Error，还可以把一种类型的错误转化成另一种类型：</p>
+
+<pre><code class="language-py">try:
+    10 / 0
+except ZeroDivisionError:
+    raise ValueError('input error!')
+</code></pre>
+
+<p>只要是合理的转换逻辑即可，但绝不应该将一个<code>IOError</code>转换成毫不相干的<code>ValueError</code></p>
+
+
+
+            </div>
+            
+            <br>
+            <div class="share">
+                  
+                  <a href="" class="ssk ssk-facebook"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-twitter"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-google-plus"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-linkedin"></a>
+                  
+            </div>
+            
+            
+            <br>
+            <div class="navigation">
+                
+                <div>
+                    <img class="icon" src="https://tiiiktak.github.io/img/back.svg" alt="back" />
+                    <a href="https://tiiiktak.github.io/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/">利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</a>
+                </div>
+                
+                <div style="width: 100%;"></div>
+                
+            </div>
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+            
+
+            
+
+            
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 
@@ -1347,6 +1537,3 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 </body>
 </html>
 
-
-<script type="text/javascript" color="255,120,86" opacity='0.7' zIndex="-2" count="130" src="http://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js">
-</script>

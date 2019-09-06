@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 09 Jul 2019 15:32:53 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 06 Sep 2019 19:14:26 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,7 +19,32 @@
       <guid>https://tiiiktak.github.io/about/</guid>
       <description>:D 获取中&amp;hellip;
 &amp;hellip;
-fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });     (adsbygoogle = window.adsbygoogle || []).push({});  </description>
+fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })  WHO AM I 西南地区某双非大学的在读本科生一枚
+视觉检测研究实验室成员
+热爱平面设计，还对广告文案有浓厚兴趣
+喜欢日漫，但并不是所谓的二次元呢
+QQ: 1067475613
+Archives 基于OpenCV的答题卡识别
+基于树莓派的视频流传输及灰度重心识别
+（都是些渣渣项目，会努力让这里变得好看的😍）
+  (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });     (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>Python错误处理</title>
+      <link>https://tiiiktak.github.io/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</link>
+      <pubDate>Fri, 06 Sep 2019 19:14:26 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</guid>
+      <description>在Python中也同样使用try...except...finally...的错误处理机制
+try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;)  当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
+上面的代码中有一个除0的错误，运行结果:
+try... except: division by zero finally... END  当计算r后，捕捉到ZeroDivisionError错误，执行 except语句段，之后执行finally
+else 可以在except后面加上else，当没有错误发生时将执行else语句块
+try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) else: print(&#39;no error&#39;) print(&#39;END&#39;)  结果:
+try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
+ 常见错误类型及继承关系（中文）：官方文档 ```
+  优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理</description>
     </item>
     
     <item>
