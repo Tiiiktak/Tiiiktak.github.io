@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 06 Sep 2019 19:14:26 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Sep 2019 21:07:51 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,11 +23,52 @@ fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.js
 视觉检测研究实验室成员
 热爱平面设计，还对广告文案有浓厚兴趣
 喜欢日漫，但并不是所谓的二次元呢
-QQ: 1067475613
 Archives 基于OpenCV的答题卡识别
 基于树莓派的视频流传输及灰度重心识别
 （都是些渣渣项目，会努力让这里变得好看的😍）
   (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });     (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>Zen of Python -Python之禅</title>
+      <link>https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/</link>
+      <pubDate>Sat, 07 Sep 2019 21:07:51 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/</guid>
+      <description>在浏览Python官方文档时无意发现了这个彩蛋，只需在终端中import this
+The Zen of Python, by Tim Peters Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense. Readability counts. Special cases aren&#39;t special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In the face of ambiguity, refuse the temptation to guess.</description>
+    </item>
+    
+    <item>
+      <title>Python文件操作</title>
+      <link>https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sat, 07 Sep 2019 20:31:38 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
+      <description>Python内置了读写文件的函数，用法与C兼容
+读文件 open() 使用内置的open()函数，传入文件名和标识符：
+&amp;gt;&amp;gt;&amp;gt; f = open(&#39;test.txt&#39;, &#39;r&#39;)  若文件不存在，open()函数会抛出一个IOError的错误，并给出错误码和详细信息
+Traceback (most recent call last): File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt; FileNotFoundError: [Errno 2] No such file or directory: &#39;test.txt&#39;  read() 打开成功后，使用read()一次性读取文件的全部内容，Python将内容读到内存中，用str对象存储
+readline() |readline()可以每次读取一行的内容
+readlines() |readlines()一次读取所有内容并按行返回list
+close() 使用完毕后，需要调用close()关闭文件
+with语句 为避免忘记调用close()，Python引入with语句自动调用close()
+with open(&#39;test.txt&#39;, &#39;r&#39;) as f: print(f.read())  写文件 与读文件类似，唯一区别是传入标识符&#39;w&#39;或&#39;wb&#39;表示写文本文件或写二进制文件
+所有标识符定义及其意义见官方文档
+file-like Object (file object文件对象) 在Python中，像open()函数返回的这种有read()或write()方法的对象统称为file-like Object（或file object）
+共有三种类别的文件对象：原始二进制文件, 缓冲二进制文件 以及 文本文件，创建文件对象的规范方式是使用open()函数。</description>
+    </item>
+    
+    <item>
+      <title>Python调试</title>
+      <link>https://tiiiktak.github.io/blog/python%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Sat, 07 Sep 2019 19:08:46 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/python%E8%B0%83%E8%AF%95/</guid>
+      <description>Python中可以使用断言assert,logging等来进行调试
+断言 def fun(s): n = int(s) assert n != 0, &#39;n is zero!&#39; return 10 / n def main(): fun(&#39;0&#39;)  若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
+Traceback (most recent call last): File &amp;quot;hello.py&amp;quot;, line 12, in &amp;lt;module&amp;gt; main() File &amp;quot;hello.py&amp;quot;, line 9, in main fun(&#39;0&#39;) File &amp;quot;hello.py&amp;quot;, line 4, in fun assert n != 0, &#39;n is zero!&#39; AssertionError: n is zero!  在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
+..path:&amp;gt; python -O hello.py Traceback (most recent call last): File &amp;quot;hello.</description>
     </item>
     
     <item>
@@ -45,6 +86,16 @@ try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDiv
 try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
  常见错误类型及继承关系（中文）：官方文档 ```
   优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理</description>
+    </item>
+    
+    <item>
+      <title>多线程与多进程、并行与并发</title>
+      <link>https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Thu, 11 Jul 2019 15:46:30 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</guid>
+      <description> 多线程与多进程 线程与进程 进程是资源分配的最小单位，线程则是CPU调度的最小单位，多进程不能共享全局变量，而多线程则可以
+进程 </description>
     </item>
     
     <item>
@@ -198,7 +249,7 @@ unset url  Shell字符串 可用单引号，或双引号，也可不用引号
  i 切换到输入模式，以输入字符 x 删除当前光标所在处的字符 : 切换到底线命令模式，以在最底一行输入命令  命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令
 输入模式 常用：
  Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令： * q 退出程序 * w 保存文件
-vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用“30↓”的组合按键
+vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
  [Ctrl]+[f] 下一页 [Ctrl]+[b] 上一页 [Ctrl]+[d] 向下半页 [Ctrl]+[u] 向上半页 0 移动到该行最前面字符处 $ 移动到该行最后字符处 G 移动到档案最后一行 nG 一赌东道档案第n行 gg 移动到档案第一行  搜索替换  /word 向光标之下寻找名称为word的字符串 ？word 向光标之上寻找名称为word的字符串 n 重复前一个搜寻的动作 N 反向进行前一个搜寻动作 :n1,n2s/word1/word2/g 在n1与n2行之间寻找word1字符串，并用word2取代 :1,$s/word1/word2/g 或 :%s/word1/word2/g 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 :1,$s/word1/word2/gc 或 :%s/word1/word2/gc 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2，并显示提示字符确认  删除、复制、粘贴  x,X x相当于del，X相当于Backspace dd 删除光标所在行 ndd 删除光标所在向下n行 d1G 删除光标所在到第一行所有数据 dG 删除光标所在到最后一行所有数据 yy 复制光标所在行 nyy 复制光标所在的向下n行 p,P p为将已复制的数据在光标下一行粘贴，P为粘贴在上一行 u 撤销 [Ctrl]+r 重做 .</description>
     </item>
     

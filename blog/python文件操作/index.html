@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
 <meta charset="utf-8">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -15,24 +14,24 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/" />
-<meta property="og:title" content="Tiiktak&#39;s" />
-<meta property="twitter:title" content="Tiiktak&#39;s">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" />
+<meta property="og:title" content="Python文件操作" />
+<meta property="twitter:title" content="Python文件操作">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
     <meta property="twitter:image" content="https://tiiiktak.github.io/img/banner.png">
 
-<meta property="og:description" content="Hey You">
-<meta property="twitter:description" content="Hey You">
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
 
 <title>
 
 
-    Tiiktak&#39;s
+     Tiiktak&#39;s - Python文件操作 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
 
 
 <style media="screen">
@@ -1067,8 +1066,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://tiiiktak.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Tiiktak&#39;s" />
-
 
 
 </head>
@@ -1139,103 +1136,182 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
           enable_page_level_ads: true
      });
 </script>
-<div class="main column">
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            
-                <div class="markdown">
-                <p id="hitokoto">:D 获取中...</p>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
-<script type="text/javascript">
-  fetch('https://v1.hitokoto.cn/?c=a')
-    .then(function (res){
-      return res.json();
-    })
-    .then(function (data) {
-      var hitokoto = document.getElementById('hitokoto');
-      var hitokotofrom = document.getElementById('from');
-      hitokoto.innerText = data.hitokoto; 
-      hitokotofrom.innerText = data.from;
-    })
-    .catch(function (err) {
-      console.error(err);
-    })
-</script>
+    
+    Python文件操作
+    
 
-<p><img src="https://n6ea7q.bl.files.1drv.com/y4mKZi9GR6J7Vz0uI97Jp4sABIpzpSaJzCABueRRwHdq14kMzv9tkfAlIkXrazXzq4m-21IKkP_rfRm-nPglzj2wyRYQKyRaT_5bjebVunPMDtoaZLyq8oXDslKn0lICC7u6_-8j4huBhoRjh9P9Gp5XU0KZuzWSx3P9PliyGywnNcnuvML-kmLreP0OT38dd_wPkJW5F2_9-4VKjmzE60aXg?width=3839&amp;height=1408&amp;cropmode=none" alt="home-page" /></p>
+</div>
 
                 </div>
-            
-
-            
-                <div class="posts">
-                
-                
-                    <div class="page-heading">Latest posts</div>
-                    <ul>
+                <div class="meta">
+                    <div class="date" title="Sat Sep 7 2019 20:31:38 CST">Sep 7, 2019</div>
                     
-                        <li class="groupby">Sep, 2019</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Sep 7, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/"><span>Zen of Python -Python之禅</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Sep 7, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/"><span>Python文件操作</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Sep 7, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/python%E8%B0%83%E8%AF%95/"><span>Python调试</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Sep 6, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"><span>Python错误处理</span></a>
-    
-</li>
-
                         
                     
-                        <li class="groupby">Jul, 2019</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Jul 11, 2019</span>
-    
-    <a href="https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/"><span>多线程与多进程、并行与并发</span></a>
-    
-</li>
-
-                        
                     
-                    </ul>
-
+                    <div class="reading-time middot">1 minute read</div>
                     
-                        <a href="./blog/" class="see-more">See more ...</a>
                     
-                
+                      <div class="tags">
+                    
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
                 </div>
-            
-
-            <div class="best-posts">
-            
-            
             </div>
+            <div class="markdown">
+                
+    
+    
+
+<p>Python内置了读写文件的函数，用法与C兼容</p>
+
+<h2 id="读文件">读文件</h2>
+
+<h3 id="open">open()</h3>
+
+<p>使用内置的<code>open()</code>函数，传入文件名和标识符：</p>
+
+<pre><code class="language-py">&gt;&gt;&gt; f = open('test.txt', 'r')
+</code></pre>
+
+<p>若文件不存在，<code>open()</code>函数会抛出一个<code>IOError</code>的错误，并给出错误码和详细信息</p>
+
+<pre><code class="language-py">Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+FileNotFoundError: [Errno 2] No such file or directory: 'test.txt'
+</code></pre>
+
+<h3 id="read">read()</h3>
+
+<p>打开成功后，使用<code>read()</code>一次性读取文件的<strong>全部内容</strong>，Python将内容读到内存中，用<code>str</code>对象存储</p>
+
+<h3 id="readline">readline()</h3>
+
+<p>|<code>readline()</code>可以每次读取一行的内容</p>
+
+<h3 id="readlines">readlines()</h3>
+
+<p>|<code>readlines()</code>一次读取所有内容并按行返回<code>list</code></p>
+
+<h3 id="close">close()</h3>
+
+<p>使用完毕后，需要调用<code>close()</code>关闭文件</p>
+
+<h3 id="with语句">with语句</h3>
+
+<p>为避免忘记调用<code>close()</code>，Python引入<code>with</code>语句自动调用<code>close()</code></p>
+
+<pre><code class="language-py">with open('test.txt', 'r') as f:
+	print(f.read())
+</code></pre>
+
+<h2 id="写文件">写文件</h2>
+
+<p>与读文件类似，唯一区别是传入标识符<code>'w'</code>或<code>'wb'</code>表示写文本文件或写二进制文件</p>
+
+<p><em>所有标识符定义及其意义见<a href="https://docs.python.org/zh-cn/3/library/functions.html#open">官方文档</a></em></p>
+
+<h2 id="file-like-object-file-object文件对象">file-like Object (file object文件对象)</h2>
+
+<p>在Python中，像<code>open()</code>函数返回的这种有<code>read()</code>或<code>write()</code>方法的对象统称为file-like Object（或file object）</p>
+
+<p>共有三种类别的文件对象：原始<a href="https://docs.python.org/zh-cn/3/glossary.html#term-binary-file">二进制文件</a>, 缓冲<a href="https://docs.python.org/zh-cn/3/glossary.html#term-binary-file">二进制文件</a> 以及 <a href="https://docs.python.org/zh-cn/3/glossary.html#term-text-file">文本文件</a>，创建文件对象的规范方式是使用<code>open()</code>函数。</p>
+
+
+
+            </div>
+            
+            <br>
+            <div class="share">
+                  
+                  <a href="" class="ssk ssk-facebook"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-twitter"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-google-plus"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-linkedin"></a>
+                  
+            </div>
+            
+            
+            <br>
+            <div class="navigation">
+                
+                <div>
+                    <img class="icon" src="https://tiiiktak.github.io/img/back.svg" alt="back" />
+                    <a href="https://tiiiktak.github.io/blog/python%E8%B0%83%E8%AF%95/">Python调试</a>
+                </div>
+                
+                <div style="width: 100%;"></div>
+                
+                <div>
+                    <a href="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/">Zen of Python -Python之禅</a>
+                    <img class="icon" src="https://tiiiktak.github.io/img/next.svg" alt="next" />
+                </div>
+                
+            </div>
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+            
+
+            
+
+            
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 
@@ -1347,6 +1423,3 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 </body>
 </html>
 
-
-<script type="text/javascript" color="255,120,86" opacity='0.7' zIndex="-2" count="130" src="http://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js">
-</script>
