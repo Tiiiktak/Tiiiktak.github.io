@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/" />
-<meta property="og:title" content="Zen of Python -Python之禅" />
-<meta property="twitter:title" content="Zen of Python -Python之禅">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/" />
+<meta property="og:title" content="Python中eval与format" />
+<meta property="twitter:title" content="Python中eval与format">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s - Zen of Python -Python之禅 
+     Tiiktak&#39;s - Python中eval与format 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/">
 
 
 <style media="screen">
@@ -1148,19 +1148,19 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    Zen of Python -Python之禅
+    Python中eval与format
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Sat Sep 7 2019 21:07:51 CST">Sep 7, 2019</div>
+                    <div class="date" title="Tue Sep 10 2019 20:37:31 CST">Sep 10, 2019</div>
                     
                         
                     
                     
-                    <div class="reading-time middot">2 minute read</div>
+                    <div class="reading-time middot">1 minute read</div>
                     
                     
                       <div class="tags">
@@ -1180,94 +1180,116 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
             <div class="markdown">
                 
     
-    <p>在浏览Python官方文档时无意发现了这个彩蛋，只需在终端中<code>import this</code></p>
+    
 
-<pre><code>The Zen of Python, by Tim Peters
+<p>今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔</p>
 
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-Flat is better than nested.
-Sparse is better than dense.
-Readability counts.
-Special cases aren't special enough to break the rules.
-Although practicality beats purity.
-Errors should never pass silently.
-Unless explicitly silenced.
-In the face of ambiguity, refuse the temptation to guess.
-There should be one-- and preferably only one --obvious way to do it.
-Although that way may not be obvious at first unless you're Dutch.
-Now is better than never.
-Although never is often better than *right* now.
-If the implementation is hard to explain, it's a bad idea.
-If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let's do more of those!
+<p>先看看题</p>
+
+<h2 id="题目">题目</h2>
+
+<p>数值运算</p>
+
+<h3 id="描述">描述</h3>
+
+<p>获得用户输入的一个字符串，格式如下：</p>
+
+<pre><code>M OP N
 </code></pre>
 
-<p>中文翻译：</p>
+<p>其中，M和N是任何数字，OP代表一种操作，表示为如下四种：+, -, *, /（加减乘除）</p>
 
-<pre><code>优美胜于丑陋
-明了胜于晦涩
-简单胜于复杂
-复杂胜于杂乱
-扁平胜于嵌套
-间隔胜于紧凑
-可读性很重要
-特例不足以特殊到违背这些原则
-不要忽视错误，除非程序需要这样做
-面对模棱两可，拒绝猜测
-解决问题最直接的方法应该有一种，最好只有一种
-可能这种方法一开始不够直接，因为你不是范罗苏姆
-做也许好过不做，但不想就做还不如不做
-如果方案难以描述明白，那么一定是个糟糕的方案
-如果容易描述，那么可能是个好方案
-命名空间是一种绝妙的理念，多加利用
+<p>根据OP，输出<code>M OP N‬</code>的运算结果，统一保留小数点后两位</p>
+
+<p>注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况</p>
+
+<h3 id="示例输入">示例输入‪</h3>
+
+<pre><code>10 + 100
+1 / 20
 </code></pre>
 
-<p>感觉它虽然名为Zen of Python，但它可以是Zen of Each Code，这当中的绝大多数都是在编程时需要注意的</p>
+<h3 id="示例输出">示例输出</h3>
 
-<p>还在豆瓣发现了元创的个人翻译，它将其翻译为“蛇宗三字经”，粘贴在这里，原文地址：<a href="https://www.douban.com/group/topic/3740034/">蛇宗三字经</a></p>
-
-<pre><code>Beautiful is better than ugly.
-美胜丑
-Explicit is better than implicit.
-明胜暗
-Simple is better than complex.
-简胜复
-Complex is better than complicated.
-复胜杂
-Flat is better than nested.
-浅胜深
-Sparse is better than dense.
-疏胜密
-Readability counts.
-辞达意
-Special cases aren't special enough to break the rules.
-不逾矩
-Although practicality beats purity.
-弃至清
-Errors should never pass silently.
-无阴差
-Unless explicitly silenced.
-有阳错
-In the face of ambiguity, refuse the temptation to guess.
-拒疑数
-There should be one-- and preferably only one --obvious way to do it.
-求完一
-Although that way may not be obvious at first unless you're Dutch.
-虽不至，向往之
-Now is better than never.
-敏于行
-Although never is often better than *right* now.
-戒莽撞
-If the implementation is hard to explain, it's a bad idea.
-差难言
-If the implementation is easy to explain, it may be a good idea.
-好易说
-Namespaces are one honking great idea -- let's do more of those!
-每师出，多有名
+<pre><code>110.00
+0.05
 </code></pre>
+
+<h2 id="解答">解答</h2>
+
+<p>我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算</p>
+
+<p>然而，我却完全忘记了Python有着<code>eval()</code>的存在&hellip;.</p>
+
+<h3 id="eval">eval()</h3>
+
+<p>|<code>eval()</code>函数用来执行一个字符串表达式，并返回表达式的值
+‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫</p>
+
+<pre><code class="language-py">eval(expression[, globals[, locals]])
+</code></pre>
+
+<blockquote>
+<p>参数</p>
+
+<p>expression &ndash; 表达式</p>
+
+<p>globals &ndash; 变量作用域，全局命名空间，若被提供，必须是一个字典对象</p>
+
+<p>locals &ndash; 变量作用域，局部命名空间，若被提供，可以是任何映射对象</p>
+</blockquote>
+
+<p>可见，使用<code>eval()</code>后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果</p>
+
+<p>之后根据题意，我们还要将运算结果保留两位小数，这时<code>format()</code>就派上了用场</p>
+
+<h3 id="format">format()</h3>
+
+<p>这是一种格式化字符串的函数，基本语法是使用<code>{}</code>和<code>:</code>
+‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮
+|<code>format()</code>‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序</p>
+
+<pre><code class="language-py">&gt;&gt;&gt; &quot;{} {}&quot;.format(&quot;hello&quot;, &quot;world&quot;)    # 不设置指定位置，按默认顺序
+'hello world'
+ 
+&gt;&gt;&gt; &quot;{0} {1}&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置
+'hello world'
+ 
+&gt;&gt;&gt; &quot;{1} {0} {1}&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置
+'world hello world'
+</code></pre>
+
+<h4 id="数字格式化">数字格式化</h4>
+
+<p>我们阔以使用<code>str.format()</code>格式化数字</p>
+
+<p>|<code>{:.2f}</code> 保留小数点后两位</p>
+
+<p>|<code>{:+.2f}</code> 带符号保留小数点后两位</p>
+
+<p>|<code>{:0&gt;2d}</code> 数字补0（填充左边，宽度为2）</p>
+
+<p>|<code>{:,}</code> 以逗号分隔的数字形式</p>
+
+<p>|<code>{:.2%}</code> 百分比格式</p>
+
+<p>|<code>{:.2e}</code> 指数记法</p>
+
+<p>|<code>{:&gt;10d}</code> 右对齐（默认，宽度为10）</p>
+
+<p>|<code>{:^10d}</code> 中间对齐（宽度为10）</p>
+
+<p>|<code>{:b}</code> 二进制</p>
+
+<h2 id="answer">Answer</h2>
+
+<p>于是，利用<code>eval()</code>与<code>format()</code>，我们阔以直接写出答案：</p>
+
+<pre><code class="language-py">s = input()
+print(&quot;{:.2f}&quot;.format(eval(s)))
+</code></pre>
+
+<p>怎么样，是不是很简单</p>
 
 
 
@@ -1295,15 +1317,10 @@ Namespaces are one honking great idea -- let's do more of those!
                 
                 <div>
                     <img class="icon" src="https://tiiiktak.github.io/img/back.svg" alt="back" />
-                    <a href="https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">Python文件操作</a>
+                    <a href="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/">Zen of Python -Python之禅</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
-                
-                <div>
-                    <a href="https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/">Python中eval与format</a>
-                    <img class="icon" src="https://tiiiktak.github.io/img/next.svg" alt="next" />
-                </div>
                 
             </div>
             

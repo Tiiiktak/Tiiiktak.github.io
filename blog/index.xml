@@ -6,10 +6,36 @@
     <description>Recent content in Blog on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 07 Sep 2019 21:07:51 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Sep 2019 20:37:31 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python中eval与format</title>
+      <link>https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</link>
+      <pubDate>Tue, 10 Sep 2019 20:37:31 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</guid>
+      <description>今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔
+先看看题
+题目 数值运算
+描述 获得用户输入的一个字符串，格式如下：
+M OP N  其中，M和N是任何数字，OP代表一种操作，表示为如下四种：+, -, *, /（加减乘除）
+根据OP，输出M OP N‬的运算结果，统一保留小数点后两位
+注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况
+示例输入‪ 10 + 100 1 / 20  示例输出 110.00 0.05  解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
+然而，我却完全忘记了Python有着eval()的存在&amp;hellip;.
+eval() |eval()函数用来执行一个字符串表达式，并返回表达式的值 ‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫
+eval(expression[, globals[, locals]])   参数
+expression &amp;ndash; 表达式
+globals &amp;ndash; 变量作用域，全局命名空间，若被提供，必须是一个字典对象
+locals &amp;ndash; 变量作用域，局部命名空间，若被提供，可以是任何映射对象
+ 可见，使用eval()后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果
+之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
+format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
+&amp;gt;&amp;gt;&amp;gt; &amp;quot;{} {}&amp;quot;.format(&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;) # 不设置指定位置，按默认顺序 &#39;hello world&#39; &amp;gt;&amp;gt;&amp;gt; &amp;quot;{0} {1}&amp;quot;.format(&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;) # 设置指定位置 &#39;hello world&#39; &amp;gt;&amp;gt;&amp;gt; &amp;quot;{1} {0} {1}&amp;quot;.</description>
+    </item>
     
     <item>
       <title>Zen of Python -Python之禅</title>
@@ -68,16 +94,6 @@ try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDiv
 try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
  常见错误类型及继承关系（中文）：官方文档 ```
   优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理</description>
-    </item>
-    
-    <item>
-      <title>多线程与多进程、并行与并发</title>
-      <link>https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</link>
-      <pubDate>Thu, 11 Jul 2019 15:46:30 +0800</pubDate>
-      
-      <guid>https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</guid>
-      <description> 多线程与多进程 线程与进程 进程是资源分配的最小单位，线程则是CPU调度的最小单位，多进程不能共享全局变量，而多线程则可以
-进程 </description>
     </item>
     
     <item>
