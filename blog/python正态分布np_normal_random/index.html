@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/" />
-<meta property="og:title" content="Zen of Python -Python之禅" />
-<meta property="twitter:title" content="Zen of Python -Python之禅">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/" />
+<meta property="og:title" content="Python正态分布np_normal_random" />
+<meta property="twitter:title" content="Python正态分布np_normal_random">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s - Zen of Python -Python之禅 
+     Tiiktak&#39;s - Python正态分布np_normal_random 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/">
 
 
 <style media="screen">
@@ -1148,19 +1148,19 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    Zen of Python -Python之禅
+    	Python正态分布np_normal_random
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Sat Sep 7 2019 21:07:51 CST">Sep 7, 2019</div>
+                    <div class="date" title="Mon Sep 9 2019 10:08:28 CST">Sep 9, 2019</div>
                     
                         
                     
                     
-                    <div class="reading-time middot">2 minute read</div>
+                    <div class="reading-time middot">1 minute read</div>
                     
                     
                       <div class="tags">
@@ -1180,94 +1180,28 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
             <div class="markdown">
                 
     
-    <p>在浏览Python官方文档时无意发现了这个彩蛋，只需在终端中<code>import this</code></p>
+    
 
-<pre><code>The Zen of Python, by Tim Peters
+<h2 id="正态分布的概率密度函数">正态分布的概率密度函数</h2>
 
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-Flat is better than nested.
-Sparse is better than dense.
-Readability counts.
-Special cases aren't special enough to break the rules.
-Although practicality beats purity.
-Errors should never pass silently.
-Unless explicitly silenced.
-In the face of ambiguity, refuse the temptation to guess.
-There should be one-- and preferably only one --obvious way to do it.
-Although that way may not be obvious at first unless you're Dutch.
-Now is better than never.
-Although never is often better than *right* now.
-If the implementation is hard to explain, it's a bad idea.
-If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let's do more of those!
+<p><img src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/pic/item/342ac65c1038534384b650b09213b07eca808822.jpg" alt="高斯分布函数" /></p>
+
+<h2 id="numpy中函数">numpy中函数</h2>
+
+<pre><code class="language-py">numpy.random.normal(loc=0.0, scale=1.0, size=None)
 </code></pre>
 
-<p>中文翻译：</p>
+<p>参数意义：</p>
 
-<pre><code>优美胜于丑陋
-明了胜于晦涩
-简单胜于复杂
-复杂胜于杂乱
-扁平胜于嵌套
-间隔胜于紧凑
-可读性很重要
-特例不足以特殊到违背这些原则
-不要忽视错误，除非程序需要这样做
-面对模棱两可，拒绝猜测
-解决问题最直接的方法应该有一种，最好只有一种
-可能这种方法一开始不够直接，因为你不是范罗苏姆
-做也许好过不做，但不想就做还不如不做
-如果方案难以描述明白，那么一定是个糟糕的方案
-如果容易描述，那么可能是个好方案
-命名空间是一种绝妙的理念，多加利用
+<pre><code>loc：float
+    概率分布均值（对应整个分布的中心centre）
+scale：float
+    概率分布标准差（对应分布的宽度，scale越大越矮胖，scale越小，越瘦高）
+size：int or tuple of ints
+    输出的shape，默认为None，只输出一个值
 </code></pre>
 
-<p>感觉它虽然名为Zen of Python，但它可以是Zen of Each Code，这当中的绝大多数都是在编程时需要注意的</p>
-
-<p>还在豆瓣发现了元创的个人翻译，它将其翻译为“蛇宗三字经”，粘贴在这里，原文地址：<a href="https://www.douban.com/group/topic/3740034/">蛇宗三字经</a></p>
-
-<pre><code>Beautiful is better than ugly.
-美胜丑
-Explicit is better than implicit.
-明胜暗
-Simple is better than complex.
-简胜复
-Complex is better than complicated.
-复胜杂
-Flat is better than nested.
-浅胜深
-Sparse is better than dense.
-疏胜密
-Readability counts.
-辞达意
-Special cases aren't special enough to break the rules.
-不逾矩
-Although practicality beats purity.
-弃至清
-Errors should never pass silently.
-无阴差
-Unless explicitly silenced.
-有阳错
-In the face of ambiguity, refuse the temptation to guess.
-拒疑数
-There should be one-- and preferably only one --obvious way to do it.
-求完一
-Although that way may not be obvious at first unless you're Dutch.
-虽不至，向往之
-Now is better than never.
-敏于行
-Although never is often better than *right* now.
-戒莽撞
-If the implementation is hard to explain, it's a bad idea.
-差难言
-If the implementation is easy to explain, it may be a good idea.
-好易说
-Namespaces are one honking great idea -- let's do more of those!
-每师出，多有名
-</code></pre>
+<p>常用到<code>np.random.randn(size)</code>表示标准正态分布（μ=0,σ=1），对应于<code>np.random.normal(loc=0, scale=1, size)</code></p>
 
 
 
@@ -1295,13 +1229,13 @@ Namespaces are one honking great idea -- let's do more of those!
                 
                 <div>
                     <img class="icon" src="https://tiiiktak.github.io/img/back.svg" alt="back" />
-                    <a href="https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">Python文件操作</a>
+                    <a href="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/">Zen of Python -Python之禅</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
                 
                 <div>
-                    <a href="https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/">Python正态分布np_normal_random</a>
+                    <a href="https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/">Python中eval()与format()</a>
                     <img class="icon" src="https://tiiiktak.github.io/img/next.svg" alt="next" />
                 </div>
                 

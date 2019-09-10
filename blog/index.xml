@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Python中eval与format</title>
+      <title>Python中eval()与format()</title>
       <link>https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</link>
       <pubDate>Tue, 10 Sep 2019 20:37:31 +0800</pubDate>
       
@@ -35,6 +35,16 @@ locals &amp;ndash; 变量作用域，局部命名空间，若被提供，可以�
 之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
 format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
 &amp;gt;&amp;gt;&amp;gt; &amp;quot;{} {}&amp;quot;.format(&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;) # 不设置指定位置，按默认顺序 &#39;hello world&#39; &amp;gt;&amp;gt;&amp;gt; &amp;quot;{0} {1}&amp;quot;.format(&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;) # 设置指定位置 &#39;hello world&#39; &amp;gt;&amp;gt;&amp;gt; &amp;quot;{1} {0} {1}&amp;quot;.</description>
+    </item>
+    
+    <item>
+      <title>Python正态分布np_normal_random</title>
+      <link>https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/</link>
+      <pubDate>Mon, 09 Sep 2019 10:08:28 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/</guid>
+      <description>正态分布的概率密度函数 numpy中函数 numpy.random.normal(loc=0.0, scale=1.0, size=None)  参数意义：
+loc：float 概率分布均值（对应整个分布的中心centre） scale：float 概率分布标准差（对应分布的宽度，scale越大越矮胖，scale越小，越瘦高） size：int or tuple of ints 输出的shape，默认为None，只输出一个值  常用到np.random.randn(size)表示标准正态分布（μ=0,σ=1），对应于np.random.normal(loc=0, scale=1, size)</description>
     </item>
     
     <item>
@@ -94,6 +104,16 @@ try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDiv
 try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
  常见错误类型及继承关系（中文）：官方文档 ```
   优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理</description>
+    </item>
+    
+    <item>
+      <title>多线程与多进程、并行与并发</title>
+      <link>https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Thu, 11 Jul 2019 15:46:30 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</guid>
+      <description> 多线程与多进程 线程与进程 进程是资源分配的最小单位，线程则是CPU调度的最小单位，多进程不能共享全局变量，而多线程则可以
+进程 </description>
     </item>
     
     <item>
