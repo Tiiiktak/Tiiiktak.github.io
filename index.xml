@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 11 Sep 2019 20:33:51 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 20:13:56 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -30,17 +30,15 @@ Archives 基于OpenCV的答题卡识别
     </item>
     
     <item>
-      <title>简单TensorFlow模型：摄氏度转换为华氏度</title>
-      <link>https://tiiiktak.github.io/blog/%E7%AE%80%E5%8D%95tensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</link>
-      <pubDate>Wed, 11 Sep 2019 20:33:51 +0800</pubDate>
+      <title>Python split()函数</title>
+      <link>https://tiiiktak.github.io/blog/python-split%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Mon, 16 Sep 2019 20:13:56 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E7%AE%80%E5%8D%95tensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</guid>
-      <description> 今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
-公式 已知摄氏度转换成华氏度有数学公式：
-f = c * 1.8 + 32  而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
-import 需要引入TensorFlow与NumPy库构建神经网络
-import tensorflow as tf import numpy as np  还需要引入logging以记录日志
-import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR)  </description>
+      <guid>https://tiiiktak.github.io/blog/python-split%E5%87%BD%E6%95%B0/</guid>
+      <description>原型 str.split(str=&amp;quot;&amp;quot;, num=string.count(str))  |split()函数通过指定分隔符对字符串进行切片
+参数 若参数str无指定值。默认为所有的空字符，包括空格、\n、\t等
+若参数num有指定值，则分割num+1个子字符串，若无指定值，默认-1，即分隔所有
+返回值 返回分割后的字符串列表</description>
     </item>
     
     <item>
@@ -67,16 +65,6 @@ locals &amp;ndash; 变量作用域，局部命名空间，若被提供，可以�
 之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
 format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
 &amp;gt;&amp;gt;&amp;gt; &amp;quot;{} {}&amp;quot;.format(&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;) # 不设置指定位置，按默认顺序 &#39;hello world&#39; &amp;gt;&amp;gt;&amp;gt; &amp;quot;{0} {1}&amp;quot;.format(&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;) # 设置指定位置 &#39;hello world&#39; &amp;gt;&amp;gt;&amp;gt; &amp;quot;{1} {0} {1}&amp;quot;.</description>
-    </item>
-    
-    <item>
-      <title>Python正态分布np_normal_random</title>
-      <link>https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/</link>
-      <pubDate>Mon, 09 Sep 2019 10:08:28 +0800</pubDate>
-      
-      <guid>https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/</guid>
-      <description>正态分布的概率密度函数 numpy中函数 numpy.random.normal(loc=0.0, scale=1.0, size=None)  参数意义：
-loc：float 概率分布均值（对应整个分布的中心centre） scale：float 概率分布标准差（对应分布的宽度，scale越大越矮胖，scale越小，越瘦高） size：int or tuple of ints 输出的shape，默认为None，只输出一个值  常用到np.random.randn(size)表示标准正态分布（μ=0,σ=1），对应于np.random.normal(loc=0, scale=1, size)</description>
     </item>
     
     <item>
@@ -136,16 +124,6 @@ try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDiv
 try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
  常见错误类型及继承关系（中文）：官方文档 ```
   优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理</description>
-    </item>
-    
-    <item>
-      <title>多线程与多进程、并行与并发</title>
-      <link>https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</link>
-      <pubDate>Thu, 11 Jul 2019 15:46:30 +0800</pubDate>
-      
-      <guid>https://tiiiktak.github.io/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</guid>
-      <description> 多线程与多进程 线程与进程 进程是资源分配的最小单位，线程则是CPU调度的最小单位，多进程不能共享全局变量，而多线程则可以
-进程 </description>
     </item>
     
     <item>
