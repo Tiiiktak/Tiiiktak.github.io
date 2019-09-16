@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/blog/python-split%E5%87%BD%E6%95%B0/" />
-<meta property="og:title" content="Python split()函数" />
-<meta property="twitter:title" content="Python split()函数">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/" />
+<meta property="og:title" content="Python正态分布np_normal_random" />
+<meta property="twitter:title" content="Python正态分布np_normal_random">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s - Python split()函数 
+     Tiiktak&#39;s - Python正态分布np_normal_random 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/blog/python-split%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/">
 
 
 <style media="screen">
@@ -1151,14 +1151,14 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    Python split()函数
+    	Python正态分布np_normal_random
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Mon Sep 16 2019 20:13:56 CST">Sep 16, 2019</div>
+                    <div class="date" title="Mon Sep 9 2019 10:08:28 CST">Sep 9, 2019</div>
                     
                         
                     
@@ -1185,24 +1185,26 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-9673215637005333", enable_page_level_ads: true }); </script>
+<h2 id="正态分布的概率密度函数">正态分布的概率密度函数</h2>
 
-<h2 id="原型">原型</h2>
+<p><img src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/pic/item/342ac65c1038534384b650b09213b07eca808822.jpg" alt="高斯分布函数" /></p>
 
-<pre><code class="language-py">str.split(str=&quot;&quot;, num=string.count(str))
+<h2 id="numpy中函数">numpy中函数</h2>
+
+<pre><code class="language-py">numpy.random.normal(loc=0.0, scale=1.0, size=None)
 </code></pre>
 
-<p>|<code>split()</code>函数通过指定分隔符对字符串进行切片</p>
+<p>参数意义：</p>
 
-<h2 id="参数">参数</h2>
+<pre><code>loc：float
+    概率分布均值（对应整个分布的中心centre）
+scale：float
+    概率分布标准差（对应分布的宽度，scale越大越矮胖，scale越小，越瘦高）
+size：int or tuple of ints
+    输出的shape，默认为None，只输出一个值
+</code></pre>
 
-<p>若参数<code>str</code>无指定值。默认为所有的空字符，包括空格、<code>\n</code>、<code>\t</code>等</p>
-
-<p>若参数<code>num</code>有指定值，则分割<code>num+1</code>个子字符串，若无指定值，默认<code>-1</code>，即分隔所有</p>
-
-<h2 id="返回值">返回值</h2>
-
-<p>返回分割后的字符串列表</p>
+<p>常用到<code>np.random.randn(size)</code>表示标准正态分布（μ=0,σ=1），对应于<code>np.random.normal(loc=0, scale=1, size)</code></p>
 
 
 
@@ -1230,10 +1232,15 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                 
                 <div>
                     <img class="icon" src="https://tiiiktak.github.io/img/back.svg" alt="back" />
-                    <a href="https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/">Python中eval()与format()</a>
+                    <a href="https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/">Zen of Python -Python之禅</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
+                
+                <div>
+                    <a href="https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/">Python中eval()与format()</a>
+                    <img class="icon" src="https://tiiiktak.github.io/img/next.svg" alt="next" />
+                </div>
                 
             </div>
             

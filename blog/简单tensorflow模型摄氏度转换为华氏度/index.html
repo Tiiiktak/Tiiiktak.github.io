@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tiiiktak.github.io/blog/python-split%E5%87%BD%E6%95%B0/" />
-<meta property="og:title" content="Python split()函数" />
-<meta property="twitter:title" content="Python split()函数">
+<meta property="og:url" content="https://tiiiktak.github.io/blog/%E7%AE%80%E5%8D%95tensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/" />
+<meta property="og:title" content="简单TensorFlow模型：摄氏度转换为华氏度" />
+<meta property="twitter:title" content="简单TensorFlow模型：摄氏度转换为华氏度">
 
     <meta property="og:image" content="https://tiiiktak.github.io/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s - Python split()函数 
+     Tiiktak&#39;s - 简单TensorFlow模型：摄氏度转换为华氏度 
 
 </title>
-<link rel="canonical" href="https://tiiiktak.github.io/blog/python-split%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="https://tiiiktak.github.io/blog/%E7%AE%80%E5%8D%95tensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/">
 
 
 <style media="screen">
@@ -1151,14 +1151,14 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    Python split()函数
+    	简单TensorFlow模型：摄氏度转换为华氏度
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Mon Sep 16 2019 20:13:56 CST">Sep 16, 2019</div>
+                    <div class="date" title="Wed Sep 11 2019 20:33:51 CST">Sep 11, 2019</div>
                     
                         
                     
@@ -1185,24 +1185,31 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-9673215637005333", enable_page_level_ads: true }); </script>
+<p>今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下</p>
 
-<h2 id="原型">原型</h2>
+<h2 id="公式">公式</h2>
 
-<pre><code class="language-py">str.split(str=&quot;&quot;, num=string.count(str))
+<p>已知摄氏度转换成华氏度有数学公式：</p>
+
+<pre><code>f = c * 1.8 + 32
 </code></pre>
 
-<p>|<code>split()</code>函数通过指定分隔符对字符串进行切片</p>
+<p>而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能</p>
 
-<h2 id="参数">参数</h2>
+<h2 id="import">import</h2>
 
-<p>若参数<code>str</code>无指定值。默认为所有的空字符，包括空格、<code>\n</code>、<code>\t</code>等</p>
+<p>需要引入<code>TensorFlow</code>与<code>NumPy</code>库构建神经网络</p>
 
-<p>若参数<code>num</code>有指定值，则分割<code>num+1</code>个子字符串，若无指定值，默认<code>-1</code>，即分隔所有</p>
+<pre><code class="language-py">import tensorflow as tf
+import numpy as np
+</code></pre>
 
-<h2 id="返回值">返回值</h2>
+<p>还需要引入<code>logging</code>以记录日志</p>
 
-<p>返回分割后的字符串列表</p>
+<pre><code class="language-py">import logging
+logger = tf.get_logger() #返回tf的日志实例
+logger.setLevel(logging.ERROR)
+</code></pre>
 
 
 
