@@ -6,10 +6,24 @@
     <description>Recent content in Blog on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 10 Sep 2019 20:37:31 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 20:33:51 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>简单TensorFlow模型：摄氏度转换为华氏度</title>
+      <link>https://tiiiktak.github.io/blog/%E7%AE%80%E5%8D%95tensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</link>
+      <pubDate>Wed, 11 Sep 2019 20:33:51 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/%E7%AE%80%E5%8D%95tensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</guid>
+      <description> 今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
+公式 已知摄氏度转换成华氏度有数学公式：
+f = c * 1.8 + 32  而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
+import 需要引入TensorFlow与NumPy库构建神经网络
+import tensorflow as tf import numpy as np  还需要引入logging以记录日志
+import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR)  </description>
+    </item>
     
     <item>
       <title>Python中eval()与format()</title>
