@@ -6,10 +6,24 @@
     <description>Recent content in Blog on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 16 Sep 2019 20:13:56 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 18 Sep 2019 21:09:06 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>为什么要定义Mat_类</title>
+      <link>https://tiiiktak.github.io/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</link>
+      <pubDate>Wed, 18 Sep 2019 21:09:06 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</guid>
+      <description>内容摘自《OpenCV入门教程》
+ 在读取矩阵元素时，以及获取矩阵某行的地址时，需要指定数据类型。这样首先需要不停地写&amp;lt;uchar&amp;gt;，让人感觉很繁琐，在繁琐和烦躁中容易犯错。
+如下面代码中的错误，用at()获取矩阵元素时错误的使用了double类型。这种错误不是语法错误，因此在编译时编译器不会提醒。在程序运行时，at()函数获取到的不是期望的(i,j)位置处的元素，数据已经越界，但是运行时也未必会报错。这样的错误使得你的程序忽而看上去正常，忽而弹出“段错误”，特别是在代码规模很大时，难以查错。
+如果使用Mat_类，那么就可以在变量声明时确定元素的类型， 访问元素时不再需要指定元素类型，即使得代码简洁，又减少了出错的可能性。
+上面代码可以用Mat_实现，实现代码如下面例程里的第二个双重for循环。
+#include &amp;lt;iostream&amp;gt; #include &amp;quot;opencv2/opencv.hpp&amp;quot; #include &amp;lt;stdio.h&amp;gt; using namespace std; using namespace cv; int main(int argc,char* argv[]) { Mat M(600, 800, CV_8UC1); for(int i = 0; i &amp;lt; M.rows; ++i) { //获取指针时需要指定类型 uchar *p = M.ptr&amp;lt;uchar&amp;gt;(i); for(int j = 0; j &amp;lt; M.cols; ++j) { double d1 = (double)((i + j) % 255); //用at读像素时，需要指定类型 M.at&amp;lt;uchar&amp;gt;(i, j) = d1; double d2 = M.at&amp;lt;uchar&amp;gt;(i, j); } } //在变量声明时，指定矩阵元素类型 Mat_&amp;lt;uchar&amp;gt; M1 = (Mat_&amp;lt;uchar&amp;gt;&amp;amp;)M; for(int i = 0; i &amp;lt; M1.</description>
+    </item>
     
     <item>
       <title>Python split()函数</title>
