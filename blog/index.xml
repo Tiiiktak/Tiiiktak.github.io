@@ -6,10 +6,20 @@
     <description>Recent content in Blog on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 18 Sep 2019 21:09:06 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Sep 2019 20:59:58 +0800</lastBuildDate>
     
 	<atom:link href="https://tiiiktak.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python文本进度条</title>
+      <link>https://tiiiktak.github.io/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</link>
+      <pubDate>Thu, 19 Sep 2019 20:59:58 +0800</pubDate>
+      
+      <guid>https://tiiiktak.github.io/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</guid>
+      <description> 一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
+代码 import time scale = 50 # 进度条长度 print(&amp;quot;&amp;gt;&amp;gt;执行开始\n&amp;quot;) start = time.perf_counter() # 开始时刻 for i in range(scale+1): a = &#39;|&#39; * i b = &#39;.&#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&amp;quot;\r{:^3.0f}% [{}&amp;gt;&amp;gt;{}] {:.2f}s&amp;quot;.format(c, a, b, dur), end=&#39;&#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&amp;quot;\n\n&amp;gt;&amp;gt;执行结束&amp;quot;)  效果 </description>
+    </item>
     
     <item>
       <title>为什么要定义Mat_类</title>
