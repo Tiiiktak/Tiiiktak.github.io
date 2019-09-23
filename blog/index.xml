@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Tiiktak&#39;s</title>
-    <link>https://tiiiktak.github.io/blog/</link>
+    <link>http://konosuba.xyz/blog/</link>
     <description>Recent content in Blog on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 19 Sep 2019 20:59:58 +0800</lastBuildDate>
     
-	<atom:link href="https://tiiiktak.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Python文本进度条</title>
-      <link>https://tiiiktak.github.io/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</link>
+      <link>http://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</link>
       <pubDate>Thu, 19 Sep 2019 20:59:58 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</guid>
+      <guid>http://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</guid>
       <description> 一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
 代码 import time scale = 50 # 进度条长度 print(&amp;quot;&amp;gt;&amp;gt;执行开始\n&amp;quot;) start = time.perf_counter() # 开始时刻 for i in range(scale+1): a = &#39;|&#39; * i b = &#39;.&#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&amp;quot;\r{:^3.0f}% [{}&amp;gt;&amp;gt;{}] {:.2f}s&amp;quot;.format(c, a, b, dur), end=&#39;&#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&amp;quot;\n\n&amp;gt;&amp;gt;执行结束&amp;quot;)  效果 </description>
     </item>
     
     <item>
       <title>为什么要定义Mat_类</title>
-      <link>https://tiiiktak.github.io/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</link>
+      <link>http://konosuba.xyz/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</link>
       <pubDate>Wed, 18 Sep 2019 21:09:06 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</guid>
+      <guid>http://konosuba.xyz/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</guid>
       <description>内容摘自《OpenCV入门教程》
  在读取矩阵元素时，以及获取矩阵某行的地址时，需要指定数据类型。这样首先需要不停地写&amp;lt;uchar&amp;gt;，让人感觉很繁琐，在繁琐和烦躁中容易犯错。
 如下面代码中的错误，用at()获取矩阵元素时错误的使用了double类型。这种错误不是语法错误，因此在编译时编译器不会提醒。在程序运行时，at()函数获取到的不是期望的(i,j)位置处的元素，数据已经越界，但是运行时也未必会报错。这样的错误使得你的程序忽而看上去正常，忽而弹出“段错误”，特别是在代码规模很大时，难以查错。
@@ -37,10 +37,10 @@
     
     <item>
       <title>Python split()函数</title>
-      <link>https://tiiiktak.github.io/blog/python-split%E5%87%BD%E6%95%B0/</link>
+      <link>http://konosuba.xyz/blog/python-split%E5%87%BD%E6%95%B0/</link>
       <pubDate>Mon, 16 Sep 2019 20:13:56 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python-split%E5%87%BD%E6%95%B0/</guid>
+      <guid>http://konosuba.xyz/blog/python-split%E5%87%BD%E6%95%B0/</guid>
       <description>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  原型 str.split(str=&amp;quot;&amp;quot;, num=string.count(str))  |split()函数通过指定分隔符对字符串进行切片
 参数 若参数str无指定值。默认为所有的空字符，包括空格、\n、\t等
 若参数num有指定值，则分割num+1个子字符串，若无指定值，默认-1，即分隔所有
@@ -49,10 +49,10 @@
     
     <item>
       <title>Python中eval()与format()</title>
-      <link>https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</link>
+      <link>http://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</link>
       <pubDate>Tue, 10 Sep 2019 20:37:31 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</guid>
+      <guid>http://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</guid>
       <description>今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔
 先看看题
 题目 数值运算
@@ -75,20 +75,20 @@ format() 这是一种格式化字符串的函数，基本语法是使用{}和: �
     
     <item>
       <title>Zen of Python -Python之禅</title>
-      <link>https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/</link>
+      <link>http://konosuba.xyz/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/</link>
       <pubDate>Sat, 07 Sep 2019 21:07:51 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/</guid>
+      <guid>http://konosuba.xyz/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/</guid>
       <description>在浏览Python官方文档时无意发现了这个彩蛋，只需在终端中import this
 The Zen of Python, by Tim Peters Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense. Readability counts. Special cases aren&#39;t special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In the face of ambiguity, refuse the temptation to guess.</description>
     </item>
     
     <item>
       <title>Python文件操作</title>
-      <link>https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
+      <link>http://konosuba.xyz/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Sat, 07 Sep 2019 20:31:38 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
+      <guid>http://konosuba.xyz/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
       <description>Python内置了读写文件的函数，用法与C兼容
 读文件 open() 使用内置的open()函数，传入文件名和标识符：
 &amp;gt;&amp;gt;&amp;gt; f = open(&#39;test.txt&#39;, &#39;r&#39;)  若文件不存在，open()函数会抛出一个IOError的错误，并给出错误码和详细信息
@@ -105,10 +105,10 @@ file-like Object (file object文件对象) 在Python中，像open()函数返回�
     
     <item>
       <title>Python调试</title>
-      <link>https://tiiiktak.github.io/blog/python%E8%B0%83%E8%AF%95/</link>
+      <link>http://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/</link>
       <pubDate>Sat, 07 Sep 2019 19:08:46 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E8%B0%83%E8%AF%95/</guid>
+      <guid>http://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/</guid>
       <description>Python中可以使用断言assert,logging等来进行调试
 断言 def fun(s): n = int(s) assert n != 0, &#39;n is zero!&#39; return 10 / n def main(): fun(&#39;0&#39;)  若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
 Traceback (most recent call last): File &amp;quot;hello.py&amp;quot;, line 12, in &amp;lt;module&amp;gt; main() File &amp;quot;hello.py&amp;quot;, line 9, in main fun(&#39;0&#39;) File &amp;quot;hello.py&amp;quot;, line 4, in fun assert n != 0, &#39;n is zero!&#39; AssertionError: n is zero!  在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
@@ -117,10 +117,10 @@ Traceback (most recent call last): File &amp;quot;hello.py&amp;quot;, line 12, i
     
     <item>
       <title>Python错误处理</title>
-      <link>https://tiiiktak.github.io/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</link>
+      <link>http://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</link>
       <pubDate>Fri, 06 Sep 2019 19:14:26 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</guid>
+      <guid>http://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</guid>
       <description>在Python中也同样使用try...except...finally...的错误处理机制
 try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;)  当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
 上面的代码中有一个除0的错误，运行结果:
@@ -134,10 +134,10 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
     
     <item>
       <title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</title>
-      <link>https://tiiiktak.github.io/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
+      <link>http://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
       <pubDate>Tue, 09 Jul 2019 15:32:53 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
+      <guid>http://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
       <description>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
 因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C++11中的thread库通过多线程实现程序
 树莓派-服务端 #include &amp;lt;iostream&amp;gt; #include &amp;lt;unistd.h&amp;gt; #include &amp;lt;cstring&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;sys/types.h&amp;gt; #include &amp;lt;sys/socket.h&amp;gt; #include &amp;lt;netinet/in.h&amp;gt; #include &amp;lt;arpa/inet.h&amp;gt; #include &amp;lt;thread&amp;gt; #include &amp;lt;opencv2/opencv.hpp&amp;gt; using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i++) { for (int j = 0; j &amp;lt; img_gray.</description>
@@ -145,10 +145,10 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
     
     <item>
       <title>Socket通信原理(3)</title>
-      <link>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</link>
+      <link>http://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</link>
       <pubDate>Mon, 08 Jul 2019 15:38:20 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</guid>
+      <guid>http://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</guid>
       <description>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
 这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
 服务端-树莓派 socket_server_sms.cpp #include &amp;lt;iostream&amp;gt; #include &amp;lt;unistd.h&amp;gt; #include &amp;lt;cstring&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;lt;sys/types.h&amp;gt; #include &amp;lt;sys/socket.h&amp;gt; #include &amp;lt;netinet/in.h&amp;gt; #include &amp;lt;arpa/inet.h&amp;gt; using namespace std; #define USEPORT 1234 int main() { //****创建套接字 int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET //Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF if (serverSock &amp;lt; 0) { cout &amp;lt;&amp;lt; &amp;quot;socket creation failed&amp;quot; &amp;lt;&amp;lt; endl; exit(-1); } cout &amp;lt;&amp;lt; &amp;quot;socket creation successfully&amp;quot; &amp;lt;&amp;lt; endl; //****绑定ip和端口 struct sockaddr_in serverAddr; memset(&amp;amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr.</description>
@@ -156,10 +156,10 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
     
     <item>
       <title>Socket通信原理(2)</title>
-      <link>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</link>
+      <link>http://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</link>
       <pubDate>Mon, 08 Jul 2019 13:21:57 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</guid>
+      <guid>http://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</guid>
       <description>本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
  系统：Windows 10
 软件：Visual studio 2019
@@ -175,10 +175,10 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
     
     <item>
       <title>Socket通信原理(1)</title>
-      <link>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</link>
+      <link>http://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</link>
       <pubDate>Sun, 07 Jul 2019 11:24:59 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</guid>
+      <guid>http://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</guid>
       <description>最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
 TCP/IP、UDP 在开始之前，先听两个笑话😏
 TCP
@@ -192,10 +192,10 @@ OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其�
     
     <item>
       <title>树莓派配置摄像头</title>
-      <link>https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</link>
+      <link>http://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</link>
       <pubDate>Mon, 01 Jul 2019 15:27:39 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</guid>
+      <guid>http://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</guid>
       <description>注意：树莓派插电时千万不要插拔摄像头！据说十有八九摄像头会GG，我差点就中招了
 安装驱动 首先使用ls指令查看是否加载到了对应的video device设备：
 ls -al /etc  没有看到设备开始安装驱动
@@ -212,10 +212,10 @@ mmal: No data received from sensor.</description>
     
     <item>
       <title>树莓派安装opencv-4.1.0</title>
-      <link>https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/</link>
+      <link>http://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/</link>
       <pubDate>Mon, 01 Jul 2019 15:25:47 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/</guid>
+      <guid>http://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/</guid>
       <description>主要参考opencv官网文档和博客树莓派+Opencv（一）图像处理
 下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev  从opencv官网下载v4.1.0的源码 官网
 使用CMake编译源码 先解压并进入文件夹 unzip opencv-4.1.0.zip cd opencv-4.1.0  创建一个build文件夹用于编译 mkdir build cd build  运行cmake-gui cmake-gui  选择源码路径和编译路径后电子config开始编译
@@ -230,10 +230,10 @@ sudo make install  完成后opencv就已经配好了
     
     <item>
       <title>灰度重心法</title>
-      <link>https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</link>
+      <link>http://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</guid>
+      <guid>http://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</guid>
       <description>概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫*密度质心算法*。
 将灰度值分布中的质心记作光条纹的中心
 对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
@@ -245,10 +245,10 @@ sudo make install  完成后opencv就已经配好了
     
     <item>
       <title>Shell学习</title>
-      <link>https://tiiiktak.github.io/blog/shell%E5%AD%A6%E4%B9%A0/</link>
+      <link>http://konosuba.xyz/blog/shell%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 26 Jun 2019 15:38:32 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/shell%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>http://konosuba.xyz/blog/shell%E5%AD%A6%E4%B9%A0/</guid>
       <description>Shell脚本 是一种为shell编写的脚本程序
 使用文本编辑器既能编写，拓展名不影响脚本执行
 实例：
@@ -263,10 +263,10 @@ unset url  Shell字符串 可用单引号，或双引号，也可不用引号
     
     <item>
       <title>Vim学习</title>
-      <link>https://tiiiktak.github.io/blog/vim%E5%AD%A6%E4%B9%A0/</link>
+      <link>http://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 26 Jun 2019 10:33:16 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/vim%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>http://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/</guid>
       <description>vim分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode），底线命令（Last line mode）
 命令模式 此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。
 常用命令：
@@ -279,10 +279,10 @@ vim按键 移动光标 要进行多次移动，例如向下移动30行，可使�
     
     <item>
       <title>Linux文件</title>
-      <link>https://tiiiktak.github.io/blog/linux%E6%96%87%E4%BB%B6/</link>
+      <link>http://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/</link>
       <pubDate>Tue, 25 Jun 2019 13:23:08 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/linux%E6%96%87%E4%BB%B6/</guid>
+      <guid>http://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/</guid>
       <description>[toc]
 Linux文件基本属性 在Linux中可以使用ll或者ls –l命令来显示一个文件的属性以及文件所属的用户和组，如：
 [root@www /]# ls -l total 64 dr-xr-xr-x 2 root root 4096 Dec 14 2012 bin dr-xr-xr-x 4 root root 4096 Apr 19 2012 boot ……  bin文件的第一个属性用d表示，d在Linux中代表该文件是一个目录文件 Linux中第一个字符代表这个文件时目录、文件、链接文件等 &amp;gt;* 当为[d]则是目录 &amp;gt;* 当为[-]则是文件 &amp;gt;* 若是[l]则表示为链接文档(link file) &amp;gt;* 若是[b]则表示为装置文件里面的可供储存的接口设备(可随机存取装置) &amp;gt;* 若是[c]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)
@@ -296,10 +296,10 @@ Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组
     
     <item>
       <title>Linux操作学习 系统启动及目录</title>
-      <link>https://tiiiktak.github.io/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</link>
+      <link>http://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Mon, 24 Jun 2019 11:51:27 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</guid>
+      <guid>http://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</guid>
       <description>Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
 运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
 运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
@@ -319,10 +319,10 @@ init接下来会打开6个终端，以便用户登录系统，即inittab中以�
     
     <item>
       <title>Python面向对象</title>
-      <link>https://tiiiktak.github.io/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+      <link>http://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Fri, 21 Jun 2019 15:23:06 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>http://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
       <description>类和实例 定义类 使用class关键字
 class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &amp;quot;&amp;quot;&amp;quot;docstring for Student&amp;quot;&amp;quot;&amp;quot; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score))  实例化 类名+（）
 &amp;gt;&amp;gt;&amp;gt; bob = Student(&#39;Bob&#39;, 98) &amp;gt;&amp;gt;&amp;gt; bob.print_score() Bob: 98  创建实例后，可以自由地给一个实例变量绑定属性，如
@@ -332,10 +332,10 @@ class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子�
     
     <item>
       <title>Python函数式编程</title>
-      <link>https://tiiiktak.github.io/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
+      <link>http://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Fri, 21 Jun 2019 10:50:55 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
+      <guid>http://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
       <description>[toc]
 什么是函数式编程？ 函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。
 而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
@@ -352,10 +352,10 @@ def add(x, y, f) return f(x) + f(y)  当调用add(-5, -6, abs)时，函数计算
     
     <item>
       <title>算法复杂度</title>
-      <link>https://tiiiktak.github.io/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</link>
+      <link>http://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</link>
       <pubDate>Fri, 21 Jun 2019 10:40:29 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</guid>
+      <guid>http://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</guid>
       <description> 算法复杂度  总共N个数据 一次操作记为O(1) N次操作记为O(n) 在大部分oj判题系统中时间限制为10^6 =1s  冒泡排序  操作次数: n+(n-1)+(n-2)+&amp;hellip;+n(n-1)/2  快速排序  递归处理数组，每次将数组按照key值在其左右区分出来：比key小放左边，比key大放右边
  例: 5 6 2 4 3 8 取首位（5）为key值
  4 3 2 5 6 8
@@ -365,10 +365,10 @@ def add(x, y, f) return f(x) + f(y)  当调用add(-5, -6, abs)时，函数计算
     
     <item>
       <title>Python中set集合</title>
-      <link>https://tiiiktak.github.io/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/</link>
+      <link>http://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/</link>
       <pubDate>Thu, 20 Jun 2019 16:18:07 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/</guid>
+      <guid>http://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/</guid>
       <description> set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
 创建set 传入一个list，重复元素会被自动过滤，显示的顺序并不表示set是有序的
 &amp;gt;&amp;gt;&amp;gt; s = set([1, 1, 2, 2, 3, 3]) &amp;gt;&amp;gt;&amp;gt; s {1, 2, 3}  添加元素 &amp;gt;&amp;gt;&amp;gt; s.add(4) &amp;gt;&amp;gt;&amp;gt; s {1, 2, 3, 4}  删除元素 &amp;gt;&amp;gt;&amp;gt; s.remove(3) &amp;gt;&amp;gt;&amp;gt; s {1, 2, 4}  交并集 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作
@@ -377,10 +377,10 @@ def add(x, y, f) return f(x) + f(y)  当调用add(-5, -6, abs)时，函数计算
     
     <item>
       <title>Python中dict字典</title>
-      <link>https://tiiiktak.github.io/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/</link>
+      <link>http://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/</link>
       <pubDate>Thu, 20 Jun 2019 15:15:34 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/</guid>
+      <guid>http://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/</guid>
       <description>dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度
 创建dict &amp;gt;&amp;gt;&amp;gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85} &amp;gt;&amp;gt;&amp;gt; d[&#39;Michael&#39;] 95  内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
 加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
@@ -391,10 +391,10 @@ def add(x, y, f) return f(x) + f(y)  当调用add(-5, -6, abs)时，函数计算
     
     <item>
       <title>Python常见数据类型——Tuple元组</title>
-      <link>https://tiiiktak.github.io/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/</link>
+      <link>http://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/</link>
       <pubDate>Thu, 20 Jun 2019 13:46:10 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/</guid>
+      <guid>http://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/</guid>
       <description>tuple和list非常类似，但是tuple一旦初始化就不能修改
 [toc]
 创建tuple &amp;gt;&amp;gt;&amp;gt; classmates = (&#39;A&#39;, &#39;B&#39;, &#39;C&#39;)  此时，classmates这个tuple不能改变，它也没有append()，insert()这样的方法。
@@ -408,10 +408,10 @@ def add(x, y, f) return f(x) + f(y)  当调用add(-5, -6, abs)时，函数计算
     
     <item>
       <title>Python常见数据类型——List列表</title>
-      <link>https://tiiiktak.github.io/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/</link>
+      <link>http://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/</link>
       <pubDate>Thu, 20 Jun 2019 13:44:48 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/</guid>
+      <guid>http://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/</guid>
       <description>Python常见数据类型——List列表 list是一种有序的集合，可随时增删元素
 [toc]
 创建list &amp;gt;&amp;gt;&amp;gt; classmates = [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &amp;gt;&amp;gt;&amp;gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &amp;gt;&amp;gt;&amp;gt; len(classmates) 3  访问某个位置元素 使用索引地址访问
@@ -422,10 +422,10 @@ def add(x, y, f) return f(x) + f(y)  当调用add(-5, -6, abs)时，函数计算
     
     <item>
       <title>图像基础-图像矩阵</title>
-      <link>https://tiiiktak.github.io/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</link>
+      <link>http://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</link>
       <pubDate>Thu, 06 Jun 2019 00:35:00 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</guid>
+      <guid>http://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</guid>
       <description>数字图像数据可以用矩阵来表示，因此可以采用矩阵理论和矩阵算法对数字图像进行分析和处理。
 在使用OpenCV时，要特别注意其坐标轴与普通x-y轴的转换，我在实际使用过程中就经常在这上面翻车，还是不熟练
 图为坐标对照图，转自CSDN，具体忘了</description>
@@ -433,10 +433,10 @@ def add(x, y, f) return f(x) + f(y)  当调用add(-5, -6, abs)时，函数计算
     
     <item>
       <title>图像基础-图像分类</title>
-      <link>https://tiiiktak.github.io/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</link>
+      <link>http://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</link>
       <pubDate>Thu, 06 Jun 2019 00:00:49 +0800</pubDate>
       
-      <guid>https://tiiiktak.github.io/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</guid>
+      <guid>http://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</guid>
       <description>  部分内容引用 CSDN爬金字塔的人
  计算机中， 通常以矩阵形式存储图像，根据颜色和灰度多少可以分为灰度图像、二值图像、索引图像和RGB图像
 灰度图像  矩阵元素取值范围为[0, 255] （0-黑，255-白），数据类型一般为8位无符号整数【unit8】
