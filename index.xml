@@ -66,6 +66,21 @@ Archives 基于OpenCV的答题卡识别
     </item>
     
     <item>
+      <title>第一个TensorFlow模型：摄氏度转换为华氏度</title>
+      <link>http://konosuba.xyz/blog/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</link>
+      <pubDate>Wed, 11 Sep 2019 20:33:51 +0800</pubDate>
+      
+      <guid>http://konosuba.xyz/blog/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</guid>
+      <description>今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
+公式 已知摄氏度转换成华氏度有数学公式：
+f = c * 1.8 + 32  而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
+import dependencies 导入依赖项 需要引入TensorFlow与NumPy库构建神经网络
+from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np  还需要引入logging以记录日志
+import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR)  Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
+celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&amp;quot;{} degrees Celsius = {} degrees Fahrenheit&amp;quot;.</description>
+    </item>
+    
+    <item>
       <title>Python中eval()与format()</title>
       <link>http://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</link>
       <pubDate>Tue, 10 Sep 2019 20:37:31 +0800</pubDate>
