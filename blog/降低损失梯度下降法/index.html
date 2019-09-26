@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://konosuba.xyz/blog/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/" />
-<meta property="og:title" content="第一个TensorFlow模型：摄氏度转换为华氏度" />
-<meta property="twitter:title" content="第一个TensorFlow模型：摄氏度转换为华氏度">
+<meta property="og:url" content="http://konosuba.xyz/blog/%E9%99%8D%E4%BD%8E%E6%8D%9F%E5%A4%B1%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/" />
+<meta property="og:title" content="降低损失：梯度下降法" />
+<meta property="twitter:title" content="降低损失：梯度下降法">
 
     <meta property="og:image" content="http://konosuba.xyz/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s - 第一个TensorFlow模型：摄氏度转换为华氏度 
+     Tiiktak&#39;s - 降低损失：梯度下降法 
 
 </title>
-<link rel="canonical" href="http://konosuba.xyz/blog/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/">
+<link rel="canonical" href="http://konosuba.xyz/blog/%E9%99%8D%E4%BD%8E%E6%8D%9F%E5%A4%B1%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/">
 
 
 <style media="screen">
@@ -1151,19 +1151,19 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    第一个TensorFlow模型：摄氏度转换为华氏度
+    降低损失：梯度下降法
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Wed Sep 11 2019 20:33:51 CST">Sep 11, 2019</div>
+                    <div class="date" title="Thu Sep 26 2019 10:21:04 CST">Sep 26, 2019</div>
                     
                         
                     
                     
-                    <div class="reading-time middot">3 minute read</div>
+                    <div class="reading-time middot">1 minute read</div>
                     
                     
                       <div class="tags">
@@ -1183,258 +1183,25 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
             <div class="markdown">
                 
     
-    
+    <p>假设我们有时间和计算资源来计算权重值<code>w1</code>的所有可能值的损失。对于回归问题，所产生的损失与<code>w1</code>的图形始终是碗状图，如下所示：</p>
 
-<p>今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下</p>
+<p><img src="https://i.loli.net/2019/09/26/AKpwGfO8FkVXIiU.png" alt="损失与权重关系图" /></p>
 
-<h2 id="公式">公式</h2>
+<p>图中的最低点，即斜率正好为 0 的位置。这个最小值就是损失函数收敛之处。</p>
 
-<p>已知摄氏度转换成华氏度有数学公式：</p>
+<p>梯度下降法的第一个阶段是为<code>w1</code>选择一个起始值（起点）。然而起点并不重要；因此很多算法就直接将<code>w1</code>设为 0 或随机选择一个值。</p>
 
-<pre><code>f = c * 1.8 + 32
-</code></pre>
+<p>然后，梯度下降法算法会计算损失曲线在起点处的梯度。简而言之，梯度是<strong>偏导数的矢量</strong>；它可以让我们了解哪个方向距离目标“更近”或“更远”</p>
 
-<p>而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能</p>
+<p>梯度始终指向损失函数中<strong>增长最为迅猛的方向</strong>。梯度下降法算法会沿着<strong>负梯度</strong>的方向走一步，以便尽快降低损失。</p>
 
-<h2 id="import-dependencies-导入依赖项">import dependencies 导入依赖项</h2>
+<p><img src="https://i.loli.net/2019/09/26/8UBjThOH7CG4p5i.png" alt="梯度下降法依赖于负梯度" /></p>
 
-<p>需要引入<code>TensorFlow</code>与<code>NumPy</code>库构建神经网络</p>
+<p>为了确定损失函数曲线上的下一个点，梯度下降法算法会将梯度大小的一部分与起点相加：</p>
 
-<pre><code class="language-py">from __future__ import absolute_import, division, print_function, unicode_literals
+<p><img src="https://i.loli.net/2019/09/26/lTumXw3iFEsfJvR.png" alt="一个梯度步长将我们移动到损失曲线上的下一个点" /></p>
 
-import tensorflow as tf
-import numpy as np
-</code></pre>
-
-<p>还需要引入<code>logging</code>以记录日志</p>
-
-<pre><code class="language-py">import logging
-logger = tf.get_logger() #返回tf的日志实例
-logger.setLevel(logging.ERROR)
-</code></pre>
-
-<h2 id="set-up-training-data-建立训练数据">Set up training data 建立训练数据</h2>
-
-<p>由于在这里我们使用的是监督式机器学习，所以准备两组链表<code>celsius_q</code>和<code>fahrenheit_a</code>分别代表摄氏温度与对应华氏温度，用来训练模型</p>
-
-<pre><code class="language-py">celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float)
-fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float)
-
-for i,c in enumerate(celsius_q):
-  print(&quot;{} degrees Celsius = {} degrees Fahrenheit&quot;.format(c, fahrenheit_a[i]))
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">-40.0 degrees Celsius = -40.0 degrees Fahrenheit
--10.0 degrees Celsius = 14.0 degrees Fahrenheit
-0.0 degrees Celsius = 32.0 degrees Fahrenheit
-8.0 degrees Celsius = 46.0 degrees Fahrenheit
-15.0 degrees Celsius = 59.0 degrees Fahrenheit
-22.0 degrees Celsius = 72.0 degrees Fahrenheit
-38.0 degrees Celsius = 100.0 degrees Fahrenheit
-</code></pre>
-
-<h3 id="一些机器学习术语">一些机器学习术语：</h3>
-
-<ul>
-<li>Feature（特征）：模型的输入。在这里即摄氏度</li>
-<li>Labels（标签）：模型的输出。在这里即华氏度</li>
-<li>Example（样本）：训练期间数据集的一行内容，可以是标注样本(labeled example)和无标注样本(unlabeled example)。在这里即一对摄氏度与华氏度数据，为标注样本</li>
-</ul>
-
-<h2 id="create-the-model-创建模型">Create the model 创建模型</h2>
-
-<p>由于问题比较简单，因此我们要建立的密集网络将只需要一个单层神经元</p>
-
-<h3 id="build-a-layer-建立一个层">Build a layer 建立一个层</h3>
-
-<p>我们会把这一层叫做<code>l0</code>，并且使用<code>tf.keras.layers.Dense</code>(全连接层)来建立</p>
-
-<h4 id="tf-keras-layers-dense"><code>tf.keras.layers.Dense</code></h4>
-
-<ul>
-<li><p><code>units=1</code> 指定本层神经元数量。神经元的数量定义了本层需要有多少内部变量来学习解决这个问题。由于这是本模型的最后一层，因此它也代表模型输出的大小。（在多层神经网络中，该层的大小与形状需要与下一层的<code>input_shape</code>相匹配</p></li>
-
-<li><p><code>input_shape=[1]</code> 指定本层输入值为单值。表明这是一个包含单个成员的一维数组。由于这是本模型的第一层（也是唯一一层），因此该输入形状也是整个模型的输入形状。单值是浮点数，即摄氏度</p></li>
-</ul>
-
-<pre><code class="language-py">l0 = tf.keras.layers.Dense(units=1, input_shape=[1])
-</code></pre>
-
-<h3 id="assemble-layers-into-the-model-将layer组装到模型中">Assemble layers into the model 将Layer组装到模型中</h3>
-
-<p>定义了层之后，就要将它们组装成模型。Sequential model 顺序模型的定义需要以层列表作为参数，指定从输入到输出的计算顺序</p>
-
-<pre><code class="language-py">model = tf.keras.Sequential([l0])
-</code></pre>
-
-<blockquote>
-<p>注意：
-以上两步经常合并为一步操作，如</p>
-</blockquote>
-
-<pre><code class="language-py">model = tf.keras.Sequential([ tf.keras.layers.Dense(units=1, input_shape=[1]) ])
-</code></pre>
-
-<h2 id="compile-the-model-with-loss-and-optimizer-functions-使用损失和优化器功能编译模型">Compile the model, with loss and optimizer functions 使用损失和优化器功能编译模型</h2>
-
-<p>搭好模型架构之后，在训练模型之前，还要执行编译操作。在编译时，经常需要指定三个参数：</p>
-
-<ul>
-<li><p><code>Loss function</code> 一种衡量结果与预期相差多少的方法（测得的差异称为<code>loss</code>(损失)）</p></li>
-
-<li><p><code>Optimizer function</code> 一种调整内部值以减少损耗的方法</p></li>
-
-<li><p><code>Metrics function</code> （较复杂，此处不用，日后再看）</p></li>
-</ul>
-
-<pre><code class="language-py3">model.compile(loss='', optimizer=tf.keras.optimizers.Adam(0.1))
-</code></pre>
-
-<p>在训练过程中使用<code>model.fit()</code>来首先计算每个点的损耗，之后对其改善。优化器功能用于计算对模型内部变量的调整，目的是调整内部变量直到模型（实际是一个数学函数）接近将摄氏度转换为华氏度的公式为止</p>
-
-<p>这里使用的优化函数<code>mean_squared_error</code>（均方误差）和优化器<code>Adam</code>是这种简单模型的标准配置，实际还有其他可用配置。</p>
-
-<p>在建立自己的模型时，我们需要考虑的<code>Optimizer</code>优化器的部分是学习率（即上式中的0.1），这是在模型中调整值时采取的步长，它决定着目标函数能否收敛到局部最小值以及何时收敛到最小值。合适的学习率能够使目标函数在合适的时间内收敛到局部最小值。范围通常在0.001（默认）和0.1之间</p>
-
-<h2 id="train-the-model-训练模型">Train the model 训练模型</h2>
-
-<p>在训练过程中，模型输入摄氏温度，使用当前的内部变量（权重）执行计算，并输出相应华氏温度的值。 由于权重最初是随机设置的，因此输出并不会接近正确的值。实际输出与期望输出之间的差值通过损失函数计算，而优化器函数将指导如何调整权重。</p>
-
-<p>计算，比较，调整的整个流程由<code>fit</code>方法进行控制。 它的第一个参数是输入，第二个参数是期望的输出结果。<code>epochs</code>参数指定模型应运行此循环多少次，而<code>verbose</code>参数控制该方法的日志显示。</p>
-
-<pre><code class="language-py">history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False) #fit方法返回History对象
-print(&quot;Finished training the model&quot;)
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">Finished training the model
-</code></pre>
-
-<blockquote>
-<p><strong>verbose参数</strong></p>
-
-<ul>
-<li>默认为1</li>
-<li>verbose = 0 为不在标准输出流输出日志信息</li>
-<li>verbose = 1 为输出进度条记录</li>
-<li>verbose = 2 为每个epoch输出一行记录</li>
-</ul>
-
-<p><strong>History对象</strong></p>
-
-<p>可以由fit()方法返回。History.history属性是一个记录了连续迭代的训练/验证（如果存在）损失值和评估值的字典。可以利用该对象实现<a href="https://keras.io/zh/visualization/#_2">训练历史可视化</a></p>
-</blockquote>
-
-<h2 id="display-training-statistics-展示训练统计数据">Display training statistics 展示训练统计数据</h2>
-
-<p>由于<code>fit</code>会返回一个<code>History</code>对象，因此我们可以使用该对象来绘制每个训练时期后模型损失的下降趋势。若为高损耗则意味着模型预测的华氏度与<code>fahrenheit_a</code>中的期望值相去甚远。</p>
-
-<p>使用<code>Matplotlib</code>进行绘制</p>
-
-<pre><code class="language-py">import matplotlib.pyplot as plt
-plt.xlabel('Epoch Number') #x坐标轴
-plt.ylabel(&quot;Loss Magnitude&quot;) #y坐标轴
-plt.plot(history.history['loss']) #标点
-plt.show()
-</code></pre>
-
-<p>结果：</p>
-
-<p><img src="https://i.loli.net/2019/09/25/eAJP7K4LB2uzRUl.png" alt="摄氏度转华氏度模型损失统计" /></p>
-
-<p>可见，我们的模型起初改进非常快，然后有了稳定而缓慢的改进，直到最终接近“完美”为止。</p>
-
-<h2 id="use-the-model-to-predict-values-使用模型预测数值">Use the model to predict values 使用模型预测数值</h2>
-
-<p>至此，我们已经拥有了一个可以利用摄氏度获得华氏度的模型。我们可以利用它计算先前未知的摄氏温度</p>
-
-<pre><code class="language-py">print(model.predict([100.0])) #向模型输入100.0
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">[[211.74744]]
-</code></pre>
-
-<p>而我们通过公式可以得到：</p>
-
-<pre><code>100*1.8 + 32 = 212
-</code></pre>
-
-<p>由此可见，我们的模型得到的结果已经非常接近真实答案</p>
-
-<h2 id="to-review-回顾">To review 回顾</h2>
-
-<ol>
-<li>我们创建了一个含有单层神经元的模型</li>
-<li>将模型训练了3500次（7对数据，500轮）</li>
-</ol>
-
-<p>我们的模型调整了Dense层中的变量（权重），直到它能够为任何摄氏值返回正确的华氏温度值</p>
-
-<pre><code class="language-py">l0 = tf.keras.layers.Dense(units=1, input_shape=[1]) 
-model = tf.keras.Sequential([l0])
-model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
-history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
-model.predict([100.0])
-</code></pre>
-
-<h2 id="looking-at-the-layer-weights-查看layer权重">Looking at the layer weights 查看Layer权重</h2>
-
-<p>最后我们打印Dense层的内部变量</p>
-
-<pre><code class="language-py">print(&quot;These are the layer variables: {}&quot;.format(l0.get_weights())) #以包含Numpy矩阵的列表形式返回层的权重
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">These are the layer variables: [array([[1.7979496]], dtype=float32), array([31.952478], dtype=float32)]
-</code></pre>
-
-<p>这里的第一个变量<code>1.7979496</code>接近于<code>1.8</code>，第二个变量<code>31.952478</code>接近于<code>32</code>，而这两个值也是实际的转换公式中的两个变量</p>
-
-<p>对于只有单个输入和单个输出的单神经元，它内部看起来与直线方程相同，即y=mx+b，因此我们的模型能够如此逼近转换公式</p>
-
-<p>而有了额外的神经元，额外的输入和额外的输出，公式会变得更加复杂，但是思路是一样的。</p>
-
-<h3 id="a-little-experiment-小实验">A little experiment 小实验</h3>
-
-<p>如果我们创建多个含不同数量神经元的层，会是怎样的结果呢？</p>
-
-<pre><code class="language-py">l0 = tf.keras.layers.Dense(units=4, input_shape=[1])
-l1 = tf.keras.layers.Dense(units=4)
-l2 = tf.keras.layers.Dense(units=1)
-model = tf.keras.Sequential([l0, l1, l2])
-model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
-model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
-print(&quot;Finished training the model&quot;)
-print(&quot;Model predicts that 100 degrees Celsius is: {} degrees Fahrenheit&quot;.format(model.predict([100.0])))
-print(&quot;These are the l0 variables: {}&quot;.format(l0.get_weights()))
-print(&quot;These are the l1 variables: {}&quot;.format(l1.get_weights()))
-print(&quot;These are the l2 variables: {}&quot;.format(l2.get_weights()))
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">Finished training the model
-Model predicts that 100 degrees Celsius is: [[211.74742]] degrees Fahrenheit #得到预测结果仍然与实际相近
-These are the l0 variables: [array([[-0.52520204, -0.25983605,  0.27832836,  0.11471745]],
-      dtype=float32), array([-3.468158 , -3.3907545,  3.5017395,  2.1893277], dtype=float32)]
-These are the l1 variables: [array([[-0.37798777,  0.6455525 ,  0.7230809 ,  0.3954812 ],
-       [-0.85110897,  0.6376249 ,  0.31107017, -0.70929325],
-       [-0.534542  , -0.980425  , -0.92369473,  0.72322994],
-       [ 0.38675487,  0.41835558, -0.24832523, -0.08700816]],
-      dtype=float32), array([ 3.2148993, -3.1253922, -3.340591 ,  3.433869 ], dtype=float32)]
-These are the l2 variables: [array([[ 0.74975073],
-       [-0.56715256],
-       [-1.4492323 ],
-       [ 0.39553005]], dtype=float32), array([3.2948794], dtype=float32)]
-</code></pre>
-
-<p>可以看到，模型仍然能很好的得到结果，但其中的变量早已不接近1.8或32，这是因为多层Layer带来的复杂度隐藏了转换方程的“简单”形式</p>
+<p>然后，梯度下降法会重复此过程，逐渐接近最低点。</p>
 
 
 
@@ -1462,13 +1229,13 @@ These are the l2 variables: [array([[ 0.74975073],
                 
                 <div>
                     <img class="icon" src="http://konosuba.xyz/img/back.svg" alt="back" />
-                    <a href="http://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/">Python中eval()与format()</a>
+                    <a href="http://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/">Python文本进度条</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
                 
                 <div>
-                    <a href="http://konosuba.xyz/blog/python-split%E5%87%BD%E6%95%B0/">Python split()函数</a>
+                    <a href="http://konosuba.xyz/blog/ml%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/">ML学习速率</a>
                     <img class="icon" src="http://konosuba.xyz/img/next.svg" alt="next" />
                 </div>
                 
