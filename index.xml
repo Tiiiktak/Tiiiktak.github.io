@@ -21,12 +21,17 @@
 &amp;hellip;
 fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })  WHO AM I 西南地区某双非大学的在读本科生一枚
 视觉检测研究实验室成员
+MSP微软校园精英成员
 热爱平面设计，还对广告文案有浓厚兴趣
-喜欢日漫，但并不是所谓的二次元呢
+喜欢日本文化（人生第一次出国旅行规划ing）
 Archives 基于OpenCV的答题卡识别
+基于OpenCV的身份证识别
 基于树莓派的视频流传输及灰度重心识别
+基于OpenCV的MLS图像扭曲变形实现
 （都是些渣渣项目，会努力让这里变得好看的😍）
-  (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });     (adsbygoogle = window.</description>
+Contact Me  QQ: 1067475613
+ Mail: dengsh268@outlook.com
+    (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.</description>
     </item>
     
     <item>
