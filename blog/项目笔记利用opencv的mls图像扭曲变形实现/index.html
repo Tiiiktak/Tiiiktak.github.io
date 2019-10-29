@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s -- 编程学习与技术分享" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" />
-<meta property="og:title" content="图像基础-图像分类" />
-<meta property="twitter:title" content="图像基础-图像分类">
+<meta property="og:url" content="http://konosuba.xyz/blog/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0%E5%88%A9%E7%94%A8opencv%E7%9A%84mls%E5%9B%BE%E5%83%8F%E6%89%AD%E6%9B%B2%E5%8F%98%E5%BD%A2%E5%AE%9E%E7%8E%B0/" />
+<meta property="og:title" content="【项目笔记】利用OpenCV的MLS图像扭曲变形实现" />
+<meta property="twitter:title" content="【项目笔记】利用OpenCV的MLS图像扭曲变形实现">
 
     <meta property="og:image" content="http://konosuba.xyz/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s -- 编程学习与技术分享 - 图像基础-图像分类 
+     Tiiktak&#39;s -- 编程学习与技术分享 - 【项目笔记】利用OpenCV的MLS图像扭曲变形实现 
 
 </title>
-<link rel="canonical" href="http://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/">
+<link rel="canonical" href="http://konosuba.xyz/blog/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0%E5%88%A9%E7%94%A8opencv%E7%9A%84mls%E5%9B%BE%E5%83%8F%E6%89%AD%E6%9B%B2%E5%8F%98%E5%BD%A2%E5%AE%9E%E7%8E%B0/">
 
 
 <style media="screen">
@@ -1151,14 +1151,14 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    图像基础-图像分类
+    【项目笔记】利用OpenCV的MLS图像扭曲变形实现
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Thu Jun 6 2019 00:00:49 CST">Jun 6, 2019</div>
+                    <div class="date" title="Wed Oct 23 2019 23:25:14 CST">Oct 23, 2019</div>
                     
                         
                     
@@ -1169,8 +1169,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                       <div class="tags">
                     
                         <ul>
-                          
-                            <li class="middot"><a href="http://konosuba.xyz/tags/opencv">opencv</a> </li>
                           
                         </ul>
                     </div>
@@ -1187,60 +1185,61 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
+<h2 id="引">引</h2>
+
+<p>这学期开学的时候实验室接了个项目，要做一个类似Adobe Illustrator中的“操纵扭曲”功能的Demo</p>
+
 <blockquote>
-<p><em>部分内容引用 <a href="https://blog.csdn.net/u012771236/article/details/35630903">CSDN爬金字塔的人</a></em></p>
+<p>就像这样</p>
 </blockquote>
 
-<p>计算机中， 通常以矩阵形式存储图像，根据颜色和灰度多少可以分为灰度图像、二值图像、索引图像和RGB图像</p>
+<p><img src="https://i.loli.net/2019/10/25/vxaQGZnY14SXmIh.gif" alt="AI操纵变换01" /></p>
 
-<h2 id="灰度图像">灰度图像</h2>
+<p><img src="https://i.loli.net/2019/10/25/FcisAYZNHOrhBMG.gif" alt="AI操纵变换02" /></p>
 
-<ul>
-<li><p>矩阵元素取值范围为[0, 255] （0-黑，255-白），数据类型一般为8位无符号整数【unit8】</p></li>
+<h2 id="需求分析">需求分析</h2>
 
-<li><p>某些领域（如医学成像）采用【unit16】和【int16】数据类型</p></li>
+<p>可见需要实现的功能核心就是通过鼠标的拖拽对图像进行扭曲变形，这里的变形主要可以分为<strong>两类</strong>：</p>
 
-<li><p>对于计算灰度的操作（如<strong><a href="https://www.jianshu.com/p/77e9b6b75d8b">傅里叶变换</a></strong>），使用【double】和【single】类型；若图像是【double】或【single】，灰度图像的值通常被归一化标定位【0-1】范围内，<strong>0代表黑色，1代表白色</strong>，0到1之间的小数表示不同的灰度等级。</p></li>
+<ol>
+<li><p>鼠标拖拽导致的普通变形</p></li>
 
-<li><p>二值图像可以看成是灰度图像的一个特例。</p></li>
-</ul>
+<li><p>在某一固定锚点基础上的旋转式变形</p></li>
+</ol>
 
-<h2 id="二值图像">二值图像</h2>
+<h2 id="确定方案">确定方案</h2>
 
-<ul>
-<li><p>一幅二值图像的二维矩阵<strong>仅由0、1两个值构成</strong>，计算机中二值图像的数据类型通常为1个二进制位</p></li>
+<p>明确了这个后我便开始查阅资料，发现这篇paper <strong>《Image Deformation Using Moving Least Squares》</strong> 中利用了<a href="http://konosuba.xyz/">MLS移动最小二乘</a>来实现图像变形，其实现的效果和我们的目标极为相似，于是我也决定利用该算法来实现这个Demo</p>
 
-<li><p><em>在MATLAB中，二值图像具有非常特殊的意义，只有逻辑数据类型【logical】才被认为是二值图像，就算是只包含0和1的数据类的数组（例如【uint8】），在MATLAB中都不认为是二值图像。可以使用logical将其他类型的数组转换为二值图像：B = logical（A）</em></p></li>
-</ul>
+<p>由于要利用鼠标拖拽进行操作，便选择使用Qt来进行图形化界面设计，然鹅我以前也没有用过Qt，因此学习了一些<a href="http://konosuba.xyz/">Qt基本知识</a></p>
 
-<h2 id="索引图像">索引图像</h2>
+<h2 id="开始吧">开始吧</h2>
 
-<ul>
-<li><p>包括一个<strong>数据矩阵X</strong>，一个<strong>颜色映像矩阵Map</strong>。Map是一个包含三列，若干行的数据阵列，其中每个元素的值均为[0，1]之间的双精度浮点型数据。每一行分别表示红， 绿，蓝的颜色值。</p></li>
-
-<li><p><em>在MATLAB中，索引图像是从像素值到颜色映射表值的“直接映射”。像素颜色由数据矩阵X作为索引指向矩阵Map进行索引，例如，值1指向矩阵Map中的第一行，值2指向第二行，以此类推。</em></p></li>
-
-<li><p>一般索引图像只能显示256种颜色（由数据矩阵X的取值范围决定），与灰度图像不同的是，<strong>灰度图像</strong>的颜色表的值是<strong>从0到255连续的值</strong>，所以灰度图像的数据我们即可以看成是实际的像素值，也可以看成是索引值。</p></li>
-
-<li><p>索引图的<strong>优点</strong>是存储<strong>所需容量小</strong>，且索引图像一般用于存放<strong>色彩要求比较简单</strong>的图像，如Windows中色彩构成比较简单的壁纸多采用索引图像存放，如果图像的色彩比较复杂，就要用到RGB真彩色图像。</p></li>
-</ul>
-
-<h2 id="rgb图像">RGB图像</h2>
+<p>明确了方案和目标后，便开始了漫长的学习+实践：</p>
 
 <ul>
-<li><p>RGB图像每一个像素的颜色值（由RGB三原色表示）直接存放在图像矩阵中</p></li>
+<li><p><a href="http://konosuba.xyz/">程序结构框架确定</a></p></li>
 
-<li><p>一副大小为M*N的RGB图像需要3个M*N大小的矩阵表示，每一个矩阵代表一个颜色通道。RGB图像的数据类型一般为【unit】（或【double】），通常用于表示和存放真彩色图像（2^24种颜色），也可存灰度图像（三个通道的值都一样）</p></li>
+<li><p><a href="http://konosuba.xyz/">核心算法实现</a></p></li>
 
-<li><p>在MATLAB中用cat操作将3通道合成彩色图像：rab_image = cat(3, R, G, B);</p></li>
-
-<li><p>MATLAB中用下面这些命令可以提取出三个通道的图像：</p>
-
-<pre><code class="language-c">R = rgb_image（：，：，1）;
-G = rgb_image（：，：，2）;
-B = rgb_image（：，：，3）;
-</code></pre></li>
+<li><p><a href="http://konosuba.xyz/">旋转式变形的实现</a></p></li>
 </ul>
+
+<p>在进行到这里之后，发现程序无法实现对某个关节的单独拉伸，于是我们考虑寻找图像中的骨骼，在关节的交点添加一些锚点进行固定</p>
+
+<ul>
+<li><a href="http://konosuba.xyz/">图形骨骼查找</a></li>
+</ul>
+
+<h2 id="实现效果">实现效果</h2>
+
+<p>最终项目完成，实现了这些功能，如图是个小小的演示</p>
+
+<p><img src="https://i.loli.net/2019/10/30/YwXc1rK7stlMmkU.gif" alt="演示效果" /></p>
+
+<hr />
+
+<p><em>本文将会持续更新</em></p>
 
 
 
@@ -1266,10 +1265,15 @@ B = rgb_image（：，：，3）;
             <br>
             <div class="navigation">
                 
+                <div>
+                    <img class="icon" src="http://konosuba.xyz/img/back.svg" alt="back" />
+                    <a href="http://konosuba.xyz/blog/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/">第一个TensorFlow模型：摄氏度转换为华氏度</a>
+                </div>
+                
                 <div style="width: 100%;"></div>
                 
                 <div>
-                    <a href="http://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/">图像基础-图像矩阵</a>
+                    <a href="http://konosuba.xyz/blog/%E8%BD%AC%E8%BD%BD%E8%B0%B7%E6%AD%8C%E5%B0%8F%E5%A7%90%E5%A7%90%E6%90%9E%E5%87%BA%E9%AD%94%E6%B3%95%E7%94%BB%E6%9D%BF%E4%BD%A0%E9%9A%8F%E4%BE%BF%E7%94%BB%E8%A1%A5%E4%B8%8D%E9%BD%90%E7%AE%97ai%E8%BE%93/">【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</a>
                     <img class="icon" src="http://konosuba.xyz/img/next.svg" alt="next" />
                 </div>
                 
