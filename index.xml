@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 23 Oct 2019 23:25:14 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Nov 2019 13:58:04 +0800</lastBuildDate>
     
 	<atom:link href="http://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,39 @@ Archives 基于OpenCV的答题卡识别
 Contact Me  QQ: 1067475613
  Mail: dengsh268@outlook.com
     (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>利用MLS移动最小二乘法对图像变形</title>
+      <link>http://konosuba.xyz/blog/%E5%88%A9%E7%94%A8mls%E7%A7%BB%E5%8A%A8%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%AF%B9%E5%9B%BE%E5%83%8F%E5%8F%98%E5%BD%A2/</link>
+      <pubDate>Thu, 07 Nov 2019 13:58:04 +0800</pubDate>
+      
+      <guid>http://konosuba.xyz/blog/%E5%88%A9%E7%94%A8mls%E7%A7%BB%E5%8A%A8%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%AF%B9%E5%9B%BE%E5%83%8F%E5%8F%98%E5%BD%A2/</guid>
+      <description>这是我的【项目笔记】利用OpenCV的MLS图像扭曲变形实现中的第一部分
+本文主要对MLS进行了一定讲解
+ 先简单了解一下什么是最小二乘法
+最小二乘法 当我们在测量某个值y时，由于误差的存在，可能多次测量的结果不尽相同
+我们把多次测量得到的不同结果yi画在同一坐标系中
+同时将猜测的实际值y也画在坐标系中
+每个yi和y都有一个差值| y - yi |，称为误差
+记所有误差的平方和
+由于实际值y是我们猜测的，所以它的值可以变化，同时误差的平方和ε也会随之改变
+于是高斯或是法国科学家勒让德就提出使误差的平方和最小的 y 就是真值，这是基于，如果误差是随机的，应该围绕真值上下波动
+这就是最小二乘法，即
+此外，经证明得出误差的分布服从正态分布（不愧是天下第一分布），这里就不证明了
+总的来说，对于被选择的参数，应该使算出的函数曲线与观测值之差的平方和最小。用函数表示为：
+最小化问题的精度，依赖于所选择的函数模型
+移动最小二乘法 移动最小二乘法与传统的最小二乘法相比，有两个比较大的改进：
+  拟合函数的建立不同。这种方法建立拟合函数不是采用传统的多项式或其它函数，而是由一个系数向量 a(x)和基函数 p(x)构成， 这里a(x)不是常数，而是坐标 x 的函数。
+ 引入紧支（ Compact Support）概念。认为点x处的值 y只受 x附近子域内节点影响，这个子域称作点 x 的影响区域， 影响区域外的节点对 x的取值没有影响。在影响区域上定义一个权函数w(x)，如果权函数在整个区域取为常数，就得到传统的最小二乘法。
+  节选自《基于移动最小二乘法的曲线曲面拟合-曾清红》
+ 利用MLS变换图像 这一部分，我主要参考了论文《Image Deformation Using Moving Least Squares》中的内容
+考虑由用户设定锚点来对图像变形进行控制的情况，首先进行准备工作，推导出公式
+准备工作 设p为一组控制点，q是它对应的变形位置
+对于图像中的某一点v，有最小的仿射变换lv(x)，使
+成立。其中pi和qi是行向量，权值wi满足
+各点权重wi 由于对于每个v都有不同的wi的值，称之为移动最小二乘最小化（a Moving Least Squares minimization）。对于每个v都有不同的lv(x)
+此时定义变形函数f(x) = lv(x)，可见当v接近pi时，wi趋于无穷、f(pi) = qi，此外若qi = pi，则lv(x) = x、f(v) = v</description>
     </item>
     
     <item>
