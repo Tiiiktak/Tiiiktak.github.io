@@ -6,10 +6,57 @@
     <description>Recent content in Blog on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 07 Nov 2019 13:58:04 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 20 Nov 2019 19:29:52 +0800</lastBuildDate>
     
 	<atom:link href="http://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tesseract-OCR样本训练方法</title>
+      <link>http://konosuba.xyz/blog/tesseract-ocr%E6%A0%B7%E6%9C%AC%E8%AE%AD%E7%BB%83%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Wed, 20 Nov 2019 19:29:52 +0800</pubDate>
+      
+      <guid>http://konosuba.xyz/blog/tesseract-ocr%E6%A0%B7%E6%9C%AC%E8%AE%AD%E7%BB%83%E6%96%B9%E6%B3%95/</guid>
+      <description>我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。
+安装jTessBoxEditor 可以在这里下载到最新版安装包
+把下载得到的压缩包解压到任意位置，双击其中的train.bat文件，等待一会，弹出窗口就可以开始训练了
+制作训练样本 生成tif文件 打开软件，选择Tools-&amp;gt;Merge TIFF，文件类型选择ALL Image Files，选择所有要训练的样本图片，打开
+之后会又弹出窗口，文件名需要自己设定，注意要按照格式设置：
+[lang].[fontname].exp[num].tif
+其中lang为语言名称，fontname为字体名称，num为序号。这三项都可以自己定义
+这里我们设置为captcha.font.exp0.tif，文件类型TIFF，保存
+生成box文件 将之前生成的captcha.font.exp0.tif复制到Tesseract-OCR的安装目录
+打开cmd进入安装目录，执行命令
+tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox  将.box文件和.tif文件放在同一文件夹
+手动调整 打开jTessBoxEditor工具，点击Box Editor-&amp;gt;Open，选择打开之前生成的.box文件
+软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果
+全部修改完成后，选择Save保存即可
+训练 先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入
+captcha 0 0 0 0 0  这里全取值为0，表示字体不是粗体、斜体等等
+之后在命令行分别运行命令：
+shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr  之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
+生成语言库 命令
+combine_tessdata.exe captcha.  会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
+使用训练结果 在调用tesseract或pytesseract时，只需添加参数lang=&amp;ldquo;captcha&amp;rdquo;（我们的字体名），程序就会自动调用啦</description>
+    </item>
+    
+    <item>
+      <title>Tesseract-OCR安装与python中使用</title>
+      <link>http://konosuba.xyz/blog/tesseract-ocr%E5%AE%89%E8%A3%85%E4%B8%8Epython%E4%B8%AD%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 20 Nov 2019 18:15:12 +0800</pubDate>
+      
+      <guid>http://konosuba.xyz/blog/tesseract-ocr%E5%AE%89%E8%A3%85%E4%B8%8Epython%E4%B8%AD%E4%BD%BF%E7%94%A8/</guid>
+      <description>安装Tesseract-OCR 在官网下载最新的Windows安装包，双击运行
+根据需要选择，一路Next，直到这个页面
+在Additional language data(download)中选择要下载的其他语言的数据，之后程序会自动下载。一直到安装成功
+配置环境变量 进入高级系统设置，选择高级-&amp;gt;环境变量
+选中系统变量中Path-&amp;gt;编辑
+新建一项，地址为Tesseract-OCR的安装目录即可（例如C:\Program Files\Tesseract-OCR）
+可以通过在控制台中输入tesseract命令来检查是否配置成功，输出如图即表示成功
+配置Python 直接使用pip install pytesseract进行安装
+pytesseract 功能  get_tesseract_version　返回系统中安装的Tesseract版本。 image_to_string　将图像上的Tesseract OCR运行结果返回到字符串 image_to_boxes　返回包含已识别字符及其框边界的结果 image_to_data　返回包含框边界，置信度和其他信息的结果 image_to_osd　返回包含有关方向和脚本检测的信息的结果  参数 image_to_data(image, lang=None, config=&#39;&#39;, nice=0, output_type=Output.STRING)   image object　图像对象 lang String，Tesseract　语言代码字符串 config String　任何其他配置为字符串，例如：config=&amp;lsquo;&amp;ndash;psm 6&amp;rsquo; nice Integer　修改Tesseract运行的处理器优先级。Windows不支持。 output_type　类属性，指定输出的类型，默认为string。  简单实例 识别一张图像中字符并直接输出
+import pytesseract im = &amp;quot;C:/Users/1/Desktop/test.jpg&amp;quot; result = pytesseract.image_to_string(im) print(result)  这样识别到的字符就会转化成字符串输出</description>
+    </item>
     
     <item>
       <title>利用MLS移动最小二乘法对图像变形</title>
