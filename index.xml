@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 20 Nov 2019 19:29:52 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Dec 2019 21:33:22 +0800</lastBuildDate>
     
 	<atom:link href="http://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,26 @@ Archives 基于OpenCV的答题卡识别
 Contact Me  QQ: 1067475613
  Mail: dengsh268@outlook.com
     (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>百度搜索资源平台用crul做链接主动推送</title>
+      <link>http://konosuba.xyz/blog/%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E8%B5%84%E6%BA%90%E5%B9%B3%E5%8F%B0%E7%94%A8crul%E5%81%9A%E9%93%BE%E6%8E%A5%E4%B8%BB%E5%8A%A8%E6%8E%A8%E9%80%81/</link>
+      <pubDate>Tue, 03 Dec 2019 21:33:22 +0800</pubDate>
+      
+      <guid>http://konosuba.xyz/blog/%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E8%B5%84%E6%BA%90%E5%B9%B3%E5%8F%B0%E7%94%A8crul%E5%81%9A%E9%93%BE%E6%8E%A5%E4%B8%BB%E5%8A%A8%E6%8E%A8%E9%80%81/</guid>
+      <description>引 最近在百度站长平台加入了这个博客，由于之前在Google上都是直接提交sitemap地址，但是在百度索引sitemap实在太慢了，所以还是选择使用它推荐的crul主动推送方式，在这做个记录
+在Windows上安装配置crul 进入curl的官网下载最新的Windows版的binary the curl project安装包
+下载完成后解压到任意目录下
+之后进入系统属性-&amp;gt;高级系统设置-&amp;gt;高级-&amp;gt;环境变量-&amp;gt;系统变量
+新建一个变量，命名为curl，变量值选择之前解压的文件夹-&amp;gt;bin文件夹-&amp;gt;curl.exe
+一路保存
+之后打开cmd，敲入curl，输出如图，则配置成功
+使用curl推送链接 由于使用curl推送链接需要一个只有链接地址的文件，然而sitemap很明显不符合这个条件，所以需要先利用这个在线工具将网站中的链接提取出来
+如图，将图中右侧框中的链接复制到一个新建的txt文档，命名为urls.txt
+然后在cmd中进入txt文件所在目录，执行百度搜索资源平台给的推送命令，例如：
+如果有类似以下的输出，则说明推送成功！
+{ &amp;quot;remain&amp;quot;:4999998, &amp;quot;success&amp;quot;:2, &amp;quot;not_same_site&amp;quot;:[], &amp;quot;not_valid&amp;quot;:[] }  在服务器自动推送 很明显，现在这种必须要每次手动推送，很耗费能量，所以之后会试着在网站服务器端配置自动推送，这样才是真正的自动推送嘛</description>
     </item>
     
     <item>
