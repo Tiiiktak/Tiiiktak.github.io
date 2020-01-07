@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s -- 编程学习与技术分享" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" />
-<meta property="og:title" content="Python错误处理" />
-<meta property="twitter:title" content="Python错误处理">
+<meta property="og:url" content="https://konosuba.xyz/blog/%E5%88%86%E7%B1%BBclassification%E4%B8%8E%E5%9B%9E%E5%BD%92regression%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E5%85%B3%E7%B3%BB/" />
+<meta property="og:title" content="分类(classification)与回归(regression)的区别与关系" />
+<meta property="twitter:title" content="分类(classification)与回归(regression)的区别与关系">
 
     <meta property="og:image" content="https://konosuba.xyz/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s -- 编程学习与技术分享 - Python错误处理 
+     Tiiktak&#39;s -- 编程学习与技术分享 - 分类(classification)与回归(regression)的区别与关系 
 
 </title>
-<link rel="canonical" href="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">
+<link rel="canonical" href="https://konosuba.xyz/blog/%E5%88%86%E7%B1%BBclassification%E4%B8%8E%E5%9B%9E%E5%BD%92regression%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E5%85%B3%E7%B3%BB/">
 
 
 <style media="screen">
@@ -1151,19 +1151,19 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    Python错误处理
+    分类(classification)与回归(regression)的区别与关系
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Fri Sep 6 2019 19:14:26 CST">Sep 6, 2019</div>
+                    <div class="date" title="Mon Jan 6 2020 15:45:03 CST">Jan 6, 2020</div>
                     
                         
                     
                     
-                    <div class="reading-time middot">2 minute read</div>
+                    <div class="reading-time middot">1 minute read</div>
                     
                     
                       <div class="tags">
@@ -1185,178 +1185,69 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
-<p>在Python中也同样使用<code>try...except...finally...</code>的错误处理机制</p>
+<p>分类与回归是监督学习中的两个主要任务，它们即对应了监督学习中“学习”的部分</p>
 
-<h1 id="try">try</h1>
+<p>分类模型与回归模型的本质其实一样。<strong>分类模型可将回归模型的输出离散化，回归模型也可将分类模型的输出连续化</strong></p>
 
-<h2 id="except">except</h2>
+<hr />
 
-<pre><code class="language-py">try:
-    print('try...')
-    r = 10/0
-    print('result:', r)
-except ZeroDivisionError as e:
-    print('except:', e)
-finally:
-    print('finally...')
-print('END')
-</code></pre>
+<p>例如：</p>
 
-<p>当认为某一块代码有错误时，就可以用<code>try</code>来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到<code>except</code>块，执行完<code>except</code>后，若后续有<code>finally</code>片段，则执行<code>finally</code>块</p>
+<h2 id="linear-recognition-线性回归">Linear Recognition 线性回归</h2>
 
-<p>上面的代码中有一个除0的错误，运行结果:</p>
+<p>使用 <code>y = wx + b</code> 的形式，y就是模型的输出，是一个连续值，所以可以用于处理回归问题</p>
 
-<pre><code>try...
-except: division by zero 
-finally...
-END
-</code></pre>
+<h2 id="logistic-recognition-逻辑回归">Logistic Recognition 逻辑回归</h2>
 
-<p>当计算r后，捕捉到<code>ZeroDivisionError</code>错误，执行   <code>except</code>语句段，之后执行<code>finally</code></p>
+<p>一般作为分类问题的首选算法，logistic回归只是用到了回归算法，但是其输出的结果是决策边界，是不连续的，所以它其实<strong>是分类，而不是回归</strong></p>
 
-<h2 id="else">else</h2>
+<h3 id="二分类">二分类</h3>
 
-<p>可以在<code>except</code>后面加上<code>else</code>，当没有错误发生时将执行<code>else</code>语句块</p>
+<p>将 <code>y = wx + b</code> 利用激活函数（常用sigmoid函数）映射到 <code>(0,1)</code> 中。再选定一个阈值，将输出分为两类。</p>
 
-<pre><code class="language-py">try:
-    print('try...')
-    r = 10/5
-    print('result:', r)
-except ZeroDivisionError as e:
-    print('except:', e)
-else:
-	print('no error')
-print('END')
-</code></pre>
+<h3 id="多分类">多分类</h3>
 
-<p>结果:</p>
+<p>先得到n组<code>w</code>不同的 <code>y = wx +b</code> ，之后进行归一化（例如使用Softmax函数），从而得到在n个类上的概率，即可解决多分类问题</p>
 
-<pre><code>try...
-result: 2.0
-no error
-END
-</code></pre>
+<hr />
 
-<blockquote>
-<p>Python的错误是一个class，所有错误类型都继承自<code>BaseException</code>，故使用<code>except</code>时需注意它会也会捕获该类型的子类。</p>
+<p><img src="https://i.loli.net/2020/01/06/plAdKmLerwHOJ3b.jpg" alt="区别" /></p>
 
-<blockquote>
-<p>常见错误类型及继承关系（中文）：<a href="https://docs.python.org/zh-cn/3/library/exceptions.html?highlight=aseexception#BaseException">官方文档</a>
-```</p>
-</blockquote>
-</blockquote>
+<h2 id="回归问题的应用场景">回归问题的应用场景</h2>
 
-<h2 id="优势">优势</h2>
+<p>回归问题通常是用来预测一个值，如预测房价、未来的天气情况等等。例如一个产品的实际价格为500元，通过回归分析预测值为499元，我们认为这是一个比较好的回归分析。</p>
 
-<p>使用<code>try...except</code>捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数<code>main()</code>调用<code>fun()</code>，<code>fun()</code>调用<code>bar()</code>，结果<code>bar()</code>出错了，这时，只要<code>main()</code>捕获到了，就可以处理</p>
+<p>一个比较常见的回归算法是线性回归算法（LR）。</p>
 
-<pre><code class="language-py">def fun(s):
-    return 10/int(s)
+<p>另外，回归分析用在神经网络上，其最上层是不需要加上softmax函数的，而是直接对前一层累加即可。回归是对真实值的一种逼近预测。</p>
 
-def bar(s):
-    return fun(s) * 2
+<h2 id="分类问题的应用场景">分类问题的应用场景</h2>
 
-def main():
-    try:
-        print('try...')
-        bar('0')
-    except Exception as e:
-        print('Error:', e)
-    finally:
-        print('finally...')
-</code></pre>
+<p>分类问题是用于将事物打上一个标签，通常结果为离散值。</p>
 
-<p>结果:</p>
+<p>例如判断一幅图片上的动物是一只猫还是一只狗，分类通常是建立在回归之上，分类的最后一层通常要使用softmax函数进行判断其所属类别。</p>
 
-<pre><code>try...
-Error: division by zero
-finally...
-</code></pre>
+<p>分类并没有逼近的概念，最终正确结果只有一个，错误的就是错误的，不会有相近的概念。</p>
 
-<h2 id="栈输出">栈输出</h2>
+<p>最常见的分类方法是逻辑回归，或者叫逻辑分类。</p>
 
-<p>若错误没有被捕捉，会一直往上抛，最终会被Python解释器捕获，打印一个错误信息，之后程序会退出</p>
+<h2 id="总结">总结</h2>
 
-<p>文件hello.py</p>
+<p>一个小测验：假设你经营着一家公司，你想开发学习算法来处理这两个问题：</p>
 
-<pre><code class="language-py">def fun(s):
-    return 10/int(s)
+<ol>
+<li><p>你有一大批同样的货物，想象一下，你有上千件一模一样的货物等待出售，这时你想预测接下来的三个月能卖多少件？</p></li>
 
-def bar(s):
-    return fun(s) * 2
+<li><p>你有许多客户，这时你想写一个软件来检验每一个用户的账户。对于每一个账户，你要判断它们是否曾经被盗过？</p></li>
+</ol>
 
-def main():
-    bar('0')
+<p>那这两个问题，它们属于分类问题、还是回归问题?</p>
 
-main()
-</code></pre>
+<ul>
+<li><p>问题一是一个回归问题，因为你知道，如果我有数千件货物，我会把它看成一个实数，一个连续的值。因此卖出的物品数，也是一个连续的值。</p></li>
 
-<p>在Python终端中运行文件，输出：</p>
-
-<pre><code class="language-py">Traceback (most recent call last): #错误跟踪信息
-  File &quot;hello.py&quot;, line 19, in &lt;module&gt;
-    main() #错误原因
-  File &quot;hello.py&quot;, line 13, in main
-    bar('0')
-  File &quot;hello.py&quot;, line 7, in bar
-    return fun(s) * 2
-  File &quot;hello.py&quot;, line 3, in fun
-    return 10/int(s)
-ZeroDivisionError: division by zero #错误类型
-</code></pre>
-
-<p>错误信息以栈的形式按顺序输出，由此可以找到错误源头</p>
-
-<h2 id="错误记录">错误记录</h2>
-
-<p>可以使用Python内置的<code>logging</code>模块记录错误信息</p>
-
-<pre><code class="language-py">import logging
-
-def fun(s):
-    return 10/int(s)
-
-def bar(s):
-    return fun(s) * 2
-
-def main():
-    try:
-        print('try...')
-        bar('0')
-    except BaseException as e:
-        logging.exception(e)
-    finally:
-        print('finally...')
-</code></pre>
-
-<p>这样运行，程序会在打印完错误信息后继续运行：</p>
-
-<pre><code class="language-py">try...
-ERROR:root:division by zero
-Traceback (most recent call last):
-  File &quot;hello.py&quot;, line 16, in main
-    bar('0')
-  File &quot;hello.py&quot;, line 10, in bar
-    return fun(s) * 2
-  File &quot;hello.py&quot;, line 6, in fun
-    return 10/int(s)
-ZeroDivisionError: division by zero
-finally...
-</code></pre>
-
-<h2 id="抛出错误">抛出错误</h2>
-
-<p>常常使用<code>raise</code>函数抛出错误，当前函数不知道怎么处理错误时，将其向上抛，交给上层函数来处理</p>
-
-<p>|<code>raise</code>语句如果不带参数，就会把当前错误原样抛出。此外在<code>except</code>中<code>raise</code>一个Error，还可以把一种类型的错误转化成另一种类型：</p>
-
-<pre><code class="language-py">try:
-    10 / 0
-except ZeroDivisionError:
-    raise ValueError('input error!')
-</code></pre>
-
-<p>只要是合理的转换逻辑即可，但绝不应该将一个<code>IOError</code>转换成毫不相干的<code>ValueError</code></p>
+<li><p>问题二是一个分类问题，因为我会把预测的值，用 0 来表示账户未被盗，用 1 表示账户曾经被盗过。所以我们根据账号是否被盗过，把它们定为0 或 1，然后用算法推测一个账号是 0 还是 1，因为只有少数的离散值，所以我把它归为分类问题。</p></li>
+</ul>
 
 
 
@@ -1384,13 +1275,13 @@ except ZeroDivisionError:
                 
                 <div>
                     <img class="icon" src="https://konosuba.xyz/img/back.svg" alt="back" />
-                    <a href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/">利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</a>
+                    <a href="https://konosuba.xyz/blog/c-%E8%A7%A3%E5%86%B3%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98/">C&#43;&#43;解决假币问题</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
                 
                 <div>
-                    <a href="https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/">Python调试</a>
+                    <a href="https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">单变量线性回归</a>
                     <img class="icon" src="https://konosuba.xyz/img/next.svg" alt="next" />
                 </div>
                 

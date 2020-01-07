@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s -- 编程学习与技术分享" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" />
-<meta property="og:title" content="Python错误处理" />
-<meta property="twitter:title" content="Python错误处理">
+<meta property="og:url" content="https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" />
+<meta property="og:title" content="单变量线性回归" />
+<meta property="twitter:title" content="单变量线性回归">
 
     <meta property="og:image" content="https://konosuba.xyz/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s -- 编程学习与技术分享 - Python错误处理 
+     Tiiktak&#39;s -- 编程学习与技术分享 - 单变量线性回归 
 
 </title>
-<link rel="canonical" href="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">
+<link rel="canonical" href="https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
 
 
 <style media="screen">
@@ -1151,19 +1151,19 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    Python错误处理
+    单变量线性回归
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Fri Sep 6 2019 19:14:26 CST">Sep 6, 2019</div>
+                    <div class="date" title="Tue Jan 7 2020 16:09:48 CST">Jan 7, 2020</div>
                     
                         
                     
                     
-                    <div class="reading-time middot">2 minute read</div>
+                    <div class="reading-time middot">1 minute read</div>
                     
                     
                       <div class="tags">
@@ -1185,178 +1185,60 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
-<p>在Python中也同样使用<code>try...except...finally...</code>的错误处理机制</p>
+<h2 id="线性回归">线性回归</h2>
 
-<h1 id="try">try</h1>
+<p>线性回归是解决回归问题最基本的一个方法。其实质就是找到一条直线能尽可能多的使已知的离散值分布在其周围（二维坐标系中）</p>
 
-<h2 id="except">except</h2>
+<p>就像这样：</p>
 
-<pre><code class="language-py">try:
-    print('try...')
-    r = 10/0
-    print('result:', r)
-except ZeroDivisionError as e:
-    print('except:', e)
-finally:
-    print('finally...')
-print('END')
-</code></pre>
+<p><img src="https://i.loli.net/2020/01/07/5niAyBs7rXOomUw.png" alt="二维线性回归示例" /></p>
 
-<p>当认为某一块代码有错误时，就可以用<code>try</code>来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到<code>except</code>块，执行完<code>except</code>后，若后续有<code>finally</code>片段，则执行<code>finally</code>块</p>
+<p>或者是在三维坐标中，找到一个面来逼近</p>
 
-<p>上面的代码中有一个除0的错误，运行结果:</p>
+<p><img src="https://i.loli.net/2020/01/07/te3z2RDPEruh5vX.jpg" alt="三维线性回归示例" /></p>
 
-<pre><code>try...
-except: division by zero 
-finally...
-END
-</code></pre>
+<p>在这里我们只讨论最简单的单变量线性回归</p>
 
-<p>当计算r后，捕捉到<code>ZeroDivisionError</code>错误，执行   <code>except</code>语句段，之后执行<code>finally</code></p>
+<h2 id="单变量线性回归">单变量线性回归</h2>
 
-<h2 id="else">else</h2>
+<p>单变量线性回归问题只含有一个特征（输入变量），因此可以把目标直线表达式写为：</p>
 
-<p>可以在<code>except</code>后面加上<code>else</code>，当没有错误发生时将执行<code>else</code>语句块</p>
+<p><code>h(x) = y = wx + b</code></p>
 
-<pre><code class="language-py">try:
-    print('try...')
-    r = 10/5
-    print('result:', r)
-except ZeroDivisionError as e:
-    print('except:', e)
-else:
-	print('no error')
-print('END')
-</code></pre>
+<p>其中， <code>x</code>代表特征/输入变量，<code>h</code>代表目标变量/输出变量</p>
 
-<p>结果:</p>
+<p>我们需要有一个包含许多对<code>(x, y)</code>的训练集，之后把它喂给我们的学习算法，学习算法输出一个函数，通常表示为小写<code>h</code>表示，代表<code>hypothesis</code>(假设)，表示一个函数</p>
 
-<pre><code>try...
-result: 2.0
-no error
-END
-</code></pre>
+<p>因此<code>h</code>根据输入的<code>x</code>值来得出<code>y</code>值，<code>y</code>值就是我们想要根据<code>x</code>知道的答案。因此，<code>h</code>是一个从<code>y</code>到<code>x</code>的函数映射。</p>
+
+<h2 id="代价函数">代价函数</h2>
+
+<p>又称为“损失函数”</p>
+
+<p>在前面的函数<code>h</code>中，我们选择的<strong>参数决定了</strong>我们得到的直线相对于我们的训练集的<strong>准确程度</strong>。</p>
+
+<p>模型所<strong>预测的值与训练集中实际值之间的差距</strong>（下图中蓝线所指）就是<strong>建模误差（modeling error）</strong></p>
+
+<p><img src="https://i.loli.net/2020/01/07/GrVK31eEIn27F8m.png" alt="建模误差" /></p>
+
+<p>我们的目标便是选择出可以使得建模误差的平方和能够最小的模型参数。 即使得<strong>代价函数最小</strong></p>
+
+<p><img src="https://i.loli.net/2020/01/07/7YXiowZe86JKIvO.png" alt="代价函数" /></p>
+
+<p>这个代价函数可以根据<a href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8mls%E7%A7%BB%E5%8A%A8%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%AF%B9%E5%9B%BE%E5%83%8F%E5%8F%98%E5%BD%A2/">最小二乘法</a>得到</p>
+
+<p>我们绘制一个等高线图，三个坐标分别<code>w (图中theta0)</code>、<code>h (图中theta1)</code>和代价函数<code>(图中J(theta0, theta1))</code></p>
+
+<p><img src="https://i.loli.net/2020/01/07/9AQF2NjPB8s47CE.png" alt="等高线图" /></p>
+
+<p>代价函数也被称作平方误差函数，有时也被称为平方误差代价函数。我们之所以要求出误差的平方和，是因为误差平方代价函数，对于大多数问题，特别是回归问题，都是一个合理的选择。还有其他的代价函数也能很好地发挥作用，但是平方误差代价函数可能是解决回归问题最常用的手段了。</p>
+
+<hr />
 
 <blockquote>
-<p>Python的错误是一个class，所有错误类型都继承自<code>BaseException</code>，故使用<code>except</code>时需注意它会也会捕获该类型的子类。</p>
-
-<blockquote>
-<p>常见错误类型及继承关系（中文）：<a href="https://docs.python.org/zh-cn/3/library/exceptions.html?highlight=aseexception#BaseException">官方文档</a>
-```</p>
+<p>参考资料：
+<a href="http://www.ai-start.com/ml2014/html/week1.html#header-n178">吴恩达《机器学习》课程笔记</a></p>
 </blockquote>
-</blockquote>
-
-<h2 id="优势">优势</h2>
-
-<p>使用<code>try...except</code>捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数<code>main()</code>调用<code>fun()</code>，<code>fun()</code>调用<code>bar()</code>，结果<code>bar()</code>出错了，这时，只要<code>main()</code>捕获到了，就可以处理</p>
-
-<pre><code class="language-py">def fun(s):
-    return 10/int(s)
-
-def bar(s):
-    return fun(s) * 2
-
-def main():
-    try:
-        print('try...')
-        bar('0')
-    except Exception as e:
-        print('Error:', e)
-    finally:
-        print('finally...')
-</code></pre>
-
-<p>结果:</p>
-
-<pre><code>try...
-Error: division by zero
-finally...
-</code></pre>
-
-<h2 id="栈输出">栈输出</h2>
-
-<p>若错误没有被捕捉，会一直往上抛，最终会被Python解释器捕获，打印一个错误信息，之后程序会退出</p>
-
-<p>文件hello.py</p>
-
-<pre><code class="language-py">def fun(s):
-    return 10/int(s)
-
-def bar(s):
-    return fun(s) * 2
-
-def main():
-    bar('0')
-
-main()
-</code></pre>
-
-<p>在Python终端中运行文件，输出：</p>
-
-<pre><code class="language-py">Traceback (most recent call last): #错误跟踪信息
-  File &quot;hello.py&quot;, line 19, in &lt;module&gt;
-    main() #错误原因
-  File &quot;hello.py&quot;, line 13, in main
-    bar('0')
-  File &quot;hello.py&quot;, line 7, in bar
-    return fun(s) * 2
-  File &quot;hello.py&quot;, line 3, in fun
-    return 10/int(s)
-ZeroDivisionError: division by zero #错误类型
-</code></pre>
-
-<p>错误信息以栈的形式按顺序输出，由此可以找到错误源头</p>
-
-<h2 id="错误记录">错误记录</h2>
-
-<p>可以使用Python内置的<code>logging</code>模块记录错误信息</p>
-
-<pre><code class="language-py">import logging
-
-def fun(s):
-    return 10/int(s)
-
-def bar(s):
-    return fun(s) * 2
-
-def main():
-    try:
-        print('try...')
-        bar('0')
-    except BaseException as e:
-        logging.exception(e)
-    finally:
-        print('finally...')
-</code></pre>
-
-<p>这样运行，程序会在打印完错误信息后继续运行：</p>
-
-<pre><code class="language-py">try...
-ERROR:root:division by zero
-Traceback (most recent call last):
-  File &quot;hello.py&quot;, line 16, in main
-    bar('0')
-  File &quot;hello.py&quot;, line 10, in bar
-    return fun(s) * 2
-  File &quot;hello.py&quot;, line 6, in fun
-    return 10/int(s)
-ZeroDivisionError: division by zero
-finally...
-</code></pre>
-
-<h2 id="抛出错误">抛出错误</h2>
-
-<p>常常使用<code>raise</code>函数抛出错误，当前函数不知道怎么处理错误时，将其向上抛，交给上层函数来处理</p>
-
-<p>|<code>raise</code>语句如果不带参数，就会把当前错误原样抛出。此外在<code>except</code>中<code>raise</code>一个Error，还可以把一种类型的错误转化成另一种类型：</p>
-
-<pre><code class="language-py">try:
-    10 / 0
-except ZeroDivisionError:
-    raise ValueError('input error!')
-</code></pre>
-
-<p>只要是合理的转换逻辑即可，但绝不应该将一个<code>IOError</code>转换成毫不相干的<code>ValueError</code></p>
 
 
 
@@ -1384,13 +1266,13 @@ except ZeroDivisionError:
                 
                 <div>
                     <img class="icon" src="https://konosuba.xyz/img/back.svg" alt="back" />
-                    <a href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/">利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</a>
+                    <a href="https://konosuba.xyz/blog/%E5%88%86%E7%B1%BBclassification%E4%B8%8E%E5%9B%9E%E5%BD%92regression%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E5%85%B3%E7%B3%BB/">分类(classification)与回归(regression)的区别与关系</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
                 
                 <div>
-                    <a href="https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/">Python调试</a>
+                    <a href="https://konosuba.xyz/blog/%E9%99%8D%E4%BD%8E%E6%8D%9F%E5%A4%B1%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/">降低损失：梯度下降法</a>
                     <img class="icon" src="https://konosuba.xyz/img/next.svg" alt="next" />
                 </div>
                 
