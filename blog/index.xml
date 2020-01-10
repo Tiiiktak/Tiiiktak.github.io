@@ -6,10 +6,38 @@
     <description>Recent content in Blog on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 07 Jan 2020 19:48:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jan 2020 15:35:53 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Matlab学习_矩阵与向量操作</title>
+      <link>https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Fri, 10 Jan 2020 15:35:53 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C/</guid>
+      <description>矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算
+运算 现有一矩阵a:
+&amp;gt;&amp;gt; a = [1 2 3; 4 5 6; 7 8 10] a = 1 2 3 4 5 6 7 8 10  矩阵与常数相加
+&amp;gt;&amp;gt; a + 10 ans = 11 12 13 14 15 16 17 18 20  &amp;gt;&amp;gt; sin(a) ans = 0.8415 0.9093 0.1411 -0.7568 -0.9589 -0.2794 0.6570 0.9894 -0.5440  转置矩阵 &amp;gt;&amp;gt;a&#39; ans = 1 4 7 2 5 8 3 6 10  逆矩阵 &amp;gt;&amp;gt; inv(a) ans = -0.</description>
+    </item>
+    
+    <item>
+      <title>YAML与TOML</title>
+      <link>https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/</link>
+      <pubDate>Thu, 09 Jan 2020 20:34:31 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/</guid>
+      <description>YAML YAML 是 &amp;ldquo;YAML Ain&amp;rsquo;t a Markup Language&amp;rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&amp;rdquo;Yet Another Markup Language&amp;rdquo;（仍是一种标记语言）。
+YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲
+YAML 的配置文件后缀为 .yml
+基本语法  大小写敏感 使用缩进表示层级关系 缩进不允许使用tab，只允许空格 缩进的空格数不重要，只要相同层级的元素左对齐即可 &amp;rsquo;#&amp;lsquo;表示注释  数据类型  对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary） 数组：一组按次序排列的值，又称为序列（sequence） / 列表（list） 纯量（scalars）：单个的、不可再分的值  对象 对象键值对使用冒号结构表示 key: value，冒号后面要加一个空格。
+TOML TOML的全称是 &amp;ldquo;Tom&amp;rsquo;s Obvious, Minimal Language&amp;rdquo;，因为它的作者是 GitHub　联合创始人　Tom Preston-Werner 。
+TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可以无歧义地被映射为哈希表，从而被多种语言解析。
+基本语法  大小写敏感 同样使用缩进表示层级关系 缩进可以使用空格，也可以使用Tab 可以在数组中换行 &amp;rsquo;#&amp;lsquo;表示注释  对象 对象键值对使用等号的结构 key = value
+字符串 字符串和 JSON 的定义一致，只有一点除外：　TOML 要求使用　UTF-8 编码。</description>
+    </item>
     
     <item>
       <title>多变量线性回归</title>
@@ -788,15 +816,6 @@ def add(x, y, f) return f(x) + f(y)  当调用add(-5, -6, abs)时，函数计算
  在MATLAB中用cat操作将3通道合成彩色图像：rab_image = cat(3, R, G, B);
  MATLAB中用下面这些命令可以提取出三个通道的图像：
 R = rgb_image（：，：，1）; G = rgb_image（：，：，2）; B = rgb_image（：，：，3）;   </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://konosuba.xyz/blog/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://konosuba.xyz/blog/</guid>
-      <description></description>
     </item>
     
   </channel>

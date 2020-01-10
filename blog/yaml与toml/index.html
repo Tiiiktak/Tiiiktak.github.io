@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 
 <head>
-	<meta name="generator" content="Hugo 0.55.6" />
 <meta charset="utf-8">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -15,24 +14,24 @@
 <meta property="og:site_name" content="Tiiktak&#39;s -- 编程学习与技术分享" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://konosuba.xyz/" />
-<meta property="og:title" content="Tiiktak&#39;s -- 编程学习与技术分享" />
-<meta property="twitter:title" content="Tiiktak&#39;s -- 编程学习与技术分享">
+<meta property="og:url" content="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/" />
+<meta property="og:title" content="YAML与TOML" />
+<meta property="twitter:title" content="YAML与TOML">
 
     <meta property="og:image" content="https://konosuba.xyz/img/banner.png">
     <meta property="twitter:card" content="summary">
     <meta property="twitter:image" content="https://konosuba.xyz/img/banner.png">
 
-<meta property="og:description" content="Hey You">
-<meta property="twitter:description" content="Hey You">
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
 
 <title>
 
 
-    Tiiktak&#39;s -- 编程学习与技术分享
+     Tiiktak&#39;s -- 编程学习与技术分享 - YAML与TOML 
 
 </title>
-<link rel="canonical" href="https://konosuba.xyz/">
+<link rel="canonical" href="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/">
 
 
 <style media="screen">
@@ -1067,8 +1066,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://konosuba.xyz/index.xml" rel="alternate" type="application/rss+xml" title="Tiiktak&#39;s -- 编程学习与技术分享" />
-
 
 
 </head>
@@ -1142,100 +1139,213 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-9673215637005333", enable_page_level_ads: true }); </script>
-<div class="main column">
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            
-                <div class="markdown">
-                <p id="hitokoto">:D 获取中...</p>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
-<script type="text/javascript">
-  fetch('https://v1.hitokoto.cn/?c=a')
-    .then(function (res){
-      return res.json();
-    })
-    .then(function (data) {
-      var hitokoto = document.getElementById('hitokoto');
-      var hitokotofrom = document.getElementById('from');
-      hitokoto.innerText = data.hitokoto; 
-      hitokotofrom.innerText = data.from;
-    })
-    .catch(function (err) {
-      console.error(err);
-    })
-</script>
+    
+    YAML与TOML
+    
 
-<p><img src="https://konosuba.xyz/home_banner.jpg" alt="home_banner" /></p>
+</div>
 
                 </div>
-            
-
-            
-                <div class="posts">
-                
-                
-                    <div class="page-heading">Latest posts</div>
-                    <ul>
+                <div class="meta">
+                    <div class="date" title="Thu Jan 9 2020 20:34:31 CST">Jan 9, 2020</div>
                     
-                        <li class="groupby">Jan, 2020</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Jan 10, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C/"><span>Matlab学习_矩阵与向量操作</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jan 9, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/"><span>YAML与TOML</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jan 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"><span>多变量线性回归</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jan 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E9%99%8D%E4%BD%8E%E6%8D%9F%E5%A4%B1%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/"><span>降低损失：梯度下降法</span></a>
-    
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Jan 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"><span>单变量线性回归</span></a>
-    
-</li>
-
                         
                     
-                    </ul>
-
                     
-                        <a href="./blog/" class="see-more">See more ...</a>
+                    <div class="reading-time middot">1 minute read</div>
                     
-                
+                    
+                      <div class="tags">
+                    
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
                 </div>
-            
-
-            <div class="best-posts">
-            
-            
             </div>
+            <div class="markdown">
+                
+    
+    
+
+<h1 id="yaml">YAML</h1>
+
+<p>YAML 是 &ldquo;YAML Ain&rsquo;t a Markup Language&rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&rdquo;Yet Another Markup Language&rdquo;（仍是一种标记语言）。</p>
+
+<p>YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲</p>
+
+<p>YAML 的配置文件后缀为 <code>.yml</code></p>
+
+<h2 id="基本语法">基本语法</h2>
+
+<ul>
+<li>大小写敏感</li>
+<li>使用缩进表示层级关系</li>
+<li><strong>缩进不允许使用tab，只允许空格</strong></li>
+<li>缩进的<strong>空格数不重要</strong>，只要相同层级的元素左对齐即可</li>
+<li>&rsquo;#&lsquo;表示注释</li>
+</ul>
+
+<h2 id="数据类型">数据类型</h2>
+
+<ul>
+<li>对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary）</li>
+<li>数组：一组按次序排列的值，又称为序列（sequence） / 列表（list）</li>
+<li>纯量（scalars）：单个的、不可再分的值</li>
+</ul>
+
+<h2 id="对象">对象</h2>
+
+<p>对象键值对使用冒号结构表示 <code>key: value</code>，冒号后面要加一个空格。</p>
+
+<h1 id="toml">TOML</h1>
+
+<p>TOML的全称是 &ldquo;Tom&rsquo;s Obvious, Minimal Language&rdquo;，因为它的作者是 GitHub　联合创始人　Tom Preston-Werner 。</p>
+
+<p>TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可以无歧义地被映射为哈希表，从而被多种语言解析。</p>
+
+<h2 id="基本语法-1">基本语法</h2>
+
+<ul>
+<li>大小写敏感</li>
+<li>同样使用缩进表示层级关系</li>
+<li>缩进<strong>可以使用空格，也可以使用Tab</strong></li>
+<li>可以在数组中换行</li>
+<li>&rsquo;#&lsquo;表示注释</li>
+</ul>
+
+<h2 id="对象-1">对象</h2>
+
+<p>对象键值对使用等号的结构 <code>key = value</code></p>
+
+<h2 id="字符串">字符串</h2>
+
+<p>字符串和 JSON 的定义一致，只有一点除外：　TOML 要求使用　UTF-8 编码。</p>
+
+<h2 id="数组">数组</h2>
+
+<p>数组使用方括号包裹。空格会被忽略。元素使用逗号分隔。注意，不允许混用数据类型。</p>
+
+<pre><code class="language-toml">[ 1, 2, 3 ]
+[ &quot;red&quot;, &quot;yellow&quot;, &quot;green&quot; ]
+[ [ 1, 2 ], [3, 4, 5] ]
+[ [ 1, 2 ], [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] ] # 这是可以的。
+[ 1, 2.0 ] # 注意：这是不行的。
+</code></pre>
+
+<p>数组可以多行。也就是说，除了空格之外，方括号间的换行也会被忽略。在关闭方括号前的最终项后的逗号是允许的。</p>
+
+<p>如果内容文件在两行<code>---</code>之间设置了前题变量，则该文件为YAML格式。否则，内容文件将在两行<code>+++</code>之间设置优先事项变量，表明它是TOML格式的。</p>
+
+<hr />
+
+<blockquote>
+<p>参考 <a href="https://segmentfault.com/a/1190000000477752">Segment Fault</a></p>
+
+<p>参考<a href="https://www.runoob.com/w3cnote/yaml-intro.html">菜鸟教程</a></p>
+</blockquote>
+
+
+
+            </div>
+            
+            <br>
+            <div class="share">
+                  
+                  <a href="" class="ssk ssk-facebook"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-twitter"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-google-plus"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-linkedin"></a>
+                  
+            </div>
+            
+            
+            <br>
+            <div class="navigation">
+                
+                <div>
+                    <img class="icon" src="https://konosuba.xyz/img/back.svg" alt="back" />
+                    <a href="https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">多变量线性回归</a>
+                </div>
+                
+                <div style="width: 100%;"></div>
+                
+                <div>
+                    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C/">Matlab学习_矩阵与向量操作</a>
+                    <img class="icon" src="https://konosuba.xyz/img/next.svg" alt="next" />
+                </div>
+                
+            </div>
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9673215637005333" data-ad-slot="4311909247"
+              data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            
+            
+            
+
+            
+
+            
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 
@@ -1357,21 +1467,3 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 </body>
 </html>
 
-
-<script type="text/javascript" color="255,120,86" opacity='0.7' zIndex="-2" count="130" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js">
-</script>
-
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
