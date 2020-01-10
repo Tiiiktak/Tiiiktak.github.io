@@ -6,10 +6,30 @@
     <description>Recent content in Blog on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 10 Jan 2020 15:35:53 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jan 2020 17:55:20 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MATLAB学习_操作数据</title>
+      <link>https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Fri, 10 Jan 2020 17:55:20 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE/</guid>
+      <description>文件操作 导入文件 当我们打开 MATLAB 时，我们通常已经在一个默认路径中，这个路径是 MATLAB 的安装位置，使用 pwd 命令可以显示出 MATLAB 当前所处路径。
+使用cd命令，可以修改当前路径
+使用&amp;rsquo;ls&amp;rsquo;命令，可以列出当前路劲中所有文件
+要在MATLAB中导入数据文件，可以使用load命令，如：
+&amp;gt;&amp;gt; load myData.dat % 或load(&#39;myData.dat&#39;)  之后可以直接输入myData，MATLAB便会打印文件中的数据，此时该文件名便作为一个新变量名
+导出文件 退出 MATLAB 后，工作区变量不会保留。使用 save 命令保存数据以供将来使用，
+save myfile.mat  通过保存，系统会使用 .mat 扩展名将工作区保存在当前工作文件夹中一个名为 MAT 文件的压缩文件中。
+变量操作 “工作区”中包含了在MATLAB创建或从数据文件或其他程序导入的变量
+例如先在工作区中创建变量A和B
+A = eye(3) B = rand(2, 3)  使用who可以查看当前工作区中所有变量
+&amp;gt;&amp;gt; who 您的变量为: A B  还有一个whos，能更详细的查看
+&amp;gt;&amp;gt; whos Name Size Bytes Class Attributes A 3x3 72 double B 2x3 48 double  此外，在GUI窗口中也能查看</description>
+    </item>
     
     <item>
       <title>Matlab学习_矩阵与向量操作</title>
