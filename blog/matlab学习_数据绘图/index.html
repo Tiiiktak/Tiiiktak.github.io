@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s -- 编程学习与技术分享" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/" />
-<meta property="og:title" content="YAML与TOML" />
-<meta property="twitter:title" content="YAML与TOML">
+<meta property="og:url" content="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%95%B0%E6%8D%AE%E7%BB%98%E5%9B%BE/" />
+<meta property="og:title" content="MATLAB学习_数据绘图" />
+<meta property="twitter:title" content="MATLAB学习_数据绘图">
 
     <meta property="og:image" content="https://konosuba.xyz/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s -- 编程学习与技术分享 - YAML与TOML 
+     Tiiktak&#39;s -- 编程学习与技术分享 - MATLAB学习_数据绘图 
 
 </title>
-<link rel="canonical" href="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/">
+<link rel="canonical" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%95%B0%E6%8D%AE%E7%BB%98%E5%9B%BE/">
 
 
 <style media="screen">
@@ -1151,14 +1151,14 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    YAML与TOML
+    MATLAB学习_数据绘图
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Thu Jan 9 2020 20:34:31 CST">Jan 9, 2020</div>
+                    <div class="date" title="Sat Jan 11 2020 10:28:08 CST">Jan 11, 2020</div>
                     
                         
                     
@@ -1185,82 +1185,124 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
-<h1 id="yaml">YAML</h1>
+<p>当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。</p>
 
-<p>YAML 是 &ldquo;YAML Ain&rsquo;t a Markup Language&rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&rdquo;Yet Another Markup Language&rdquo;（仍是一种标记语言）。</p>
+<h2 id="二维绘图">二维绘图</h2>
 
-<p>YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲</p>
+<p>我们先来快速生成一些数据用来绘图。</p>
 
-<p>YAML 的配置文件后缀为 <code>.yml</code></p>
-
-<h2 id="基本语法">基本语法</h2>
-
-<ul>
-<li>大小写敏感</li>
-<li>使用缩进表示层级关系</li>
-<li><strong>缩进不允许使用tab，只允许空格</strong></li>
-<li>缩进的<strong>空格数不重要</strong>，只要相同层级的元素左对齐即可</li>
-<li>&rsquo;#&lsquo;表示注释</li>
-</ul>
-
-<h2 id="数据类型">数据类型</h2>
-
-<ul>
-<li>对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary）</li>
-<li>数组：一组按次序排列的值，又称为序列（sequence） / 列表（list）</li>
-<li>纯量（scalars）：单个的、不可再分的值</li>
-</ul>
-
-<h2 id="对象">对象</h2>
-
-<p>对象键值对使用冒号结构表示 <code>key: value</code>，冒号后面要加一个空格。</p>
-
-<h1 id="toml">TOML</h1>
-
-<p>TOML的全称是 &ldquo;Tom&rsquo;s Obvious, Minimal Language&rdquo;，因为它的作者是 GitHub　联合创始人　Tom Preston-Werner 。</p>
-
-<p>TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可以无歧义地被映射为哈希表，从而被多种语言解析。</p>
-
-<h2 id="基本语法-1">基本语法</h2>
-
-<ul>
-<li>大小写敏感</li>
-<li>同样使用缩进表示层级关系</li>
-<li>缩进<strong>可以使用空格，也可以使用Tab</strong></li>
-<li>可以在数组中换行</li>
-<li>&rsquo;#&lsquo;表示注释</li>
-</ul>
-
-<h2 id="对象-1">对象</h2>
-
-<p>对象键值对使用等号的结构 <code>key = value</code></p>
-
-<h2 id="字符串">字符串</h2>
-
-<p>字符串和 JSON 的定义一致，只有一点除外：　TOML 要求使用　UTF-8 编码。</p>
-
-<h2 id="数组">数组</h2>
-
-<p>数组使用方括号包裹。空格会被忽略。元素使用逗号分隔。注意，不允许混用数据类型。</p>
-
-<pre><code class="language-toml">[ 1, 2, 3 ]
-[ &quot;red&quot;, &quot;yellow&quot;, &quot;green&quot; ]
-[ [ 1, 2 ], [3, 4, 5] ]
-[ [ 1, 2 ], [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] ] # 这是可以的。
-[ 1, 2.0 ] # 注意：这是不行的。
+<pre><code class="language-matlab">&gt;&gt; t = [0:0.01:0.98];
+&gt;&gt; y1 = sin(2*pi*4*t);
 </code></pre>
 
-<p>数组可以多行。也就是说，除了空格之外，方括号间的换行也会被忽略。在关闭方括号前的最终项后的逗号是允许的。</p>
+<p>如果我们想要绘制正弦函数，只需输入<code>plot(t, y1)</code>，如图</p>
 
-<p>如果内容文件在两行<code>---</code>之间设置了前题变量，则该文件为YAML格式。否则，内容文件将在两行<code>+++</code>之间设置优先事项变量，表明它是TOML格式的。</p>
+<p><img src="https://i.loli.net/2020/01/11/2yHadu8CpKYvSbT.png" alt="正弦函数图像" /></p>
 
-<hr />
+<p>横轴是变量<code>t</code>，纵轴是<code>y1</code>，也就是我们刚刚所输出的正弦函数。</p>
+
+<p>让我们设置<code>y2</code></p>
+
+<pre><code class="language-matlab">&gt;&gt; y2 = cos(2*pi*4*t);
+&gt;&gt; plot(t, y2)
+</code></pre>
+
+<p><img src="https://i.loli.net/2020/01/11/glr9bhOyKYjIxV5.png" alt="余弦函数图像" /></p>
+
+<p>如果要<strong>同时表示</strong>正弦和余弦曲线。</p>
+
+<p>我们要做的就是，输入：<code>plot(t, y1)</code>，得到正弦函数，之后使用函数<code>hold on</code>，它的功能是将新的图像绘制在旧的之上</p>
+
+<p>再输入：<code>plot(t, y2)</code>，MATLAB会自动用不同颜色绘制新的曲线，我们也可以指定颜色，比如<code>plot(t, y2, 'r')</code>，<code>r</code>表示使用红色绘制<code>y2</code></p>
 
 <blockquote>
-<p>参考 <a href="https://segmentfault.com/a/1190000000477752">Segment Fault</a></p>
+<p>&lsquo;r&rsquo; 为线条设定。每个设定可包含表示线条颜色、样式和标记的字符。标记是在绘制的每个数据点上显示的符号，例如，+、o 或 * ；</p>
 
-<p>参考<a href="https://www.runoob.com/w3cnote/yaml-intro.html">菜鸟教程</a></p>
+<p>例如，&rsquo;g:*&rsquo; 请求绘制使用 * 标记的绿色点线。&rsquo;r&ndash;&lsquo;请求红色虚线</p>
 </blockquote>
+
+<p>还可以使用命令<code>xlabel('time')</code>标记X轴，输入<code>ylabel('value')</code>标记Y轴的值。</p>
+
+<p><img src="https://i.loli.net/2020/01/11/KatZSbx36ws9ghq.png" alt="两个函数曲线" /></p>
+
+<p>同时我们也可以标记这两条函数曲线，用命令 <code>legend('sin','cos')</code>将这个图例放在右上方，表示这两条曲线表示的内容。最后输入<code>title('myplot')</code>，在图像的顶部显示这幅图的标题。</p>
+
+<p><img src="https://i.loli.net/2020/01/11/4hOkq5ZoyD2lrJP.png" alt="两函数曲线带注释标题" /></p>
+
+<p>使用<code>close</code>命令可以关掉图像</p>
+
+<blockquote>
+<p>可以为图像标号</p>
+
+<ul>
+<li><p>使用<code>figure(1); plot(t, y1);</code>将显示第一张图，绘制了<code>y1-t</code></p></li>
+
+<li><p>使用<code>figure(2); plot(t, y2);</code>将显示第一张图，绘制了<code>y2-t</code></p></li>
+</ul>
+</blockquote>
+
+<p><code>subplot</code>命令，我们使用<code>subplot(1,2,1)</code>，它将图像分为一个<code>1*2</code>的格子，也就是<strong>前两个参数</strong>，然后它使用第一个格子，也就是最后一个参数1的意思。</p>
+
+<p>之后键入<code>plot(t, y1)</code>，<code>y1-t</code>图显示在第一个格子；</p>
+
+<p>使用<code>subplot(1, 2, 2); plot(t, y2)</code>，<code>y2-t</code>图显示在第二个格子</p>
+
+<p><img src="https://i.loli.net/2020/01/11/Kj8MVEBHXTyhfLG.png" alt="sublot_demo" /></p>
+
+<p>还有一个命令，可以改变轴的刻度，比如改成<code>[0.5 1 -1 1]</code>，输入命令：<code>axis([0.5 1 -1 1])</code>也就是设置了<strong>右边图的轴和轴的范围</strong>。具体而言，它将右图中的横轴的范围调整至0.5到1，竖轴的范围为-1到1。</p>
+
+<p><img src="https://i.loli.net/2020/01/11/waom3TFQYuXNjyx.png" alt="axis_demo" /></p>
+
+<p><code>clf</code>命令可以清除当前的Figure</p>
+
+<h2 id="imagesc">imagesc</h2>
+
+<p>首先我们设置A等于一个5×5的magic方阵：</p>
+
+<pre><code class="language-matlab">&gt;&gt; A = magic(5)
+A =
+    17    24     1     8    15
+    23     5     7    14    16
+     4     6    13    20    22
+    10    12    19    21     3
+    11    18    25     2     9
+</code></pre>
+
+<p>可以通过<code>imagesc(A)</code>来可视化矩阵，它将会绘制一个5 * 5的矩阵，一个5 * 5的彩色格图，不同的颜色对应A矩阵中的不同值</p>
+
+<p>还可以使用函数<code>colorbar</code>：使用一个更复杂的命令 <code>imagesc(A),colorbar,colormap gray</code>。这实际上是在同一时间运行三个命令：运行<code>imagesc</code>，然后运行<code>colorbar</code>，然后运行<code>colormap gray</code>。</p>
+
+<p>它生成了一个颜色图像，一个灰度分布图，并在右边也加入一个颜色条。所以这个颜色条显示不同深浅的颜色所对应的值。</p>
+
+<p><img src="https://i.loli.net/2020/01/11/KmjUapchQ1DEOsn.png" alt="imagesc_demo_1" /></p>
+
+<p>可以看到在不同的方格，它对应于一个不同的灰度。</p>
+
+<p>输入<code>imagesc(magic(15)),colorbar,colormap gray</code>，获得一幅15*15的magic方阵值图</p>
+
+<p><img src="https://i.loli.net/2020/01/11/dHcLE5PvBfaORQ3.png" alt="imagesc_demo_2" /></p>
+
+<h2 id="三维绘图">三维绘图</h2>
+
+<p>三维图通常显示一个由带两个变量的函数（即 z = f (x,y)）定义的曲面图。</p>
+
+<p>要计算 z，首先使用 <code>meshgrid</code> 在此函数的域中创建一组 (x,y) 点。</p>
+
+<pre><code class="language-matlab">&gt;&gt; [X,Y] = meshgrid(-2:.2:2); 
+&gt;&gt; Z = X .* exp(-X.^2 - Y.^2);
+</code></pre>
+
+<blockquote>
+<p>meshgrid函数生成的X，Y是大小相等的矩阵</p>
+</blockquote>
+
+<p>然后创建曲面图</p>
+
+<p><code>surf(X, Y, Z)</code></p>
+
+<p><img src="https://i.loli.net/2020/01/11/bBHtWCr3euZhGIT.png" alt="surf_demo" /></p>
+
+<p>surf 函数及其伴随函数 mesh 以三维形式显示曲面图。surf 使用颜色显示曲面图的连接线和面。mesh 生成仅以颜色标记连接定义点的线条的线框曲面图。</p>
 
 
 
@@ -1288,13 +1330,13 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                 
                 <div>
                     <img class="icon" src="https://konosuba.xyz/img/back.svg" alt="back" />
-                    <a href="https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">多变量线性回归</a>
+                    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/">MATLAB学习_字符与字符串</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
                 
                 <div>
-                    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C/">MATLAB学习_矩阵与向量操作</a>
+                    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5forwhileif/">MATLAB学习_控制语句:for,while,if</a>
                     <img class="icon" src="https://konosuba.xyz/img/next.svg" alt="next" />
                 </div>
                 

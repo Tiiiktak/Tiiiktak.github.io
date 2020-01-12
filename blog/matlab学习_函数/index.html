@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s -- 编程学习与技术分享" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/" />
-<meta property="og:title" content="YAML与TOML" />
-<meta property="twitter:title" content="YAML与TOML">
+<meta property="og:url" content="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%87%BD%E6%95%B0/" />
+<meta property="og:title" content="MATLAB学习_函数" />
+<meta property="twitter:title" content="MATLAB学习_函数">
 
     <meta property="og:image" content="https://konosuba.xyz/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s -- 编程学习与技术分享 - YAML与TOML 
+     Tiiktak&#39;s -- 编程学习与技术分享 - MATLAB学习_函数 
 
 </title>
-<link rel="canonical" href="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/">
+<link rel="canonical" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%87%BD%E6%95%B0/">
 
 
 <style media="screen">
@@ -1151,14 +1151,14 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                     <div class="page-heading">
 
     
-    YAML与TOML
+    MATLAB学习_函数
     
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Thu Jan 9 2020 20:34:31 CST">Jan 9, 2020</div>
+                    <div class="date" title="Sat Jan 11 2020 15:35:44 CST">Jan 11, 2020</div>
                     
                         
                     
@@ -1185,82 +1185,46 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
-<h1 id="yaml">YAML</h1>
+<h1 id="自定义函数">自定义函数</h1>
 
-<p>YAML 是 &ldquo;YAML Ain&rsquo;t a Markup Language&rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&rdquo;Yet Another Markup Language&rdquo;（仍是一种标记语言）。</p>
+<p>MATLAB可以在单独的<code>.m</code>文件中定义函数</p>
 
-<p>YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲</p>
+<p>比如有一文件<code>myadd.m</code>，文件中内容为</p>
 
-<p>YAML 的配置文件后缀为 <code>.yml</code></p>
+<pre><code class="language-matlab">function y = myadd(a, b)
 
-<h2 id="基本语法">基本语法</h2>
+% 这里可以写函数的使用说明，前面以%开头
+% 在工作区中，help myadd将显示此处的说明
 
-<ul>
-<li>大小写敏感</li>
-<li>使用缩进表示层级关系</li>
-<li><strong>缩进不允许使用tab，只允许空格</strong></li>
-<li>缩进的<strong>空格数不重要</strong>，只要相同层级的元素左对齐即可</li>
-<li>&rsquo;#&lsquo;表示注释</li>
-</ul>
+y = a + b;
 
-<h2 id="数据类型">数据类型</h2>
-
-<ul>
-<li>对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary）</li>
-<li>数组：一组按次序排列的值，又称为序列（sequence） / 列表（list）</li>
-<li>纯量（scalars）：单个的、不可再分的值</li>
-</ul>
-
-<h2 id="对象">对象</h2>
-
-<p>对象键值对使用冒号结构表示 <code>key: value</code>，冒号后面要加一个空格。</p>
-
-<h1 id="toml">TOML</h1>
-
-<p>TOML的全称是 &ldquo;Tom&rsquo;s Obvious, Minimal Language&rdquo;，因为它的作者是 GitHub　联合创始人　Tom Preston-Werner 。</p>
-
-<p>TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可以无歧义地被映射为哈希表，从而被多种语言解析。</p>
-
-<h2 id="基本语法-1">基本语法</h2>
-
-<ul>
-<li>大小写敏感</li>
-<li>同样使用缩进表示层级关系</li>
-<li>缩进<strong>可以使用空格，也可以使用Tab</strong></li>
-<li>可以在数组中换行</li>
-<li>&rsquo;#&lsquo;表示注释</li>
-</ul>
-
-<h2 id="对象-1">对象</h2>
-
-<p>对象键值对使用等号的结构 <code>key = value</code></p>
-
-<h2 id="字符串">字符串</h2>
-
-<p>字符串和 JSON 的定义一致，只有一点除外：　TOML 要求使用　UTF-8 编码。</p>
-
-<h2 id="数组">数组</h2>
-
-<p>数组使用方括号包裹。空格会被忽略。元素使用逗号分隔。注意，不允许混用数据类型。</p>
-
-<pre><code class="language-toml">[ 1, 2, 3 ]
-[ &quot;red&quot;, &quot;yellow&quot;, &quot;green&quot; ]
-[ [ 1, 2 ], [3, 4, 5] ]
-[ [ 1, 2 ], [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] ] # 这是可以的。
-[ 1, 2.0 ] # 注意：这是不行的。
+end %可以略去
 </code></pre>
 
-<p>数组可以多行。也就是说，除了空格之外，方括号间的换行也会被忽略。在关闭方括号前的最终项后的逗号是允许的。</p>
+<p>第一行<code>function y = myadd(a, b)</code> 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量<code>y</code>里。</p>
 
-<p>如果内容文件在两行<code>---</code>之间设置了前题变量，则该文件为YAML格式。否则，内容文件将在两行<code>+++</code>之间设置优先事项变量，表明它是TOML格式的。</p>
-
-<hr />
+<p>另外，还可以得知这个函数有两个参数<code>a</code>和<code>b</code>，以及定义的函数体，即 <code>y = a + b</code></p>
 
 <blockquote>
-<p>参考 <a href="https://segmentfault.com/a/1190000000477752">Segment Fault</a></p>
+<p>myadd是函数名。以m文件定义的函数必须保存为函数名的形式</p>
 
-<p>参考<a href="https://www.runoob.com/w3cnote/yaml-intro.html">菜鸟教程</a></p>
+<p>要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。</p>
 </blockquote>
+
+<h2 id="调用方式">调用方式</h2>
+
+<p>只需在MATLAB中直接使用函数名调用，MATLAB会自动在其搜索路径中找到对应<code>.m</code>文件，例如</p>
+
+<pre><code class="language-matlab">&gt;&gt; c = myadd(1, 2)
+c =
+     3
+</code></pre>
+
+<h2 id="more">MORE</h2>
+
+<p>MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为</p>
+
+<p><code>[y1, y2...] = function_name(x1, x2...)</code></p>
 
 
 
@@ -1288,15 +1252,10 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                 
                 <div>
                     <img class="icon" src="https://konosuba.xyz/img/back.svg" alt="back" />
-                    <a href="https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">多变量线性回归</a>
+                    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5forwhileif/">MATLAB学习_控制语句:for,while,if</a>
                 </div>
                 
                 <div style="width: 100%;"></div>
-                
-                <div>
-                    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C/">MATLAB学习_矩阵与向量操作</a>
-                    <img class="icon" src="https://konosuba.xyz/img/next.svg" alt="next" />
-                </div>
                 
             </div>
             
