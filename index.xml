@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 11 Jan 2020 15:35:44 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jan 2020 21:00:17 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,23 @@ Archives 基于OpenCV的答题卡识别
 Contact Me  QQ: 1067475613
  Mail: dengsh268@outlook.com
     (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>Java入门</title>
+      <link>https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sun, 12 Jan 2020 21:00:17 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/</guid>
+      <description> Java 开发环境配置 首先我们需要下载java开发工具包JDK，下载地址
+下载对应版本
+之后安装一路下一步即可
+安装成功后配置环境变量
+参照这个即可
+配置完成后，在cmd输入java -version、java、javac，没有报错，则配置成功
+基础语法 Java是一门面向对象的语言，因此它就有类与对象、方法、实例变量
+ 对象：对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。 类：类是一个模板，它描述一类对象的行为和状态。 方法：方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。 实例变量：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。  基本语法  大小写敏感 类名首字母大写，&amp;rdquo;驼峰式&amp;rdquo;命名 源文件名必须与类名相同 所有的 Java 程序由 public static void main(String []args) 方法开始执行  Hello World public class HelloWorld { public static void main(String []args) { System.out.println(&amp;quot;Hello World&amp;quot;); //自动换行 } }  标识符  所有的标识符都应该以字母（A-Z 或者 a-z）,美元符（$）、或者下划线（_）开始 非法标识符举例：123abc、-salary  变量 主要有以下几种变量
+ 局部变量 类变量（静态变量） 成员变量（非静态变量）  Java 源程序与编译型运行区别 </description>
     </item>
     
     <item>

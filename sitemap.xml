@@ -9,19 +9,24 @@
   
   <url>
     <loc>https://konosuba.xyz/blog/</loc>
-    <lastmod>2020-01-11T15:35:44+08:00</lastmod>
+    <lastmod>2020-01-12T21:00:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2020-01-12T21:00:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/</loc>
+    <lastmod>2020-01-12T21:00:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2020-01-11T15:35:44+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/</loc>
-    <lastmod>2020-01-11T15:35:44+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
