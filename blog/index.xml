@@ -132,6 +132,27 @@ A = eye(3) B = rand(2, 3)  使用who可以查看当前工作区中所有变量
     </item>
     
     <item>
+      <title>逻辑回归Logistic Regression</title>
+      <link>https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92logistic-regression/</link>
+      <pubDate>Fri, 10 Jan 2020 10:07:34 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92logistic-regression/</guid>
+      <description>分类问题 在分类问题中，我们需要预测的变量y是离散的值，我们将学习一种叫做逻辑回归 (Logistic Regression) 的算法
+在分类问题中，我们尝试预测的是结果是否属于某一个类（例如正确或错误）。
+将因变量(dependent variable)可能属于的两个类分别称为负向类（negative class）和正向类（positive class），则因变量y ∈ 0,1 ，其中 0 表示负向类，1 表示正向类。
+如果我们要用线性回归算法来解决一个分类问题，对于分类，y取值为 0 或者1，但如果你使用的是线性回归，那么假设函数的输出值可能远大于 1，或者远小于0，即使所有训练样本的标签y都等于 0 或 1。尽管我们知道标签应该取值0 或者1，但是如果算法得到的值远大于1或者远小于0的话，就会感觉很奇怪。
+所以我们在接下来的要研究的算法就叫做逻辑回归算法，这个算法的性质是：它的输出值永远在0到 1 之间
+逻辑回归算法是分类算法，我们将它作为分类算法使用。有时候可能因为这个算法的名字中出现了“回归”使你感到困惑，但逻辑回归算法实际上真的是一种分类算法
+假说表示 我们引入一个新的模型，逻辑回归，该模型的输出变量范围始终在0和1之间。
+逻辑回归模型的假设是：h_theta(x) = g(theta&#39;X) 其中:X代表特征向量，g代表逻辑函数（logistic function)是一个常用的S形函数（Sigmoid function），公式为：g(z) = 1 / (1 + exp(-z)
+Python代码实现
+import numpy as np def sigmoid(z): return 1 / (1 + np.exp(-z))  该函数图像为
+合起来，我们得到逻辑回归模型的假设：
+对模型的理解：g(z) = 1 / (1 + exp(-z)
+h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计算输出变量=1的可能性（estimated probablity）即h_theta(x) = P(y=1 | x;theta)</description>
+    </item>
+    
+    <item>
       <title>YAML与TOML</title>
       <link>https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/</link>
       <pubDate>Thu, 09 Jan 2020 20:34:31 +0800</pubDate>
