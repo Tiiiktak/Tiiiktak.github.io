@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 13 Jan 2020 17:29:56 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 07 Feb 2020 01:04:44 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,96 @@ Archives 基于OpenCV的答题卡识别
 Contact Me  QQ: 1067475613
  Mail: dengsh268@outlook.com
     (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>神经网络模型的学习曲线</title>
+      <link>https://konosuba.xyz/blog/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</link>
+      <pubDate>Fri, 07 Feb 2020 01:04:44 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</guid>
+      <description> 学习曲线：样本数量与误差 绘制 样本数量m 与 训练误差、交叉验证误差 的关系曲线
+高偏差（欠拟合）high bias 高方差（过拟合）high variance </description>
+    </item>
+    
+    <item>
+      <title>【应用机器学习】正则化与偏差、方差</title>
+      <link>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</link>
+      <pubDate>Fri, 07 Feb 2020 00:56:29 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</guid>
+      <description> 在我们在训练模型的过程中，一般会使用一些正则化方法来防止过拟合。
+但是我们可能会正则化的程度太高或太小了，即我们在选择λ的值时也需要思考与之前选择多项式模型次数类似的问题。
+我们选择一系列的想要测试的λ值，比如这里选择 0-10之间的值，通常呈现2倍关系（如：0,0.01,0.02,0.04,0.08,0.15,0.32,0.64,1.28,2.56,5.12,10 共12个）。
+我们同样把数据分为训练集、交叉验证集和测试集。
+选择λ的方法  使用训练集训练出12个不同程度正则化的模型
+ 用12个模型分别对交叉验证集计算的出交叉验证误差
+ 选择得出交叉验证误差最小的模型
+ 运用步骤3中选出模型对测试集计算得出推广误差
+  我们也可以同时将训练集和交叉验证集模型的代价函数误差与λ的值绘制在一张图表上：
+ 当λ较小时，训练集误差较小（过拟合）而交叉验证集误差较大
+随着λ的增加，训练集误差不断增加（欠拟合），而交叉验证集误差则是先减小后增加
+ </description>
+    </item>
+    
+    <item>
+      <title>【应用机器学习】诊断偏差与方差</title>
+      <link>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</link>
+      <pubDate>Fri, 07 Feb 2020 00:51:21 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</guid>
+      <description> 当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是欠拟合，要么是过拟合问题。
+我们通常会通过将训练集和交叉验证集的代价函数误差与多项式的次数绘制在同一张图表上来帮助分析：
+ 对于训练集，当 d 较小时，模型拟合程度更低，误差较大；随着d 的增长，拟合程度提高，误差减小。
+ 对于交叉验证集，当 d 较小时，模型拟合程度低，误差较大；但是随着 d 的增长，误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。
+  判断高偏差（欠拟合）或高方差（过拟合）  训练集误差和交叉验证集误差近似时：偏差/欠拟合
+ ​交叉验证集误差远大于训练集误差时：方差/过拟合
+  </description>
+    </item>
+    
+    <item>
+      <title>【应用机器学习】模型选择和训练、验证、测试集</title>
+      <link>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%9B%86/</link>
+      <pubDate>Fri, 07 Feb 2020 00:41:34 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%9B%86/</guid>
+      <description> 1. 重新划分数据集 其中60%作为训练集，20%作为交叉验证集（cross validation），20%作为测试集
+2. 可以计算出三类数据的误差函数 3. 使用交叉验证集选择模型 选出交叉验证误差最小的一个模型
+4. 利用测试集计算出推广误差 </description>
+    </item>
+    
+    <item>
+      <title>【应用机器学习】评估一个假设</title>
+      <link>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</link>
+      <pubDate>Fri, 07 Feb 2020 00:34:04 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</guid>
+      <description>检验是否过拟合 将数据分成训练集和测试集 通常用70%的数据作为训练集，用剩下30%的数据作为测试集。
+很重要的一点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行洗牌，然后再分成训练集和测试集。
+使用训练集对模型进行训练 可以得到一系列参数 theta
+使用测试集对模型进行测试 使用测试集数据对模型进行测试，有两种方式计算误差
+线性回归模型 利用测试集数据计算代价函数J
+逻辑回归模型 除前述方法，还可使用一种 错误分类(misclassification error)(也称0/1错误分类 zero one misclassification error) 的方法</description>
+    </item>
+    
+    <item>
+      <title>训练神经网络的基本步骤</title>
+      <link>https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</link>
+      <pubDate>Fri, 07 Feb 2020 00:09:57 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</guid>
+      <description>1. 选择一种网络结构 即选择神经元之间的连通模式
+ 输入层与输出层单元个数由具体特征决定
+ 隐藏层通常默认为1层；若为多层，则每个隐藏层单元个数应相等。通常隐藏层单元数越多越好
+ 隐藏层单元数应与输入特征数相匹配
+  2. 随机初始化权重 通常把权重值初始化为接近0的很小的数
+3. 执行前向传播FP算法 获得对应于每一个 xi 的 h_theta(xi)​
+4. 通过代码计算出代价函数 J(theta) 5. 执行反向传播算法 获得 J(theta) 对于 theta 的偏导​，即
+ 步骤 3-5
+ 6. 进行梯度检查  比较 通过反向传播得到的偏导数 与 通过数值计算得到的估计值
+ 确保两种方法得到基本接近的两个值​
+ 注意在检查完毕后关闭梯度检查
+  7. 利用最优化算法与反向传播算法最小化 J(theta) 比如，使用最小梯度法</description>
     </item>
     
     <item>
