@@ -14,9 +14,9 @@
 <meta property="og:site_name" content="Tiiktak&#39;s -- 编程学习与技术分享" />
 <meta property="og:locale" content="zh-CN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://konosuba.xyz/blog/" />
-<meta property="og:title" content="Blog" />
-<meta property="twitter:title" content="Blog">
+<meta property="og:url" content="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_4_%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E5%88%86%E7%B1%BB%E5%99%A8/" />
+<meta property="og:title" content="Pytorch学习笔记_4_训练一个分类器" />
+<meta property="twitter:title" content="Pytorch学习笔记_4_训练一个分类器">
 
     <meta property="og:image" content="https://konosuba.xyz/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -28,10 +28,10 @@
 <title>
 
 
-     Tiiktak&#39;s -- 编程学习与技术分享 - Blog 
+     Tiiktak&#39;s -- 编程学习与技术分享 - Pytorch学习笔记_4_训练一个分类器 
 
 </title>
-<link rel="canonical" href="https://konosuba.xyz/blog/">
+<link rel="canonical" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_4_%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E5%88%86%E7%B1%BB%E5%99%A8/">
 
 
 <style media="screen">
@@ -1066,8 +1066,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://konosuba.xyz/blog/index.xml" rel="alternate" type="application/rss+xml" title="Tiiktak&#39;s -- 编程学习与技术分享" />
-
 
 
 </head>
@@ -1141,712 +1139,422 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-9673215637005333", enable_page_level_ads: true }); </script>
-<div class="main column">
+
+
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Blog</div>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
-                
+    
+    Pytorch学习笔记_4_训练一个分类器
+    
 
-                
-                <ul>
+</div>
+
+                </div>
+                <div class="meta">
+                    <div class="date" title="Thu Feb 13 2020 18:37:46 CST">Feb 13, 2020</div>
                     
-                      
-                        <li class="groupby">Feb, 2020</li>
                         
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 14, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/pytorch_torchvision/"><span>Pytorch_torchvision</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 13, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_4_%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E5%88%86%E7%B1%BB%E5%99%A8/"><span>Pytorch学习笔记_4_训练一个分类器</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 12, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/pytorch_linear/"><span>Pytorch_linear</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 12, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/pytorch_nn.conv2d/"><span>Pytorch_nn.Conv2d</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 12, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1_super%E5%87%BD%E6%95%B0/"><span>Python面向对象_super()函数</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 12, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_3_%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"><span>Pytorch学习笔记_3_构建一个神经网络</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 11, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_2_autograd%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E6%9C%BA%E5%88%B6/"><span>Pytorch学习笔记_2_Autograd自动求导机制</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 11, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_1_tensor%E5%BC%A0%E9%87%8F/"><span>Pytorch学习笔记_1_tensor张量</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/"><span>神经网络模型的学习曲线</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/"><span>【应用机器学习】正则化与偏差、方差</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/"><span>【应用机器学习】诊断偏差与方差</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%9B%86/"><span>【应用机器学习】模型选择和训练、验证、测试集</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/"><span>【应用机器学习】评估一个假设</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Feb 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/"><span>训练神经网络的基本步骤</span></a>
-    
-</li>
-
-                          
-                        
-                      
                     
-                      
-                        <li class="groupby">Jan, 2020</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 13, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96-regularization/"><span>正则化 Regularization</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 13, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92logistic-regression/"><span>逻辑回归Logistic Regression</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 12, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/"><span>Java入门</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 11, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%87%BD%E6%95%B0/"><span>MATLAB学习_函数</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 11, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5forwhileif/"><span>MATLAB学习_控制语句:for,while,if</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 11, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%95%B0%E6%8D%AE%E7%BB%98%E5%9B%BE/"><span>MATLAB学习_数据绘图</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 11, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/"><span>MATLAB学习_字符与字符串</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 10, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE/"><span>MATLAB学习_操作数据</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 10, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C/"><span>MATLAB学习_矩阵与向量操作</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 9, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/"><span>YAML与TOML</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"><span>多变量线性回归</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E9%99%8D%E4%BD%8E%E6%8D%9F%E5%A4%B1%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/"><span>降低损失：梯度下降法</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 7, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"><span>单变量线性回归</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jan 6, 2020</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%88%86%E7%B1%BBclassification%E4%B8%8E%E5%9B%9E%E5%BD%92regression%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E5%85%B3%E7%B3%BB/"><span>分类(classification)与回归(regression)的区别与关系</span></a>
-    
-</li>
-
-                          
-                        
-                      
                     
-                      
-                        <li class="groupby">Dec, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Dec 30, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/c-%E8%A7%A3%E5%86%B3%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98/"><span>C&#43;&#43;解决假币问题</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Dec 3, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E8%B5%84%E6%BA%90%E5%B9%B3%E5%8F%B0%E7%94%A8crul%E5%81%9A%E9%93%BE%E6%8E%A5%E4%B8%BB%E5%8A%A8%E6%8E%A8%E9%80%81/"><span>百度搜索资源平台用crul做链接主动推送</span></a>
-    
-</li>
-
-                          
-                        
-                      
+                    <div class="reading-time middot">4 minute read</div>
                     
-                      
-                        <li class="groupby">Nov, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Nov 20, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/tesseract-ocr%E6%A0%B7%E6%9C%AC%E8%AE%AD%E7%BB%83%E6%96%B9%E6%B3%95/"><span>Tesseract-OCR样本训练方法</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Nov 20, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/tesseract-ocr%E5%AE%89%E8%A3%85%E4%B8%8Epython%E4%B8%AD%E4%BD%BF%E7%94%A8/"><span>Tesseract-OCR安装与python中使用</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Nov 7, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8mls%E7%A7%BB%E5%8A%A8%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%AF%B9%E5%9B%BE%E5%83%8F%E5%8F%98%E5%BD%A2/"><span>利用MLS移动最小二乘法对图像变形</span></a>
-    
-</li>
-
-                          
-                        
-                      
                     
-                      
-                        <li class="groupby">Oct, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Oct 23, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0%E5%88%A9%E7%94%A8opencv%E7%9A%84mls%E5%9B%BE%E5%83%8F%E6%89%AD%E6%9B%B2%E5%8F%98%E5%BD%A2%E5%AE%9E%E7%8E%B0/"><span>【项目笔记】利用OpenCV的MLS图像扭曲变形实现</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Oct 20, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E8%BD%AC%E8%BD%BD%E8%B0%B7%E6%AD%8C%E5%B0%8F%E5%A7%90%E5%A7%90%E6%90%9E%E5%87%BA%E9%AD%94%E6%B3%95%E7%94%BB%E6%9D%BF%E4%BD%A0%E9%9A%8F%E4%BE%BF%E7%94%BB%E8%A1%A5%E4%B8%8D%E9%BD%90%E7%AE%97ai%E8%BE%93/"><span>【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Oct 11, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/"><span>第一个TensorFlow模型：摄氏度转换为华氏度</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Oct 10, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/"><span>Python中eval()与format()</span></a>
-    
-</li>
-
-                          
-                        
-                      
+                      <div class="tags">
                     
-                      
-                        <li class="groupby">Sep, 2019</li>
-                        
+                        <ul>
                           
-                            <li class="post-item">
-    <span class="meta">Sep 26, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/ml%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/"><span>ML学习速率</span></a>
-    
-</li>
-
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
                           
-                        
                           
-                            <li class="post-item">
-    <span class="meta">Sep 19, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/"><span>Python文本进度条</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Sep 18, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/"><span>为什么要定义Mat_类</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Sep 16, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python-split%E5%87%BD%E6%95%B0/"><span>Python split()函数</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Sep 7, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/"><span>Zen of Python -Python之禅</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Sep 7, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/"><span>Python文件操作</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Sep 7, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/"><span>Python调试</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Sep 6, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"><span>Python错误处理</span></a>
-    
-</li>
-
-                          
-                        
-                      
-                    
-                      
-                        <li class="groupby">Jul, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jul 9, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/"><span>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jul 8, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/"><span>Socket通信原理(3)</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jul 8, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/"><span>Socket通信原理(2)</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jul 7, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/"><span>Socket通信原理(1)</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jul 1, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/"><span>树莓派配置摄像头</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jul 1, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/"><span>树莓派安装opencv-4.1.0</span></a>
-    
-</li>
-
-                          
-                        
-                      
-                    
-                      
-                        <li class="groupby">Jun, 2019</li>
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 28, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/"><span>灰度重心法</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 26, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/shell%E5%AD%A6%E4%B9%A0/"><span>Shell学习</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 26, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/"><span>Vim学习</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 25, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/"><span>Linux文件</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 24, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/"><span>Linux操作学习 系统启动及目录</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 21, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"><span>Python面向对象</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 21, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"><span>Python函数式编程</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 21, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/"><span>算法复杂度</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 20, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/"><span>Python中set集合</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 20, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/"><span>Python中dict字典</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 20, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/"><span>Python常见数据类型——Tuple元组</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 20, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/"><span>Python常见数据类型——List列表</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/"><span>图像基础-图像矩阵</span></a>
-    
-</li>
-
-                          
-                        
-                          
-                            <li class="post-item">
-    <span class="meta">Jun 6, 2019</span>
-    
-    <a href="https://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"><span>图像基础-图像分类</span></a>
-    
-</li>
-
-                          
-                        
-                      
-                    
-                </ul>
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <div class="markdown">
+                
+    
+    
+
+<h1 id="关于数据">关于数据</h1>
+
+<p>一般来说，对于图像、文本、音频或视频数据，可以使用标准的Python包来将这些数据加载为<code>numpy array</code>，之后可以将这些<code>array</code>转换为<code>torch.*Tensor</code></p>
+
+<ul>
+<li>对于图像，<code>Pillow</code>、<code>OpenCV</code>包</li>
+<li>音频，<code>scipy</code>、<code>librosa</code>包</li>
+<li>文本，可以使用原始<code>Python</code>和<code>Cython</code>加载，或<code>NLKT</code>和<code>SpaCy</code></li>
+</ul>
+
+<p>特别的，对于视觉任务，有一个包<code>torchvision</code>，其中包含了处理类似Imagnet, CIFAR10, MNIST等常见数据集的方法，以及图像转换器，如<code>torchvision.datasets</code>和<code>torch.utils.data.DataLoader</code></p>
+
+<p><code>torchvision</code>包不仅提供了巨大的便利，也避免了代码的重复。</p>
+
+<p>在这里使用CIFAR10数据集，它有如下10个类别 ：‘airplane’, ‘automobile’, ‘bird’, ‘cat’, ‘deer’, ‘dog’, ‘frog’, ‘horse’, ‘ship’, ‘truck’。</p>
+
+<p>CIFAR-10的图像都是 3x32x32 大小的，即，3颜色通道，32x32像素。</p>
+
+<p><img src="https://i.loli.net/2020/02/13/XdwFTbis2NgImfl.png" alt="cifar10" /></p>
+
+<h1 id="训练一个图像分类器">训练一个图像分类器</h1>
+
+<ol>
+<li>使用<code>torchvision</code>加载和归一化CIFAR10训练集和测试集</li>
+<li>定义一个卷积神经网络</li>
+<li>定义损失函数</li>
+<li>用训练集训练网络</li>
+<li>用测试集测试网络</li>
+</ol>
+
+<h2 id="1-读取和归一化-cifar10">1.读取和归一化 CIFAR10</h2>
+
+<p>使用<code>torchvision</code>可以非常容易得加载CIFAR10</p>
+
+<pre><code class="language-python">import torch
+import torchvision
+import torchvision.transforms as transforms
+</code></pre>
+
+<p><code>torchvision</code>的输出是 [0,1]的PILImage图像，把它转化为归一化范围为[-1, 1]的张量</p>
+
+<pre><code class="language-python">transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+# 下载数据并加载到loader中
+trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2)
+
+testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
+testloader = torch.utils.data.DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
+
+classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+'''
+Output:
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data/cifar-10-python.tar.gz
+Extracting ./data/cifar-10-python.tar.gz to ./data
+Files already downloaded and verified
+'''
+</code></pre>
+
+<p>我们展示一些训练图像</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy
+
+def imshow(img):
+    img = img / 2 + 0.5 # 未归一化
+    npimg = img.numpy()
+    plt.imshow(np.transpose(npimg, (1, 2,0)))
+
+# 将数据转换为迭代器
+dataiter = iter(trainloader)
+images, labels = dataiter.next()
+
+# 展示图象
+imshow(torchvision.utils.make_grid(images))
+# 展示图像标签
+print(''.join('%5s' % classes[labels[j]] for j in range(4)))
+</code></pre>
+
+<p><img src="https://i.loli.net/2020/02/14/Tr3mXz987UR4Y6P.png" alt="traindata" /></p>
+
+<h2 id="2-定义一个卷积神经网络">2.定义一个卷积神经网络</h2>
+
+<p>从之前的[神经网络一节]()复制神经网络代码，并修改为输入3通道图像。</p>
+
+<pre><code class="language-python">import torch.nn as nn
+import torch.nn.functional as F
+
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 10)
+
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = x.view(-1, 16 * 5 * 5)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+
+net = Net()
+</code></pre>
+
+<h2 id="3-定义损失函数和优化器">3.定义损失函数和优化器</h2>
+
+<p>使用交叉熵作为损失函数，使用带动量的随机梯度下降优化</p>
+
+<pre><code class="language-python">import torch.optim as optim
+
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(net.parameters(), lr=0.01, momentum=0.9)
+</code></pre>
+
+<h2 id="4-训练网络">4.训练网络</h2>
+
+<p>我们只需要在数据迭代器上循环，将数据输入给网络，并优化</p>
+
+<pre><code class="language-python">for epoch in range(2):
+    running_loss = 0.0
+    for i, data in enumerate(trainloader, 0):
+        inputs, labels = data
+
+        # 梯度置零
+        optimizer.zero_grad()
+
+        # 获得输出-&gt;计算损失-&gt;反向传播-&gt;优化
+        outputs = net(input)
+        loss = critertion(outputs, labels) 
+        loss.backward()
+        optimizer.step()
+
+        running_loss += loss.item()
+        if i % 2000 == 1999:
+            print('[%d, %5d] loss: %.3f' % (epoch+1, i+1, running_loss / 2000))
+            running_loss = 0.0
+
+print('Finished Training')
+'''
+Output:
+[1,  2000] loss: 2.216
+[1,  4000] loss: 1.863
+[1,  6000] loss: 1.669
+[1,  8000] loss: 1.565
+[1, 10000] loss: 1.524
+[1, 12000] loss: 1.440
+[2,  2000] loss: 1.396
+[2,  4000] loss: 1.350
+[2,  6000] loss: 1.349
+[2,  8000] loss: 1.293
+[2, 10000] loss: 1.312
+[2, 12000] loss: 1.270
+Finished Training
+'''
+</code></pre>
+
+<blockquote>
+<p>快速保存我们训练的模型:</p>
+
+<pre><code class="language-python">&gt; PATH = './cifar_net.pth'
+&gt; torch.save(net.state_dict(), PATH)
+&gt; ```
+
+## 5.用测试集测试网络
+
+我们在整个训练集上进行了2次训练，但是我们需要检查网络是否从数据集中学习到有用的东西。 通过预测神经网络输出的类别标签与实际情况标签进行对比来进行检测。 如果预测正确，我们把该样本添加到正确预测列表。 
+
+第一步，显示测试集中的图片并熟悉图片内容。
+
+```python
+dataiter = iter(testloader)
+images, labels = dataiter.next()
+
+# 显示图片
+imshow(torchvision.utils.make_grid(images))
+print('GroundTruth: ', ' '.join('%5s' % classes[labels[j]] for j in range(4)))
+</code></pre>
+</blockquote>
+
+<p><img src="https://i.loli.net/2020/02/14/bXLxa3WwH2cD7rC.png" alt="testdata" /></p>
+
+<p>再来看看神经网络预测的结果</p>
+
+<pre><code class="language-python">ouputs = net(images)
+
+# 输出是10个标签的概率，选取概率最高的那个标签
+_, predicted = torch.max(outputs, 1) # 返回每一行中最大值的元素 _ 及其索引 predicted
+
+print('Predicted: ', ' '.join('%5s' % classes[predicted[j]] for j in range(4)))
+'''
+Output:
+Predicted:    cat   car   car  ship
+'''
+</code></pre>
+
+<p>再看看网络在测试集上的结果：</p>
+
+<pre><code class="language-python">correct = 0
+total = 0
+with torch.no_grad():
+    for data in testloader:
+        images, labels = data
+        outputs = net(images)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+print('Accuracy of the network on the 10000 test images: %d %%' % (
+    100 * correct / total))
+'''
+Output:
+Accuracy of the network on the 10000 test images: 54 %
+'''
+</code></pre>
+
+<p>再分别看看不同标签的学习情况：</p>
+
+<pre><code class="language-python">class_correct = list(0. for i in range(10))
+class_total = list(0. for i in range(10))
+with torch.no_grad():
+    for data in testloader:
+        images, labels = data
+        outputs = net(images)
+        _, predicted = torch.max(outputs, 1)
+        c = (predicted == labels).squeeze()
+        for i in range(4):
+            label = labels[i]
+            class_correct[label] += c[i].item()
+            class_total[label] += 1
+
+
+for i in range(10):
+    print('Accuracy of %5s : %2d %%' % (
+        classes[i], 100 * class_correct[i] / class_total[i]))
+'''
+Output:
+Accuracy of plane : 56 %
+Accuracy of   car : 73 %
+Accuracy of  bird : 42 %
+Accuracy of   cat : 33 %
+Accuracy of  deer : 34 %
+Accuracy of   dog : 62 %
+Accuracy of  frog : 57 %
+Accuracy of horse : 62 %
+Accuracy of  ship : 52 %
+Accuracy of truck : 73 %
+'''
+</code></pre>
+
+<h1 id="在gpu上训练">在GPU上训练</h1>
+
+<p>把一个神经网络移动到GPU上训练就像把一个Tensor转换GPU上一样简单。并且这个操作会递归遍历有所模块，并将其参数和缓冲区转换为CUDA张量。</p>
+
+<pre><code class="language-python">device = torch.device(&quot;cuda:0&quot; if torch.cuda.is_available() else &quot;cpu&quot;)
+
+# 确认我们的电脑支持CUDA，然后显示CUDA信息：
+
+print(device)
+# Output:
+# cuda:0
+</code></pre>
+
+<p>假定<code>device</code>是CUDA设备。</p>
+
+<p>然后这些方法将递归遍历所有模块并将模块的参数和缓冲区 转换成CUDA张量：</p>
+
+<pre><code class="language-python">net.to(device)
+</code></pre>
+
+<p>记住：<code>inputs</code>, <code>targets</code> 和 <code>images</code> 也要转换。</p>
+
+<pre><code class="language-python">inputs, labels = inputs.to(device), labels.to(device)
+</code></pre>
+
+<p>为什么我们没注意到GPU的速度提升很多？那是因为网络非常的小。</p>
+
+<p><strong>实践:</strong> 尝试增加你的网络的宽度（第一个<code>nn.Conv2d</code>的第2个参数，第二个<code>nn.Conv2d</code>的第一个参数，它们需要是相同的数字），看看你得到了什么样的加速。</p>
+
+
+
+            </div>
+            
+            <br>
+            <div class="share">
+                  
+                  <a href="" class="ssk ssk-facebook"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-twitter"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-google-plus"></a>
+                  
+                  
+                  <a href="" class="ssk ssk-linkedin"></a>
+                  
+            </div>
+            
+            
+            <br>
+            <div class="navigation">
+                
+                <div>
+                    <img class="icon" src="https://konosuba.xyz/img/back.svg" alt="back" />
+                    <a href="https://konosuba.xyz/blog/pytorch_linear/">Pytorch_linear</a>
+                </div>
+                
+                <div style="width: 100%;"></div>
+                
+                <div>
+                    <a href="https://konosuba.xyz/blog/pytorch_torchvision/">Pytorch_torchvision</a>
+                    <img class="icon" src="https://konosuba.xyz/img/next.svg" alt="next" />
+                </div>
+                
+            </div>
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9673215637005333" data-ad-slot="4311909247"
+              data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            
+            
+            
+
+            
+
+            
         </div>
     </div>
 </div>
+
+
+
 <div class="footer column">
     <div class="container">
 
