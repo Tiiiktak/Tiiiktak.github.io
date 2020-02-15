@@ -6,10 +6,75 @@
     <description>Recent content in Blog on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 14 Feb 2020 00:19:28 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 17:46:54 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pytorch中的梯度下降及优化</title>
+      <link>https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%8F%8A%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Sat, 15 Feb 2020 17:46:54 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%8F%8A%E4%BC%98%E5%8C%96/</guid>
+      <description>在PyTorch中使用Mini-batch这种方法进行训练
+Mini-batch的梯度下降法 对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中
+所以我们会把大数据集分成小数据集，一部分一部分的训练，这个训练子集即称为Mini-batch。
+对于普通的梯度下降法，一个epoch只能进行一次梯度下降；而对于Mini-batch梯度下降法，一个epoch可以进行Mini-batch的个数次梯度下降。
+普通的batch梯度下降法和Mini-batch梯度下降法代价函数的变化趋势，如下图所示：
+ 如果训练样本的大小比较小时，能够一次性的读取到内存中，那我们就不需要使用Mini-batch 如果训练样本的大小比较大时，一次读入不到内存或者现存中，那我们必须要使用 Mini-batch来分批的计算 Mini-batch size的计算规则如下，在内存允许的最大情况下使用2的N次方个size  torch.optim torch.optim是一个实现了各种优化算法的库。大部分常用优化算法都有实现
+torch.optim.SGD  Stochastic Gradient Descent
+ 随机梯度下降算法，带有动量(momentum)的算法作为一个可选参数可以进行设置
+ 可以把动量看作惯性：当你跑起来，由于惯性的存在你跑起来会比刚起步加速的时候更轻松，当你跑过头，想调头往回跑，惯性会让你拖着你。 在普通的梯度下降法的方向相同，则会加速。反之，则会减速。 加了动量的优势： 1. 加速收敛 2. 提高精度（减少收敛过程中的振荡）
+ SGD(params, lr=&amp;lt;required parameter&amp;gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False)  torch.optim.RMSprop  Root Mean Square Prop
+ 均方根传递。也是一种可以*加快梯度下降*的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快
+相较于gradient descent with momentum，RMSprop的思想是: * 对于梯度震动较大的项，在下降时，减小其下降速度； * 对于震动幅度小的项，在下降时，加速其下降速度。
+torch.optim.Adam Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法
+它能基于训练数据迭代地更新神经网络权重
+详细介绍
+e.d.
+# 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法 optimizer = torch.</description>
+    </item>
+    
+    <item>
+      <title>Pytorch中的损失函数Loss Function</title>
+      <link>https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0loss-function/</link>
+      <pubDate>Sat, 15 Feb 2020 15:33:34 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0loss-function/</guid>
+      <description>由于Pytorch中使用mini-batch进行计算，因此其损失函数的计算结果会对mini-batch取平均
+常见的Pytorch中内置的损失函数有：
+nn.L1Loss 计算input与output的差的绝对值，input与output应该是同一维度，得到的loss也是相应维度
+nn.NLLLoss  Negative Log Likelihood
+ class torch.nn.NLLLoss(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction=&#39;mean&#39;)  常用于多分类任务。在NLLLoss输入input之前，我们需要对input进行log_softmax处理(即将input转换成概率分布的形式，并且取对数，底数为e)
+计算公式
+loss(input, class) = -input[class]  NLLLoss中如果传递了weight参数，会对损失进行加权，公式就变成了
+loss(input, class) = -weight[class] * input[class]  nn.MSELoss  Mean Square Error
+ 计算input与ouput之间的均方差
+nn.CrossEntropyLoss 多分类用的交叉熵损失合函数，将LogSoftMax和nn.NLLLoss集成到一个类中，nn.CrossEntropyLoss可以自动对input进行logSoftMax操作，可以理解为CrossEntropyLoss()=log_softmax() + NLLLoss()
+传入weight参数后
+一般多分类的情况会使用这个损失函数
+nn.BCELoss  Binary Cross Entropy
+ 计算input与output之间的二进制交叉熵
+添加weight后
+用的时候需要在该层前面加上 Sigmoid 函数</description>
+    </item>
+    
+    <item>
+      <title>Pytorch_数据集的创建和加载</title>
+      <link>https://konosuba.xyz/blog/pytorch_%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E8%BD%BD/</link>
+      <pubDate>Sat, 15 Feb 2020 01:08:09 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/pytorch_%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E8%BD%BD/</guid>
+      <description>PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。
+可以通过dataset定义数据集，并使用Datalorder载入和遍历数据集
+Dataset Dataset是一个抽象类，为了能够方便的读取，需要将要使用的数据包装为Dataset类。
+自定义的Dataset需要继承它并且实现两个成员方法：
+ __getitem__() 该方法定义用索引(0 到 len(self))获取一条数据或一个样本 __len__() 该方法返回数据集的总长度  下面使用kaggle上的一个竞赛bluebook for bulldozers自定义一个数据集，用里面的数据字典来做说明（因为条数少）
+from torch.utils.data import Dataset import pandas as pd #定义一个数据集 class BulldozerDataset(Dataset): # 实现初始化方法，在初始化的时候将数据读载入 def __init__(self, csv_file): self.df=pd.read_csv(csv_file) # 返回df的长度 def __len__(self): return len(self.df) # 根据 idx 返回一行数据 def __getitem__(self, idx): return self.df.iloc[idx].SalePrice  至此，我们的数据集已经定义完成了，我们可以实例话一个对象访问他
+ds_demo = BulldozerDataset(&#39;median_benchhmark.csv&#39;) print(len(ds_demo)) # 11573 print(ds_demo[0]) # 24000.0  Dataloader DataLoader为我们提供了对Dataset的读取操作，常用参数有：batch_size(每个batch的大小)、 shuffle(是否进行shuffle操作)、 num_workers(加载数据的时候使用几个子进程)。下面做一个简单的操作
+dl = torch.utils.data.DataLoader(ds_demo, batch_size=10, shuffle=True, num_workers=0)  DataLoader返回的是一个可迭代对象，我们可以使用迭代器分次获取数据</description>
+    </item>
     
     <item>
       <title>Pytorch_torchvision</title>
@@ -17,16 +82,15 @@
       <pubDate>Fri, 14 Feb 2020 00:19:28 +0800</pubDate>
       
       <guid>https://konosuba.xyz/blog/pytorch_torchvision/</guid>
-      <description>torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
-torchvision.transforms 其中都是常见的图像转换，可以通过Compose将他们链接在一起
-此外还有torchvision.transforms.functional模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
+      <description>torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。 - AlexNet - VGG - ResNet - SqueezeNet - DenseNet
+torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
+torchvision.transforms 提供了一般的图像转换操作类，用作数据处理和数据增强
+其中都是常见的图像转换，可以通过Compose将他们链接在一起
+from torchvision import transforms as transforms transform = transforms.Compose([ transforms.RandomCrop(32, padding=4), #先四周填充0，在把图像随机裁剪成32*32 transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转 transforms.RandomRotation((-45,45)), #随机旋转 transforms.ToTensor(), transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差 ])  此外还有torchvision.transforms.functional模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
 torchvision.transforms.Normalize(mean, std, inplace=False) 用均值和标准差对张量图像进行归一化。
 给定n个通道的均值: (M1,...,Mn) 和标准差:(S1,..,Sn), 这个转换将归一化输入torch.*Tensor的每个通道。例如: input[channel] = (input[channel] - mean[channel]) / std[channel]
  Note: 这种变换的作用不适当，即它不会改变输入张量
- torchvision.utils torchvision.utils.make_grid(tensor, nrow=8, padding=2, normalize=False, range=None, scale_each=False, pad_value=0) 创建图像网格，即将若干幅图像拼成一幅图像
- tensor (Tensor or list) – 四维 mini-batch Tensor 尺寸为 (B x C x H x W) 或一个所有图像大小相同的list
- nrow (python:int, optional) – 网格中每行展示图像的数量。最后一行size为 (B / nrow, nrow)
- padding (python:int, optional) – 填充量（多幅图像间距）</description>
+ torchvision.utils torchvision.</description>
     </item>
     
     <item>
@@ -113,8 +177,12 @@ Tensor 张量 torch.tensor是这个包的核心类。
   可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
  为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad():中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
   Function类 Tensor 和 Function 互相连接并生成一个非循环图，它表示和存储了完整的计算历史。
-每个张量都有一个.grad_fn属性，这个属性引用了一个创建了Tensor的Function（除非这个张量是用户手动创建的，即，这个张量的 grad_fn 是 None）
- leaf Tensors 叶张量 Tensor中有一属性is_leaf，当它为True有两种情况： 1. 按照惯例，requires_grad = False 的 Tensor 2. requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None 只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()
+每个张量都有一个.grad_fn属性，对张量进行操作后，grad_fn会引用一个创建了这个Tensor类的Function对象（除非这个张量是用户手动创建的，此时，这个张量的 grad_fn 是 None）
+ leaf Tensors 叶张量
+Tensor中有一属性is_leaf，当它为True有两种情况：
+ 按照惯例，requires_grad = False 的 Tensor
+ requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None
+  只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()
  如果需要计算导数，可以在Tensor上调用.backward()：若Tensor是一个标量（即包含一个元素数据）则不需要为backward()指定任何参数， 但是如果它有更多的元素，需要指定一个gradient 参数来匹配张量的形状。
 x = torch.ones(2, 2, requires_grad=True) print(x) # Output: # tensor([[1.</description>
     </item>
@@ -167,13 +235,14 @@ torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如
       <pubDate>Fri, 07 Feb 2020 00:51:21 +0800</pubDate>
       
       <guid>https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</guid>
-      <description> 当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是欠拟合，要么是过拟合问题。
+      <description>当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是欠拟合，要么是过拟合问题。
 我们通常会通过将训练集和交叉验证集的代价函数误差与多项式的次数绘制在同一张图表上来帮助分析：
  对于训练集，当 d 较小时，模型拟合程度更低，误差较大；随着d 的增长，拟合程度提高，误差减小。
  对于交叉验证集，当 d 较小时，模型拟合程度低，误差较大；但是随着 d 的增长，误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。
   判断高偏差（欠拟合）或高方差（过拟合）  训练集误差和交叉验证集误差近似时：偏差/欠拟合
  ​交叉验证集误差远大于训练集误差时：方差/过拟合
-  </description>
+  解决欠拟合与过拟合 欠拟合： - 增加网络结构，如增加隐藏层数目； - 训练更长时间； - 寻找合适的网络架构，使用更大的NN结构；
+过拟合 ： - 使用更多的数据； - 正则化（ regularization）； - 寻找合适的网络结构；</description>
     </item>
     
     <item>
@@ -227,7 +296,7 @@ torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如
       <pubDate>Mon, 13 Jan 2020 17:29:56 +0800</pubDate>
       
       <guid>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96-regularization/</guid>
-      <description> 过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过拟合(over-fitting)的问题，可能会导致它们效果很差。
+      <description>过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过拟合(over-fitting)的问题，可能会导致它们效果很差。
 可以使用一种正则化(regularization)的技术来改善或减少过度拟合的问题
 在回归问题中  第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
  第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
@@ -244,7 +313,10 @@ torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如
 对于正则化，我们要取一个合理的λ的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。
 正则化线性回归 正则化线性回归的代价函数为：
 如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对theta0进行正则化，所以梯度下降算法将分两种情形：
-正则化的逻辑回归模型 </description>
+分类 L1正则化 损失函数基础上加上权重参数的绝对值
+L2正则化 损失函数基础上加上权重参数的平方和
+需要说明的是：L1 相比于 L2 会更容易获得稀疏解
+WHY-&amp;gt;Click</description>
     </item>
     
     <item>
@@ -448,7 +520,8 @@ alpha = 0.01, 0.03, 0.1, 0.3, 1, 3, 10
 局部最小值  想象一下你正站立在山的这一点上，站立在你想象的公园这座红色山上，在梯度下降算法中，我们要做的就是旋转360度，看看我们的周围，并问自己要在某个方向上，用小碎步尽快下山。
 这些小碎步需要朝什么方向？如果我们站在山坡上的这一点，你看一下周围，你会发现最佳的下山方向，你再看看周围，然后再一次想想，我应该从什么方向迈着小碎步下山？然后你按照自己的判断又迈出一步，重复上面的步骤，从这个新的点，你环顾四周，并决定从什么方向将会最快下山，然后又迈进了一小步，并依此类推，直到你接近局部最低点的位置。
  我们持续这么做直到我们得到一个局部最小值（local minimum），然而因为我们并没有尝试完所有的参数组合，所以不能确定我们得到的局部最小值是否便是全局最小值（global minimum），如果选择不同的初始参数组合，可能会找到不同的局部最小值。
-批量梯度下降 批量梯度下降法是最原始的形式，它是指在每一次迭代时使用所有样本来进行梯度的更新
+ 这个问题在以前的机器学习中可能会遇到，因为机器学习中的特征比较少，所以导致很可能陷入到一个局部最优解中出不来 但是到了深度学习，动辄百万甚至上亿的特征，出现这种情况的概率几乎为0，所以我们可以不用考虑这个问题。
+ 批量梯度下降 批量梯度下降法是最原始的形式，它是指在每一次迭代时使用所有样本来进行梯度的更新
 公式为：
 其中alpha是学习率（learning rate），它决定了我们沿着能让代价函数下降程度最大的方向向下迈出的步子有多大，在批量梯度下降中，我们每一次都同时让所有的参数减去学习速率乘以代价函数的导数。
 在梯度下降算法中，还有一个更微妙的问题，梯度下降中，我们要更新theta0和theta1，当j = 0和j = 1时，会产生更新，所以你将更新J(theta0)和J(theta1)。

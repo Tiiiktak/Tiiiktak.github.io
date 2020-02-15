@@ -1224,6 +1224,11 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 <p>我们持续这么做直到我们得到一个<strong>局部最小值（local minimum）</strong>，然而因为我们并没有尝试完所有的参数组合，所以不能确定我们得到的局部最小值是否便是<strong>全局最小值（global minimum）</strong>，如果选择不同的初始参数组合，可能会找到不同的局部最小值。</p>
 
+<blockquote>
+<p>这个问题在以前的机器学习中可能会遇到，因为机器学习中的特征比较少，所以导致很可能陷入到一个局部最优解中出不来
+但是到了深度学习，动辄百万甚至上亿的特征，出现这种情况的概率几乎为0，所以我们可以不用考虑这个问题。</p>
+</blockquote>
+
 <h2 id="批量梯度下降">批量梯度下降</h2>
 
 <p>批量梯度下降法是最原始的形式，它是指在<strong>每一次迭代时</strong>使用<strong>所有样本</strong>来进行梯度的更新</p>

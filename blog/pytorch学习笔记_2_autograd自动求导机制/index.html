@@ -1163,7 +1163,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                         
                     
                     
-                    <div class="reading-time middot">1 minute read</div>
+                    <div class="reading-time middot">2 minute read</div>
                     
                     
                       <div class="tags">
@@ -1215,14 +1215,20 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 <p><code>Tensor</code> 和 <code>Function</code> 互相连接并生成一个<strong>非循环图</strong>，它表示和存储了完整的计算历史。</p>
 
-<p>每个张量都有一个<code>.grad_fn</code>属性，这个属性引用了一个创建了<code>Tensor</code>的<code>Function</code>（除非这个张量是用户手动创建的，即，这个张量的 <code>grad_fn</code> 是 <code>None</code>）</p>
+<p>每个张量都有一个<code>.grad_fn</code>属性，对张量进行操作后，<code>grad_fn</code>会引用一个创建了这个<code>Tensor</code>类的<code>Function</code>对象（除非这个张量是用户手动创建的，此时，这个张量的 <code>grad_fn</code> 是 <code>None</code>）</p>
 
 <blockquote>
-<p><strong>leaf Tensors 叶张量</strong>
-<code>Tensor</code>中有一属性<code>is_leaf</code>，当它为<code>True</code>有两种情况：
-1. 按照惯例，<code>requires_grad = False</code> 的 Tensor
-2. <code>requires_grad = True</code> 且由用户创建的 Tensor。这意味着它们不是操作的结果且<code>grad_fn = None</code>
-只有leaf Tensors叶张量在反向传播时才会将本身的<code>grad</code>传入<code>backward()</code>的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的<code>grad</code>，可以使用<code>retain_grad()</code></p>
+<p><strong>leaf Tensors 叶张量</strong></p>
+
+<p><code>Tensor</code>中有一属性<code>is_leaf</code>，当它为<code>True</code>有两种情况：</p>
+
+<ol>
+<li><p>按照惯例，<code>requires_grad = False</code> 的 Tensor</p></li>
+
+<li><p><code>requires_grad = True</code> 且由用户创建的 Tensor。这意味着它们不是操作的结果且<code>grad_fn = None</code></p></li>
+</ol>
+
+<p>只有leaf Tensors叶张量在反向传播时才会将本身的<code>grad</code>传入<code>backward()</code>的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的<code>grad</code>，可以使用<code>retain_grad()</code></p>
 </blockquote>
 
 <p>如果需要计算导数，可以在<code>Tensor</code>上调用<code>.backward()</code>：若<code>Tensor</code>是一个标量（即包含一个元素数据）则不需要为<code>backward()</code>指定任何参数， 但是如果它有更多的元素，需要指定一个<code>gradient</code> 参数来匹配张量的形状。</p>
@@ -1306,6 +1312,65 @@ print((x ** 2).requires_grad) # True
 with torch.no_grad():
 	print((x ** 2).requires_grad) # False
 </code></pre>
+
+<h2 id="autograd-过程">Autograd 过程</h2>
+
+<h3 id="推导">推导</h3>
+
+<p><code>grad_fn</code>中有一属性<code>next_functions</code>，例如</p>
+
+<pre><code class="language-python">x = torch.rand(5, 5, requires_grad=True)
+y = torch.rand(5, 5, requires_grad=True)
+z = x**2 + y**3
+print(z.grad_fn) # &lt;AddBackward0 at 0x1426dca72c8&gt;
+print(z.grad_fn.next_functions) 
+# ((&lt;PowBackward0 at 0x1426dc923c8&gt;, 0), (&lt;PowBackward0 at 0x1426dc92b48&gt;, 0))
+</code></pre>
+
+<p>此处的<code>next_functions</code>是一个“tuple of tuple of PowBackward0 and int”</p>
+
+<p>内层第一个tuple就是x相关的操作记录，继续深入</p>
+
+<pre><code class="language-python">xg = z.grad_fn.next_functions[0][0]
+x_leaf = xg.next_functions[0][0]
+print(type(x_leaf)) # AccumulateGrad
+</code></pre>
+
+<p>在Pytorch的反向图计算中，<code>AccumulateGrad</code>类型代表的就是叶子节点类型，也就是计算图的终止节点。</p>
+
+<p><code>AccumulateGrad</code>中有一个<code>.variable</code>指向叶子节点</p>
+
+<pre><code class="language-python">x_leaf.variable
+</code></pre>
+
+<p>这个<code>.variable</code>的属性就是我们的生成的变量<code>x</code></p>
+
+<h3 id="流程">流程</h3>
+
+<ol>
+<li>当我们执行<code>z.backward()</code>时。这个操作将调用z里面的<code>grad_fn</code>属性，执行求导操作。</li>
+<li>这个操作将遍历<code>grad_fn</code>的<code>next_functions</code>，然后分别取出里面的<code>Function(AccumulateGrad)</code>，执行求导操作。这部分是一个<strong>递归</strong>的过程直到*最后类型为叶子节点*。</li>
+<li>计算出结果以后，将结果保存到他们对应的<code>variable</code> 变量所引用的对象（x和y）的<code>grad</code>属性中</li>
+<li>求导结束。所有的叶节点的<code>grad</code>变量都得到了相应的更新</li>
+</ol>
+
+<p>最终当我们执行完c.backward()之后，a和b里面的grad值就得到了更新。</p>
+
+<h2 id="拓展autograd">拓展Autograd</h2>
+
+<p>如果需要自定义autograd扩展新的功能，就需要扩展Function类。因为Function使用autograd来计算结果和梯度，并对操作历史进行编码。</p>
+
+<p>在Function类中最主要的方法就是<code>forward()</code>和<code>backward()</code>他们分别代表了前向传播和反向传播。</p>
+
+<p>一个自定义的Function需要一下三个方法：</p>
+
+<ul>
+<li><p><code>__init__</code> (optional)：如果这个操作需要额外的参数则需要定义这个Function的构造函数，不需要的话可以忽略。</p></li>
+
+<li><p><code>forward()</code>：执行前向传播的计算代码</p></li>
+
+<li><p><code>backward()</code>：反向传播时梯度计算的代码。 参数的个数和forward返回值的个数一样，每个参数代表传回到此操作的梯度。</p></li>
+</ul>
 
 
 

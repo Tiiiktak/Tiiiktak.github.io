@@ -1185,13 +1185,35 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
+<h1 id="torchvision-models">torchvision.models</h1>
+
+<p>torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习
+torchvision.models模块的 子模块中包含以下模型结构。
+- AlexNet
+- VGG
+- ResNet
+- SqueezeNet
+- DenseNet</p>
+
 <h1 id="torchvision-datasets">torchvision.datasets</h1>
 
 <p>这其中所有的数据集都是<code>torch.utils.data.Dataset</code>的子类，它们都具有<code>__getitem__</code>和<code>__len__</code>实现的方法。因此，它们都可以传递给<code>torch.utils.data.DataLoader</code>，它使用<code>torch.multiprocessing</code>并行加载多个样本。</p>
 
 <h1 id="torchvision-transforms">torchvision.transforms</h1>
 
+<p>提供了一般的图像转换操作类，用作数据处理和数据增强</p>
+
 <p>其中都是常见的图像转换，可以通过<code>Compose</code>将他们链接在一起</p>
+
+<pre><code class="language-python">from torchvision import transforms as transforms
+transform = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),  #先四周填充0，在把图像随机裁剪成32*32
+    transforms.RandomHorizontalFlip(),  #图像一半的概率翻转，一半的概率不翻转
+    transforms.RandomRotation((-45,45)), #随机旋转
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差
+])
+</code></pre>
 
 <p>此外还有<code>torchvision.transforms.functional</code>模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助</p>
 
@@ -1257,6 +1279,11 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                 </div>
                 
                 <div style="width: 100%;"></div>
+                
+                <div>
+                    <a href="https://konosuba.xyz/blog/pytorch_%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E8%BD%BD/">Pytorch_数据集的创建和加载</a>
+                    <img class="icon" src="https://konosuba.xyz/img/next.svg" alt="next" />
+                </div>
                 
             </div>
             
