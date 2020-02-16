@@ -9,19 +9,24 @@
   
   <url>
     <loc>https://konosuba.xyz/blog/</loc>
-    <lastmod>2020-02-15T17:46:54+08:00</lastmod>
+    <lastmod>2020-02-15T18:43:29+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2020-02-15T18:43:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/</loc>
+    <lastmod>2020-02-15T18:43:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%8F%8A%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2020-02-15T17:46:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/</loc>
-    <lastmod>2020-02-15T17:46:54+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

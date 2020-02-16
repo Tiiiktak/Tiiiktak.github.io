@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 15 Feb 2020 17:46:54 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 18:43:29 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,23 @@ Archives 基于OpenCV的答题卡识别
 Contact Me  QQ: 1067475613
  Mail: dengsh268@outlook.com
     (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>Pytorch中的激活函数</title>
+      <link>https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sat, 15 Feb 2020 18:43:29 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</guid>
+      <description>介绍神经网络的时候已经说到，神经元会对化学物质的刺激进行，当达到一定程度的时候，神经元才会兴奋，并向其他神经元发送信息。神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件。
+为什么激活函数都是非线性的 因为如果使用线性的激活函数，那么input跟output之间的关系始终为线性的，这样完全可以不使用网络结构，直接使用线性组合即可。
+所以需要激活函数来引入非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中，增加了神经网络模型泛化的特性。
+一般只有在输出层有极小的可能性使用线性激活函数，在隐含层都使用非线性激活函数.
+常见的激活函数 # 初始化一些信息 import torch import torch.nn.functional as F import matplotlib.pyplot as plt import numpy as np x= torch.linspace(-10,10,60)  Sigmoid 函数 g(z) = a = 1 / (1 + e^(-z)) g&#39;(z) = a&#39; = a (1 - a)  在sigmod函数中我们可以看到，其输出是在(0,1)这个开区间，它能够把输入的连续实值变换为0和1之间的输出，如果是非常大的负数，那么输出就是0；如果是非常大的正数输出就是1，起到了抑制的作用。
+ax = plt.gca() ax.spines[&#39;right&#39;].set_color(&#39;none&#39;) ax.spines[&#39;top&#39;].set_color(&#39;none&#39;) ax.xaxis.set_ticks_position(&#39;bottom&#39;) ax.spines[&#39;bottom&#39;].set_position((&#39;data&#39;, 0)) ax.yaxis.set_ticks_position(&#39;left&#39;) ax.spines[&#39;left&#39;].set_position((&#39;data&#39;, 0)) plt.ylim((0, 1)) sigmod=torch.sigmoid(x) plt.plot(x.numpy(),sigmod.numpy())  但是sigmod由于需要进行指数运算（这个对于计算机来说是比较慢，相比relu），再加上函数输出*不是以0为中心*的（这样会使权重更新效率降低），当输入稍微远离了坐标原点，函数的梯度就变得很小了（几乎为零）。
+在神经网络反向传播的过程中不利于权重的优化，这个问题叫做梯度饱和，也可以叫梯度弥散。这些不足，所以现在使用到sigmod基本很少了，基本上只有在做二元分类（0，1）时的输出层才会使用。
+Tanh 函数 tanh是双曲正切函数，输出区间是在(-1,1)之间，而且整个函数是*以0为中心*的
+ax = plt.</description>
     </item>
     
     <item>
