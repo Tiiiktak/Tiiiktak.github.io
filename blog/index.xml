@@ -6,10 +6,28 @@
     <description>Recent content in Blog on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 18 Feb 2020 18:43:39 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 19 Feb 2020 22:47:20 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>循环神经网络RNN以及几种经典模型</title>
+      <link>https://konosuba.xyz/blog/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Crnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Wed, 19 Feb 2020 22:47:20 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Crnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/</guid>
+      <description>RNN简介 现实世界中，很多元素都是相互连接的，比如室外的温度是随着气候的变化而周期性的变化的、我们的语言也需要通过上下文的关系来确认所表达的含义。但是机器要做到这一步就相当得难了。因此，就有了现在的循环神经网络，他的本质是：*拥有记忆的能力，并且会根据这些记忆的内容来进行推断*。因此，他的输出就依赖于当前的输入和记忆。
+网络结构及原理 循环神经网络的基本结构特别简单，就是将网络的输出保存在一个记忆单元中，这个记忆单元和下一次的输入一起进入神经网络中。
+一个最简单的循环神经网络在输入时的结构示意图：
+RNN 可以被看做是同一神经网络的多次赋值，每个神经网络模块会把消息传递给下一个，我们将这个图的结构展开:
+根据循环神经网络的结构也可以看出它在处理序列类型的数据上具有天然的优势。因为网络本身就是 一个序列结构，这也是所有循环神经网络最本质的结构。
+我们可以用下面的公式来表示循环神经网络的计算方法：
+总结图：
+Pytorch中 pytorch 中使用 nn.RNN 类来搭建基于序列的循环神经网络，它的构造函数有以下几个参数：
+ input_size：输入数据X的特征值的数目。 hidden_size：隐藏层的神经元数量，也就是隐藏层的特征数量。 num_layers：循环神经网络的层数，默认值是 1。 bias：默认为 True，如果为 false 则表示神经元不使用 bias 偏移参数。 batch_first：如果设置为 True，则输入数据的维度中第一个维度就是 batch 值，默认为 False。默认情况下第一个维度是序列的长度， 第二个维度才是batch，第三个维度是特征数目。 dropout：如果不为空，则表示最后跟一个 dropout 层抛弃部分数据，抛弃数据的比例由该参数指定  RNN 中最主要的参数是 input_size 和 hidden_size，这两个参数务必要搞清楚。其余的参数通常不用设置，采用默认值就可以了。
+rnn = torch.nn.RNN(20,50,2) input = torch.randn(100 , 32 , 20) h_0 =torch.randn(2 , 32 , 50) output,hn=rnn(input ,h_0) print(output.size(),hn.size()) &#39;&#39;&#39; torch.Size([100, 32, 50]) torch.Size([2, 32, 50]) &#39;&#39;&#39;   一文搞懂RNN（循环神经网络）基础篇</description>
+    </item>
     
     <item>
       <title>卷积神经网络CNN以及几种经典模型</title>
