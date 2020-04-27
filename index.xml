@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 08 Mar 2020 23:03:09 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2020 11:25:47 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,27 @@ Archives 基于OpenCV的答题卡识别
 Contact Me  QQ: 1067475613
  Mail: dengsh268@outlook.com
     (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>树莓派4B安装opencv以及错误解决</title>
+      <link>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE4b%E5%AE%89%E8%A3%85opencv%E4%BB%A5%E5%8F%8A%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Mon, 27 Apr 2020 11:25:47 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE4b%E5%AE%89%E8%A3%85opencv%E4%BB%A5%E5%8F%8A%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</guid>
+      <description>更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
+ 主要参考opencv官网文档和博客树莓派+Opencv（一）图像处理
+树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
+下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev  在4B上安装时遇到libgtk2.0-dev安装失败的问题：
+这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
+在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
+ 其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
+ 下载源码 从GitHub下载：
+opencv
+opencv_contrib
+两个都下载.zip压缩包即可
+解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0  创建一个build文件夹用于编译 mkdir build cd build  运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
+ cmake-gui  选择源码路径和编译路径后点击Configure</description>
     </item>
     
     <item>
@@ -411,8 +432,8 @@ torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如
 对于正则化，我们要取一个合理的λ的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。
 正则化线性回归 正则化线性回归的代价函数为：
 如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对theta0进行正则化，所以梯度下降算法将分两种情形：
-分类 L1正则化 损失函数基础上加上权重参数的绝对值
-L2正则化 损失函数基础上加上权重参数的平方和
+分类 L1正则化（Lasso回归） 损失函数基础上加上权重参数的绝对值
+L2正则化（岭回归） 损失函数基础上加上权重参数的平方和
 需要说明的是：L1 相比于 L2 会更容易获得稀疏解
 WHY-&amp;gt;Click</description>
     </item>
@@ -1108,24 +1129,6 @@ sudo raspi-config  选择interfacing option
 测试 raspistill -o image.jpg   在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
  raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为&amp;rsquo;-&amp;lsquo;，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720  错误 在第一次成功调用后，之后再次调用时多次报错：
 mmal: No data received from sensor.</description>
-    </item>
-    
-    <item>
-      <title>树莓派安装opencv-4.1.0</title>
-      <link>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/</link>
-      <pubDate>Mon, 01 Jul 2019 15:25:47 +0800</pubDate>
-      
-      <guid>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv-4.1.0/</guid>
-      <description>主要参考opencv官网文档和博客树莓派+Opencv（一）图像处理
-下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev  从opencv官网下载v4.1.0的源码 官网
-使用CMake编译源码 先解压并进入文件夹 unzip opencv-4.1.0.zip cd opencv-4.1.0  创建一个build文件夹用于编译 mkdir build cd build  运行cmake-gui cmake-gui  选择源码路径和编译路径后电子config开始编译
-编译结束后点击generate完成
-建立 在build目录执行make开始编译 -j表示使用多少线程编译，树莓派用-j1较稳定，不加数字表示不限制线程
-sudo make -j1  博主在这一步编译了四个小时
-安装库 在build目录执行
-sudo make install  完成后opencv就已经配好了
-测试 Python运行 使用这里提供的测试程序测试opencv是否正常
-# -*- coding:utf-8 -*- import cv2 import numpy as np cv2.</description>
     </item>
     
     <item>
