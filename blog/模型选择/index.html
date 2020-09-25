@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>【应用机器学习】模型选择和训练、验证、测试集 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content=" 1. 重新划分数据集 其中60%作为训练集，20%作为交叉验证集（cross validation），20%作为测试集
+2. 可以计算出三类数据的误差函数 3. 使用交叉验证集选择模型 选出交叉验证误差最小的一个模型
+4. 利用测试集计算出推广误差 ">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">【应用机器学习】模型选择和训练、验证、测试集</h1>
+    <div class="post-meta">2020.2.7</div>
+  </header>
+  <div class="post-content">
+
+<p><img src="https://i.loli.net/2020/02/07/kJugfep6RPCcmyB.png" alt="过拟合" /></p>
+
+<h2 id="1-重新划分数据集">1. 重新划分数据集</h2>
+
+<p>其中<strong>60%作为训练集</strong>，<strong>20%作为交叉验证集</strong>（cross validation），<strong>20%作为测试集</strong></p>
+
+<p><img src="https://i.loli.net/2020/02/07/PMXwEmeTrojGxOg.png" alt="数据集划分为三类" /></p>
+
+<h2 id="2-可以计算出三类数据的误差函数">2. 可以计算出三类数据的误差函数</h2>
+
+<p><img src="https://i.loli.net/2020/02/07/Qqbok3GTJ8ZINS5.png" alt="三种误差函数" /></p>
+
+<h2 id="3-使用交叉验证集选择模型">3. 使用交叉验证集选择模型</h2>
+
+<p>选出<strong>交叉验证误差最小</strong>的一个模型</p>
+
+<p><img src="https://i.loli.net/2020/02/07/S4ehdoRz961wIOZ.png" alt="交叉验证集选模型" /></p>
+
+<h2 id="4-利用测试集计算出推广误差">4. 利用测试集计算出推广误差</h2>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

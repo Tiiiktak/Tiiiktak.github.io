@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Tesseract-OCR安装与python中使用 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content="安装Tesseract-OCR 在官网下载最新的Windows安装包，双击运行
+根据需要选择，一路Next，直到这个页面
+在Additional language data(download)中选择要下载的其他语言的数据，之后程序会自动下载。一直到安装成功
+配置环境变量 进入高级系统设置，选择高级-&gt;环境变量
+选中系统变量中Path-&gt;编辑
+新建一项，地址为Tesseract-OCR的安装目录即可（例如C:\Program Files\Tesseract-OCR）
+可以通过在控制台中输入tesseract命令来检查是否配置成功，输出如图即表示成功
+配置Python 直接使用pip install pytesseract进行安装
+pytesseract 功能  get_tesseract_version　返回系统中安装的Tesseract版本。 image_to_string　将图像上的Tesseract OCR运行结果返回到字符串 image_to_boxes　返回包含已识别字符及其框边界的结果 image_to_data　返回包含框边界，置信度和其他信息的结果 image_to_osd　返回包含有关方向和脚本检测的信息的结果  参数 image_to_data(image, lang=None, config=&#39;&#39;, nice=0, output_type=Output.STRING)   image object　图像对象 lang String，Tesseract　语言代码字符串 config String　任何其他配置为字符串，例如：config=&lsquo;&ndash;psm 6&rsquo; nice Integer　修改Tesseract运行的处理器优先级。Windows不支持。 output_type　类属性，指定输出的类型，默认为string。  简单实例 识别一张图像中字符并直接输出
+import pytesseract im = &quot;C:/Users/1/Desktop/test.jpg&quot; result = pytesseract.image_to_string(im) print(result)  这样识别到的字符就会转化成字符串输出">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">Tesseract-OCR安装与python中使用</h1>
+    <div class="post-meta">2019.11.20</div>
+  </header>
+  <div class="post-content">
+
+<h2 id="安装tesseract-ocr">安装Tesseract-OCR</h2>
+
+<p>在<a href="https://github.com/UB-Mannheim/tesseract/wiki">官网</a>下载最新的Windows安装包，双击运行</p>
+
+<p>根据需要选择，一路Next，直到这个页面</p>
+
+<p><img src="https://i.loli.net/2019/11/28/yebuDGJUgqMKFik.png" alt="安装选项" /></p>
+
+<p>在<code>Additional language data(download)</code>中选择要下载的其他语言的数据，之后程序会自动下载。一直到安装成功</p>
+
+<h2 id="配置环境变量">配置环境变量</h2>
+
+<p>进入<code>高级系统设置</code>，选择<code>高级</code>-&gt;<code>环境变量</code></p>
+
+<p>选中<code>系统变量</code>中<code>Path</code>-&gt;<code>编辑</code></p>
+
+<p>新建一项，地址为Tesseract-OCR的安装目录即可（例如<code>C:\Program Files\Tesseract-OCR</code>）</p>
+
+<p>可以通过在控制台中输入<code>tesseract</code>命令来检查是否配置成功，输出如图即表示成功</p>
+
+<p><img src="https://i.loli.net/2019/11/28/wlUioNr3s9MJbj6.png" alt="控制台配置tesseract成功" /></p>
+
+<h2 id="配置python">配置Python</h2>
+
+<p>直接使用<code>pip install pytesseract</code>进行安装</p>
+
+<h2 id="pytesseract">pytesseract</h2>
+
+<h3 id="功能">功能</h3>
+
+<ul>
+<li>get_tesseract_version　　返回系统中安装的Tesseract版本。</li>
+<li>image_to_string　　将图像上的Tesseract OCR运行结果返回到字符串</li>
+<li>image_to_boxes　　返回包含已识别字符及其框边界的结果</li>
+<li>image_to_data　　返回包含框边界，置信度和其他信息的结果</li>
+<li>image_to_osd　　返回包含有关方向和脚本检测的信息的结果</li>
+</ul>
+
+<h3 id="参数">参数</h3>
+
+<pre><code>image_to_data(image, lang=None, config='', nice=0, output_type=Output.STRING)
+</code></pre>
+
+<ul>
+<li>image object　　图像对象</li>
+<li>lang String，Tesseract　　语言代码字符串</li>
+<li>config String　　任何其他配置为字符串，例如：config=&lsquo;&ndash;psm 6&rsquo;</li>
+<li>nice Integer　　修改Tesseract运行的处理器优先级。Windows不支持。</li>
+<li>output_type　　类属性，指定输出的类型，默认为string。</li>
+</ul>
+
+<h3 id="简单实例">简单实例</h3>
+
+<p>识别一张图像中字符并直接输出</p>
+
+<pre><code class="language-py">import pytesseract
+
+im = &quot;C:/Users/1/Desktop/test.jpg&quot;
+result = pytesseract.image_to_string(im)
+
+print(result)
+</code></pre>
+
+<p>这样识别到的字符就会转化成字符串输出</p>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

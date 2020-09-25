@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>YAML与TOML - Tiiktak&#39;s</title>
+    
+    <meta name="description" content="YAML YAML 是 &ldquo;YAML Ain&rsquo;t a Markup Language&rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&rdquo;Yet Another Markup Language&rdquo;（仍是一种标记语言）。
+YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲
+YAML 的配置文件后缀为 .yml
+基本语法  大小写敏感 使用缩进表示层级关系 缩进不允许使用tab，只允许空格 缩进的空格数不重要，只要相同层级的元素左对齐即可 &rsquo;#&lsquo;表示注释  数据类型  对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary） 数组：一组按次序排列的值，又称为序列（sequence） / 列表（list） 纯量（scalars）：单个的、不可再分的值  对象 对象键值对使用冒号结构表示 key: value，冒号后面要加一个空格。
+TOML TOML的全称是 &ldquo;Tom&rsquo;s Obvious, Minimal Language&rdquo;，因为它的作者是 GitHub　联合创始人　Tom Preston-Werner 。
+TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可以无歧义地被映射为哈希表，从而被多种语言解析。
+基本语法  大小写敏感 同样使用缩进表示层级关系 缩进可以使用空格，也可以使用Tab 可以在数组中换行 &rsquo;#&lsquo;表示注释  对象 对象键值对使用等号的结构 key = value
+字符串 字符串和 JSON 的定义一致，只有一点除外：　TOML 要求使用　UTF-8 编码。">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">YAML与TOML</h1>
+    <div class="post-meta">2020.1.9</div>
+  </header>
+  <div class="post-content">
+
+<h1 id="yaml">YAML</h1>
+
+<p>YAML 是 &ldquo;YAML Ain&rsquo;t a Markup Language&rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&rdquo;Yet Another Markup Language&rdquo;（仍是一种标记语言）。</p>
+
+<p>YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲</p>
+
+<p>YAML 的配置文件后缀为 <code>.yml</code></p>
+
+<h2 id="基本语法">基本语法</h2>
+
+<ul>
+<li>大小写敏感</li>
+<li>使用缩进表示层级关系</li>
+<li><strong>缩进不允许使用tab，只允许空格</strong></li>
+<li>缩进的<strong>空格数不重要</strong>，只要相同层级的元素左对齐即可</li>
+<li>&rsquo;#&lsquo;表示注释</li>
+</ul>
+
+<h2 id="数据类型">数据类型</h2>
+
+<ul>
+<li>对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary）</li>
+<li>数组：一组按次序排列的值，又称为序列（sequence） / 列表（list）</li>
+<li>纯量（scalars）：单个的、不可再分的值</li>
+</ul>
+
+<h2 id="对象">对象</h2>
+
+<p>对象键值对使用冒号结构表示 <code>key: value</code>，冒号后面要加一个空格。</p>
+
+<h1 id="toml">TOML</h1>
+
+<p>TOML的全称是 &ldquo;Tom&rsquo;s Obvious, Minimal Language&rdquo;，因为它的作者是 GitHub　联合创始人　Tom Preston-Werner 。</p>
+
+<p>TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可以无歧义地被映射为哈希表，从而被多种语言解析。</p>
+
+<h2 id="基本语法-1">基本语法</h2>
+
+<ul>
+<li>大小写敏感</li>
+<li>同样使用缩进表示层级关系</li>
+<li>缩进<strong>可以使用空格，也可以使用Tab</strong></li>
+<li>可以在数组中换行</li>
+<li>&rsquo;#&lsquo;表示注释</li>
+</ul>
+
+<h2 id="对象-1">对象</h2>
+
+<p>对象键值对使用等号的结构 <code>key = value</code></p>
+
+<h2 id="字符串">字符串</h2>
+
+<p>字符串和 JSON 的定义一致，只有一点除外：　TOML 要求使用　UTF-8 编码。</p>
+
+<h2 id="数组">数组</h2>
+
+<p>数组使用方括号包裹。空格会被忽略。元素使用逗号分隔。注意，不允许混用数据类型。</p>
+
+<pre><code class="language-toml">[ 1, 2, 3 ]
+[ &quot;red&quot;, &quot;yellow&quot;, &quot;green&quot; ]
+[ [ 1, 2 ], [3, 4, 5] ]
+[ [ 1, 2 ], [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] ] # 这是可以的。
+[ 1, 2.0 ] # 注意：这是不行的。
+</code></pre>
+
+<p>数组可以多行。也就是说，除了空格之外，方括号间的换行也会被忽略。在关闭方括号前的最终项后的逗号是允许的。</p>
+
+<p>如果内容文件在两行<code>---</code>之间设置了前题变量，则该文件为YAML格式。否则，内容文件将在两行<code>+++</code>之间设置优先事项变量，表明它是TOML格式的。</p>
+
+<hr />
+
+<blockquote>
+<p>参考 <a href="https://segmentfault.com/a/1190000000477752">Segment Fault</a></p>
+
+<p>参考<a href="https://www.runoob.com/w3cnote/yaml-intro.html">菜鸟教程</a></p>
+</blockquote>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

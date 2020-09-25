@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Pytorch学习笔记_1_tensor张量 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content="Tensors Tensors与Numpy中的ndarrays类似
+torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
+&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double) &gt;&gt;&gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &gt;&gt;&gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]])  后者可以创建shape相同，属性不同的对象
+&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double) &gt;&gt;&gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &gt;&gt;&gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]])  获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">Pytorch学习笔记_1_tensor张量</h1>
+    <div class="post-meta">2020.2.11</div>
+  </header>
+  <div class="post-content">
+
+<h1 id="tensors">Tensors</h1>
+
+<p>Tensors与Numpy中的ndarrays类似</p>
+
+<h2 id="torch-new-与-torch-like">torch.new_* 与 torch.*_like</h2>
+
+<p>前者创建的对象会<strong>保持原有的属性</strong>（如dtype），但<strong>shape不同</strong></p>
+
+<pre><code class="language-python">&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double)
+&gt;&gt;&gt; x.new_ones(2, 3)
+tensor([[1., 1., 1.],
+        [1., 1., 1.]], dtype=torch.float64)
+&gt;&gt;&gt; x.new_ones(2, 3, dtype=torch.long)
+tensor([[1, 1, 1],
+        [1, 1, 1]])
+</code></pre>
+
+<p>后者可以创建<strong>shape相同，属性不同</strong>的对象</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double)
+&gt;&gt;&gt; torch.ones_like(x)
+tensor([[1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.]], dtype=torch.float64)
+&gt;&gt;&gt; torch.ones_like(x, dtype=torch.long)
+tensor([[1, 1, 1],
+        [1, 1, 1],
+        [1, 1, 1],
+        [1, 1, 1],
+        [1, 1, 1]])
+</code></pre>
+
+<h2 id="获得size">获得size</h2>
+
+<p>使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double)
+&gt;&gt;&gt; x.size()
+torch.Size([5, 3])
+</code></pre>
+
+<p><code>torch.Size</code>实际上是一个tuple元组，因此它支持所有元组操作。</p>
+
+<h2 id="操作">操作</h2>
+
+<h3 id="加法">加法</h3>
+
+<p>有多种操作方式：</p>
+
+<ol>
+<li><code>x + y</code></li>
+<li><code>torch.add(x, y)</code></li>
+<li>提供输出tensor作为参数</li>
+</ol>
+
+<pre><code class="language-python">result = torch.empty(5, 3)
+torch.add(x, y, out=result)
+</code></pre>
+
+<ol>
+<li><code>y.add_(x)</code> 将x加到y中</li>
+</ol>
+
+<blockquote>
+<p>任何 以 <code>_</code> 结尾的操作都会用结果替换原变量. 例如: <code>x.copy_(y)</code>, <code>x.t_()</code>, 都会改变 <code>x</code>.</p>
+</blockquote>
+
+<h3 id="索引">索引</h3>
+
+<p>可以使用与NumPy索引方式相同的操作来进行对张量的操作，如<code>x[:, 1]</code>得到x的第1列</p>
+
+<h3 id="torch-view"><code>torch.view</code></h3>
+
+<p>可以改变张量的维度和大小，与Numpy的reshape类似</p>
+
+<pre><code class="language-python">x = torch.randn(4, 4)
+y = x.view(16)
+z = x.view(-1, 8)  #  size -1 从其他维度推断
+print(x.size(), y.size(), z.size())
+# Output:
+# torch.Size([4, 4]) torch.Size([16]) torch.Size([2, 8])
+</code></pre>
+
+<h3 id="item"><code>.item()</code></h3>
+
+<p>如果你有只有一个元素的张量，使用<code>.item()</code>来得到Python数据类型的数值</p>
+
+<pre><code class="language-python">x = torch.randn(1)
+print(x)
+print(x.item())
+# Output:
+# tensor([-0.2368])
+# -0.23680149018764496
+</code></pre>
+
+<h2 id="numpy转换">NumPy转换</h2>
+
+<p>Torch Tensor与NumPy数组共享底层内存地址，修改一个会导致另一个的变化。</p>
+
+<h3 id="tensor-numpy">Tensor -&gt; NumPy</h3>
+
+<pre><code class="language-python">a = torch.ones(5)
+b = a.numpy()
+print(b) # [1. 1. 1. 1. 1.]
+a.add_(1)
+print(a) # tensor([2., 2., 2., 2., 2.])
+print(b) # [2., 2., 2., 2., 2.]
+</code></pre>
+
+<h3 id="numpy-tensor">NumPy -&gt; Tensor</h3>
+
+<pre><code class="language-python">a = np.ones(5)
+b = torch.from_numpy(a)
+np.add(a, 1, out=a)
+print(a) # [2. 2. 2. 2. 2.]
+print(b) # tensor([2., 2., 2., 2., 2.], dtype=torch.float64)
+</code></pre>
+
+<p>所有的 Tensor 类型默认都是基于CPU， CharTensor 类型不支持到 NumPy 的转换.</p>
+
+<h2 id="cuda-张量">CUDA 张量</h2>
+
+<p>使用<code>.to</code> 方法 可以将Tensor移动到任何设备中</p>
+
+<pre><code class="language-python"># is_available 函数判断是否有cuda可以使用
+# ``torch.device``将张量移动到指定的设备中
+if torch.cuda.is_available():
+    device = torch.device(&quot;cuda&quot;)          # a CUDA 设备对象
+    y = torch.ones_like(x, device=device)  # 直接从GPU创建张量
+    x = x.to(device)                       # 或者直接使用``.to(&quot;cuda&quot;)``将张量移动到cuda中
+    z = x + y
+    print(z)
+    print(z.to(&quot;cpu&quot;, torch.double))       # ``.to`` 也会对变量的类型做更改
+</code></pre>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

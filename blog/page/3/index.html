@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>Posts - Tiiktak&#39;s -- 编程学习与技术分享</title>
+    <title>Posts - Tiiktak&#39;s</title>
     
     <meta name="description" content="Hey You">
     <meta name="author" content="">
@@ -18,7 +18,7 @@
     
     <meta name="generator" content="Hugo 0.55.6" />
     
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s -- 编程学习与技术分享">
+    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
@@ -27,7 +27,7 @@
     <header class="header">
       <div class="wrap">
         
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></p>
+        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
         
         
         <button class="menu-toggle" type="button"></button>
@@ -39,7 +39,7 @@
       <ul class="menu">
         
         <li>
-          <a href="https://konosuba.xyz/about/">About</a>
+          <a href="/about/">About</a>
         </li>
         
       </ul>
@@ -59,41 +59,6 @@
 
 
 
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>【应用机器学习】诊断偏差与方差</h2>
-  </header>
-  <section class="entry-content">
-   <p>当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是欠拟合，要么是过拟合问题。
-我们通常会通过将训练集和交叉验证集的代价函数误差与多项式的次数绘制在同一张图表上来帮助分析：
- 对于训练集，当 d 较小时，模型拟合程度更低，误差较大；随着d 的增长，拟合程度提高，误差减小。
- 对于交叉验证集，当 d 较小时，模型拟合程度低，误差较大；但是随着 d 的增长，误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。
-  判断高偏差（欠拟合）或高方差（过拟合）  训练集误差和交叉验证集误差近似时：偏差/欠拟合
- ​交叉验证集误差远大于训练集误差时：方差/过拟合
-  解决欠拟合与过拟合 欠拟合： - 增加网络结构，如增加隐藏层数目； - 训练更长时间； - 寻找合适的网络架构，使用更大的NN结构；
-过拟合 ： - 使用更多的数据； - 正则化（ regularization）； - 寻找合适的网络结构；...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>【应用机器学习】模型选择和训练、验证、测试集</h2>
-  </header>
-  <section class="entry-content">
-   <p> 1. 重新划分数据集 其中60%作为训练集，20%作为交叉验证集（cross validation），20%作为测试集
-2. 可以计算出三类数据的误差函数 3. 使用交叉验证集选择模型 选出交叉验证误差最小的一个模型
-4. 利用测试集计算出推广误差 ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%9B%86/"></a>
-</article>
 
 <article class="post-entry">
   <header class="entry-header">
@@ -135,19 +100,6 @@
     <time>2020.2.7</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Java_equals</h2>
-  </header>
-  <section class="entry-content">
-   <p>...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.1</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/java_equals/"></a>
 </article>
 
 <article class="post-entry">
@@ -268,16 +220,90 @@ while &gt;&gt; i = 1 &gt;&gt; while true, v(i) = 999; i = i&#43;1; if i == 6, br
   <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5forwhileif/"></a>
 </article>
 
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>MATLAB学习_数据绘图</h2>
+  </header>
+  <section class="entry-content">
+   <p>当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。
+二维绘图 我们先来快速生成一些数据用来绘图。
+&gt;&gt; t = [0:0.01:0.98]; &gt;&gt; y1 = sin(2*pi*4*t);  如果我们想要绘制正弦函数，只需输入plot(t, y1)，如图
+横轴是变量t，纵轴是y1，也就是我们刚刚所输出的正弦函数。
+让我们设置y2
+&gt;&gt; y2 = cos(2*pi*4*t); &gt;&gt; plot(t, y2)  如果要同时表示正弦和余弦曲线。
+我们要做的就是，输入：plot(t, y1)，得到正弦函数，之后使用函数hold on，它的功能是将新的图像绘制在旧的之上
+再输入：plot(t, y2)，MATLAB会自动用不同颜色绘制新的曲线，我们也可以指定颜色，比如plot(t, y2, &#39;r&#39;)，r表示使用红色绘制y2
+ ‘r’ 为线条设定。每个设定可包含表示线条颜色、样式和标记的字符。标记是在绘制的每个数据点上显示的符号，例如，&#43;、o 或 * ；
+例如，’g:*’ 请求绘制使用 * 标记的绿色点线。’r–‘请求红色虚线
+ 还可以使用命令xlabel(&#39;time&#39;)标记X轴，输入ylabel(&#39;value&#39;)标记Y轴的值。
+同时我们也可以标记这两条函数曲线，用命令 legend(&#39;sin&#39;,&#39;cos&#39;)将这个图例放在右上方，表示这两条曲线表示的内容。最后输入title(&#39;myplot&#39;)，在图像的顶部显示这幅图的标题。
+使用close命令可以关掉图像
+ 可以为图像标号
+ 使用figure(1); plot(t, y1);将显示第一张图，绘制了y1-t
+ 使用figure(2); plot(t, y2);将显示第一张图，绘制了y2-t
+   subplot命令，我们使用subplot(1,2,1)，它将图像分为一个1*2的格子，也就是前两个参数，然后它使用第一个格子，也就是最后一个参数1的意思。
+之后键入plot(t, y1)，y1-t图显示在第一个格子；
+使用subplot(1, 2, 2); plot(t, y2)，y2-t图显示在第二个格子
+还有一个命令，可以改变轴的刻度，比如改成[0.5 1 -1 1]，输入命令：axis([0....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.11</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%95%B0%E6%8D%AE%E7%BB%98%E5%9B%BE/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>MATLAB学习_字符与字符串</h2>
+  </header>
+  <section class="entry-content">
+   <p>字符串 创建 t = &#34;Hello, world&#34;;  如果文本包含双引号，请在定义中使用两个双引号。
+q = &#34;Something &#34;&#34;quoted&#34;&#34; and something else.&#34;  t 和 q 为数组。它们的数据类型是 string。
+&gt;&gt; whos t Name Size Bytes Class Attributes t 1x1 166 string   注意: 使用双引号创建字符串数组是在 R2017a 中引入的。
+ 行末添加 使用&#43;运算符
+&gt;&gt; t &#43; &#34;!&#34; ans = &#34;Hello, world!&#34;  求长度 与数值数组类似，字符串数组可以有多个元素。
+&gt;&gt; A = [&#34;a&#34;,&#34;bb&#34;,&#34;ccc&#34;; &#34;dddd&#34;,&#34;eeeeee&#34;,&#34;fffffff&#34;] A = 2×3 string 数组 &#34;a&#34; &#34;bb&#34; &#34;ccc&#34; &#34;dddd&#34; &#34;eeeeee&#34; &#34;fffffff&#34;  使用 strlength 函数求数组中每个字符串的长度。...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.11</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%AD%97%E7%AC%A6%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>MATLAB学习_操作数据</h2>
+  </header>
+  <section class="entry-content">
+   <p>文件操作 导入文件 当我们打开 MATLAB 时，我们通常已经在一个默认路径中，这个路径是 MATLAB 的安装位置，使用 pwd 命令可以显示出 MATLAB 当前所处路径。
+使用cd命令，可以修改当前路径
+使用’ls’命令，可以列出当前路劲中所有文件
+要在MATLAB中导入数据文件，可以使用load命令，如：
+&gt;&gt; load myData.dat % 或load(&#39;myData.dat&#39;)  之后可以直接输入myData，MATLAB便会打印文件中的数据，此时该文件名便作为一个新变量名
+导出文件 退出 MATLAB 后，工作区变量不会保留。使用 save 命令保存数据以供将来使用，
+save myfile.mat  通过保存，系统会使用 .mat 扩展名将工作区保存在当前工作文件夹中一个名为 MAT 文件的压缩文件中。
+变量操作 “工作区”中包含了在MATLAB创建或从数据文件或其他程序导入的变量
+例如先在工作区中创建变量A和B
+A = eye(3) B = rand(2, 3)  使用who可以查看当前工作区中所有变量
+&gt;&gt; who 您的变量为: A B  还有一个whos，能更详细的查看
+&gt;&gt; whos Name Size Bytes Class Attributes A 3x3 72 double B 2x3 48 double  此外，在GUI窗口中也能查看...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.10</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE/"></a>
+</article>
+
 
 
 
 <footer class="page-footer">
   <nav class="pagination">
     
-    <a class="prev" href="https://konosuba.xyz/blog/page/2/">← Prev Page</a>
+    <a class="prev" href="/blog/page/2/">← Prev Page</a>
     
     
-    <a class="next" href="https://konosuba.xyz/blog/page/4/">Next Page →</a>
+    <a class="next" href="/blog/page/4/">Next Page →</a>
     
   </nav>
 </footer>
@@ -285,7 +311,7 @@ while &gt;&gt; i = 1 &gt;&gt; while true, v(i) = 999; i = i&#43;1; if i == 6, br
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></span>
+  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

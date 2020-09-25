@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>MATLAB学习_矩阵与向量操作 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content="矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算
+运算 现有一矩阵a:
+&gt;&gt; a = [1 2 3; 4 5 6; 7 8 10] a = 1 2 3 4 5 6 7 8 10  矩阵与常数相加
+&gt;&gt; a &#43; 10 ans = 11 12 13 14 15 16 17 18 20  &gt;&gt; sin(a) ans = 0.8415 0.9093 0.1411 -0.7568 -0.9589 -0.2794 0.6570 0.9894 -0.5440  转置矩阵 &gt;&gt;a&#39; ans = 1 4 7 2 5 8 3 6 10  逆矩阵 &gt;&gt; inv(a) ans = -0.">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">MATLAB学习_矩阵与向量操作</h1>
+    <div class="post-meta">2020.1.10</div>
+  </header>
+  <div class="post-content">
+
+<p>矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算</p>
+
+<h2 id="运算">运算</h2>
+
+<p>现有一矩阵<code>a</code>:</p>
+
+<pre><code class="language-matlab">&gt;&gt; a = [1 2 3; 4 5 6; 7 8 10]
+a =
+     1     2     3
+     4     5     6
+     7     8     10
+</code></pre>
+
+<p>矩阵<strong>与常数相加</strong></p>
+
+<pre><code class="language-matlab">&gt;&gt; a + 10
+ans =
+    11    12    13
+    14    15    16
+    17    18    20
+</code></pre>
+
+<pre><code class="language-matlab">&gt;&gt; sin(a)
+ans =
+    0.8415    0.9093    0.1411
+   -0.7568   -0.9589   -0.2794
+    0.6570    0.9894   -0.5440
+</code></pre>
+
+<h3 id="转置矩阵">转置矩阵</h3>
+
+<pre><code class="language-matlab">&gt;&gt;a'
+ans =
+     1     4     7
+     2     5     8
+     3     6     10
+</code></pre>
+
+<h3 id="逆矩阵">逆矩阵</h3>
+
+<pre><code class="language-matlab">&gt;&gt; inv(a)
+ans =
+   -0.6667   -1.3333    1.0000
+   -0.6667    3.6667   -2.0000
+    1.0000   -2.0000    1.0000
+</code></pre>
+
+<h3 id="标准矩阵乘法">标准矩阵乘法</h3>
+
+<pre><code class="language-matlab">&gt;&gt; p = a*inv(a)
+p =
+    1.0000         0         0
+    0.0000    1.0000         0
+    0.0000   -0.0000    1.0000
+</code></pre>
+
+<p>请注意，p 不是整数值矩阵。MATLAB 将数字存储为浮点值，算术运算可以区分实际值与其浮点表示之间的细微差别。使用 <strong>format</strong> 命令可以显示更多小数位数：</p>
+
+<pre><code class="language-matlab">&gt;&gt; format long
+&gt;&gt; p = a*inv(a)
+p =
+   1.000000000000000                   0                   0
+   0.000000000000002   1.000000000000000                   0
+   0.000000000000002  -0.000000000000004   1.000000000000000
+</code></pre>
+
+<p>format 仅影响数字显示，而不影响 MATLAB 对数字的计算或保存方式。</p>
+
+<h3 id="元素级乘法">元素级乘法</h3>
+
+<p>使用<code>.*</code>运算符</p>
+
+<pre><code class="language-matlab">&gt;&gt; a .* 3
+ans =
+     3     6     9
+    12    15    18
+    21    24    30
+
+&gt;&gt; a .* a
+ans =
+     1     4     9
+    16    25    36
+    49    64   100
+</code></pre>
+
+<p>乘法、除法和幂的矩阵运算符分别具有执行元素级运算的对应数组运算符。例如，计算 a 的各个元素的三次方：</p>
+
+<pre><code class="language-matlab">&gt;&gt; a .^ 3
+ans =
+           1           8          27
+          64         125         216
+         343         512        1000
+</code></pre>
+
+<h3 id="复数">复数</h3>
+
+<p>复数包含实部和虚部，虚数单位是 -1 的平方根。</p>
+
+<pre><code class="language-matlab">&gt;&gt; sqrt(-1)
+ans =
+   0.0000 + 1.0000i
+</code></pre>
+
+<p>要表示复数的虚部，请使用 i 或 j，例如：</p>
+
+<pre><code class="language-matlab">&gt;&gt; c = [3+4i, 4+3j; -i, 10j]
+c =
+   3.0000 + 4.0000i   4.0000 + 3.0000i
+   0.0000 - 1.0000i   0.0000 +10.0000i
+</code></pre>
+
+<h2 id="操作">操作</h2>
+
+<h3 id="获取尺寸">获取尺寸</h3>
+
+<pre><code class="language-matlab">&gt;&gt; size(a)
+ans =
+     3     3
+</code></pre>
+
+<p>实际上，<code>size()</code>命令返回的是一个 1×2 的矩阵，我们可以用<code>sz</code>来存放。</p>
+
+<p>设置 <code>sz = size(a)</code></p>
+
+<p>因此  就是一个1×2的矩阵，第一个元素是3，第二个元素是3。</p>
+
+<p>也可以使用<code>length()</code>，它将返回最大维度的大小：</p>
+
+<pre><code class="language-matlab">&gt;&gt; v = [1 2 3 4];
+&gt;&gt; length(v)
+ans =
+     4
+
+&gt;&gt; length(a)
+ans =
+     3
+</code></pre>
+
+<h3 id="数组索引">数组索引</h3>
+
+<p>引用数组中的特定元素有两种方法。最常见的方法是指定行和列下标，例如</p>
+
+<pre><code class="language-matlab">&gt;&gt; a(2, 3)
+ans =
+     6
+</code></pre>
+
+<p>另一种方法不太常用，但有时非常有用，即使用单一下标按顺序向下遍历每一列，称为线性索引</p>
+
+<pre><code class="language-matlab">&gt;&gt; a(8)
+ans =
+     6
+</code></pre>
+
+<p>如果尝试在赋值语句右侧引用数组外部元素，MATLAB 会引发错误。</p>
+
+<pre><code class="language-matlab">&gt;&gt; a(5,5)
+位置 1 处的索引超出数组边界(不能超出 3)。
+</code></pre>
+
+<p>不过，您可以在赋值语句左侧指定当前维外部的元素。数组大小会增大以便容纳新元素。</p>
+
+<pre><code class="language-matlab">&gt;&gt; a(5, 5) = 33
+a =
+     1     2     3     0     0
+     4     5     6     0     0
+     7     8    10     0     0
+     0     0     0     0     0
+     0     0     0     0    33
+
+&gt;&gt; size(a)
+ans =
+     5     5
+</code></pre>
+
+<p>要<strong>引用多个数组元素</strong>，请使用冒号运算符，这使您可以指定一个格式为 start:end 的范围。</p>
+
+<pre><code class="language-matlab">&gt;&gt; a(1:3, 2:3)
+ans =
+     2     3
+     5     6
+     8    10
+</code></pre>
+
+<p>单独的冒号（没有起始值或结束值）指定该维中的所有元素。</p>
+
+<h3 id="串联">串联</h3>
+
+<p>串联是连接数组以便形成更大数组的过程。</p>
+
+<p>实际上，第一个数组是通过将其各个元素串联起来而构成的。成对的方括号 [] 即为串联运算符。</p>
+
+<pre><code class="language-matlab">&gt;&gt; A = [a, a]
+A =
+     1     2     3     1     2     3
+     4     5     6     4     5     6
+     7     8    10     7     8    10
+
+&gt;&gt; A = [a; a]
+A =
+     1     2     3
+     4     5     6
+     7     8    10
+     1     2     3
+     4     5     6
+     7     8    10
+</code></pre>
+
+<blockquote>
+<p>参考<a href="https://ww2.mathworks.cn/help/matlab/learn_matlab">MATLAB快速入门</a></p>
+</blockquote>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

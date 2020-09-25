@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>分类(classification)与回归(regression)的区别与关系 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content=" 分类与回归是监督学习中的两个主要任务，它们即对应了监督学习中“学习”的部分
+分类模型与回归模型的本质其实一样。分类模型可将回归模型的输出离散化，回归模型也可将分类模型的输出连续化
+例如：
+Linear Recognition 线性回归 使用 y = wx &#43; b 的形式，y就是模型的输出，是一个连续值，所以可以用于处理回归问题
+Logistic Recognition 逻辑回归 一般作为分类问题的首选算法，logistic回归只是用到了回归算法，但是其输出的结果是决策边界，是不连续的，所以它其实是分类，而不是回归
+二分类 将 y = wx &#43; b 利用激活函数（常用sigmoid函数）映射到 (0,1) 中。再选定一个阈值，将输出分为两类。
+多分类 先得到n组w不同的 y = wx &#43;b ，之后进行归一化（例如使用Softmax函数），从而得到在n个类上的概率，即可解决多分类问题
+回归问题的应用场景 回归问题通常是用来预测一个值，如预测房价、未来的天气情况等等。例如一个产品的实际价格为500元，通过回归分析预测值为499元，我们认为这是一个比较好的回归分析。
+一个比较常见的回归算法是线性回归算法（LR）。
+另外，回归分析用在神经网络上，其最上层是不需要加上softmax函数的，而是直接对前一层累加即可。回归是对真实值的一种逼近预测。
+分类问题的应用场景 分类问题是用于将事物打上一个标签，通常结果为离散值。
+例如判断一幅图片上的动物是一只猫还是一只狗，分类通常是建立在回归之上，分类的最后一层通常要使用softmax函数进行判断其所属类别。
+分类并没有逼近的概念，最终正确结果只有一个，错误的就是错误的，不会有相近的概念。
+最常见的分类方法是逻辑回归，或者叫逻辑分类。
+总结 一个小测验：假设你经营着一家公司，你想开发学习算法来处理这两个问题：
+ 你有一大批同样的货物，想象一下，你有上千件一模一样的货物等待出售，这时你想预测接下来的三个月能卖多少件？
+ 你有许多客户，这时你想写一个软件来检验每一个用户的账户。对于每一个账户，你要判断它们是否曾经被盗过？
+  那这两个问题，它们属于分类问题、还是回归问题?
+ 问题一是一个回归问题，因为你知道，如果我有数千件货物，我会把它看成一个实数，一个连续的值。因此卖出的物品数，也是一个连续的值。
+ 问题二是一个分类问题，因为我会把预测的值，用 0 来表示账户未被盗，用 1 表示账户曾经被盗过。所以我们根据账号是否被盗过，把它们定为0 或 1，然后用算法推测一个账号是 0 还是 1，因为只有少数的离散值，所以我把它归为分类问题。
+  ">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">分类(classification)与回归(regression)的区别与关系</h1>
+    <div class="post-meta">2020.1.6</div>
+  </header>
+  <div class="post-content">
+
+<p>分类与回归是监督学习中的两个主要任务，它们即对应了监督学习中“学习”的部分</p>
+
+<p>分类模型与回归模型的本质其实一样。<strong>分类模型可将回归模型的输出离散化，回归模型也可将分类模型的输出连续化</strong></p>
+
+<hr />
+
+<p>例如：</p>
+
+<h2 id="linear-recognition-线性回归">Linear Recognition 线性回归</h2>
+
+<p>使用 <code>y = wx + b</code> 的形式，y就是模型的输出，是一个连续值，所以可以用于处理回归问题</p>
+
+<h2 id="logistic-recognition-逻辑回归">Logistic Recognition 逻辑回归</h2>
+
+<p>一般作为分类问题的首选算法，logistic回归只是用到了回归算法，但是其输出的结果是决策边界，是不连续的，所以它其实<strong>是分类，而不是回归</strong></p>
+
+<h3 id="二分类">二分类</h3>
+
+<p>将 <code>y = wx + b</code> 利用激活函数（常用sigmoid函数）映射到 <code>(0,1)</code> 中。再选定一个阈值，将输出分为两类。</p>
+
+<h3 id="多分类">多分类</h3>
+
+<p>先得到n组<code>w</code>不同的 <code>y = wx +b</code> ，之后进行归一化（例如使用Softmax函数），从而得到在n个类上的概率，即可解决多分类问题</p>
+
+<hr />
+
+<p><img src="https://i.loli.net/2020/01/06/plAdKmLerwHOJ3b.jpg" alt="区别" /></p>
+
+<h2 id="回归问题的应用场景">回归问题的应用场景</h2>
+
+<p>回归问题通常是用来预测一个值，如预测房价、未来的天气情况等等。例如一个产品的实际价格为500元，通过回归分析预测值为499元，我们认为这是一个比较好的回归分析。</p>
+
+<p>一个比较常见的回归算法是线性回归算法（LR）。</p>
+
+<p>另外，回归分析用在神经网络上，其最上层是不需要加上softmax函数的，而是直接对前一层累加即可。回归是对真实值的一种逼近预测。</p>
+
+<h2 id="分类问题的应用场景">分类问题的应用场景</h2>
+
+<p>分类问题是用于将事物打上一个标签，通常结果为离散值。</p>
+
+<p>例如判断一幅图片上的动物是一只猫还是一只狗，分类通常是建立在回归之上，分类的最后一层通常要使用softmax函数进行判断其所属类别。</p>
+
+<p>分类并没有逼近的概念，最终正确结果只有一个，错误的就是错误的，不会有相近的概念。</p>
+
+<p>最常见的分类方法是逻辑回归，或者叫逻辑分类。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>一个小测验：假设你经营着一家公司，你想开发学习算法来处理这两个问题：</p>
+
+<ol>
+<li><p>你有一大批同样的货物，想象一下，你有上千件一模一样的货物等待出售，这时你想预测接下来的三个月能卖多少件？</p></li>
+
+<li><p>你有许多客户，这时你想写一个软件来检验每一个用户的账户。对于每一个账户，你要判断它们是否曾经被盗过？</p></li>
+</ol>
+
+<p>那这两个问题，它们属于分类问题、还是回归问题?</p>
+
+<ul>
+<li><p>问题一是一个回归问题，因为你知道，如果我有数千件货物，我会把它看成一个实数，一个连续的值。因此卖出的物品数，也是一个连续的值。</p></li>
+
+<li><p>问题二是一个分类问题，因为我会把预测的值，用 0 来表示账户未被盗，用 1 表示账户曾经被盗过。所以我们根据账号是否被盗过，把它们定为0 或 1，然后用算法推测一个账号是 0 还是 1，因为只有少数的离散值，所以我把它归为分类问题。</p></li>
+</ul>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

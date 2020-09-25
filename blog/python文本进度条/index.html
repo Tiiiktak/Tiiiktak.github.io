@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>Python文本进度条 - Tiiktak&#39;s -- 编程学习与技术分享</title>
+    <title>Python文本进度条 - Tiiktak&#39;s</title>
     
     <meta name="description" content=" 一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
 代码 import time scale = 50 # 进度条长度 print(&quot;&gt;&gt;执行开始\n&quot;) start = time.perf_counter() # 开始时刻 for i in range(scale&#43;1): a = &#39;|&#39; * i b = &#39;.&#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&quot;\r{:^3.0f}% [{}&gt;&gt;{}] {:.2f}s&quot;.format(c, a, b, dur), end=&#39;&#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&quot;\n\n&gt;&gt;执行结束&quot;)  效果 ">
@@ -19,7 +19,7 @@
     
     <meta name="generator" content="Hugo 0.55.6" />
     
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s -- 编程学习与技术分享">
+    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
@@ -28,7 +28,7 @@
     <header class="header">
       <div class="wrap">
         
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></p>
+        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
         
         
         <button class="menu-toggle" type="button"></button>
@@ -40,7 +40,7 @@
       <ul class="menu">
         
         <li>
-          <a href="https://konosuba.xyz/about/">About</a>
+          <a href="/about/">About</a>
         </li>
         
       </ul>
@@ -107,7 +107,7 @@ print(&quot;\n\n&gt;&gt;执行结束&quot;)
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></span>
+  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

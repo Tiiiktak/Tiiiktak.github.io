@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>MATLAB学习_函数 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content="自定义函数 MATLAB可以在单独的.m文件中定义函数
+比如有一文件myadd.m，文件中内容为
+function y = myadd(a, b) % 这里可以写函数的使用说明，前面以%开头 % 在工作区中，help myadd将显示此处的说明 y = a &#43; b; end %可以略去  第一行function y = myadd(a, b) 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量y里。
+另外，还可以得知这个函数有两个参数a和b，以及定义的函数体，即 y = a &#43; b
+ myadd是函数名。以m文件定义的函数必须保存为函数名的形式
+要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。
+ 调用方式 只需在MATLAB中直接使用函数名调用，MATLAB会自动在其搜索路径中找到对应.m文件，例如
+&gt;&gt; c = myadd(1, 2) c = 3  MORE MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为
+[y1, y2...] = function_name(x1, x2...)">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">MATLAB学习_函数</h1>
+    <div class="post-meta">2020.1.11</div>
+  </header>
+  <div class="post-content">
+
+<h1 id="自定义函数">自定义函数</h1>
+
+<p>MATLAB可以在单独的<code>.m</code>文件中定义函数</p>
+
+<p>比如有一文件<code>myadd.m</code>，文件中内容为</p>
+
+<pre><code class="language-matlab">function y = myadd(a, b)
+
+% 这里可以写函数的使用说明，前面以%开头
+% 在工作区中，help myadd将显示此处的说明
+
+y = a + b;
+
+end %可以略去
+</code></pre>
+
+<p>第一行<code>function y = myadd(a, b)</code> 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量<code>y</code>里。</p>
+
+<p>另外，还可以得知这个函数有两个参数<code>a</code>和<code>b</code>，以及定义的函数体，即 <code>y = a + b</code></p>
+
+<blockquote>
+<p>myadd是函数名。以m文件定义的函数必须保存为函数名的形式</p>
+
+<p>要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。</p>
+</blockquote>
+
+<h2 id="调用方式">调用方式</h2>
+
+<p>只需在MATLAB中直接使用函数名调用，MATLAB会自动在其搜索路径中找到对应<code>.m</code>文件，例如</p>
+
+<pre><code class="language-matlab">&gt;&gt; c = myadd(1, 2)
+c =
+     3
+</code></pre>
+
+<h2 id="more">MORE</h2>
+
+<p>MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为</p>
+
+<p><code>[y1, y2...] = function_name(x1, x2...)</code></p>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

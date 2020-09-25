@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>MATLAB学习_控制语句:for,while,if - Tiiktak&#39;s</title>
+    
+    <meta name="description" content=" for循环 首先我们定义一个向量v = zeros(10, 1)
+接着我们写一个 “for&rdquo; 循环，让v等于 1 到 10。设v(i)等于 2 的i次方，循环最后写上“end”。
+&gt;&gt; for i = 1:10 v(i) = 2^i; end &gt;&gt; v v = 2 4 8 16 32 64 128 256 512 1024  同样也可以使用break，continue语句
+while &gt;&gt; i = 1 &gt;&gt; while true, v(i) = 999; i = i&#43;1; if i == 6, break; end; end; &gt;&gt; i i = 6  if-else &gt;&gt; if i == 5, disp(&quot;hello&quot;); elseif i == 4, disp(&quot;world&quot;); else disp(&quot;hello, world&quot;); end; hello, world &gt;&gt;  ">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">MATLAB学习_控制语句:for,while,if</h1>
+    <div class="post-meta">2020.1.11</div>
+  </header>
+  <div class="post-content">
+
+<h2 id="for循环">for循环</h2>
+
+<p>首先我们定义一个向量<code>v = zeros(10, 1)</code></p>
+
+<p>接着我们写一个 “for&rdquo; 循环，让<code>v</code>等于 1 到 10。设<code>v(i)</code>等于 2 的<code>i</code>次方，循环最后写上“end”。</p>
+
+<pre><code class="language-matlab">&gt;&gt; for i = 1:10
+v(i) = 2^i;
+end
+&gt;&gt; v
+v =
+           2
+           4
+           8
+          16
+          32
+          64
+         128
+         256
+         512
+        1024
+</code></pre>
+
+<p>同样也可以使用<code>break</code>，<code>continue</code>语句</p>
+
+<h2 id="while">while</h2>
+
+<pre><code class="language-matlab">&gt;&gt; i = 1
+&gt;&gt; while true,
+     v(i) = 999;
+     i = i+1;
+     if i == 6,
+       break;
+     end;
+   end;
+&gt;&gt; i
+i =
+     6
+</code></pre>
+
+<h2 id="if-else">if-else</h2>
+
+<pre><code class="language-matlab">&gt;&gt; if i == 5,
+     disp(&quot;hello&quot;);
+   elseif i == 4,
+     disp(&quot;world&quot;);
+   else
+     disp(&quot;hello, world&quot;);
+   end;
+hello, world
+&gt;&gt;
+</code></pre>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

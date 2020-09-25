@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>Tiiktak&#39;s -- 编程学习与技术分享</title>
+    <title>Tiiktak&#39;s</title>
     
     <meta name="description" content="Hey You">
     <meta name="author" content="">
@@ -18,7 +18,7 @@
     
     <meta name="generator" content="Hugo 0.55.6" />
     
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s -- 编程学习与技术分享">
+    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
@@ -27,7 +27,7 @@
     <header class="header">
       <div class="wrap">
         
-        <h1 class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></h1>
+        <h1 class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></h1>
         
         
         <button class="menu-toggle" type="button"></button>
@@ -39,7 +39,7 @@
       <ul class="menu">
         
         <li>
-          <a href="https://konosuba.xyz/about/">About</a>
+          <a href="/about/">About</a>
         </li>
         
       </ul>
@@ -53,118 +53,6 @@
 
 
 
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</h2>
-  </header>
-  <section class="entry-content">
-   <p>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
-因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
-树莓派-服务端 #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;thread&gt; #include &lt;opencv2/opencv.hpp&gt; using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; for (int i = 0; i &lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &lt; img_gray....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.9</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Socket通信原理(3)</h2>
-  </header>
-  <section class="entry-content">
-   <p>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
-这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
-服务端-树莓派 socket_server_sms.cpp #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; using namespace std; #define USEPORT 1234 int main() { //****创建套接字 int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET //Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF if (serverSock &lt; 0) { cout &lt;&lt; &#34;socket creation failed&#34; &lt;&lt; endl; exit(-1); } cout &lt;&lt; &#34;socket creation successfully&#34; &lt;&lt; endl; //****绑定ip和端口 struct sockaddr_in serverAddr; memset(&amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.8</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Socket通信原理(2)</h2>
-  </header>
-  <section class="entry-content">
-   <p>本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
- 系统：Windows 10
-软件：Visual studio 2019
-语言：C&#43;&#43;
- Socket通信实现步骤  创建ServerSocket和Socket
- 打开连接到的Socket的输入/输出流
- 按照协议对Socket进行读/写操作
- 关闭输入/输出流和Socket
-  本文的程序由服务端发送信息到客户端，若用户输入quit则结束客户端与服务端程序
-服务端Server 由于Windows下的socket程序依赖Winsock.dll或ws2_32.dll，所以必须提前加载
-#include &lt;iostream&gt; #include &lt;string&gt; #include &lt;winsock2.h&gt; //包含socket的头文件 #pragma comment (lib, &#34;ws2_32.lib&#34;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 //-&gt;MSKEWORD(2,2)主版本号2，副版本号2 if (WSAStartup(MAKEWORD(2, 2), &amp;wsaData) != 0)	{	return 0; } //****创建套接字 SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&gt;IPv6，PF_INET-&gt;IPv4 //参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM //参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 //判断无效套接字 if (servSock == INVALID_SOCKET) { cout &lt;&lt; &#34;socket error!...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.8</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Socket通信原理(1)</h2>
-  </header>
-  <section class="entry-content">
-   <p>最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
-TCP/IP、UDP 在开始之前，先听两个笑话😏
-TCP
-&gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &gt; “好的，我会给你讲一个TCP 的笑话。” &gt; “好的，我会听一个TCP 的笑话。” &gt; “你准备好听一个TCP 的笑话么？” &gt; “嗯，我准备好听一个TCP 的笑话” &gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？”  UDP
-&gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！  学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
-TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种
-OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。
-从网络角度观察：
- 下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>树莓派配置摄像头</h2>
-  </header>
-  <section class="entry-content">
-   <p>注意：树莓派插电时千万不要插拔摄像头！据说十有八九摄像头会GG，我差点就中招了
-安装驱动 首先使用ls指令查看是否加载到了对应的video device设备：
-ls -al /etc  没有看到设备开始安装驱动
-添加驱动设备到文件夹 sudo vim /etc/modules  在文件末尾添加
-bcm2835-v412  修改raspberry的启动配置 进入管理中心开启pi camera
-sudo raspi-config  选择interfacing option
-开启Camera后重启
-检查/dev ls -al /dev/ | grep video  有video设备则成功
-使用树莓派摄像头 使用raspistill指令
-测试 raspistill -o image.jpg   在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
- raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为’-‘，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720  错误 在第一次成功调用后，之后再次调用时多次报错：
-mmal: No data received from sensor....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.1</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Home</h2>
-  </header>
-  <section class="entry-content">
-   <p>:D 获取中...
-fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.json(); }) .then(function (data) { var hitokoto = document.getElementById(&#39;hitokoto&#39;); var hitokotofrom = document.getElementById(&#39;from&#39;); hitokoto.innerText = data.hitokoto; hitokotofrom.innerText = data.from; }) .catch(function (err) { console.error(err); })  ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.29</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/home/"></a>
-</article>
 
 <article class="post-entry">
   <header class="entry-header">
@@ -248,16 +136,135 @@ Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组
   <a class="entry-link" href="https://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/"></a>
 </article>
 
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Linux操作学习 系统启动及目录</h2>
+  </header>
+  <section class="entry-content">
+   <p>Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
+运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
+运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
+Linux共7种运行级别: &gt;* 运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 &gt;* 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 &gt;* 运行级别2：多用户状态(没有NFS) &gt;* 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 &gt;* 运行级别4：系统未使用，保留 &gt;* 运行级别5：X11控制台，登陆后进入图形GUI模式 &gt;* 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
+系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
+主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务
+另外一行：15:5:wait:/etc/rc.d/rc 5，表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，接受5作为参数，执行/etc/rc.d/rc5.d/目录下所有rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。/etc/rc.d/rc5.d/中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。
+而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。
+这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。
+至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的”System Services”来自行设定。
+建立终端 rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。
+init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：
+1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6  2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
+用户登录系统 常用三种登陆方式： * 命令行登陆 * ssh登陆 * 图形界面登陆
+命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.24</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python面向对象</h2>
+  </header>
+  <section class="entry-content">
+   <p>类和实例 定义类 使用class关键字
+class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &#34;&#34;&#34;docstring for Student&#34;&#34;&#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score))  实例化 类名&#43;（）
+&gt;&gt;&gt; bob = Student(&#39;Bob&#39;, 98) &gt;&gt;&gt; bob.print_score() Bob: 98  创建实例后，可以自由地给一个实例变量绑定属性，如
+&gt;&gt;&gt; bob.school = &#39;SWUST&#39; &gt;&gt;&gt; bob.school &#39;SWUST&#39;  访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
+class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子类：...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.21</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python函数式编程</h2>
+  </header>
+  <section class="entry-content">
+   <p>[toc]
+什么是函数式编程？ 函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。
+而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
+函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
+Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言
+高阶函数 Python中函数两个特性 &gt; ### 变量可以指向函数 函数本身可以赋值给变量，通过变量可以调用函数
+&gt;&gt;&gt; f = abs &gt;&gt;&gt; f(-10) 10   函数名是变量 把函数名看作变量，可将其指向其他对象，则无法调用原函数
+&gt;&gt;&gt; abs = 10 &gt;&gt;&gt; abs(-10) Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; TypeError: &#39;int&#39; object is not callable   传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
+一个最简单的高阶函数：
+def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
+ 把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式
+ Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.21</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>算法复杂度</h2>
+  </header>
+  <section class="entry-content">
+   <p> 算法复杂度  总共N个数据 一次操作记为O(1) N次操作记为O(n) 在大部分oj判题系统中时间限制为10^6 =1s  冒泡排序  操作次数: n&#43;(n-1)&#43;(n-2)&#43;…&#43;n(n-1)/2  快速排序  递归处理数组，每次将数组按照key值在其左右区分出来：比key小放左边，比key大放右边
+ 例: 5 6 2 4 3 8 取首位（5）为key值
+ 4 3 2 5 6 8
+ 4 3 2 5 6 8
+  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.21</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python中set集合</h2>
+  </header>
+  <section class="entry-content">
+   <p> set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
+创建set 传入一个list，重复元素会被自动过滤，显示的顺序并不表示set是有序的
+&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3]) &gt;&gt;&gt; s {1, 2, 3}  添加元素 &gt;&gt;&gt; s.add(4) &gt;&gt;&gt; s {1, 2, 3, 4}  删除元素 &gt;&gt;&gt; s.remove(3) &gt;&gt;&gt; s {1, 2, 4}  交并集 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作
+&gt;&gt;&gt; s1 = set([1, 2, 3]) &gt;&gt;&gt; s2 = set([2, 3, 4]) &gt;&gt;&gt; s1 &amp; s2 {2, 3} &gt;&gt;&gt; s1 | s2 {1, 2, 3, 4}  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python中dict字典</h2>
+  </header>
+  <section class="entry-content">
+   <p>dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度
+创建dict &gt;&gt;&gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85} &gt;&gt;&gt; d[&#39;Michael&#39;] 95  内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
+加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
+&gt;&gt;&gt; d[&#39;Tony&#39;] = 99 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  查询key是否存在 使用in &gt;&gt;&gt; &#39;Thomas&#39; in d False &gt;&gt;&gt; &#39;Bob&#39; in d True  使用get() 如果key不存在，返回None，或者自己指定的value
+&gt;&gt;&gt; d.get(&#39;Thomas&#39;) #返回None时Python交互环境不显示 &gt;&gt;&gt; d.get(&#39;Thomas&#39;, -1) -1  删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
+&gt;&gt;&gt; d.pop(&#39;Bob&#39;) 75 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/"></a>
+</article>
+
 
 
 
 <footer class="page-footer">
   <nav class="pagination">
     
-    <a class="prev" href="https://konosuba.xyz/page/6/">← Prev Page</a>
+    <a class="prev" href="/page/6/">← Prev Page</a>
     
     
-    <a class="next" href="https://konosuba.xyz/page/8/">Next Page →</a>
+    <a class="next" href="/page/8/">Next Page →</a>
     
   </nav>
 </footer>
@@ -265,7 +272,7 @@ Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></span>
+  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

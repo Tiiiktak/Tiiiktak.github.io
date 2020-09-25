@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>百度搜索资源平台用crul做链接主动推送 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content="引 最近在百度站长平台加入了这个博客，由于之前在Google上都是直接提交sitemap地址，但是在百度索引sitemap实在太慢了，所以还是选择使用它推荐的crul主动推送方式，在这做个记录
+在Windows上安装配置crul 进入curl的官网下载最新的Windows版的binary the curl project安装包
+下载完成后解压到任意目录下
+之后进入系统属性-&gt;高级系统设置-&gt;高级-&gt;环境变量-&gt;系统变量
+新建一个变量，命名为curl，变量值选择之前解压的文件夹-&gt;bin文件夹-&gt;curl.exe
+一路保存
+之后打开cmd，敲入curl，输出如图，则配置成功
+使用curl推送链接 由于使用curl推送链接需要一个只有链接地址的文件，然而sitemap很明显不符合这个条件，所以需要先利用这个在线工具将网站中的链接提取出来
+如图，将图中右侧框中的链接复制到一个新建的txt文档，命名为urls.txt
+然后在cmd中进入txt文件所在目录，执行百度搜索资源平台给的推送命令，例如：
+如果有类似以下的输出，则说明推送成功！
+{ &quot;remain&quot;:4999998, &quot;success&quot;:2, &quot;not_same_site&quot;:[], &quot;not_valid&quot;:[] }  在服务器自动推送 很明显，现在这种必须要每次手动推送，很耗费能量，所以之后会试着在网站服务器端配置自动推送，这样才是真正的自动推送嘛">
+    <meta name="author" content="">
+    
+    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">百度搜索资源平台用crul做链接主动推送</h1>
+    <div class="post-meta">2019.12.3</div>
+  </header>
+  <div class="post-content">
+
+<h2 id="引">引</h2>
+
+<p>最近在百度站长平台加入了这个博客，由于之前在Google上都是直接提交sitemap地址，但是在百度索引sitemap实在太慢了，所以还是选择使用它推荐的crul主动推送方式，在这做个记录</p>
+
+<h2 id="在windows上安装配置crul">在Windows上安装配置crul</h2>
+
+<p>进入curl的<a href="https://curl.haxx.se/download.html">官网</a>下载最新的Windows版的<code>binary the curl project</code>安装包</p>
+
+<p><img src="https://i.loli.net/2019/12/03/nj8fI1Mi9vUluLD.png" alt="windows_crul" /></p>
+
+<p>下载完成后解压到任意目录下</p>
+
+<p>之后进入系统属性-&gt;高级系统设置-&gt;高级-&gt;环境变量-&gt;系统变量</p>
+
+<p>新建一个变量，命名为curl，变量值选择之前解压的文件夹-&gt;bin文件夹-&gt;curl.exe</p>
+
+<p><img src="https://i.loli.net/2019/12/03/LGOdwP25jBauzpJ.png" alt="curl_path" /></p>
+
+<p>一路保存</p>
+
+<p>之后打开cmd，敲入<code>curl</code>，输出如图，则配置成功</p>
+
+<p><img src="https://i.loli.net/2019/12/03/2mncCO8kSvx4Paq.png" alt="curl" /></p>
+
+<h2 id="使用curl推送链接">使用curl推送链接</h2>
+
+<p>由于使用curl推送链接需要一个只有链接地址的文件，然而sitemap很明显不符合这个条件，所以需要先利用这个<a href="https://www.lmcjl.com/index/graburl/index.html">在线工具</a>将网站中的链接提取出来</p>
+
+<p><img src="https://i.loli.net/2019/12/03/aAVIQ9fCEzUyBup.png" alt="url提取" /></p>
+
+<p>如图，将图中右侧框中的链接复制到一个新建的txt文档，命名为<code>urls.txt</code></p>
+
+<p>然后在cmd中进入txt文件所在目录，执行百度搜索资源平台给的推送命令，例如：</p>
+
+<p><img src="https://i.loli.net/2019/12/03/2xezjIDCkO4cvBa.png" alt="curl推送实例" /></p>
+
+<p>如果有类似以下的输出，则说明推送成功！</p>
+
+<pre><code class="language-sh">{
+    &quot;remain&quot;:4999998,
+    &quot;success&quot;:2,
+    &quot;not_same_site&quot;:[],
+    &quot;not_valid&quot;:[]
+}
+</code></pre>
+
+<h2 id="在服务器自动推送">在服务器自动推送</h2>
+
+<p>很明显，现在这种必须要每次手动推送，很耗费能量，所以之后会试着在网站服务器端配置自动推送，这样才是真正的自动推送嘛</p>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+
