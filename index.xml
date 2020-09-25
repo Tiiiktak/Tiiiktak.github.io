@@ -6,7 +6,7 @@
     <description>Recent content on Tiiktak&#39;s -- 编程学习与技术分享</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 27 Apr 2020 11:25:47 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Sep 2020 19:22:57 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -32,6 +32,28 @@ Archives 基于OpenCV的答题卡识别
 Contact Me  QQ: 1067475613
  Mail: dengsh268@outlook.com
     (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });    (adsbygoogle = window.</description>
+    </item>
+    
+    <item>
+      <title>查看当前使用的Python的安装路径</title>
+      <link>https://konosuba.xyz/blog/%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E4%BD%BF%E7%94%A8%E7%9A%84python%E7%9A%84%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/</link>
+      <pubDate>Fri, 25 Sep 2020 19:22:57 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E4%BD%BF%E7%94%A8%E7%9A%84python%E7%9A%84%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/</guid>
+      <description>如题，代码如下：
+import sys python_path = sys.executable print(python_path)  如图：</description>
+    </item>
+    
+    <item>
+      <title>python库opencv,py-opencv,libopencv的区别</title>
+      <link>https://konosuba.xyz/blog/python%E5%BA%93opencvpy-opencvlibopencv%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Tue, 07 Jul 2020 23:52:11 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/python%E5%BA%93opencvpy-opencvlibopencv%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>通常我们在Python中安装OpenCV都是直接用pip install opencv-python
+今天想用Anaconda Navigator安装的时候，在面板中搜索到有libopencv, opencv, py-opencv共三个包，而且三者的描述都是同样的’Computer vision and machine learning software library‘，瞬间迷惑:laughing:
+找到介绍如下：
+ OpenCV is computer vision a library written using highly optimized C/C++ code. It makes use of multiprocessing in the background. It has a collection of a large number of algorithms tested and verifiend by the developers. The best thing about this is it&amp;rsquo;s FREE under the BSD license. libopencv is only a metapackage. These packages do not contain actual software, they simply depend on other packages to be installed.</description>
     </item>
     
     <item>
@@ -410,6 +432,15 @@ torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如
     </item>
     
     <item>
+      <title>Java_equals</title>
+      <link>https://konosuba.xyz/blog/java_equals/</link>
+      <pubDate>Sat, 01 Feb 2020 15:41:09 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/java_equals/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>正则化 Regularization</title>
       <link>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96-regularization/</link>
       <pubDate>Mon, 13 Jan 2020 17:29:56 +0800</pubDate>
@@ -579,6 +610,25 @@ A = eye(3) B = rand(2, 3)  使用who可以查看当前工作区中所有变量
 运算 现有一矩阵a:
 &amp;gt;&amp;gt; a = [1 2 3; 4 5 6; 7 8 10] a = 1 2 3 4 5 6 7 8 10  矩阵与常数相加
 &amp;gt;&amp;gt; a + 10 ans = 11 12 13 14 15 16 17 18 20  &amp;gt;&amp;gt; sin(a) ans = 0.8415 0.9093 0.1411 -0.7568 -0.9589 -0.2794 0.6570 0.9894 -0.5440  转置矩阵 &amp;gt;&amp;gt;a&#39; ans = 1 4 7 2 5 8 3 6 10  逆矩阵 &amp;gt;&amp;gt; inv(a) ans = -0.</description>
+    </item>
+    
+    <item>
+      <title>Matlab??_????</title>
+      <link>https://konosuba.xyz/blog/matlab_/</link>
+      <pubDate>Fri, 10 Jan 2020 11:07:25 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/matlab_/</guid>
+      <description>???? MATLAB?????
+?????????
+ ????? - ??????? ????? - ?????????????? (&amp;gt;&amp;gt;) ???? ??? - ???????????????  ???? ????????????????????
+&amp;gt;&amp;gt; 2 * 3 ans = 6  ?????????MATLAB?????ans????
+???? ??
+&amp;gt;&amp;gt; 1 == 3 ans = logical 0 &amp;gt;&amp;gt; 1 ~= 3 ans = logical 1   ???????MATLAB??????~=?????????!=
+ ?????&amp;amp;&amp;amp;??||???xor()??
+?? ?????????????????? ;?????????????
+&amp;gt;&amp;gt; a = 2 * 3; &amp;gt;&amp;gt;  ????????disp()??display??????
+&amp;gt;&amp;gt; disp(a) 6  ?????????????sprintf()??
+&amp;gt;&amp;gt; disp(sprintf(&#39;6 decimals: %0.</description>
     </item>
     
     <item>
@@ -995,6 +1045,16 @@ format() 这是一种格式化字符串的函数，基本语法是使用{}和: �
     </item>
     
     <item>
+      <title>Python正态分布np_normal_random</title>
+      <link>https://konosuba.xyz/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/</link>
+      <pubDate>Mon, 09 Sep 2019 10:08:28 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/</guid>
+      <description>正态分布的概率密度函数 numpy中函数 numpy.random.normal(loc=0.0, scale=1.0, size=None)  参数意义：
+loc：float 概率分布均值（对应整个分布的中心centre） scale：float 概率分布标准差（对应分布的宽度，scale越大越矮胖，scale越小，越瘦高） size：int or tuple of ints 输出的shape，默认为None，只输出一个值  常用到np.random.randn(size)表示标准正态分布（μ=0,σ=1），对应于np.random.normal(loc=0, scale=1, size)</description>
+    </item>
+    
+    <item>
       <title>Zen of Python -Python之禅</title>
       <link>https://konosuba.xyz/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/</link>
       <pubDate>Sat, 07 Sep 2019 21:07:51 +0800</pubDate>
@@ -1051,6 +1111,16 @@ try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDiv
 try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
  常见错误类型及继承关系（中文）：官方文档 ```
   优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理</description>
+    </item>
+    
+    <item>
+      <title>多线程与多进程、并行与并发</title>
+      <link>https://konosuba.xyz/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Thu, 11 Jul 2019 15:46:30 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/</guid>
+      <description> 多线程与多进程 线程与进程 进程是资源分配的最小单位，线程则是CPU调度的最小单位，多进程不能共享全局变量，而多线程则可以
+进程 </description>
     </item>
     
     <item>

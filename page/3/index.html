@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Tiiktak&#39;s -- 编程学习与技术分享</title>
+    
+    <meta name="description" content="Hey You">
+    <meta name="author" content="">
+    
+    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s -- 编程学习与技术分享">
+    
+    
+    
+  </head>
+  <body class="list home">
+    <header class="header">
+      <div class="wrap">
+        
+        <h1 class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></h1>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="https://konosuba.xyz/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+
+
+
+
+
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>【应用机器学习】正则化与偏差、方差</h2>
+  </header>
+  <section class="entry-content">
+   <p> 在我们在训练模型的过程中，一般会使用一些正则化方法来防止过拟合。
+但是我们可能会正则化的程度太高或太小了，即我们在选择λ的值时也需要思考与之前选择多项式模型次数类似的问题。
+我们选择一系列的想要测试的λ值，比如这里选择 0-10之间的值，通常呈现2倍关系（如：0,0.01,0.02,0.04,0.08,0.15,0.32,0.64,1.28,2.56,5.12,10 共12个）。
+我们同样把数据分为训练集、交叉验证集和测试集。
+选择λ的方法  使用训练集训练出12个不同程度正则化的模型
+ 用12个模型分别对交叉验证集计算的出交叉验证误差
+ 选择得出交叉验证误差最小的模型
+ 运用步骤3中选出模型对测试集计算得出推广误差
+  我们也可以同时将训练集和交叉验证集模型的代价函数误差与λ的值绘制在一张图表上：
+ 当λ较小时，训练集误差较小（过拟合）而交叉验证集误差较大
+随着λ的增加，训练集误差不断增加（欠拟合），而交叉验证集误差则是先减小后增加
+ ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>【应用机器学习】诊断偏差与方差</h2>
+  </header>
+  <section class="entry-content">
+   <p>当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是欠拟合，要么是过拟合问题。
+我们通常会通过将训练集和交叉验证集的代价函数误差与多项式的次数绘制在同一张图表上来帮助分析：
+ 对于训练集，当 d 较小时，模型拟合程度更低，误差较大；随着d 的增长，拟合程度提高，误差减小。
+ 对于交叉验证集，当 d 较小时，模型拟合程度低，误差较大；但是随着 d 的增长，误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。
+  判断高偏差（欠拟合）或高方差（过拟合）  训练集误差和交叉验证集误差近似时：偏差/欠拟合
+ ​交叉验证集误差远大于训练集误差时：方差/过拟合
+  解决欠拟合与过拟合 欠拟合： - 增加网络结构，如增加隐藏层数目； - 训练更长时间； - 寻找合适的网络架构，使用更大的NN结构；
+过拟合 ： - 使用更多的数据； - 正则化（ regularization）； - 寻找合适的网络结构；...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>【应用机器学习】模型选择和训练、验证、测试集</h2>
+  </header>
+  <section class="entry-content">
+   <p> 1. 重新划分数据集 其中60%作为训练集，20%作为交叉验证集（cross validation），20%作为测试集
+2. 可以计算出三类数据的误差函数 3. 使用交叉验证集选择模型 选出交叉验证误差最小的一个模型
+4. 利用测试集计算出推广误差 ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%9B%86/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>【应用机器学习】评估一个假设</h2>
+  </header>
+  <section class="entry-content">
+   <p>检验是否过拟合 将数据分成训练集和测试集 通常用70%的数据作为训练集，用剩下30%的数据作为测试集。
+很重要的一点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行洗牌，然后再分成训练集和测试集。
+使用训练集对模型进行训练 可以得到一系列参数 theta
+使用测试集对模型进行测试 使用测试集数据对模型进行测试，有两种方式计算误差
+线性回归模型 利用测试集数据计算代价函数J
+逻辑回归模型 除前述方法，还可使用一种 错误分类(misclassification error)(也称0/1错误分类 zero one misclassification error) 的方法...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>训练神经网络的基本步骤</h2>
+  </header>
+  <section class="entry-content">
+   <p>1. 选择一种网络结构 即选择神经元之间的连通模式
+ 输入层与输出层单元个数由具体特征决定
+ 隐藏层通常默认为1层；若为多层，则每个隐藏层单元个数应相等。通常隐藏层单元数越多越好
+ 隐藏层单元数应与输入特征数相匹配
+  2. 随机初始化权重 通常把权重值初始化为接近0的很小的数
+3. 执行前向传播FP算法 获得对应于每一个 xi 的 h_theta(xi)​
+4. 通过代码计算出代价函数 J(theta) 5. 执行反向传播算法 获得 J(theta) 对于 theta 的偏导​，即
+ 步骤 3-5
+ 6. 进行梯度检查  比较 通过反向传播得到的偏导数 与 通过数值计算得到的估计值
+ 确保两种方法得到基本接近的两个值​
+ 注意在检查完毕后关闭梯度检查
+  7. 利用最优化算法与反向传播算法最小化 J(theta) 比如，使用最小梯度法...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Java_equals</h2>
+  </header>
+  <section class="entry-content">
+   <p>...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.1</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/java_equals/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>正则化 Regularization</h2>
+  </header>
+  <section class="entry-content">
+   <p>过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过拟合(over-fitting)的问题，可能会导致它们效果很差。
+可以使用一种正则化(regularization)的技术来改善或减少过度拟合的问题
+在回归问题中  第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
+ 第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
+  当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是过拟合，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。
+在分类问题中 就以多项式理解， x的次数越高，拟合的越好，但相应的预测的能力就可能变差。
+处理过拟合问题
+ 丢弃一些不能帮助我们正确预测的特征。可以是手工选择保留哪些特征，或者使用一些模型选择的算法来帮忙（例如PCA） 正则化。 保留所有的特征，但是减少参数的大小（magnitude）  代价函数 我们从之前的事例可以看出，正是那些高次项导致了过拟合的产生，所以我们可以通过让这些高次项的系数接近于0，我们就能很好的拟合。
+所以正则化的基本方法就是在一定程度上减小高次项系数即参数theta的值
+即在设定代价函数时，为高次项的系数设置一些惩罚，通过这样代价函数选择出的theta对预测结果的影响就比之前要小许多。
+但如果我们不知道要对哪一个参数进行惩罚，我们可以对所以特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。于是得到了一个较为简单的能防止过拟合问题的假设
+其中λ称为正则化参数（Regularization Parameter）。注：根据惯例，我们不对theta0进行惩罚。
+经过正则化处理的模型与原模型的可能对比如图：
+如果选择的正则化参数λ过大，则会把所有的参数都最小化了，导致模型变成 h(x) = theta0 ，也就是上图中红色直线所示的情况，造成欠拟合。
+对于正则化，我们要取一个合理的λ的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。
+正则化线性回归 正则化线性回归的代价函数为：
+如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对theta0进行正则化，所以梯度下降算法将分两种情形：
+分类 L1正则化（Lasso回归） 损失函数基础上加上权重参数的绝对值
+L2正则化（岭回归） 损失函数基础上加上权重参数的平方和
+需要说明的是：L1 相比于 L2 会更容易获得稀疏解
+WHY-&gt;Click...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.13</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96-regularization/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>逻辑回归Logistic Regression</h2>
+  </header>
+  <section class="entry-content">
+   <p>分类问题 在分类问题中，我们需要预测的变量y是离散的值，我们将学习一种叫做逻辑回归 (Logistic Regression) 的算法
+在分类问题中，我们尝试预测的是结果是否属于某一个类（例如正确或错误）。
+将因变量(dependent variable)可能属于的两个类分别称为负向类（negative class）和正向类（positive class），则因变量y ∈ 0,1 ，其中 0 表示负向类，1 表示正向类。
+如果我们要用线性回归算法来解决一个分类问题，对于分类，y取值为 0 或者1，但如果你使用的是线性回归，那么假设函数的输出值可能远大于 1，或者远小于0，即使所有训练样本的标签y都等于 0 或 1。尽管我们知道标签应该取值0 或者1，但是如果算法得到的值远大于1或者远小于0的话，就会感觉很奇怪。
+所以我们在接下来的要研究的算法就叫做逻辑回归算法，这个算法的性质是：它的输出值永远在0到 1 之间
+逻辑回归算法是分类算法，我们将它作为分类算法使用。有时候可能因为这个算法的名字中出现了“回归”使你感到困惑，但逻辑回归算法实际上真的是一种分类算法
+假说表示 我们引入一个新的模型，逻辑回归，该模型的输出变量范围始终在0和1之间。
+逻辑回归模型的假设是：h_theta(x) = g(theta&#39;X) 其中:X代表特征向量，g代表逻辑函数（logistic function)是一个常用的S形函数（Sigmoid function），公式为：g(z) = 1 / (1 &#43; exp(-z)
+Python代码实现
+import numpy as np def sigmoid(z): return 1 / (1 &#43; np.exp(-z))  该函数图像为
+合起来，我们得到逻辑回归模型的假设：
+对模型的理解：g(z) = 1 / (1 &#43; exp(-z)
+h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计算输出变量=1的可能性（estimated probablity）即h_theta(x) = P(y=1 | x;theta)...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.13</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92logistic-regression/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Java入门</h2>
+  </header>
+  <section class="entry-content">
+   <p> Java 开发环境配置 首先我们需要下载java开发工具包JDK，下载地址
+下载对应版本
+之后安装一路下一步即可
+安装成功后配置环境变量
+参照这个即可
+配置完成后，在cmd输入java -version、java、javac，没有报错，则配置成功
+基础语法 Java是一门面向对象的语言，因此它就有类与对象、方法、实例变量
+ 对象：对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。 类：类是一个模板，它描述一类对象的行为和状态。 方法：方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。 实例变量：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。  基本语法  大小写敏感 类名首字母大写，”驼峰式”命名 源文件名必须与类名相同 所有的 Java 程序由 public static void main(String []args) 方法开始执行  Hello World public class HelloWorld { public static void main(String []args) { System.out.println(&#34;Hello World&#34;); //自动换行 } }  标识符  所有的标识符都应该以字母（A-Z 或者 a-z）,美元符（$）、或者下划线（_）开始 非法标识符举例：123abc、-salary  变量 主要有以下几种变量
+ 局部变量 类变量（静态变量） 成员变量（非静态变量）  常量 定义变量的时候，如果加上final修饰符，这个变量就变成了常量
+常量在定义时进行初始化后就不可再次赋值，再次赋值会导致编译错误。
+Java 源程序与编译型运行区别 ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.12</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>MATLAB学习_函数</h2>
+  </header>
+  <section class="entry-content">
+   <p>自定义函数 MATLAB可以在单独的.m文件中定义函数
+比如有一文件myadd.m，文件中内容为
+function y = myadd(a, b) % 这里可以写函数的使用说明，前面以%开头 % 在工作区中，help myadd将显示此处的说明 y = a &#43; b; end %可以略去  第一行function y = myadd(a, b) 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量y里。
+另外，还可以得知这个函数有两个参数a和b，以及定义的函数体，即 y = a &#43; b
+ myadd是函数名。以m文件定义的函数必须保存为函数名的形式
+要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。
+ 调用方式 只需在MATLAB中直接使用函数名调用，MATLAB会自动在其搜索路径中找到对应.m文件，例如
+&gt;&gt; c = myadd(1, 2) c = 3  MORE MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为
+[y1, y2...] = function_name(x1, x2...)...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.11</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%87%BD%E6%95%B0/"></a>
+</article>
+
+
+
+
+<footer class="page-footer">
+  <nav class="pagination">
+    
+    <a class="prev" href="https://konosuba.xyz/page/2/">← Prev Page</a>
+    
+    
+    <a class="next" href="https://konosuba.xyz/page/4/">Next Page →</a>
+    
+  </nav>
+</footer>
+
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Posts - Tiiktak&#39;s -- 编程学习与技术分享</title>
+    
+    <meta name="description" content="Hey You">
+    <meta name="author" content="">
+    
+    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s -- 编程学习与技术分享">
+    
+    
+    
+  </head>
+  <body class="list">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="https://konosuba.xyz/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+
+<header class="page-header">
+  <h1>
+  Posts
+  </h1>
+</header>
+
+
+
+
+
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python文本进度条</h2>
+  </header>
+  <section class="entry-content">
+   <p> 一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
+代码 import time scale = 50 # 进度条长度 print(&#34;&gt;&gt;执行开始\n&#34;) start = time.perf_counter() # 开始时刻 for i in range(scale&#43;1): a = &#39;|&#39; * i b = &#39;.&#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&#34;\r{:^3.0f}% [{}&gt;&gt;{}] {:.2f}s&#34;.format(c, a, b, dur), end=&#39;&#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&#34;\n\n&gt;&gt;执行结束&#34;)  效果 ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.19</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>为什么要定义Mat_类</h2>
+  </header>
+  <section class="entry-content">
+   <p>内容摘自《OpenCV入门教程》
+ 在读取矩阵元素时，以及获取矩阵某行的地址时，需要指定数据类型。这样首先需要不停地写&lt;uchar&gt;，让人感觉很繁琐，在繁琐和烦躁中容易犯错。
+如下面代码中的错误，用at()获取矩阵元素时错误的使用了double类型。这种错误不是语法错误，因此在编译时编译器不会提醒。在程序运行时，at()函数获取到的不是期望的(i,j)位置处的元素，数据已经越界，但是运行时也未必会报错。这样的错误使得你的程序忽而看上去正常，忽而弹出“段错误”，特别是在代码规模很大时，难以查错。
+如果使用Mat_类，那么就可以在变量声明时确定元素的类型， 访问元素时不再需要指定元素类型，即使得代码简洁，又减少了出错的可能性。
+上面代码可以用Mat_实现，实现代码如下面例程里的第二个双重for循环。
+#include &lt;iostream&gt; #include &#34;opencv2/opencv.hpp&#34; #include &lt;stdio.h&gt; using namespace std; using namespace cv; int main(int argc,char* argv[]) { Mat M(600, 800, CV_8UC1); for(int i = 0; i &lt; M.rows; &#43;&#43;i) { //获取指针时需要指定类型 uchar *p = M.ptr&lt;uchar&gt;(i); for(int j = 0; j &lt; M.cols; &#43;&#43;j) { double d1 = (double)((i &#43; j) % 255); //用at读像素时，需要指定类型 M.at&lt;uchar&gt;(i, j) = d1; double d2 = M.at&lt;uchar&gt;(i, j); } } //在变量声明时，指定矩阵元素类型 Mat_&lt;uchar&gt; M1 = (Mat_&lt;uchar&gt;&amp;)M; for(int i = 0; i &lt; M1....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.18</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python split()函数</h2>
+  </header>
+  <section class="entry-content">
+   <p>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  原型 str.split(str=&#34;&#34;, num=string.count(str))  |split()函数通过指定分隔符对字符串进行切片
+参数 若参数str无指定值。默认为所有的空字符，包括空格、\n、\t等
+若参数num有指定值，则分割num&#43;1个子字符串，若无指定值，默认-1，即分隔所有
+返回值 返回分割后的字符串列表...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.16</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python-split%E5%87%BD%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python正态分布np_normal_random</h2>
+  </header>
+  <section class="entry-content">
+   <p>正态分布的概率密度函数 numpy中函数 numpy.random.normal(loc=0.0, scale=1.0, size=None)  参数意义：
+loc：float 概率分布均值（对应整个分布的中心centre） scale：float 概率分布标准差（对应分布的宽度，scale越大越矮胖，scale越小，越瘦高） size：int or tuple of ints 输出的shape，默认为None，只输出一个值  常用到np.random.randn(size)表示标准正态分布（μ=0,σ=1），对应于np.random.normal(loc=0, scale=1, size)...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.9</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83np_normal_random/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Zen of Python -Python之禅</h2>
+  </header>
+  <section class="entry-content">
+   <p>在浏览Python官方文档时无意发现了这个彩蛋，只需在终端中import this
+The Zen of Python, by Tim Peters Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense. Readability counts. Special cases aren&#39;t special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In the face of ambiguity, refuse the temptation to guess....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python文件操作</h2>
+  </header>
+  <section class="entry-content">
+   <p>Python内置了读写文件的函数，用法与C兼容
+读文件 open() 使用内置的open()函数，传入文件名和标识符：
+&gt;&gt;&gt; f = open(&#39;test.txt&#39;, &#39;r&#39;)  若文件不存在，open()函数会抛出一个IOError的错误，并给出错误码和详细信息
+Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; FileNotFoundError: [Errno 2] No such file or directory: &#39;test.txt&#39;  read() 打开成功后，使用read()一次性读取文件的全部内容，Python将内容读到内存中，用str对象存储
+readline() |readline()可以每次读取一行的内容
+readlines() |readlines()一次读取所有内容并按行返回list
+close() 使用完毕后，需要调用close()关闭文件
+with语句 为避免忘记调用close()，Python引入with语句自动调用close()
+with open(&#39;test.txt&#39;, &#39;r&#39;) as f: print(f.read())  写文件 与读文件类似，唯一区别是传入标识符&#39;w&#39;或&#39;wb&#39;表示写文本文件或写二进制文件
+所有标识符定义及其意义见官方文档
+file-like Object (file object文件对象) 在Python中，像open()函数返回的这种有read()或write()方法的对象统称为file-like Object（或file object）
+共有三种类别的文件对象：原始二进制文件, 缓冲二进制文件 以及 文本文件，创建文件对象的规范方式是使用open()函数。...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python调试</h2>
+  </header>
+  <section class="entry-content">
+   <p>Python中可以使用断言assert,logging等来进行调试
+断言 def fun(s): n = int(s) assert n != 0, &#39;n is zero!&#39; return 10 / n def main(): fun(&#39;0&#39;)  若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
+Traceback (most recent call last): File &#34;hello.py&#34;, line 12, in &lt;module&gt; main() File &#34;hello.py&#34;, line 9, in main fun(&#39;0&#39;) File &#34;hello.py&#34;, line 4, in fun assert n != 0, &#39;n is zero!&#39; AssertionError: n is zero!  在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
+..path:&gt; python -O hello.py Traceback (most recent call last): File &#34;hello....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python错误处理</h2>
+  </header>
+  <section class="entry-content">
+   <p>在Python中也同样使用try...except...finally...的错误处理机制
+try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;)  当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
+上面的代码中有一个除0的错误，运行结果:
+try... except: division by zero finally... END  当计算r后，捕捉到ZeroDivisionError错误，执行 except语句段，之后执行finally
+else 可以在except后面加上else，当没有错误发生时将执行else语句块
+try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) else: print(&#39;no error&#39;) print(&#39;END&#39;)  结果:
+try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
+ 常见错误类型及继承关系（中文）：官方文档 ```
+  优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.6</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>多线程与多进程、并行与并发</h2>
+  </header>
+  <section class="entry-content">
+   <p> 多线程与多进程 线程与进程 进程是资源分配的最小单位，线程则是CPU调度的最小单位，多进程不能共享全局变量，而多线程则可以
+进程 ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.11</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</h2>
+  </header>
+  <section class="entry-content">
+   <p>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
+树莓派-服务端 #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;thread&gt; #include &lt;opencv2/opencv.hpp&gt; using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; for (int i = 0; i &lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &lt; img_gray....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.9</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/"></a>
+</article>
+
+
+
+
+<footer class="page-footer">
+  <nav class="pagination">
+    
+    <a class="prev" href="https://konosuba.xyz/blog/page/5/">← Prev Page</a>
+    
+    
+    <a class="next" href="https://konosuba.xyz/blog/page/7/">Next Page →</a>
+    
+  </nav>
+</footer>
+
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s -- 编程学习与技术分享</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+
