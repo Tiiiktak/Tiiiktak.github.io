@@ -56,6 +56,23 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Python面向对象</h2>
+  </header>
+  <section class="entry-content">
+   <p>类和实例 定义类 使用class关键字
+class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &#34;&#34;&#34;docstring for Student&#34;&#34;&#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score))  实例化 类名&#43;（）
+&gt;&gt;&gt; bob = Student(&#39;Bob&#39;, 98) &gt;&gt;&gt; bob.print_score() Bob: 98  创建实例后，可以自由地给一个实例变量绑定属性，如
+&gt;&gt;&gt; bob.school = &#39;SWUST&#39; &gt;&gt;&gt; bob.school &#39;SWUST&#39;  访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
+class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子类：...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.21</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Python函数式编程</h2>
   </header>
   <section class="entry-content">

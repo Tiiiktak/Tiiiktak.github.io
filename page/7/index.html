@@ -56,6 +56,21 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Socket通信原理(3)</h2>
+  </header>
+  <section class="entry-content">
+   <p>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
+这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
+服务端-树莓派 socket_server_sms.cpp #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; using namespace std; #define USEPORT 1234 int main() { //****创建套接字 int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET //Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF if (serverSock &lt; 0) { cout &lt;&lt; &#34;socket creation failed&#34; &lt;&lt; endl; exit(-1); } cout &lt;&lt; &#34;socket creation successfully&#34; &lt;&lt; endl; //****绑定ip和端口 struct sockaddr_in serverAddr; memset(&amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.8</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Socket通信原理(2)</h2>
   </header>
   <section class="entry-content">
@@ -243,23 +258,6 @@ init接下来会打开6个终端，以便用户登录系统，即inittab中以�
     <time>2019.6.24</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python面向对象</h2>
-  </header>
-  <section class="entry-content">
-   <p>类和实例 定义类 使用class关键字
-class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &#34;&#34;&#34;docstring for Student&#34;&#34;&#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score))  实例化 类名&#43;（）
-&gt;&gt;&gt; bob = Student(&#39;Bob&#39;, 98) &gt;&gt;&gt; bob.print_score() Bob: 98  创建实例后，可以自由地给一个实例变量绑定属性，如
-&gt;&gt;&gt; bob.school = &#39;SWUST&#39; &gt;&gt;&gt; bob.school &#39;SWUST&#39;  访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
-class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子类：...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.21</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"></a>
 </article>
 
 

@@ -56,6 +56,29 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Java入门</h2>
+  </header>
+  <section class="entry-content">
+   <p> Java 开发环境配置 首先我们需要下载java开发工具包JDK，下载地址
+下载对应版本
+之后安装一路下一步即可
+安装成功后配置环境变量
+参照这个即可
+配置完成后，在cmd输入java -version、java、javac，没有报错，则配置成功
+基础语法 Java是一门面向对象的语言，因此它就有类与对象、方法、实例变量
+ 对象：对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。 类：类是一个模板，它描述一类对象的行为和状态。 方法：方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。 实例变量：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。  基本语法  大小写敏感 类名首字母大写，”驼峰式”命名 源文件名必须与类名相同 所有的 Java 程序由 public static void main(String []args) 方法开始执行  Hello World public class HelloWorld { public static void main(String []args) { System.out.println(&#34;Hello World&#34;); //自动换行 } }  标识符  所有的标识符都应该以字母（A-Z 或者 a-z）,美元符（$）、或者下划线（_）开始 非法标识符举例：123abc、-salary  变量 主要有以下几种变量
+ 局部变量 类变量（静态变量） 成员变量（非静态变量）  常量 定义变量的时候，如果加上final修饰符，这个变量就变成了常量
+常量在定义时进行初始化后就不可再次赋值，再次赋值会导致编译错误。
+Java 源程序与编译型运行区别 ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.12</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>MATLAB学习_函数</h2>
   </header>
   <section class="entry-content">
@@ -265,36 +288,6 @@ theta0:=theta0，并更新theta1:=theta1
     <time>2020.1.7</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E9%99%8D%E4%BD%8E%E6%8D%9F%E5%A4%B1%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>单变量线性回归</h2>
-  </header>
-  <section class="entry-content">
-   <p> 线性回归 线性回归是解决回归问题最基本的一个方法。其实质就是找到一条直线能尽可能多的使已知的离散值分布在其周围（二维坐标系中）
-就像这样：
-或者是在三维坐标中，找到一个面来逼近
-在这里我们只讨论最简单的单变量线性回归
-单变量线性回归 单变量线性回归问题只含有一个特征（输入变量），因此可以把目标直线表达式写为：
-h(x) = y = wx &#43; b
-其中， x代表特征/输入变量，h代表目标变量/输出变量
-我们需要有一个包含许多对(x, y)的训练集，之后把它喂给我们的学习算法，学习算法输出一个函数，通常表示为小写h表示，代表hypothesis(假设)，表示一个函数
-因此h根据输入的x值来得出y值，y值就是我们想要根据x知道的答案。因此，h是一个从y到x的函数映射。
-代价函数 又称为“损失函数”
-在前面的函数h中，我们选择的参数决定了我们得到的直线相对于我们的训练集的准确程度。
-模型所预测的值与训练集中实际值之间的差距（下图中蓝线所指）就是建模误差（modeling error）
-我们的目标便是选择出可以使得建模误差的平方和能够最小的模型参数。 即使得代价函数最小
-这个代价函数可以根据最小二乘法得到
-我们绘制一个等高线图，三个坐标分别w (图中theta0)、h (图中theta1)和代价函数(图中J(theta0, theta1))
-代价函数也被称作平方误差函数，有时也被称为平方误差代价函数。我们之所以要求出误差的平方和，是因为误差平方代价函数，对于大多数问题，特别是回归问题，都是一个合理的选择。还有其他的代价函数也能很好地发挥作用，但是平方误差代价函数可能是解决回归问题最常用的手段了。
- 参考资料： 吴恩达《机器学习》课程笔记
- ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"></a>
 </article>
 
 

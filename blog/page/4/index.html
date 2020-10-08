@@ -62,6 +62,27 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>MATLAB学习_函数</h2>
+  </header>
+  <section class="entry-content">
+   <p>自定义函数 MATLAB可以在单独的.m文件中定义函数
+比如有一文件myadd.m，文件中内容为
+function y = myadd(a, b) % 这里可以写函数的使用说明，前面以%开头 % 在工作区中，help myadd将显示此处的说明 y = a &#43; b; end %可以略去  第一行function y = myadd(a, b) 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量y里。
+另外，还可以得知这个函数有两个参数a和b，以及定义的函数体，即 y = a &#43; b
+ myadd是函数名。以m文件定义的函数必须保存为函数名的形式
+要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。
+ 调用方式 只需在MATLAB中直接使用函数名调用，MATLAB会自动在其搜索路径中找到对应.m文件，例如
+&gt;&gt; c = myadd(1, 2) c = 3  MORE MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为
+[y1, y2...] = function_name(x1, x2...)...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.11</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%87%BD%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>MATLAB学习_控制语句:for,while,if</h2>
   </header>
   <section class="entry-content">
@@ -280,39 +301,6 @@ h(x) = y = wx &#43; b
     <time>2020.1.7</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>分类(classification)与回归(regression)的区别与关系</h2>
-  </header>
-  <section class="entry-content">
-   <p> 分类与回归是监督学习中的两个主要任务，它们即对应了监督学习中“学习”的部分
-分类模型与回归模型的本质其实一样。分类模型可将回归模型的输出离散化，回归模型也可将分类模型的输出连续化
-例如：
-Linear Recognition 线性回归 使用 y = wx &#43; b 的形式，y就是模型的输出，是一个连续值，所以可以用于处理回归问题
-Logistic Recognition 逻辑回归 一般作为分类问题的首选算法，logistic回归只是用到了回归算法，但是其输出的结果是决策边界，是不连续的，所以它其实是分类，而不是回归
-二分类 将 y = wx &#43; b 利用激活函数（常用sigmoid函数）映射到 (0,1) 中。再选定一个阈值，将输出分为两类。
-多分类 先得到n组w不同的 y = wx &#43;b ，之后进行归一化（例如使用Softmax函数），从而得到在n个类上的概率，即可解决多分类问题
-回归问题的应用场景 回归问题通常是用来预测一个值，如预测房价、未来的天气情况等等。例如一个产品的实际价格为500元，通过回归分析预测值为499元，我们认为这是一个比较好的回归分析。
-一个比较常见的回归算法是线性回归算法（LR）。
-另外，回归分析用在神经网络上，其最上层是不需要加上softmax函数的，而是直接对前一层累加即可。回归是对真实值的一种逼近预测。
-分类问题的应用场景 分类问题是用于将事物打上一个标签，通常结果为离散值。
-例如判断一幅图片上的动物是一只猫还是一只狗，分类通常是建立在回归之上，分类的最后一层通常要使用softmax函数进行判断其所属类别。
-分类并没有逼近的概念，最终正确结果只有一个，错误的就是错误的，不会有相近的概念。
-最常见的分类方法是逻辑回归，或者叫逻辑分类。
-总结 一个小测验：假设你经营着一家公司，你想开发学习算法来处理这两个问题：
- 你有一大批同样的货物，想象一下，你有上千件一模一样的货物等待出售，这时你想预测接下来的三个月能卖多少件？
- 你有许多客户，这时你想写一个软件来检验每一个用户的账户。对于每一个账户，你要判断它们是否曾经被盗过？
-  那这两个问题，它们属于分类问题、还是回归问题?
- 问题一是一个回归问题，因为你知道，如果我有数千件货物，我会把它看成一个实数，一个连续的值。因此卖出的物品数，也是一个连续的值。
- 问题二是一个分类问题，因为我会把预测的值，用 0 来表示账户未被盗，用 1 表示账户曾经被盗过。所以我们根据账号是否被盗过，把它们定为0 或 1，然后用算法推测一个账号是 0 还是 1，因为只有少数的离散值，所以我把它归为分类问题。
-  ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.6</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%88%86%E7%B1%BBclassification%E4%B8%8E%E5%9B%9E%E5%BD%92regression%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E5%85%B3%E7%B3%BB/"></a>
 </article>
 
 

@@ -56,6 +56,27 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Pytorch中的激活函数</h2>
+  </header>
+  <section class="entry-content">
+   <p>介绍神经网络的时候已经说到，神经元会对化学物质的刺激进行，当达到一定程度的时候，神经元才会兴奋，并向其他神经元发送信息。神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件。
+为什么激活函数都是非线性的 因为如果使用线性的激活函数，那么input跟output之间的关系始终为线性的，这样完全可以不使用网络结构，直接使用线性组合即可。
+所以需要激活函数来引入非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中，增加了神经网络模型泛化的特性。
+一般只有在输出层有极小的可能性使用线性激活函数，在隐含层都使用非线性激活函数.
+常见的激活函数 # 初始化一些信息 import torch import torch.nn.functional as F import matplotlib.pyplot as plt import numpy as np x= torch.linspace(-10,10,60)  Sigmoid 函数 g(z) = a = 1 / (1 &#43; e^(-z)) g&#39;(z) = a&#39; = a (1 - a)  在sigmod函数中我们可以看到，其输出是在(0,1)这个开区间，它能够把输入的连续实值变换为0和1之间的输出，如果是非常大的负数，那么输出就是0；如果是非常大的正数输出就是1，起到了抑制的作用。
+ax = plt.gca() ax.spines[&#39;right&#39;].set_color(&#39;none&#39;) ax.spines[&#39;top&#39;].set_color(&#39;none&#39;) ax.xaxis.set_ticks_position(&#39;bottom&#39;) ax.spines[&#39;bottom&#39;].set_position((&#39;data&#39;, 0)) ax.yaxis.set_ticks_position(&#39;left&#39;) ax.spines[&#39;left&#39;].set_position((&#39;data&#39;, 0)) plt.ylim((0, 1)) sigmod=torch.sigmoid(x) plt.plot(x.numpy(),sigmod.numpy())  但是sigmod由于需要进行指数运算（这个对于计算机来说是比较慢，相比relu），再加上函数输出*不是以0为中心*的（这样会使权重更新效率降低），当输入稍微远离了坐标原点，函数的梯度就变得很小了（几乎为零）。
+在神经网络反向传播的过程中不利于权重的优化，这个问题叫做梯度饱和，也可以叫梯度弥散。这些不足，所以现在使用到sigmod基本很少了，基本上只有在做二元分类（0，1）时的输出层才会使用。
+Tanh 函数 tanh是双曲正切函数，输出区间是在(-1,1)之间，而且整个函数是*以0为中心*的
+ax = plt....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.15</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Pytorch中的梯度下降及优化</h2>
   </header>
   <section class="entry-content">
@@ -240,34 +261,6 @@ torch.nn.Linear(in_features, out_features, bias=True)  参数  in_features 每�
     <time>2020.2.12</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_3_%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch学习笔记_2_Autograd自动求导机制</h2>
-  </header>
-  <section class="entry-content">
-   <p>Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
-autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
-通过一些示例来了解
-Tensor 张量 torch.tensor是这个包的核心类。
- 设置.requires_grad为True，会追踪所有对于该张量的操作。计算完成后调用.backward()，可以自动计算所有的梯度，并自动累计到.grad属性中   事实上即使.requires_grad为True并不意味着.grad一定不为None
-  可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
- 为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad():中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
-  Function类 Tensor 和 Function 互相连接并生成一个非循环图，它表示和存储了完整的计算历史。
-每个张量都有一个.grad_fn属性，对张量进行操作后，grad_fn会引用一个创建了这个Tensor类的Function对象（除非这个张量是用户手动创建的，此时，这个张量的 grad_fn 是 None）
- leaf Tensors 叶张量
-Tensor中有一属性is_leaf，当它为True有两种情况：
- 按照惯例，requires_grad = False 的 Tensor
- requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None
-  只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()
- 如果需要计算导数，可以在Tensor上调用.backward()：若Tensor是一个标量（即包含一个元素数据）则不需要为backward()指定任何参数， 但是如果它有更多的元素，需要指定一个gradient 参数来匹配张量的形状。
-x = torch.ones(2, 2, requires_grad=True) print(x) # Output: # tensor([[1....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.11</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_2_autograd%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E6%9C%BA%E5%88%B6/"></a>
 </article>
 
 

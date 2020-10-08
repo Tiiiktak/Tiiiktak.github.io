@@ -62,6 +62,29 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Socket通信原理(2)</h2>
+  </header>
+  <section class="entry-content">
+   <p>本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
+ 系统：Windows 10
+软件：Visual studio 2019
+语言：C&#43;&#43;
+ Socket通信实现步骤  创建ServerSocket和Socket
+ 打开连接到的Socket的输入/输出流
+ 按照协议对Socket进行读/写操作
+ 关闭输入/输出流和Socket
+  本文的程序由服务端发送信息到客户端，若用户输入quit则结束客户端与服务端程序
+服务端Server 由于Windows下的socket程序依赖Winsock.dll或ws2_32.dll，所以必须提前加载
+#include &lt;iostream&gt; #include &lt;string&gt; #include &lt;winsock2.h&gt; //包含socket的头文件 #pragma comment (lib, &#34;ws2_32.lib&#34;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 //-&gt;MSKEWORD(2,2)主版本号2，副版本号2 if (WSAStartup(MAKEWORD(2, 2), &amp;wsaData) != 0)	{	return 0; } //****创建套接字 SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&gt;IPv6，PF_INET-&gt;IPv4 //参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM //参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 //判断无效套接字 if (servSock == INVALID_SOCKET) { cout &lt;&lt; &#34;socket error!...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.8</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Socket通信原理(1)</h2>
   </header>
   <section class="entry-content">
@@ -253,23 +276,6 @@ def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数�
     <time>2019.6.21</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>算法复杂度</h2>
-  </header>
-  <section class="entry-content">
-   <p> 算法复杂度  总共N个数据 一次操作记为O(1) N次操作记为O(n) 在大部分oj判题系统中时间限制为10^6 =1s  冒泡排序  操作次数: n&#43;(n-1)&#43;(n-2)&#43;…&#43;n(n-1)/2  快速排序  递归处理数组，每次将数组按照key值在其左右区分出来：比key小放左边，比key大放右边
- 例: 5 6 2 4 3 8 取首位（5）为key值
- 4 3 2 5 6 8
- 4 3 2 5 6 8
-  ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.21</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/"></a>
 </article>
 
 

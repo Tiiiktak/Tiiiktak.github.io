@@ -56,6 +56,36 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>单变量线性回归</h2>
+  </header>
+  <section class="entry-content">
+   <p> 线性回归 线性回归是解决回归问题最基本的一个方法。其实质就是找到一条直线能尽可能多的使已知的离散值分布在其周围（二维坐标系中）
+就像这样：
+或者是在三维坐标中，找到一个面来逼近
+在这里我们只讨论最简单的单变量线性回归
+单变量线性回归 单变量线性回归问题只含有一个特征（输入变量），因此可以把目标直线表达式写为：
+h(x) = y = wx &#43; b
+其中， x代表特征/输入变量，h代表目标变量/输出变量
+我们需要有一个包含许多对(x, y)的训练集，之后把它喂给我们的学习算法，学习算法输出一个函数，通常表示为小写h表示，代表hypothesis(假设)，表示一个函数
+因此h根据输入的x值来得出y值，y值就是我们想要根据x知道的答案。因此，h是一个从y到x的函数映射。
+代价函数 又称为“损失函数”
+在前面的函数h中，我们选择的参数决定了我们得到的直线相对于我们的训练集的准确程度。
+模型所预测的值与训练集中实际值之间的差距（下图中蓝线所指）就是建模误差（modeling error）
+我们的目标便是选择出可以使得建模误差的平方和能够最小的模型参数。 即使得代价函数最小
+这个代价函数可以根据最小二乘法得到
+我们绘制一个等高线图，三个坐标分别w (图中theta0)、h (图中theta1)和代价函数(图中J(theta0, theta1))
+代价函数也被称作平方误差函数，有时也被称为平方误差代价函数。我们之所以要求出误差的平方和，是因为误差平方代价函数，对于大多数问题，特别是回归问题，都是一个合理的选择。还有其他的代价函数也能很好地发挥作用，但是平方误差代价函数可能是解决回归问题最常用的手段了。
+ 参考资料： 吴恩达《机器学习》课程笔记
+ ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>分类(classification)与回归(regression)的区别与关系</h2>
   </header>
   <section class="entry-content">
@@ -324,36 +354,6 @@ celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = n
     <time>2019.10.11</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python中eval()与format()</h2>
-  </header>
-  <section class="entry-content">
-   <p>今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔
-先看看题
-题目 数值运算
-描述 获得用户输入的一个字符串，格式如下：
-M OP N  其中，M和N是任何数字，OP代表一种操作，表示为如下四种：&#43;, -, *, /（加减乘除）
-根据OP，输出M OP N‬的运算结果，统一保留小数点后两位
-注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况
-示例输入‪ 10 &#43; 100 1 / 20  示例输出 110.00 0.05  解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
-然而，我却完全忘记了Python有着eval()的存在….
-eval() |eval()函数用来执行一个字符串表达式，并返回表达式的值 ‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫
-eval(expression[, globals[, locals]])   参数
-expression – 表达式
-globals – 变量作用域，全局命名空间，若被提供，必须是一个字典对象
-locals – 变量作用域，局部命名空间，若被提供，可以是任何映射对象
- 可见，使用eval()后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果
-之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
-format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
-&gt;&gt;&gt; &#34;{} {}&#34;.format(&#34;hello&#34;, &#34;world&#34;) # 不设置指定位置，按默认顺序 &#39;hello world&#39; &gt;&gt;&gt; &#34;{0} {1}&#34;.format(&#34;hello&#34;, &#34;world&#34;) # 设置指定位置 &#39;hello world&#39; &gt;&gt;&gt; &#34;{1} {0} {1}&#34;....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.10.10</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/"></a>
 </article>
 
 

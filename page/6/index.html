@@ -56,6 +56,36 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Python中eval()与format()</h2>
+  </header>
+  <section class="entry-content">
+   <p>今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔
+先看看题
+题目 数值运算
+描述 获得用户输入的一个字符串，格式如下：
+M OP N  其中，M和N是任何数字，OP代表一种操作，表示为如下四种：&#43;, -, *, /（加减乘除）
+根据OP，输出M OP N‬的运算结果，统一保留小数点后两位
+注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况
+示例输入‪ 10 &#43; 100 1 / 20  示例输出 110.00 0.05  解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
+然而，我却完全忘记了Python有着eval()的存在….
+eval() |eval()函数用来执行一个字符串表达式，并返回表达式的值 ‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫
+eval(expression[, globals[, locals]])   参数
+expression – 表达式
+globals – 变量作用域，全局命名空间，若被提供，必须是一个字典对象
+locals – 变量作用域，局部命名空间，若被提供，可以是任何映射对象
+ 可见，使用eval()后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果
+之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
+format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
+&gt;&gt;&gt; &#34;{} {}&#34;.format(&#34;hello&#34;, &#34;world&#34;) # 不设置指定位置，按默认顺序 &#39;hello world&#39; &gt;&gt;&gt; &#34;{0} {1}&#34;.format(&#34;hello&#34;, &#34;world&#34;) # 设置指定位置 &#39;hello world&#39; &gt;&gt;&gt; &#34;{1} {0} {1}&#34;....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.10.10</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>ML学习速率</h2>
   </header>
   <section class="entry-content">
@@ -209,21 +239,6 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
     <time>2019.7.9</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Socket通信原理(3)</h2>
-  </header>
-  <section class="entry-content">
-   <p>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
-这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
-服务端-树莓派 socket_server_sms.cpp #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; using namespace std; #define USEPORT 1234 int main() { //****创建套接字 int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET //Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF if (serverSock &lt; 0) { cout &lt;&lt; &#34;socket creation failed&#34; &lt;&lt; endl; exit(-1); } cout &lt;&lt; &#34;socket creation successfully&#34; &lt;&lt; endl; //****绑定ip和端口 struct sockaddr_in serverAddr; memset(&amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.8</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/"></a>
 </article>
 
 

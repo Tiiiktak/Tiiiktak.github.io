@@ -56,6 +56,34 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Pytorch学习笔记_2_Autograd自动求导机制</h2>
+  </header>
+  <section class="entry-content">
+   <p>Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
+autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
+通过一些示例来了解
+Tensor 张量 torch.tensor是这个包的核心类。
+ 设置.requires_grad为True，会追踪所有对于该张量的操作。计算完成后调用.backward()，可以自动计算所有的梯度，并自动累计到.grad属性中   事实上即使.requires_grad为True并不意味着.grad一定不为None
+  可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
+ 为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad():中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
+  Function类 Tensor 和 Function 互相连接并生成一个非循环图，它表示和存储了完整的计算历史。
+每个张量都有一个.grad_fn属性，对张量进行操作后，grad_fn会引用一个创建了这个Tensor类的Function对象（除非这个张量是用户手动创建的，此时，这个张量的 grad_fn 是 None）
+ leaf Tensors 叶张量
+Tensor中有一属性is_leaf，当它为True有两种情况：
+ 按照惯例，requires_grad = False 的 Tensor
+ requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None
+  只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()
+ 如果需要计算导数，可以在Tensor上调用.backward()：若Tensor是一个标量（即包含一个元素数据）则不需要为backward()指定任何参数， 但是如果它有更多的元素，需要指定一个gradient 参数来匹配张量的形状。
+x = torch.ones(2, 2, requires_grad=True) print(x) # Output: # tensor([[1....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.11</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_2_autograd%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E6%9C%BA%E5%88%B6/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Pytorch学习笔记_1_tensor张量</h2>
   </header>
   <section class="entry-content">
@@ -241,29 +269,6 @@ h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计�
     <time>2020.1.13</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92logistic-regression/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Java入门</h2>
-  </header>
-  <section class="entry-content">
-   <p> Java 开发环境配置 首先我们需要下载java开发工具包JDK，下载地址
-下载对应版本
-之后安装一路下一步即可
-安装成功后配置环境变量
-参照这个即可
-配置完成后，在cmd输入java -version、java、javac，没有报错，则配置成功
-基础语法 Java是一门面向对象的语言，因此它就有类与对象、方法、实例变量
- 对象：对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。 类：类是一个模板，它描述一类对象的行为和状态。 方法：方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。 实例变量：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。  基本语法  大小写敏感 类名首字母大写，”驼峰式”命名 源文件名必须与类名相同 所有的 Java 程序由 public static void main(String []args) 方法开始执行  Hello World public class HelloWorld { public static void main(String []args) { System.out.println(&#34;Hello World&#34;); //自动换行 } }  标识符  所有的标识符都应该以字母（A-Z 或者 a-z）,美元符（$）、或者下划线（_）开始 非法标识符举例：123abc、-salary  变量 主要有以下几种变量
- 局部变量 类变量（静态变量） 成员变量（非静态变量）  常量 定义变量的时候，如果加上final修饰符，这个变量就变成了常量
-常量在定义时进行初始化后就不可再次赋值，再次赋值会导致编译错误。
-Java 源程序与编译型运行区别 ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.12</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/"></a>
 </article>
 
 

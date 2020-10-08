@@ -62,6 +62,25 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>ML学习速率</h2>
+  </header>
+  <section class="entry-content">
+   <p>在梯度下降算法中，我们用梯度乘以一个称为学习速率（有时也称为步长）的标量，以确定下一个点的位置。例如，如果梯度大小为 2.5，学习速率为 0.01，则梯度下降法算法会选择距离前一个点 0.025 的位置作为下一个点。
+超参数是编程人员在机器学习算法中用于调整的旋钮。大多数机器学习编程人员会花费相当多的时间来调整学习速率。如果学习速率过小，就会花费太长的学习时间：
+相同的 U 形曲线。很多点都相互非常接近，它们的轨迹朝着 U 形底部缓慢前进。
+相反，如果学习速率过大，下一个点将永远在 U 形曲线的底部随意弹跳，就好像量子力学实验出现了严重错误一样：
+相同的 U 形曲线。这条曲线包含的点非常少。点的轨迹会跳过 U 形底部，然后再次跳回。
+每个回归问题都存在一个“恰好”的学习速率，这个值与损失函数的平坦程度有关。例如，若已知损失函数的梯度较小，则可以放心地试着采用更大的学习速率，以补偿较小的梯度并获得更大的步长。
+相同的 U 形曲线。点的轨迹大约需要 8 步达到最低点。...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.26</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/ml%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Python文本进度条</h2>
   </header>
   <section class="entry-content">
@@ -211,29 +230,6 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
     <time>2019.7.8</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Socket通信原理(2)</h2>
-  </header>
-  <section class="entry-content">
-   <p>本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
- 系统：Windows 10
-软件：Visual studio 2019
-语言：C&#43;&#43;
- Socket通信实现步骤  创建ServerSocket和Socket
- 打开连接到的Socket的输入/输出流
- 按照协议对Socket进行读/写操作
- 关闭输入/输出流和Socket
-  本文的程序由服务端发送信息到客户端，若用户输入quit则结束客户端与服务端程序
-服务端Server 由于Windows下的socket程序依赖Winsock.dll或ws2_32.dll，所以必须提前加载
-#include &lt;iostream&gt; #include &lt;string&gt; #include &lt;winsock2.h&gt; //包含socket的头文件 #pragma comment (lib, &#34;ws2_32.lib&#34;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 //-&gt;MSKEWORD(2,2)主版本号2，副版本号2 if (WSAStartup(MAKEWORD(2, 2), &amp;wsaData) != 0)	{	return 0; } //****创建套接字 SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&gt;IPv6，PF_INET-&gt;IPv4 //参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM //参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 //判断无效套接字 if (servSock == INVALID_SOCKET) { cout &lt;&lt; &#34;socket error!...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.8</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/"></a>
 </article>
 
 

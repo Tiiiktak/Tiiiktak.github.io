@@ -62,6 +62,22 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Pytorch学习笔记_1_tensor张量</h2>
+  </header>
+  <section class="entry-content">
+   <p>Tensors Tensors与Numpy中的ndarrays类似
+torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
+&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double) &gt;&gt;&gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &gt;&gt;&gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]])  后者可以创建shape相同，属性不同的对象
+&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double) &gt;&gt;&gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &gt;&gt;&gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]])  获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.11</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_1_tensor%E5%BC%A0%E9%87%8F/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>神经网络模型的学习曲线</h2>
   </header>
   <section class="entry-content">
@@ -254,27 +270,6 @@ Java 源程序与编译型运行区别 ...</p>
     <time>2020.1.12</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>MATLAB学习_函数</h2>
-  </header>
-  <section class="entry-content">
-   <p>自定义函数 MATLAB可以在单独的.m文件中定义函数
-比如有一文件myadd.m，文件中内容为
-function y = myadd(a, b) % 这里可以写函数的使用说明，前面以%开头 % 在工作区中，help myadd将显示此处的说明 y = a &#43; b; end %可以略去  第一行function y = myadd(a, b) 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量y里。
-另外，还可以得知这个函数有两个参数a和b，以及定义的函数体，即 y = a &#43; b
- myadd是函数名。以m文件定义的函数必须保存为函数名的形式
-要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。
- 调用方式 只需在MATLAB中直接使用函数名调用，MATLAB会自动在其搜索路径中找到对应.m文件，例如
-&gt;&gt; c = myadd(1, 2) c = 3  MORE MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为
-[y1, y2...] = function_name(x1, x2...)...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.11</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E5%87%BD%E6%95%B0/"></a>
 </article>
 
 
