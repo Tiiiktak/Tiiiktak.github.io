@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>MMDet中使用Mask-RCNN训练BDD100K数据集 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content="1. Convert label to COCO format 使用官方提供的工具bdd100k2coco.py
+ 注意：使用bdd100k2coco分支下的文件，master中的该文件无法正常使用
+ 在使用前，还需要对该文件进行部分修改：
+# 将69行修改为	image[&quot;file_name&quot;] = frame[&quot;name&quot;]&#43;&quot;.jpg&quot; # 在73行之后增加 frame = frame[&quot;frames&quot;][0]  之后按如下方式运行
+python bdd100k2coco.py -i {JSON文件夹路径} -o {输出一个coco json文件} -m {转换方式det or track，使用det即可}  调用两次分别将train、val数据集的label转换
+2. Set COCO-like directory tree 按如下目录结构保存我们的数据集
+data ├── annotations │ ├── instances_train2017.json # 训练集json │ ├── instances_val2017.json	# 验证集json ├── train2017 │ └── abcdefg-1234567.jpg │ └── ... ├── test2017 │ └── abcdefg-1234567.jpg │ └── .">
+    <meta name="author" content="">
+    
+    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">MMDet中使用Mask-RCNN训练BDD100K数据集</h1>
+    <div class="post-meta">2020.10.8</div>
+  </header>
+  <div class="post-content">
+
+<h2 id="1-convert-label-to-coco-format">1. Convert label to COCO format</h2>
+
+<p>使用官方提供的工具<code>bdd100k2coco.py</code></p>
+
+<blockquote>
+<p>注意：使用<a href="https://github.com/bdd100k/bdd100k/tree/bdd100k2coco">bdd100k2coco分支</a>下的文件，<code>master</code>中的该文件无法正常使用</p>
+</blockquote>
+
+<p>在使用前，还需要对该文件进行部分修改：</p>
+
+<pre><code class="language-python"># 将69行修改为	
+image[&quot;file_name&quot;] = frame[&quot;name&quot;]+&quot;.jpg&quot;
+# 在73行之后增加
+frame = frame[&quot;frames&quot;][0]
+</code></pre>
+
+<p>之后按如下方式运行</p>
+
+<pre><code class="language-python">python bdd100k2coco.py -i {JSON文件夹路径} -o {输出一个coco json文件} -m {转换方式det or track，使用det即可}
+</code></pre>
+
+<p>调用两次分别将train、val数据集的label转换</p>
+
+<h2 id="2-set-coco-like-directory-tree">2.  Set COCO-like directory tree</h2>
+
+<p>按如下目录结构保存我们的数据集</p>
+
+<pre><code class="language-py">data
+├── annotations
+│   ├── instances_train2017.json # 训练集json
+│   ├── instances_val2017.json	# 验证集json
+├── train2017
+│   └── abcdefg-1234567.jpg
+│   └── ...
+├── test2017
+│   └── abcdefg-1234567.jpg
+│   └── ...
+├── val2017
+│   └── abcdefg-1234567.jpg
+│   └── ...
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>接下来进行数据集的定义，我们这里通过直接修改coco数据集定义文件进行操作</p>
+</blockquote>
+
+<h2 id="3-modify-relevant-documents">3. Modify relevant documents</h2>
+
+<h3 id="mmdet-datasets-coco-py">./mmdet/datasets/coco.py</h3>
+
+<p>在<code>class CocoDataset(CustomDataset):</code>中，将CLASSES修改为你自己的数据集类别，如我们修改为BDD100K中的类别：</p>
+
+<pre><code class="language-python">    CLASSES = (&quot;person&quot;, &quot;rider&quot;, &quot;car&quot;, &quot;bus&quot;, &quot;truck&quot;, &quot;bike&quot;,
+               &quot;motor&quot;, &quot;traffic light&quot;, &quot;traffic sign&quot;, &quot;train&quot;)
+</code></pre>
+
+<h3 id="mmdet-core-evaluation-class-names-py">./mmdet/core/evaluation/class_names.py</h3>
+
+<p>在<code>def coco_classes():</code>中，同样修改数据集类别</p>
+
+<pre><code class="language-python">	return [
+        &quot;pedestrian&quot;, &quot;rider&quot;, &quot;car&quot;, &quot;bus&quot;, &quot;truck&quot;, &quot;bicycle&quot;,
+        &quot;motorcycle&quot;, &quot;traffic light&quot;, &quot;traffic sign&quot;, &quot;train&quot;
+    ]
+</code></pre>
+
+<h2 id="4-set-config-file">4. Set Config file</h2>
+
+<p>在这一步，我们可以从<code>./configs</code>文件夹中选取预训练的模型。</p>
+
+<p>我选择的是<code>mask_rcnn_r50_fpn_1x_coco.py</code>，可以看到该文件内容为：</p>
+
+<pre><code class="language-python">_base_ = [
+    '../_base_/models/mask_rcnn_r50_fpn.py',
+    '../_base_/datasets/coco_instance.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+]
+</code></pre>
+
+<p>为了便于修改参数，我将其中引用的各文件内容均复制到了一个新建的config文件<code>bdd100_mask_rcnn_r50_fpn_1x_coco.py</code>中</p>
+
+<blockquote>
+<p>Config文件中各参数含义可参考：<a href="https://blog.csdn.net/hajlyx/article/details/85991400">mmdetection的configs中的各项参数具体解释</a>和<a href="https://github.com/open-mmlab/mmdetection/blob/master/docs/config.md#an-example-of-mask-r-cnn">官方文档</a></p>
+</blockquote>
+
+<p>接下来开始修改参数</p>
+
+<pre><code class="language-python"># data path
+dataset_type = 'CocoDataset'
+data_root = './data/'	# 即数据集的根目录位置
+
+# model
+model.roi_head.bbox_head.num_classes = 10 	# 即数据集中分类数量
+
+# set up working dir to save files and logs
+work_dir = './tutorial_exps'
+
+# LR
+optimizer.lr = 0.02 / 8 # 默认值0.02对应8块GPU，若使用一块则为0.02/8
+
+# Epoches
+total_epochs = 12 	# default:12
+
+# Multiple GPUs
+gpu_ids = (1, 2, 3)	# GPU id
+
+# Batch Size
+data.sample_per_gpu = 5		# batch size of a single GPU
+data.workers_per_gpu = 2 	# Worker to pre-fetch data for each single GPU
+
+# Evaluation Metric
+evaluation.metric = 'mAP'	# 由于使用了自定义的数据集，因此修改评价指标
+evaluation.interval = 12	# 通过修改评价区间减少评价用时
+
+# Checpoint
+checkpoint_config.interval = 12	# 通过修改检查点保存间隔降低存储成本
+</code></pre>
+
+<h2 id="5-train">5. Train</h2>
+
+<h3 id="preference">Preference</h3>
+
+<h4 id="mmdet-datasets-builder-py">mmdet\datasets\builder.py</h4>
+
+<p>第131行，默认为<code>pin_memory=False</code></p>
+
+<p>修改为<code>pin_memory=True</code></p>
+
+<p>参考<a href="https://discuss.pytorch.org/t/when-to-set-pin-memory-to-true/19723">https://discuss.pytorch.org/t/when-to-set-pin-memory-to-true/19723</a></p>
+
+<h3 id="single-gpu">Single GPU</h3>
+
+<p>使用<code>./tools/train.py</code>即可，如</p>
+
+<pre><code class="language-python">python ./tools/train.py ./configs/bdd100_mask_rcnn_r50_fpn_1x_coco.py --gpus 1 --validate --work_dir work_dirs
+</code></pre>
+
+<h3 id="multiple-gpus">Multiple GPUs</h3>
+
+<p>使用<code>./tools/dist_train.sh</code>即可进行多卡训练，如下：</p>
+
+<pre><code class="language-shell">./tools/dist_train.sh {config path} {gpu nums}
+&gt; ./tools/dist_train.sh ./configs/bdd100_mask_rcnn_r50_fpn_1x_coco.py 3
+</code></pre>
+
+<blockquote>
+<p>仍有问题待解决：</p>
+
+<ul>
+<li>虽然设置的是第1，2，3块GPU，但是实际运行后程序却尝试使用第0，1，2块GPU</li>
+<li>GPU内存占满，但是训练过程中GPU利用率（Volatile GPU-Util）较低，一直维持在40%左右-</li>
+<li>只训练了一个epoch就自动结束，尝试使用训练结果进行测试，也测试失败</li>
+</ul>
+
+<p>参考：</p>
+
+<ul>
+<li><a href="https://blog.csdn.net/gaoyi135/article/details/90613895">https://blog.csdn.net/gaoyi135/article/details/90613895</a></li>
+<li><a href="https://blog.csdn.net/xiangxianghehe/article/details/89812058#commentsedit">https://blog.csdn.net/xiangxianghehe/article/details/89812058#commentsedit</a></li>
+<li><a href="https://blog.csdn.net/jy1023408440/article/details/104700435">https://blog.csdn.net/jy1023408440/article/details/104700435</a></li>
+</ul>
+</blockquote>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+

@@ -62,6 +62,95 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Pytorch中的损失函数Loss Function</h2>
+  </header>
+  <section class="entry-content">
+   <p>由于Pytorch中使用mini-batch进行计算，因此其损失函数的计算结果会对mini-batch取平均
+常见的Pytorch中内置的损失函数有：
+nn.L1Loss 计算input与output的差的绝对值，input与output应该是同一维度，得到的loss也是相应维度
+nn.NLLLoss  Negative Log Likelihood
+ class torch.nn.NLLLoss(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction=&#39;mean&#39;)  常用于多分类任务。在NLLLoss输入input之前，我们需要对input进行log_softmax处理(即将input转换成概率分布的形式，并且取对数，底数为e)
+计算公式
+loss(input, class) = -input[class]  NLLLoss中如果传递了weight参数，会对损失进行加权，公式就变成了
+loss(input, class) = -weight[class] * input[class]  nn.MSELoss  Mean Square Error
+ 计算input与ouput之间的均方差
+nn.CrossEntropyLoss 多分类用的交叉熵损失合函数，将LogSoftMax和nn.NLLLoss集成到一个类中，nn.CrossEntropyLoss可以自动对input进行logSoftMax操作，可以理解为CrossEntropyLoss()=log_softmax() &#43; NLLLoss()
+传入weight参数后
+一般多分类的情况会使用这个损失函数
+nn.BCELoss  Binary Cross Entropy
+ 计算input与output之间的二进制交叉熵
+添加weight后
+用的时候需要在该层前面加上 Sigmoid 函数...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.15</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0loss-function/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Pytorch_数据集的创建和加载</h2>
+  </header>
+  <section class="entry-content">
+   <p>PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。
+可以通过dataset定义数据集，并使用Datalorder载入和遍历数据集
+Dataset Dataset是一个抽象类，为了能够方便的读取，需要将要使用的数据包装为Dataset类。
+自定义的Dataset需要继承它并且实现两个成员方法：
+ __getitem__() 该方法定义用索引(0 到 len(self))获取一条数据或一个样本 __len__() 该方法返回数据集的总长度  下面使用kaggle上的一个竞赛bluebook for bulldozers自定义一个数据集，用里面的数据字典来做说明（因为条数少）
+from torch.utils.data import Dataset import pandas as pd #定义一个数据集 class BulldozerDataset(Dataset): # 实现初始化方法，在初始化的时候将数据读载入 def __init__(self, csv_file): self.df=pd.read_csv(csv_file) # 返回df的长度 def __len__(self): return len(self.df) # 根据 idx 返回一行数据 def __getitem__(self, idx): return self.df.iloc[idx].SalePrice  至此，我们的数据集已经定义完成了，我们可以实例话一个对象访问他
+ds_demo = BulldozerDataset(&#39;median_benchhmark.csv&#39;) print(len(ds_demo)) # 11573 print(ds_demo[0]) # 24000.0  Dataloader DataLoader为我们提供了对Dataset的读取操作，常用参数有：batch_size(每个batch的大小)、 shuffle(是否进行shuffle操作)、 num_workers(加载数据的时候使用几个子进程)。下面做一个简单的操作
+dl = torch.utils.data.DataLoader(ds_demo, batch_size=10, shuffle=True, num_workers=0)  DataLoader返回的是一个可迭代对象，我们可以使用迭代器分次获取数据...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.15</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E8%BD%BD/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Pytorch_torchvision</h2>
+  </header>
+  <section class="entry-content">
+   <p>torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。 - AlexNet - VGG - ResNet - SqueezeNet - DenseNet
+torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
+torchvision.transforms 提供了一般的图像转换操作类，用作数据处理和数据增强
+其中都是常见的图像转换，可以通过Compose将他们链接在一起
+from torchvision import transforms as transforms transform = transforms.Compose([ transforms.RandomCrop(32, padding=4), #先四周填充0，在把图像随机裁剪成32*32 transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转 transforms.RandomRotation((-45,45)), #随机旋转 transforms.ToTensor(), transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差 ])  此外还有torchvision.transforms.functional模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
+torchvision.transforms.Normalize(mean, std, inplace=False) 用均值和标准差对张量图像进行归一化。
+给定n个通道的均值: (M1,...,Mn) 和标准差:(S1,..,Sn), 这个转换将归一化输入torch.*Tensor的每个通道。例如: input[channel] = (input[channel] - mean[channel]) / std[channel]
+ Note: 这种变换的作用不适当，即它不会改变输入张量
+ torchvision.utils torchvision....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.14</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_torchvision/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Pytorch学习笔记_4_训练一个分类器</h2>
+  </header>
+  <section class="entry-content">
+   <p>关于数据 一般来说，对于图像、文本、音频或视频数据，可以使用标准的Python包来将这些数据加载为numpy array，之后可以将这些array转换为torch.*Tensor
+ 对于图像，Pillow、OpenCV包 音频，scipy、librosa包 文本，可以使用原始Python和Cython加载，或NLKT和SpaCy  特别的，对于视觉任务，有一个包torchvision，其中包含了处理类似Imagnet, CIFAR10, MNIST等常见数据集的方法，以及图像转换器，如torchvision.datasets和torch.utils.data.DataLoader
+torchvision包不仅提供了巨大的便利，也避免了代码的重复。
+在这里使用CIFAR10数据集，它有如下10个类别 ：‘airplane’, ‘automobile’, ‘bird’, ‘cat’, ‘deer’, ‘dog’, ‘frog’, ‘horse’, ‘ship’, ‘truck’。
+CIFAR-10的图像都是 3x32x32 大小的，即，3颜色通道，32x32像素。
+训练一个图像分类器  使用torchvision加载和归一化CIFAR10训练集和测试集 定义一个卷积神经网络 定义损失函数 用训练集训练网络 用测试集测试网络  1.读取和归一化 CIFAR10 使用torchvision可以非常容易得加载CIFAR10
+import torch import torchvision import torchvision.transforms as transforms  torchvision的输出是 [0,1]的PILImage图像，把它转化为归一化范围为[-1, 1]的张量
+transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]) # 下载数据并加载到loader中 trainset = torchvision.datasets.CIFAR10(root=&#39;./data&#39;, train=True, download=True, transform=transform) trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2) testset = torchvision....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.13</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_4_%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E5%88%86%E7%B1%BB%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Pytorch_linear</h2>
   </header>
   <section class="entry-content">
@@ -172,79 +261,6 @@ torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如
     <time>2020.2.11</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_1_tensor%E5%BC%A0%E9%87%8F/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>神经网络模型的学习曲线</h2>
-  </header>
-  <section class="entry-content">
-   <p> 学习曲线：样本数量与误差 绘制 样本数量m 与 训练误差、交叉验证误差 的关系曲线
-高偏差（欠拟合）high bias 高方差（过拟合）high variance ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>【应用机器学习】正则化与偏差、方差</h2>
-  </header>
-  <section class="entry-content">
-   <p> 在我们在训练模型的过程中，一般会使用一些正则化方法来防止过拟合。
-但是我们可能会正则化的程度太高或太小了，即我们在选择λ的值时也需要思考与之前选择多项式模型次数类似的问题。
-我们选择一系列的想要测试的λ值，比如这里选择 0-10之间的值，通常呈现2倍关系（如：0,0.01,0.02,0.04,0.08,0.15,0.32,0.64,1.28,2.56,5.12,10 共12个）。
-我们同样把数据分为训练集、交叉验证集和测试集。
-选择λ的方法  使用训练集训练出12个不同程度正则化的模型
- 用12个模型分别对交叉验证集计算的出交叉验证误差
- 选择得出交叉验证误差最小的模型
- 运用步骤3中选出模型对测试集计算得出推广误差
-  我们也可以同时将训练集和交叉验证集模型的代价函数误差与λ的值绘制在一张图表上：
- 当λ较小时，训练集误差较小（过拟合）而交叉验证集误差较大
-随着λ的增加，训练集误差不断增加（欠拟合），而交叉验证集误差则是先减小后增加
- ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>【应用机器学习】诊断偏差与方差</h2>
-  </header>
-  <section class="entry-content">
-   <p>当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是欠拟合，要么是过拟合问题。
-我们通常会通过将训练集和交叉验证集的代价函数误差与多项式的次数绘制在同一张图表上来帮助分析：
- 对于训练集，当 d 较小时，模型拟合程度更低，误差较大；随着d 的增长，拟合程度提高，误差减小。
- 对于交叉验证集，当 d 较小时，模型拟合程度低，误差较大；但是随着 d 的增长，误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。
-  判断高偏差（欠拟合）或高方差（过拟合）  训练集误差和交叉验证集误差近似时：偏差/欠拟合
- ​交叉验证集误差远大于训练集误差时：方差/过拟合
-  解决欠拟合与过拟合 欠拟合： - 增加网络结构，如增加隐藏层数目； - 训练更长时间； - 寻找合适的网络架构，使用更大的NN结构；
-过拟合 ： - 使用更多的数据； - 正则化（ regularization）； - 寻找合适的网络结构；...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>【应用机器学习】模型选择和训练、验证、测试集</h2>
-  </header>
-  <section class="entry-content">
-   <p> 1. 重新划分数据集 其中60%作为训练集，20%作为交叉验证集（cross validation），20%作为测试集
-2. 可以计算出三类数据的误差函数 3. 使用交叉验证集选择模型 选出交叉验证误差最小的一个模型
-4. 利用测试集计算出推广误差 ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%9B%86/"></a>
 </article>
 
 

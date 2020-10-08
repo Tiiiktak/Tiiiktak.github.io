@@ -62,6 +62,79 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Python中set集合</h2>
+  </header>
+  <section class="entry-content">
+   <p> set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
+创建set 传入一个list，重复元素会被自动过滤，显示的顺序并不表示set是有序的
+&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3]) &gt;&gt;&gt; s {1, 2, 3}  添加元素 &gt;&gt;&gt; s.add(4) &gt;&gt;&gt; s {1, 2, 3, 4}  删除元素 &gt;&gt;&gt; s.remove(3) &gt;&gt;&gt; s {1, 2, 4}  交并集 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作
+&gt;&gt;&gt; s1 = set([1, 2, 3]) &gt;&gt;&gt; s2 = set([2, 3, 4]) &gt;&gt;&gt; s1 &amp; s2 {2, 3} &gt;&gt;&gt; s1 | s2 {1, 2, 3, 4}  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python中dict字典</h2>
+  </header>
+  <section class="entry-content">
+   <p>dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度
+创建dict &gt;&gt;&gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85} &gt;&gt;&gt; d[&#39;Michael&#39;] 95  内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
+加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
+&gt;&gt;&gt; d[&#39;Tony&#39;] = 99 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  查询key是否存在 使用in &gt;&gt;&gt; &#39;Thomas&#39; in d False &gt;&gt;&gt; &#39;Bob&#39; in d True  使用get() 如果key不存在，返回None，或者自己指定的value
+&gt;&gt;&gt; d.get(&#39;Thomas&#39;) #返回None时Python交互环境不显示 &gt;&gt;&gt; d.get(&#39;Thomas&#39;, -1) -1  删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
+&gt;&gt;&gt; d.pop(&#39;Bob&#39;) 75 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python常见数据类型——Tuple元组</h2>
+  </header>
+  <section class="entry-content">
+   <p>tuple和list非常类似，但是tuple一旦初始化就不能修改
+[toc]
+创建tuple &gt;&gt;&gt; classmates = (&#39;A&#39;, &#39;B&#39;, &#39;C&#39;)  此时，classmates这个tuple不能改变，它也没有append()，insert()这样的方法。
+其他获取元素的方法和list是一样的，你可以正常地使用classmates[0]，classmates[-1]，但不能将其赋值为另外的元素。
+因为tuple不可变，所以代码更安全。如果可能，能用tuple代替list就尽量用tuple。
+空tuple &gt;&gt;&gt; t = () &gt;&gt;&gt; t ()  只有一个元素的tuple 错误写法 不能直接使用括号()!!!
+&gt;&gt;&gt; t = (1) &gt;&gt;&gt; t 1 #定义的不是tuble，而是一个数  正解 加一个逗号，消除歧义
+&gt;&gt;&gt; t = (1,) &gt;&gt;&gt; t (1,)  “可变”的tuble 当tuble中包含list元素时，仍然可以对list进行修改，tuble仍指向该list
+&gt;&gt;&gt; t = (1, [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;]) &gt;&gt;&gt; t[1][2] = &#39;a&#39; &gt;&gt;&gt; t (1, [&#39;x&#39;, &#39;a&#39;, &#39;z&#39;])  个人理解：tuble相当于一个指针数组，指向每个元素，对元素本身的更改并不会影响tuble的指向...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python常见数据类型——List列表</h2>
+  </header>
+  <section class="entry-content">
+   <p>Python常见数据类型——List列表 list是一种有序的集合，可随时增删元素
+[toc]
+创建list &gt;&gt;&gt; classmates = [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &gt;&gt;&gt; len(classmates) 3  访问某个位置元素 使用索引地址访问
+&gt;&gt;&gt; classmates[0] &#39;A&#39; &gt;&gt;&gt; classmates[-1] #返回最后一项元素 &#39;C&#39;  追加元素到末尾 &gt;&gt;&gt; classmates.append(&#39;D&#39;) &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  插入元素到指定位置 &gt;&gt;&gt; classmates.insert(1, &#39;Here&#39;) #在指定位置放入元素 &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;Here&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  删除元素 使用pop 指定索引地址删除，返回删除的值
+&gt;&gt;&gt; classmates.pop(0) &#39;A&#39; &gt;&gt;&gt; classmates [&#39;Here&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  使用del 指定索引地址删除，无返回值
+&gt;&gt;&gt; del classmates[1] &gt;&gt;&gt;classmates [&#39;Here&#39;, &#39;C&#39;, &#39;D&#39;]  使用remove 删除指定值的第一次出现，无返回值...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>图像基础-图像矩阵</h2>
   </header>
   <section class="entry-content">

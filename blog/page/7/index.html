@@ -62,6 +62,92 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Socket通信原理(1)</h2>
+  </header>
+  <section class="entry-content">
+   <p>最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
+TCP/IP、UDP 在开始之前，先听两个笑话😏
+TCP
+&gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &gt; “好的，我会给你讲一个TCP 的笑话。” &gt; “好的，我会听一个TCP 的笑话。” &gt; “你准备好听一个TCP 的笑话么？” &gt; “嗯，我准备好听一个TCP 的笑话” &gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？”  UDP
+&gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！  学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
+TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种
+OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。
+从网络角度观察：
+ 下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>树莓派配置摄像头</h2>
+  </header>
+  <section class="entry-content">
+   <p>注意：树莓派插电时千万不要插拔摄像头！据说十有八九摄像头会GG，我差点就中招了
+安装驱动 首先使用ls指令查看是否加载到了对应的video device设备：
+ls -al /etc  没有看到设备开始安装驱动
+添加驱动设备到文件夹 sudo vim /etc/modules  在文件末尾添加
+bcm2835-v412  修改raspberry的启动配置 进入管理中心开启pi camera
+sudo raspi-config  选择interfacing option
+开启Camera后重启
+检查/dev ls -al /dev/ | grep video  有video设备则成功
+使用树莓派摄像头 使用raspistill指令
+测试 raspistill -o image.jpg   在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
+ raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为’-‘，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720  错误 在第一次成功调用后，之后再次调用时多次报错：
+mmal: No data received from sensor....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.1</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>灰度重心法</h2>
+  </header>
+  <section class="entry-content">
+   <p>概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫*密度质心算法*。
+将灰度值分布中的质心记作光条纹的中心
+对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
+灰度重心法公式 型心法 只可用于二值图像
+灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
+代码：
+#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 int i, j; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; //获取图像各点灰度值总和 for (it = img_gray.begin&lt;uchar&gt;(), end = img_gray.end&lt;uchar&gt;(); it != end; it&#43;&#43;) { ((*it) &gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 } Center....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.28</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Shell学习</h2>
+  </header>
+  <section class="entry-content">
+   <p>Shell脚本 是一种为shell编写的脚本程序
+使用文本编辑器既能编写，拓展名不影响脚本执行
+实例：
+#!/bin/bash echo &#34;Hello World&#34;   ### 运行脚本 #### 作为可执行程序 将代码保存后，给文件添加可执行权限```&#43;x``` ```sh chmod &#43;x ./test.sh # ./test.sh #执行脚本  作为解释器参数  直接运行解释器，将文件作为其参数 这种方式不需要在文件开头指定解释器信息
+/bin/sh test.sh  Shell变量 定义变量 your_name=&#34;Tom&#34;  注意：等号不能有空格
+使用变量 在变量前加美元符号$ 还可在变量外添加大括号{}
+echo $your_name echo ${your_name}  只读变量 使用readonly命令将变量定义为只读变量，值不能被改变
+url=&#34;baidu.com&#34; readonly url  删除变量 使用unset变量删除变量
+unset url  Shell字符串 可用单引号，或双引号，也可不用引号
+单引号  单引号内任何字符都会原样输出，单引号字符串中变量无效 单引号字符串中不能出现单独一个的单引号，但可成对出现  双引号  双引号里可以有变量 双引号里可以出现转义字符  拼接字符串 text1=&#39;123&#39; text2=&#39;456&#39; echo ${text1}${text2} #输出123456  字符串长度 str1=&#34;abcd&#34; echo ${#str1} #输出4  提取子字符串 从字符串第2个字符开始截取4个字符：...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.26</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/shell%E5%AD%A6%E4%B9%A0/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Vim学习</h2>
   </header>
   <section class="entry-content">
@@ -184,79 +270,6 @@ def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数�
     <time>2019.6.21</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python中set集合</h2>
-  </header>
-  <section class="entry-content">
-   <p> set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
-创建set 传入一个list，重复元素会被自动过滤，显示的顺序并不表示set是有序的
-&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3]) &gt;&gt;&gt; s {1, 2, 3}  添加元素 &gt;&gt;&gt; s.add(4) &gt;&gt;&gt; s {1, 2, 3, 4}  删除元素 &gt;&gt;&gt; s.remove(3) &gt;&gt;&gt; s {1, 2, 4}  交并集 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作
-&gt;&gt;&gt; s1 = set([1, 2, 3]) &gt;&gt;&gt; s2 = set([2, 3, 4]) &gt;&gt;&gt; s1 &amp; s2 {2, 3} &gt;&gt;&gt; s1 | s2 {1, 2, 3, 4}  ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.20</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python中dict字典</h2>
-  </header>
-  <section class="entry-content">
-   <p>dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度
-创建dict &gt;&gt;&gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85} &gt;&gt;&gt; d[&#39;Michael&#39;] 95  内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
-加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
-&gt;&gt;&gt; d[&#39;Tony&#39;] = 99 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  查询key是否存在 使用in &gt;&gt;&gt; &#39;Thomas&#39; in d False &gt;&gt;&gt; &#39;Bob&#39; in d True  使用get() 如果key不存在，返回None，或者自己指定的value
-&gt;&gt;&gt; d.get(&#39;Thomas&#39;) #返回None时Python交互环境不显示 &gt;&gt;&gt; d.get(&#39;Thomas&#39;, -1) -1  删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
-&gt;&gt;&gt; d.pop(&#39;Bob&#39;) 75 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.20</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python常见数据类型——Tuple元组</h2>
-  </header>
-  <section class="entry-content">
-   <p>tuple和list非常类似，但是tuple一旦初始化就不能修改
-[toc]
-创建tuple &gt;&gt;&gt; classmates = (&#39;A&#39;, &#39;B&#39;, &#39;C&#39;)  此时，classmates这个tuple不能改变，它也没有append()，insert()这样的方法。
-其他获取元素的方法和list是一样的，你可以正常地使用classmates[0]，classmates[-1]，但不能将其赋值为另外的元素。
-因为tuple不可变，所以代码更安全。如果可能，能用tuple代替list就尽量用tuple。
-空tuple &gt;&gt;&gt; t = () &gt;&gt;&gt; t ()  只有一个元素的tuple 错误写法 不能直接使用括号()!!!
-&gt;&gt;&gt; t = (1) &gt;&gt;&gt; t 1 #定义的不是tuble，而是一个数  正解 加一个逗号，消除歧义
-&gt;&gt;&gt; t = (1,) &gt;&gt;&gt; t (1,)  “可变”的tuble 当tuble中包含list元素时，仍然可以对list进行修改，tuble仍指向该list
-&gt;&gt;&gt; t = (1, [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;]) &gt;&gt;&gt; t[1][2] = &#39;a&#39; &gt;&gt;&gt; t (1, [&#39;x&#39;, &#39;a&#39;, &#39;z&#39;])  个人理解：tuble相当于一个指针数组，指向每个元素，对元素本身的更改并不会影响tuble的指向...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.20</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python常见数据类型——List列表</h2>
-  </header>
-  <section class="entry-content">
-   <p>Python常见数据类型——List列表 list是一种有序的集合，可随时增删元素
-[toc]
-创建list &gt;&gt;&gt; classmates = [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &gt;&gt;&gt; len(classmates) 3  访问某个位置元素 使用索引地址访问
-&gt;&gt;&gt; classmates[0] &#39;A&#39; &gt;&gt;&gt; classmates[-1] #返回最后一项元素 &#39;C&#39;  追加元素到末尾 &gt;&gt;&gt; classmates.append(&#39;D&#39;) &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  插入元素到指定位置 &gt;&gt;&gt; classmates.insert(1, &#39;Here&#39;) #在指定位置放入元素 &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;Here&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  删除元素 使用pop 指定索引地址删除，返回删除的值
-&gt;&gt;&gt; classmates.pop(0) &#39;A&#39; &gt;&gt;&gt; classmates [&#39;Here&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  使用del 指定索引地址删除，无返回值
-&gt;&gt;&gt; del classmates[1] &gt;&gt;&gt;classmates [&#39;Here&#39;, &#39;C&#39;, &#39;D&#39;]  使用remove 删除指定值的第一次出现，无返回值...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.20</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/"></a>
 </article>
 
 

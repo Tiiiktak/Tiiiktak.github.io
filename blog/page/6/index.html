@@ -62,6 +62,68 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Python文本进度条</h2>
+  </header>
+  <section class="entry-content">
+   <p> 一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
+代码 import time scale = 50 # 进度条长度 print(&#34;&gt;&gt;执行开始\n&#34;) start = time.perf_counter() # 开始时刻 for i in range(scale&#43;1): a = &#39;|&#39; * i b = &#39;.&#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&#34;\r{:^3.0f}% [{}&gt;&gt;{}] {:.2f}s&#34;.format(c, a, b, dur), end=&#39;&#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&#34;\n\n&gt;&gt;执行结束&#34;)  效果 ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.19</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>为什么要定义Mat_类</h2>
+  </header>
+  <section class="entry-content">
+   <p>内容摘自《OpenCV入门教程》
+ 在读取矩阵元素时，以及获取矩阵某行的地址时，需要指定数据类型。这样首先需要不停地写&lt;uchar&gt;，让人感觉很繁琐，在繁琐和烦躁中容易犯错。
+如下面代码中的错误，用at()获取矩阵元素时错误的使用了double类型。这种错误不是语法错误，因此在编译时编译器不会提醒。在程序运行时，at()函数获取到的不是期望的(i,j)位置处的元素，数据已经越界，但是运行时也未必会报错。这样的错误使得你的程序忽而看上去正常，忽而弹出“段错误”，特别是在代码规模很大时，难以查错。
+如果使用Mat_类，那么就可以在变量声明时确定元素的类型， 访问元素时不再需要指定元素类型，即使得代码简洁，又减少了出错的可能性。
+上面代码可以用Mat_实现，实现代码如下面例程里的第二个双重for循环。
+#include &lt;iostream&gt; #include &#34;opencv2/opencv.hpp&#34; #include &lt;stdio.h&gt; using namespace std; using namespace cv; int main(int argc,char* argv[]) { Mat M(600, 800, CV_8UC1); for(int i = 0; i &lt; M.rows; &#43;&#43;i) { //获取指针时需要指定类型 uchar *p = M.ptr&lt;uchar&gt;(i); for(int j = 0; j &lt; M.cols; &#43;&#43;j) { double d1 = (double)((i &#43; j) % 255); //用at读像素时，需要指定类型 M.at&lt;uchar&gt;(i, j) = d1; double d2 = M.at&lt;uchar&gt;(i, j); } } //在变量声明时，指定矩阵元素类型 Mat_&lt;uchar&gt; M1 = (Mat_&lt;uchar&gt;&amp;)M; for(int i = 0; i &lt; M1....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.18</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python split()函数</h2>
+  </header>
+  <section class="entry-content">
+   <p>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  原型 str.split(str=&#34;&#34;, num=string.count(str))  |split()函数通过指定分隔符对字符串进行切片
+参数 若参数str无指定值。默认为所有的空字符，包括空格、\n、\t等
+若参数num有指定值，则分割num&#43;1个子字符串，若无指定值，默认-1，即分隔所有
+返回值 返回分割后的字符串列表...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.16</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python-split%E5%87%BD%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Zen of Python -Python之禅</h2>
+  </header>
+  <section class="entry-content">
+   <p>在浏览Python官方文档时无意发现了这个彩蛋，只需在终端中import this
+The Zen of Python, by Tim Peters Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense. Readability counts. Special cases aren&#39;t special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In the face of ambiguity, refuse the temptation to guess....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Python文件操作</h2>
   </header>
   <section class="entry-content">
@@ -172,92 +234,6 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
     <time>2019.7.8</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Socket通信原理(1)</h2>
-  </header>
-  <section class="entry-content">
-   <p>最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
-TCP/IP、UDP 在开始之前，先听两个笑话😏
-TCP
-&gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &gt; “好的，我会给你讲一个TCP 的笑话。” &gt; “好的，我会听一个TCP 的笑话。” &gt; “你准备好听一个TCP 的笑话么？” &gt; “嗯，我准备好听一个TCP 的笑话” &gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？”  UDP
-&gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！  学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
-TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种
-OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。
-从网络角度观察：
- 下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>树莓派配置摄像头</h2>
-  </header>
-  <section class="entry-content">
-   <p>注意：树莓派插电时千万不要插拔摄像头！据说十有八九摄像头会GG，我差点就中招了
-安装驱动 首先使用ls指令查看是否加载到了对应的video device设备：
-ls -al /etc  没有看到设备开始安装驱动
-添加驱动设备到文件夹 sudo vim /etc/modules  在文件末尾添加
-bcm2835-v412  修改raspberry的启动配置 进入管理中心开启pi camera
-sudo raspi-config  选择interfacing option
-开启Camera后重启
-检查/dev ls -al /dev/ | grep video  有video设备则成功
-使用树莓派摄像头 使用raspistill指令
-测试 raspistill -o image.jpg   在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
- raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为’-‘，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720  错误 在第一次成功调用后，之后再次调用时多次报错：
-mmal: No data received from sensor....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.1</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>灰度重心法</h2>
-  </header>
-  <section class="entry-content">
-   <p>概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫*密度质心算法*。
-将灰度值分布中的质心记作光条纹的中心
-对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
-灰度重心法公式 型心法 只可用于二值图像
-灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
-代码：
-#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 int i, j; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; //获取图像各点灰度值总和 for (it = img_gray.begin&lt;uchar&gt;(), end = img_gray.end&lt;uchar&gt;(); it != end; it&#43;&#43;) { ((*it) &gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 } Center....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.28</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Shell学习</h2>
-  </header>
-  <section class="entry-content">
-   <p>Shell脚本 是一种为shell编写的脚本程序
-使用文本编辑器既能编写，拓展名不影响脚本执行
-实例：
-#!/bin/bash echo &#34;Hello World&#34;   ### 运行脚本 #### 作为可执行程序 将代码保存后，给文件添加可执行权限```&#43;x``` ```sh chmod &#43;x ./test.sh # ./test.sh #执行脚本  作为解释器参数  直接运行解释器，将文件作为其参数 这种方式不需要在文件开头指定解释器信息
-/bin/sh test.sh  Shell变量 定义变量 your_name=&#34;Tom&#34;  注意：等号不能有空格
-使用变量 在变量前加美元符号$ 还可在变量外添加大括号{}
-echo $your_name echo ${your_name}  只读变量 使用readonly命令将变量定义为只读变量，值不能被改变
-url=&#34;baidu.com&#34; readonly url  删除变量 使用unset变量删除变量
-unset url  Shell字符串 可用单引号，或双引号，也可不用引号
-单引号  单引号内任何字符都会原样输出，单引号字符串中变量无效 单引号字符串中不能出现单独一个的单引号，但可成对出现  双引号  双引号里可以有变量 双引号里可以出现转义字符  拼接字符串 text1=&#39;123&#39; text2=&#39;456&#39; echo ${text1}${text2} #输出123456  字符串长度 str1=&#34;abcd&#34; echo ${#str1} #输出4  提取子字符串 从字符串第2个字符开始截取4个字符：...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.26</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/shell%E5%AD%A6%E4%B9%A0/"></a>
 </article>
 
 

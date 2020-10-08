@@ -56,6 +56,81 @@
 
 <article class="post-entry">
   <header class="entry-header">
+    <h2>Python函数式编程</h2>
+  </header>
+  <section class="entry-content">
+   <p>[toc]
+什么是函数式编程？ 函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。
+而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
+函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
+Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言
+高阶函数 Python中函数两个特性 &gt; ### 变量可以指向函数 函数本身可以赋值给变量，通过变量可以调用函数
+&gt;&gt;&gt; f = abs &gt;&gt;&gt; f(-10) 10   函数名是变量 把函数名看作变量，可将其指向其他对象，则无法调用原函数
+&gt;&gt;&gt; abs = 10 &gt;&gt;&gt; abs(-10) Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; TypeError: &#39;int&#39; object is not callable   传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
+一个最简单的高阶函数：
+def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
+ 把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式
+ Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.21</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>算法复杂度</h2>
+  </header>
+  <section class="entry-content">
+   <p> 算法复杂度  总共N个数据 一次操作记为O(1) N次操作记为O(n) 在大部分oj判题系统中时间限制为10^6 =1s  冒泡排序  操作次数: n&#43;(n-1)&#43;(n-2)&#43;…&#43;n(n-1)/2  快速排序  递归处理数组，每次将数组按照key值在其左右区分出来：比key小放左边，比key大放右边
+ 例: 5 6 2 4 3 8 取首位（5）为key值
+ 4 3 2 5 6 8
+ 4 3 2 5 6 8
+  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.21</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python中set集合</h2>
+  </header>
+  <section class="entry-content">
+   <p> set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
+创建set 传入一个list，重复元素会被自动过滤，显示的顺序并不表示set是有序的
+&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3]) &gt;&gt;&gt; s {1, 2, 3}  添加元素 &gt;&gt;&gt; s.add(4) &gt;&gt;&gt; s {1, 2, 3, 4}  删除元素 &gt;&gt;&gt; s.remove(3) &gt;&gt;&gt; s {1, 2, 4}  交并集 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作
+&gt;&gt;&gt; s1 = set([1, 2, 3]) &gt;&gt;&gt; s2 = set([2, 3, 4]) &gt;&gt;&gt; s1 &amp; s2 {2, 3} &gt;&gt;&gt; s1 | s2 {1, 2, 3, 4}  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python中dict字典</h2>
+  </header>
+  <section class="entry-content">
+   <p>dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度
+创建dict &gt;&gt;&gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85} &gt;&gt;&gt; d[&#39;Michael&#39;] 95  内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
+加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
+&gt;&gt;&gt; d[&#39;Tony&#39;] = 99 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  查询key是否存在 使用in &gt;&gt;&gt; &#39;Thomas&#39; in d False &gt;&gt;&gt; &#39;Bob&#39; in d True  使用get() 如果key不存在，返回None，或者自己指定的value
+&gt;&gt;&gt; d.get(&#39;Thomas&#39;) #返回None时Python交互环境不显示 &gt;&gt;&gt; d.get(&#39;Thomas&#39;, -1) -1  删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
+&gt;&gt;&gt; d.pop(&#39;Bob&#39;) 75 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.6.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
     <h2>Python常见数据类型——Tuple元组</h2>
   </header>
   <section class="entry-content">
