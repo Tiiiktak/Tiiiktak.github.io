@@ -22,6 +22,26 @@
     
     
     
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141514532-1');
+    </script>
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
   </head>
   <body class="list home">
     <header class="header">
@@ -53,6 +73,76 @@
 
 
 
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Pytorch_linear</h2>
+  </header>
+  <section class="entry-content">
+   <p> Linear 对输入数据应用线性变换：y = xA^T &#43; b
+torch.nn.Linear(in_features, out_features, bias=True)  参数  in_features 每个输入样本的大小 out_features 每个输出样本的大小 bias 若为False，layer不会学习附加偏差b  shape  输入: (N, ∗, H_in)，其中 ∗ 代表任意数量的附加维度，H_in = in_features
+ 输出: (N, *, H_out)，除了最后一个维度，其余都与输入相同，H_out = out_features
+  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.12</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_linear/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Pytorch_nn.Conv2d</h2>
+  </header>
+  <section class="entry-content">
+   <p> Conv2d torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode=&#39;zeros&#39;)   in_channels 输入数据通道数 out_channels 输出数据通道数 kennel_size 卷积核大小，int或tuple stride 步长 padding 每个维度零填充的数量 dilation 内核点之间的距离，也称à trous algorithm groups 控制inputs与outputs间的连接 &gt; * groups=1，所有输入都卷积到输出 &gt; * groups=2，并排设置两个conv层，每个层查看一半的输入通道，并生成一半的输出通道，然后将两者连接起来 &gt; * groups=in_channels，每个输入通道都有它自己的filter，size为[out_channels/in_channels]  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.12</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_nn.conv2d/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python面向对象_super()函数</h2>
+  </header>
+  <section class="entry-content">
+   <p>super() super()是用于调用父类（超类）的一个方法
+用于解决多重继承问题：直接用类名调用父类方法在使用单继承时没有问题，但若使用多继承，会涉及到查找顺序（MRO）、重复调用（钻石继承）等问题
+ MRO 就是类的方法解析顺序表, 其实也就是继承父类方法时的顺序表。
+ 语法 super(type[, object-or-type])  参数  type 类
+ object-or-type 类，一般是self
+  在 Python3 中：super().xxx
+在 Python2 中：super(Class, self).xxx
+两者等价
+示例 class Bird: def __init__(self): self.hungry = True def eat(self): if self.hungry: print(&#39;Ahahahah&#39;) else: print(&#39;No thanks!&#39;) class SongBird(Bird): def __init__(self): self.sound = &#39;Squawk&#39; def sing(self): print(self.sound) sb = SongBird() sb.sing() # 能正常输出&#39;Squawk&#39; sb.eat() # 报错，因为 SongBird 中没有 hungry 特性  使用super解决：...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.12</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1_super%E5%87%BD%E6%95%B0/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Pytorch学习笔记_3_构建一个神经网络</h2>
+  </header>
+  <section class="entry-content">
+   <p>Neural Networks  神经网络可以通过使用torch.nn包来创建
+ nn依赖于autograd来定义模型并求导。
+ 一个nn.Module类包含各个层和一个forward(input)前向传播方法，该方法返回output
+  例如这个分类数字图像的网络：
+这是个简单的前馈神经网络，它接受一个输入，然后一层接一层的传递，最后输出计算结果
+一个神经网络的典型训练过程：
+ 定义包含一些可学习的参数（或权重）的神经网络 在数据集上迭代 通过神经网络处理输入 计算损失函数（预测值与实际值的差值大小） 将梯度反向传播回网络的参数 更新网络参数，主要使用一个简单的更新法则：weight = weight - learning_rate * gradient   另参见：konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4
+ 定义网络 import torch import torch.nn as nn import torch.nn.functional as F class Net(nn.Module): def __init__(self): # 构造方法 super().__init__() # 复制并使用Net的父类的初始化方法，即先运行nn.Module的初始化函数 # 卷积层 self.conv1 = nn.Conv2d(1, 6, 5) self.conv2 = nn.Conv2d(6, 16, 5) # fc(full_connect)全连接函数，均为线性函数 y = Wx &#43; b self....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.12</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_3_%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"></a>
+</article>
 
 <article class="post-entry">
   <header class="entry-header">
@@ -169,106 +259,6 @@ torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如
     <time>2020.2.7</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%9B%86/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>【应用机器学习】评估一个假设</h2>
-  </header>
-  <section class="entry-content">
-   <p>检验是否过拟合 将数据分成训练集和测试集 通常用70%的数据作为训练集，用剩下30%的数据作为测试集。
-很重要的一点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行洗牌，然后再分成训练集和测试集。
-使用训练集对模型进行训练 可以得到一系列参数 theta
-使用测试集对模型进行测试 使用测试集数据对模型进行测试，有两种方式计算误差
-线性回归模型 利用测试集数据计算代价函数J
-逻辑回归模型 除前述方法，还可使用一种 错误分类(misclassification error)(也称0/1错误分类 zero one misclassification error) 的方法...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>训练神经网络的基本步骤</h2>
-  </header>
-  <section class="entry-content">
-   <p>1. 选择一种网络结构 即选择神经元之间的连通模式
- 输入层与输出层单元个数由具体特征决定
- 隐藏层通常默认为1层；若为多层，则每个隐藏层单元个数应相等。通常隐藏层单元数越多越好
- 隐藏层单元数应与输入特征数相匹配
-  2. 随机初始化权重 通常把权重值初始化为接近0的很小的数
-3. 执行前向传播FP算法 获得对应于每一个 xi 的 h_theta(xi)​
-4. 通过代码计算出代价函数 J(theta) 5. 执行反向传播算法 获得 J(theta) 对于 theta 的偏导​，即
- 步骤 3-5
- 6. 进行梯度检查  比较 通过反向传播得到的偏导数 与 通过数值计算得到的估计值
- 确保两种方法得到基本接近的两个值​
- 注意在检查完毕后关闭梯度检查
-  7. 利用最优化算法与反向传播算法最小化 J(theta) 比如，使用最小梯度法...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>正则化 Regularization</h2>
-  </header>
-  <section class="entry-content">
-   <p>过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过拟合(over-fitting)的问题，可能会导致它们效果很差。
-可以使用一种正则化(regularization)的技术来改善或减少过度拟合的问题
-在回归问题中  第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
- 第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
-  当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是过拟合，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。
-在分类问题中 就以多项式理解， x的次数越高，拟合的越好，但相应的预测的能力就可能变差。
-处理过拟合问题
- 丢弃一些不能帮助我们正确预测的特征。可以是手工选择保留哪些特征，或者使用一些模型选择的算法来帮忙（例如PCA） 正则化。 保留所有的特征，但是减少参数的大小（magnitude）  代价函数 我们从之前的事例可以看出，正是那些高次项导致了过拟合的产生，所以我们可以通过让这些高次项的系数接近于0，我们就能很好的拟合。
-所以正则化的基本方法就是在一定程度上减小高次项系数即参数theta的值
-即在设定代价函数时，为高次项的系数设置一些惩罚，通过这样代价函数选择出的theta对预测结果的影响就比之前要小许多。
-但如果我们不知道要对哪一个参数进行惩罚，我们可以对所以特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。于是得到了一个较为简单的能防止过拟合问题的假设
-其中λ称为正则化参数（Regularization Parameter）。注：根据惯例，我们不对theta0进行惩罚。
-经过正则化处理的模型与原模型的可能对比如图：
-如果选择的正则化参数λ过大，则会把所有的参数都最小化了，导致模型变成 h(x) = theta0 ，也就是上图中红色直线所示的情况，造成欠拟合。
-对于正则化，我们要取一个合理的λ的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。
-正则化线性回归 正则化线性回归的代价函数为：
-如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对theta0进行正则化，所以梯度下降算法将分两种情形：
-分类 L1正则化（Lasso回归） 损失函数基础上加上权重参数的绝对值
-L2正则化（岭回归） 损失函数基础上加上权重参数的平方和
-需要说明的是：L1 相比于 L2 会更容易获得稀疏解
-WHY-&gt;Click...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.13</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96-regularization/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>逻辑回归Logistic Regression</h2>
-  </header>
-  <section class="entry-content">
-   <p>分类问题 在分类问题中，我们需要预测的变量y是离散的值，我们将学习一种叫做逻辑回归 (Logistic Regression) 的算法
-在分类问题中，我们尝试预测的是结果是否属于某一个类（例如正确或错误）。
-将因变量(dependent variable)可能属于的两个类分别称为负向类（negative class）和正向类（positive class），则因变量y ∈ 0,1 ，其中 0 表示负向类，1 表示正向类。
-如果我们要用线性回归算法来解决一个分类问题，对于分类，y取值为 0 或者1，但如果你使用的是线性回归，那么假设函数的输出值可能远大于 1，或者远小于0，即使所有训练样本的标签y都等于 0 或 1。尽管我们知道标签应该取值0 或者1，但是如果算法得到的值远大于1或者远小于0的话，就会感觉很奇怪。
-所以我们在接下来的要研究的算法就叫做逻辑回归算法，这个算法的性质是：它的输出值永远在0到 1 之间
-逻辑回归算法是分类算法，我们将它作为分类算法使用。有时候可能因为这个算法的名字中出现了“回归”使你感到困惑，但逻辑回归算法实际上真的是一种分类算法
-假说表示 我们引入一个新的模型，逻辑回归，该模型的输出变量范围始终在0和1之间。
-逻辑回归模型的假设是：h_theta(x) = g(theta&#39;X) 其中:X代表特征向量，g代表逻辑函数（logistic function)是一个常用的S形函数（Sigmoid function），公式为：g(z) = 1 / (1 &#43; exp(-z)
-Python代码实现
-import numpy as np def sigmoid(z): return 1 / (1 &#43; np.exp(-z))  该函数图像为
-合起来，我们得到逻辑回归模型的假设：
-对模型的理解：g(z) = 1 / (1 &#43; exp(-z)
-h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计算输出变量=1的可能性（estimated probablity）即h_theta(x) = P(y=1 | x;theta)...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.13</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92logistic-regression/"></a>
 </article>
 
 

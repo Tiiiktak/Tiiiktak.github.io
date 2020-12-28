@@ -22,6 +22,26 @@
     
     
     
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141514532-1');
+    </script>
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
   </head>
   <body class="list">
     <header class="header">
@@ -59,6 +79,73 @@
 
 
 
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python调试</h2>
+  </header>
+  <section class="entry-content">
+   <p>Python中可以使用断言assert,logging等来进行调试
+断言 def fun(s): n = int(s) assert n != 0, &#39;n is zero!&#39; return 10 / n def main(): fun(&#39;0&#39;)  若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
+Traceback (most recent call last): File &#34;hello.py&#34;, line 12, in &lt;module&gt; main() File &#34;hello.py&#34;, line 9, in main fun(&#39;0&#39;) File &#34;hello.py&#34;, line 4, in fun assert n != 0, &#39;n is zero!&#39; AssertionError: n is zero!  在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
+..path:&gt; python -O hello.py Traceback (most recent call last): File &#34;hello....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python错误处理</h2>
+  </header>
+  <section class="entry-content">
+   <p>在Python中也同样使用try...except...finally...的错误处理机制
+try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;)  当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
+上面的代码中有一个除0的错误，运行结果:
+try... except: division by zero finally... END  当计算r后，捕捉到ZeroDivisionError错误，执行 except语句段，之后执行finally
+else 可以在except后面加上else，当没有错误发生时将执行else语句块
+try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) else: print(&#39;no error&#39;) print(&#39;END&#39;)  结果:
+try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
+ 常见错误类型及继承关系（中文）：官方文档 ```
+  优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.6</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</h2>
+  </header>
+  <section class="entry-content">
+   <p>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
+树莓派-服务端 #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;thread&gt; #include &lt;opencv2/opencv.hpp&gt; using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; for (int i = 0; i &lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &lt; img_gray....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.9</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Socket通信原理(3)</h2>
+  </header>
+  <section class="entry-content">
+   <p>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
+这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
+服务端-树莓派 socket_server_sms.cpp #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; using namespace std; #define USEPORT 1234 int main() { //****创建套接字 int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET //Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF if (serverSock &lt; 0) { cout &lt;&lt; &#34;socket creation failed&#34; &lt;&lt; endl; exit(-1); } cout &lt;&lt; &#34;socket creation successfully&#34; &lt;&lt; endl; //****绑定ip和端口 struct sockaddr_in serverAddr; memset(&amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.8</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/"></a>
+</article>
 
 <article class="post-entry">
   <header class="entry-header">
@@ -187,95 +274,6 @@ vim按键 移动光标 要进行多次移动，例如向下移动30行，可使�
     <time>2019.6.26</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Linux文件</h2>
-  </header>
-  <section class="entry-content">
-   <p>[toc]
-Linux文件基本属性 在Linux中可以使用ll或者ls –l命令来显示一个文件的属性以及文件所属的用户和组，如：
-[root@www /]# ls -l total 64 dr-xr-xr-x 2 root root 4096 Dec 14 2012 bin dr-xr-xr-x 4 root root 4096 Apr 19 2012 boot ……  bin文件的第一个属性用d表示，d在Linux中代表该文件是一个目录文件 Linux中第一个字符代表这个文件时目录、文件、链接文件等 &gt;* 当为[d]则是目录 &gt;* 当为[-]则是文件 &gt;* 若是[l]则表示为链接文档(link file) &gt;* 若是[b]则表示为装置文件里面的可供储存的接口设备(可随机存取装置) &gt;* 若是[c]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)
-接下来的字符中，三个为一组，且均为『rwx』 的三个参数的组合。其中，[r]代表可读(read)、[w]代表可写(write)、[x]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[-]，如图
-Linux链接 Linux链接分为硬链接（Hard Link）和软链接（Symbolic Link）。默认情况，ln命令创建硬链接
-硬链接 硬连接指通过索引节点来进行连接，多个文件名可以指向同一索引节点，删除其中任何一个不会影响其余文件名的访问，只有当最后一个连接被删除时，文件的数据块及其目录的连接才被释放
-软链接 即符号链接，类似于Windows中快捷方式。两个文件名指向两个不同的节点号，若被指向的文件删除，链接仍存在，但指向一个无效的链接
-Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。
-[root@www /]# ls -l total 64 drwxr-xr-x 2 root root 4096 Feb 15 14:46 cron drwxr-xr-x 3 mysql mysql 4096 Apr 21 2014 mysql ……  mysql 文件是一个目录文件，属主和属组都为 mysql，属主有可读、可写、可执行的权限；与属主同组的其他用户有可读和可执行的权限；其他用户也有可读和可执行的权限。...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.25</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Linux操作学习 系统启动及目录</h2>
-  </header>
-  <section class="entry-content">
-   <p>Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
-运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
-运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
-Linux共7种运行级别: &gt;* 运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 &gt;* 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 &gt;* 运行级别2：多用户状态(没有NFS) &gt;* 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 &gt;* 运行级别4：系统未使用，保留 &gt;* 运行级别5：X11控制台，登陆后进入图形GUI模式 &gt;* 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
-系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
-主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务
-另外一行：15:5:wait:/etc/rc.d/rc 5，表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，接受5作为参数，执行/etc/rc.d/rc5.d/目录下所有rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。/etc/rc.d/rc5.d/中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。
-而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。
-这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。
-至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的”System Services”来自行设定。
-建立终端 rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。
-init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：
-1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6  2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
-用户登录系统 常用三种登陆方式： * 命令行登陆 * ssh登陆 * 图形界面登陆
-命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.24</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python面向对象</h2>
-  </header>
-  <section class="entry-content">
-   <p>类和实例 定义类 使用class关键字
-class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &#34;&#34;&#34;docstring for Student&#34;&#34;&#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score))  实例化 类名&#43;（）
-&gt;&gt;&gt; bob = Student(&#39;Bob&#39;, 98) &gt;&gt;&gt; bob.print_score() Bob: 98  创建实例后，可以自由地给一个实例变量绑定属性，如
-&gt;&gt;&gt; bob.school = &#39;SWUST&#39; &gt;&gt;&gt; bob.school &#39;SWUST&#39;  访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
-class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子类：...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.21</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python函数式编程</h2>
-  </header>
-  <section class="entry-content">
-   <p>[toc]
-什么是函数式编程？ 函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。
-而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
-函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
-Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言
-高阶函数 Python中函数两个特性 &gt; ### 变量可以指向函数 函数本身可以赋值给变量，通过变量可以调用函数
-&gt;&gt;&gt; f = abs &gt;&gt;&gt; f(-10) 10   函数名是变量 把函数名看作变量，可将其指向其他对象，则无法调用原函数
-&gt;&gt;&gt; abs = 10 &gt;&gt;&gt; abs(-10) Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; TypeError: &#39;int&#39; object is not callable   传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
-一个最简单的高阶函数：
-def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
- 把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式
- Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.21</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"></a>
 </article>
 
 

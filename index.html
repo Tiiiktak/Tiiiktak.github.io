@@ -22,6 +22,26 @@
     
     
     
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141514532-1');
+    </script>
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
   </head>
   <body class="list home">
     <header class="header">
@@ -77,6 +97,75 @@ Contact Me  QQ: 1067475613
     <time>2019.4.9</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/about/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>MMDetection单击多卡训练出现问题</h2>
+  </header>
+  <section class="entry-content">
+   <p>使用的命令：
+CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh ${CONFIG_FILE} 4 --resume-from ${CHECKPOINT_FILE}  出现问题：
+ 模型train 1 epoch后挂掉，报错信息：  RuntimeError: replicas_[0].size() == rebuilt_param_indices_.size() INTERNAL ASSERT FAILED at &#34;/pytorch/torch/csrc/distributed/c10d/reducer.cpp&#34;:1326, please report a bug to PyTorch. rebuilt parameter indices size is not same as original model parameters size.321 versus 629160   pytorch github issue:https://github.com/pytorch/pytorch/issues/47050 mmcv issue: https://github.com/open-mmlab/mmcv/issues/636#issuecomment-722436575 解决方案：安装1.6版本pytorch，并重装mmcv
+pip uninstall mmcv-full pip install mmcv-full python setup.py install   ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.12.28</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/mmdetection%E5%8D%95%E5%87%BB%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>在Linux中使用Clash科学上网</h2>
+  </header>
+  <section class="entry-content">
+   <p> 安装  下载amd64文件：https://github.com/Dreamacro/clash/releases/ gzip -f -d linux-amd64-clash.gz 下载配置文件config.yaml到~/.config/clash 下载mmdb文件到~/.config/clash  配置（每次使用前）  ./clash启动 浏览器进入127.0.0.1:9090，Clash控制面板 选择一个节点 进入Ubuntu设置，网络设置，代理 Method设为Manual HTTP Proxy、HTTPs Proxy设置为127.0.0.1:7890 Socks Host设置为127.0.0.1:7891  wget配置代理  修改/etc/wgetrc，其中
+https_proxy = http://127.0.0.1:7890/ http_proxy = http://127.0.0.1:7890/ ftp_proxy = http://127.0.0.1:7890/  使用时，wget --proxy=on https://xxxx即可
+  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.12.28</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%9C%A8linux%E4%B8%AD%E4%BD%BF%E7%94%A8clash%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Mpich2_安装 Ubuntu 20.04LTS</h2>
+  </header>
+  <section class="entry-content">
+   <p> Ubuntu 20.04 LTS   sudo aptitude install mpich
+ mpiexec --version
+   new code  #include &#34;mpi.h&#34; #include &lt;stdio.h&gt; int main(void) { int rankID; int sizeNum; MPI_Init(0, 0); MPI_Comm_size(MPI_COMM_WORLD, &amp;sizeNum); MPI_Comm_rank(MPI_COMM_WORLD, &amp;rankID); printf(&#34;Hello world! %d of total = %d\n&#34;, rankID, sizeNum); MPI_Finalize(); return 0; }   mpicc demo_1.c -o demo_1
+ mpirun -np 8 ./demo_1
+  ...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.11.17</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/mpich2_%E5%AE%89%E8%A3%85-ubuntu-20.04lts/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>MSMPI Visual Studio 2019 配置</h2>
+  </header>
+  <section class="entry-content">
+   <p>Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp; .exe两个文件，按提示安装即可
+安装过程会自动添加环境变量，可在PATH中看到
+step2. 配置 VS2019 新建一个空项目，新建一个属性表
+包含目录、库目录
+ 包含目录里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Include; 库目录的里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;
+ 【C/C&#43; 附加包含目录】：添加$(MSMPI_INC);$(MSMPI_INC)\x64
+ 【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
+ 【链接器-输入-附加依赖项】：添加msmpi.lib
+  step3. 测试 #include &lt;iostream&gt; #include &lt;mpi.h&gt; int main(int argc, char* argv[]) { MPI_Init(&amp;argc, &amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &lt;&lt; &#34;Receive from rank 0: &#34; &lt;&lt; RecvNum &lt;&lt; std::endl; } MPI_Finalize(); return 0; }  step4....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.11.16</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/msmpi-visual-studio-2019-%E9%85%8D%E7%BD%AE/"></a>
 </article>
 
 <article class="post-entry">
@@ -158,101 +247,6 @@ import sys python_path = sys.executable print(python_path)  如图：...</p>
     <time>2020.7.7</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%BA%93opencvpy-opencvlibopencv%E7%9A%84%E5%8C%BA%E5%88%AB/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>树莓派4B安装opencv以及错误解决</h2>
-  </header>
-  <section class="entry-content">
-   <p>更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
- 主要参考opencv官网文档和博客树莓派&#43;Opencv（一）图像处理
-树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
-下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev  在4B上安装时遇到libgtk2.0-dev安装失败的问题：
-这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
-在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
- 其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
- 下载源码 从GitHub下载：
-opencv
-opencv_contrib
-两个都下载.zip压缩包即可
-解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0  创建一个build文件夹用于编译 mkdir build cd build  运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
- cmake-gui  选择源码路径和编译路径后点击Configure...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.4.27</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE4b%E5%AE%89%E8%A3%85opencv%E4%BB%A5%E5%8F%8A%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>AlexNet分类Fashion-MNIST(Pytorch实现)</h2>
-  </header>
-  <section class="entry-content">
-   <p>这个notebook也同时发表在Kaggle上
-Fashion MNIST数据集 |Label | Class | |-|-| |0| T-shirt/top| |1| Trouser| |2| Pullover| |3| Dress| |4| Coat| |5| Sandal| |6| Shirt| |7| Sneaker| |8| Bag| |9| Ankle boot|
-准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.pyplot as plt from torchvision import transforms, datasets from torch.utils.data import Dataset, DataLoader EPOCHS = 20 BATCH_SIZE = 512 DEVICE = (&#34;cuda&#34; if torch....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.3.8</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/alexnet%E5%88%86%E7%B1%BBfashion-mnistpytorch%E5%AE%9E%E7%8E%B0/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>循环神经网络RNN以及几种经典模型</h2>
-  </header>
-  <section class="entry-content">
-   <p>RNN简介 现实世界中，很多元素都是相互连接的，比如室外的温度是随着气候的变化而周期性的变化的、我们的语言也需要通过上下文的关系来确认所表达的含义。但是机器要做到这一步就相当得难了。因此，就有了现在的循环神经网络，他的本质是：*拥有记忆的能力，并且会根据这些记忆的内容来进行推断*。因此，他的输出就依赖于当前的输入和记忆。
-网络结构及原理 循环神经网络的基本结构特别简单，就是将网络的输出保存在一个记忆单元中，这个记忆单元和下一次的输入一起进入神经网络中。
-一个最简单的循环神经网络在输入时的结构示意图：
-RNN 可以被看做是同一神经网络的多次赋值，每个神经网络模块会把消息传递给下一个，我们将这个图的结构展开:
-根据循环神经网络的结构也可以看出它在处理序列类型的数据上具有天然的优势。因为网络本身就是 一个序列结构，这也是所有循环神经网络最本质的结构。
-我们可以用下面的公式来表示循环神经网络的计算方法：
-总结图：
-Pytorch中 pytorch 中使用 nn.RNN 类来搭建基于序列的循环神经网络，它的构造函数有以下几个参数：
- input_size：输入数据X的特征值的数目。 hidden_size：隐藏层的神经元数量，也就是隐藏层的特征数量。 num_layers：循环神经网络的层数，默认值是 1。 bias：默认为 True，如果为 false 则表示神经元不使用 bias 偏移参数。 batch_first：如果设置为 True，则输入数据的维度中第一个维度就是 batch 值，默认为 False。默认情况下第一个维度是序列的长度， 第二个维度才是batch，第三个维度是特征数目。 dropout：如果不为空，则表示最后跟一个 dropout 层抛弃部分数据，抛弃数据的比例由该参数指定  RNN 中最主要的参数是 input_size 和 hidden_size，这两个参数务必要搞清楚。其余的参数通常不用设置，采用默认值就可以了。
-rnn = torch.nn.RNN(20,50,2) input = torch.randn(100 , 32 , 20) h_0 =torch.randn(2 , 32 , 50) output,hn=rnn(input ,h_0) print(output.size(),hn.size()) &#39;&#39;&#39; torch.Size([100, 32, 50]) torch.Size([2, 32, 50]) &#39;&#39;&#39;   一文搞懂RNN（循环神经网络）基础篇...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.19</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Crnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>卷积神经网络CNN以及几种经典模型</h2>
-  </header>
-  <section class="entry-content">
-   <p>简介  CNN -&gt; Convolutional Neural Network
- 卷积神经网络是由一个或多个卷积层和顶端的全连通层（也可以使用1x1的卷积层作为最终的输出）组成的一种前馈神经网络
-基本概念 局部感受野(Local Receptive Fields) 一般的神经网络往往会把图像的每一个像素点连接到全连接的每一个神经元中，而卷积神经网络则是把每一个隐藏节点只连接到图像的某个局部区域，从而减少参数训练的数量。
-例如，一张1024×720的图像，使用9×9的感受野，则只需要81个权值参数。对于一般的视觉也是如此，当观看一张图像时，更多的时候关注的是局部。
-共享权值(Shared Weights) 在卷积神经网络的卷积层中，神经元对应的权值是相同的，由于权值相同，因此可以减少训练的参数量。共享的权值和偏置也被称作*卷积核*或滤波器
-池化(Pooling) 由于待处理的图像往往都较大，而实际处理时没必要直接对原图进行分析，最主要的是要能够有效获得图像的特征。因此可以采用类似图像压缩的思想，对图像进行卷积之后，通过一个下采样过程来调整图像的大小
- 什么是下采样？ 上采样、下采样到底是个啥
- 结构组成 我们通过卷积的计算操作来*提取图像局部的特征*，每一层都会计算出一些局部特征，这些局部特征再汇总到下一层，这样*一层一层的传递*下去，特征由小变大，最后在通过这些局部的特征对图片进行处理，这样大大提高了计算效率，也提高了准确度。
-卷积层 提取特征
-卷积计算  动图来源于：stanford.edu, Feature extraction using convolution
-NOTE: 深度学习中的卷积与信号处理中的卷积略有不同，深度学习中的卷积略去了翻转的步骤（因为起初卷积核是随机生成的，没有方向）
-  输入矩阵大小 n 卷积核大小 f 边界填充 (p)adding，指在原矩阵周围填充的层数 步长 (s)tride  计算公式
-卷积结果大小：(n - f &#43; 2p) / s &#43; 1向下取整
-多个卷积核 在每一个卷积层我们会设置多个卷积核，代表多个不同的特征，这些特征就是需要传递到下一层的输出，训练的过程就是训练不同的核
-激活函数 引入非线性关系
-由于卷积的操作是线性的，所以需要使用进行激活，通常使用Relu
-池化层 减少参数数量
-通过减少卷积层之间的连接，降低运算复杂程度。
-池化层一般放在卷积层后面，所以池化层池化的是卷积层的输出
-一般使用的有最大池化max-pooling和平均池化mean-pooling
-操作与卷积类似，即过滤器在矩阵上滑动...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.18</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Ccnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/"></a>
 </article>
 
 

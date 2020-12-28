@@ -9,14 +9,34 @@
   
   <url>
     <loc>https://konosuba.xyz/blog/</loc>
-    <lastmod>2020-10-08T13:58:14+08:00</lastmod>
+    <lastmod>2020-12-28T15:52:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://konosuba.xyz/blog/mmdetection%E5%8D%95%E5%87%BB%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2020-12-28T15:52:48+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://konosuba.xyz/</loc>
-    <lastmod>2020-10-08T13:58:14+08:00</lastmod>
+    <lastmod>2020-12-28T15:52:48+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/%E5%9C%A8linux%E4%B8%AD%E4%BD%BF%E7%94%A8clash%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</loc>
+    <lastmod>2020-12-28T15:49:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/mpich2_%E5%AE%89%E8%A3%85-ubuntu-20.04lts/</loc>
+    <lastmod>2020-11-17T09:20:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/msmpi-visual-studio-2019-%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2020-11-16T22:14:03+08:00</lastmod>
   </url>
   
   <url>

@@ -22,6 +22,26 @@
     
     
     
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141514532-1');
+    </script>
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
   </head>
   <body class="list home">
     <header class="header">
@@ -53,6 +73,149 @@
 
 
 
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>利用MLS移动最小二乘法对图像变形</h2>
+  </header>
+  <section class="entry-content">
+   <p>这是我的【项目笔记】利用OpenCV的MLS图像扭曲变形实现中的第一部分
+本文主要对MLS进行了一定讲解
+ 先简单了解一下什么是最小二乘法
+最小二乘法 当我们在测量某个值y时，由于误差的存在，可能多次测量的结果不尽相同
+我们把多次测量得到的不同结果yi画在同一坐标系中
+同时将猜测的实际值y也画在坐标系中
+每个yi和y都有一个差值| y - yi |，称为误差
+记所有误差的平方和
+由于实际值y是我们猜测的，所以它的值可以变化，同时误差的平方和ε也会随之改变
+于是高斯或是法国科学家勒让德就提出使误差的平方和最小的 y 就是真值，这是基于，如果误差是随机的，应该围绕真值上下波动
+这就是最小二乘法，即
+此外，经证明得出误差的分布服从正态分布（不愧是天下第一分布），这里就不证明了
+总的来说，对于被选择的参数，应该使算出的函数曲线与观测值之差的平方和最小。用函数表示为：
+最小化问题的精度，依赖于所选择的函数模型
+移动最小二乘法 移动最小二乘法与传统的最小二乘法相比，有两个比较大的改进：
+  拟合函数的建立不同。这种方法建立拟合函数不是采用传统的多项式或其它函数，而是由一个系数向量 a(x)和基函数 p(x)构成， 这里a(x)不是常数，而是坐标 x 的函数。
+ 引入紧支（ Compact Support）概念。认为点x处的值 y只受 x附近子域内节点影响，这个子域称作点 x 的影响区域， 影响区域外的节点对 x的取值没有影响。在影响区域上定义一个权函数w(x)，如果权函数在整个区域取为常数，就得到传统的最小二乘法。
+  节选自《基于移动最小二乘法的曲线曲面拟合-曾清红》
+ 利用MLS变换图像 这一部分，我主要参考了论文《Image Deformation Using Moving Least Squares》中的内容
+考虑由用户设定锚点来对图像变形进行控制的情况，首先进行准备工作，推导出公式
+准备工作 设p为一组控制点，q是它对应的变形位置
+对于图像中的某一点v，有最小的仿射变换lv(x)，使
+成立。其中pi和qi是行向量，权值wi满足
+各点权重wi 由于对于每个v都有不同的wi的值，称之为移动最小二乘最小化（a Moving Least Squares minimization）。对于每个v都有不同的lv(x)
+此时定义变形函数f(x) = lv(x)，可见当v接近pi时，wi趋于无穷、f(pi) = qi，此外若qi = pi，则lv(x) = x、f(v) = v...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.11.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8mls%E7%A7%BB%E5%8A%A8%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%AF%B9%E5%9B%BE%E5%83%8F%E5%8F%98%E5%BD%A2/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>【项目笔记】利用OpenCV的MLS图像扭曲变形实现</h2>
+  </header>
+  <section class="entry-content">
+   <p>引 这学期开学的时候实验室接了个项目，要做一个类似Adobe Illustrator中的“操纵扭曲”功能的Demo
+ 就像这样
+ 需求分析 可见需要实现的功能核心就是通过鼠标的拖拽对图像进行扭曲变形，这里的变形主要可以分为两类：
+ 鼠标拖拽导致的普通变形
+ 在某一固定锚点基础上的旋转式变形
+  确定方案 明确了这个后我便开始查阅资料，发现这篇paper 《Image Deformation Using Moving Least Squares》 中利用了MLS移动最小二乘来实现图像变形，其实现的效果和我们的目标极为相似，于是我也决定利用该算法来实现这个Demo
+由于要利用鼠标拖拽进行操作，便选择使用Qt来进行图形化界面设计，然鹅我以前也没有用过Qt，因此学习了一些Qt基本知识
+开始吧 明确了方案和目标后，便开始了漫长的学习&#43;实践：
+ 程序结构框架确定
+ 核心算法实现
+ 旋转式变形的实现
+  在进行到这里之后，发现程序无法实现对某个关节的单独拉伸，于是我们考虑寻找图像中的骨骼，在关节的交点添加一些锚点进行固定
+ 图形骨骼查找  实现效果 最终项目完成，实现了这些功能，如图是个小小的演示
+本文将会持续更新...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.10.23</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0%E5%88%A9%E7%94%A8opencv%E7%9A%84mls%E5%9B%BE%E5%83%8F%E6%89%AD%E6%9B%B2%E5%8F%98%E5%BD%A2%E5%AE%9E%E7%8E%B0/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</h2>
+  </header>
+  <section class="entry-content">
+   <p>最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下
+原文发表于2018-12-19
+这两天，一个“魔法画板”在国外传疯了。
+AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能装满好几个美术馆。
+这个画板背后，可不是一个普通的画画AI。它，会脑补。
+随便画一笔，就能得到一只猫：
+画个圆圈，变成猫：
+画个三角，变成猫：
+画个方块，变成猫：
+真是万物皆可喵喵。
+当然，你也可以不让它画猫，改成画狗。只要你设定了一个绘画的目标，之后随便画一笔，AI就能脑补出余下的画面。
+这个“魔法”，是来自谷歌的吸猫少女Monica Dinculescu用Sketch RNN开发的。
+因为她爱猫成痴，不仅自己头像是和自家喵子的合影，连个人主页域名都叫Meowni.ca，我们就叫她喵妮卡好了。
+所以，受到创作者的影响，这个AI默认属性为吸猫爱好者，但除了猫之外，AI也会脑补许多其他内容，脑洞很大。
+发布之后，众人竞相玩耍，好评如潮，2000多人点赞。
+有人让AI画了满屏的骷髅，说，好美啊！
+谷歌大佬David Ha也表示，他已经试过用各种基本形状来教导AI画羊了。
+不止有魔力，还可以加戏 喵妮卡给应用起名为魔法画板 (Magic Sketchpad) ，也名副其实。
+毕竟，只要画一笔，妈咪妈咪哄！一整张图就出现在眼前。
+△ 你想要什么样的美人鱼？
+而且，只要按一下选择栏左边的刷新按钮，AI就会根据刚才那一笔，不断为你展现新的画法。
+一共有100多种东西可以画，青蛙，秋千，直升飞机，连龙猫里的猫巴士都有。
+我是一只豆豆眼的猫头鹰：
+我是一只很鬼魅的仙人掌：
+为了这100多种选项，都能找到合适的色彩来诠释，画板还提供了18种颜色的画笔。
+这样一来，就有数不清的排列组合。有大胆想法的小伙伴们，可以在魔法画板上尽情加戏了。
+在你开始表演之前，量子位先抛抛砖：
+鲸鱼喷出的不一定是水，也有可能是花。
+牙刷上方温柔的曲线不一定是牙膏，也有可能是蜗牛。
+另外，如果你还没想到，除了排列组合之外，还可以鬼畜啊。
+一头鲸鱼喷水没什么，十几头鲸一起喷，就很有节奏感了 (误) 。
+一个人做瑜伽太孤单了，十几个人一起做，姿态各不相同，清明瑜伽图岂不美哉？
+不过虽然好玩，量子位似乎还是发现了一个bug，像猫巴士 (Catbus) 这种组合选项：画方成车，画圆成猫，无法兼顾。那么，怎样才能一步生成下面这样的效果呢？
+想要体验一下的盆友，传送门照例在文末~
+人家是有背景的 可能你已经发觉了，它的画风很像的谷歌推出的Quick, Draw!，中文名为“猜画小歌”。
+是的，他们是一家人。
+喵妮卡在推特上说了，她的魔法画板使用的就是Quick, Draw!数据集。
+这个数据集里面，有5000万张画，分为345个类别。每一张画，都记录了画画的整个过程：画笔运动的方向，何时提笔，何时停止绘画。
+如果你玩过猜画小歌，那这个数据集里，也有你的一份贡献。
+既然使用的是Quick, Draw!数据集，模型基本上没有什么悬念。
+正是Sketch-RNN。这是一个用Quick, Draw！数据集训练出来循环神经网络（RNN）。目标是让AI以类似人类的方式来画画，并概括出抽象的概念。
+模型有这样的能力，做出来魔法画板也就没有那么难了。
+你随手画个圈，就是为Sketch-RNN输入了一个序列，它可以根据这个序列和你选择要画的东西，预测接下来的序列：也就是补完这幅画。
+虽然画风奇特，但画啥就有点像啥。
+具体的实现代码，喵妮卡也全部放出来了。（传送门在文末。）
+三种额外玩法 除了这个万物皆可喵的网页之外，喵妮卡所在的Google Magenta团队还用Sketch-RNN创作了几个不同的涂鸦应用。
+9×N种预测，总能猜中你的心 你涂鸦的每一笔，都被我预料到了。
+无论你画了个啥，我都能猜出你接下来准备如何下笔。
+并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.10.20</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E8%BD%AC%E8%BD%BD%E8%B0%B7%E6%AD%8C%E5%B0%8F%E5%A7%90%E5%A7%90%E6%90%9E%E5%87%BA%E9%AD%94%E6%B3%95%E7%94%BB%E6%9D%BF%E4%BD%A0%E9%9A%8F%E4%BE%BF%E7%94%BB%E8%A1%A5%E4%B8%8D%E9%BD%90%E7%AE%97ai%E8%BE%93/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>第一个TensorFlow模型：摄氏度转换为华氏度</h2>
+  </header>
+  <section class="entry-content">
+   <p>今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
+公式 已知摄氏度转换成华氏度有数学公式：
+f = c * 1.8 &#43; 32  而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
+import dependencies 导入依赖项 需要引入TensorFlow与NumPy库构建神经网络
+from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np  还需要引入logging以记录日志
+import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR)  Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
+celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&#34;{} degrees Celsius = {} degrees Fahrenheit&#34;....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.10.11</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E7%AC%AC%E4%B8%80%E4%B8%AAtensorflow%E6%A8%A1%E5%9E%8B%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/"></a>
+</article>
 
 <article class="post-entry">
   <header class="entry-header">
@@ -163,82 +326,6 @@ The Zen of Python, by Tim Peters Beautiful is better than ugly. Explicit is bett
     <time>2019.9.7</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/zen-of-python-python%E4%B9%8B%E7%A6%85/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python文件操作</h2>
-  </header>
-  <section class="entry-content">
-   <p>Python内置了读写文件的函数，用法与C兼容
-读文件 open() 使用内置的open()函数，传入文件名和标识符：
-&gt;&gt;&gt; f = open(&#39;test.txt&#39;, &#39;r&#39;)  若文件不存在，open()函数会抛出一个IOError的错误，并给出错误码和详细信息
-Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; FileNotFoundError: [Errno 2] No such file or directory: &#39;test.txt&#39;  read() 打开成功后，使用read()一次性读取文件的全部内容，Python将内容读到内存中，用str对象存储
-readline() |readline()可以每次读取一行的内容
-readlines() |readlines()一次读取所有内容并按行返回list
-close() 使用完毕后，需要调用close()关闭文件
-with语句 为避免忘记调用close()，Python引入with语句自动调用close()
-with open(&#39;test.txt&#39;, &#39;r&#39;) as f: print(f.read())  写文件 与读文件类似，唯一区别是传入标识符&#39;w&#39;或&#39;wb&#39;表示写文本文件或写二进制文件
-所有标识符定义及其意义见官方文档
-file-like Object (file object文件对象) 在Python中，像open()函数返回的这种有read()或write()方法的对象统称为file-like Object（或file object）
-共有三种类别的文件对象：原始二进制文件, 缓冲二进制文件 以及 文本文件，创建文件对象的规范方式是使用open()函数。...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.9.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python调试</h2>
-  </header>
-  <section class="entry-content">
-   <p>Python中可以使用断言assert,logging等来进行调试
-断言 def fun(s): n = int(s) assert n != 0, &#39;n is zero!&#39; return 10 / n def main(): fun(&#39;0&#39;)  若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
-Traceback (most recent call last): File &#34;hello.py&#34;, line 12, in &lt;module&gt; main() File &#34;hello.py&#34;, line 9, in main fun(&#39;0&#39;) File &#34;hello.py&#34;, line 4, in fun assert n != 0, &#39;n is zero!&#39; AssertionError: n is zero!  在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
-..path:&gt; python -O hello.py Traceback (most recent call last): File &#34;hello....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.9.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python错误处理</h2>
-  </header>
-  <section class="entry-content">
-   <p>在Python中也同样使用try...except...finally...的错误处理机制
-try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;)  当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
-上面的代码中有一个除0的错误，运行结果:
-try... except: division by zero finally... END  当计算r后，捕捉到ZeroDivisionError错误，执行 except语句段，之后执行finally
-else 可以在except后面加上else，当没有错误发生时将执行else语句块
-try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) else: print(&#39;no error&#39;) print(&#39;END&#39;)  结果:
-try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
- 常见错误类型及继承关系（中文）：官方文档 ```
-  优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.9.6</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</h2>
-  </header>
-  <section class="entry-content">
-   <p>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
-因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
-树莓派-服务端 #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;thread&gt; #include &lt;opencv2/opencv.hpp&gt; using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; for (int i = 0; i &lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &lt; img_gray....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.7.9</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/"></a>
 </article>
 
 

@@ -22,6 +22,26 @@
     
     
     
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141514532-1');
+    </script>
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
   </head>
   <body class="list">
     <header class="header">
@@ -59,6 +79,97 @@
 
 
 
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>AlexNet分类Fashion-MNIST(Pytorch实现)</h2>
+  </header>
+  <section class="entry-content">
+   <p>这个notebook也同时发表在Kaggle上
+Fashion MNIST数据集 |Label | Class | |-|-| |0| T-shirt/top| |1| Trouser| |2| Pullover| |3| Dress| |4| Coat| |5| Sandal| |6| Shirt| |7| Sneaker| |8| Bag| |9| Ankle boot|
+准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.pyplot as plt from torchvision import transforms, datasets from torch.utils.data import Dataset, DataLoader EPOCHS = 20 BATCH_SIZE = 512 DEVICE = (&#34;cuda&#34; if torch....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.3.8</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/alexnet%E5%88%86%E7%B1%BBfashion-mnistpytorch%E5%AE%9E%E7%8E%B0/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>循环神经网络RNN以及几种经典模型</h2>
+  </header>
+  <section class="entry-content">
+   <p>RNN简介 现实世界中，很多元素都是相互连接的，比如室外的温度是随着气候的变化而周期性的变化的、我们的语言也需要通过上下文的关系来确认所表达的含义。但是机器要做到这一步就相当得难了。因此，就有了现在的循环神经网络，他的本质是：*拥有记忆的能力，并且会根据这些记忆的内容来进行推断*。因此，他的输出就依赖于当前的输入和记忆。
+网络结构及原理 循环神经网络的基本结构特别简单，就是将网络的输出保存在一个记忆单元中，这个记忆单元和下一次的输入一起进入神经网络中。
+一个最简单的循环神经网络在输入时的结构示意图：
+RNN 可以被看做是同一神经网络的多次赋值，每个神经网络模块会把消息传递给下一个，我们将这个图的结构展开:
+根据循环神经网络的结构也可以看出它在处理序列类型的数据上具有天然的优势。因为网络本身就是 一个序列结构，这也是所有循环神经网络最本质的结构。
+我们可以用下面的公式来表示循环神经网络的计算方法：
+总结图：
+Pytorch中 pytorch 中使用 nn.RNN 类来搭建基于序列的循环神经网络，它的构造函数有以下几个参数：
+ input_size：输入数据X的特征值的数目。 hidden_size：隐藏层的神经元数量，也就是隐藏层的特征数量。 num_layers：循环神经网络的层数，默认值是 1。 bias：默认为 True，如果为 false 则表示神经元不使用 bias 偏移参数。 batch_first：如果设置为 True，则输入数据的维度中第一个维度就是 batch 值，默认为 False。默认情况下第一个维度是序列的长度， 第二个维度才是batch，第三个维度是特征数目。 dropout：如果不为空，则表示最后跟一个 dropout 层抛弃部分数据，抛弃数据的比例由该参数指定  RNN 中最主要的参数是 input_size 和 hidden_size，这两个参数务必要搞清楚。其余的参数通常不用设置，采用默认值就可以了。
+rnn = torch.nn.RNN(20,50,2) input = torch.randn(100 , 32 , 20) h_0 =torch.randn(2 , 32 , 50) output,hn=rnn(input ,h_0) print(output.size(),hn.size()) &#39;&#39;&#39; torch.Size([100, 32, 50]) torch.Size([2, 32, 50]) &#39;&#39;&#39;   一文搞懂RNN（循环神经网络）基础篇...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.19</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Crnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>卷积神经网络CNN以及几种经典模型</h2>
+  </header>
+  <section class="entry-content">
+   <p>简介  CNN -&gt; Convolutional Neural Network
+ 卷积神经网络是由一个或多个卷积层和顶端的全连通层（也可以使用1x1的卷积层作为最终的输出）组成的一种前馈神经网络
+基本概念 局部感受野(Local Receptive Fields) 一般的神经网络往往会把图像的每一个像素点连接到全连接的每一个神经元中，而卷积神经网络则是把每一个隐藏节点只连接到图像的某个局部区域，从而减少参数训练的数量。
+例如，一张1024×720的图像，使用9×9的感受野，则只需要81个权值参数。对于一般的视觉也是如此，当观看一张图像时，更多的时候关注的是局部。
+共享权值(Shared Weights) 在卷积神经网络的卷积层中，神经元对应的权值是相同的，由于权值相同，因此可以减少训练的参数量。共享的权值和偏置也被称作*卷积核*或滤波器
+池化(Pooling) 由于待处理的图像往往都较大，而实际处理时没必要直接对原图进行分析，最主要的是要能够有效获得图像的特征。因此可以采用类似图像压缩的思想，对图像进行卷积之后，通过一个下采样过程来调整图像的大小
+ 什么是下采样？ 上采样、下采样到底是个啥
+ 结构组成 我们通过卷积的计算操作来*提取图像局部的特征*，每一层都会计算出一些局部特征，这些局部特征再汇总到下一层，这样*一层一层的传递*下去，特征由小变大，最后在通过这些局部的特征对图片进行处理，这样大大提高了计算效率，也提高了准确度。
+卷积层 提取特征
+卷积计算  动图来源于：stanford.edu, Feature extraction using convolution
+NOTE: 深度学习中的卷积与信号处理中的卷积略有不同，深度学习中的卷积略去了翻转的步骤（因为起初卷积核是随机生成的，没有方向）
+  输入矩阵大小 n 卷积核大小 f 边界填充 (p)adding，指在原矩阵周围填充的层数 步长 (s)tride  计算公式
+卷积结果大小：(n - f &#43; 2p) / s &#43; 1向下取整
+多个卷积核 在每一个卷积层我们会设置多个卷积核，代表多个不同的特征，这些特征就是需要传递到下一层的输出，训练的过程就是训练不同的核
+激活函数 引入非线性关系
+由于卷积的操作是线性的，所以需要使用进行激活，通常使用Relu
+池化层 减少参数数量
+通过减少卷积层之间的连接，降低运算复杂程度。
+池化层一般放在卷积层后面，所以池化层池化的是卷积层的输出
+一般使用的有最大池化max-pooling和平均池化mean-pooling
+操作与卷积类似，即过滤器在矩阵上滑动...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.18</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Ccnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Pytorch中的激活函数</h2>
+  </header>
+  <section class="entry-content">
+   <p>介绍神经网络的时候已经说到，神经元会对化学物质的刺激进行，当达到一定程度的时候，神经元才会兴奋，并向其他神经元发送信息。神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件。
+为什么激活函数都是非线性的 因为如果使用线性的激活函数，那么input跟output之间的关系始终为线性的，这样完全可以不使用网络结构，直接使用线性组合即可。
+所以需要激活函数来引入非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中，增加了神经网络模型泛化的特性。
+一般只有在输出层有极小的可能性使用线性激活函数，在隐含层都使用非线性激活函数.
+常见的激活函数 # 初始化一些信息 import torch import torch.nn.functional as F import matplotlib.pyplot as plt import numpy as np x= torch.linspace(-10,10,60)  Sigmoid 函数 g(z) = a = 1 / (1 &#43; e^(-z)) g&#39;(z) = a&#39; = a (1 - a)  在sigmod函数中我们可以看到，其输出是在(0,1)这个开区间，它能够把输入的连续实值变换为0和1之间的输出，如果是非常大的负数，那么输出就是0；如果是非常大的正数输出就是1，起到了抑制的作用。
+ax = plt.gca() ax.spines[&#39;right&#39;].set_color(&#39;none&#39;) ax.spines[&#39;top&#39;].set_color(&#39;none&#39;) ax.xaxis.set_ticks_position(&#39;bottom&#39;) ax.spines[&#39;bottom&#39;].set_position((&#39;data&#39;, 0)) ax.yaxis.set_ticks_position(&#39;left&#39;) ax.spines[&#39;left&#39;].set_position((&#39;data&#39;, 0)) plt.ylim((0, 1)) sigmod=torch.sigmoid(x) plt.plot(x.numpy(),sigmod.numpy())  但是sigmod由于需要进行指数运算（这个对于计算机来说是比较慢，相比relu），再加上函数输出*不是以0为中心*的（这样会使权重更新效率降低），当输入稍微远离了坐标原点，函数的梯度就变得很小了（几乎为零）。
+在神经网络反向传播的过程中不利于权重的优化，这个问题叫做梯度饱和，也可以叫梯度弥散。这些不足，所以现在使用到sigmod基本很少了，基本上只有在做二元分类（0，1）时的输出层才会使用。
+Tanh 函数 tanh是双曲正切函数，输出区间是在(-1,1)之间，而且整个函数是*以0为中心*的
+ax = plt....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.15</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/"></a>
+</article>
 
 <article class="post-entry">
   <header class="entry-header">
@@ -192,88 +303,6 @@ torch.nn.Linear(in_features, out_features, bias=True)  参数  in_features 每�
     <time>2020.2.12</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_linear/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch_nn.Conv2d</h2>
-  </header>
-  <section class="entry-content">
-   <p> Conv2d torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode=&#39;zeros&#39;)   in_channels 输入数据通道数 out_channels 输出数据通道数 kennel_size 卷积核大小，int或tuple stride 步长 padding 每个维度零填充的数量 dilation 内核点之间的距离，也称à trous algorithm groups 控制inputs与outputs间的连接 &gt; * groups=1，所有输入都卷积到输出 &gt; * groups=2，并排设置两个conv层，每个层查看一半的输入通道，并生成一半的输出通道，然后将两者连接起来 &gt; * groups=in_channels，每个输入通道都有它自己的filter，size为[out_channels/in_channels]  ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.12</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_nn.conv2d/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Python面向对象_super()函数</h2>
-  </header>
-  <section class="entry-content">
-   <p>super() super()是用于调用父类（超类）的一个方法
-用于解决多重继承问题：直接用类名调用父类方法在使用单继承时没有问题，但若使用多继承，会涉及到查找顺序（MRO）、重复调用（钻石继承）等问题
- MRO 就是类的方法解析顺序表, 其实也就是继承父类方法时的顺序表。
- 语法 super(type[, object-or-type])  参数  type 类
- object-or-type 类，一般是self
-  在 Python3 中：super().xxx
-在 Python2 中：super(Class, self).xxx
-两者等价
-示例 class Bird: def __init__(self): self.hungry = True def eat(self): if self.hungry: print(&#39;Ahahahah&#39;) else: print(&#39;No thanks!&#39;) class SongBird(Bird): def __init__(self): self.sound = &#39;Squawk&#39; def sing(self): print(self.sound) sb = SongBird() sb.sing() # 能正常输出&#39;Squawk&#39; sb.eat() # 报错，因为 SongBird 中没有 hungry 特性  使用super解决：...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.12</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1_super%E5%87%BD%E6%95%B0/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch学习笔记_3_构建一个神经网络</h2>
-  </header>
-  <section class="entry-content">
-   <p>Neural Networks  神经网络可以通过使用torch.nn包来创建
- nn依赖于autograd来定义模型并求导。
- 一个nn.Module类包含各个层和一个forward(input)前向传播方法，该方法返回output
-  例如这个分类数字图像的网络：
-这是个简单的前馈神经网络，它接受一个输入，然后一层接一层的传递，最后输出计算结果
-一个神经网络的典型训练过程：
- 定义包含一些可学习的参数（或权重）的神经网络 在数据集上迭代 通过神经网络处理输入 计算损失函数（预测值与实际值的差值大小） 将梯度反向传播回网络的参数 更新网络参数，主要使用一个简单的更新法则：weight = weight - learning_rate * gradient   另参见：konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4
- 定义网络 import torch import torch.nn as nn import torch.nn.functional as F class Net(nn.Module): def __init__(self): # 构造方法 super().__init__() # 复制并使用Net的父类的初始化方法，即先运行nn.Module的初始化函数 # 卷积层 self.conv1 = nn.Conv2d(1, 6, 5) self.conv2 = nn.Conv2d(6, 16, 5) # fc(full_connect)全连接函数，均为线性函数 y = Wx &#43; b self....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.12</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_3_%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch学习笔记_2_Autograd自动求导机制</h2>
-  </header>
-  <section class="entry-content">
-   <p>Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
-autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
-通过一些示例来了解
-Tensor 张量 torch.tensor是这个包的核心类。
- 设置.requires_grad为True，会追踪所有对于该张量的操作。计算完成后调用.backward()，可以自动计算所有的梯度，并自动累计到.grad属性中   事实上即使.requires_grad为True并不意味着.grad一定不为None
-  可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
- 为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad():中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
-  Function类 Tensor 和 Function 互相连接并生成一个非循环图，它表示和存储了完整的计算历史。
-每个张量都有一个.grad_fn属性，对张量进行操作后，grad_fn会引用一个创建了这个Tensor类的Function对象（除非这个张量是用户手动创建的，此时，这个张量的 grad_fn 是 None）
- leaf Tensors 叶张量
-Tensor中有一属性is_leaf，当它为True有两种情况：
- 按照惯例，requires_grad = False 的 Tensor
- requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None
-  只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()
- 如果需要计算导数，可以在Tensor上调用.backward()：若Tensor是一个标量（即包含一个元素数据）则不需要为backward()指定任何参数， 但是如果它有更多的元素，需要指定一个gradient 参数来匹配张量的形状。
-x = torch.ones(2, 2, requires_grad=True) print(x) # Output: # tensor([[1....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.11</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_2_autograd%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E6%9C%BA%E5%88%B6/"></a>
 </article>
 
 

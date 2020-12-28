@@ -22,6 +22,26 @@
     
     
     
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141514532-1');
+    </script>
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
   </head>
   <body class="list home">
     <header class="header">
@@ -53,6 +73,106 @@
 
 
 
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>【应用机器学习】评估一个假设</h2>
+  </header>
+  <section class="entry-content">
+   <p>检验是否过拟合 将数据分成训练集和测试集 通常用70%的数据作为训练集，用剩下30%的数据作为测试集。
+很重要的一点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行洗牌，然后再分成训练集和测试集。
+使用训练集对模型进行训练 可以得到一系列参数 theta
+使用测试集对模型进行测试 使用测试集数据对模型进行测试，有两种方式计算误差
+线性回归模型 利用测试集数据计算代价函数J
+逻辑回归模型 除前述方法，还可使用一种 错误分类(misclassification error)(也称0/1错误分类 zero one misclassification error) 的方法...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>训练神经网络的基本步骤</h2>
+  </header>
+  <section class="entry-content">
+   <p>1. 选择一种网络结构 即选择神经元之间的连通模式
+ 输入层与输出层单元个数由具体特征决定
+ 隐藏层通常默认为1层；若为多层，则每个隐藏层单元个数应相等。通常隐藏层单元数越多越好
+ 隐藏层单元数应与输入特征数相匹配
+  2. 随机初始化权重 通常把权重值初始化为接近0的很小的数
+3. 执行前向传播FP算法 获得对应于每一个 xi 的 h_theta(xi)​
+4. 通过代码计算出代价函数 J(theta) 5. 执行反向传播算法 获得 J(theta) 对于 theta 的偏导​，即
+ 步骤 3-5
+ 6. 进行梯度检查  比较 通过反向传播得到的偏导数 与 通过数值计算得到的估计值
+ 确保两种方法得到基本接近的两个值​
+ 注意在检查完毕后关闭梯度检查
+  7. 利用最优化算法与反向传播算法最小化 J(theta) 比如，使用最小梯度法...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.2.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>正则化 Regularization</h2>
+  </header>
+  <section class="entry-content">
+   <p>过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过拟合(over-fitting)的问题，可能会导致它们效果很差。
+可以使用一种正则化(regularization)的技术来改善或减少过度拟合的问题
+在回归问题中  第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
+ 第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
+  当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是过拟合，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。
+在分类问题中 就以多项式理解， x的次数越高，拟合的越好，但相应的预测的能力就可能变差。
+处理过拟合问题
+ 丢弃一些不能帮助我们正确预测的特征。可以是手工选择保留哪些特征，或者使用一些模型选择的算法来帮忙（例如PCA） 正则化。 保留所有的特征，但是减少参数的大小（magnitude）  代价函数 我们从之前的事例可以看出，正是那些高次项导致了过拟合的产生，所以我们可以通过让这些高次项的系数接近于0，我们就能很好的拟合。
+所以正则化的基本方法就是在一定程度上减小高次项系数即参数theta的值
+即在设定代价函数时，为高次项的系数设置一些惩罚，通过这样代价函数选择出的theta对预测结果的影响就比之前要小许多。
+但如果我们不知道要对哪一个参数进行惩罚，我们可以对所以特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。于是得到了一个较为简单的能防止过拟合问题的假设
+其中λ称为正则化参数（Regularization Parameter）。注：根据惯例，我们不对theta0进行惩罚。
+经过正则化处理的模型与原模型的可能对比如图：
+如果选择的正则化参数λ过大，则会把所有的参数都最小化了，导致模型变成 h(x) = theta0 ，也就是上图中红色直线所示的情况，造成欠拟合。
+对于正则化，我们要取一个合理的λ的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。
+正则化线性回归 正则化线性回归的代价函数为：
+如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对theta0进行正则化，所以梯度下降算法将分两种情形：
+分类 L1正则化（Lasso回归） 损失函数基础上加上权重参数的绝对值
+L2正则化（岭回归） 损失函数基础上加上权重参数的平方和
+需要说明的是：L1 相比于 L2 会更容易获得稀疏解
+WHY-&gt;Click...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.13</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96-regularization/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>逻辑回归Logistic Regression</h2>
+  </header>
+  <section class="entry-content">
+   <p>分类问题 在分类问题中，我们需要预测的变量y是离散的值，我们将学习一种叫做逻辑回归 (Logistic Regression) 的算法
+在分类问题中，我们尝试预测的是结果是否属于某一个类（例如正确或错误）。
+将因变量(dependent variable)可能属于的两个类分别称为负向类（negative class）和正向类（positive class），则因变量y ∈ 0,1 ，其中 0 表示负向类，1 表示正向类。
+如果我们要用线性回归算法来解决一个分类问题，对于分类，y取值为 0 或者1，但如果你使用的是线性回归，那么假设函数的输出值可能远大于 1，或者远小于0，即使所有训练样本的标签y都等于 0 或 1。尽管我们知道标签应该取值0 或者1，但是如果算法得到的值远大于1或者远小于0的话，就会感觉很奇怪。
+所以我们在接下来的要研究的算法就叫做逻辑回归算法，这个算法的性质是：它的输出值永远在0到 1 之间
+逻辑回归算法是分类算法，我们将它作为分类算法使用。有时候可能因为这个算法的名字中出现了“回归”使你感到困惑，但逻辑回归算法实际上真的是一种分类算法
+假说表示 我们引入一个新的模型，逻辑回归，该模型的输出变量范围始终在0和1之间。
+逻辑回归模型的假设是：h_theta(x) = g(theta&#39;X) 其中:X代表特征向量，g代表逻辑函数（logistic function)是一个常用的S形函数（Sigmoid function），公式为：g(z) = 1 / (1 &#43; exp(-z)
+Python代码实现
+import numpy as np def sigmoid(z): return 1 / (1 &#43; np.exp(-z))  该函数图像为
+合起来，我们得到逻辑回归模型的假设：
+对模型的理解：g(z) = 1 / (1 &#43; exp(-z)
+h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计算输出变量=1的可能性（estimated probablity）即h_theta(x) = P(y=1 | x;theta)...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2020.1.13</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92logistic-regression/"></a>
+</article>
 
 <article class="post-entry">
   <header class="entry-header">
@@ -186,108 +306,6 @@ A = eye(3) B = rand(2, 3)  使用who可以查看当前工作区中所有变量
     <time>2020.1.10</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>MATLAB学习_矩阵与向量操作</h2>
-  </header>
-  <section class="entry-content">
-   <p>矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算
-运算 现有一矩阵a:
-&gt;&gt; a = [1 2 3; 4 5 6; 7 8 10] a = 1 2 3 4 5 6 7 8 10  矩阵与常数相加
-&gt;&gt; a &#43; 10 ans = 11 12 13 14 15 16 17 18 20  &gt;&gt; sin(a) ans = 0.8415 0.9093 0.1411 -0.7568 -0.9589 -0.2794 0.6570 0.9894 -0.5440  转置矩阵 &gt;&gt;a&#39; ans = 1 4 7 2 5 8 3 6 10  逆矩阵 &gt;&gt; inv(a) ans = -0....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.10</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/matlab%E5%AD%A6%E4%B9%A0_%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>YAML与TOML</h2>
-  </header>
-  <section class="entry-content">
-   <p>YAML YAML 是 “YAML Ain’t a Markup Language”（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：”Yet Another Markup Language”（仍是一种标记语言）。
-YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲
-YAML 的配置文件后缀为 .yml
-基本语法  大小写敏感 使用缩进表示层级关系 缩进不允许使用tab，只允许空格 缩进的空格数不重要，只要相同层级的元素左对齐即可 ’#‘表示注释  数据类型  对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary） 数组：一组按次序排列的值，又称为序列（sequence） / 列表（list） 纯量（scalars）：单个的、不可再分的值  对象 对象键值对使用冒号结构表示 key: value，冒号后面要加一个空格。
-TOML TOML的全称是 “Tom’s Obvious, Minimal Language”，因为它的作者是 GitHub　联合创始人　Tom Preston-Werner 。
-TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可以无歧义地被映射为哈希表，从而被多种语言解析。
-基本语法  大小写敏感 同样使用缩进表示层级关系 缩进可以使用空格，也可以使用Tab 可以在数组中换行 ’#‘表示注释  对象 对象键值对使用等号的结构 key = value
-字符串 字符串和 JSON 的定义一致，只有一点除外：　TOML 要求使用　UTF-8 编码。...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.9</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/yaml%E4%B8%8Etoml/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>多变量线性回归</h2>
-  </header>
-  <section class="entry-content">
-   <p>多变量梯度下降 与单变量线性回归类似，在多变量线性回归中，我们也构建一个代价函数，则这个代价函数是所有建模误差的平方和，即：
-其中：
-我们的目标和单变量线性回归问题中一样，是要找出使得代价函数最小的一系列参数。 多变量线性回归的批量梯度下降算法为：
-我们开始随机选择一系列的参数值，计算所有的预测结果后，再给所有的参数一个新的值，如此循环直到收敛。
-Python 代码示例：
-def computeCost(X, y, theta): inner = np.power(((X * theta.T) - y), 2) return np.sum(inner) / (2 * len(X))  梯度下降法实践1-特征缩放 在我们面对多维特征问题的时候，我们要保证这些特征都具有相近的尺度，这将帮助梯度下降算法更快地收敛
-以房价问题为例，假设我们使用两个特征，房屋的尺寸和房间的数量，尺寸的值为 0-2000平方英尺，而房间数量的值则是0-5，以两个参数分别为横纵坐标，绘制代价函数的等高线图能，看出图像会显得很扁，梯度下降算法需要非常多次的迭代才能收敛。
-解决的方法是尝试将所有特征的尺度都尽量缩放到-1到1之间。如图：
-最简单的方法是令：x_n = (x_n - miu_n) / s_n ，其中miu_n是平均值，s_n是标准差
-梯度下降法实践2—学习率 梯度下降算法收敛所需要的迭代次数根据模型的不同而不同，我们不能提前预知，我们可以绘制迭代次数和代价函数的图表来观测算法在何时趋于收敛。
-也有一些自动测试是否收敛的方法，例如将代价函数的变化值与某个阀值（例如0.001）进行比较，但通常看上面这样的图表更好
-梯度下降算法的每次迭代受到学习率的影响，如果学习率过小，则达到收敛所需的迭代次数会非常高；如果学习率过大，每次迭代可能不会减小代价函数，可能会越过局部最小值导致无法收敛。
-通常可以考虑尝试这些学习率：
-alpha = 0.01, 0.03, 0.1, 0.3, 1, 3, 10
-特征和多项式回归 对于房价预测问题
-其中，x1 = frontage(临街宽度)，x2 = depth(纵向深度)，x = frontage * depth = area，则：h(x) = theta0 &#43; theta1*x1 &#43; theta2*x2^2...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>降低损失：梯度下降法</h2>
-  </header>
-  <section class="entry-content">
-   <p>梯度下降 梯度下降是一个用来求函数最小值的算法，在这里我们将使用梯度下降算法来求出代价函数（损失函数）J(w1, w2)的最小值
-假设我们有时间和计算资源来计算权重值w1的所有可能值的损失。对于回归问题，所产生的损失与w1的图形始终是碗状图，如下所示：
-图中的最低点，即斜率正好为 0的位置。这个最小值就是损失函数收敛之处。
-过程 开始时我们为(w1, w2)选择一个起始值（起点）。然而起点并不重要；因此很多算法就直接将它们设为0或随机选择一个值。
-通过这个参数组合计算代价函数，然后我们寻找下一个能让代价函数值下降最多的参数组合。
-在这里使用梯度下降法算法计算损失曲线在起点处的梯度。*梯度是偏导数的矢量*；它可以让我们了解哪个方向距离目标“更近”或“更远”
-梯度始终指向损失函数中增长最为迅猛的方向。梯度下降法算法会沿着负梯度的方向走一步，以便尽快降低损失。
-为了确定损失函数曲线上的下一个点，梯度下降法算法会将梯度大小的一部分与起点相加：
-然后，梯度下降法会重复此过程，逐渐接近最低点。
-局部最小值  想象一下你正站立在山的这一点上，站立在你想象的公园这座红色山上，在梯度下降算法中，我们要做的就是旋转360度，看看我们的周围，并问自己要在某个方向上，用小碎步尽快下山。
-这些小碎步需要朝什么方向？如果我们站在山坡上的这一点，你看一下周围，你会发现最佳的下山方向，你再看看周围，然后再一次想想，我应该从什么方向迈着小碎步下山？然后你按照自己的判断又迈出一步，重复上面的步骤，从这个新的点，你环顾四周，并决定从什么方向将会最快下山，然后又迈进了一小步，并依此类推，直到你接近局部最低点的位置。
- 我们持续这么做直到我们得到一个局部最小值（local minimum），然而因为我们并没有尝试完所有的参数组合，所以不能确定我们得到的局部最小值是否便是全局最小值（global minimum），如果选择不同的初始参数组合，可能会找到不同的局部最小值。
- 这个问题在以前的机器学习中可能会遇到，因为机器学习中的特征比较少，所以导致很可能陷入到一个局部最优解中出不来 但是到了深度学习，动辄百万甚至上亿的特征，出现这种情况的概率几乎为0，所以我们可以不用考虑这个问题。
- 批量梯度下降 批量梯度下降法是最原始的形式，它是指在每一次迭代时使用所有样本来进行梯度的更新
-公式为：
-其中alpha是学习率（learning rate），它决定了我们沿着能让代价函数下降程度最大的方向向下迈出的步子有多大，在批量梯度下降中，我们每一次都同时让所有的参数减去学习速率乘以代价函数的导数。
-在梯度下降算法中，还有一个更微妙的问题，梯度下降中，我们要更新theta0和theta1，当j = 0和j = 1时，会产生更新，所以你将更新J(theta0)和J(theta1)。
-实现梯度下降算法的微妙之处是，在这个表达式中，如果你要更新这个等式，你需要同时更新theta0和theta1，我的意思是在这个等式中，我们要这样更新：
-theta0:=theta0，并更新theta1:=theta1
-实现方法是：你应该计算公式右边的部分，通过那一部分计算出theta0和theta1的值，然后同时更新theta0和theta1。
-学习率 Alpha 让我们来看看如果太小或太大会出现什么情况：
- 如果太小了，即我的学习速率太小，结果就是只能这样像小宝宝一样一点点地挪动，去努力接近最低点，这样就需要很多步才能到达最低点，所以如果太小的话，可能会很慢，因为它会一点点挪动，它会需要很多步才能到达全局最低点。
- 如果太大，那么梯度下降法可能会越过最低点，甚至可能无法收敛，下一次迭代又移动了一大步，越过一次，又越过一次，一次次越过最低点，直到你发现实际上离最低点越来越远，所以，如果太大，它会导致无法收敛，甚至发散。
-  假设你将theta1初始化在局部最低点，在这儿，它已经在一个局部的最优处或局部最低点。结果是局部最优点的导数将等于零，因为它是那条切线的斜率。这意味着你已经在局部最优点，它使得theta1不再改变，也就是新的theta1等于原来的theta1，因此，如果你的参数已经处于局部最低点，那么梯度下降法更新其实什么都没做，它不会改变参数的值。这也解释了为什么即使学习速率alpha保持不变时，梯度下降也可以收敛到局部最低点。
-在梯度下降法中，当我们接近局部最低点时，梯度下降法会自动采取更小的幅度，这是因为当我们接近局部最低点时，很显然在局部最低时导数等于零，所以当我们接近局部最低时，导数值会自动变得越来越小，所以梯度下降将自动采取较小的幅度，这就是梯度下降的做法。所以实际上没有必要再另外减小。
-这就是梯度下降算法，你可以用它来最小化任何代价函数，不只是线性回归中的代价函数。...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.1.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E9%99%8D%E4%BD%8E%E6%8D%9F%E5%A4%B1%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/"></a>
 </article>
 
 

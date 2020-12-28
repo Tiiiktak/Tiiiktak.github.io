@@ -22,6 +22,26 @@
     
     
     
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141514532-1');
+    </script>
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
   </head>
   <body class="list home">
     <header class="header">
@@ -53,6 +73,82 @@
 
 
 
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python文件操作</h2>
+  </header>
+  <section class="entry-content">
+   <p>Python内置了读写文件的函数，用法与C兼容
+读文件 open() 使用内置的open()函数，传入文件名和标识符：
+&gt;&gt;&gt; f = open(&#39;test.txt&#39;, &#39;r&#39;)  若文件不存在，open()函数会抛出一个IOError的错误，并给出错误码和详细信息
+Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; FileNotFoundError: [Errno 2] No such file or directory: &#39;test.txt&#39;  read() 打开成功后，使用read()一次性读取文件的全部内容，Python将内容读到内存中，用str对象存储
+readline() |readline()可以每次读取一行的内容
+readlines() |readlines()一次读取所有内容并按行返回list
+close() 使用完毕后，需要调用close()关闭文件
+with语句 为避免忘记调用close()，Python引入with语句自动调用close()
+with open(&#39;test.txt&#39;, &#39;r&#39;) as f: print(f.read())  写文件 与读文件类似，唯一区别是传入标识符&#39;w&#39;或&#39;wb&#39;表示写文本文件或写二进制文件
+所有标识符定义及其意义见官方文档
+file-like Object (file object文件对象) 在Python中，像open()函数返回的这种有read()或write()方法的对象统称为file-like Object（或file object）
+共有三种类别的文件对象：原始二进制文件, 缓冲二进制文件 以及 文本文件，创建文件对象的规范方式是使用open()函数。...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python调试</h2>
+  </header>
+  <section class="entry-content">
+   <p>Python中可以使用断言assert,logging等来进行调试
+断言 def fun(s): n = int(s) assert n != 0, &#39;n is zero!&#39; return 10 / n def main(): fun(&#39;0&#39;)  若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
+Traceback (most recent call last): File &#34;hello.py&#34;, line 12, in &lt;module&gt; main() File &#34;hello.py&#34;, line 9, in main fun(&#39;0&#39;) File &#34;hello.py&#34;, line 4, in fun assert n != 0, &#39;n is zero!&#39; AssertionError: n is zero!  在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
+..path:&gt; python -O hello.py Traceback (most recent call last): File &#34;hello....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.7</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>Python错误处理</h2>
+  </header>
+  <section class="entry-content">
+   <p>在Python中也同样使用try...except...finally...的错误处理机制
+try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;)  当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
+上面的代码中有一个除0的错误，运行结果:
+try... except: division by zero finally... END  当计算r后，捕捉到ZeroDivisionError错误，执行 except语句段，之后执行finally
+else 可以在except后面加上else，当没有错误发生时将执行else语句块
+try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) else: print(&#39;no error&#39;) print(&#39;END&#39;)  结果:
+try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
+ 常见错误类型及继承关系（中文）：官方文档 ```
+  优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.9.6</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"></a>
+</article>
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</h2>
+  </header>
+  <section class="entry-content">
+   <p>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
+树莓派-服务端 #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;thread&gt; #include &lt;opencv2/opencv.hpp&gt; using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; for (int i = 0; i &lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &lt; img_gray....</p>
+  </section>
+  <footer class="entry-footer">
+    <time>2019.7.9</time>
+  </footer>
+  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/"></a>
+</article>
 
 <article class="post-entry">
   <header class="entry-header">
@@ -168,96 +264,6 @@ fetch(&#39;https://v1.hitokoto.cn/?c=a&#39;) .then(function (res){ return res.js
     <time>2019.6.28</time>
   </footer>
   <a class="entry-link" href="https://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Shell学习</h2>
-  </header>
-  <section class="entry-content">
-   <p>Shell脚本 是一种为shell编写的脚本程序
-使用文本编辑器既能编写，拓展名不影响脚本执行
-实例：
-#!/bin/bash echo &#34;Hello World&#34;   ### 运行脚本 #### 作为可执行程序 将代码保存后，给文件添加可执行权限```&#43;x``` ```sh chmod &#43;x ./test.sh # ./test.sh #执行脚本  作为解释器参数  直接运行解释器，将文件作为其参数 这种方式不需要在文件开头指定解释器信息
-/bin/sh test.sh  Shell变量 定义变量 your_name=&#34;Tom&#34;  注意：等号不能有空格
-使用变量 在变量前加美元符号$ 还可在变量外添加大括号{}
-echo $your_name echo ${your_name}  只读变量 使用readonly命令将变量定义为只读变量，值不能被改变
-url=&#34;baidu.com&#34; readonly url  删除变量 使用unset变量删除变量
-unset url  Shell字符串 可用单引号，或双引号，也可不用引号
-单引号  单引号内任何字符都会原样输出，单引号字符串中变量无效 单引号字符串中不能出现单独一个的单引号，但可成对出现  双引号  双引号里可以有变量 双引号里可以出现转义字符  拼接字符串 text1=&#39;123&#39; text2=&#39;456&#39; echo ${text1}${text2} #输出123456  字符串长度 str1=&#34;abcd&#34; echo ${#str1} #输出4  提取子字符串 从字符串第2个字符开始截取4个字符：...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.26</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/shell%E5%AD%A6%E4%B9%A0/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Vim学习</h2>
-  </header>
-  <section class="entry-content">
-   <p>vim分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode），底线命令（Last line mode）
-命令模式 此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。
-常用命令：
- i 切换到输入模式，以输入字符 x 删除当前光标所在处的字符 : 切换到底线命令模式，以在最底一行输入命令  命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令
-输入模式 常用：
- Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令： * q 退出程序 * w 保存文件
-vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
- [Ctrl]&#43;[f] 下一页 [Ctrl]&#43;[b] 上一页 [Ctrl]&#43;[d] 向下半页 [Ctrl]&#43;[u] 向上半页 0 移动到该行最前面字符处 $ 移动到该行最后字符处 G 移动到档案最后一行 nG 一赌东道档案第n行 gg 移动到档案第一行  搜索替换  /word 向光标之下寻找名称为word的字符串 ？word 向光标之上寻找名称为word的字符串 n 重复前一个搜寻的动作 N 反向进行前一个搜寻动作 :n1,n2s/word1/word2/g 在n1与n2行之间寻找word1字符串，并用word2取代 :1,$s/word1/word2/g 或 :%s/word1/word2/g 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 :1,$s/word1/word2/gc 或 :%s/word1/word2/gc 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2，并显示提示字符确认  删除、复制、粘贴  x,X x相当于del，X相当于Backspace dd 删除光标所在行 ndd 删除光标所在向下n行 d1G 删除光标所在到第一行所有数据 dG 删除光标所在到最后一行所有数据 yy 复制光标所在行 nyy 复制光标所在的向下n行 p,P p为将已复制的数据在光标下一行粘贴，P为粘贴在上一行 u 撤销 [Ctrl]&#43;r 重做 ....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.26</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Linux文件</h2>
-  </header>
-  <section class="entry-content">
-   <p>[toc]
-Linux文件基本属性 在Linux中可以使用ll或者ls –l命令来显示一个文件的属性以及文件所属的用户和组，如：
-[root@www /]# ls -l total 64 dr-xr-xr-x 2 root root 4096 Dec 14 2012 bin dr-xr-xr-x 4 root root 4096 Apr 19 2012 boot ……  bin文件的第一个属性用d表示，d在Linux中代表该文件是一个目录文件 Linux中第一个字符代表这个文件时目录、文件、链接文件等 &gt;* 当为[d]则是目录 &gt;* 当为[-]则是文件 &gt;* 若是[l]则表示为链接文档(link file) &gt;* 若是[b]则表示为装置文件里面的可供储存的接口设备(可随机存取装置) &gt;* 若是[c]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)
-接下来的字符中，三个为一组，且均为『rwx』 的三个参数的组合。其中，[r]代表可读(read)、[w]代表可写(write)、[x]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[-]，如图
-Linux链接 Linux链接分为硬链接（Hard Link）和软链接（Symbolic Link）。默认情况，ln命令创建硬链接
-硬链接 硬连接指通过索引节点来进行连接，多个文件名可以指向同一索引节点，删除其中任何一个不会影响其余文件名的访问，只有当最后一个连接被删除时，文件的数据块及其目录的连接才被释放
-软链接 即符号链接，类似于Windows中快捷方式。两个文件名指向两个不同的节点号，若被指向的文件删除，链接仍存在，但指向一个无效的链接
-Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。
-[root@www /]# ls -l total 64 drwxr-xr-x 2 root root 4096 Feb 15 14:46 cron drwxr-xr-x 3 mysql mysql 4096 Apr 21 2014 mysql ……  mysql 文件是一个目录文件，属主和属组都为 mysql，属主有可读、可写、可执行的权限；与属主同组的其他用户有可读和可执行的权限；其他用户也有可读和可执行的权限。...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.25</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Linux操作学习 系统启动及目录</h2>
-  </header>
-  <section class="entry-content">
-   <p>Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
-运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
-运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
-Linux共7种运行级别: &gt;* 运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 &gt;* 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 &gt;* 运行级别2：多用户状态(没有NFS) &gt;* 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 &gt;* 运行级别4：系统未使用，保留 &gt;* 运行级别5：X11控制台，登陆后进入图形GUI模式 &gt;* 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
-系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
-主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务
-另外一行：15:5:wait:/etc/rc.d/rc 5，表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，接受5作为参数，执行/etc/rc.d/rc5.d/目录下所有rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。/etc/rc.d/rc5.d/中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。
-而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。
-这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。
-至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的”System Services”来自行设定。
-建立终端 rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。
-init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：
-1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6  2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
-用户登录系统 常用三种登陆方式： * 命令行登陆 * ssh登陆 * 图形界面登陆
-命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2019.6.24</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/"></a>
 </article>
 
 

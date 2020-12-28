@@ -6,10 +6,63 @@
     <description>Recent content in Blog on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 08 Oct 2020 13:58:14 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Dec 2020 15:52:48 +0800</lastBuildDate>
     
 	<atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MMDetection单击多卡训练出现问题</title>
+      <link>https://konosuba.xyz/blog/mmdetection%E5%8D%95%E5%87%BB%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 28 Dec 2020 15:52:48 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/mmdetection%E5%8D%95%E5%87%BB%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/</guid>
+      <description>使用的命令：
+CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh ${CONFIG_FILE} 4 --resume-from ${CHECKPOINT_FILE}  出现问题：
+ 模型train 1 epoch后挂掉，报错信息：  RuntimeError: replicas_[0].size() == rebuilt_param_indices_.size() INTERNAL ASSERT FAILED at &amp;quot;/pytorch/torch/csrc/distributed/c10d/reducer.cpp&amp;quot;:1326, please report a bug to PyTorch. rebuilt parameter indices size is not same as original model parameters size.321 versus 629160   pytorch github issue:https://github.com/pytorch/pytorch/issues/47050 mmcv issue: https://github.com/open-mmlab/mmcv/issues/636#issuecomment-722436575 解决方案：安装1.6版本pytorch，并重装mmcv
+pip uninstall mmcv-full pip install mmcv-full python setup.py install   </description>
+    </item>
+    
+    <item>
+      <title>在Linux中使用Clash科学上网</title>
+      <link>https://konosuba.xyz/blog/%E5%9C%A8linux%E4%B8%AD%E4%BD%BF%E7%94%A8clash%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</link>
+      <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/%E5%9C%A8linux%E4%B8%AD%E4%BD%BF%E7%94%A8clash%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</guid>
+      <description> 安装  下载amd64文件：https://github.com/Dreamacro/clash/releases/ gzip -f -d linux-amd64-clash.gz 下载配置文件config.yaml到~/.config/clash 下载mmdb文件到~/.config/clash  配置（每次使用前）  ./clash启动 浏览器进入127.0.0.1:9090，Clash控制面板 选择一个节点 进入Ubuntu设置，网络设置，代理 Method设为Manual HTTP Proxy、HTTPs Proxy设置为127.0.0.1:7890 Socks Host设置为127.0.0.1:7891  wget配置代理  修改/etc/wgetrc，其中
+https_proxy = http://127.0.0.1:7890/ http_proxy = http://127.0.0.1:7890/ ftp_proxy = http://127.0.0.1:7890/  使用时，wget --proxy=on https://xxxx即可
+  </description>
+    </item>
+    
+    <item>
+      <title>Mpich2_安装 Ubuntu 20.04LTS</title>
+      <link>https://konosuba.xyz/blog/mpich2_%E5%AE%89%E8%A3%85-ubuntu-20.04lts/</link>
+      <pubDate>Tue, 17 Nov 2020 09:20:26 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/mpich2_%E5%AE%89%E8%A3%85-ubuntu-20.04lts/</guid>
+      <description> Ubuntu 20.04 LTS   sudo aptitude install mpich
+ mpiexec --version
+   new code  #include &amp;quot;mpi.h&amp;quot; #include &amp;lt;stdio.h&amp;gt; int main(void) { int rankID; int sizeNum; MPI_Init(0, 0); MPI_Comm_size(MPI_COMM_WORLD, &amp;amp;sizeNum); MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;rankID); printf(&amp;quot;Hello world! %d of total = %d\n&amp;quot;, rankID, sizeNum); MPI_Finalize(); return 0; }   mpicc demo_1.c -o demo_1
+ mpirun -np 8 ./demo_1
+  </description>
+    </item>
+    
+    <item>
+      <title>MSMPI Visual Studio 2019 配置</title>
+      <link>https://konosuba.xyz/blog/msmpi-visual-studio-2019-%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 16 Nov 2020 22:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/msmpi-visual-studio-2019-%E9%85%8D%E7%BD%AE/</guid>
+      <description>Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
+安装过程会自动添加环境变量，可在PATH中看到
+step2. 配置 VS2019 新建一个空项目，新建一个属性表
+包含目录、库目录
+ 包含目录里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Include; 库目录的里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;
+ 【C/C+ 附加包含目录】：添加$(MSMPI_INC);$(MSMPI_INC)\x64
+ 【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
+ 【链接器-输入-附加依赖项】：添加msmpi.lib
+  step3. 测试 #include &amp;lt;iostream&amp;gt; #include &amp;lt;mpi.h&amp;gt; int main(int argc, char* argv[]) { MPI_Init(&amp;amp;argc, &amp;amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &amp;lt;&amp;lt; &amp;quot;Receive from rank 0: &amp;quot; &amp;lt;&amp;lt; RecvNum &amp;lt;&amp;lt; std::endl; } MPI_Finalize(); return 0; }  step4.</description>
+    </item>
     
     <item>
       <title>【课程作业】项目管理课程原型设计</title>

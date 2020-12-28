@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>在Linux中使用Clash科学上网 - Tiiktak&#39;s</title>
+    
+    <meta name="description" content=" 安装  下载amd64文件：https://github.com/Dreamacro/clash/releases/ gzip -f -d linux-amd64-clash.gz 下载配置文件config.yaml到~/.config/clash 下载mmdb文件到~/.config/clash  配置（每次使用前）  ./clash启动 浏览器进入127.0.0.1:9090，Clash控制面板 选择一个节点 进入Ubuntu设置，网络设置，代理 Method设为Manual HTTP Proxy、HTTPs Proxy设置为127.0.0.1:7890 Socks Host设置为127.0.0.1:7891  wget配置代理  修改/etc/wgetrc，其中
+https_proxy = http://127.0.0.1:7890/ http_proxy = http://127.0.0.1:7890/ ftp_proxy = http://127.0.0.1:7890/  使用时，wget --proxy=on https://xxxx即可
+  ">
+    <meta name="author" content="">
+    
+    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
+    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
+    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.55.6" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141514532-1');
+    </script>
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+  </head>
+  <body class="single">
+    <header class="header">
+      <div class="wrap">
+        
+        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
+        
+        
+        <button class="menu-toggle" type="button"></button>
+        
+      </div>
+    </header>
+    
+    <nav class="nav">
+      <ul class="menu">
+        
+        <li>
+          <a href="/about/">About</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <main class="main">
+
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">在Linux中使用Clash科学上网</h1>
+    <div class="post-meta">2020.12.28</div>
+  </header>
+  <div class="post-content">
+
+<h2 id="安装">安装</h2>
+
+<ol>
+<li>下载amd64文件：<a href="https://github.com/Dreamacro/clash/releases/">https://github.com/Dreamacro/clash/releases/</a></li>
+<li><code>gzip -f -d linux-amd64-clash.gz</code></li>
+<li>下载配置文件<code>config.yaml</code>到<code>~/.config/clash</code></li>
+<li>下载mmdb文件到<code>~/.config/clash</code></li>
+</ol>
+
+<h2 id="配置-每次使用前">配置（每次使用前）</h2>
+
+<ol>
+<li><code>./clash</code>启动</li>
+<li>浏览器进入<code>127.0.0.1:9090</code>，Clash控制面板</li>
+<li>选择一个节点</li>
+<li>进入Ubuntu设置，网络设置，代理</li>
+<li><code>Method</code>设为<code>Manual</code></li>
+<li>HTTP Proxy、HTTPs Proxy设置为<code>127.0.0.1:7890</code></li>
+<li>Socks Host设置为<code>127.0.0.1:7891</code></li>
+</ol>
+
+<h2 id="wget配置代理">wget配置代理</h2>
+
+<ol>
+<li><p>修改<code>/etc/wgetrc</code>，其中</p>
+
+<pre><code>https_proxy = http://127.0.0.1:7890/
+http_proxy = http://127.0.0.1:7890/
+ftp_proxy = http://127.0.0.1:7890/
+</code></pre></li>
+
+<li><p>使用时，<code>wget --proxy=on https://xxxx</code>即可</p></li>
+</ol>
+</div>
+  <footer class="post-footer">
+    
+  </footer>
+  
+  
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_shortname = 'tiiktak';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  
+  
+</article>
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init();</script>
+<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
+<script data-no-instant>
+  let body;
+  function menuToggleListener() {
+    body.classList.toggle('blur');
+  }
+  function setMenuToggleListener() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (!menuToggle) return;
+    body = document.querySelector('body');
+    menuToggle.addEventListener('click', menuToggleListener);
+  }
+
+  hljs.initHighlightingOnLoad();
+  setMenuToggleListener();
+
+  InstantClick.on('change', function () {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    setMenuToggleListener();
+  });
+</script>
+</body>
+</html>
+
