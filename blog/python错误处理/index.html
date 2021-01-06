@@ -1,154 +1,287 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Python错误处理 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="在Python中也同样使用try...except...finally...的错误处理机制
-try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;)  当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在Python中也同样使用try...except...finally...的错误处理机制
+try except try: print(&amp;#39;try...&amp;#39;) r = 10/0 print(&amp;#39;result:&amp;#39;, r) except ZeroDivisionError as e: print(&amp;#39;except:&amp;#39;, e) finally: print(&amp;#39;finally...&amp;#39;) print(&amp;#39;END&amp;#39;) 当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
 上面的代码中有一个除0的错误，运行结果:
-try... except: division by zero finally... END  当计算r后，捕捉到ZeroDivisionError错误，执行 except语句段，之后执行finally
+try... except: division by zero finally... END 当计算r后，捕捉到ZeroDivisionError错误，执行	except语句段，之后执行finally
 else 可以在except后面加上else，当没有错误发生时将执行else语句块
-try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) else: print(&#39;no error&#39;) print(&#39;END&#39;)  结果:
-try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
- 常见错误类型及继承关系（中文）：官方文档 ```
-  优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+try: print(&amp;#39;try...&amp;#39;) r = 10/5 print(&amp;#39;result:&amp;#39;, r) except ZeroDivisionError as e: print(&amp;#39;except:&amp;#39;, e) else: print(&amp;#39;no error&amp;#39;) print(&amp;#39;END&amp;#39;) 结果:
+try... result: 2.0 no error END  Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
+  常见错误类型及继承关系（中文）：官方文档
+  ## 优势 使用```try...except```捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数```main()```调用```fun()```，```fun()```调用```bar()```，结果```bar()```出错了，这时，只要```main()```捕获到了，就可以处理 ​```py def fun(s): return 10/int(s) def bar(s): return fun(s) * 2 def main(): try: print(&#39;try.'><title>Python错误处理</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
+<link rel='canonical' href='https://example.com/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/'>
 
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python错误处理'>
+<meta property='og:description' content='在Python中也同样使用try...except...finally...的错误处理机制
+try except try: print(&amp;#39;try...&amp;#39;) r = 10/0 print(&amp;#39;result:&amp;#39;, r) except ZeroDivisionError as e: print(&amp;#39;except:&amp;#39;, e) finally: print(&amp;#39;finally...&amp;#39;) print(&amp;#39;END&amp;#39;) 当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
+上面的代码中有一个除0的错误，运行结果:
+try... except: division by zero finally... END 当计算r后，捕捉到ZeroDivisionError错误，执行	except语句段，之后执行finally
+else 可以在except后面加上else，当没有错误发生时将执行else语句块
+try: print(&amp;#39;try...&amp;#39;) r = 10/5 print(&amp;#39;result:&amp;#39;, r) except ZeroDivisionError as e: print(&amp;#39;except:&amp;#39;, e) else: print(&amp;#39;no error&amp;#39;) print(&amp;#39;END&amp;#39;) 结果:
+try... result: 2.0 no error END  Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
+  常见错误类型及继承关系（中文）：官方文档
+  ## 优势 使用```try...except```捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数```main()```调用```fun()```，```fun()```调用```bar()```，结果```bar()```出错了，这时，只要```main()```捕获到了，就可以处理 ​```py def fun(s): return 10/int(s) def bar(s): return fun(s) * 2 def main(): try: print(&#39;try.'>
+<meta property='og:url' content='https://example.com/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-09-06T19:14:26&#43;08:00'/><meta property='article:modified_time' content='2019-09-06T19:14:26&#43;08:00'/>
+<meta name="twitter:title" content="Python错误处理">
+<meta name="twitter:description" content="在Python中也同样使用try...except...finally...的错误处理机制
+try except try: print(&amp;#39;try...&amp;#39;) r = 10/0 print(&amp;#39;result:&amp;#39;, r) except ZeroDivisionError as e: print(&amp;#39;except:&amp;#39;, e) finally: print(&amp;#39;finally...&amp;#39;) print(&amp;#39;END&amp;#39;) 当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
+上面的代码中有一个除0的错误，运行结果:
+try... except: division by zero finally... END 当计算r后，捕捉到ZeroDivisionError错误，执行	except语句段，之后执行finally
+else 可以在except后面加上else，当没有错误发生时将执行else语句块
+try: print(&amp;#39;try...&amp;#39;) r = 10/5 print(&amp;#39;result:&amp;#39;, r) except ZeroDivisionError as e: print(&amp;#39;except:&amp;#39;, e) else: print(&amp;#39;no error&amp;#39;) print(&amp;#39;END&amp;#39;) 结果:
+try... result: 2.0 no error END  Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
+  常见错误类型及继承关系（中文）：官方文档
+  ## 优势 使用```try...except```捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数```main()```调用```fun()```，```fun()```调用```bar()```，结果```bar()```出错了，这时，只要```main()```捕获到了，就可以处理 ​```py def fun(s): return 10/int(s) def bar(s): return fun(s) * 2 def main(): try: print(&#39;try.">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: #2a9d8f; color: #fff;">
+                Python
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">Python错误处理</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Python错误处理</h1>
-    <div class="post-meta">2019.9.6</div>
-  </header>
-  <div class="post-content">
 
-<p>在Python中也同样使用<code>try...except...finally...</code>的错误处理机制</p>
+        <time class="article-time--published">Sep 06, 2019</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p>在Python中也同样使用<code>try...except...finally...</code>的错误处理机制</p>
 <h1 id="try">try</h1>
-
 <h2 id="except">except</h2>
-
-<pre><code class="language-py">try:
-    print('try...')
-    r = 10/0
-    print('result:', r)
-except ZeroDivisionError as e:
-    print('except:', e)
-finally:
-    print('finally...')
-print('END')
-</code></pre>
-
-<p>当认为某一块代码有错误时，就可以用<code>try</code>来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到<code>except</code>块，执行完<code>except</code>后，若后续有<code>finally</code>片段，则执行<code>finally</code>块</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;try...&#39;</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">10</span><span class="o">/</span><span class="mi">0</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;except:&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;finally...&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;END&#39;</span><span class="p">)</span>
+</code></pre></div><p>当认为某一块代码有错误时，就可以用<code>try</code>来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到<code>except</code>块，执行完<code>except</code>后，若后续有<code>finally</code>片段，则执行<code>finally</code>块</p>
 <p>上面的代码中有一个除0的错误，运行结果:</p>
-
 <pre><code>try...
 except: division by zero 
 finally...
 END
-</code></pre>
-
-<p>当计算r后，捕捉到<code>ZeroDivisionError</code>错误，执行   <code>except</code>语句段，之后执行<code>finally</code></p>
-
+</code></pre><p>当计算r后，捕捉到<code>ZeroDivisionError</code>错误，执行	<code>except</code>语句段，之后执行<code>finally</code></p>
 <h2 id="else">else</h2>
-
 <p>可以在<code>except</code>后面加上<code>else</code>，当没有错误发生时将执行<code>else</code>语句块</p>
-
-<pre><code class="language-py">try:
-    print('try...')
-    r = 10/5
-    print('result:', r)
-except ZeroDivisionError as e:
-    print('except:', e)
-else:
-	print('no error')
-print('END')
-</code></pre>
-
-<p>结果:</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;try...&#39;</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">10</span><span class="o">/</span><span class="mi">5</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;except:&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+	<span class="k">print</span><span class="p">(</span><span class="s1">&#39;no error&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;END&#39;</span><span class="p">)</span>
+</code></pre></div><p>结果:</p>
 <pre><code>try...
 result: 2.0
 no error
 END
-</code></pre>
-
-<blockquote>
+</code></pre><blockquote>
 <p>Python的错误是一个class，所有错误类型都继承自<code>BaseException</code>，故使用<code>except</code>时需注意它会也会捕获该类型的子类。</p>
-
+</blockquote>
 <blockquote>
-<p>常见错误类型及继承关系（中文）：<a href="https://docs.python.org/zh-cn/3/library/exceptions.html?highlight=aseexception#BaseException">官方文档</a>
-```</p>
+<p>常见错误类型及继承关系（中文）：<a class="link" href="https://docs.python.org/zh-cn/3/library/exceptions.html?highlight=aseexception#BaseException"  target="_blank" rel="noopener"
+    >官方文档</a></p>
 </blockquote>
-</blockquote>
+<pre><code>
+## 优势
 
-<h2 id="优势">优势</h2>
+使用```try...except```捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数```main()```调用```fun()```，```fun()```调用```bar()```，结果```bar()```出错了，这时，只要```main()```捕获到了，就可以处理
 
-<p>使用<code>try...except</code>捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数<code>main()</code>调用<code>fun()</code>，<code>fun()</code>调用<code>bar()</code>，结果<code>bar()</code>出错了，这时，只要<code>main()</code>捕获到了，就可以处理</p>
-
-<pre><code class="language-py">def fun(s):
+​```py
+def fun(s):
     return 10/int(s)
 
 def bar(s):
@@ -162,158 +295,262 @@ def main():
         print('Error:', e)
     finally:
         print('finally...')
-</code></pre>
-
-<p>结果:</p>
-
+</code></pre><p>结果:</p>
 <pre><code>try...
 Error: division by zero
 finally...
-</code></pre>
-
-<h2 id="栈输出">栈输出</h2>
-
+</code></pre><h2 id="栈输出">栈输出</h2>
 <p>若错误没有被捕捉，会一直往上抛，最终会被Python解释器捕获，打印一个错误信息，之后程序会退出</p>
-
 <p>文件hello.py</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">10</span><span class="o">/</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
-<pre><code class="language-py">def fun(s):
-    return 10/int(s)
+<span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">fun</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
 
-def bar(s):
-    return fun(s) * 2
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">bar</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
 
-def main():
-    bar('0')
-
-main()
-</code></pre>
-
-<p>在Python终端中运行文件，输出：</p>
-
-<pre><code class="language-py">Traceback (most recent call last): #错误跟踪信息
-  File &quot;hello.py&quot;, line 19, in &lt;module&gt;
-    main() #错误原因
-  File &quot;hello.py&quot;, line 13, in main
-    bar('0')
-  File &quot;hello.py&quot;, line 7, in bar
-    return fun(s) * 2
-  File &quot;hello.py&quot;, line 3, in fun
-    return 10/int(s)
-ZeroDivisionError: division by zero #错误类型
-</code></pre>
-
-<p>错误信息以栈的形式按顺序输出，由此可以找到错误源头</p>
-
+<span class="n">main</span><span class="p">()</span>
+</code></pre></div><p>在Python终端中运行文件，输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span> <span class="c1">#错误跟踪信息</span>
+  <span class="n">File</span> <span class="s2">&#34;hello.py&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">19</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">main</span><span class="p">()</span> <span class="c1">#错误原因</span>
+  <span class="n">File</span> <span class="s2">&#34;hello.py&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">13</span><span class="p">,</span> <span class="ow">in</span> <span class="n">main</span>
+    <span class="n">bar</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s2">&#34;hello.py&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">bar</span>
+    <span class="k">return</span> <span class="n">fun</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+  <span class="n">File</span> <span class="s2">&#34;hello.py&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="n">fun</span>
+    <span class="k">return</span> <span class="mi">10</span><span class="o">/</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span> <span class="c1">#错误类型</span>
+</code></pre></div><p>错误信息以栈的形式按顺序输出，由此可以找到错误源头</p>
 <h2 id="错误记录">错误记录</h2>
-
 <p>可以使用Python内置的<code>logging</code>模块记录错误信息</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">logging</span>
 
-<pre><code class="language-py">import logging
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">10</span><span class="o">/</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
-def fun(s):
-    return 10/int(s)
+<span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">fun</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
 
-def bar(s):
-    return fun(s) * 2
-
-def main():
-    try:
-        print('try...')
-        bar('0')
-    except BaseException as e:
-        logging.exception(e)
-    finally:
-        print('finally...')
-</code></pre>
-
-<p>这样运行，程序会在打印完错误信息后继续运行：</p>
-
-<pre><code class="language-py">try...
-ERROR:root:division by zero
-Traceback (most recent call last):
-  File &quot;hello.py&quot;, line 16, in main
-    bar('0')
-  File &quot;hello.py&quot;, line 10, in bar
-    return fun(s) * 2
-  File &quot;hello.py&quot;, line 6, in fun
-    return 10/int(s)
-ZeroDivisionError: division by zero
-finally...
-</code></pre>
-
-<h2 id="抛出错误">抛出错误</h2>
-
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;try...&#39;</span><span class="p">)</span>
+        <span class="n">bar</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;finally...&#39;</span><span class="p">)</span>
+</code></pre></div><p>这样运行，程序会在打印完错误信息后继续运行：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="o">...</span>
+<span class="n">ERROR</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&#34;hello.py&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">16</span><span class="p">,</span> <span class="ow">in</span> <span class="n">main</span>
+    <span class="n">bar</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s2">&#34;hello.py&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">10</span><span class="p">,</span> <span class="ow">in</span> <span class="n">bar</span>
+    <span class="k">return</span> <span class="n">fun</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+  <span class="n">File</span> <span class="s2">&#34;hello.py&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">6</span><span class="p">,</span> <span class="ow">in</span> <span class="n">fun</span>
+    <span class="k">return</span> <span class="mi">10</span><span class="o">/</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+<span class="k">finally</span><span class="o">...</span>
+</code></pre></div><h2 id="抛出错误">抛出错误</h2>
 <p>常常使用<code>raise</code>函数抛出错误，当前函数不知道怎么处理错误时，将其向上抛，交给上层函数来处理</p>
-
 <p>|<code>raise</code>语句如果不带参数，就会把当前错误原样抛出。此外在<code>except</code>中<code>raise</code>一个Error，还可以把一种类型的错误转化成另一种类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">try</span><span class="p">:</span>
+    <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;input error!&#39;</span><span class="p">)</span>
+</code></pre></div><p>只要是合理的转换逻辑即可，但绝不应该将一个<code>IOError</code>转换成毫不相干的<code>ValueError</code></p>
 
-<pre><code class="language-py">try:
-    10 / 0
-except ZeroDivisionError:
-    raise ValueError('input error!')
-</code></pre>
+</section>
 
-<p>只要是合理的转换逻辑即可，但绝不应该将一个<code>IOError</code>转换成毫不相干的<code>ValueError</code></p>
-</div>
-  <footer class="post-footer">
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

@@ -1,96 +1,257 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Linux操作学习 系统启动及目录 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
 运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
 运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
-Linux共7种运行级别: &gt;* 运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 &gt;* 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 &gt;* 运行级别2：多用户状态(没有NFS) &gt;* 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 &gt;* 运行级别4：系统未使用，保留 &gt;* 运行级别5：X11控制台，登陆后进入图形GUI模式 &gt;* 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
-系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
+Linux共7种运行级别:
+  运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动   系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
 主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务
 另外一行：15:5:wait:/etc/rc.d/rc 5，表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，接受5作为参数，执行/etc/rc.d/rc5.d/目录下所有rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。/etc/rc.d/rc5.d/中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。
 而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。
 这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。
-至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的&rdquo;System Services&rdquo;来自行设定。
+至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的&amp;quot;System Services&amp;quot;来自行设定。
 建立终端 rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。
 init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：
-1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6  2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
-用户登录系统 常用三种登陆方式： * 命令行登陆 * ssh登陆 * 图形界面登陆
-命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6 2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
+用户登录系统 常用三种登陆方式：
+ 命令行登陆 ssh登陆 图形界面登陆  命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。'><title>Linux操作学习 系统启动及目录</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
+<link rel='canonical' href='https://example.com/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/'>
 
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Linux操作学习 系统启动及目录'>
+<meta property='og:description' content='Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
+运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
+运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
+Linux共7种运行级别:
+  运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动   系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
+主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务
+另外一行：15:5:wait:/etc/rc.d/rc 5，表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，接受5作为参数，执行/etc/rc.d/rc5.d/目录下所有rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。/etc/rc.d/rc5.d/中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。
+而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。
+这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。
+至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的&amp;quot;System Services&amp;quot;来自行设定。
+建立终端 rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。
+init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：
+1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6 2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
+用户登录系统 常用三种登陆方式：
+ 命令行登陆 ssh登陆 图形界面登陆  命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。'>
+<meta property='og:url' content='https://example.com/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-06-24T11:51:27&#43;08:00'/><meta property='article:modified_time' content='2019-06-24T11:51:27&#43;08:00'/>
+<meta name="twitter:title" content="Linux操作学习 系统启动及目录">
+<meta name="twitter:description" content="Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
+运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
+运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
+Linux共7种运行级别:
+  运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动   系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
+主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务
+另外一行：15:5:wait:/etc/rc.d/rc 5，表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，接受5作为参数，执行/etc/rc.d/rc5.d/目录下所有rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。/etc/rc.d/rc5.d/中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。
+而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。
+这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。
+至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的&amp;quot;System Services&amp;quot;来自行设定。
+建立终端 rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。
+init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：
+1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6 2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
+用户登录系统 常用三种登陆方式：
+ 命令行登陆 ssh登陆 图形界面登陆  命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/">Linux操作学习 系统启动及目录</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Linux操作学习 系统启动及目录</h1>
-    <div class="post-meta">2019.6.24</div>
-  </header>
-  <div class="post-content">
 
-<h2 id="linux系统启动过程">Linux系统启动过程</h2>
+        <time class="article-time--published">Jun 24, 2019</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <h2 id="linux系统启动过程">Linux系统启动过程</h2>
 <blockquote>
 <ul>
 <li>内核的引导</li>
@@ -100,249 +261,307 @@ init接下来会打开6个终端，以便用户登录系统，即inittab中以�
 <li>用户登录系统</li>
 </ul>
 </blockquote>
-
 <h3 id="内核的引导">内核的引导</h3>
-
 <p>计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入<code>/boot</code>目录下的内核文件</p>
-
 <h3 id="运行init">运行init</h3>
-
 <p>init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件<code>/etc/inittab</code></p>
-
 <h3 id="运行级别">运行级别</h3>
-
 <p>Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序</p>
-
-<p>Linux共7种运行级别:
-&gt;* 运行级别0：<strong>系统停机</strong>状态，系统默认运行级别不能设为0，否则不能正常启动
-&gt;* 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆
-&gt;* 运行级别2：多用户状态(没有NFS)
-&gt;* 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式
-&gt;* 运行级别4：系统未使用，保留
-&gt;* 运行级别5：X11控制台，登陆后进入<strong>图形GUI模式</strong>
-&gt;* 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</p>
-
+<p>Linux共7种运行级别:</p>
+<blockquote>
+<ul>
+<li>运行级别0：<strong>系统停机</strong>状态，系统默认运行级别不能设为0，否则不能正常启动</li>
+<li>运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆</li>
+<li>运行级别2：多用户状态(没有NFS)</li>
+<li>运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式</li>
+<li>运行级别4：系统未使用，保留</li>
+<li>运行级别5：X11控制台，登陆后进入<strong>图形GUI模式</strong></li>
+<li>运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</li>
+</ul>
+</blockquote>
 <h3 id="系统初始化">系统初始化</h3>
-
 <p>init配置文件中有一行：<code>si::sysinit:/etc/rc.d/rc.sysinit</code>，它调用执行了<code>/etc/rc.d/rc.sysinit</code>，而<code>rc.sysinit</code>是一个bash shell的脚本，主要完成一些系统初始化的工作，<code>rc.sysinit</code>是<strong>每个运行级别</strong>都要首先运行的重要脚本。</p>
-
 <p>主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务</p>
-
 <p>另外一行：<code>15:5:wait:/etc/rc.d/rc 5</code>，表示以5为参数运行<code>/etc/rc.d/rc</code>，<code>/etc/rc.d/rc</code>是一个Shell脚本，接受5作为参数，执行<code>/etc/rc.d/rc5.d/</code>目录下所有rc启动脚本，<code>/etc/rc.d/rc5.d/</code>目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在<code>/etc/rc.d/init.d/</code>目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。<code>/etc/rc.d/rc5.d/</code>中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。</p>
-
 <p>而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。</p>
-
 <p>这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。</p>
-
-<p>至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的&rdquo;System Services&rdquo;来自行设定。</p>
-
+<p>至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的&quot;System Services&quot;来自行设定。</p>
 <h3 id="建立终端">建立终端</h3>
-
 <p>rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。</p>
-
 <p>init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：</p>
-
 <pre><code>1:2345:respawn:/sbin/mingetty tty1
 2:2345:respawn:/sbin/mingetty tty2
 3:2345:respawn:/sbin/mingetty tty3
 4:2345:respawn:/sbin/mingetty tty4
 5:2345:respawn:/sbin/mingetty tty5
 6:2345:respawn:/sbin/mingetty tty6
-</code></pre>
-
-<p>2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面</p>
-
+</code></pre><p>2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面</p>
 <h3 id="用户登录系统">用户登录系统</h3>
-
-<p>常用三种登陆方式：
-* 命令行登陆
-* ssh登陆
-* 图形界面登陆</p>
-
+<p>常用三种登陆方式：</p>
+<ul>
+<li>命令行登陆</li>
+<li>ssh登陆</li>
+<li>图形界面登陆</li>
+</ul>
 <h4 id="命令行登陆">命令行登陆</h4>
-
 <p>Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在<code>/etc/nologin</code>文件，login 将输出 nologin 文件的内容，然后退出。</p>
-
 <p>这通常用来系统维护时防止非root用户登录。只有<code>/etc/securetty</code>中登记了的终端才允许 root 用户登录，如果不存在这个文件，则 root 用户可以在任何终端上登录。</p>
-
 <p><code>/etc/usertty</code>文件用于对用户作出附加访问限制，如果不存在这个文件，则没有其他限制。</p>
-
 <h3 id="流程图">流程图</h3>
-
-<p><img src="https://albana.bl.files.1drv.com/y4mBJkHIyEMQqWaZpKmJSLczpVkfpnUk8cpDp3OohSK3EQs-R69MnQ31XeDAMqIyp7E73tOMOK8ZH3bALZulwl6o1lcr2rD3qGEO_455d3sSiAocvVr1Qu5Sy-Ij6GuM4cFEyh5wkHEJp1xnFhO9qMCC9wjLtf1JOvHG4zEfVhujHAsUliGtmUkvFKkip4pmItUAeLkR2_E3sswWFdwUbQ1Cw?width=603&amp;height=237&amp;cropmode=none" alt="流程图" /></p>
-
+<p><img src="https://albana.bl.files.1drv.com/y4mBJkHIyEMQqWaZpKmJSLczpVkfpnUk8cpDp3OohSK3EQs-R69MnQ31XeDAMqIyp7E73tOMOK8ZH3bALZulwl6o1lcr2rD3qGEO_455d3sSiAocvVr1Qu5Sy-Ij6GuM4cFEyh5wkHEJp1xnFhO9qMCC9wjLtf1JOvHG4zEfVhujHAsUliGtmUkvFKkip4pmItUAeLkR2_E3sswWFdwUbQ1Cw?width=603&amp;height=237&amp;cropmode=none" alt="流程图"  /></p>
 <h2 id="linux系统目录结构">Linux系统目录结构</h2>
-
 <p>Linux中，所有的文件和目录都被组织成以一个根节点开始的倒置的树状结构</p>
-
-<p><img src="https://oq5rha.bl.files.1drv.com/y4mhtoLD2kuSYzj-50Smjsxwxh-74-AOAqNzHMOG_6PWDpsDcACJ7qTWBIYjRfo2pLQUoTcFJm072kwTF9AME9IIR1vk8ylwpgTwjHw_FPFF0hsQuCHTrECeyWdaTR3nb7qBDgByWIgs4ef5cCBo63FvkwgME2tIuPcoAMsk9kGKV-Je9Q8HS7qhCdipusEeRJqQLly2-j5OR1ZEPJqjfAN3Q?width=690&amp;height=295&amp;cropmode=none" alt="树状图" /></p>
-
+<p><img src="https://oq5rha.bl.files.1drv.com/y4mhtoLD2kuSYzj-50Smjsxwxh-74-AOAqNzHMOG_6PWDpsDcACJ7qTWBIYjRfo2pLQUoTcFJm072kwTF9AME9IIR1vk8ylwpgTwjHw_FPFF0hsQuCHTrECeyWdaTR3nb7qBDgByWIgs4ef5cCBo63FvkwgME2tIuPcoAMsk9kGKV-Je9Q8HS7qhCdipusEeRJqQLly2-j5OR1ZEPJqjfAN3Q?width=690&amp;height=295&amp;cropmode=none" alt="树状图"  /></p>
 <h3 id="bin">/bin</h3>
-
 <p>bin是Binary的缩写，该目录存放最常使用的命令</p>
-
 <h3 id="boot">/boot</h3>
-
 <p>存放启动Linux时使用的一些核心文件，包括链接文件及镜像文件</p>
-
 <h3 id="dev">/dev</h3>
-
 <p>dev是Device的缩写，该目录存放Linux的外部设备，在Linux中<strong>访问设备的方式和访问文件的方式是相同的</strong></p>
-
 <h3 id="etc">/etc</h3>
-
 <p>存放所有的系统管理所需要的配置文件和子目录</p>
-
 <h3 id="home">/home</h3>
-
 <p><strong>用户的主目录</strong>，Linux中，每个用户有一个自己的目录，一般该目录以用户的账号命名</p>
-
 <h3 id="lib">/lib</h3>
-
 <p>存放系统最基本的动态连接共享库，作用类似Windows中的DLL文件，几乎所有应用程序都需要用到这些共享库</p>
-
-<h3 id="lost-found">/lost+found</h3>
-
+<h3 id="lostfound">/lost+found</h3>
 <p>一般为空，当系统非法关机后，会存放一些文件</p>
-
 <h3 id="media">/media</h3>
-
 <p>Linux系统自动识别一些设备，如U盘、光驱等，识别的设备挂载到这个目录下</p>
-
 <h3 id="mnt">/mnt</h3>
-
 <p>系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</p>
-
 <h3 id="opt">/opt</h3>
-
 <p>给主机安装额外软件所摆放的目录，<strong>默认为空</strong></p>
-
 <h3 id="proc">/proc</h3>
-
 <p>这是一个虚拟目录，是系统内存的映射，可以通过直接访问该目录来获取系统信息。
 该目录的内容不再硬盘而是在内存里，可以直接修改里面的某些文件</p>
-
 <h3 id="root">/root</h3>
-
 <p>该目录为系统管理员，也称作超级权限者的用户主目录。</p>
-
 <h3 id="sbin">/sbin</h3>
-
 <p>s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</p>
-
 <h3 id="selinux">/selinux</h3>
-
 <p><strong><code>Redhat/CentOS</code>特有目录</strong>，Selinux类似于Windows中防火墙。该目录即存放selinux相关文件</p>
-
 <h3 id="srv">/srv</h3>
-
 <p>存放一些服务启动后需要提取的数据</p>
-
 <h3 id="sys">/sys</h3>
-
 <p>这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统 sysfs 。</p>
-
 <p>sysfs文件系统集成了下面3种文件系统的信息：针对进程信息的proc文件系统、针对设备的devfs文件系统以及针对伪终端的devpts文件系统。
 该文件系统是内核设备树的一个直观反映。</p>
-
 <p>当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中被创建。</p>
-
 <h3 id="tmp">/tmp</h3>
-
 <p>存放临时文件</p>
-
 <h3 id="usr">/usr</h3>
-
 <p>用户的很多应用程序和文件都放在该目录下，类似Windows中的program files目录</p>
-
-<h3 id="usr-bin">/usr/bin</h3>
-
+<h3 id="usrbin">/usr/bin</h3>
 <p>系统用户使用的应用程序</p>
-
-<h3 id="usr-sbin">/usr/sbin</h3>
-
+<h3 id="usrsbin">/usr/sbin</h3>
 <p>超级用户使用的比较高级的管理程序和系统守护程序。</p>
-
-<h3 id="usr-src">/usr/src</h3>
-
+<h3 id="usrsrc">/usr/src</h3>
 <p>内核源代码默认的放置位置</p>
-
 <h3 id="var">/var</h3>
-
 <p>存放不断扩充的文件，习惯将经常被修改的目录放在这个目录下。包括各种日志文件</p>
-
 <h3 id="run">/run</h3>
-
 <p>临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有 /var/run 目录，应该让它指向 run。</p>
-
-<p>Linux系统中有几个目录比较重要，不能误删或随意更改
-&gt;* /etc
-&gt;* /bin, /sbin, /usr/bin, /usr/sbin
-&gt;<em>此外，/bin, /usr/bin是给系统用户使用的指令（除root外的），而/sbin, /usr/sbin是给root使用的指令</em>
-&gt;* /var</p>
-
+<p>Linux系统中有几个目录比较重要，不能误删或随意更改</p>
+<blockquote>
+<ul>
+<li>/etc</li>
+<li>/bin, /sbin, /usr/bin, /usr/sbin
+<em>此外，/bin, /usr/bin是给系统用户使用的指令（除root外的），而/sbin, /usr/sbin是给root使用的指令</em></li>
+<li>/var</li>
+</ul>
+</blockquote>
 <p>Linux中有两个特殊的目录，一个当前目录，可使用一个点<code>.</code>表示；另一个是当前目录的上一级目录，可使用两个点<code>..</code>表示</p>
-
 <p>若一个目录或文件名以一个点.开始，表示这个目录或文件是一个隐藏目录或文件。即以默认方式查找时，不显示该目录或文件</p>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

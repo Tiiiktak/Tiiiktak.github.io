@@ -7,10 +7,10 @@
     
     <title>正则化 Regularization - Tiiktak&#39;s</title>
     
-    <meta name="description" content="过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过拟合(over-fitting)的问题，可能会导致它们效果很差。
-可以使用一种正则化(regularization)的技术来改善或减少过度拟合的问题
-在回归问题中  第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
- 第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
+    <meta name="description" content="过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到**过拟合(over-fitting)**的问题，可能会导致它们效果很差。
+可以使用一种**正则化(regularization)**的技术来改善或减少过度拟合的问题
+在回归问题中   第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
+  第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
   当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是过拟合，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。
 在分类问题中 就以多项式理解， x的次数越高，拟合的越好，但相应的预测的能力就可能变差。
 处理过拟合问题
@@ -36,32 +36,30 @@ WHY-&gt;Click">
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="single">
     <header class="header">
@@ -93,89 +91,53 @@ WHY-&gt;Click">
     <h1 class="post-title">正则化 Regularization</h1>
     <div class="post-meta">2020.1.13</div>
   </header>
-  <div class="post-content">
-
-<h2 id="过拟合的问题">过拟合的问题</h2>
-
-<p>到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到<strong>过拟合(over-fitting)</strong>的问题，可能会导致它们效果很差。</p>
-
-<p>可以使用一种<strong>正则化(regularization)</strong>的技术来改善或减少过度拟合的问题</p>
-
+  <div class="post-content"><h2 id="过拟合的问题">过拟合的问题</h2>
+<p>到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到**过拟合(over-fitting)**的问题，可能会导致它们效果很差。</p>
+<p>可以使用一种**正则化(regularization)**的技术来改善或减少过度拟合的问题</p>
 <h3 id="在回归问题中">在回归问题中</h3>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHnm90.jpg" alt="回归问题过拟合" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHnm90.jpg" alt="回归问题过拟合"></p>
 <ul>
-<li><p>第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；</p></li>
-
-<li><p>第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：</p></li>
+<li>
+<p>第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；</p>
+</li>
+<li>
+<p>第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：</p>
+</li>
 </ul>
-
 <p>当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是<strong>过拟合</strong>，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。</p>
-
 <h3 id="在分类问题中">在分类问题中</h3>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHny4I.jpg" alt="分类问题过拟合" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHny4I.jpg" alt="分类问题过拟合"></p>
 <p>就以多项式理解， <code>x</code>的次数越高，拟合的越好，但相应的预测的能力就可能变差。</p>
-
 <p>处理过拟合问题</p>
-
 <ol>
 <li>丢弃一些不能帮助我们正确预测的特征。可以是手工选择保留哪些特征，或者使用一些模型选择的算法来帮忙（例如<strong>PCA</strong>）</li>
 <li>正则化。 保留所有的特征，但是减少参数的大小（<strong>magnitude</strong>）</li>
 </ol>
-
 <h2 id="代价函数">代价函数</h2>
-
 <p>我们从之前的事例可以看出，正是那些高次项导致了过拟合的产生，所以我们可以通过让这些高次项的系数接近于0，我们就能很好的拟合。</p>
-
 <p>所以正则化的基本方法就是在一定程度上减小高次项系数即参数<code>theta</code>的值</p>
-
 <p>即在设定代价函数时，为高次项的系数设置一些惩罚，通过这样代价函数选择出的<code>theta</code>对预测结果的影响就比之前要小许多。</p>
-
 <p>但如果我们不知道要对哪一个参数进行惩罚，我们可以对所以特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。于是得到了一个较为简单的能防止过拟合问题的假设</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHY2nI.png" alt="防止过拟合的假设" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHY2nI.png" alt="防止过拟合的假设"></p>
 <p>其中<code>λ</code>称为<strong>正则化参数（Regularization Parameter）</strong>。注：根据惯例，我们不对<code>theta0</code>进行惩罚。</p>
-
 <p>经过正则化处理的模型与原模型的可能对比如图：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHtmCD.png" alt="正则化前后对比" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHtmCD.png" alt="正则化前后对比"></p>
 <p>如果选择的正则化参数<code>λ</code>过大，则会把所有的参数都最小化了，导致模型变成 <code>h(x) = theta0</code> ，也就是上图中红色直线所示的情况，造成<strong>欠拟合</strong>。</p>
-
 <p>对于正则化，我们要取一个合理的<code>λ</code>的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。</p>
-
 <h2 id="正则化线性回归">正则化线性回归</h2>
-
 <p>正则化线性回归的代价函数为：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHrjsO.png" alt="正则化线性回归的代价函数" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHrjsO.png" alt="正则化线性回归的代价函数"></p>
 <p>如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对<code>theta0</code>进行正则化，所以梯度下降算法将分两种情形：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHgAhj.png" alt="" /></p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHgmj0.png" alt="" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHgAhj.png" alt=""></p>
+<p><img src="https://s2.ax1x.com/2020/01/13/lHgmj0.png" alt=""></p>
 <h2 id="分类">分类</h2>
-
-<h3 id="l1正则化-lasso回归">L1正则化（Lasso回归）</h3>
-
+<h3 id="l1正则化lasso回归">L1正则化（Lasso回归）</h3>
 <p>损失函数基础上加上权重参数的绝对值</p>
-
-<p><img src="https://i.loli.net/2020/02/15/MZEiDqedNrFUfWu.png" alt="L1" /></p>
-
-<h3 id="l2正则化-岭回归">L2正则化（岭回归）</h3>
-
+<p><img src="https://i.loli.net/2020/02/15/MZEiDqedNrFUfWu.png" alt="L1"></p>
+<h3 id="l2正则化岭回归">L2正则化（岭回归）</h3>
 <p>损失函数基础上加上权重参数的平方和</p>
-
-<p><img src="https://i.loli.net/2020/02/15/D1HXA2Os8hIjaRZ.png" alt="L2" /></p>
-
+<p><img src="https://i.loli.net/2020/02/15/D1HXA2Os8hIjaRZ.png" alt="L2"></p>
 <p>需要说明的是：L1 相比于 L2 会更容易获得稀疏解</p>
-
 <p>WHY-&gt;<a href="https://www.zhihu.com/question/37096933/answer/70507353">Click</a></p>
 </div>
   <footer class="post-footer">
@@ -205,7 +167,7 @@ WHY-&gt;Click">
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

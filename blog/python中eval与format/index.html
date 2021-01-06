@@ -1,264 +1,519 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Python中eval()与format() - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔
 先看看题
 题目 数值运算
 描述 获得用户输入的一个字符串，格式如下：
-M OP N  其中，M和N是任何数字，OP代表一种操作，表示为如下四种：&#43;, -, *, /（加减乘除）
+M OP N 其中，M和N是任何数字，OP代表一种操作，表示为如下四种：&#43;, -, *, /（加减乘除）
 根据OP，输出M OP N‬的运算结果，统一保留小数点后两位
 注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况
-示例输入‪ 10 &#43; 100 1 / 20  示例输出 110.00 0.05  解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
-然而，我却完全忘记了Python有着eval()的存在&hellip;.
+示例输入‪ 10 &#43; 100 1 / 20 示例输出 110.00 0.05 解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
+然而，我却完全忘记了Python有着eval()的存在&amp;hellip;.
 eval() |eval()函数用来执行一个字符串表达式，并返回表达式的值 ‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫
-eval(expression[, globals[, locals]])   参数
-expression &ndash; 表达式
-globals &ndash; 变量作用域，全局命名空间，若被提供，必须是一个字典对象
-locals &ndash; 变量作用域，局部命名空间，若被提供，可以是任何映射对象
+eval(expression[, globals[, locals]])  参数
+  expression &amp;ndash; 表达式
+  globals &amp;ndash; 变量作用域，全局命名空间，若被提供，必须是一个字典对象
+  locals &amp;ndash; 变量作用域，局部命名空间，若被提供，可以是任何映射对象
  可见，使用eval()后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果
 之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
 format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
-&gt;&gt;&gt; &quot;{} {}&quot;.format(&quot;hello&quot;, &quot;world&quot;) # 不设置指定位置，按默认顺序 &#39;hello world&#39; &gt;&gt;&gt; &quot;{0} {1}&quot;.format(&quot;hello&quot;, &quot;world&quot;) # 设置指定位置 &#39;hello world&#39; &gt;&gt;&gt; &quot;{1} {0} {1}&quot;.">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+&amp;gt;&amp;gt;&amp;gt; &amp;#34;{} {}&amp;#34;.format(&amp;#34;hello&amp;#34;, &amp;#34;world&amp;#34;) # 不设置指定位置，按默认顺序 &amp;#39;hello world&amp;#39; &amp;gt;&amp;gt;&amp;gt; &amp;#34;{0} {1}&amp;#34;.'><title>Python中eval()与format()</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
+<link rel='canonical' href='https://example.com/blog/python%E4%B8%ADeval%E4%B8%8Eformat/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python中eval()与format()'>
+<meta property='og:description' content='今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔
+先看看题
+题目 数值运算
+描述 获得用户输入的一个字符串，格式如下：
+M OP N 其中，M和N是任何数字，OP代表一种操作，表示为如下四种：&#43;, -, *, /（加减乘除）
+根据OP，输出M OP N‬的运算结果，统一保留小数点后两位
+注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况
+示例输入‪ 10 &#43; 100 1 / 20 示例输出 110.00 0.05 解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
+然而，我却完全忘记了Python有着eval()的存在&amp;hellip;.
+eval() |eval()函数用来执行一个字符串表达式，并返回表达式的值 ‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫
+eval(expression[, globals[, locals]])  参数
+  expression &amp;ndash; 表达式
+  globals &amp;ndash; 变量作用域，全局命名空间，若被提供，必须是一个字典对象
+  locals &amp;ndash; 变量作用域，局部命名空间，若被提供，可以是任何映射对象
+ 可见，使用eval()后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果
+之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
+format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
+&amp;gt;&amp;gt;&amp;gt; &amp;#34;{} {}&amp;#34;.format(&amp;#34;hello&amp;#34;, &amp;#34;world&amp;#34;) # 不设置指定位置，按默认顺序 &amp;#39;hello world&amp;#39; &amp;gt;&amp;gt;&amp;gt; &amp;#34;{0} {1}&amp;#34;.'>
+<meta property='og:url' content='https://example.com/blog/python%E4%B8%ADeval%E4%B8%8Eformat/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-10-10T20:37:31&#43;08:00'/><meta property='article:modified_time' content='2019-10-10T20:37:31&#43;08:00'/>
+<meta name="twitter:title" content="Python中eval()与format()">
+<meta name="twitter:description" content="今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔
+先看看题
+题目 数值运算
+描述 获得用户输入的一个字符串，格式如下：
+M OP N 其中，M和N是任何数字，OP代表一种操作，表示为如下四种：&#43;, -, *, /（加减乘除）
+根据OP，输出M OP N‬的运算结果，统一保留小数点后两位
+注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况
+示例输入‪ 10 &#43; 100 1 / 20 示例输出 110.00 0.05 解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
+然而，我却完全忘记了Python有着eval()的存在&amp;hellip;.
+eval() |eval()函数用来执行一个字符串表达式，并返回表达式的值 ‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫
+eval(expression[, globals[, locals]])  参数
+  expression &amp;ndash; 表达式
+  globals &amp;ndash; 变量作用域，全局命名空间，若被提供，必须是一个字典对象
+  locals &amp;ndash; 变量作用域，局部命名空间，若被提供，可以是任何映射对象
+ 可见，使用eval()后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果
+之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
+format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
+&amp;gt;&amp;gt;&amp;gt; &amp;#34;{} {}&amp;#34;.format(&amp;#34;hello&amp;#34;, &amp;#34;world&amp;#34;) # 不设置指定位置，按默认顺序 &amp;#39;hello world&amp;#39; &amp;gt;&amp;gt;&amp;gt; &amp;#34;{0} {1}&amp;#34;.">
+    </head>
+    <body class="article-page keep-sidebar">
     <script>
-      var _hmt = _hmt || [];
-      (function () {
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: #2a9d8f; color: #fff;">
+                Python
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/python%E4%B8%ADeval%E4%B8%8Eformat/">Python中eval()与format()</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Oct 10, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔</p>
+<p>先看看题</p>
+<h2 id="题目">题目</h2>
+<p>数值运算</p>
+<h3 id="描述">描述</h3>
+<p>获得用户输入的一个字符串，格式如下：</p>
+<pre><code>M OP N
+</code></pre><p>其中，M和N是任何数字，OP代表一种操作，表示为如下四种：+, -, *, /（加减乘除）</p>
+<p>根据OP，输出<code>M OP N‬</code>的运算结果，统一保留小数点后两位</p>
+<p>注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况</p>
+<h3 id="示例输入">示例输入‪</h3>
+<pre><code>10 + 100
+1 / 20
+</code></pre><h3 id="示例输出">示例输出</h3>
+<pre><code>110.00
+0.05
+</code></pre><h2 id="解答">解答</h2>
+<p>我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算</p>
+<p>然而，我却完全忘记了Python有着<code>eval()</code>的存在&hellip;.</p>
+<h3 id="eval">eval()</h3>
+<p>|<code>eval()</code>函数用来执行一个字符串表达式，并返回表达式的值
+‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="nb">eval</span><span class="p">(</span><span class="n">expression</span><span class="p">[,</span> <span class="nb">globals</span><span class="p">[,</span> <span class="nb">locals</span><span class="p">]])</span>
+</code></pre></div><blockquote>
+<p>参数</p>
+</blockquote>
+<blockquote>
+<p>expression &ndash; 表达式</p>
+</blockquote>
+<blockquote>
+<p>globals &ndash; 变量作用域，全局命名空间，若被提供，必须是一个字典对象</p>
+</blockquote>
+<blockquote>
+<p>locals &ndash; 变量作用域，局部命名空间，若被提供，可以是任何映射对象</p>
+</blockquote>
+<p>可见，使用<code>eval()</code>后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果</p>
+<p>之后根据题意，我们还要将运算结果保留两位小数，这时<code>format()</code>就派上了用场</p>
+<h3 id="format">format()</h3>
+<p>这是一种格式化字符串的函数，基本语法是使用<code>{}</code>和<code>:</code>
+‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮
+|<code>format()</code>‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;{} {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">,</span> <span class="s2">&#34;world&#34;</span><span class="p">)</span>    <span class="c1"># 不设置指定位置，按默认顺序</span>
+<span class="s1">&#39;hello world&#39;</span>
+ 
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;{0} {1}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">,</span> <span class="s2">&#34;world&#34;</span><span class="p">)</span>  <span class="c1"># 设置指定位置</span>
+<span class="s1">&#39;hello world&#39;</span>
+ 
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;{1} {0} {1}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">,</span> <span class="s2">&#34;world&#34;</span><span class="p">)</span>  <span class="c1"># 设置指定位置</span>
+<span class="s1">&#39;world hello world&#39;</span>
+</code></pre></div><h4 id="数字格式化">数字格式化</h4>
+<p>我们阔以使用<code>str.format()</code>格式化数字</p>
+<p>|<code>{:.2f}</code> 保留小数点后两位</p>
+<p>|<code>{:+.2f}</code> 带符号保留小数点后两位</p>
+<p>|<code>{:0&gt;2d}</code> 数字补0（填充左边，宽度为2）</p>
+<p>|<code>{:,}</code> 以逗号分隔的数字形式</p>
+<p>|<code>{:.2%}</code> 百分比格式</p>
+<p>|<code>{:.2e}</code> 指数记法</p>
+<p>|<code>{:&gt;10d}</code> 右对齐（默认，宽度为10）</p>
+<p>|<code>{:^10d}</code> 中间对齐（宽度为10）</p>
+<p>|<code>{:b}</code> 二进制</p>
+<h2 id="answer">Answer</h2>
+<p>于是，利用<code>eval()</code>与<code>format()</code>，我们阔以直接写出答案：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">s</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{:.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
+</code></pre></div><p>怎么样，是不是很简单</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
-        
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
-        
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
-    </header>
-    
-    <nav class="nav">
-      <ul class="menu">
-        
-        <li>
-          <a href="/about/">About</a>
-        </li>
-        
-      </ul>
-    </nav>
-    
-    <main class="main">
-
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Python中eval()与format()</h1>
-    <div class="post-meta">2019.10.10</div>
-  </header>
-  <div class="post-content">
-
-<p>今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔</p>
-
-<p>先看看题</p>
-
-<h2 id="题目">题目</h2>
-
-<p>数值运算</p>
-
-<h3 id="描述">描述</h3>
-
-<p>获得用户输入的一个字符串，格式如下：</p>
-
-<pre><code>M OP N
-</code></pre>
-
-<p>其中，M和N是任何数字，OP代表一种操作，表示为如下四种：+, -, *, /（加减乘除）</p>
-
-<p>根据OP，输出<code>M OP N‬</code>的运算结果，统一保留小数点后两位</p>
-
-<p>注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况</p>
-
-<h3 id="示例输入">示例输入‪</h3>
-
-<pre><code>10 + 100
-1 / 20
-</code></pre>
-
-<h3 id="示例输出">示例输出</h3>
-
-<pre><code>110.00
-0.05
-</code></pre>
-
-<h2 id="解答">解答</h2>
-
-<p>我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算</p>
-
-<p>然而，我却完全忘记了Python有着<code>eval()</code>的存在&hellip;.</p>
-
-<h3 id="eval">eval()</h3>
-
-<p>|<code>eval()</code>函数用来执行一个字符串表达式，并返回表达式的值
-‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫</p>
-
-<pre><code class="language-py">eval(expression[, globals[, locals]])
-</code></pre>
-
-<blockquote>
-<p>参数</p>
-
-<p>expression &ndash; 表达式</p>
-
-<p>globals &ndash; 变量作用域，全局命名空间，若被提供，必须是一个字典对象</p>
-
-<p>locals &ndash; 变量作用域，局部命名空间，若被提供，可以是任何映射对象</p>
-</blockquote>
-
-<p>可见，使用<code>eval()</code>后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果</p>
-
-<p>之后根据题意，我们还要将运算结果保留两位小数，这时<code>format()</code>就派上了用场</p>
-
-<h3 id="format">format()</h3>
-
-<p>这是一种格式化字符串的函数，基本语法是使用<code>{}</code>和<code>:</code>
-‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮
-|<code>format()</code>‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序</p>
-
-<pre><code class="language-py">&gt;&gt;&gt; &quot;{} {}&quot;.format(&quot;hello&quot;, &quot;world&quot;)    # 不设置指定位置，按默认顺序
-'hello world'
- 
-&gt;&gt;&gt; &quot;{0} {1}&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置
-'hello world'
- 
-&gt;&gt;&gt; &quot;{1} {0} {1}&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置
-'world hello world'
-</code></pre>
-
-<h4 id="数字格式化">数字格式化</h4>
-
-<p>我们阔以使用<code>str.format()</code>格式化数字</p>
-
-<p>|<code>{:.2f}</code> 保留小数点后两位</p>
-
-<p>|<code>{:+.2f}</code> 带符号保留小数点后两位</p>
-
-<p>|<code>{:0&gt;2d}</code> 数字补0（填充左边，宽度为2）</p>
-
-<p>|<code>{:,}</code> 以逗号分隔的数字形式</p>
-
-<p>|<code>{:.2%}</code> 百分比格式</p>
-
-<p>|<code>{:.2e}</code> 指数记法</p>
-
-<p>|<code>{:&gt;10d}</code> 右对齐（默认，宽度为10）</p>
-
-<p>|<code>{:^10d}</code> 中间对齐（宽度为10）</p>
-
-<p>|<code>{:b}</code> 二进制</p>
-
-<h2 id="answer">Answer</h2>
-
-<p>于是，利用<code>eval()</code>与<code>format()</code>，我们阔以直接写出答案：</p>
-
-<pre><code class="language-py">s = input()
-print(&quot;{:.2f}&quot;.format(eval(s)))
-</code></pre>
-
-<p>怎么样，是不是很简单</p>
-</div>
-  <footer class="post-footer">
-    
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
     })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
-</article>
-
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
 </script>
-</body>
+    </body>
 </html>
-

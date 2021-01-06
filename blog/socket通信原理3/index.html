@@ -1,300 +1,555 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Socket通信原理(3) - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
 这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
-服务端-树莓派 socket_server_sms.cpp #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; using namespace std; #define USEPORT 1234 int main() { //****创建套接字 int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET //Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF if (serverSock &lt; 0) { cout &lt;&lt; &quot;socket creation failed&quot; &lt;&lt; endl; exit(-1); } cout &lt;&lt; &quot;socket creation successfully&quot; &lt;&lt; endl; //****绑定ip和端口 struct sockaddr_in serverAddr; memset(&amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr.">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+服务端-树莓派 socket_server_sms.cpp #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;using namespace std; #define USEPORT 1234  int main() { //****创建套接字 	int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET 	//Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF 	if (serverSock &amp;lt; 0) { cout &amp;lt;&amp;lt; &amp;#34;socket creation failed&amp;#34; &amp;lt;&amp;lt; endl; exit(-1); } cout &amp;lt;&amp;lt; &amp;#34;socket creation successfully&amp;#34; &amp;lt;&amp;lt; endl; //****绑定ip和端口 	struct sockaddr_in serverAddr; memset(&amp;amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr.sin_port = htons(USEPORT); //INADDR_ANY绑定所有IP 	serverAddr.'><title>Socket通信原理(3)</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
+<link rel='canonical' href='https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Socket通信原理(3)'>
+<meta property='og:description' content='本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
+这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
+服务端-树莓派 socket_server_sms.cpp #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;using namespace std; #define USEPORT 1234  int main() { //****创建套接字 	int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET 	//Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF 	if (serverSock &amp;lt; 0) { cout &amp;lt;&amp;lt; &amp;#34;socket creation failed&amp;#34; &amp;lt;&amp;lt; endl; exit(-1); } cout &amp;lt;&amp;lt; &amp;#34;socket creation successfully&amp;#34; &amp;lt;&amp;lt; endl; //****绑定ip和端口 	struct sockaddr_in serverAddr; memset(&amp;amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr.sin_port = htons(USEPORT); //INADDR_ANY绑定所有IP 	serverAddr.'>
+<meta property='og:url' content='https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='socket' /><meta property='article:published_time' content='2019-07-08T15:38:20&#43;08:00'/><meta property='article:modified_time' content='2019-07-08T15:38:20&#43;08:00'/>
+<meta name="twitter:title" content="Socket通信原理(3)">
+<meta name="twitter:description" content="本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
+这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
+服务端-树莓派 socket_server_sms.cpp #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;using namespace std; #define USEPORT 1234  int main() { //****创建套接字 	int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET 	//Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF 	if (serverSock &amp;lt; 0) { cout &amp;lt;&amp;lt; &amp;#34;socket creation failed&amp;#34; &amp;lt;&amp;lt; endl; exit(-1); } cout &amp;lt;&amp;lt; &amp;#34;socket creation successfully&amp;#34; &amp;lt;&amp;lt; endl; //****绑定ip和端口 	struct sockaddr_in serverAddr; memset(&amp;amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr.sin_port = htons(USEPORT); //INADDR_ANY绑定所有IP 	serverAddr.">
+    </head>
+    <body class="article-page keep-sidebar">
     <script>
-      var _hmt = _hmt || [];
-      (function () {
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="background-color: #2a9d8f; color: #fff;">
+                树莓派RaspBerry Pi
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/">Socket通信原理(3)</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jul 08, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别</p>
+<p>这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息</p>
+<h1 id="服务端-树莓派-socket_server_smscpp">服务端-树莓派 socket_server_sms.cpp</h1>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> 
+<span class="cp">#define USEPORT 1234
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="c1">//****创建套接字
+</span><span class="c1"></span>	<span class="kt">int</span> <span class="n">serverSock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> 
+	<span class="c1">//Windows中，AF_INET==PF_INET
+</span><span class="c1"></span>	<span class="c1">//Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">serverSock</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;socket creation failed&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+		<span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> 
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;socket creation successfully&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+<span class="c1">//****绑定ip和端口
+</span><span class="c1"></span>	<span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">serverAddr</span><span class="p">;</span> 
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">serverAddr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serverAddr</span><span class="p">));</span> 
+	<span class="n">serverAddr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span> 
+	<span class="n">serverAddr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">USEPORT</span><span class="p">);</span> 
+	<span class="c1">//INADDR_ANY绑定所有IP
+</span><span class="c1"></span>	<span class="n">serverAddr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_ANY</span><span class="p">);</span> 
+<span class="c1">//****绑定套接字
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">serverSock</span><span class="p">,</span> 
+		<span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">serverAddr</span><span class="p">,</span> 
+		<span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Bind error, Port[&#34;</span><span class="o">&lt;&lt;</span> <span class="n">USEPORT</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;]&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+	       <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> 
+    <span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Bind successfully&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+	
+<span class="c1">//****监听
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">serverSock</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Listen error!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Listening on port[&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">USEPORT</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;]&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+
+<span class="c1">//****开始接收accept()
+</span><span class="c1"></span>	<span class="k">struct</span> <span class="nc">sockaddr</span> <span class="n">clientAddr</span><span class="p">;</span> 
+	<span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="p">);</span> 
+
+	<span class="kt">int</span> <span class="n">clientSock</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">serverSock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">clientAddr</span><span class="p">,</span> <span class="p">(</span><span class="n">socklen_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">size</span><span class="p">);</span> 
+
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;****NEW client touched****&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+
+<span class="c1">//****通信
+</span><span class="c1"></span>	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">string</span> <span class="n">input</span><span class="p">;</span> 
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;input something (&#39;quit&#39; to shutdown)&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">input</span><span class="p">;</span> 
+		<span class="n">send</span><span class="p">(</span><span class="n">clientSock</span><span class="p">,</span> <span class="n">input</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">input</span><span class="p">.</span><span class="n">length</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span> 
+		<span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="s">&#34;quit&#34;</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;shutdown&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+			<span class="k">break</span><span class="p">;</span> 
+		<span class="p">}</span>
+	<span class="p">}</span>
+	
+	<span class="n">close</span><span class="p">(</span><span class="n">serverSock</span><span class="p">);</span> 
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div><h1 id="客户端-pc-socket_client_raspicpp">客户端-PC socket_client_raspi.cpp</h1>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;WinSock2.h&gt; //包含WinSock2.h头文件</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#pragma comment(lib, &#34;ws2_32.lib&#34;) </span><span class="c1">//加载 ws2_32.dll 
+</span><span class="c1"></span><span class="cp">#pragma warning(disable:4996)
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="c1">//****初始化
+</span><span class="c1"></span>	<span class="n">WSADATA</span> <span class="n">wsaData</span><span class="p">;</span>
+	<span class="n">WSAStartup</span><span class="p">(</span><span class="n">MAKEWORD</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">wsaData</span><span class="p">);</span>		
+	
+<span class="c1">//****创建套接字
+</span><span class="c1"></span>	<span class="n">SOCKET</span> <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">//****创建sockAddr结构体
+</span><span class="c1"></span>	<span class="n">sockaddr_in</span> <span class="n">sockAddr</span><span class="p">;</span>						
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockAddr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sockAddr</span><span class="p">));</span>	
+	<span class="n">sockAddr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">PF_INET</span><span class="p">;</span>
+	<span class="n">sockAddr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">1234</span><span class="p">);</span>
+	<span class="n">sockAddr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">inet_addr</span><span class="p">(</span><span class="n">RASPI_IP</span><span class="p">);</span> <span class="c1">//树莓派的局域网IP
+</span><span class="c1"></span>
+<span class="c1">//****建立连接
+</span><span class="c1"></span>	<span class="n">connect</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span> <span class="n">sockAddr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SOCKADDR</span><span class="p">));</span>		
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;客户端发送链接请求&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">//****接收服务器传回的数据	
+</span><span class="c1"></span>	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;等待服务端发送信息..&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		
+		<span class="kt">char</span> <span class="n">tack</span><span class="p">[</span><span class="n">MAXBYTE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+		<span class="n">recv</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">tack</span><span class="p">,</span> <span class="n">MAXBYTE</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span> 
+		
+		<span class="c1">//输出接收到的数据
+</span><span class="c1"></span>		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;服务器: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">tack</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		
+		<span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">tack</span><span class="p">,</span> <span class="s">&#34;quit&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;shutdown&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="c1">//关闭套接字、终止使用 DLL
+</span><span class="c1"></span>	<span class="n">closesocket</span><span class="p">(</span><span class="n">sock</span><span class="p">);</span>
+	<span class="n">WSACleanup</span><span class="p">();</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="运行测试">运行测试</h1>
+<p>在树莓派编译运行socket_server_sms.cpp，开始监听</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cmake .
+make
+./socket_server_sms
+</code></pre></div><p><img src="https://i.loli.net/2019/07/08/5d230cdfa9c3b34633.png" alt="raspi-server"  /></p>
+<p>PC编译运行socket_client_raspi.cpp</p>
+<p><img src="https://i.loli.net/2019/07/08/5d230d4da4f9e73074.png" alt="pc-client"  /></p>
+<p>服务端发送信息测试</p>
+<p><img src="https://i.loli.net/2019/07/08/5d230d963f6ba15253.png" alt="test"  /></p>
+<p>测试成功</p>
+<hr>
+<p>树莓派与计算机简单通信成功，接下来是通过树莓派传送摄像头图像和使用<a class="link" href="/blog/%e7%81%b0%e5%ba%a6%e9%87%8d%e5%bf%83%e6%b3%95" >灰度重心法</a>找到的光斑中心信息到计算机</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/socket/">socket</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
-        
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
-        
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
-    </header>
-    
-    <nav class="nav">
-      <ul class="menu">
-        
-        <li>
-          <a href="/about/">About</a>
-        </li>
-        
-      </ul>
-    </nav>
-    
-    <main class="main">
-
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Socket通信原理(3)</h1>
-    <div class="post-meta">2019.7.8</div>
-  </header>
-  <div class="post-content">
-
-<p>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别</p>
-
-<p>这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息</p>
-
-<h1 id="服务端-树莓派-socket-server-sms-cpp">服务端-树莓派 socket_server_sms.cpp</h1>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;unistd.h&gt;
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-#include &lt;sys/types.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;arpa/inet.h&gt;
-using namespace std; 
-#define USEPORT 1234
-
-int main()
-{
-//****创建套接字
-	int serverSock = socket(AF_INET, SOCK_STREAM, 0); 
-	//Windows中，AF_INET==PF_INET
-	//Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF
-	if (serverSock &lt; 0)
-	{
-		cout &lt;&lt; &quot;socket creation failed&quot; &lt;&lt; endl; 
-		exit(-1); 
-	}
-	cout &lt;&lt; &quot;socket creation successfully&quot; &lt;&lt; endl; 
-//****绑定ip和端口
-	struct sockaddr_in serverAddr; 
-	memset(&amp;serverAddr, 0, sizeof(serverAddr)); 
-	serverAddr.sin_family = AF_INET; 
-	serverAddr.sin_port = htons(USEPORT); 
-	//INADDR_ANY绑定所有IP
-	serverAddr.sin_addr.s_addr = htonl(INADDR_ANY); 
-//****绑定套接字
-	if (bind(serverSock, 
-		(struct sockaddr*)&amp;serverAddr, 
-		sizeof(struct sockaddr)) == -1)
-	{
-		cout &lt;&lt; &quot;Bind error, Port[&quot;&lt;&lt; USEPORT &lt;&lt; &quot;]&quot; &lt;&lt; endl; 
-	       exit(-1); 
-    }
-	cout &lt;&lt; &quot;Bind successfully&quot; &lt;&lt; endl; 
-	
-//****监听
-	if (listen(serverSock, 10) == -1)
-	{
-		cout &lt;&lt; &quot;Listen error!&quot; &lt;&lt; endl; 
-	}
-	cout &lt;&lt; &quot;Listening on port[&quot; &lt;&lt; USEPORT &lt;&lt; &quot;]&quot; &lt;&lt; endl; 
-
-//****开始接收accept()
-	struct sockaddr clientAddr; 
-	int size = sizeof(struct sockaddr); 
-
-	int clientSock = accept(serverSock, (struct sockaddr*)&amp;clientAddr, (socklen_t*)&amp;size); 
-
-	cout &lt;&lt; &quot;****NEW client touched****&quot; &lt;&lt; endl; 
-
-//****通信
-	while (1)
-	{
-		string input; 
-		cout &lt;&lt; &quot;input something ('quit' to shutdown)&quot; &lt;&lt; endl; 
-		cin &gt;&gt; input; 
-		send(clientSock, input.c_str(), input.length(), 0); 
-		if (input == &quot;quit&quot;)
-		{
-			cout &lt;&lt; &quot;shutdown&quot;&lt;&lt;endl;
-			break; 
-		}
-	}
-	
-	close(serverSock); 
-	return 0; 
-}
-</code></pre>
-
-<h1 id="客户端-pc-socket-client-raspi-cpp">客户端-PC socket_client_raspi.cpp</h1>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;WinSock2.h&gt; //包含WinSock2.h头文件
-using namespace std;
-#pragma comment(lib, &quot;ws2_32.lib&quot;) //加载 ws2_32.dll 
-#pragma warning(disable:4996)
-
-int main()
-{
-//****初始化
-	WSADATA wsaData;
-	WSAStartup(MAKEWORD(2, 2), &amp;wsaData);		
-	
-//****创建套接字
-	SOCKET sock = socket(PF_INET, SOCK_STREAM, 0);
-
-//****创建sockAddr结构体
-	sockaddr_in sockAddr;						
-	memset(&amp;sockAddr, 0, sizeof(sockAddr));	
-	sockAddr.sin_family = PF_INET;
-	sockAddr.sin_port = htons(1234);
-	sockAddr.sin_addr.s_addr = inet_addr(RASPI_IP); //树莓派的局域网IP
-
-//****建立连接
-	connect(sock, (SOCKADDR*)&amp; sockAddr, sizeof(SOCKADDR));		
-	cout &lt;&lt; &quot;客户端发送链接请求&quot; &lt;&lt; endl;
-
-//****接收服务器传回的数据	
-	while (1)
-	{
-		cout &lt;&lt; &quot;等待服务端发送信息..&quot; &lt;&lt; endl;
-		
-		char tack[MAXBYTE] = { 0 };
-		recv(sock, tack, MAXBYTE, NULL); 
-		
-		//输出接收到的数据
-		cout &lt;&lt; &quot;服务器: &quot; &lt;&lt; tack &lt;&lt; endl;
-		
-		if (strcmp(tack, &quot;quit&quot;) == 0)
-		{
-			cout &lt;&lt; &quot;shutdown&quot; &lt;&lt; endl; 
-			break;
-		}
-	}
-
-	//关闭套接字、终止使用 DLL
-	closesocket(sock);
-	WSACleanup();
-
-	return 0;
-}
-</code></pre>
-
-<h1 id="运行测试">运行测试</h1>
-
-<p>在树莓派编译运行socket_server_sms.cpp，开始监听</p>
-
-<pre><code class="language-sh">cmake .
-make
-./socket_server_sms
-</code></pre>
-
-<p><img src="https://i.loli.net/2019/07/08/5d230cdfa9c3b34633.png" alt="raspi-server" /></p>
-
-<p>PC编译运行socket_client_raspi.cpp</p>
-
-<p><img src="https://i.loli.net/2019/07/08/5d230d4da4f9e73074.png" alt="pc-client" /></p>
-
-<p>服务端发送信息测试</p>
-
-<p><img src="https://i.loli.net/2019/07/08/5d230d963f6ba15253.png" alt="test" /></p>
-
-<p>测试成功</p>
-
-<hr />
-
-<p>树莓派与计算机简单通信成功，接下来是通过树莓派传送摄像头图像和使用<a href="/blog/灰度重心法">灰度重心法</a>找到的光斑中心信息到计算机</p>
-</div>
-  <footer class="post-footer">
-    
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
     })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
-</article>
-
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
 </script>
-</body>
+    </body>
 </html>
-

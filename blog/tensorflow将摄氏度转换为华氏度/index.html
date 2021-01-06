@@ -1,375 +1,591 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>第一个TensorFlow模型：摄氏度转换为华氏度 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
 公式 已知摄氏度转换成华氏度有数学公式：
-f = c * 1.8 &#43; 32  而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
+f = c * 1.8 &#43; 32 而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
 import dependencies 导入依赖项 需要引入TensorFlow与NumPy库构建神经网络
-from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np  还需要引入logging以记录日志
-import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR)  Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
-celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&quot;{} degrees Celsius = {} degrees Fahrenheit&quot;.">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np 还需要引入logging以记录日志
+import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR) Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
+celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&amp;#34;{} degrees Celsius = {} degrees Fahrenheit&amp;#34;.'><title>第一个TensorFlow模型：摄氏度转换为华氏度</title>
+
+<link rel='canonical' href='https://example.com/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='第一个TensorFlow模型：摄氏度转换为华氏度'>
+<meta property='og:description' content='今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
+公式 已知摄氏度转换成华氏度有数学公式：
+f = c * 1.8 &#43; 32 而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
+import dependencies 导入依赖项 需要引入TensorFlow与NumPy库构建神经网络
+from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np 还需要引入logging以记录日志
+import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR) Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
+celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&amp;#34;{} degrees Celsius = {} degrees Fahrenheit&amp;#34;.'>
+<meta property='og:url' content='https://example.com/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-10-11T20:33:51&#43;08:00'/><meta property='article:modified_time' content='2019-10-11T20:33:51&#43;08:00'/>
+<meta name="twitter:title" content="第一个TensorFlow模型：摄氏度转换为华氏度">
+<meta name="twitter:description" content="今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
+公式 已知摄氏度转换成华氏度有数学公式：
+f = c * 1.8 &#43; 32 而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
+import dependencies 导入依赖项 需要引入TensorFlow与NumPy库构建神经网络
+from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np 还需要引入logging以记录日志
+import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR) Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
+celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&amp;#34;{} degrees Celsius = {} degrees Fahrenheit&amp;#34;.">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+            <a href="/categories/tensorflow/" style="background-color: #2a9d8f; color: #fff;">
+                TensoFlow
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/">第一个TensorFlow模型：摄氏度转换为华氏度</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">第一个TensorFlow模型：摄氏度转换为华氏度</h1>
-    <div class="post-meta">2019.10.11</div>
-  </header>
-  <div class="post-content">
 
-<p>今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下</p>
+        <time class="article-time--published">Oct 11, 2019</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p>今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下</p>
 <h2 id="公式">公式</h2>
-
 <p>已知摄氏度转换成华氏度有数学公式：</p>
-
 <pre><code>f = c * 1.8 + 32
-</code></pre>
-
-<p>而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能</p>
-
+</code></pre><p>而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能</p>
 <h2 id="import-dependencies-导入依赖项">import dependencies 导入依赖项</h2>
-
 <p>需要引入<code>TensorFlow</code>与<code>NumPy</code>库构建神经网络</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">unicode_literals</span>
 
-<pre><code class="language-py">from __future__ import absolute_import, division, print_function, unicode_literals
-
-import tensorflow as tf
-import numpy as np
-</code></pre>
-
-<p>还需要引入<code>logging</code>以记录日志</p>
-
-<pre><code class="language-py">import logging
-logger = tf.get_logger() #返回tf的日志实例
-logger.setLevel(logging.ERROR)
-</code></pre>
-
-<h2 id="set-up-training-data-建立训练数据">Set up training data 建立训练数据</h2>
-
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</code></pre></div><p>还需要引入<code>logging</code>以记录日志</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span> <span class="c1">#返回tf的日志实例</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+</code></pre></div><h2 id="set-up-training-data-建立训练数据">Set up training data 建立训练数据</h2>
 <p>由于在这里我们使用的是监督式机器学习，所以准备两组链表<code>celsius_q</code>和<code>fahrenheit_a</code>分别代表摄氏温度与对应华氏温度，用来训练模型</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">celsius_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">38</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">fahrenheit_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
-<pre><code class="language-py">celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float)
-fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float)
-
-for i,c in enumerate(celsius_q):
-  print(&quot;{} degrees Celsius = {} degrees Fahrenheit&quot;.format(c, fahrenheit_a[i]))
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">-40.0 degrees Celsius = -40.0 degrees Fahrenheit
--10.0 degrees Celsius = 14.0 degrees Fahrenheit
-0.0 degrees Celsius = 32.0 degrees Fahrenheit
-8.0 degrees Celsius = 46.0 degrees Fahrenheit
-15.0 degrees Celsius = 59.0 degrees Fahrenheit
-22.0 degrees Celsius = 72.0 degrees Fahrenheit
-38.0 degrees Celsius = 100.0 degrees Fahrenheit
-</code></pre>
-
-<h3 id="一些机器学习术语">一些机器学习术语：</h3>
-
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">celsius_q</span><span class="p">):</span>
+  <span class="k">print</span><span class="p">(</span><span class="s2">&#34;{} degrees Celsius = {} degrees Fahrenheit&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">fahrenheit_a</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="o">-</span><span class="mf">40.0</span> <span class="n">degrees</span> <span class="n">Celsius</span> <span class="o">=</span> <span class="o">-</span><span class="mf">40.0</span> <span class="n">degrees</span> <span class="n">Fahrenheit</span>
+<span class="o">-</span><span class="mf">10.0</span> <span class="n">degrees</span> <span class="n">Celsius</span> <span class="o">=</span> <span class="mf">14.0</span> <span class="n">degrees</span> <span class="n">Fahrenheit</span>
+<span class="mf">0.0</span> <span class="n">degrees</span> <span class="n">Celsius</span> <span class="o">=</span> <span class="mf">32.0</span> <span class="n">degrees</span> <span class="n">Fahrenheit</span>
+<span class="mf">8.0</span> <span class="n">degrees</span> <span class="n">Celsius</span> <span class="o">=</span> <span class="mf">46.0</span> <span class="n">degrees</span> <span class="n">Fahrenheit</span>
+<span class="mf">15.0</span> <span class="n">degrees</span> <span class="n">Celsius</span> <span class="o">=</span> <span class="mf">59.0</span> <span class="n">degrees</span> <span class="n">Fahrenheit</span>
+<span class="mf">22.0</span> <span class="n">degrees</span> <span class="n">Celsius</span> <span class="o">=</span> <span class="mf">72.0</span> <span class="n">degrees</span> <span class="n">Fahrenheit</span>
+<span class="mf">38.0</span> <span class="n">degrees</span> <span class="n">Celsius</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="n">degrees</span> <span class="n">Fahrenheit</span>
+</code></pre></div><h3 id="一些机器学习术语">一些机器学习术语：</h3>
 <ul>
 <li>Feature（特征）：模型的输入。在这里即摄氏度</li>
 <li>Labels（标签）：模型的输出。在这里即华氏度</li>
 <li>Example（样本）：训练期间数据集的一行内容，可以是标注样本(labeled example)和无标注样本(unlabeled example)。在这里即一对摄氏度与华氏度数据，为标注样本</li>
 </ul>
-
 <h2 id="create-the-model-创建模型">Create the model 创建模型</h2>
-
 <p>由于问题比较简单，因此我们要建立的密集网络将只需要一个单层神经元</p>
-
 <h3 id="build-a-layer-建立一个层">Build a layer 建立一个层</h3>
-
-<p>我们会把这一层叫做<code>l0</code>，并且使用<code>tf.keras.layers.Dense</code>(全连接层)来建立</p>
-
-<h4 id="tf-keras-layers-dense"><code>tf.keras.layers.Dense</code></h4>
-
+<p>我们会把这一层叫做<code>l0</code>，并且使用<code> tf.keras.layers.Dense</code>(全连接层)来建立</p>
+<h4 id="tfkeraslayersdense"><code>tf.keras.layers.Dense</code></h4>
 <ul>
-<li><p><code>units=1</code> 指定本层神经元数量。神经元的数量定义了本层需要有多少内部变量来学习解决这个问题。由于这是本模型的最后一层，因此它也代表模型输出的大小。（在多层神经网络中，该层的大小与形状需要与下一层的<code>input_shape</code>相匹配</p></li>
-
-<li><p><code>input_shape=[1]</code> 指定本层输入值为单值。表明这是一个包含单个成员的一维数组。由于这是本模型的第一层（也是唯一一层），因此该输入形状也是整个模型的输入形状。单值是浮点数，即摄氏度</p></li>
+<li>
+<p><code>units=1</code> 指定本层神经元数量。神经元的数量定义了本层需要有多少内部变量来学习解决这个问题。由于这是本模型的最后一层，因此它也代表模型输出的大小。（在多层神经网络中，该层的大小与形状需要与下一层的<code>input_shape</code>相匹配</p>
+</li>
+<li>
+<p><code>input_shape=[1]</code> 指定本层输入值为单值。表明这是一个包含单个成员的一维数组。由于这是本模型的第一层（也是唯一一层），因此该输入形状也是整个模型的输入形状。单值是浮点数，即摄氏度</p>
+</li>
 </ul>
-
-<pre><code class="language-py">l0 = tf.keras.layers.Dense(units=1, input_shape=[1])
-</code></pre>
-
-<h3 id="assemble-layers-into-the-model-将layer组装到模型中">Assemble layers into the model 将Layer组装到模型中</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">l0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div><h3 id="assemble-layers-into-the-model-将layer组装到模型中">Assemble layers into the model 将Layer组装到模型中</h3>
 <p>定义了层之后，就要将它们组装成模型。Sequential model 顺序模型的定义需要以层列表作为参数，指定从输入到输出的计算顺序</p>
-
-<pre><code class="language-py">model = tf.keras.Sequential([l0])
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">l0</span><span class="p">])</span>
+</code></pre></div><blockquote>
 <p>注意：
 以上两步经常合并为一步操作，如</p>
 </blockquote>
-
-<pre><code class="language-py">model = tf.keras.Sequential([ tf.keras.layers.Dense(units=1, input_shape=[1]) ])
-</code></pre>
-
-<h2 id="compile-the-model-with-loss-and-optimizer-functions-使用损失和优化器功能编译模型">Compile the model, with loss and optimizer functions 使用损失和优化器功能编译模型</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="p">])</span>
+</code></pre></div><h2 id="compile-the-model-with-loss-and-optimizer-functions-使用损失和优化器功能编译模型">Compile the model, with loss and optimizer functions 使用损失和优化器功能编译模型</h2>
 <p>搭好模型架构之后，在训练模型之前，还要执行编译操作。在编译时，经常需要指定三个参数：</p>
-
 <ul>
-<li><p><code>Loss function</code> 一种衡量结果与预期相差多少的方法（测得的差异称为<code>loss</code>(损失)）</p></li>
-
-<li><p><code>Optimizer function</code> 一种调整内部值以减少损耗的方法</p></li>
-
-<li><p><code>Metrics function</code> （较复杂，此处不用，日后再看）</p></li>
+<li>
+<p><code>Loss function</code> 一种衡量结果与预期相差多少的方法（测得的差异称为<code>loss</code>(损失)）</p>
+</li>
+<li>
+<p><code>Optimizer function</code> 一种调整内部值以减少损耗的方法</p>
+</li>
+<li>
+<p><code>Metrics function</code> （较复杂，此处不用，日后再看）</p>
+</li>
 </ul>
-
-<pre><code class="language-py3">model.compile(loss='', optimizer=tf.keras.optimizers.Adam(0.1))
-</code></pre>
-
-<p>在训练过程中使用<code>model.fit()</code>来首先计算每个点的损耗，之后对其改善。优化器功能用于计算对模型内部变量的调整，目的是调整内部变量直到模型（实际是一个数学函数）接近将摄氏度转换为华氏度的公式为止</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-py3" data-lang="py3"><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+</code></pre></div><p>在训练过程中使用<code>model.fit()</code>来首先计算每个点的损耗，之后对其改善。优化器功能用于计算对模型内部变量的调整，目的是调整内部变量直到模型（实际是一个数学函数）接近将摄氏度转换为华氏度的公式为止</p>
 <p>这里使用的优化函数<code>mean_squared_error</code>（均方误差）和优化器<code>Adam</code>是这种简单模型的标准配置，实际还有其他可用配置。</p>
-
 <p>在建立自己的模型时，我们需要考虑的<code>Optimizer</code>优化器的部分是学习率（即上式中的0.1），这是在模型中调整值时采取的步长，它决定着目标函数能否收敛到局部最小值以及何时收敛到最小值。合适的学习率能够使目标函数在合适的时间内收敛到局部最小值。范围通常在0.001（默认）和0.1之间</p>
-
 <h2 id="train-the-model-训练模型">Train the model 训练模型</h2>
-
 <p>在训练过程中，模型输入摄氏温度，使用当前的内部变量（权重）执行计算，并输出相应华氏温度的值。 由于权重最初是随机设置的，因此输出并不会接近正确的值。实际输出与期望输出之间的差值通过损失函数计算，而优化器函数将指导如何调整权重。</p>
-
 <p>计算，比较，调整的整个流程由<code>fit</code>方法进行控制。 它的第一个参数是输入，第二个参数是期望的输出结果。<code>epochs</code>参数指定模型应运行此循环多少次，而<code>verbose</code>参数控制该方法的日志显示。</p>
-
-<pre><code class="language-py">history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False) #fit方法返回History对象
-print(&quot;Finished training the model&quot;)
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">Finished training the model
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">celsius_q</span><span class="p">,</span> <span class="n">fahrenheit_a</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="c1">#fit方法返回History对象</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Finished training the model&#34;</span><span class="p">)</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">Finished</span> <span class="n">training</span> <span class="n">the</span> <span class="n">model</span>
+</code></pre></div><blockquote>
 <p><strong>verbose参数</strong></p>
-
+</blockquote>
+<blockquote>
 <ul>
 <li>默认为1</li>
 <li>verbose = 0 为不在标准输出流输出日志信息</li>
 <li>verbose = 1 为输出进度条记录</li>
 <li>verbose = 2 为每个epoch输出一行记录</li>
 </ul>
-
-<p><strong>History对象</strong></p>
-
-<p>可以由fit()方法返回。History.history属性是一个记录了连续迭代的训练/验证（如果存在）损失值和评估值的字典。可以利用该对象实现<a href="https://keras.io/zh/visualization/#_2">训练历史可视化</a></p>
 </blockquote>
-
+<blockquote>
+<p><strong>History对象</strong></p>
+</blockquote>
+<blockquote>
+<p>可以由fit()方法返回。History.history属性是一个记录了连续迭代的训练/验证（如果存在）损失值和评估值的字典。可以利用该对象实现<a class="link" href="https://keras.io/zh/visualization/#_2"  target="_blank" rel="noopener"
+    >训练历史可视化</a></p>
+</blockquote>
 <h2 id="display-training-statistics-展示训练统计数据">Display training statistics 展示训练统计数据</h2>
-
 <p>由于<code>fit</code>会返回一个<code>History</code>对象，因此我们可以使用该对象来绘制每个训练时期后模型损失的下降趋势。若为高损耗则意味着模型预测的华氏度与<code>fahrenheit_a</code>中的期望值相去甚远。</p>
-
 <p>使用<code>Matplotlib</code>进行绘制</p>
-
-<pre><code class="language-py">import matplotlib.pyplot as plt
-plt.xlabel('Epoch Number') #x坐标轴
-plt.ylabel(&quot;Loss Magnitude&quot;) #y坐标轴
-plt.plot(history.history['loss']) #标点
-plt.show()
-</code></pre>
-
-<p>结果：</p>
-
-<p><img src="https://i.loli.net/2019/09/25/eAJP7K4LB2uzRUl.png" alt="摄氏度转华氏度模型损失统计" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch Number&#39;</span><span class="p">)</span> <span class="c1">#x坐标轴</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;Loss Magnitude&#34;</span><span class="p">)</span> <span class="c1">#y坐标轴</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">])</span> <span class="c1">#标点</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div><p>结果：</p>
+<p><img src="https://i.loli.net/2019/09/25/eAJP7K4LB2uzRUl.png" alt="摄氏度转华氏度模型损失统计"  /></p>
 <p>可见，我们的模型起初改进非常快，然后有了稳定而缓慢的改进，直到最终接近“完美”为止。</p>
-
 <h2 id="use-the-model-to-predict-values-使用模型预测数值">Use the model to predict values 使用模型预测数值</h2>
-
 <p>至此，我们已经拥有了一个可以利用摄氏度获得华氏度的模型。我们可以利用它计算先前未知的摄氏温度</p>
-
-<pre><code class="language-py">print(model.predict([100.0])) #向模型输入100.0
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">[[211.74744]]
-</code></pre>
-
-<p>而我们通过公式可以得到：</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="mf">100.0</span><span class="p">]))</span> <span class="c1">#向模型输入100.0</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="p">[[</span><span class="mf">211.74744</span><span class="p">]]</span>
+</code></pre></div><p>而我们通过公式可以得到：</p>
 <pre><code>100*1.8 + 32 = 212
-</code></pre>
-
-<p>由此可见，我们的模型得到的结果已经非常接近真实答案</p>
-
+</code></pre><p>由此可见，我们的模型得到的结果已经非常接近真实答案</p>
 <h2 id="to-review-回顾">To review 回顾</h2>
-
 <ol>
 <li>我们创建了一个含有单层神经元的模型</li>
 <li>将模型训练了3500次（7对数据，500轮）</li>
 </ol>
-
 <p>我们的模型调整了Dense层中的变量（权重），直到它能够为任何摄氏值返回正确的华氏温度值</p>
-
-<pre><code class="language-py">l0 = tf.keras.layers.Dense(units=1, input_shape=[1]) 
-model = tf.keras.Sequential([l0])
-model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
-history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
-model.predict([100.0])
-</code></pre>
-
-<h2 id="looking-at-the-layer-weights-查看layer权重">Looking at the layer weights 查看Layer权重</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">l0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">l0</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">celsius_q</span><span class="p">,</span> <span class="n">fahrenheit_a</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="mf">100.0</span><span class="p">])</span>
+</code></pre></div><h2 id="looking-at-the-layer-weights-查看layer权重">Looking at the layer weights 查看Layer权重</h2>
 <p>最后我们打印Dense层的内部变量</p>
-
-<pre><code class="language-py">print(&quot;These are the layer variables: {}&quot;.format(l0.get_weights())) #以包含Numpy矩阵的列表形式返回层的权重
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code class="language-py">These are the layer variables: [array([[1.7979496]], dtype=float32), array([31.952478], dtype=float32)]
-</code></pre>
-
-<p>这里的第一个变量<code>1.7979496</code>接近于<code>1.8</code>，第二个变量<code>31.952478</code>接近于<code>32</code>，而这两个值也是实际的转换公式中的两个变量</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;These are the layer variables: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">l0</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()))</span> <span class="c1">#以包含Numpy矩阵的列表形式返回层的权重</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">These</span> <span class="n">are</span> <span class="n">the</span> <span class="n">layer</span> <span class="n">variables</span><span class="p">:</span> <span class="p">[</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.7979496</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">),</span> <span class="n">array</span><span class="p">([</span><span class="mf">31.952478</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)]</span>
+</code></pre></div><p>这里的第一个变量<code>1.7979496</code>接近于<code>1.8</code>，第二个变量<code>31.952478</code>接近于<code>32</code>，而这两个值也是实际的转换公式中的两个变量</p>
 <p>对于只有单个输入和单个输出的单神经元，它内部看起来与直线方程相同，即y=mx+b，因此我们的模型能够如此逼近转换公式</p>
-
 <p>而有了额外的神经元，额外的输入和额外的输出，公式会变得更加复杂，但是思路是一样的。</p>
-
 <h3 id="a-little-experiment-小实验">A little experiment 小实验</h3>
-
 <p>如果我们创建多个含不同数量神经元的层，会是怎样的结果呢？</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">l0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">l1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">l0</span><span class="p">,</span> <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">celsius_q</span><span class="p">,</span> <span class="n">fahrenheit_a</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Finished training the model&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Model predicts that 100 degrees Celsius is: {} degrees Fahrenheit&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="mf">100.0</span><span class="p">])))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;These are the l0 variables: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">l0</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;These are the l1 variables: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;These are the l2 variables: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">l2</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()))</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">Finished</span> <span class="n">training</span> <span class="n">the</span> <span class="n">model</span>
+<span class="n">Model</span> <span class="n">predicts</span> <span class="n">that</span> <span class="mi">100</span> <span class="n">degrees</span> <span class="n">Celsius</span> <span class="ow">is</span><span class="p">:</span> <span class="p">[[</span><span class="mf">211.74742</span><span class="p">]]</span> <span class="n">degrees</span> <span class="n">Fahrenheit</span> <span class="c1">#得到预测结果仍然与实际相近</span>
+<span class="n">These</span> <span class="n">are</span> <span class="n">the</span> <span class="n">l0</span> <span class="n">variables</span><span class="p">:</span> <span class="p">[</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.52520204</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.25983605</span><span class="p">,</span>  <span class="mf">0.27832836</span><span class="p">,</span>  <span class="mf">0.11471745</span><span class="p">]],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">),</span> <span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">3.468158</span> <span class="p">,</span> <span class="o">-</span><span class="mf">3.3907545</span><span class="p">,</span>  <span class="mf">3.5017395</span><span class="p">,</span>  <span class="mf">2.1893277</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)]</span>
+<span class="n">These</span> <span class="n">are</span> <span class="n">the</span> <span class="n">l1</span> <span class="n">variables</span><span class="p">:</span> <span class="p">[</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.37798777</span><span class="p">,</span>  <span class="mf">0.6455525</span> <span class="p">,</span>  <span class="mf">0.7230809</span> <span class="p">,</span>  <span class="mf">0.3954812</span> <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.85110897</span><span class="p">,</span>  <span class="mf">0.6376249</span> <span class="p">,</span>  <span class="mf">0.31107017</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.70929325</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.534542</span>  <span class="p">,</span> <span class="o">-</span><span class="mf">0.980425</span>  <span class="p">,</span> <span class="o">-</span><span class="mf">0.92369473</span><span class="p">,</span>  <span class="mf">0.72322994</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.38675487</span><span class="p">,</span>  <span class="mf">0.41835558</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.24832523</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.08700816</span><span class="p">]],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">),</span> <span class="n">array</span><span class="p">([</span> <span class="mf">3.2148993</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.1253922</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.340591</span> <span class="p">,</span>  <span class="mf">3.433869</span> <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)]</span>
+<span class="n">These</span> <span class="n">are</span> <span class="n">the</span> <span class="n">l2</span> <span class="n">variables</span><span class="p">:</span> <span class="p">[</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.74975073</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.56715256</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">1.4492323</span> <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.39553005</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">),</span> <span class="n">array</span><span class="p">([</span><span class="mf">3.2948794</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)]</span>
+</code></pre></div><p>可以看到，模型仍然能很好的得到结果，但其中的变量早已不接近1.8或32，这是因为多层Layer带来的复杂度隐藏了转换方程的“简单”形式</p>
 
-<pre><code class="language-py">l0 = tf.keras.layers.Dense(units=4, input_shape=[1])
-l1 = tf.keras.layers.Dense(units=4)
-l2 = tf.keras.layers.Dense(units=1)
-model = tf.keras.Sequential([l0, l1, l2])
-model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
-model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
-print(&quot;Finished training the model&quot;)
-print(&quot;Model predicts that 100 degrees Celsius is: {} degrees Fahrenheit&quot;.format(model.predict([100.0])))
-print(&quot;These are the l0 variables: {}&quot;.format(l0.get_weights()))
-print(&quot;These are the l1 variables: {}&quot;.format(l1.get_weights()))
-print(&quot;These are the l2 variables: {}&quot;.format(l2.get_weights()))
-</code></pre>
+</section>
 
-<p>输出：</p>
 
-<pre><code class="language-py">Finished training the model
-Model predicts that 100 degrees Celsius is: [[211.74742]] degrees Fahrenheit #得到预测结果仍然与实际相近
-These are the l0 variables: [array([[-0.52520204, -0.25983605,  0.27832836,  0.11471745]],
-      dtype=float32), array([-3.468158 , -3.3907545,  3.5017395,  2.1893277], dtype=float32)]
-These are the l1 variables: [array([[-0.37798777,  0.6455525 ,  0.7230809 ,  0.3954812 ],
-       [-0.85110897,  0.6376249 ,  0.31107017, -0.70929325],
-       [-0.534542  , -0.980425  , -0.92369473,  0.72322994],
-       [ 0.38675487,  0.41835558, -0.24832523, -0.08700816]],
-      dtype=float32), array([ 3.2148993, -3.1253922, -3.340591 ,  3.433869 ], dtype=float32)]
-These are the l2 variables: [array([[ 0.74975073],
-       [-0.56715256],
-       [-1.4492323 ],
-       [ 0.39553005]], dtype=float32), array([3.2948794], dtype=float32)]
-</code></pre>
-
-<p>可以看到，模型仍然能很好的得到结果，但其中的变量早已不接近1.8或32，这是因为多层Layer带来的复杂度隐藏了转换方程的“简单”形式</p>
-</div>
-  <footer class="post-footer">
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

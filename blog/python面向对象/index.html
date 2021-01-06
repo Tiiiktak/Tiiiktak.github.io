@@ -1,267 +1,493 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Python面向对象 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="类和实例 定义类 使用class关键字
-class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &quot;&quot;&quot;docstring for Student&quot;&quot;&quot; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score))  实例化 类名&#43;（）
-&gt;&gt;&gt; bob = Student(&#39;Bob&#39;, 98) &gt;&gt;&gt; bob.print_score() Bob: 98  创建实例后，可以自由地给一个实例变量绑定属性，如
-&gt;&gt;&gt; bob.school = &#39;SWUST&#39; &gt;&gt;&gt; bob.school &#39;SWUST&#39;  访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
-class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子类：">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='类和实例 定义类 使用class关键字
+class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &amp;#34;&amp;#34;&amp;#34;docstring for Student&amp;#34;&amp;#34;&amp;#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&amp;#39;%s: %s&amp;#39; % (self.name, self.score)) 实例化 类名&#43;（）
+&amp;gt;&amp;gt;&amp;gt; bob = Student(&amp;#39;Bob&amp;#39;, 98) &amp;gt;&amp;gt;&amp;gt; bob.print_score() Bob: 98 创建实例后，可以自由地给一个实例变量绑定属性，如
+&amp;gt;&amp;gt;&amp;gt; bob.school = &amp;#39;SWUST&amp;#39; &amp;gt;&amp;gt;&amp;gt; bob.school &amp;#39;SWUST&amp;#39; 访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
+class Animal(object): def run(self): print(&amp;#39;Animal is running...&amp;#39;) 子类：
+class Dog(Animal) pass 子类调用父类方法：'><title>Python面向对象</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
+<link rel='canonical' href='https://example.com/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/'>
 
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python面向对象'>
+<meta property='og:description' content='类和实例 定义类 使用class关键字
+class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &amp;#34;&amp;#34;&amp;#34;docstring for Student&amp;#34;&amp;#34;&amp;#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&amp;#39;%s: %s&amp;#39; % (self.name, self.score)) 实例化 类名&#43;（）
+&amp;gt;&amp;gt;&amp;gt; bob = Student(&amp;#39;Bob&amp;#39;, 98) &amp;gt;&amp;gt;&amp;gt; bob.print_score() Bob: 98 创建实例后，可以自由地给一个实例变量绑定属性，如
+&amp;gt;&amp;gt;&amp;gt; bob.school = &amp;#39;SWUST&amp;#39; &amp;gt;&amp;gt;&amp;gt; bob.school &amp;#39;SWUST&amp;#39; 访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
+class Animal(object): def run(self): print(&amp;#39;Animal is running...&amp;#39;) 子类：
+class Dog(Animal) pass 子类调用父类方法：'>
+<meta property='og:url' content='https://example.com/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='Python' /><meta property='article:published_time' content='2019-06-21T15:23:06&#43;08:00'/><meta property='article:modified_time' content='2019-06-21T15:23:06&#43;08:00'/>
+<meta name="twitter:title" content="Python面向对象">
+<meta name="twitter:description" content="类和实例 定义类 使用class关键字
+class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &amp;#34;&amp;#34;&amp;#34;docstring for Student&amp;#34;&amp;#34;&amp;#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&amp;#39;%s: %s&amp;#39; % (self.name, self.score)) 实例化 类名&#43;（）
+&amp;gt;&amp;gt;&amp;gt; bob = Student(&amp;#39;Bob&amp;#39;, 98) &amp;gt;&amp;gt;&amp;gt; bob.print_score() Bob: 98 创建实例后，可以自由地给一个实例变量绑定属性，如
+&amp;gt;&amp;gt;&amp;gt; bob.school = &amp;#39;SWUST&amp;#39; &amp;gt;&amp;gt;&amp;gt; bob.school &amp;#39;SWUST&amp;#39; 访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
+class Animal(object): def run(self): print(&amp;#39;Animal is running...&amp;#39;) 子类：
+class Dog(Animal) pass 子类调用父类方法：">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: #2a9d8f; color: #fff;">
+                Python
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">Python面向对象</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Python面向对象</h1>
-    <div class="post-meta">2019.6.21</div>
-  </header>
-  <div class="post-content">
 
-<h1 id="类和实例">类和实例</h1>
+        <time class="article-time--published">Jun 21, 2019</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <h1 id="类和实例">类和实例</h1>
 <h2 id="定义类">定义类</h2>
-
 <p>使用<code>class</code>关键字</p>
-
-<pre><code class="language-python">class Student(object): #class 类名(继承类)  无继承类则使用object,也可省略
-	&quot;&quot;&quot;docstring for Student&quot;&quot;&quot;
-	def __init__(self, name, score): 
-	#初始属性，第一个参数永远是self，表示创建的实例本身
-		super (Student, self).__init__()
-		self.name = name
-		self.score = score
-	def print_score(self)
-		print('%s: %s' % (self.name, self.score))
-</code></pre>
-
-<h2 id="实例化">实例化</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="c1">#class 类名(继承类)  无继承类则使用object,也可省略</span>
+	<span class="s2">&#34;&#34;&#34;docstring for Student&#34;&#34;&#34;</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span> 
+	<span class="c1">#初始属性，第一个参数永远是self，表示创建的实例本身</span>
+		<span class="nb">super</span> <span class="p">(</span><span class="n">Student</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">score</span>
+	<span class="k">def</span> <span class="nf">print_score</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">))</span>
+</code></pre></div><h2 id="实例化">实例化</h2>
 <p>类名+（）</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; bob = Student('Bob', 98)
-&gt;&gt;&gt; bob.print_score()
-Bob: 98
-</code></pre>
-
-<p>创建实例后，可以自由地给一个实例变量绑定属性，如</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; bob.school = 'SWUST'
-&gt;&gt;&gt; bob.school
-'SWUST'
-</code></pre>
-
-<h2 id="访问限制">访问限制</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">bob</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">98</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bob</span><span class="o">.</span><span class="n">print_score</span><span class="p">()</span>
+<span class="n">Bob</span><span class="p">:</span> <span class="mi">98</span>
+</code></pre></div><p>创建实例后，可以自由地给一个实例变量绑定属性，如</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">bob</span><span class="o">.</span><span class="n">school</span> <span class="o">=</span> <span class="s1">&#39;SWUST&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bob</span><span class="o">.</span><span class="n">school</span>
+<span class="s1">&#39;SWUST&#39;</span>
+</code></pre></div><h2 id="访问限制">访问限制</h2>
 <ul>
 <li>private<strong>私有变量</strong>：变量名以<code>__</code>开头
 注意：<code>__name__</code>外部可以访问，是<strong>特殊变量</strong></li>
 </ul>
-
 <h2 id="继承和多态">继承和多态</h2>
-
 <p>基类：</p>
-
-<pre><code class="language-python">class Animal(object):
-	def run(self):
-		print('Animal is running...')
-</code></pre>
-
-<p>子类：</p>
-
-<pre><code class="language-python">class Dog(Animal)
-	pass
-</code></pre>
-
-<p>子类调用父类方法：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; dog = Dog()
-&gt;&gt;&gt; dog.run()
-Animal is running...
-</code></pre>
-
-<p>同样支持多态</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Animal is running...&#39;</span><span class="p">)</span>
+</code></pre></div><p>子类：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">)</span>
+	<span class="k">pass</span>
+</code></pre></div><p>子类调用父类方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">dog</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">Animal</span> <span class="ow">is</span> <span class="n">running</span><span class="o">...</span>
+</code></pre></div><p>同样支持多态</p>
 <h2 id="动态语言">动态语言</h2>
-
 <p>对于动态语言，传入时不一定需要<code>Animal</code>类型，只需要保证传入的对象有<code>run()</code>方法即可</p>
-
 <h1 id="获取对象信息">获取对象信息</h1>
-
-<h2 id="使用-type">使用<code>type()</code></h2>
-
+<h2 id="使用type">使用<code>type()</code></h2>
 <pre><code>&gt;&gt;&gt; type(123)
 &lt;class 'int'&gt;
-</code></pre>
-
-<h2 id="使用-isinstance">使用<code>isinstance()</code></h2>
-
+</code></pre><h2 id="使用isinstance">使用<code>isinstance()</code></h2>
 <pre><code>&gt;&gt;&gt; a = 10
 &gt;&gt;&gt; isinstance(a, int)
 True
 &gt;&gt;&gt; isinstance(a, float)
 False
-</code></pre>
-
-<h2 id="使用-dir">使用<code>dir()</code></h2>
-
+</code></pre><h2 id="使用dir">使用<code>dir()</code></h2>
 <p>获得一个对象的所有属性和方法，它返回一个包含字符串的list</p>
-
 <pre><code>&gt;&gt;&gt; dir('ABC')
 ['__add__', '__class__',..., '__subclasshook__', 'capitalize', 'casefold',..., 'zfill']
-</code></pre>
-
-<p>类似<code>__xxx__</code>的属性和方法在Python中都是有特殊用途的，比如<code>__len__</code>方法返回长度。在Python中，如果你调用<code>len()</code>函数试图获取一个对象的长度，实际上，在<code>len()</code>函数内部，它自动去调用该对象的<code>__len__()</code>方法</p>
-
+</code></pre><p>类似<code>__xxx__</code>的属性和方法在Python中都是有特殊用途的，比如<code>__len__</code>方法返回长度。在Python中，如果你调用<code>len()</code>函数试图获取一个对象的长度，实际上，在<code>len()</code>函数内部，它自动去调用该对象的<code>__len__()</code>方法</p>
 <h1 id="限制类的实例绑定属性">限制类的实例绑定属性</h1>
-
 <p>在定义时，定义一个特殊的<code>__slots__</code>变量来限制实例能添加的属性</p>
-
-<pre><code class="language-python">class Student(object):
-	__slots__ = ('name', 'age') #用tuple定义允许绑定的属性名称
-</code></pre>
-
-<p>尝试绑定</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; s = Student()
-&gt;&gt;&gt; s.name = 'Michael'
-&gt;&gt;&gt; s.score = 99 #绑定属性'score'
-Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: 'Student' object has no attribute 'score'
-</code></pre>
-
-<p>由于<code>'score'</code>没有被放到<code>__slots__</code>中，所以不能绑定<code>score</code>属性，试图绑定<code>score</code>将得到<code>AttributeError</code>的错误。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+	<span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">)</span> <span class="c1">#用tuple定义允许绑定的属性名称</span>
+</code></pre></div><p>尝试绑定</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Michael&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="mi">99</span> <span class="c1">#绑定属性&#39;score&#39;</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="s1">&#39;Student&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;score&#39;</span>
+</code></pre></div><p>由于<code>'score'</code>没有被放到<code>__slots__</code>中，所以不能绑定<code>score</code>属性，试图绑定<code>score</code>将得到<code>AttributeError</code>的错误。</p>
 <p>使用<code>__slots__</code>要注意,<code>__slots__</code>定义的属性仅对当前类实例起作用，对继承的子类是不起作用的</p>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-    <ul class="post-tags">
-      
-      <li><a href="https://konosuba.xyz/tags/python/">Python</a></li>
-      
-      <li><a href="https://konosuba.xyz/tags/%E5%AD%A6%E4%B9%A0/">学习</a></li>
-      
-    </ul>
+    <section class="article-tags">
+        
+            <a href="/tags/python/">Python</a>
+        
+    </section>
+
+
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

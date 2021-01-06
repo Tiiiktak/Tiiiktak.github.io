@@ -1,471 +1,644 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Python函数式编程 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="[toc]
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='[toc]
 什么是函数式编程？ 函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。
 而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
 函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
 Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言
-高阶函数 Python中函数两个特性 &gt; ### 变量可以指向函数 函数本身可以赋值给变量，通过变量可以调用函数
-&gt;&gt;&gt; f = abs &gt;&gt;&gt; f(-10) 10   函数名是变量 把函数名看作变量，可将其指向其他对象，则无法调用原函数
-&gt;&gt;&gt; abs = 10 &gt;&gt;&gt; abs(-10) Traceback (most recent call last): File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt; TypeError: &#39;int&#39; object is not callable   传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
+高阶函数 Python中函数两个特性
+ 变量可以指向函数  函数本身可以赋值给变量，通过变量可以调用函数
+&amp;gt;&amp;gt;&amp;gt; f = abs &amp;gt;&amp;gt;&amp;gt; f(-10) 10  函数名是变量  把函数名看作变量，可将其指向其他对象，则无法调用原函数
+&amp;gt;&amp;gt;&amp;gt; abs = 10 &amp;gt;&amp;gt;&amp;gt; abs(-10) Traceback (most recent call last): File &amp;#34;&amp;lt;stdin&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; TypeError: &amp;#39;int&amp;#39; object is not callable 传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
 一个最简单的高阶函数：
-def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
+def add(x, y, f) return f(x) &#43; f(y) 当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
  把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式
- Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+  Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回
+def f(x): return x * x &amp;gt;&amp;gt;&amp;gt; r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9]) &amp;gt;&amp;gt;&amp;gt; list(r) [1, 4, 9, 16, 25, 36, 49, 64, 81] reduce()函数 |reduce 把一个函数作用在一个序列[x1, x2, x3, .'><title>Python函数式编程</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
+<link rel='canonical' href='https://example.com/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python函数式编程'>
+<meta property='og:description' content='[toc]
+什么是函数式编程？ 函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。
+而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
+函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
+Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言
+高阶函数 Python中函数两个特性
+ 变量可以指向函数  函数本身可以赋值给变量，通过变量可以调用函数
+&amp;gt;&amp;gt;&amp;gt; f = abs &amp;gt;&amp;gt;&amp;gt; f(-10) 10  函数名是变量  把函数名看作变量，可将其指向其他对象，则无法调用原函数
+&amp;gt;&amp;gt;&amp;gt; abs = 10 &amp;gt;&amp;gt;&amp;gt; abs(-10) Traceback (most recent call last): File &amp;#34;&amp;lt;stdin&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; TypeError: &amp;#39;int&amp;#39; object is not callable 传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
+一个最简单的高阶函数：
+def add(x, y, f) return f(x) &#43; f(y) 当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
+ 把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式
+  Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回
+def f(x): return x * x &amp;gt;&amp;gt;&amp;gt; r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9]) &amp;gt;&amp;gt;&amp;gt; list(r) [1, 4, 9, 16, 25, 36, 49, 64, 81] reduce()函数 |reduce 把一个函数作用在一个序列[x1, x2, x3, .'>
+<meta property='og:url' content='https://example.com/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-06-21T10:50:55&#43;08:00'/><meta property='article:modified_time' content='2019-06-21T10:50:55&#43;08:00'/>
+<meta name="twitter:title" content="Python函数式编程">
+<meta name="twitter:description" content="[toc]
+什么是函数式编程？ 函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。
+而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
+函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
+Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言
+高阶函数 Python中函数两个特性
+ 变量可以指向函数  函数本身可以赋值给变量，通过变量可以调用函数
+&amp;gt;&amp;gt;&amp;gt; f = abs &amp;gt;&amp;gt;&amp;gt; f(-10) 10  函数名是变量  把函数名看作变量，可将其指向其他对象，则无法调用原函数
+&amp;gt;&amp;gt;&amp;gt; abs = 10 &amp;gt;&amp;gt;&amp;gt; abs(-10) Traceback (most recent call last): File &amp;#34;&amp;lt;stdin&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; TypeError: &amp;#39;int&amp;#39; object is not callable 传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
+一个最简单的高阶函数：
+def add(x, y, f) return f(x) &#43; f(y) 当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
+ 把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式
+  Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回
+def f(x): return x * x &amp;gt;&amp;gt;&amp;gt; r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9]) &amp;gt;&amp;gt;&amp;gt; list(r) [1, 4, 9, 16, 25, 36, 49, 64, 81] reduce()函数 |reduce 把一个函数作用在一个序列[x1, x2, x3, .">
+    </head>
+    <body class="article-page keep-sidebar">
     <script>
-      var _hmt = _hmt || [];
-      (function () {
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: #2a9d8f; color: #fff;">
+                Python
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">Python函数式编程</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jun 21, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>[toc]</p>
+<h2 id="什么是函数式编程">什么是函数式编程？</h2>
+<p>函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。</p>
+<p>而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的</p>
+<p>函数式编程的一个<strong>特点</strong>就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！</p>
+<p>Python对函数式编程提供<strong>部分支持</strong>。由于Python允许使用变量，因此，Python不是纯函数式编程语言</p>
+<h2 id="高阶函数">高阶函数</h2>
+<p><strong>Python中函数两个特性</strong></p>
+<blockquote>
+<h3 id="变量可以指向函数">变量可以指向函数</h3>
+</blockquote>
+<p>函数本身可以赋值给变量，通过变量可以调用函数</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">abs</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="mi">10</span>
+</code></pre></div><blockquote>
+<h3 id="函数名是变量">函数名是变量</h3>
+</blockquote>
+<p>把函数名看作变量，可将其指向其他对象，则无法调用原函数</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">abs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="nb">object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">callable</span>
+</code></pre></div><h3 id="传入函数">传入函数</h3>
+<p>由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为<strong>高阶函数</strong></p>
+<p>一个最简单的高阶函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div><p>当调用<code>add(-5, -6, abs)</code>时，函数计算<code>abs(-5)+abs(-6)</code>，返回<code>11</code></p>
+<blockquote>
+<p><strong>把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式</strong></p>
+</blockquote>
+<hr>
+<h2 id="python内建高阶函数">Python内建高阶函数</h2>
+<h3 id="map函数">map()函数</h3>
+<p>|<code>map()</code> 函数接收两个参数，一个是函数，一个是<code>Iterable</code>，<code>map</code>将传入的函数<strong>依次作用</strong>到序列的每个元素，并把结果作为新的<code>Iterator</code>返回</p>
+<p><img src="https://a2w0fa.bl.files.1drv.com/y4mcJHdrB6oWGYuqkMFD82wH6Jh1WYgIe-J0xEea07ClUdCO7wiGO0Layy4v0OG-fkz3SUQKLrcRl4OgHeurB_5kokXmufjt1Jd3Q5jDN-qfKJ-PfgokGplh35ysv5PBziGSNX2VlU0XOehT1hfdV8nOyhEG9wDcG1xR7x85-SVIACFFlKMTc1bpjQks_w7etOIQmIMxsnLZhp4ytdVpl_Xmw?width=454&amp;height=322&amp;cropmode=none" alt="image"  /></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">81</span><span class="p">]</span>
+</code></pre></div><h3 id="reduce函数">reduce()函数</h3>
+<p>|<code>reduce</code> 把一个函数作用在一个序列<code>[x1, x2, x3, ...]</code>上，这个函数必须接收两个参数，<code>reduce</code>把结果继续和序列的下一个元素做累积计算，其效果就是：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">reduce</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">])</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">),</span> <span class="n">x3</span><span class="p">),</span> <span class="n">x4</span><span class="p">)</span>
+</code></pre></div><h3 id="filter函数">filter()函数</h3>
+<p>该函用于过滤序列。</p>
+<p>|<code>filter()</code> 接收一个函数和一个序列，<code>filter()</code>把传入的函数依次作用于每个元素，然后根据返回值是<code>True</code>还时<code>False</code>决定保留还是丢弃该元素。</p>
+<p>例如，删掉list中的偶数，保留奇数</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">is_odd</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">is_odd</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div><h4 id="用filter求素数">用filter求素数</h4>
+<p>利用<a class="link" href="https://baike.baidu.com/item/%E5%9F%83%E6%8B%89%E6%89%98%E8%89%B2%E5%B0%BC%E7%AD%9B%E9%80%89%E6%B3%95"  target="_blank" rel="noopener"
+    ><strong>埃氏筛法</strong></a></p>
+<ul>
+<li>先构造一个从<code>3</code>开始的<strong>奇数序列</strong></li>
+</ul>
+<p>利用生成器</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">_odd_iter</span><span class="p">():</span>
+	<span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+	<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="n">n</span> <span class="o">+=</span> <span class="mi">2</span>
+		<span class="k">yield</span> <span class="n">n</span>
+</code></pre></div><ul>
+<li>定义一个<strong>筛选函数</strong></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">_not_divisible</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</code></pre></div><ul>
+<li>最后定义一个生成器，不断返回下一素数</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">primes</span><span class="p">():</span>
+	<span class="k">yield</span> <span class="mi">2</span>
+	<span class="n">it</span> <span class="o">=</span> <span class="n">_odd_iter</span><span class="p">()</span>
+	<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="n">n</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+		<span class="k">yield</span> <span class="n">n</span>
+		<span class="n">it</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">_not_divisible</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">it</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>调用得到1000内素数</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">():</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">):</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="k">break</span>
+</code></pre></div><p>|<code>filter()</code>的作用是从一个序列中筛出符合条件的元素。由于<code>filter()</code>使用了惰性计算，所以只有在取<code>filter()</code>结果的时候，才会真正筛选并每次返回下一个筛出的元素。</p>
+<h3 id="sorted函数">sorted()函数</h3>
+<p>它可以接收一个<code>key</code>函数来实现自定义的排序，例如按绝对值大小排序：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">([</span><span class="mi">36</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">21</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">21</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
+</code></pre></div><p>key指定的函数将作用于list的每一个元素上，并根据key函数返回的结果进行排序。
+然后<code>sorted()</code>函数按照keys进行排序，并按照对应关系返回list相应的元素</p>
+<h2 id="返回函数闭包">返回函数&amp;闭包</h2>
+<h3 id="函数作为返回值">函数作为返回值</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lazy_f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+		<span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+	<span class="k">return</span> <span class="n">f1</span>	<span class="c1">#返回函数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">lazy_f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">lazy_f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span>
+<span class="bp">False</span>	<span class="c1">#两次返回的函数并不同</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span><span class="p">()</span> <span class="c1">#调用函数时，才真正计算求和结果</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f2</span><span class="p">()</span>
+<span class="mi">3</span>
+</code></pre></div><h3 id="闭包">闭包</h3>
+<p>当<code>lazy_f</code>返回函数<code>f</code>时，相关参数和变量都保存在返回的函数中，这种称为“<strong>闭包（Closure）</strong>”的程序结构拥有极大的威力。</p>
+<p>需要注意的是，返回的函数并没有立刻执行，而是直到调用了<code>f()</code>才执行
+如</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">count</span><span class="p">():</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+             <span class="k">return</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
+        <span class="n">fs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fs</span>
+<span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span> <span class="o">=</span> <span class="n">count</span><span class="p">()</span>
+</code></pre></div><p>在实际调用中</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span><span class="p">()</span>
+<span class="mi">9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f2</span><span class="p">()</span>
+<span class="mi">9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f3</span><span class="p">()</span>
+<span class="mi">9</span>
+</code></pre></div><blockquote>
+<p><strong>注意：返回函数不要引用任何循环变量，或者后续会发生变化的变量</strong></p>
+</blockquote>
+<h2 id="匿名函数">匿名函数</h2>
+<p>如匿名函数<code>lambda x: x * x</code></p>
+<p>关键字<code>lambda</code>表示匿名函数，冒号前面的<code>x</code>表示函数参数。</p>
+<p>匿名函数只能有一个表达式，不写<code>return</code>，返回值就是该表达式的结果</p>
+<p>Python对匿名函数的支持有限，只有一些简单的情况下可以使用匿名函数。</p>
+<h2 id="装饰器">装饰器</h2>
+<p>函数对像有一个<code>__name__</code>属性，可以返回函数的名字</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">now</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="s1">&#39;now&#39;</span>
+</code></pre></div><p>现在，假设我们要增强<code>now()</code>函数的功能，比如，在函数调用前后自动打印日志，但又不希望修改<code>now()</code>函数的定义，这种在代码运行期间动态增加功能的方式，称之为“<strong>装饰器（Decorator）</strong>”。</p>
+<p>定义一个能打印日志的decorator</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>	<span class="c1">#*args是非关键字参数，用于元组，**kw是关键字参数，用于字典</span>
+		<span class="k">print</span><span class="p">(</span><span class="s1">&#39;class </span><span class="si">%s</span><span class="s1">():&#39;</span> <span class="o">%</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div><p>借助Python的@语法，把decorator置于函数的定义处：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@log</span>
+<span class="k">def</span> <span class="nf">now</span><span class="p">():</span>
+	<span class="k">print</span><span class="p">(</span><span class="s1">&#39;2019/6/21&#39;</span><span class="p">)</span>
+</code></pre></div><p>调用函数<code>now()</code>，不仅会运行<code>now()</code>本身，还会在其之前打印一行日志</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">now</span><span class="p">()</span>
+<span class="n">call</span> <span class="n">now</span><span class="p">():</span>
+<span class="mi">2019</span><span class="o">/</span><span class="mi">6</span><span class="o">/</span><span class="mi">21</span>
+</code></pre></div><p>相当于执行了语句：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">now</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+</code></pre></div><p>如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数，写出来会更复杂。比如，要自定义log的文本：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+		<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+			<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">():&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+			<span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">wrapper</span>
+	<span class="k">return</span> <span class="n">decorator</span>
+</code></pre></div><p>使用</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@log</span><span class="p">(</span><span class="s1">&#39;execute&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">now</span><span class="p">():</span>
+	<span class="k">print</span><span class="p">(</span><span class="s1">&#39;2019/6/21&#39;</span><span class="p">)</span>
+<span class="c1">#相当于now = log(&#39;excute&#39;)(now)</span>
+</code></pre></div><p>以上两种decorator的定义都没有问题，但还差最后一步。因为我们讲了函数也是对象，它有<code>__name__</code>等属性，但你去看经过decorator装饰之后的函数，它们的<code>__name__</code>已经从原来的<code>'now'</code>变成了<code>'wrapper'</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">now</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="s1">&#39;wrapper&#39;</span>
+</code></pre></div><p>因为返回的那个<code>wrapper()</code>函数名字就是<code>'wrapper'</code>，所以，需要把原始函数的<code>__name__</code>等属性复制到<code>wrapper()</code>函数中，否则，有些依赖函数签名的代码执行就会出错。</p>
+<p>不需要编写<code>wrapper.__name__ = func.__name__</code>这样的代码，Python内置的<code>functools.wraps</code>就是干这个事的，所以，一个完整的decorator的写法如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;call </span><span class="si">%s</span><span class="s1">():&#39;</span> <span class="o">%</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div><p>或者针对带参数的decorator：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">():&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+</code></pre></div><h2 id="偏函数">偏函数</h2>
+<p>可借助<code>functools.partial</code>创建偏函数：把一个函数的某些参数设为某个默认值，返回一个新的函数，调用这个新函数会更简单</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">int2</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">int2</span><span class="p">(</span><span class="s1">&#39;10000&#39;</span><span class="p">)</span>
+<span class="mi">16</span>
+</code></pre></div><blockquote>
+<p>当函数的参数个数太多，需要简化时，使用<code>functools.partial</code>可以创建一个新的函数，这个新函数可以固定住原函数的部分参数，从而在调用时更简单。</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
-        
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
-        
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
-    </header>
-    
-    <nav class="nav">
-      <ul class="menu">
-        
-        <li>
-          <a href="/about/">About</a>
-        </li>
-        
-      </ul>
-    </nav>
-    
-    <main class="main">
-
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Python函数式编程</h1>
-    <div class="post-meta">2019.6.21</div>
-  </header>
-  <div class="post-content">
-
-<p>[toc]</p>
-
-<h2 id="什么是函数式编程">什么是函数式编程？</h2>
-
-<p>函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。</p>
-
-<p>而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的</p>
-
-<p>函数式编程的一个<strong>特点</strong>就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！</p>
-
-<p>Python对函数式编程提供<strong>部分支持</strong>。由于Python允许使用变量，因此，Python不是纯函数式编程语言</p>
-
-<h2 id="高阶函数">高阶函数</h2>
-
-<p><strong>Python中函数两个特性</strong>
-&gt; ### 变量可以指向函数
-函数本身可以赋值给变量，通过变量可以调用函数</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; f = abs
-&gt;&gt;&gt; f(-10)
-10
-</code></pre>
-
-<blockquote>
-<h3 id="函数名是变量">函数名是变量</h3>
-
-<p>把函数名看作变量，可将其指向其他对象，则无法调用原函数</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; abs = 10
-&gt;&gt;&gt; abs(-10)
-Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-TypeError: 'int' object is not callable
-</code></pre>
-</blockquote>
-
-<h3 id="传入函数">传入函数</h3>
-
-<p>由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为<strong>高阶函数</strong></p>
-
-<p>一个最简单的高阶函数：</p>
-
-<pre><code class="language-python">def add(x, y, f)
-	return f(x) + f(y)
-</code></pre>
-
-<p>当调用<code>add(-5, -6, abs)</code>时，函数计算<code>abs(-5)+abs(-6)</code>，返回<code>11</code></p>
-
-<blockquote>
-<p><strong>把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式</strong></p>
-</blockquote>
-
-<hr />
-
-<h2 id="python内建高阶函数">Python内建高阶函数</h2>
-
-<h3 id="map-函数">map()函数</h3>
-
-<p>|<code>map()</code> 函数接收两个参数，一个是函数，一个是<code>Iterable</code>，<code>map</code>将传入的函数<strong>依次作用</strong>到序列的每个元素，并把结果作为新的<code>Iterator</code>返回</p>
-
-<p><img src="https://a2w0fa.bl.files.1drv.com/y4mcJHdrB6oWGYuqkMFD82wH6Jh1WYgIe-J0xEea07ClUdCO7wiGO0Layy4v0OG-fkz3SUQKLrcRl4OgHeurB_5kokXmufjt1Jd3Q5jDN-qfKJ-PfgokGplh35ysv5PBziGSNX2VlU0XOehT1hfdV8nOyhEG9wDcG1xR7x85-SVIACFFlKMTc1bpjQks_w7etOIQmIMxsnLZhp4ytdVpl_Xmw?width=454&amp;height=322&amp;cropmode=none" alt="image" /></p>
-
-<pre><code class="language-python">def f(x):
-	return x * x
-&gt;&gt;&gt; r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
-&gt;&gt;&gt; list(r)
-[1, 4, 9, 16, 25, 36, 49, 64, 81]
-</code></pre>
-
-<h3 id="reduce-函数">reduce()函数</h3>
-
-<p>|<code>reduce</code> 把一个函数作用在一个序列<code>[x1, x2, x3, ...]</code>上，这个函数必须接收两个参数，<code>reduce</code>把结果继续和序列的下一个元素做累积计算，其效果就是：</p>
-
-<pre><code class="language-python">reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
-</code></pre>
-
-<h3 id="filter-函数">filter()函数</h3>
-
-<p>该函用于过滤序列。</p>
-
-<p>|<code>filter()</code> 接收一个函数和一个序列，<code>filter()</code>把传入的函数依次作用于每个元素，然后根据返回值是<code>True</code>还时<code>False</code>决定保留还是丢弃该元素。</p>
-
-<p>例如，删掉list中的偶数，保留奇数</p>
-
-<pre><code class="language-python">def is_odd(n):
-	return n % 2 == 1
-&gt;&gt;&gt; list(filter(is_odd, [1, 2, 3, 4, 5]))
-[1, 3, 5]
-</code></pre>
-
-<h4 id="用filter求素数">用filter求素数</h4>
-
-<p>利用<a href="https://baike.baidu.com/item/%E5%9F%83%E6%8B%89%E6%89%98%E8%89%B2%E5%B0%BC%E7%AD%9B%E9%80%89%E6%B3%95"><strong>埃氏筛法</strong></a></p>
-
-<ul>
-<li>先构造一个从<code>3</code>开始的<strong>奇数序列</strong></li>
-</ul>
-
-<p>利用生成器</p>
-
-<pre><code class="language-python">def _odd_iter():
-	n = 1
-	while 1:
-		n += 2
-		yield n
-</code></pre>
-
-<ul>
-<li>定义一个<strong>筛选函数</strong></li>
-</ul>
-
-<pre><code class="language-python">def _not_divisible(n):
-	return lambda x: x % n &gt; 0
-</code></pre>
-
-<ul>
-<li>最后定义一个生成器，不断返回下一素数</li>
-</ul>
-
-<pre><code class="language-python">def primes():
-	yield 2
-	it = _odd_iter()
-	while 1:
-		n = next(it)
-		yield n
-		it = filter(_not_divisible(n), it)
-</code></pre>
-
-<ul>
-<li>调用得到1000内素数</li>
-</ul>
-
-<pre><code class="language-python">for n in primes():
-	if (n &lt; 1000):
-		print(n)
-	else:
-		break
-</code></pre>
-
-<p>|<code>filter()</code>的作用是从一个序列中筛出符合条件的元素。由于<code>filter()</code>使用了惰性计算，所以只有在取<code>filter()</code>结果的时候，才会真正筛选并每次返回下一个筛出的元素。</p>
-
-<h3 id="sorted-函数">sorted()函数</h3>
-
-<p>它可以接收一个<code>key</code>函数来实现自定义的排序，例如按绝对值大小排序：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)
-[5, 9, -12, -21, 36]
-</code></pre>
-
-<p>key指定的函数将作用于list的每一个元素上，并根据key函数返回的结果进行排序。
-然后<code>sorted()</code>函数按照keys进行排序，并按照对应关系返回list相应的元素</p>
-
-<h2 id="返回函数-闭包">返回函数&amp;闭包</h2>
-
-<h3 id="函数作为返回值">函数作为返回值</h3>
-
-<pre><code class="language-python">def lazy_f(x, y):
-	def f():
-		return x + y
-	return f1	#返回函数
-&gt;&gt;&gt; f1 = lazy_f(1, 2) 
-&gt;&gt;&gt; f2 = lazy_f(1, 2)
-&gt;&gt;&gt; f1 == f2
-False	#两次返回的函数并不同
-&gt;&gt;&gt; f1() #调用函数时，才真正计算求和结果
-3
-&gt;&gt;&gt; f2()
-3
-</code></pre>
-
-<h3 id="闭包">闭包</h3>
-
-<p>当<code>lazy_f</code>返回函数<code>f</code>时，相关参数和变量都保存在返回的函数中，这种称为“<strong>闭包（Closure）</strong>”的程序结构拥有极大的威力。</p>
-
-<p>需要注意的是，返回的函数并没有立刻执行，而是直到调用了<code>f()</code>才执行
-如</p>
-
-<pre><code class="language-python">def count():
-    fs = []
-    for i in range(1, 4):
-        def f():
-             return i*i
-        fs.append(f)
-    return fs
-f1, f2, f3 = count()
-</code></pre>
-
-<p>在实际调用中</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; f1()
-9
-&gt;&gt;&gt; f2()
-9
-&gt;&gt;&gt; f3()
-9
-</code></pre>
-
-<blockquote>
-<p><strong>注意：返回函数不要引用任何循环变量，或者后续会发生变化的变量</strong></p>
-</blockquote>
-
-<h2 id="匿名函数">匿名函数</h2>
-
-<p>如匿名函数<code>lambda x: x * x</code></p>
-
-<p>关键字<code>lambda</code>表示匿名函数，冒号前面的<code>x</code>表示函数参数。</p>
-
-<p>匿名函数只能有一个表达式，不写<code>return</code>，返回值就是该表达式的结果</p>
-
-<p>Python对匿名函数的支持有限，只有一些简单的情况下可以使用匿名函数。</p>
-
-<h2 id="装饰器">装饰器</h2>
-
-<p>函数对像有一个<code>__name__</code>属性，可以返回函数的名字</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; now.__name__
-'now'
-</code></pre>
-
-<p>现在，假设我们要增强<code>now()</code>函数的功能，比如，在函数调用前后自动打印日志，但又不希望修改<code>now()</code>函数的定义，这种在代码运行期间动态增加功能的方式，称之为“<strong>装饰器（Decorator）</strong>”。</p>
-
-<p>定义一个能打印日志的decorator</p>
-
-<pre><code class="language-python">def log(func):
-	def wrapper(*args, **kw):	#*args是非关键字参数，用于元组，**kw是关键字参数，用于字典
-		print('class %s():' % func.__name__)
-		return func(*args, **kw)
-	return wrapper
-</code></pre>
-
-<p>借助Python的@语法，把decorator置于函数的定义处：</p>
-
-<pre><code class="language-python">@log
-def now():
-	print('2019/6/21')
-</code></pre>
-
-<p>调用函数<code>now()</code>，不仅会运行<code>now()</code>本身，还会在其之前打印一行日志</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; now()
-call now():
-2019/6/21
-</code></pre>
-
-<p>相当于执行了语句：</p>
-
-<pre><code class="language-python">now = log(now)
-</code></pre>
-
-<p>如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数，写出来会更复杂。比如，要自定义log的文本：</p>
-
-<pre><code class="language-python">def log(text):
-	def decorator(func):
-		def wrapper(*args, **kw):
-			print('%s %s():' % (text, func.__name__))
-			return func(*args, **kw)
-		return wrapper
-	return decorator
-</code></pre>
-
-<p>使用</p>
-
-<pre><code class="language-python">@log('execute')
-def now():
-	print('2019/6/21')
-#相当于now = log('excute')(now)
-</code></pre>
-
-<p>以上两种decorator的定义都没有问题，但还差最后一步。因为我们讲了函数也是对象，它有<code>__name__</code>等属性，但你去看经过decorator装饰之后的函数，它们的<code>__name__</code>已经从原来的<code>'now'</code>变成了<code>'wrapper'</code>：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; now.__name__
-'wrapper'
-</code></pre>
-
-<p>因为返回的那个<code>wrapper()</code>函数名字就是<code>'wrapper'</code>，所以，需要把原始函数的<code>__name__</code>等属性复制到<code>wrapper()</code>函数中，否则，有些依赖函数签名的代码执行就会出错。</p>
-
-<p>不需要编写<code>wrapper.__name__ = func.__name__</code>这样的代码，Python内置的<code>functools.wraps</code>就是干这个事的，所以，一个完整的decorator的写法如下：</p>
-
-<pre><code class="language-python">import functools
-
-def log(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kw):
-        print('call %s():' % func.__name__)
-        return func(*args, **kw)
-    return wrapper
-</code></pre>
-
-<p>或者针对带参数的decorator：</p>
-
-<pre><code class="language-python">import functools
-def log(text):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kw):
-            print('%s %s():' % (text, func.__name__))
-            return func(*args, **kw)
-        return wrapper
-    return decorator
-</code></pre>
-
-<h2 id="偏函数">偏函数</h2>
-
-<p>可借助<code>functools.partial</code>创建偏函数：把一个函数的某些参数设为某个默认值，返回一个新的函数，调用这个新函数会更简单</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; int2 = functools.partial(int, base = 2)
-&gt;&gt;&gt; int2('10000')
-16
-</code></pre>
-
-<blockquote>
-<p>当函数的参数个数太多，需要简化时，使用<code>functools.partial</code>可以创建一个新的函数，这个新函数可以固定住原函数的部分参数，从而在调用时更简单。</p>
-</blockquote>
-</div>
-  <footer class="post-footer">
-    
-    <ul class="post-tags">
-      
-      <li><a href="https://konosuba.xyz/tags/python/">Python</a></li>
-      
-      <li><a href="https://konosuba.xyz/tags/%E5%AD%A6%E4%B9%A0/">学习</a></li>
-      
-    </ul>
-    
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
     })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
-</article>
-
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
 </script>
-</body>
+    </body>
 </html>
-

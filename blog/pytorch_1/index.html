@@ -1,258 +1,508 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Pytorch学习笔记_1_tensor张量 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="Tensors Tensors与Numpy中的ndarrays类似
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Tensors Tensors与Numpy中的ndarrays类似
 torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
-&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double) &gt;&gt;&gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &gt;&gt;&gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]])  后者可以创建shape相同，属性不同的对象
-&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double) &gt;&gt;&gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &gt;&gt;&gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]])  获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+&amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]]) 后者可以创建shape相同，属性不同的对象
+&amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]) 获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性'><title>Pytorch学习笔记_1_tensor张量</title>
+
+<link rel='canonical' href='https://example.com/blog/pytorch_1/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch学习笔记_1_tensor张量'>
+<meta property='og:description' content='Tensors Tensors与Numpy中的ndarrays类似
+torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
+&amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]]) 后者可以创建shape相同，属性不同的对象
+&amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]) 获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性'>
+<meta property='og:url' content='https://example.com/blog/pytorch_1/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-11T14:46:14&#43;08:00'/><meta property='article:modified_time' content='2020-02-11T14:46:14&#43;08:00'/>
+<meta name="twitter:title" content="Pytorch学习笔记_1_tensor张量">
+<meta name="twitter:description" content="Tensors Tensors与Numpy中的ndarrays类似
+torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
+&amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]]) 后者可以创建shape相同，属性不同的对象
+&amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]) 获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/pytorch/" style="background-color: #2a9d8f; color: #fff;">
+                PyTorch
+            </a>
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/pytorch_1/">Pytorch学习笔记_1_tensor张量</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Pytorch学习笔记_1_tensor张量</h1>
-    <div class="post-meta">2020.2.11</div>
-  </header>
-  <div class="post-content">
 
-<h1 id="tensors">Tensors</h1>
+        <time class="article-time--published">Feb 11, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <h1 id="tensors">Tensors</h1>
 <p>Tensors与Numpy中的ndarrays类似</p>
-
-<h2 id="torch-new-与-torch-like">torch.new_* 与 torch.*_like</h2>
-
+<h2 id="torchnew_-与-torch_like">torch.new_* 与 torch.*_like</h2>
 <p>前者创建的对象会<strong>保持原有的属性</strong>（如dtype），但<strong>shape不同</strong></p>
-
-<pre><code class="language-python">&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double)
-&gt;&gt;&gt; x.new_ones(2, 3)
-tensor([[1., 1., 1.],
-        [1., 1., 1.]], dtype=torch.float64)
-&gt;&gt;&gt; x.new_ones(2, 3, dtype=torch.long)
-tensor([[1, 1, 1],
-        [1, 1, 1]])
-</code></pre>
-
-<p>后者可以创建<strong>shape相同，属性不同</strong>的对象</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double)
-&gt;&gt;&gt; torch.ones_like(x)
-tensor([[1., 1., 1.],
-        [1., 1., 1.],
-        [1., 1., 1.],
-        [1., 1., 1.],
-        [1., 1., 1.]], dtype=torch.float64)
-&gt;&gt;&gt; torch.ones_like(x, dtype=torch.long)
-tensor([[1, 1, 1],
-        [1, 1, 1],
-        [1, 1, 1],
-        [1, 1, 1],
-        [1, 1, 1]])
-</code></pre>
-
-<h2 id="获得size">获得size</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</code></pre></div><p>后者可以创建<strong>shape相同，属性不同</strong>的对象</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</code></pre></div><h2 id="获得size">获得size</h2>
 <p>使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; x = torch.zeros(5, 3, dtype=torch.double)
-&gt;&gt;&gt; x.size()
-torch.Size([5, 3])
-</code></pre>
-
-<p><code>torch.Size</code>实际上是一个tuple元组，因此它支持所有元组操作。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</code></pre></div><p><code>torch.Size</code>实际上是一个tuple元组，因此它支持所有元组操作。</p>
 <h2 id="操作">操作</h2>
-
 <h3 id="加法">加法</h3>
-
 <p>有多种操作方式：</p>
-
 <ol>
 <li><code>x + y</code></li>
 <li><code>torch.add(x, y)</code></li>
 <li>提供输出tensor作为参数</li>
 </ol>
-
-<pre><code class="language-python">result = torch.empty(5, 3)
-torch.add(x, y, out=result)
-</code></pre>
-
-<ol>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div><ol start="4">
 <li><code>y.add_(x)</code> 将x加到y中</li>
 </ol>
-
 <blockquote>
 <p>任何 以 <code>_</code> 结尾的操作都会用结果替换原变量. 例如: <code>x.copy_(y)</code>, <code>x.t_()</code>, 都会改变 <code>x</code>.</p>
 </blockquote>
-
 <h3 id="索引">索引</h3>
-
 <p>可以使用与NumPy索引方式相同的操作来进行对张量的操作，如<code>x[:, 1]</code>得到x的第1列</p>
-
-<h3 id="torch-view"><code>torch.view</code></h3>
-
+<h3 id="torchview"><code>torch.view</code></h3>
 <p>可以改变张量的维度和大小，与Numpy的reshape类似</p>
-
-<pre><code class="language-python">x = torch.randn(4, 4)
-y = x.view(16)
-z = x.view(-1, 8)  #  size -1 从其他维度推断
-print(x.size(), y.size(), z.size())
-# Output:
-# torch.Size([4, 4]) torch.Size([16]) torch.Size([2, 8])
-</code></pre>
-
-<h3 id="item"><code>.item()</code></h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1">#  size -1 从其他维度推断</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">z</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="c1"># Output:</span>
+<span class="c1"># torch.Size([4, 4]) torch.Size([16]) torch.Size([2, 8])</span>
+</code></pre></div><h3 id="item"><code>.item()</code></h3>
 <p>如果你有只有一个元素的张量，使用<code>.item()</code>来得到Python数据类型的数值</p>
-
-<pre><code class="language-python">x = torch.randn(1)
-print(x)
-print(x.item())
-# Output:
-# tensor([-0.2368])
-# -0.23680149018764496
-</code></pre>
-
-<h2 id="numpy转换">NumPy转换</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="c1"># Output:</span>
+<span class="c1"># tensor([-0.2368])</span>
+<span class="c1"># -0.23680149018764496</span>
+</code></pre></div><h2 id="numpy转换">NumPy转换</h2>
 <p>Torch Tensor与NumPy数组共享底层内存地址，修改一个会导致另一个的变化。</p>
-
-<h3 id="tensor-numpy">Tensor -&gt; NumPy</h3>
-
-<pre><code class="language-python">a = torch.ones(5)
-b = a.numpy()
-print(b) # [1. 1. 1. 1. 1.]
-a.add_(1)
-print(a) # tensor([2., 2., 2., 2., 2.])
-print(b) # [2., 2., 2., 2., 2.]
-</code></pre>
-
-<h3 id="numpy-tensor">NumPy -&gt; Tensor</h3>
-
-<pre><code class="language-python">a = np.ones(5)
-b = torch.from_numpy(a)
-np.add(a, 1, out=a)
-print(a) # [2. 2. 2. 2. 2.]
-print(b) # tensor([2., 2., 2., 2., 2.], dtype=torch.float64)
-</code></pre>
-
-<p>所有的 Tensor 类型默认都是基于CPU， CharTensor 类型不支持到 NumPy 的转换.</p>
-
+<h3 id="tensor---numpy">Tensor -&gt; NumPy</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># [1. 1. 1. 1. 1.]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># tensor([2., 2., 2., 2., 2.])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># [2., 2., 2., 2., 2.]</span>
+</code></pre></div><h3 id="numpy---tensor">NumPy -&gt; Tensor</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># [2. 2. 2. 2. 2.]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># tensor([2., 2., 2., 2., 2.], dtype=torch.float64)</span>
+</code></pre></div><p>所有的 Tensor 类型默认都是基于CPU， CharTensor 类型不支持到 NumPy 的转换.</p>
 <h2 id="cuda-张量">CUDA 张量</h2>
-
 <p>使用<code>.to</code> 方法 可以将Tensor移动到任何设备中</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># is_available 函数判断是否有cuda可以使用</span>
+<span class="c1"># ``torch.device``将张量移动到指定的设备中</span>
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&#34;cuda&#34;</span><span class="p">)</span>          <span class="c1"># a CUDA 设备对象</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># 直接从GPU创建张量</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>                       <span class="c1"># 或者直接使用``.to(&#34;cuda&#34;)``将张量移动到cuda中</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&#34;cpu&#34;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">))</span>       <span class="c1"># ``.to`` 也会对变量的类型做更改</span>
+</code></pre></div>
+</section>
 
-<pre><code class="language-python"># is_available 函数判断是否有cuda可以使用
-# ``torch.device``将张量移动到指定的设备中
-if torch.cuda.is_available():
-    device = torch.device(&quot;cuda&quot;)          # a CUDA 设备对象
-    y = torch.ones_like(x, device=device)  # 直接从GPU创建张量
-    x = x.to(device)                       # 或者直接使用``.to(&quot;cuda&quot;)``将张量移动到cuda中
-    z = x + y
-    print(z)
-    print(z.to(&quot;cpu&quot;, torch.double))       # ``.to`` 也会对变量的类型做更改
-</code></pre>
-</div>
-  <footer class="post-footer">
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

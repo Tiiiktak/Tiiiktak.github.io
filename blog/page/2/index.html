@@ -1,358 +1,620 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Posts - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="Hey You">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。'><title>Blogs</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
+<link rel='canonical' href='https://example.com/blog/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Blogs'>
+<meta property='og:description' content='每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。'>
+<meta property='og:url' content='https://example.com/blog/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2020-12-28T15:52:48&#43;08:00 '/>
+<meta name="twitter:title" content="Blogs">
+<meta name="twitter:description" content="每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。"><link rel="alternate" type="application/rss&#43;xml" href="https://example.com/blog/index.xml">
+    </head>
+    <body class="">
     <script>
-      var _hmt = _hmt || [];
-      (function () {
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <h3 class="section-title">
+        
+            Section
+        
+    </h3>
+
+    <div class="section-card">
+        <div class="section-details">
+            <h3 class="section-count">81 pages</h3>
+            <h1 class="section-term">Blogs</h1>
+            
+        </div>
+    </div>
+
+    
+    
+    
+    
+    
+    <section class="article-list--compact">
+        
+            <article>
+    <a href="/blog/pytorch_conv2d/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch_nn.Conv2d</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-12T22:22:18&#43;08:00'>Feb 12, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/python_super/">
+        <div class="article-details">
+            <h2 class="article-title">Python面向对象_super()函数</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-12T17:12:47&#43;08:00'>Feb 12, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_3/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch学习笔记_3_构建一个神经网络</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-12T11:13:23&#43;08:00'>Feb 12, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_2/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch学习笔记_2_Autograd自动求导机制</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-11T17:25:19&#43;08:00'>Feb 11, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_1/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch学习笔记_1_tensor张量</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-11T14:46:14&#43;08:00'>Feb 11, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/">
+        <div class="article-details">
+            <h2 class="article-title">神经网络模型的学习曲线</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-07T01:04:44&#43;08:00'>Feb 07, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/">
+        <div class="article-details">
+            <h2 class="article-title">【应用机器学习】正则化与偏差、方差</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-07T00:56:29&#43;08:00'>Feb 07, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/">
+        <div class="article-details">
+            <h2 class="article-title">【应用机器学习】诊断偏差与方差</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-07T00:51:21&#43;08:00'>Feb 07, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/">
+        <div class="article-details">
+            <h2 class="article-title">【应用机器学习】模型选择和训练、验证、测试集</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-07T00:41:34&#43;08:00'>Feb 07, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/">
+        <div class="article-details">
+            <h2 class="article-title">【应用机器学习】评估一个假设</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-07T00:34:04&#43;08:00'>Feb 07, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/">
+        <div class="article-details">
+            <h2 class="article-title">训练神经网络的基本步骤</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-07T00:09:57&#43;08:00'>Feb 07, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E6%AD%A3%E5%88%99%E5%8C%96/">
+        <div class="article-details">
+            <h2 class="article-title">正则化 Regularization</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-13T17:29:56&#43;08:00'>Jan 13, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/">
+        <div class="article-details">
+            <h2 class="article-title">逻辑回归Logistic Regression</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-13T16:07:34&#43;08:00'>Jan 13, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/java%E5%85%A5%E9%97%A8/">
+        <div class="article-details">
+            <h2 class="article-title">Java入门</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-12T21:00:17&#43;08:00'>Jan 12, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/matlab%E5%87%BD%E6%95%B0/">
+        <div class="article-details">
+            <h2 class="article-title">MATLAB学习_函数</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-11T15:35:44&#43;08:00'>Jan 11, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/matlab%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/">
+        <div class="article-details">
+            <h2 class="article-title">MATLAB学习_控制语句:for,while,if</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-11T15:02:35&#43;08:00'>Jan 11, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/matlab%E7%BB%98%E5%9B%BE/">
+        <div class="article-details">
+            <h2 class="article-title">MATLAB学习_数据绘图</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-11T10:28:08&#43;08:00'>Jan 11, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/matlab%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+        <div class="article-details">
+            <h2 class="article-title">MATLAB学习_字符与字符串</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-11T10:13:09&#43;08:00'>Jan 11, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/matlab%E6%93%8D%E4%BD%9C/">
+        <div class="article-details">
+            <h2 class="article-title">MATLAB学习_操作数据</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-10T17:55:20&#43;08:00'>Jan 10, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/matlab%E7%9F%A9%E9%98%B5/">
+        <div class="article-details">
+            <h2 class="article-title">MATLAB学习_矩阵与向量操作</h2>
+            <footer class="article-time">
+                <time datetime='2020-01-10T15:35:53&#43;08:00'>Jan 10, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+    </section>
+    <nav class='pagination'>
+        
+        
+
+        
+            
+                    <a class='page-link' href='/blog/'>1</a>
+                
+            
+            
+                <span class='page-link current'>2</span>
+                
+            
+            
+                    <a class='page-link' href='/blog/page/3/'>3</a>
+                
+            
+            
+                    
+                        
+                        <span class='page-link dots'>&hellip;</span>
+                    
+                
+            
+            
+                    <a class='page-link' href='/blog/page/5/'>5</a>
+                
+            
+    </nav>
+
+<footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+            </main>
+    
+    
+    <aside class="sidebar right-sidebar sticky">
+        
+            <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+        
+            <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">归档</h2>
+
+        
+        
+        
+        
+        
+        <div class="widget-archive--list">
+            <div class="archives-year">
+                    <a href="/archives/#2020">
+                        
+                            <span class="year">2020</span>
+                            <span class="count">45</span>
+                        
+                    </a> 
+                </div>
+            <div class="archives-year">
+                    <a href="/archives/#2019">
+                        
+                            <span class="year">2019</span>
+                            <span class="count">36</span>
+                        
+                    </a> 
+                </div>
+            
+        </div>
+    </section>
+        
+            <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">标签云</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/tags/%E4%BD%9C%E4%B8%9A/" class="font_size_6">
+                作业
+            </a>
+        
+            <a href="/tags/socket/" class="font_size_4">
+                socket
+            </a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="font_size_3">
+                算法
+            </a>
+        
+            <a href="/tags/mpich/" class="font_size_2">
+                mpich
+            </a>
+        
+            <a href="/tags/java/" class="font_size_1">
+                java
+            </a>
+        
+            <a href="/tags/linux/" class="font_size_1">
+                linux
+            </a>
+        
+            <a href="/tags/python/" class="font_size_1">
+                Python
+            </a>
+        
+            <a href="/tags/shell/" class="font_size_1">
+                shell
+            </a>
+        
+            <a href="/tags/%E8%AE%BE%E8%AE%A1/" class="font_size_1">
+                设计
+            </a>
+        
+    </div>
+</section>
+        
+    </aside>
+
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-  </head>
-  <body class="list">
-    <header class="header">
-      <div class="wrap">
-        
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
-        
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
-    </header>
-    
-    <nav class="nav">
-      <ul class="menu">
-        
-        <li>
-          <a href="/about/">About</a>
-        </li>
-        
-      </ul>
-    </nav>
-    
-    <main class="main">
-
-
-
-<header class="page-header">
-  <h1>
-  Posts
-  </h1>
-</header>
-
-
-
-
-
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>AlexNet分类Fashion-MNIST(Pytorch实现)</h2>
-  </header>
-  <section class="entry-content">
-   <p>这个notebook也同时发表在Kaggle上
-Fashion MNIST数据集 |Label | Class | |-|-| |0| T-shirt/top| |1| Trouser| |2| Pullover| |3| Dress| |4| Coat| |5| Sandal| |6| Shirt| |7| Sneaker| |8| Bag| |9| Ankle boot|
-准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.pyplot as plt from torchvision import transforms, datasets from torch.utils.data import Dataset, DataLoader EPOCHS = 20 BATCH_SIZE = 512 DEVICE = (&#34;cuda&#34; if torch....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.3.8</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/alexnet%E5%88%86%E7%B1%BBfashion-mnistpytorch%E5%AE%9E%E7%8E%B0/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>循环神经网络RNN以及几种经典模型</h2>
-  </header>
-  <section class="entry-content">
-   <p>RNN简介 现实世界中，很多元素都是相互连接的，比如室外的温度是随着气候的变化而周期性的变化的、我们的语言也需要通过上下文的关系来确认所表达的含义。但是机器要做到这一步就相当得难了。因此，就有了现在的循环神经网络，他的本质是：*拥有记忆的能力，并且会根据这些记忆的内容来进行推断*。因此，他的输出就依赖于当前的输入和记忆。
-网络结构及原理 循环神经网络的基本结构特别简单，就是将网络的输出保存在一个记忆单元中，这个记忆单元和下一次的输入一起进入神经网络中。
-一个最简单的循环神经网络在输入时的结构示意图：
-RNN 可以被看做是同一神经网络的多次赋值，每个神经网络模块会把消息传递给下一个，我们将这个图的结构展开:
-根据循环神经网络的结构也可以看出它在处理序列类型的数据上具有天然的优势。因为网络本身就是 一个序列结构，这也是所有循环神经网络最本质的结构。
-我们可以用下面的公式来表示循环神经网络的计算方法：
-总结图：
-Pytorch中 pytorch 中使用 nn.RNN 类来搭建基于序列的循环神经网络，它的构造函数有以下几个参数：
- input_size：输入数据X的特征值的数目。 hidden_size：隐藏层的神经元数量，也就是隐藏层的特征数量。 num_layers：循环神经网络的层数，默认值是 1。 bias：默认为 True，如果为 false 则表示神经元不使用 bias 偏移参数。 batch_first：如果设置为 True，则输入数据的维度中第一个维度就是 batch 值，默认为 False。默认情况下第一个维度是序列的长度， 第二个维度才是batch，第三个维度是特征数目。 dropout：如果不为空，则表示最后跟一个 dropout 层抛弃部分数据，抛弃数据的比例由该参数指定  RNN 中最主要的参数是 input_size 和 hidden_size，这两个参数务必要搞清楚。其余的参数通常不用设置，采用默认值就可以了。
-rnn = torch.nn.RNN(20,50,2) input = torch.randn(100 , 32 , 20) h_0 =torch.randn(2 , 32 , 50) output,hn=rnn(input ,h_0) print(output.size(),hn.size()) &#39;&#39;&#39; torch.Size([100, 32, 50]) torch.Size([2, 32, 50]) &#39;&#39;&#39;   一文搞懂RNN（循环神经网络）基础篇...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.19</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Crnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>卷积神经网络CNN以及几种经典模型</h2>
-  </header>
-  <section class="entry-content">
-   <p>简介  CNN -&gt; Convolutional Neural Network
- 卷积神经网络是由一个或多个卷积层和顶端的全连通层（也可以使用1x1的卷积层作为最终的输出）组成的一种前馈神经网络
-基本概念 局部感受野(Local Receptive Fields) 一般的神经网络往往会把图像的每一个像素点连接到全连接的每一个神经元中，而卷积神经网络则是把每一个隐藏节点只连接到图像的某个局部区域，从而减少参数训练的数量。
-例如，一张1024×720的图像，使用9×9的感受野，则只需要81个权值参数。对于一般的视觉也是如此，当观看一张图像时，更多的时候关注的是局部。
-共享权值(Shared Weights) 在卷积神经网络的卷积层中，神经元对应的权值是相同的，由于权值相同，因此可以减少训练的参数量。共享的权值和偏置也被称作*卷积核*或滤波器
-池化(Pooling) 由于待处理的图像往往都较大，而实际处理时没必要直接对原图进行分析，最主要的是要能够有效获得图像的特征。因此可以采用类似图像压缩的思想，对图像进行卷积之后，通过一个下采样过程来调整图像的大小
- 什么是下采样？ 上采样、下采样到底是个啥
- 结构组成 我们通过卷积的计算操作来*提取图像局部的特征*，每一层都会计算出一些局部特征，这些局部特征再汇总到下一层，这样*一层一层的传递*下去，特征由小变大，最后在通过这些局部的特征对图片进行处理，这样大大提高了计算效率，也提高了准确度。
-卷积层 提取特征
-卷积计算  动图来源于：stanford.edu, Feature extraction using convolution
-NOTE: 深度学习中的卷积与信号处理中的卷积略有不同，深度学习中的卷积略去了翻转的步骤（因为起初卷积核是随机生成的，没有方向）
-  输入矩阵大小 n 卷积核大小 f 边界填充 (p)adding，指在原矩阵周围填充的层数 步长 (s)tride  计算公式
-卷积结果大小：(n - f &#43; 2p) / s &#43; 1向下取整
-多个卷积核 在每一个卷积层我们会设置多个卷积核，代表多个不同的特征，这些特征就是需要传递到下一层的输出，训练的过程就是训练不同的核
-激活函数 引入非线性关系
-由于卷积的操作是线性的，所以需要使用进行激活，通常使用Relu
-池化层 减少参数数量
-通过减少卷积层之间的连接，降低运算复杂程度。
-池化层一般放在卷积层后面，所以池化层池化的是卷积层的输出
-一般使用的有最大池化max-pooling和平均池化mean-pooling
-操作与卷积类似，即过滤器在矩阵上滑动...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.18</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Ccnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch中的激活函数</h2>
-  </header>
-  <section class="entry-content">
-   <p>介绍神经网络的时候已经说到，神经元会对化学物质的刺激进行，当达到一定程度的时候，神经元才会兴奋，并向其他神经元发送信息。神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件。
-为什么激活函数都是非线性的 因为如果使用线性的激活函数，那么input跟output之间的关系始终为线性的，这样完全可以不使用网络结构，直接使用线性组合即可。
-所以需要激活函数来引入非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中，增加了神经网络模型泛化的特性。
-一般只有在输出层有极小的可能性使用线性激活函数，在隐含层都使用非线性激活函数.
-常见的激活函数 # 初始化一些信息 import torch import torch.nn.functional as F import matplotlib.pyplot as plt import numpy as np x= torch.linspace(-10,10,60)  Sigmoid 函数 g(z) = a = 1 / (1 &#43; e^(-z)) g&#39;(z) = a&#39; = a (1 - a)  在sigmod函数中我们可以看到，其输出是在(0,1)这个开区间，它能够把输入的连续实值变换为0和1之间的输出，如果是非常大的负数，那么输出就是0；如果是非常大的正数输出就是1，起到了抑制的作用。
-ax = plt.gca() ax.spines[&#39;right&#39;].set_color(&#39;none&#39;) ax.spines[&#39;top&#39;].set_color(&#39;none&#39;) ax.xaxis.set_ticks_position(&#39;bottom&#39;) ax.spines[&#39;bottom&#39;].set_position((&#39;data&#39;, 0)) ax.yaxis.set_ticks_position(&#39;left&#39;) ax.spines[&#39;left&#39;].set_position((&#39;data&#39;, 0)) plt.ylim((0, 1)) sigmod=torch.sigmoid(x) plt.plot(x.numpy(),sigmod.numpy())  但是sigmod由于需要进行指数运算（这个对于计算机来说是比较慢，相比relu），再加上函数输出*不是以0为中心*的（这样会使权重更新效率降低），当输入稍微远离了坐标原点，函数的梯度就变得很小了（几乎为零）。
-在神经网络反向传播的过程中不利于权重的优化，这个问题叫做梯度饱和，也可以叫梯度弥散。这些不足，所以现在使用到sigmod基本很少了，基本上只有在做二元分类（0，1）时的输出层才会使用。
-Tanh 函数 tanh是双曲正切函数，输出区间是在(-1,1)之间，而且整个函数是*以0为中心*的
-ax = plt....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.15</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch中的梯度下降及优化</h2>
-  </header>
-  <section class="entry-content">
-   <p>在PyTorch中使用Mini-batch这种方法进行训练
-Mini-batch的梯度下降法 对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中
-所以我们会把大数据集分成小数据集，一部分一部分的训练，这个训练子集即称为Mini-batch。
-对于普通的梯度下降法，一个epoch只能进行一次梯度下降；而对于Mini-batch梯度下降法，一个epoch可以进行Mini-batch的个数次梯度下降。
-普通的batch梯度下降法和Mini-batch梯度下降法代价函数的变化趋势，如下图所示：
- 如果训练样本的大小比较小时，能够一次性的读取到内存中，那我们就不需要使用Mini-batch 如果训练样本的大小比较大时，一次读入不到内存或者现存中，那我们必须要使用 Mini-batch来分批的计算 Mini-batch size的计算规则如下，在内存允许的最大情况下使用2的N次方个size  torch.optim torch.optim是一个实现了各种优化算法的库。大部分常用优化算法都有实现
-torch.optim.SGD  Stochastic Gradient Descent
- 随机梯度下降算法，带有动量(momentum)的算法作为一个可选参数可以进行设置
- 可以把动量看作惯性：当你跑起来，由于惯性的存在你跑起来会比刚起步加速的时候更轻松，当你跑过头，想调头往回跑，惯性会让你拖着你。 在普通的梯度下降法的方向相同，则会加速。反之，则会减速。 加了动量的优势： 1. 加速收敛 2. 提高精度（减少收敛过程中的振荡）
- SGD(params, lr=&lt;required parameter&gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False)  torch.optim.RMSprop  Root Mean Square Prop
- 均方根传递。也是一种可以*加快梯度下降*的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快
-相较于gradient descent with momentum，RMSprop的思想是: * 对于梯度震动较大的项，在下降时，减小其下降速度； * 对于震动幅度小的项，在下降时，加速其下降速度。
-torch.optim.Adam Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法
-它能基于训练数据迭代地更新神经网络权重
-详细介绍
-e.d.
-# 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法 optimizer = torch....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.15</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%8F%8A%E4%BC%98%E5%8C%96/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch中的损失函数Loss Function</h2>
-  </header>
-  <section class="entry-content">
-   <p>由于Pytorch中使用mini-batch进行计算，因此其损失函数的计算结果会对mini-batch取平均
-常见的Pytorch中内置的损失函数有：
-nn.L1Loss 计算input与output的差的绝对值，input与output应该是同一维度，得到的loss也是相应维度
-nn.NLLLoss  Negative Log Likelihood
- class torch.nn.NLLLoss(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction=&#39;mean&#39;)  常用于多分类任务。在NLLLoss输入input之前，我们需要对input进行log_softmax处理(即将input转换成概率分布的形式，并且取对数，底数为e)
-计算公式
-loss(input, class) = -input[class]  NLLLoss中如果传递了weight参数，会对损失进行加权，公式就变成了
-loss(input, class) = -weight[class] * input[class]  nn.MSELoss  Mean Square Error
- 计算input与ouput之间的均方差
-nn.CrossEntropyLoss 多分类用的交叉熵损失合函数，将LogSoftMax和nn.NLLLoss集成到一个类中，nn.CrossEntropyLoss可以自动对input进行logSoftMax操作，可以理解为CrossEntropyLoss()=log_softmax() &#43; NLLLoss()
-传入weight参数后
-一般多分类的情况会使用这个损失函数
-nn.BCELoss  Binary Cross Entropy
- 计算input与output之间的二进制交叉熵
-添加weight后
-用的时候需要在该层前面加上 Sigmoid 函数...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.15</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0loss-function/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch_数据集的创建和加载</h2>
-  </header>
-  <section class="entry-content">
-   <p>PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。
-可以通过dataset定义数据集，并使用Datalorder载入和遍历数据集
-Dataset Dataset是一个抽象类，为了能够方便的读取，需要将要使用的数据包装为Dataset类。
-自定义的Dataset需要继承它并且实现两个成员方法：
- __getitem__() 该方法定义用索引(0 到 len(self))获取一条数据或一个样本 __len__() 该方法返回数据集的总长度  下面使用kaggle上的一个竞赛bluebook for bulldozers自定义一个数据集，用里面的数据字典来做说明（因为条数少）
-from torch.utils.data import Dataset import pandas as pd #定义一个数据集 class BulldozerDataset(Dataset): # 实现初始化方法，在初始化的时候将数据读载入 def __init__(self, csv_file): self.df=pd.read_csv(csv_file) # 返回df的长度 def __len__(self): return len(self.df) # 根据 idx 返回一行数据 def __getitem__(self, idx): return self.df.iloc[idx].SalePrice  至此，我们的数据集已经定义完成了，我们可以实例话一个对象访问他
-ds_demo = BulldozerDataset(&#39;median_benchhmark.csv&#39;) print(len(ds_demo)) # 11573 print(ds_demo[0]) # 24000.0  Dataloader DataLoader为我们提供了对Dataset的读取操作，常用参数有：batch_size(每个batch的大小)、 shuffle(是否进行shuffle操作)、 num_workers(加载数据的时候使用几个子进程)。下面做一个简单的操作
-dl = torch.utils.data.DataLoader(ds_demo, batch_size=10, shuffle=True, num_workers=0)  DataLoader返回的是一个可迭代对象，我们可以使用迭代器分次获取数据...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.15</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E8%BD%BD/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch_torchvision</h2>
-  </header>
-  <section class="entry-content">
-   <p>torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。 - AlexNet - VGG - ResNet - SqueezeNet - DenseNet
-torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
-torchvision.transforms 提供了一般的图像转换操作类，用作数据处理和数据增强
-其中都是常见的图像转换，可以通过Compose将他们链接在一起
-from torchvision import transforms as transforms transform = transforms.Compose([ transforms.RandomCrop(32, padding=4), #先四周填充0，在把图像随机裁剪成32*32 transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转 transforms.RandomRotation((-45,45)), #随机旋转 transforms.ToTensor(), transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差 ])  此外还有torchvision.transforms.functional模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
-torchvision.transforms.Normalize(mean, std, inplace=False) 用均值和标准差对张量图像进行归一化。
-给定n个通道的均值: (M1,...,Mn) 和标准差:(S1,..,Sn), 这个转换将归一化输入torch.*Tensor的每个通道。例如: input[channel] = (input[channel] - mean[channel]) / std[channel]
- Note: 这种变换的作用不适当，即它不会改变输入张量
- torchvision.utils torchvision....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.14</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_torchvision/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch学习笔记_4_训练一个分类器</h2>
-  </header>
-  <section class="entry-content">
-   <p>关于数据 一般来说，对于图像、文本、音频或视频数据，可以使用标准的Python包来将这些数据加载为numpy array，之后可以将这些array转换为torch.*Tensor
- 对于图像，Pillow、OpenCV包 音频，scipy、librosa包 文本，可以使用原始Python和Cython加载，或NLKT和SpaCy  特别的，对于视觉任务，有一个包torchvision，其中包含了处理类似Imagnet, CIFAR10, MNIST等常见数据集的方法，以及图像转换器，如torchvision.datasets和torch.utils.data.DataLoader
-torchvision包不仅提供了巨大的便利，也避免了代码的重复。
-在这里使用CIFAR10数据集，它有如下10个类别 ：‘airplane’, ‘automobile’, ‘bird’, ‘cat’, ‘deer’, ‘dog’, ‘frog’, ‘horse’, ‘ship’, ‘truck’。
-CIFAR-10的图像都是 3x32x32 大小的，即，3颜色通道，32x32像素。
-训练一个图像分类器  使用torchvision加载和归一化CIFAR10训练集和测试集 定义一个卷积神经网络 定义损失函数 用训练集训练网络 用测试集测试网络  1.读取和归一化 CIFAR10 使用torchvision可以非常容易得加载CIFAR10
-import torch import torchvision import torchvision.transforms as transforms  torchvision的输出是 [0,1]的PILImage图像，把它转化为归一化范围为[-1, 1]的张量
-transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]) # 下载数据并加载到loader中 trainset = torchvision.datasets.CIFAR10(root=&#39;./data&#39;, train=True, download=True, transform=transform) trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2) testset = torchvision....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.13</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_4_%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E5%88%86%E7%B1%BB%E5%99%A8/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Pytorch_linear</h2>
-  </header>
-  <section class="entry-content">
-   <p> Linear 对输入数据应用线性变换：y = xA^T &#43; b
-torch.nn.Linear(in_features, out_features, bias=True)  参数  in_features 每个输入样本的大小 out_features 每个输出样本的大小 bias 若为False，layer不会学习附加偏差b  shape  输入: (N, ∗, H_in)，其中 ∗ 代表任意数量的附加维度，H_in = in_features
- 输出: (N, *, H_out)，除了最后一个维度，其余都与输入相同，H_out = out_features
-  ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.2.12</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/pytorch_linear/"></a>
-</article>
-
-
-
-
-<footer class="page-footer">
-  <nav class="pagination">
-    
-    <a class="prev" href="/blog/">← Prev Page</a>
-    
-    
-    <a class="next" href="/blog/page/3/">Next Page →</a>
-    
-  </nav>
-</footer>
-
-
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+    })();
 </script>
-</body>
+    </body>
 </html>
-

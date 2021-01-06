@@ -1,169 +1,281 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Python中dict字典 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度
-创建dict &gt;&gt;&gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85} &gt;&gt;&gt; d[&#39;Michael&#39;] 95  内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='dict全称dictionary，在其他语言中也称为map，使用**键-值（key-value）**存储，具有极快的查找速度
+创建dict &amp;gt;&amp;gt;&amp;gt; d = {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Bob&amp;#39;: 75, &amp;#39;Tracy&amp;#39;: 85} &amp;gt;&amp;gt;&amp;gt; d[&amp;#39;Michael&amp;#39;] 95 内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
 加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
-&gt;&gt;&gt; d[&#39;Tony&#39;] = 99 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  查询key是否存在 使用in &gt;&gt;&gt; &#39;Thomas&#39; in d False &gt;&gt;&gt; &#39;Bob&#39; in d True  使用get() 如果key不存在，返回None，或者自己指定的value
-&gt;&gt;&gt; d.get(&#39;Thomas&#39;) #返回None时Python交互环境不显示 &gt;&gt;&gt; d.get(&#39;Thomas&#39;, -1) -1  删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
-&gt;&gt;&gt; d.pop(&#39;Bob&#39;) 75 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+&amp;gt;&amp;gt;&amp;gt; d[&amp;#39;Tony&amp;#39;] = 99 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Bob&amp;#39;: 75, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 查询key是否存在 使用in &amp;gt;&amp;gt;&amp;gt; &amp;#39;Thomas&amp;#39; in d False &amp;gt;&amp;gt;&amp;gt; &amp;#39;Bob&amp;#39; in d True 使用get() 如果key不存在，返回None，或者自己指定的value
+&amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;) #返回None时Python交互环境不显示 &amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;, -1) -1 删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
+&amp;gt;&amp;gt;&amp;gt; d.pop(&amp;#39;Bob&amp;#39;) 75 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表'><title>Python中dict字典</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
+<link rel='canonical' href='https://example.com/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/'>
 
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python中dict字典'>
+<meta property='og:description' content='dict全称dictionary，在其他语言中也称为map，使用**键-值（key-value）**存储，具有极快的查找速度
+创建dict &amp;gt;&amp;gt;&amp;gt; d = {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Bob&amp;#39;: 75, &amp;#39;Tracy&amp;#39;: 85} &amp;gt;&amp;gt;&amp;gt; d[&amp;#39;Michael&amp;#39;] 95 内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
+加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
+&amp;gt;&amp;gt;&amp;gt; d[&amp;#39;Tony&amp;#39;] = 99 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Bob&amp;#39;: 75, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 查询key是否存在 使用in &amp;gt;&amp;gt;&amp;gt; &amp;#39;Thomas&amp;#39; in d False &amp;gt;&amp;gt;&amp;gt; &amp;#39;Bob&amp;#39; in d True 使用get() 如果key不存在，返回None，或者自己指定的value
+&amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;) #返回None时Python交互环境不显示 &amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;, -1) -1 删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
+&amp;gt;&amp;gt;&amp;gt; d.pop(&amp;#39;Bob&amp;#39;) 75 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表'>
+<meta property='og:url' content='https://example.com/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-06-20T15:15:34&#43;08:00'/><meta property='article:modified_time' content='2019-06-20T15:15:34&#43;08:00'/>
+<meta name="twitter:title" content="Python中dict字典">
+<meta name="twitter:description" content="dict全称dictionary，在其他语言中也称为map，使用**键-值（key-value）**存储，具有极快的查找速度
+创建dict &amp;gt;&amp;gt;&amp;gt; d = {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Bob&amp;#39;: 75, &amp;#39;Tracy&amp;#39;: 85} &amp;gt;&amp;gt;&amp;gt; d[&amp;#39;Michael&amp;#39;] 95 内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
+加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
+&amp;gt;&amp;gt;&amp;gt; d[&amp;#39;Tony&amp;#39;] = 99 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Bob&amp;#39;: 75, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 查询key是否存在 使用in &amp;gt;&amp;gt;&amp;gt; &amp;#39;Thomas&amp;#39; in d False &amp;gt;&amp;gt;&amp;gt; &amp;#39;Bob&amp;#39; in d True 使用get() 如果key不存在，返回None，或者自己指定的value
+&amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;) #返回None时Python交互环境不显示 &amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;, -1) -1 删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
+&amp;gt;&amp;gt;&amp;gt; d.pop(&amp;#39;Bob&amp;#39;) 75 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: #2a9d8f; color: #fff;">
+                Python
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/">Python中dict字典</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Python中dict字典</h1>
-    <div class="post-meta">2019.6.20</div>
-  </header>
-  <div class="post-content">
 
-<p>dict全称dictionary，在其他语言中也称为map，使用<strong>键-值（key-value）</strong>存储，具有极快的查找速度</p>
+        <time class="article-time--published">Jun 20, 2019</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p>dict全称dictionary，在其他语言中也称为map，使用**键-值（key-value）**存储，具有极快的查找速度</p>
 <h2 id="创建dict">创建dict</h2>
-
-<pre><code class="language-python">&gt;&gt;&gt; d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
-&gt;&gt;&gt; d['Michael']
-95
-</code></pre>
-
-<h2 id="内部实现方法">内部实现方法</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Michael&#39;</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span> <span class="s1">&#39;Tracy&#39;</span><span class="p">:</span> <span class="mi">85</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;Michael&#39;</span><span class="p">]</span>
+<span class="mi">95</span>
+</code></pre></div><h2 id="内部实现方法">内部实现方法</h2>
 <p>先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。</p>
-
 <h2 id="加入数据">加入数据</h2>
-
 <p>把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; d['Tony'] = 99
-&gt;&gt;&gt; d
-{'Michael': 95, 'Bob': 75, 'Tracy': 85, 'Tony': 99}
-</code></pre>
-
-<h2 id="查询key是否存在">查询key是否存在</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;Tony&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
+<span class="p">{</span><span class="s1">&#39;Michael&#39;</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span> <span class="s1">&#39;Tracy&#39;</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s1">&#39;Tony&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">}</span>
+</code></pre></div><h2 id="查询key是否存在">查询key是否存在</h2>
 <h3 id="使用in">使用in</h3>
-
-<pre><code class="language-python">&gt;&gt;&gt; 'Thomas' in d
-False
-&gt;&gt;&gt; 'Bob' in d
-True
-</code></pre>
-
-<h3 id="使用get">使用get()</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;Thomas&#39;</span> <span class="ow">in</span> <span class="n">d</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;Bob&#39;</span> <span class="ow">in</span> <span class="n">d</span>
+<span class="bp">True</span>
+</code></pre></div><h3 id="使用get">使用get()</h3>
 <p>如果key不存在，返回<code>None</code>，或者自己指定的value</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; d.get('Thomas') #返回None时Python交互环境不显示
-&gt;&gt;&gt; d.get('Thomas', -1)
--1
-</code></pre>
-
-<h2 id="删除key">删除key</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Thomas&#39;</span><span class="p">)</span> <span class="c1">#返回None时Python交互环境不显示</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Thomas&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">-</span><span class="mi">1</span>
+</code></pre></div><h2 id="删除key">删除key</h2>
 <p>删除一个key，用<code>pop(key)</code>方法，对应的value也会从dict中删除，返回删除的value</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; d.pop('Bob')
-75
-&gt;&gt;&gt; d
-{'Michael': 95, 'Tracy': 85, 'Tony': 99}
-</code></pre>
-
-<h2 id="注意">注意</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">)</span>
+<span class="mi">75</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
+<span class="p">{</span><span class="s1">&#39;Michael&#39;</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span> <span class="s1">&#39;Tracy&#39;</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s1">&#39;Tony&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">}</span>
+</code></pre></div><h2 id="注意">注意</h2>
 <p><strong>dict内部存放顺序与key放入顺序无关</strong>
 <strong>dict的key必须是不可变对象</strong>
 <strong>实质：哈希表</strong></p>
-
-<h3 id="和list比较-dict有以下几个特点">和list比较，dict有以下几个特点：</h3>
-
+<h3 id="和list比较dict有以下几个特点">和list比较，dict有以下几个特点：</h3>
 <ul>
 <li>查找和插入的速度极快，不会随着key的增加而变慢；</li>
 <li>需要占用大量的内存，内存浪费多。</li>
 </ul>
-
 <h3 id="而list相反">而list相反：</h3>
-
 <ul>
 <li>查找和插入的时间随着元素的增加而增加；</li>
 <li>占用空间小，浪费内存很少。</li>
 </ul>
-
 <h2 id="dict相关函数和方法">dict相关函数和方法</h2>
-
 <h3 id="函数">函数</h3>
-
 <ul>
 <li>str(dict)
 输出字典，以可打印的字符串表示</li>
 <li>type(variable)
 返回输入的变量类型</li>
 </ul>
-
 <h3 id="方法">方法</h3>
-
 <ul>
 <li>radiansdict.clear()
 删除字典内所有元素</li>
@@ -190,65 +302,195 @@ True
 <li>popitem()
 随机返回并删除字典中的一对键和值(一般删除末尾对)。</li>
 </ul>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

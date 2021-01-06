@@ -8,7 +8,7 @@
     <title>利用MLS移动最小二乘法对图像变形 - Tiiktak&#39;s</title>
     
     <meta name="description" content="这是我的【项目笔记】利用OpenCV的MLS图像扭曲变形实现中的第一部分
-本文主要对MLS进行了一定讲解
+  本文主要对MLS进行了一定讲解
  先简单了解一下什么是最小二乘法
 最小二乘法 当我们在测量某个值y时，由于误差的存在，可能多次测量的结果不尽相同
 我们把多次测量得到的不同结果yi画在同一坐标系中
@@ -22,16 +22,13 @@
 总的来说，对于被选择的参数，应该使算出的函数曲线与观测值之差的平方和最小。用函数表示为：
 最小化问题的精度，依赖于所选择的函数模型
 移动最小二乘法 移动最小二乘法与传统的最小二乘法相比，有两个比较大的改进：
-  拟合函数的建立不同。这种方法建立拟合函数不是采用传统的多项式或其它函数，而是由一个系数向量 a(x)和基函数 p(x)构成， 这里a(x)不是常数，而是坐标 x 的函数。
- 引入紧支（ Compact Support）概念。认为点x处的值 y只受 x附近子域内节点影响，这个子域称作点 x 的影响区域， 影响区域外的节点对 x的取值没有影响。在影响区域上定义一个权函数w(x)，如果权函数在整个区域取为常数，就得到传统的最小二乘法。
-  节选自《基于移动最小二乘法的曲线曲面拟合-曾清红》
+  拟合函数的建立不同。这种方法建立拟合函数不是采用传统的多项式或其它函数，而是由一个系数向量 a(x)和基函数 p(x)构成， 这里 a(x)不是常数，而是坐标 x 的函数。     引入紧支（ Compact Support）概念。认为点x处的值 y只受 x附近子域内节点影响，这个子域称作点 x 的影响区域， 影响区域外的节点对 x的取值没有影响。在影响区域上定义一个权函数w(x)，如果权函数在整个区域取为常数，就得到传统的最小二乘法。    节选自《基于移动最小二乘法的曲线曲面拟合-曾清红》
  利用MLS变换图像 这一部分，我主要参考了论文《Image Deformation Using Moving Least Squares》中的内容
 考虑由用户设定锚点来对图像变形进行控制的情况，首先进行准备工作，推导出公式
 准备工作 设p为一组控制点，q是它对应的变形位置
 对于图像中的某一点v，有最小的仿射变换lv(x)，使
 成立。其中pi和qi是行向量，权值wi满足
-各点权重wi 由于对于每个v都有不同的wi的值，称之为移动最小二乘最小化（a Moving Least Squares minimization）。对于每个v都有不同的lv(x)
-此时定义变形函数f(x) = lv(x)，可见当v接近pi时，wi趋于无穷、f(pi) = qi，此外若qi = pi，则lv(x) = x、f(v) = v">
+各点权重wi 由于对于每个v都有不同的wi的值，称之为移动最小二乘最小化（a Moving Least Squares minimization）。对于每个v都有不同的lv(x)">
     <meta name="author" content="">
     
     <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
@@ -40,32 +37,30 @@
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="single">
     <header class="header">
@@ -97,209 +92,126 @@
     <h1 class="post-title">利用MLS移动最小二乘法对图像变形</h1>
     <div class="post-meta">2019.11.7</div>
   </header>
-  <div class="post-content">
-
-<blockquote>
+  <div class="post-content"><blockquote>
 <p>这是我的<a href="https://konosuba.xyz/blog/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0%E5%88%A9%E7%94%A8opencv%E7%9A%84mls%E5%9B%BE%E5%83%8F%E6%89%AD%E6%9B%B2%E5%8F%98%E5%BD%A2%E5%AE%9E%E7%8E%B0/">【项目笔记】利用OpenCV的MLS图像扭曲变形实现</a>中的第一部分</p>
-
+</blockquote>
+<blockquote>
 <p>本文主要对MLS进行了一定讲解</p>
 </blockquote>
-
 <p>先简单了解一下什么是最小二乘法</p>
-
 <h1 id="最小二乘法">最小二乘法</h1>
-
 <p>当我们在测量<strong>某个值y</strong>时，由于误差的存在，可能<strong>多次测量的结果不尽相同</strong></p>
-
 <p>我们把多次测量得到的<strong>不同结果yi</strong>画在同一坐标系中</p>
-
 <p>同时将猜测的<strong>实际值y</strong>也画在坐标系中</p>
-
-<p><img src="https://img-blog.csdn.net/20180720100434779?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NjbnRfMjAxMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="yi在坐标系中" /></p>
-
-<p>每个<code>yi</code>和<code>y</code>都有一个<strong>差值<code>| y - yi |</code>，</strong>称为<strong>误差</strong></p>
-
+<p><img src="https://img-blog.csdn.net/20180720100434779?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NjbnRfMjAxMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="yi在坐标系中"></p>
+<p>每个<code>yi</code>和<code>y</code>都有一个<strong>差值<code>| y - yi |</code>，<strong>称为</strong>误差</strong></p>
 <p>记所有<strong>误差的平方和</strong></p>
-
-<p><img src="https://i.loli.net/2019/11/07/YhmLJkTn5yAIRo9.png" alt="误差的平方和" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/YhmLJkTn5yAIRo9.png" alt="误差的平方和"></p>
 <p>由于实际值<code>y</code>是我们猜测的，所以它的值可以变化，同时误差的平方和<code>ε</code>也会随之改变</p>
-
-<p><img src="https://img-blog.csdn.net/2018072010043558?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NjbnRfMjAxMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="y在坐标系中变化" /></p>
-
+<p><img src="https://img-blog.csdn.net/2018072010043558?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NjbnRfMjAxMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="y在坐标系中变化"></p>
 <p>于是高斯或是法国科学家勒让德就提出<strong>使误差的平方和最小的 y 就是真值</strong>，这是基于，如果误差是随机的，应该围绕真值上下波动</p>
-
 <p>这就是<strong>最小二乘法</strong>，即</p>
-
-<p><img src="https://i.loli.net/2019/11/07/GTBcI8W7xjmfeY2.png" alt="最小二乘法" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/GTBcI8W7xjmfeY2.png" alt="最小二乘法"></p>
 <p>此外，经证明得出误差的分布服从正态分布（不愧是天下第一分布），这里就不证明了</p>
-
 <p>总的来说，对于被选择的参数，应该使算出的函数曲线与观测值之差的平方和最小。用函数表示为：</p>
-
-<p><img src="https://i.loli.net/2019/11/07/YWgbi9vjRs7rKyS.png" alt="" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/YWgbi9vjRs7rKyS.png" alt=""></p>
 <p>最小化问题的精度，依赖于所选择的函数模型</p>
-
 <h1 id="移动最小二乘法">移动最小二乘法</h1>
-
 <p>移动最小二乘法与传统的最小二乘法相比，有两个比较大的改进：</p>
-
 <blockquote>
 <ul>
-<li><p><strong>拟合函数的建立不同</strong>。这种方法建立拟合函数不是采用传统的多项式或其它函数，而是由一个系数向量 <code>a(x)</code>和基函数 <code>p(x)</code>构成， 这里<code>a(x)</code>不是常数，而是坐标 x 的函数。</p></li>
-
-<li><p><strong>引入紧支（ Compact Support）概念</strong>。认为点<code>x</code>处的值 <code>y</code>只受 x附近子域内节点影响，这个子域称作点 <code>x</code> 的影响区域， 影响区域外的节点对 <code>x</code>的取值没有影响。在影响区域上定义一个权函数<code>w(x)</code>，如果权函数在整个区域取为常数，就得到传统的最小二乘法。</p></li>
+<li><strong>拟合函数的建立不同</strong>。这种方法建立拟合函数不是采用传统的多项式或其它函数，而是由一个系数向量 <code>a(x)</code>和基函数 <code>p(x)</code>构成， 这里<code> a(x)</code>不是常数，而是坐标 x 的函数。</li>
 </ul>
-
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>引入紧支（ Compact Support）概念</strong>。认为点<code>x</code>处的值 <code>y</code>只受 x附近子域内节点影响，这个子域称作点 <code>x</code> 的影响区域， 影响区域外的节点对 <code>x</code>的取值没有影响。在影响区域上定义一个权函数<code>w(x)</code>，如果权函数在整个区域取为常数，就得到传统的最小二乘法。</li>
+</ul>
+</blockquote>
+<blockquote>
 <p><em>节选自《基于移动最小二乘法的曲线曲面拟合-曾清红》</em></p>
 </blockquote>
-
 <h1 id="利用mls变换图像">利用MLS变换图像</h1>
-
 <p>这一部分，我主要参考了论文《Image Deformation Using Moving Least Squares》中的内容</p>
-
 <p>考虑由用户设定锚点来对图像变形进行控制的情况，首先进行准备工作，推导出公式</p>
-
 <h2 id="准备工作">准备工作</h2>
-
 <p>设<strong>p为一组控制点</strong>，<strong>q是它对应的变形位置</strong></p>
-
 <p>对于图像中的<strong>某一点v</strong>，有最小的<strong>仿射变换lv(x)</strong>，使</p>
-
-<p><img src="https://i.loli.net/2019/11/07/ri2nCqNtg7s9aAO.png" alt="lv误差和" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/ri2nCqNtg7s9aAO.png" alt="lv误差和"></p>
 <p>成立。其中<strong>pi和qi是行向量</strong>，权值wi满足</p>
-
 <h3 id="各点权重wi">各点权重wi</h3>
-
-<p><img src="https://i.loli.net/2019/11/07/AdXG82MmZjhPRHQ.png" alt="wi" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/AdXG82MmZjhPRHQ.png" alt="wi"></p>
 <p>由于对于每个<code>v</code>都有不同的<code>wi</code>的值，称之为移动最小二乘最小化（a Moving Least Squares minimization）。对于每个v都有不同的lv(x)</p>
-
 <p>此时定义变形函数<code>f(x) = lv(x)</code>，可见当<code>v</code>接近<code>pi</code>时，<code>wi</code>趋于无穷、<code>f(pi) = qi</code>，此外若<code>qi = pi</code>，则<code>lv(x) = x</code>、<code>f(v) = v</code></p>
-
 <p>由于<code>lv(x)</code>是一个仿射变换，由线性变换矩阵<code>M</code>和偏移量<code>T</code>组成，即</p>
-
-<p><img src="https://i.loli.net/2019/11/07/5TFtSdsc87HKMBi.png" alt="lvx" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/5TFtSdsc87HKMBi.png" alt="lvx"></p>
 <p>又可根据<code>M</code>求<code>T</code>，即</p>
-
 <h3 id="偏移量t">偏移量T</h3>
-
-<p><img src="https://i.loli.net/2019/11/07/eYdcLlG3E95UTXA.png" alt="T" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/eYdcLlG3E95UTXA.png" alt="T"></p>
 <p>其中</p>
-
-<p><img src="https://i.loli.net/2019/11/07/Ui5hwxK6MqmzrjV.png" alt="pq" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/Ui5hwxK6MqmzrjV.png" alt="pq"></p>
 <p>因此，<code>lv(x)</code>可以改写为</p>
-
-<h3 id="仿射变换lv-x">仿射变换lv(x)</h3>
-
-<p><img src="https://i.loli.net/2019/11/07/qwJ21uI64SY8Drt.png" alt="new_lv" /></p>
-
+<h3 id="仿射变换lvx">仿射变换lv(x)</h3>
+<p><img src="https://i.loli.net/2019/11/07/qwJ21uI64SY8Drt.png" alt="new_lv"></p>
 <p>于是方程(1)中的最小二乘问题又可以重写为</p>
-
 <h3 id="最小二乘">最小二乘</h3>
-
-<p><img src="https://i.loli.net/2019/11/07/ISw9Ayq7Jp6b4Zo.png" alt="new_E" /></p>
-
-<p>其中<code>ˆpi = pi − p∗</code>且<code>ˆqi = qi −q∗</code>.</p>
-
-<hr />
-
-<p>可以发现，我们要进行的图像变形最终效果与变换矩阵M相关联，因此根据矩阵M的不同，可以获得不同效果的变形。论文中将其分为了*仿射变换*、*相似变换*和<em>刚性变换</em></p>
-
+<p><img src="https://i.loli.net/2019/11/07/ISw9Ayq7Jp6b4Zo.png" alt="new_E"></p>
+<p>其中<code>ˆpi = pi − p∗ </code>且<code>ˆqi = qi −q∗</code>.</p>
+<hr>
+<p>可以发现，我们要进行的图像变形最终效果与变换矩阵M相关联，因此根据矩阵M的不同，可以获得不同效果的变形。论文中将其分为了<em>仿射变换</em>、<em>相似变换</em>和<em>刚性变换</em></p>
 <p>在这里仅呈现了每种变换对应的变化矩阵和变化函数，具体推导可以参见论文原文</p>
-
 <h2 id="仿射变换">仿射变换</h2>
-
 <p>找到使方程(4)最小的矩阵M如下</p>
-
 <h3 id="仿射变换矩阵">仿射变换矩阵</h3>
-
-<p><img src="https://i.loli.net/2019/11/07/H4jiVGuJSesM3D9.png" alt="M1" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/H4jiVGuJSesM3D9.png" alt="M1"></p>
 <p>由此得到的变换函数如下</p>
-
 <h3 id="变换函数">变换函数</h3>
-
-<p><img src="https://i.loli.net/2019/11/07/b6Q3OvVD42pewag.png" alt="fa1" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/b6Q3OvVD42pewag.png" alt="fa1"></p>
 <p>也可以写为</p>
-
-<p><img src="https://i.loli.net/2019/11/07/b1h27jQqasS4Nrm.png" alt="fa1_n" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/b1h27jQqasS4Nrm.png" alt="fa1_n"></p>
 <p>其中</p>
-
-<p><img src="https://i.loli.net/2019/11/07/kwrxCagRHdK5qI6.png" alt="Aj1" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/kwrxCagRHdK5qI6.png" alt="Aj1"></p>
 <p>可见，一旦给定了某个点v，此处的Aj便可以提前计算得出</p>
-
 <p>如图b是仿射变换的效果图</p>
-
-<p><img src="https://i.loli.net/2019/11/07/Po5eKGxS2Z6prRs.png" alt="仿射变换效果" /></p>
-
+<p><img src="https://i.loli.net/2019/11/07/Po5eKGxS2Z6prRs.png" alt="仿射变换效果"></p>
 <h2 id="相似变换">相似变换</h2>
-
 <p>得到进行相似变换时的变换矩阵<code>M</code>为</p>
-
 <h3 id="相似变换矩阵">相似变换矩阵</h3>
-
-<p><img src="https://i.loli.net/2019/11/09/1YbZlwnScva42CB.png" alt="M2" /></p>
-
+<p><img src="https://i.loli.net/2019/11/09/1YbZlwnScva42CB.png" alt="M2"></p>
 <p>其中</p>
-
-<p><img src="https://i.loli.net/2019/11/09/bCSGvcM2dxHRnZP.png" alt="mius" /></p>
-
+<p><img src="https://i.loli.net/2019/11/09/bCSGvcM2dxHRnZP.png" alt="mius"></p>
 <p>由此得出变换函数</p>
-
 <h3 id="变换函数-1">变换函数</h3>
-
-<p><img src="https://i.loli.net/2019/11/09/t2bDhaBynslroGQ.png" alt="fa2" /></p>
-
+<p><img src="https://i.loli.net/2019/11/09/t2bDhaBynslroGQ.png" alt="fa2"></p>
 <p>其中可以提前计算的部分</p>
-
-<p><img src="https://i.loli.net/2019/11/09/U1TcvDLV4aYkWf7.png" alt="Aj2" /></p>
-
+<p><img src="https://i.loli.net/2019/11/09/U1TcvDLV4aYkWf7.png" alt="Aj2"></p>
 <p>如图c是相似变换的效果图</p>
-
-<p><img src="https://i.loli.net/2019/11/09/Y9oR6sF7gxblvUf.png" alt="相似变换效果" /></p>
-
+<p><img src="https://i.loli.net/2019/11/09/Y9oR6sF7gxblvUf.png" alt="相似变换效果"></p>
 <h2 id="刚性变换">刚性变换</h2>
-
 <p>刚性变换的矩阵形式与相似变化相同，仅是其中的参数<code>miu</code>发生了变化</p>
-
 <h3 id="刚性变换矩阵">刚性变换矩阵</h3>
-
-<p><img src="https://i.loli.net/2019/11/09/1YbZlwnScva42CB.png" alt="M2" /></p>
-
+<p><img src="https://i.loli.net/2019/11/09/1YbZlwnScva42CB.png" alt="M2"></p>
 <p>其中</p>
-
-<p><img src="https://i.loli.net/2019/11/09/tPhSy5qGTZzrcYB.png" alt="miur" /></p>
-
+<p><img src="https://i.loli.net/2019/11/09/tPhSy5qGTZzrcYB.png" alt="miur"></p>
 <p>得出刚性变化的变化函数为</p>
-
 <h3 id="变换函数-2">变换函数</h3>
-
-<p><img src="https://i.loli.net/2019/11/09/v6dR2lngtUNhsuV.png" alt="fa3" /></p>
-
+<p><img src="https://i.loli.net/2019/11/09/v6dR2lngtUNhsuV.png" alt="fa3"></p>
 <p>下图中d即刚性变换的效果</p>
-
-<p><img src="https://i.loli.net/2019/11/09/QcEnl5x6oiUHyzd.png" alt="刚性变换效果" /></p>
-
-<hr />
-
+<p><img src="https://i.loli.net/2019/11/09/QcEnl5x6oiUHyzd.png" alt="刚性变换效果"></p>
+<hr>
 <blockquote>
 <p>参考文献：</p>
-
+</blockquote>
+<blockquote>
 <p>《Image Deformation Using Moving Least Squares》</p>
-
+</blockquote>
+<blockquote>
 <p>《基于移动最小二乘法的曲线曲面拟合》</p>
-
+</blockquote>
+<blockquote>
 <p>参考博客：</p>
-
+</blockquote>
+<blockquote>
 <p><a href="https://blog.csdn.net/ccnt_2012/article/details/81127117">如何理解最小二乘法？&ndash;马同学</a></p>
 </blockquote>
 </div>
@@ -330,7 +242,7 @@
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

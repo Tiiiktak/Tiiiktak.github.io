@@ -1,256 +1,525 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>MATLAB学习_数据绘图 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。
 二维绘图 我们先来快速生成一些数据用来绘图。
-&gt;&gt; t = [0:0.01:0.98]; &gt;&gt; y1 = sin(2*pi*4*t);  如果我们想要绘制正弦函数，只需输入plot(t, y1)，如图
+&amp;gt;&amp;gt; t = [0:0.01:0.98]; &amp;gt;&amp;gt; y1 = sin(2*pi*4*t); 如果我们想要绘制正弦函数，只需输入plot(t, y1)，如图
 横轴是变量t，纵轴是y1，也就是我们刚刚所输出的正弦函数。
 让我们设置y2
-&gt;&gt; y2 = cos(2*pi*4*t); &gt;&gt; plot(t, y2)  如果要同时表示正弦和余弦曲线。
+&amp;gt;&amp;gt; y2 = cos(2*pi*4*t); &amp;gt;&amp;gt; plot(t, y2) 如果要同时表示正弦和余弦曲线。
 我们要做的就是，输入：plot(t, y1)，得到正弦函数，之后使用函数hold on，它的功能是将新的图像绘制在旧的之上
 再输入：plot(t, y2)，MATLAB会自动用不同颜色绘制新的曲线，我们也可以指定颜色，比如plot(t, y2, &#39;r&#39;)，r表示使用红色绘制y2
- &lsquo;r&rsquo; 为线条设定。每个设定可包含表示线条颜色、样式和标记的字符。标记是在绘制的每个数据点上显示的符号，例如，&#43;、o 或 * ；
-例如，&rsquo;g:*&rsquo; 请求绘制使用 * 标记的绿色点线。&rsquo;r&ndash;&lsquo;请求红色虚线
+ &amp;lsquo;r&amp;rsquo; 为线条设定。每个设定可包含表示线条颜色、样式和标记的字符。标记是在绘制的每个数据点上显示的符号，例如，&#43;、o 或 * ；
+  例如，&amp;lsquo;g:*&amp;rsquo; 请求绘制使用 * 标记的绿色点线。&amp;lsquo;r&amp;ndash;&amp;lsquo;请求红色虚线
  还可以使用命令xlabel(&#39;time&#39;)标记X轴，输入ylabel(&#39;value&#39;)标记Y轴的值。
 同时我们也可以标记这两条函数曲线，用命令 legend(&#39;sin&#39;,&#39;cos&#39;)将这个图例放在右上方，表示这两条曲线表示的内容。最后输入title(&#39;myplot&#39;)，在图像的顶部显示这幅图的标题。
 使用close命令可以关掉图像
  可以为图像标号
- 使用figure(1); plot(t, y1);将显示第一张图，绘制了y1-t
- 使用figure(2); plot(t, y2);将显示第一张图，绘制了y2-t
-   subplot命令，我们使用subplot(1,2,1)，它将图像分为一个1*2的格子，也就是前两个参数，然后它使用第一个格子，也就是最后一个参数1的意思。
+   使用figure(1); plot(t, y1);将显示第一张图，绘制了y1-t     使用figure(2); plot(t, y2);将显示第一张图，绘制了y2-t   subplot命令，我们使用subplot(1,2,1)，它将图像分为一个1*2的格子，也就是前两个参数，然后它使用第一个格子，也就是最后一个参数1的意思。
 之后键入plot(t, y1)，y1-t图显示在第一个格子；
-使用subplot(1, 2, 2); plot(t, y2)，y2-t图显示在第二个格子
-还有一个命令，可以改变轴的刻度，比如改成[0.5 1 -1 1]，输入命令：axis([0.">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+使用subplot(1, 2, 2); plot(t, y2)，y2-t图显示在第二个格子'><title>MATLAB学习_数据绘图</title>
+
+<link rel='canonical' href='https://example.com/blog/matlab%E7%BB%98%E5%9B%BE/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MATLAB学习_数据绘图'>
+<meta property='og:description' content='当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。
+二维绘图 我们先来快速生成一些数据用来绘图。
+&amp;gt;&amp;gt; t = [0:0.01:0.98]; &amp;gt;&amp;gt; y1 = sin(2*pi*4*t); 如果我们想要绘制正弦函数，只需输入plot(t, y1)，如图
+横轴是变量t，纵轴是y1，也就是我们刚刚所输出的正弦函数。
+让我们设置y2
+&amp;gt;&amp;gt; y2 = cos(2*pi*4*t); &amp;gt;&amp;gt; plot(t, y2) 如果要同时表示正弦和余弦曲线。
+我们要做的就是，输入：plot(t, y1)，得到正弦函数，之后使用函数hold on，它的功能是将新的图像绘制在旧的之上
+再输入：plot(t, y2)，MATLAB会自动用不同颜色绘制新的曲线，我们也可以指定颜色，比如plot(t, y2, &#39;r&#39;)，r表示使用红色绘制y2
+ &amp;lsquo;r&amp;rsquo; 为线条设定。每个设定可包含表示线条颜色、样式和标记的字符。标记是在绘制的每个数据点上显示的符号，例如，&#43;、o 或 * ；
+  例如，&amp;lsquo;g:*&amp;rsquo; 请求绘制使用 * 标记的绿色点线。&amp;lsquo;r&amp;ndash;&amp;lsquo;请求红色虚线
+ 还可以使用命令xlabel(&#39;time&#39;)标记X轴，输入ylabel(&#39;value&#39;)标记Y轴的值。
+同时我们也可以标记这两条函数曲线，用命令 legend(&#39;sin&#39;,&#39;cos&#39;)将这个图例放在右上方，表示这两条曲线表示的内容。最后输入title(&#39;myplot&#39;)，在图像的顶部显示这幅图的标题。
+使用close命令可以关掉图像
+ 可以为图像标号
+   使用figure(1); plot(t, y1);将显示第一张图，绘制了y1-t     使用figure(2); plot(t, y2);将显示第一张图，绘制了y2-t   subplot命令，我们使用subplot(1,2,1)，它将图像分为一个1*2的格子，也就是前两个参数，然后它使用第一个格子，也就是最后一个参数1的意思。
+之后键入plot(t, y1)，y1-t图显示在第一个格子；
+使用subplot(1, 2, 2); plot(t, y2)，y2-t图显示在第二个格子'>
+<meta property='og:url' content='https://example.com/blog/matlab%E7%BB%98%E5%9B%BE/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-01-11T10:28:08&#43;08:00'/><meta property='article:modified_time' content='2020-01-11T10:28:08&#43;08:00'/>
+<meta name="twitter:title" content="MATLAB学习_数据绘图">
+<meta name="twitter:description" content="当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。
+二维绘图 我们先来快速生成一些数据用来绘图。
+&amp;gt;&amp;gt; t = [0:0.01:0.98]; &amp;gt;&amp;gt; y1 = sin(2*pi*4*t); 如果我们想要绘制正弦函数，只需输入plot(t, y1)，如图
+横轴是变量t，纵轴是y1，也就是我们刚刚所输出的正弦函数。
+让我们设置y2
+&amp;gt;&amp;gt; y2 = cos(2*pi*4*t); &amp;gt;&amp;gt; plot(t, y2) 如果要同时表示正弦和余弦曲线。
+我们要做的就是，输入：plot(t, y1)，得到正弦函数，之后使用函数hold on，它的功能是将新的图像绘制在旧的之上
+再输入：plot(t, y2)，MATLAB会自动用不同颜色绘制新的曲线，我们也可以指定颜色，比如plot(t, y2, &#39;r&#39;)，r表示使用红色绘制y2
+ &amp;lsquo;r&amp;rsquo; 为线条设定。每个设定可包含表示线条颜色、样式和标记的字符。标记是在绘制的每个数据点上显示的符号，例如，&#43;、o 或 * ；
+  例如，&amp;lsquo;g:*&amp;rsquo; 请求绘制使用 * 标记的绿色点线。&amp;lsquo;r&amp;ndash;&amp;lsquo;请求红色虚线
+ 还可以使用命令xlabel(&#39;time&#39;)标记X轴，输入ylabel(&#39;value&#39;)标记Y轴的值。
+同时我们也可以标记这两条函数曲线，用命令 legend(&#39;sin&#39;,&#39;cos&#39;)将这个图例放在右上方，表示这两条曲线表示的内容。最后输入title(&#39;myplot&#39;)，在图像的顶部显示这幅图的标题。
+使用close命令可以关掉图像
+ 可以为图像标号
+   使用figure(1); plot(t, y1);将显示第一张图，绘制了y1-t     使用figure(2); plot(t, y2);将显示第一张图，绘制了y2-t   subplot命令，我们使用subplot(1,2,1)，它将图像分为一个1*2的格子，也就是前两个参数，然后它使用第一个格子，也就是最后一个参数1的意思。
+之后键入plot(t, y1)，y1-t图显示在第一个格子；
+使用subplot(1, 2, 2); plot(t, y2)，y2-t图显示在第二个格子">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/matlab/" style="background-color: #2a9d8f; color: #fff;">
+                MATLAB
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/matlab%E7%BB%98%E5%9B%BE/">MATLAB学习_数据绘图</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">MATLAB学习_数据绘图</h1>
-    <div class="post-meta">2020.1.11</div>
-  </header>
-  <div class="post-content">
 
-<p>当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。</p>
+        <time class="article-time--published">Jan 11, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p>当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。</p>
 <h2 id="二维绘图">二维绘图</h2>
-
 <p>我们先来快速生成一些数据用来绘图。</p>
-
-<pre><code class="language-matlab">&gt;&gt; t = [0:0.01:0.98];
-&gt;&gt; y1 = sin(2*pi*4*t);
-</code></pre>
-
-<p>如果我们想要绘制正弦函数，只需输入<code>plot(t, y1)</code>，如图</p>
-
-<p><img src="https://i.loli.net/2020/01/11/2yHadu8CpKYvSbT.png" alt="正弦函数图像" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">t</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.01</span><span class="p">:</span><span class="mf">0.98</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">y1</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
+</code></pre></div><p>如果我们想要绘制正弦函数，只需输入<code>plot(t, y1)</code>，如图</p>
+<p><img src="https://i.loli.net/2020/01/11/2yHadu8CpKYvSbT.png" alt="正弦函数图像"  /></p>
 <p>横轴是变量<code>t</code>，纵轴是<code>y1</code>，也就是我们刚刚所输出的正弦函数。</p>
-
 <p>让我们设置<code>y2</code></p>
-
-<pre><code class="language-matlab">&gt;&gt; y2 = cos(2*pi*4*t);
-&gt;&gt; plot(t, y2)
-</code></pre>
-
-<p><img src="https://i.loli.net/2020/01/11/glr9bhOyKYjIxV5.png" alt="余弦函数图像" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">y2</span> <span class="p">=</span> <span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+</code></pre></div><p><img src="https://i.loli.net/2020/01/11/glr9bhOyKYjIxV5.png" alt="余弦函数图像"  /></p>
 <p>如果要<strong>同时表示</strong>正弦和余弦曲线。</p>
-
 <p>我们要做的就是，输入：<code>plot(t, y1)</code>，得到正弦函数，之后使用函数<code>hold on</code>，它的功能是将新的图像绘制在旧的之上</p>
-
 <p>再输入：<code>plot(t, y2)</code>，MATLAB会自动用不同颜色绘制新的曲线，我们也可以指定颜色，比如<code>plot(t, y2, 'r')</code>，<code>r</code>表示使用红色绘制<code>y2</code></p>
-
 <blockquote>
 <p>&lsquo;r&rsquo; 为线条设定。每个设定可包含表示线条颜色、样式和标记的字符。标记是在绘制的每个数据点上显示的符号，例如，+、o 或 * ；</p>
-
-<p>例如，&rsquo;g:*&rsquo; 请求绘制使用 * 标记的绿色点线。&rsquo;r&ndash;&lsquo;请求红色虚线</p>
 </blockquote>
-
+<blockquote>
+<p>例如，&lsquo;g:*&rsquo; 请求绘制使用 * 标记的绿色点线。&lsquo;r&ndash;&lsquo;请求红色虚线</p>
+</blockquote>
 <p>还可以使用命令<code>xlabel('time')</code>标记X轴，输入<code>ylabel('value')</code>标记Y轴的值。</p>
-
-<p><img src="https://i.loli.net/2020/01/11/KatZSbx36ws9ghq.png" alt="两个函数曲线" /></p>
-
+<p><img src="https://i.loli.net/2020/01/11/KatZSbx36ws9ghq.png" alt="两个函数曲线"  /></p>
 <p>同时我们也可以标记这两条函数曲线，用命令 <code>legend('sin','cos')</code>将这个图例放在右上方，表示这两条曲线表示的内容。最后输入<code>title('myplot')</code>，在图像的顶部显示这幅图的标题。</p>
-
-<p><img src="https://i.loli.net/2020/01/11/4hOkq5ZoyD2lrJP.png" alt="两函数曲线带注释标题" /></p>
-
+<p><img src="https://i.loli.net/2020/01/11/4hOkq5ZoyD2lrJP.png" alt="两函数曲线带注释标题"  /></p>
 <p>使用<code>close</code>命令可以关掉图像</p>
-
 <blockquote>
 <p>可以为图像标号</p>
-
+</blockquote>
+<blockquote>
 <ul>
-<li><p>使用<code>figure(1); plot(t, y1);</code>将显示第一张图，绘制了<code>y1-t</code></p></li>
-
-<li><p>使用<code>figure(2); plot(t, y2);</code>将显示第一张图，绘制了<code>y2-t</code></p></li>
+<li>使用<code>figure(1); plot(t, y1);</code>将显示第一张图，绘制了<code>y1-t</code></li>
 </ul>
 </blockquote>
-
-<p><code>subplot</code>命令，我们使用<code>subplot(1,2,1)</code>，它将图像分为一个<code>1*2</code>的格子，也就是<strong>前两个参数</strong>，然后它使用第一个格子，也就是最后一个参数1的意思。</p>
-
-<p>之后键入<code>plot(t, y1)</code>，<code>y1-t</code>图显示在第一个格子；</p>
-
-<p>使用<code>subplot(1, 2, 2); plot(t, y2)</code>，<code>y2-t</code>图显示在第二个格子</p>
-
-<p><img src="https://i.loli.net/2020/01/11/Kj8MVEBHXTyhfLG.png" alt="sublot_demo" /></p>
-
-<p>还有一个命令，可以改变轴的刻度，比如改成<code>[0.5 1 -1 1]</code>，输入命令：<code>axis([0.5 1 -1 1])</code>也就是设置了<strong>右边图的轴和轴的范围</strong>。具体而言，它将右图中的横轴的范围调整至0.5到1，竖轴的范围为-1到1。</p>
-
-<p><img src="https://i.loli.net/2020/01/11/waom3TFQYuXNjyx.png" alt="axis_demo" /></p>
-
-<p><code>clf</code>命令可以清除当前的Figure</p>
-
-<h2 id="imagesc">imagesc</h2>
-
-<p>首先我们设置A等于一个5×5的magic方阵：</p>
-
-<pre><code class="language-matlab">&gt;&gt; A = magic(5)
-A =
-    17    24     1     8    15
-    23     5     7    14    16
-     4     6    13    20    22
-    10    12    19    21     3
-    11    18    25     2     9
-</code></pre>
-
-<p>可以通过<code>imagesc(A)</code>来可视化矩阵，它将会绘制一个5 * 5的矩阵，一个5 * 5的彩色格图，不同的颜色对应A矩阵中的不同值</p>
-
-<p>还可以使用函数<code>colorbar</code>：使用一个更复杂的命令 <code>imagesc(A),colorbar,colormap gray</code>。这实际上是在同一时间运行三个命令：运行<code>imagesc</code>，然后运行<code>colorbar</code>，然后运行<code>colormap gray</code>。</p>
-
-<p>它生成了一个颜色图像，一个灰度分布图，并在右边也加入一个颜色条。所以这个颜色条显示不同深浅的颜色所对应的值。</p>
-
-<p><img src="https://i.loli.net/2020/01/11/KmjUapchQ1DEOsn.png" alt="imagesc_demo_1" /></p>
-
-<p>可以看到在不同的方格，它对应于一个不同的灰度。</p>
-
-<p>输入<code>imagesc(magic(15)),colorbar,colormap gray</code>，获得一幅15*15的magic方阵值图</p>
-
-<p><img src="https://i.loli.net/2020/01/11/dHcLE5PvBfaORQ3.png" alt="imagesc_demo_2" /></p>
-
-<h2 id="三维绘图">三维绘图</h2>
-
-<p>三维图通常显示一个由带两个变量的函数（即 z = f (x,y)）定义的曲面图。</p>
-
-<p>要计算 z，首先使用 <code>meshgrid</code> 在此函数的域中创建一组 (x,y) 点。</p>
-
-<pre><code class="language-matlab">&gt;&gt; [X,Y] = meshgrid(-2:.2:2); 
-&gt;&gt; Z = X .* exp(-X.^2 - Y.^2);
-</code></pre>
-
 <blockquote>
+<ul>
+<li>使用<code>figure(2); plot(t, y2);</code>将显示第一张图，绘制了<code>y2-t</code></li>
+</ul>
+</blockquote>
+<p><code>subplot</code>命令，我们使用<code>subplot(1,2,1)</code>，它将图像分为一个<code>1*2</code>的格子，也就是<strong>前两个参数</strong>，然后它使用第一个格子，也就是最后一个参数1的意思。</p>
+<p>之后键入<code>plot(t, y1)</code>，<code>y1-t</code>图显示在第一个格子；</p>
+<p>使用<code>subplot(1, 2, 2); plot(t, y2)</code>，<code>y2-t</code>图显示在第二个格子</p>
+<p><img src="https://i.loli.net/2020/01/11/Kj8MVEBHXTyhfLG.png" alt="sublot_demo"  /></p>
+<p>还有一个命令，可以改变轴的刻度，比如改成<code>[0.5 1 -1 1]</code>，输入命令：<code>axis([0.5 1 -1 1])</code>也就是设置了<strong>右边图的轴和轴的范围</strong>。具体而言，它将右图中的横轴的范围调整至0.5到1，竖轴的范围为-1到1。</p>
+<p><img src="https://i.loli.net/2020/01/11/waom3TFQYuXNjyx.png" alt="axis_demo"  /></p>
+<p><code>clf</code>命令可以清除当前的Figure</p>
+<h2 id="imagesc">imagesc</h2>
+<p>首先我们设置A等于一个5×5的magic方阵：</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="nb">magic</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">A</span> <span class="p">=</span>
+    <span class="mi">17</span>    <span class="mi">24</span>     <span class="mi">1</span>     <span class="mi">8</span>    <span class="mi">15</span>
+    <span class="mi">23</span>     <span class="mi">5</span>     <span class="mi">7</span>    <span class="mi">14</span>    <span class="mi">16</span>
+     <span class="mi">4</span>     <span class="mi">6</span>    <span class="mi">13</span>    <span class="mi">20</span>    <span class="mi">22</span>
+    <span class="mi">10</span>    <span class="mi">12</span>    <span class="mi">19</span>    <span class="mi">21</span>     <span class="mi">3</span>
+    <span class="mi">11</span>    <span class="mi">18</span>    <span class="mi">25</span>     <span class="mi">2</span>     <span class="mi">9</span>
+</code></pre></div><p>可以通过<code>imagesc(A)</code>来可视化矩阵，它将会绘制一个5 * 5的矩阵，一个5 * 5的彩色格图，不同的颜色对应A矩阵中的不同值</p>
+<p>还可以使用函数<code>colorbar</code>：使用一个更复杂的命令 <code>imagesc(A),colorbar,colormap gray</code>。这实际上是在同一时间运行三个命令：运行<code>imagesc</code>，然后运行<code>colorbar</code>，然后运行<code>colormap gray</code>。</p>
+<p>它生成了一个颜色图像，一个灰度分布图，并在右边也加入一个颜色条。所以这个颜色条显示不同深浅的颜色所对应的值。</p>
+<p><img src="https://i.loli.net/2020/01/11/KmjUapchQ1DEOsn.png" alt="imagesc_demo_1"  /></p>
+<p>可以看到在不同的方格，它对应于一个不同的灰度。</p>
+<p>输入<code>imagesc(magic(15)),colorbar,colormap gray</code>，获得一幅15*15的magic方阵值图</p>
+<p><img src="https://i.loli.net/2020/01/11/dHcLE5PvBfaORQ3.png" alt="imagesc_demo_2"  /></p>
+<h2 id="三维绘图">三维绘图</h2>
+<p>三维图通常显示一个由带两个变量的函数（即 z = f (x,y)）定义的曲面图。</p>
+<p>要计算 z，首先使用 <code>meshgrid</code> 在此函数的域中创建一组 (x,y) 点。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">:.</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">);</span> 
+<span class="o">&gt;&gt;</span> <span class="n">Z</span> <span class="p">=</span> <span class="n">X</span> <span class="o">.*</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">Y</span><span class="o">.^</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div><blockquote>
 <p>meshgrid函数生成的X，Y是大小相等的矩阵</p>
 </blockquote>
-
 <p>然后创建曲面图</p>
-
 <p><code>surf(X, Y, Z)</code></p>
-
-<p><img src="https://i.loli.net/2020/01/11/bBHtWCr3euZhGIT.png" alt="surf_demo" /></p>
-
+<p><img src="https://i.loli.net/2020/01/11/bBHtWCr3euZhGIT.png" alt="surf_demo"  /></p>
 <p>surf 函数及其伴随函数 mesh 以三维形式显示曲面图。surf 使用颜色显示曲面图的连接线和面。mesh 生成仅以颜色标记连接定义点的线条的线框曲面图。</p>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

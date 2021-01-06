@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Tiiktak&#39;s</title>
+    <link>https://example.com/categories/linux/</link>
+    <description>Recent content in Linux on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Dec 2020 15:49:53 +0800</lastBuildDate><atom:link href="https://example.com/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Linux中使用Clash科学上网</title>
+      <link>https://example.com/blog/clash_linux_tutorial/</link>
+      <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
+      
+      <guid>https://example.com/blog/clash_linux_tutorial/</guid>
+      <description>安装  下载amd64文件：https://github.com/Dreamacro/clash/releases/ gzip -f -d linux-amd64-clash.gz 下载配置文件config.yaml到~/.config/clash 下载mmdb文件到~/.config/clash  配置（每次使用前）  ./clash启动 浏览器进入127.0.0.1:9090，Clash控制面板 选择一个节点 进入Ubuntu设置，网络设置，代理 Method设为Manual HTTP Proxy、HTTPs Proxy设置为127.0.0.1:7890 Socks Host设置为127.0.0.1:7891  wget配置代理  修改/etc/wgetrc，其中  https_proxy = http://127.0.0.1:7890/ http_proxy = http://127.0.0.1:7890/ ftp_proxy = http://127.0.0.1:7890/ 使用时，wget --proxy=on https://xxxx即可  </description>
+    </item>
+    
+    <item>
+      <title>MMDetection安装过程记录</title>
+      <link>https://example.com/blog/mmdet_install/</link>
+      <pubDate>Mon, 05 Oct 2020 13:37:51 +0800</pubDate>
+      
+      <guid>https://example.com/blog/mmdet_install/</guid>
+      <description>记录自本人安装过程，环境建议：
+ Linux or macOS (Windows is not currently officially supported) Python 3.6+ PyTorch 1.3+ CUDA 9.2+ (If you build PyTorch from source, CUDA 9.0 is also compatible) GCC 5+  1. torch &amp;amp; torchvision 我使用的是 torch 1.5.1 + torchvision 0.6.1
+pip install torch==1.5.1 torchvision==0.6.1 [-i https://pypi.douban.com/simple]
+ https://pytorch.org/get-started/previous-versions/
+ 2. mmcv pip install mmcv-full
+3. mmdetection git clone https://github.com/open-mmlab/mmdetection.git cd mmdetection pip install -r requirements/build.txt pip install -v -e .</description>
+    </item>
+    
+    <item>
+      <title>树莓派4B安装opencv以及错误解决</title>
+      <link>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</link>
+      <pubDate>Mon, 27 Apr 2020 11:25:47 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</guid>
+      <description>更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
+ 主要参考opencv官网文档和博客树莓派+Opencv（一）图像处理
+树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
+下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev 在4B上安装时遇到libgtk2.0-dev安装失败的问题：
+这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
+在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
+ 其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
+ 下载源码 从GitHub下载：
+opencv
+opencv_contrib
+两个都下载.zip压缩包即可
+解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0 创建一个build文件夹用于编译 mkdir build cd build 运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
+ cmake-gui 选择源码路径和编译路径后点击Configure
+之后在中间的选择框中找到项目BUILD_TESTS，把它的复选框取消
+ 这一步是因为后面编译过程中，总是由于opencv_test_xxx这类项目导致编译失败，因此我在这里将它取消
+ 之后点击Generate生成，最后输出如图所示则可以进行下一步</description>
+    </item>
+    
+    <item>
+      <title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</title>
+      <link>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
+      <pubDate>Tue, 09 Jul 2019 15:32:53 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
+      <description>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C++11中的thread库通过多线程实现程序
+树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i++) { for (int j = 0; j &amp;lt; img_gray.rows; j++) { double s = img_gray.</description>
+    </item>
+    
+    <item>
+      <title>Vim学习</title>
+      <link>https://example.com/blog/vim%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 26 Jun 2019 10:33:16 +0800</pubDate>
+      
+      <guid>https://example.com/blog/vim%E5%AD%A6%E4%B9%A0/</guid>
+      <description>vim分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode），底线命令（Last line mode）
+命令模式 此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。
+常用命令：
+ i 切换到输入模式，以输入字符 x 删除当前光标所在处的字符 : 切换到底线命令模式，以在最底一行输入命令  命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令
+输入模式 常用：
+ Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令：
+ q 退出程序 w 保存文件  vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
+ [Ctrl]+[f] 下一页 [Ctrl]+[b] 上一页 [Ctrl]+[d] 向下半页 [Ctrl]+[u] 向上半页 0 移动到该行最前面字符处 $ 移动到该行最后字符处 G 移动到档案最后一行 nG 一赌东道档案第n行 gg 移动到档案第一行  搜索替换  /word 向光标之下寻找名称为word的字符串 ？word 向光标之上寻找名称为word的字符串 n 重复前一个搜寻的动作 N 反向进行前一个搜寻动作 :n1,n2s/word1/word2/g 在n1与n2行之间寻找word1字符串，并用word2取代 :1,$s/word1/word2/g 或 :%s/word1/word2/g 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 :1,$s/word1/word2/gc 或 :%s/word1/word2/gc 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2，并显示提示字符确认  删除、复制、粘贴  x,X x相当于del，X相当于Backspace dd 删除光标所在行 ndd 删除光标所在向下n行 d1G 删除光标所在到第一行所有数据 dG 删除光标所在到最后一行所有数据 yy 复制光标所在行 nyy 复制光标所在的向下n行 p,P p为将已复制的数据在光标下一行粘贴，P为粘贴在上一行 u 撤销 [Ctrl]+r 重做 .</description>
+    </item>
+    
+    <item>
+      <title>Linux文件</title>
+      <link>https://example.com/blog/linux%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Tue, 25 Jun 2019 13:23:08 +0800</pubDate>
+      
+      <guid>https://example.com/blog/linux%E6%96%87%E4%BB%B6/</guid>
+      <description>[toc]
+Linux文件基本属性 在Linux中可以使用ll或者ls –l命令来显示一个文件的属性以及文件所属的用户和组，如：
+[root@www /]# ls -l total 64 dr-xr-xr-x 2 root root 4096 Dec 14 2012 bin dr-xr-xr-x 4 root root 4096 Apr 19 2012 boot …… bin文件的第一个属性用d表示，d在Linux中代表该文件是一个目录文件 Linux中第一个字符代表这个文件时目录、文件、链接文件等
+  当为[d]则是目录 当为[-]则是文件 若是[l]则表示为链接文档(link file) 若是[b]则表示为装置文件里面的可供储存的接口设备(可随机存取装置) 若是[c]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)   接下来的字符中，三个为一组，且均为『rwx』 的三个参数的组合。其中，[r]代表可读(read)、[w]代表可写(write)、[x]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[-]，如图
+Linux链接 Linux链接分为硬链接（Hard Link）和软链接（Symbolic Link）。默认情况，ln命令创建硬链接
+硬链接 硬连接指通过索引节点来进行连接，多个文件名可以指向同一索引节点，删除其中任何一个不会影响其余文件名的访问，只有当最后一个连接被删除时，文件的数据块及其目录的连接才被释放
+软链接 即符号链接，类似于Windows中快捷方式。两个文件名指向两个不同的节点号，若被指向的文件删除，链接仍存在，但指向一个无效的链接
+Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。
+[root@www /]# ls -l total 64 drwxr-xr-x 2 root root 4096 Feb 15 14:46 cron drwxr-xr-x 3 mysql mysql 4096 Apr 21 2014 mysql …… mysql 文件是一个目录文件，属主和属组都为 mysql，属主有可读、可写、可执行的权限；与属主同组的其他用户有可读和可执行的权限；其他用户也有可读和可执行的权限。</description>
+    </item>
+    
+    <item>
+      <title>Linux操作学习 系统启动及目录</title>
+      <link>https://example.com/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</link>
+      <pubDate>Mon, 24 Jun 2019 11:51:27 +0800</pubDate>
+      
+      <guid>https://example.com/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</guid>
+      <description>Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
+运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
+运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
+Linux共7种运行级别:
+  运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动   系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
+主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务
+另外一行：15:5:wait:/etc/rc.d/rc 5，表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，接受5作为参数，执行/etc/rc.d/rc5.d/目录下所有rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。/etc/rc.d/rc5.d/中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。
+而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。
+这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。
+至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的&amp;quot;System Services&amp;quot;来自行设定。
+建立终端 rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。
+init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：
+1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6 2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
+用户登录系统 常用三种登陆方式：
+ 命令行登陆 ssh登陆 图形界面登陆  命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。</description>
+    </item>
+    
+  </channel>
+</rss>

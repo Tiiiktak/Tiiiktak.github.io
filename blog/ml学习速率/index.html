@@ -22,32 +22,30 @@
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="single">
     <header class="header">
@@ -80,20 +78,14 @@
     <div class="post-meta">2019.9.26</div>
   </header>
   <div class="post-content"><p>在梯度下降算法中，我们用梯度乘以一个称为<strong>学习速率</strong>（有时也称为步长）的标量，以确定下一个点的位置。例如，如果梯度大小为 2.5，学习速率为 0.01，则梯度下降法算法会选择距离前一个点 0.025 的位置作为下一个点。</p>
-
 <p><strong>超参数</strong>是编程人员在机器学习算法中用于调整的旋钮。大多数机器学习编程人员会花费相当多的时间来调整学习速率。如果<strong>学习速率过小</strong>，就会花费太长的学习时间：</p>
-
-<p><img src="https://i.loli.net/2019/09/26/29tGAgzwQMy7NBs.png" alt="学习速率过小" />
+<p><img src="https://i.loli.net/2019/09/26/29tGAgzwQMy7NBs.png" alt="学习速率过小">
 <em>相同的 U 形曲线。很多点都相互非常接近，它们的轨迹朝着 U 形底部缓慢前进。</em></p>
-
 <p>相反，如果<strong>学习速率过大</strong>，下一个点将永远在 U 形曲线的底部随意弹跳，就好像量子力学实验出现了严重错误一样：</p>
-
-<p><img src="https://i.loli.net/2019/09/26/39GAFpqEsmRBXwM.png" alt="学习速率过大" />
+<p><img src="https://i.loli.net/2019/09/26/39GAFpqEsmRBXwM.png" alt="学习速率过大">
 <em>相同的 U 形曲线。这条曲线包含的点非常少。点的轨迹会跳过 U 形底部，然后再次跳回。</em></p>
-
 <p>每个回归问题都存在一个“恰好”的学习速率，这个值与损失函数的平坦程度有关。例如，若已知损失函数的梯度较小，则可以放心地试着采用更大的学习速率，以补偿较小的梯度并获得更大的步长。</p>
-
-<p><img src="https://i.loli.net/2019/09/26/rsxE8VBP3bIvkJM.png" alt="学习速率恰好" />
+<p><img src="https://i.loli.net/2019/09/26/rsxE8VBP3bIvkJM.png" alt="学习速率恰好">
 <em>相同的 U 形曲线。点的轨迹大约需要 8 步达到最低点。</em></p>
 </div>
   <footer class="post-footer">
@@ -123,7 +115,7 @@
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenCV on Tiiktak&#39;s</title>
+    <link>https://example.com/categories/opencv/</link>
+    <description>Recent content in OpenCV on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Jul 2020 23:52:11 +0800</lastBuildDate><atom:link href="https://example.com/categories/opencv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python库opencv,py-opencv,libopencv的区别</title>
+      <link>https://example.com/blog/difference_between_opencv_pyopencv_libopencv/</link>
+      <pubDate>Tue, 07 Jul 2020 23:52:11 +0800</pubDate>
+      
+      <guid>https://example.com/blog/difference_between_opencv_pyopencv_libopencv/</guid>
+      <description>通常我们在Python中安装OpenCV都是直接用pip install opencv-python
+今天想用Anaconda Navigator安装的时候，在面板中搜索到有libopencv, opencv, py-opencv共三个包，而且三者的描述都是同样的’Computer vision and machine learning software library‘，瞬间迷惑:laughing:
+找到介绍如下：
+ OpenCV is computer vision a library written using highly optimized C/C++ code. It makes use of multiprocessing in the background. It has a collection of a large number of algorithms tested and verifiend by the developers. The best thing about this is it&amp;rsquo;s FREE under the BSD license. libopencv is only a metapackage. These packages do not contain actual software, they simply depend on other packages to be installed.</description>
+    </item>
+    
+    <item>
+      <title>树莓派4B安装opencv以及错误解决</title>
+      <link>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</link>
+      <pubDate>Mon, 27 Apr 2020 11:25:47 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</guid>
+      <description>更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
+ 主要参考opencv官网文档和博客树莓派+Opencv（一）图像处理
+树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
+下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev 在4B上安装时遇到libgtk2.0-dev安装失败的问题：
+这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
+在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
+ 其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
+ 下载源码 从GitHub下载：
+opencv
+opencv_contrib
+两个都下载.zip压缩包即可
+解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0 创建一个build文件夹用于编译 mkdir build cd build 运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
+ cmake-gui 选择源码路径和编译路径后点击Configure
+之后在中间的选择框中找到项目BUILD_TESTS，把它的复选框取消
+ 这一步是因为后面编译过程中，总是由于opencv_test_xxx这类项目导致编译失败，因此我在这里将它取消
+ 之后点击Generate生成，最后输出如图所示则可以进行下一步</description>
+    </item>
+    
+    <item>
+      <title>利用MLS移动最小二乘法对图像变形</title>
+      <link>https://example.com/blog/mls/</link>
+      <pubDate>Thu, 07 Nov 2019 13:58:04 +0800</pubDate>
+      
+      <guid>https://example.com/blog/mls/</guid>
+      <description>这是我的【项目笔记】利用OpenCV的MLS图像扭曲变形实现中的第一部分
+  本文主要对MLS进行了一定讲解
+ 先简单了解一下什么是最小二乘法
+最小二乘法 当我们在测量某个值y时，由于误差的存在，可能多次测量的结果不尽相同
+我们把多次测量得到的不同结果yi画在同一坐标系中
+同时将猜测的实际值y也画在坐标系中
+每个yi和y都有一个差值| y - yi |，称为误差
+记所有误差的平方和
+由于实际值y是我们猜测的，所以它的值可以变化，同时误差的平方和ε也会随之改变
+于是高斯或是法国科学家勒让德就提出使误差的平方和最小的 y 就是真值，这是基于，如果误差是随机的，应该围绕真值上下波动
+这就是最小二乘法，即
+此外，经证明得出误差的分布服从正态分布（不愧是天下第一分布），这里就不证明了
+总的来说，对于被选择的参数，应该使算出的函数曲线与观测值之差的平方和最小。用函数表示为：
+最小化问题的精度，依赖于所选择的函数模型
+移动最小二乘法 移动最小二乘法与传统的最小二乘法相比，有两个比较大的改进：
+  拟合函数的建立不同。这种方法建立拟合函数不是采用传统的多项式或其它函数，而是由一个系数向量 a(x)和基函数 p(x)构成， 这里 a(x)不是常数，而是坐标 x 的函数。     引入紧支（ Compact Support）概念。认为点x处的值 y只受 x附近子域内节点影响，这个子域称作点 x 的影响区域， 影响区域外的节点对 x的取值没有影响。在影响区域上定义一个权函数w(x)，如果权函数在整个区域取为常数，就得到传统的最小二乘法。    节选自《基于移动最小二乘法的曲线曲面拟合-曾清红》
+ 利用MLS变换图像 这一部分，我主要参考了论文《Image Deformation Using Moving Least Squares》中的内容
+考虑由用户设定锚点来对图像变形进行控制的情况，首先进行准备工作，推导出公式
+准备工作 设p为一组控制点，q是它对应的变形位置
+对于图像中的某一点v，有最小的仿射变换lv(x)，使
+成立。其中pi和qi是行向量，权值wi满足
+各点权重wi 由于对于每个v都有不同的wi的值，称之为移动最小二乘最小化（a Moving Least Squares minimization）。对于每个v都有不同的lv(x)</description>
+    </item>
+    
+    <item>
+      <title>【项目笔记】利用OpenCV的MLS图像扭曲变形实现</title>
+      <link>https://example.com/blog/image_warp_opencv_paper/</link>
+      <pubDate>Wed, 23 Oct 2019 23:25:14 +0800</pubDate>
+      
+      <guid>https://example.com/blog/image_warp_opencv_paper/</guid>
+      <description>引 这学期开学的时候实验室接了个项目，要做一个类似Adobe Illustrator中的“操纵扭曲”功能的Demo
+ 就像这样
+ 需求分析 可见需要实现的功能核心就是通过鼠标的拖拽对图像进行扭曲变形，这里的变形主要可以分为两类：
+  鼠标拖拽导致的普通变形
+  在某一固定锚点基础上的旋转式变形
+  确定方案 明确了这个后我便开始查阅资料，发现这篇paper 《Image Deformation Using Moving Least Squares》 中利用了MLS移动最小二乘来实现图像变形，其实现的效果和我们的目标极为相似，于是我也决定利用该算法来实现这个Demo
+由于要利用鼠标拖拽进行操作，便选择使用Qt来进行图形化界面设计，然鹅我以前也没有用过Qt，因此学习了一些Qt基本知识
+开始吧 明确了方案和目标后，便开始了漫长的学习+实践：
+  程序结构框架确定
+  核心算法实现
+  旋转式变形的实现
+  在进行到这里之后，发现程序无法实现对某个关节的单独拉伸，于是我们考虑寻找图像中的骨骼，在关节的交点添加一些锚点进行固定
+ 图形骨骼查找  实现效果 最终项目完成，实现了这些功能，如图是个小小的演示
+ 本文将会持续更新</description>
+    </item>
+    
+    <item>
+      <title>为什么要定义Mat_类</title>
+      <link>https://example.com/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</link>
+      <pubDate>Wed, 18 Sep 2019 21:09:06 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</guid>
+      <description>内容摘自《OpenCV入门教程》
+ 在读取矩阵元素时，以及获取矩阵某行的地址时，需要指定数据类型。这样首先需要不停地写&amp;lt;uchar&amp;gt;，让人感觉很繁琐，在繁琐和烦躁中容易犯错。
+如下面代码中的错误，用at()获取矩阵元素时错误的使用了double类型。这种错误不是语法错误，因此在编译时编译器不会提醒。在程序运行时，at()函数获取到的不是期望的(i,j)位置处的元素，数据已经越界，但是运行时也未必会报错。这样的错误使得你的程序忽而看上去正常，忽而弹出“段错误”，特别是在代码规模很大时，难以查错。
+如果使用Mat_类，那么就可以在变量声明时确定元素的类型， 访问元素时不再需要指定元素类型，即使得代码简洁，又减少了出错的可能性。
+上面代码可以用Mat_实现，实现代码如下面例程里的第二个双重for循环。
+#include &amp;lt;iostream&amp;gt;#include &amp;#34;opencv2/opencv.hpp&amp;#34;#include &amp;lt;stdio.h&amp;gt;using namespace std; using namespace cv; int main(int argc,char* argv[]) { Mat M(600, 800, CV_8UC1); for(int i = 0; i &amp;lt; M.rows; ++i) { //获取指针时需要指定类型  uchar *p = M.ptr&amp;lt;uchar&amp;gt;(i); for(int j = 0; j &amp;lt; M.cols; ++j) { double d1 = (double)((i + j) % 255); //用at读像素时，需要指定类型  M.at&amp;lt;uchar&amp;gt;(i, j) = d1; double d2 = M.at&amp;lt;uchar&amp;gt;(i, j); } } //在变量声明时，指定矩阵元素类型  Mat_&amp;lt;uchar&amp;gt; M1 = (Mat_&amp;lt;uchar&amp;gt;&amp;amp;)M; for(int i = 0; i &amp;lt; M1.</description>
+    </item>
+    
+    <item>
+      <title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</title>
+      <link>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
+      <pubDate>Tue, 09 Jul 2019 15:32:53 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
+      <description>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C++11中的thread库通过多线程实现程序
+树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i++) { for (int j = 0; j &amp;lt; img_gray.rows; j++) { double s = img_gray.</description>
+    </item>
+    
+    <item>
+      <title>灰度重心法</title>
+      <link>https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</guid>
+      <description>概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫密度质心算法。
+将灰度值分布中的质心记作光条纹的中心
+对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
+灰度重心法公式 型心法 只可用于二值图像
+灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
+代码：
+#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 	int i, j; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; //获取图像各点灰度值总和 	for (it = img_gray.begin&amp;lt;uchar&amp;gt;(), end = img_gray.end&amp;lt;uchar&amp;gt;(); it != end; it++) { ((*it) &amp;gt; T) ? sumval += (*it) : NULL; //小于阈值，取0 	} Center.</description>
+    </item>
+    
+    <item>
+      <title>图像基础-图像矩阵</title>
+      <link>https://example.com/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</link>
+      <pubDate>Thu, 06 Jun 2019 00:35:00 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</guid>
+      <description>数字图像数据可以用矩阵来表示，因此可以采用矩阵理论和矩阵算法对数字图像进行分析和处理。
+在使用OpenCV时，要特别注意其坐标轴与普通x-y轴的转换，我在实际使用过程中就经常在这上面翻车，还是不熟练
+图为坐标对照图，转自CSDN，具体忘了</description>
+    </item>
+    
+    <item>
+      <title>图像基础-图像分类</title>
+      <link>https://example.com/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</link>
+      <pubDate>Thu, 06 Jun 2019 00:00:49 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</guid>
+      <description> 部分内容引用 CSDN爬金字塔的人
+ 计算机中， 通常以矩阵形式存储图像，根据颜色和灰度多少可以分为灰度图像、二值图像、索引图像和RGB图像
+灰度图像   矩阵元素取值范围为[0, 255] （0-黑，255-白），数据类型一般为8位无符号整数【unit8】
+  某些领域（如医学成像）采用【unit16】和【int16】数据类型
+  对于计算灰度的操作（如**傅里叶变换**），使用【double】和【single】类型；若图像是【double】或【single】，灰度图像的值通常被归一化标定位【0-1】范围内，**0代表黑色，1代表白色**，0到1之间的小数表示不同的灰度等级。
+  二值图像可以看成是灰度图像的一个特例。
+  二值图像   一幅二值图像的二维矩阵仅由0、1两个值构成，计算机中二值图像的数据类型通常为1个二进制位
+  在MATLAB中，二值图像具有非常特殊的意义，只有逻辑数据类型【logical】才被认为是二值图像，就算是只包含0和1的数据类的数组（例如【uint8】），在MATLAB中都不认为是二值图像。可以使用logical将其他类型的数组转换为二值图像：B = logical（A）
+  索引图像   包括一个数据矩阵X，一个颜色映像矩阵Map。Map是一个包含三列，若干行的数据阵列，其中每个元素的值均为[0，1]之间的双精度浮点型数据。每一行分别表示红， 绿，蓝的颜色值。
+  在MATLAB中，索引图像是从像素值到颜色映射表值的“直接映射”。像素颜色由数据矩阵X作为索引指向矩阵Map进行索引，例如，值1指向矩阵Map中的第一行，值2指向第二行，以此类推。
+  一般索引图像只能显示256种颜色（由数据矩阵X的取值范围决定），与灰度图像不同的是，灰度图像的颜色表的值是从0到255连续的值，所以灰度图像的数据我们即可以看成是实际的像素值，也可以看成是索引值。
+  索引图的优点是存储所需容量小，且索引图像一般用于存放色彩要求比较简单的图像，如Windows中色彩构成比较简单的壁纸多采用索引图像存放，如果图像的色彩比较复杂，就要用到RGB真彩色图像。
+  RGB图像   RGB图像每一个像素的颜色值（由RGB三原色表示）直接存放在图像矩阵中
+  一副大小为MN的RGB图像需要3个MN大小的矩阵表示，每一个矩阵代表一个颜色通道。RGB图像的数据类型一般为【unit】（或【double】），通常用于表示和存放真彩色图像（2^24种颜色），也可存灰度图像（三个通道的值都一样）
+  在MATLAB中用cat操作将3通道合成彩色图像：rab_image = cat(3, R, G, B);
+  MATLAB中用下面这些命令可以提取出三个通道的图像：
+  R = rgb_image（：，：，1）; G = rgb_image（：，：，2）; B = rgb_image（：，：，3）; </description>
+    </item>
+    
+  </channel>
+</rss>

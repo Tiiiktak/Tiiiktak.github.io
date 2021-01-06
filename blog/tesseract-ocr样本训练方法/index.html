@@ -17,16 +17,16 @@
 这里我们设置为captcha.font.exp0.tif，文件类型TIFF，保存
 生成box文件 将之前生成的captcha.font.exp0.tif复制到Tesseract-OCR的安装目录
 打开cmd进入安装目录，执行命令
-tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox  将.box文件和.tif文件放在同一文件夹
+tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox 将.box文件和.tif文件放在同一文件夹
 手动调整 打开jTessBoxEditor工具，点击Box Editor-&gt;Open，选择打开之前生成的.box文件
 软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果
 全部修改完成后，选择Save保存即可
 训练 先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入
-captcha 0 0 0 0 0  这里全取值为0，表示字体不是粗体、斜体等等
+captcha 0 0 0 0 0 这里全取值为0，表示字体不是粗体、斜体等等
 之后在命令行分别运行命令：
-shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr  之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
+shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr 之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
 生成语言库 命令
-combine_tessdata.exe captcha.  会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
+combine_tessdata.exe captcha. 会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
 使用训练结果 在调用tesseract或pytesseract时，只需添加参数lang=&ldquo;captcha&rdquo;（我们的字体名），程序就会自动调用啦">
     <meta name="author" content="">
     
@@ -36,32 +36,30 @@ combine_tessdata.exe captcha.  会生成一个captcha.traineddata文件，将其
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="single">
     <header class="header">
@@ -93,82 +91,43 @@ combine_tessdata.exe captcha.  会生成一个captcha.traineddata文件，将其
     <h1 class="post-title">Tesseract-OCR样本训练方法</h1>
     <div class="post-meta">2019.11.20</div>
   </header>
-  <div class="post-content">
-
-<p>我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。</p>
-
+  <div class="post-content"><p>我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。</p>
 <h2 id="安装jtessboxeditor">安装jTessBoxEditor</h2>
-
 <p>可以在<a href="https://sourceforge.net/projects/vietocr/files/jTessBoxEditor/">这里</a>下载到最新版安装包</p>
-
 <p>把下载得到的压缩包解压到任意位置，双击其中的<code>train.bat</code>文件，等待一会，弹出窗口就可以开始训练了</p>
-
-<p><img src="https://img-blog.csdnimg.cn/20181105163427524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N5bHNqYW5l,size_16,color_FFFFFF,t_70" alt="jTessBoxEditor窗口" /></p>
-
+<p><img src="https://img-blog.csdnimg.cn/20181105163427524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N5bHNqYW5l,size_16,color_FFFFFF,t_70" alt="jTessBoxEditor窗口"></p>
 <h2 id="制作训练样本">制作训练样本</h2>
-
 <h3 id="生成tif文件">生成tif文件</h3>
-
 <p>打开软件，选择<code>Tools</code>-&gt;<code>Merge TIFF</code>，文件类型选择<code>ALL Image Files</code>，选择所有要训练的样本图片，打开</p>
-
 <p>之后会又弹出窗口，文件名需要自己设定，注意要按照格式设置：</p>
-
 <p>[lang].[fontname].exp[num].tif</p>
-
 <p>其中lang为语言名称，fontname为字体名称，num为序号。这三项都可以自己定义</p>
-
 <p>这里我们设置为<code>captcha.font.exp0.tif</code>，文件类型<code>TIFF</code>，保存</p>
-
 <h3 id="生成box文件">生成box文件</h3>
-
 <p>将之前生成的<code>captcha.font.exp0.tif</code>复制到Tesseract-OCR的安装目录</p>
-
 <p>打开cmd进入安装目录，执行命令</p>
-
 <pre><code>tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox 
-</code></pre>
-
-<p>将.box文件和.tif文件放在同一文件夹</p>
-
+</code></pre><p>将.box文件和.tif文件放在同一文件夹</p>
 <h3 id="手动调整">手动调整</h3>
-
 <p>打开jTessBoxEditor工具，点击<code>Box Editor</code>-&gt;<code>Open</code>，选择打开之前生成的.box文件</p>
-
 <p>软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果</p>
-
 <p>全部修改完成后，选择Save保存即可</p>
-
 <h3 id="训练">训练</h3>
-
 <p>先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入</p>
-
 <pre><code>captcha 0 0 0 0 0
-</code></pre>
-
-<p>这里全取值为0，表示字体不是粗体、斜体等等</p>
-
+</code></pre><p>这里全取值为0，表示字体不是粗体、斜体等等</p>
 <p>之后在命令行分别运行命令：</p>
-
 <pre><code>shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr
 
 mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr
 
 cntraining.exe captcha.font.exp0.tr
-</code></pre>
-
-<p>之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀<code>captcha.</code>，也就是我们的字体名</p>
-
+</code></pre><p>之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀<code>captcha.</code>，也就是我们的字体名</p>
 <h3 id="生成语言库">生成语言库</h3>
-
 <p>命令</p>
-
 <pre><code>combine_tessdata.exe captcha.
-</code></pre>
-
-<p>会生成一个<code>captcha.traineddata</code>文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可</p>
-
+</code></pre><p>会生成一个<code>captcha.traineddata</code>文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可</p>
 <h2 id="使用训练结果">使用训练结果</h2>
-
 <p>在调用tesseract或pytesseract时，只需添加参数lang=&ldquo;captcha&rdquo;（我们的字体名），程序就会自动调用啦</p>
 </div>
   <footer class="post-footer">
@@ -198,7 +157,7 @@ cntraining.exe captcha.font.exp0.tr
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

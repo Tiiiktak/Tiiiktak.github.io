@@ -1,222 +1,495 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>MATLAB学习_操作数据 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="文件操作 导入文件 当我们打开 MATLAB 时，我们通常已经在一个默认路径中，这个路径是 MATLAB 的安装位置，使用 pwd 命令可以显示出 MATLAB 当前所处路径。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='文件操作 导入文件 当我们打开 MATLAB 时，我们通常已经在一个默认路径中，这个路径是 MATLAB 的安装位置，使用 pwd 命令可以显示出 MATLAB 当前所处路径。
 使用cd命令，可以修改当前路径
-使用&rsquo;ls&rsquo;命令，可以列出当前路劲中所有文件
+使用&amp;rsquo;ls&amp;rsquo;命令，可以列出当前路劲中所有文件
 要在MATLAB中导入数据文件，可以使用load命令，如：
-&gt;&gt; load myData.dat % 或load(&#39;myData.dat&#39;)  之后可以直接输入myData，MATLAB便会打印文件中的数据，此时该文件名便作为一个新变量名
+&amp;gt;&amp;gt; load myData.dat % 或load(&amp;#39;myData.dat&amp;#39;) 之后可以直接输入myData，MATLAB便会打印文件中的数据，此时该文件名便作为一个新变量名
 导出文件 退出 MATLAB 后，工作区变量不会保留。使用 save 命令保存数据以供将来使用，
-save myfile.mat  通过保存，系统会使用 .mat 扩展名将工作区保存在当前工作文件夹中一个名为 MAT 文件的压缩文件中。
+save myfile.mat 通过保存，系统会使用 .mat 扩展名将工作区保存在当前工作文件夹中一个名为 MAT 文件的压缩文件中。
 变量操作 “工作区”中包含了在MATLAB创建或从数据文件或其他程序导入的变量
 例如先在工作区中创建变量A和B
-A = eye(3) B = rand(2, 3)  使用who可以查看当前工作区中所有变量
-&gt;&gt; who 您的变量为: A B  还有一个whos，能更详细的查看
-&gt;&gt; whos Name Size Bytes Class Attributes A 3x3 72 double B 2x3 48 double  此外，在GUI窗口中也能查看">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+A = eye(3) B = rand(2, 3) 使用who可以查看当前工作区中所有变量
+&amp;gt;&amp;gt; who 您的变量为: A B 还有一个whos，能更详细的查看
+&amp;gt;&amp;gt; whos Name Size Bytes Class Attributes A 3x3 72 double B 2x3 48 double 此外，在GUI窗口中也能查看
+可以使用clear命令清除工作区中所有变量
+数据操作 此时矩阵 A = [1 2; 3 4; 5 6] 是一个 3×2 的矩阵'><title>MATLAB学习_操作数据</title>
+
+<link rel='canonical' href='https://example.com/blog/matlab%E6%93%8D%E4%BD%9C/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MATLAB学习_操作数据'>
+<meta property='og:description' content='文件操作 导入文件 当我们打开 MATLAB 时，我们通常已经在一个默认路径中，这个路径是 MATLAB 的安装位置，使用 pwd 命令可以显示出 MATLAB 当前所处路径。
+使用cd命令，可以修改当前路径
+使用&amp;rsquo;ls&amp;rsquo;命令，可以列出当前路劲中所有文件
+要在MATLAB中导入数据文件，可以使用load命令，如：
+&amp;gt;&amp;gt; load myData.dat % 或load(&amp;#39;myData.dat&amp;#39;) 之后可以直接输入myData，MATLAB便会打印文件中的数据，此时该文件名便作为一个新变量名
+导出文件 退出 MATLAB 后，工作区变量不会保留。使用 save 命令保存数据以供将来使用，
+save myfile.mat 通过保存，系统会使用 .mat 扩展名将工作区保存在当前工作文件夹中一个名为 MAT 文件的压缩文件中。
+变量操作 “工作区”中包含了在MATLAB创建或从数据文件或其他程序导入的变量
+例如先在工作区中创建变量A和B
+A = eye(3) B = rand(2, 3) 使用who可以查看当前工作区中所有变量
+&amp;gt;&amp;gt; who 您的变量为: A B 还有一个whos，能更详细的查看
+&amp;gt;&amp;gt; whos Name Size Bytes Class Attributes A 3x3 72 double B 2x3 48 double 此外，在GUI窗口中也能查看
+可以使用clear命令清除工作区中所有变量
+数据操作 此时矩阵 A = [1 2; 3 4; 5 6] 是一个 3×2 的矩阵'>
+<meta property='og:url' content='https://example.com/blog/matlab%E6%93%8D%E4%BD%9C/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-01-10T17:55:20&#43;08:00'/><meta property='article:modified_time' content='2020-01-10T17:55:20&#43;08:00'/>
+<meta name="twitter:title" content="MATLAB学习_操作数据">
+<meta name="twitter:description" content="文件操作 导入文件 当我们打开 MATLAB 时，我们通常已经在一个默认路径中，这个路径是 MATLAB 的安装位置，使用 pwd 命令可以显示出 MATLAB 当前所处路径。
+使用cd命令，可以修改当前路径
+使用&amp;rsquo;ls&amp;rsquo;命令，可以列出当前路劲中所有文件
+要在MATLAB中导入数据文件，可以使用load命令，如：
+&amp;gt;&amp;gt; load myData.dat % 或load(&amp;#39;myData.dat&amp;#39;) 之后可以直接输入myData，MATLAB便会打印文件中的数据，此时该文件名便作为一个新变量名
+导出文件 退出 MATLAB 后，工作区变量不会保留。使用 save 命令保存数据以供将来使用，
+save myfile.mat 通过保存，系统会使用 .mat 扩展名将工作区保存在当前工作文件夹中一个名为 MAT 文件的压缩文件中。
+变量操作 “工作区”中包含了在MATLAB创建或从数据文件或其他程序导入的变量
+例如先在工作区中创建变量A和B
+A = eye(3) B = rand(2, 3) 使用who可以查看当前工作区中所有变量
+&amp;gt;&amp;gt; who 您的变量为: A B 还有一个whos，能更详细的查看
+&amp;gt;&amp;gt; whos Name Size Bytes Class Attributes A 3x3 72 double B 2x3 48 double 此外，在GUI窗口中也能查看
+可以使用clear命令清除工作区中所有变量
+数据操作 此时矩阵 A = [1 2; 3 4; 5 6] 是一个 3×2 的矩阵">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/matlab/" style="background-color: #2a9d8f; color: #fff;">
+                MATLAB
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/matlab%E6%93%8D%E4%BD%9C/">MATLAB学习_操作数据</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">MATLAB学习_操作数据</h1>
-    <div class="post-meta">2020.1.10</div>
-  </header>
-  <div class="post-content">
 
-<h2 id="文件操作">文件操作</h2>
+        <time class="article-time--published">Jan 10, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <h2 id="文件操作">文件操作</h2>
 <h3 id="导入文件">导入文件</h3>
-
 <p>当我们打开 MATLAB 时，我们通常已经在一个默认路径中，这个路径是 MATLAB 的安装位置，使用 <code>pwd</code> 命令可以显示出 MATLAB 当前所处路径。</p>
-
 <p>使用<code>cd</code>命令，可以修改当前路径</p>
-
 <p>使用&rsquo;ls&rsquo;命令，可以列出当前路劲中所有文件</p>
-
 <p>要在MATLAB中<strong>导入数据文件</strong>，可以使用<code>load</code>命令，如：</p>
-
-<pre><code class="language-matlab">&gt;&gt; load myData.dat  % 或load('myData.dat')
-</code></pre>
-
-<p>之后可以直接输入<code>myData</code>，MATLAB便会打印文件中的数据，此时该文件名便作为一个新变量名</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">load</span> <span class="n">myData</span><span class="p">.</span><span class="n">dat</span>  <span class="c">% 或load(&#39;myData.dat&#39;)</span>
+</code></pre></div><p>之后可以直接输入<code>myData</code>，MATLAB便会打印文件中的数据，此时该文件名便作为一个新变量名</p>
 <h3 id="导出文件">导出文件</h3>
-
 <p>退出 MATLAB 后，工作区变量不会保留。使用 <code>save</code> 命令保存数据以供将来使用，</p>
-
-<pre><code class="language-matlab">save myfile.mat
-</code></pre>
-
-<p>通过保存，系统会使用 <code>.mat</code> 扩展名将工作区保存在当前工作文件夹中一个名为 <code>MAT</code> 文件的压缩文件中。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">save</span> <span class="n">myfile</span><span class="p">.</span><span class="n">mat</span>
+</code></pre></div><p>通过保存，系统会使用 <code>.mat</code> 扩展名将工作区保存在当前工作文件夹中一个名为 <code>MAT</code> 文件的压缩文件中。</p>
 <h2 id="变量操作">变量操作</h2>
-
 <p>“工作区”中包含了在MATLAB创建或从数据文件或其他程序导入的变量</p>
-
 <p>例如先在工作区中创建变量<code>A</code>和<code>B</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">A</span> <span class="p">=</span> <span class="nb">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">B</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div><p>使用<code>who</code>可以查看当前工作区中所有变量</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">who</span>
+您的变量为<span class="p">:</span>
+<span class="n">A</span>  <span class="n">B</span>  
+</code></pre></div><p>还有一个<code>whos</code>，能更详细的查看</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">whos</span>
+  <span class="n">Name</span>      <span class="n">Size</span>            <span class="n">Bytes</span>  <span class="n">Class</span>     <span class="n">Attributes</span>
 
-<pre><code class="language-matlab">A = eye(3)
-B = rand(2, 3)
-</code></pre>
-
-<p>使用<code>who</code>可以查看当前工作区中所有变量</p>
-
-<pre><code class="language-matlab">&gt;&gt; who
-您的变量为:
-A  B  
-</code></pre>
-
-<p>还有一个<code>whos</code>，能更详细的查看</p>
-
-<pre><code class="language-matlab">&gt;&gt; whos
-  Name      Size            Bytes  Class     Attributes
-
-  A         3x3                72  double              
-  B         2x3                48  double 
-</code></pre>
-
-<p>此外，在GUI窗口中也能查看</p>
-
-<p><img src="https://i.loli.net/2020/01/10/sQp69yDfdKzAiBm.png" alt="工作区GUI" /></p>
-
+  <span class="n">A</span>         <span class="mi">3</span><span class="n">x3</span>                <span class="mi">72</span>  <span class="n">double</span>              
+  <span class="n">B</span>         <span class="mi">2</span><span class="n">x3</span>                <span class="mi">48</span>  <span class="n">double</span> 
+</code></pre></div><p>此外，在GUI窗口中也能查看</p>
+<p><img src="https://i.loli.net/2020/01/10/sQp69yDfdKzAiBm.png" alt="工作区GUI"  /></p>
 <p>可以使用<code>clear</code>命令清除工作区中所有变量</p>
-
 <h2 id="数据操作">数据操作</h2>
-
 <p>此时矩阵 <code>A = [1 2; 3 4; 5 6]</code> 是一个 3×2 的矩阵</p>
-
 <p>我可以键入 <code>A(2,:)</code> 来返回第二行的所有元素，冒号表示该行或该列的所有元素。</p>
-
 <p><code>A([1 3],:)</code>，这个命令意思是取<code>A</code>矩阵<strong>第一个索引值为1或3的元素</strong>，也就是说我取的是<strong>A矩阵的第一行和第三行的每一列</strong>，冒号表示的是取这两行的每一列元素，即：</p>
-
 <pre><code>&gt;&gt; A([1 3],:)
 ans =
      1     2
      5     6
-</code></pre>
+</code></pre><p>我可以取<code>A</code>矩阵的<strong>第二列，然后将它赋值为10 11 12</strong>，我实际上是取出了  的第二列，然后把一个列向量[10;11;12]赋给了它，因此现在<code>A</code>矩阵的第一列还是 <code>1 3 5</code>，第二列就被替换为 <code>10 11 12</code>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(:,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">;</span><span class="mi">11</span><span class="p">;</span><span class="mi">12</span><span class="p">]</span>
+<span class="n">A</span> <span class="p">=</span>
+     <span class="mi">1</span>    <span class="mi">10</span>
+     <span class="mi">3</span>    <span class="mi">11</span>
+     <span class="mi">5</span>    <span class="mi">12</span>
+</code></pre></div><p>还有一个小技巧，如果你就输入 <code>A(:)</code>，这是一个很特别的语法结构，意思是把<code>A</code> 中的所有元素放入一个单独的列向量，这样我们就得到了一个 <code>9×1</code> 的向量，这些元素都是<code>A</code>中的元素排列起来的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(:)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">1</span>
+     <span class="mi">3</span>
+     <span class="mi">5</span>
+    <span class="mi">10</span>
+    <span class="mi">11</span>
+    <span class="mi">12</span>
+</code></pre></div>
+</section>
 
-<p>我可以取<code>A</code>矩阵的<strong>第二列，然后将它赋值为10 11 12</strong>，我实际上是取出了  的第二列，然后把一个列向量[10;11;12]赋给了它，因此现在<code>A</code>矩阵的第一列还是 <code>1 3 5</code>，第二列就被替换为 <code>10 11 12</code>。</p>
 
-<pre><code class="language-matlab">&gt;&gt; A(:,2) = [10;11;12]
-A =
-     1    10
-     3    11
-     5    12
-</code></pre>
-
-<p>还有一个小技巧，如果你就输入 <code>A(:)</code>，这是一个很特别的语法结构，意思是把<code>A</code> 中的所有元素放入一个单独的列向量，这样我们就得到了一个 <code>9×1</code> 的向量，这些元素都是<code>A</code>中的元素排列起来的。</p>
-
-<pre><code class="language-matlab">&gt;&gt; A(:)
-ans =
-     1
-     3
-     5
-    10
-    11
-    12
-</code></pre>
-</div>
-  <footer class="post-footer">
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

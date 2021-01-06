@@ -1,230 +1,485 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>灰度重心法 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫*密度质心算法*。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫密度质心算法。
 将灰度值分布中的质心记作光条纹的中心
 对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
 灰度重心法公式 型心法 只可用于二值图像
 灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
 代码：
-#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 int i, j; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; //获取图像各点灰度值总和 for (it = img_gray.begin&lt;uchar&gt;(), end = img_gray.end&lt;uchar&gt;(); it != end; it&#43;&#43;) { ((*it) &gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 } Center.">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 	int i, j; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; //获取图像各点灰度值总和 	for (it = img_gray.begin&amp;lt;uchar&amp;gt;(), end = img_gray.end&amp;lt;uchar&amp;gt;(); it != end; it&#43;&#43;) { ((*it) &amp;gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 	} Center.'><title>灰度重心法</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
+<link rel='canonical' href='https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='灰度重心法'>
+<meta property='og:description' content='概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫密度质心算法。
+将灰度值分布中的质心记作光条纹的中心
+对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
+灰度重心法公式 型心法 只可用于二值图像
+灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
+代码：
+#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 	int i, j; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; //获取图像各点灰度值总和 	for (it = img_gray.begin&amp;lt;uchar&amp;gt;(), end = img_gray.end&amp;lt;uchar&amp;gt;(); it != end; it&#43;&#43;) { ((*it) &amp;gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 	} Center.'>
+<meta property='og:url' content='https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-06-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-06-28T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="灰度重心法">
+<meta name="twitter:description" content="概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫密度质心算法。
+将灰度值分布中的质心记作光条纹的中心
+对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
+灰度重心法公式 型心法 只可用于二值图像
+灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
+代码：
+#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 	int i, j; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; //获取图像各点灰度值总和 	for (it = img_gray.begin&amp;lt;uchar&amp;gt;(), end = img_gray.end&amp;lt;uchar&amp;gt;(); it != end; it&#43;&#43;) { ((*it) &amp;gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 	} Center.">
+    </head>
+    <body class="article-page keep-sidebar">
     <script>
-      var _hmt = _hmt || [];
-      (function () {
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="background-color: #2a9d8f; color: #fff;">
+                树莓派RaspBerry Pi
+            </a>
+        
+            <a href="/categories/opencv/" style="background-color: #2a9d8f; color: #fff;">
+                OpenCV
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/">灰度重心法</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jun 28, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="概念">概念</h1>
+<p>对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按<strong>目标光强分布</strong>求出<strong>光强权重质心坐标</strong>作为<strong>跟踪点</strong>，也叫<em>密度质心算法</em>。</p>
+<p>将灰度值分布中的质心记作光条纹的中心</p>
+<p><img src="https://2jdpmg.bl.files.1drv.com/y4mEofqGL32IymzwFYs1ldwreel2Rh87SQZkC_cirJayoYaXLlvU5hJivKA1efE0SIHHWlW5qHlyjvNp12KimxjYHrEfxz1z4sOhXQHAuOlL-CwOS3AvO-EKqYh6UgnUWqNA1zDDFh7OgW1Ss_H4QQcMuAk4qs8Ak2k1yYoaLrl95AFeMB_DZjmWlmHYmvDFN6kEA0a_4kQneMtHBDlE1Ts2Q?width=945&amp;height=606&amp;cropmode=none" alt="表"  /></p>
+<p>对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：</p>
+<p><img src="https://zxfreg.bl.files.1drv.com/y4m5iNL4aElPK1ADuC2npUTcSplMHK_ljxDug_ld_xQqBwIYzAfzRsZ6wV4_FTyRG2XwQx8VGoJhZkqBw5MEsL8qLzykjS-LwZdIZgOXXLP-oYbJYhvOe-ES0sP_t-92-DTlx_AHb7HfNJL23Sp5rfDX6rkgAEJj3FGdvKbJLxPkrOIVlB21GmCyQd7XVOrdr6_ghtofPy7hH4brEiD6JNEug?width=316&amp;height=130&amp;cropmode=none" alt="x"  />
+<img src="https://aoyshq.bl.files.1drv.com/y4mGRqw5fzKp7QD-pcKhwzrz53vEbOxaOm2A3WuCquHkLXTDthg_DGHAboNzbUN06FthKNXL0hRVGvaEbAT9eu2x6ytnW3kT4AUoZSsVglrWLMfDskvnJcns2hx6Oliq86qQ9tiE02gP57lN1f0546L4kVHAcgFOQ_2-Dd-ekA4GgV63a4KfgzeBK012WloG6NGPnBRk-SmNE4FUgAe72agUA?width=283&amp;height=146&amp;cropmode=none" alt="y"  />
+<img src="https://prwoka.bl.files.1drv.com/y4mJIDNhOx79MFzQ5-nh5P1TDOIS5y0Ep0GUFR6_aQIFIjxakZLAbIfAldq0NHugIdkxLO1Z0LDGyVT0wrKkdg3pzE84QfytAUk1d_2Aausn5kOV7awMJMqL2IsFLj1uVbxy3kVTFiy6ee2Ea54rrYO2xftehI9LUfebmvLcaKJqowLlR2nSkdaBZHImZs_mdDqsM7FP7Sug-7ppI29mVexig?width=321&amp;height=105&amp;cropmode=none" alt="fij"  /></p>
+<h1 id="灰度重心法公式">灰度重心法公式</h1>
+<h2 id="型心法">型心法</h2>
+<p>只可用于二值图像</p>
+<p><img src="https://zkmgbq.bl.files.1drv.com/y4mo-Wkxs8KqRu-g0zwlk9L5OLjAFAw2GrEwpFI_RpHARan1oZm5S2PIHPHs6su7TS4iR6DA7aYWDqZd0zPQTGdN6bke4nEmoWsQF0hsOUxWpkmjtdz4KRgykavlyW8pOMdHD_lo1_c77ToXN4Hytp02Quzlu2oywNVy6PabvEOTJ4U2JubsKAFfhYtUmxUQM4ReZd6jDi9JK3sVuT17wo7SA?width=1007&amp;height=476&amp;cropmode=none" alt="型心法"  /></p>
+<h2 id="灰度重心法version-1">灰度重心法version 1</h2>
+<p><img src="https://ab4tqa.bl.files.1drv.com/y4mDJ9bvGYor-NOt5UyxFQQZl3km9vqfOrx0zEipg7RFq1BQ_bMrpStWceTDev3twFbiP3jyq0Am6dG57kaCf3Ceu-s3R5GOWeQD3NpEL82upA3I02YWGBchnmz0pLm1UXKwGUA0dndNuxjsbStxiEaELaJza6SbEK3ZysPaRyfRfK47pgjVFxkvKwf7w9g7yrcOcJu3TfvCUvMOqazTt-Cjg?width=1008&amp;height=618&amp;cropmode=none" alt="灰度重心法v1"  /></p>
+<h2 id="灰度重心法version-2">灰度重心法version 2</h2>
+<p><img src="https://bdpvsg.bl.files.1drv.com/y4mBU1TwevsltBM2uBFGPgzS63c9ioY1zvRKjUFXxvoZ9VCybENdILXAAJK1GfwWvoAqBIYf_uv7TP8eylvGvDEE85PRp8F4FexHuAIgGReBlYsI0LX6PNHXglRQF1Mk15B85PjLXahan1JU5vDW2X03tew0VStz04meEpK5ZtG1uGgnkCvoLCR0BSIEF7eyc3fuoTDmENG-59xsTfeNn4o5w?width=952&amp;height=327&amp;cropmode=none" alt="灰度重心法v2"  /></p>
+<h1 id="使用visual-studio-2019测试">使用Visual Studio 2019测试</h1>
+<p>根据灰度重心法version 1找光斑中心</p>
+<p>代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define T 20 </span><span class="c1">//根据实际情况设定固定阈值
+</span><span class="c1"></span><span class="n">Point</span> <span class="nf">grayCenter</span><span class="p">(</span><span class="n">Mat</span><span class="o">&amp;</span> <span class="n">img</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Mat</span> <span class="n">img_gray</span><span class="p">;</span> 
+	<span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">img_gray</span><span class="p">,</span> <span class="n">COLOR_BGR2GRAY</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">Point</span> <span class="n">Center</span><span class="p">;</span> <span class="c1">//中心点
+</span><span class="c1"></span>	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+	<span class="kt">double</span> <span class="n">sumval</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+	<span class="n">MatIterator_</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span> <span class="n">it</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+	<span class="c1">//获取图像各点灰度值总和
+</span><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="n">it</span> <span class="o">=</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">begin</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(),</span> <span class="n">end</span> <span class="o">=</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">end</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">end</span><span class="p">;</span> <span class="n">it</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="p">((</span><span class="o">*</span><span class="n">it</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="o">?</span> <span class="n">sumval</span> <span class="o">+=</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">)</span> <span class="o">:</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">//小于阈值，取0
+</span><span class="c1"></span>	<span class="p">}</span>
+	<span class="n">Center</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Center</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="kt">double</span> <span class="n">s</span> <span class="o">=</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">//取当前点灰度值
+</span><span class="c1"></span>			<span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">)</span> 
+				<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+			<span class="n">x</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">/</span> <span class="n">sumval</span><span class="p">;</span>
+			<span class="n">y</span> <span class="o">+=</span> <span class="n">j</span> <span class="o">*</span> <span class="n">s</span> <span class="o">/</span> <span class="n">sumval</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">Center</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">cvRound</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+	<span class="n">Center</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">cvRound</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;rows=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">rows</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;  cols=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">cols</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;x=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;  y=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+	<span class="k">return</span> <span class="n">Center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>运行结果:</p>
+<p>成功找到光斑中心（绿点）</p>
+<h1 id="在树莓派上测试">在树莓派上测试</h1>
+<p>同样，在树莓派上</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cmake .
+make
+</code></pre></div><p>执行!
+成功！</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
-        
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
-        
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
-    </header>
-    
-    <nav class="nav">
-      <ul class="menu">
-        
-        <li>
-          <a href="/about/">About</a>
-        </li>
-        
-      </ul>
-    </nav>
-    
-    <main class="main">
-
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">灰度重心法</h1>
-    <div class="post-meta">2019.6.28</div>
-  </header>
-  <div class="post-content">
-
-<h1 id="概念">概念</h1>
-
-<p>对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按<strong>目标光强分布</strong>求出<strong>光强权重质心坐标</strong>作为<strong>跟踪点</strong>，也叫*密度质心算法*。</p>
-
-<p>将灰度值分布中的质心记作光条纹的中心</p>
-
-<p><img src="https://2jdpmg.bl.files.1drv.com/y4mEofqGL32IymzwFYs1ldwreel2Rh87SQZkC_cirJayoYaXLlvU5hJivKA1efE0SIHHWlW5qHlyjvNp12KimxjYHrEfxz1z4sOhXQHAuOlL-CwOS3AvO-EKqYh6UgnUWqNA1zDDFh7OgW1Ss_H4QQcMuAk4qs8Ak2k1yYoaLrl95AFeMB_DZjmWlmHYmvDFN6kEA0a_4kQneMtHBDlE1Ts2Q?width=945&amp;height=606&amp;cropmode=none" alt="表" /></p>
-
-<p>对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：</p>
-
-<p><img src="https://zxfreg.bl.files.1drv.com/y4m5iNL4aElPK1ADuC2npUTcSplMHK_ljxDug_ld_xQqBwIYzAfzRsZ6wV4_FTyRG2XwQx8VGoJhZkqBw5MEsL8qLzykjS-LwZdIZgOXXLP-oYbJYhvOe-ES0sP_t-92-DTlx_AHb7HfNJL23Sp5rfDX6rkgAEJj3FGdvKbJLxPkrOIVlB21GmCyQd7XVOrdr6_ghtofPy7hH4brEiD6JNEug?width=316&amp;height=130&amp;cropmode=none" alt="x" />
-<img src="https://aoyshq.bl.files.1drv.com/y4mGRqw5fzKp7QD-pcKhwzrz53vEbOxaOm2A3WuCquHkLXTDthg_DGHAboNzbUN06FthKNXL0hRVGvaEbAT9eu2x6ytnW3kT4AUoZSsVglrWLMfDskvnJcns2hx6Oliq86qQ9tiE02gP57lN1f0546L4kVHAcgFOQ_2-Dd-ekA4GgV63a4KfgzeBK012WloG6NGPnBRk-SmNE4FUgAe72agUA?width=283&amp;height=146&amp;cropmode=none" alt="y" />
-<img src="https://prwoka.bl.files.1drv.com/y4mJIDNhOx79MFzQ5-nh5P1TDOIS5y0Ep0GUFR6_aQIFIjxakZLAbIfAldq0NHugIdkxLO1Z0LDGyVT0wrKkdg3pzE84QfytAUk1d_2Aausn5kOV7awMJMqL2IsFLj1uVbxy3kVTFiy6ee2Ea54rrYO2xftehI9LUfebmvLcaKJqowLlR2nSkdaBZHImZs_mdDqsM7FP7Sug-7ppI29mVexig?width=321&amp;height=105&amp;cropmode=none" alt="fij" /></p>
-
-<h1 id="灰度重心法公式">灰度重心法公式</h1>
-
-<h2 id="型心法">型心法</h2>
-
-<p>只可用于二值图像</p>
-
-<p><img src="https://zkmgbq.bl.files.1drv.com/y4mo-Wkxs8KqRu-g0zwlk9L5OLjAFAw2GrEwpFI_RpHARan1oZm5S2PIHPHs6su7TS4iR6DA7aYWDqZd0zPQTGdN6bke4nEmoWsQF0hsOUxWpkmjtdz4KRgykavlyW8pOMdHD_lo1_c77ToXN4Hytp02Quzlu2oywNVy6PabvEOTJ4U2JubsKAFfhYtUmxUQM4ReZd6jDi9JK3sVuT17wo7SA?width=1007&amp;height=476&amp;cropmode=none" alt="型心法" /></p>
-
-<h2 id="灰度重心法version-1">灰度重心法version 1</h2>
-
-<p><img src="https://ab4tqa.bl.files.1drv.com/y4mDJ9bvGYor-NOt5UyxFQQZl3km9vqfOrx0zEipg7RFq1BQ_bMrpStWceTDev3twFbiP3jyq0Am6dG57kaCf3Ceu-s3R5GOWeQD3NpEL82upA3I02YWGBchnmz0pLm1UXKwGUA0dndNuxjsbStxiEaELaJza6SbEK3ZysPaRyfRfK47pgjVFxkvKwf7w9g7yrcOcJu3TfvCUvMOqazTt-Cjg?width=1008&amp;height=618&amp;cropmode=none" alt="灰度重心法v1" /></p>
-
-<h2 id="灰度重心法version-2">灰度重心法version 2</h2>
-
-<p><img src="https://bdpvsg.bl.files.1drv.com/y4mBU1TwevsltBM2uBFGPgzS63c9ioY1zvRKjUFXxvoZ9VCybENdILXAAJK1GfwWvoAqBIYf_uv7TP8eylvGvDEE85PRp8F4FexHuAIgGReBlYsI0LX6PNHXglRQF1Mk15B85PjLXahan1JU5vDW2X03tew0VStz04meEpK5ZtG1uGgnkCvoLCR0BSIEF7eyc3fuoTDmENG-59xsTfeNn4o5w?width=952&amp;height=327&amp;cropmode=none" alt="灰度重心法v2" /></p>
-
-<h1 id="使用visual-studio-2019测试">使用Visual Studio 2019测试</h1>
-
-<p>根据灰度重心法version 1找光斑中心</p>
-
-<p>代码：</p>
-
-<pre><code class="language-cpp">#define T 20 //根据实际情况设定固定阈值
-Point grayCenter(Mat&amp; img)
-{
-	Mat img_gray; 
-	cvtColor(img, img_gray, COLOR_BGR2GRAY, 0);
-	Point Center; //中心点
-	int i, j;
-	double sumval = 0; 
-	MatIterator_&lt;uchar&gt; it, end;
-	//获取图像各点灰度值总和
-	for (it = img_gray.begin&lt;uchar&gt;(), end = img_gray.end&lt;uchar&gt;(); it != end; it++)
-	{
-		((*it) &gt; T) ? sumval += (*it) : NULL; //小于阈值，取0
-	}
-	Center.x = Center.y = 0;
-	double x = 0, y = 0;
-	for (int i = 0; i &lt; img_gray.cols; i++)
-	{
-		for (int j = 0; j &lt; img_gray.rows; j++)
-		{
-			double s = img_gray.at&lt;uchar&gt;(j, i); //取当前点灰度值
-			if (s &lt; T) 
-				s = 0; 
-			x += i * s / sumval;
-			y += j * s / sumval;
-		}
-	}
-	Center.x = cvRound(x);
-	Center.y = cvRound(y);
-	cout &lt;&lt; &quot;rows=&quot; &lt;&lt; img_gray.rows &lt;&lt; &quot;  cols=&quot; &lt;&lt; img_gray.cols &lt;&lt; endl; 
-	cout &lt;&lt; &quot;x=&quot; &lt;&lt; x &lt;&lt; &quot;  y=&quot; &lt;&lt; y &lt;&lt; endl; 
-	return Center;
-}
-</code></pre>
-
-<p>运行结果:</p>
-
-<p>成功找到光斑中心（绿点）</p>
-
-<h1 id="在树莓派上测试">在树莓派上测试</h1>
-
-<p>同样，在树莓派上</p>
-
-<pre><code class="language-sh">cmake .
-make
-</code></pre>
-
-<p>执行!
-成功！</p>
-</div>
-  <footer class="post-footer">
-    
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
     })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
-</article>
-
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
 </script>
-</body>
+    </body>
 </html>
-

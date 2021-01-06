@@ -1,85 +1,255 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Pytorch学习笔记_3_构建一个神经网络 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="Neural Networks  神经网络可以通过使用torch.nn包来创建
- nn依赖于autograd来定义模型并求导。
- 一个nn.Module类包含各个层和一个forward(input)前向传播方法，该方法返回output
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Neural Networks   神经网络可以通过使用torch.nn包来创建
+  nn依赖于autograd来定义模型并求导。
+  一个nn.Module类包含各个层和一个forward(input)前向传播方法，该方法返回output
+  例如这个分类数字图像的网络：
+这是个简单的前馈神经网络，它接受一个输入，然后一层接一层的传递，最后输出计算结果
+一个神经网络的典型训练过程：
+ 定义包含一些可学习的参数（或权重）的神经网络 在数据集上迭代 通过神经网络处理输入 计算损失函数（预测值与实际值的差值大小） 将梯度反向传播回网络的参数 更新网络参数，主要使用一个简单的更新法则：weight = weight - learning_rate * gradient   另参见：konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4
+ 定义网络 import torch import torch.nn as nn import torch.nn.functional as F class Net(nn.Module): def __init__(self): # 构造方法 super().__init__() # 复制并使用Net的父类的初始化方法，即先运行nn.Module的初始化函数 # 卷积层 self.conv1 = nn.Conv2d(1, 6, 5) self.conv2 = nn.Conv2d(6, 16, 5) # fc(full_connect)全连接函数，均为线性函数 y = Wx &#43; b self.'><title>Pytorch学习笔记_3_构建一个神经网络</title>
+
+<link rel='canonical' href='https://example.com/blog/pytorch_3/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch学习笔记_3_构建一个神经网络'>
+<meta property='og:description' content='Neural Networks   神经网络可以通过使用torch.nn包来创建
+  nn依赖于autograd来定义模型并求导。
+  一个nn.Module类包含各个层和一个forward(input)前向传播方法，该方法返回output
+  例如这个分类数字图像的网络：
+这是个简单的前馈神经网络，它接受一个输入，然后一层接一层的传递，最后输出计算结果
+一个神经网络的典型训练过程：
+ 定义包含一些可学习的参数（或权重）的神经网络 在数据集上迭代 通过神经网络处理输入 计算损失函数（预测值与实际值的差值大小） 将梯度反向传播回网络的参数 更新网络参数，主要使用一个简单的更新法则：weight = weight - learning_rate * gradient   另参见：konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4
+ 定义网络 import torch import torch.nn as nn import torch.nn.functional as F class Net(nn.Module): def __init__(self): # 构造方法 super().__init__() # 复制并使用Net的父类的初始化方法，即先运行nn.Module的初始化函数 # 卷积层 self.conv1 = nn.Conv2d(1, 6, 5) self.conv2 = nn.Conv2d(6, 16, 5) # fc(full_connect)全连接函数，均为线性函数 y = Wx &#43; b self.'>
+<meta property='og:url' content='https://example.com/blog/pytorch_3/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-12T11:13:23&#43;08:00'/><meta property='article:modified_time' content='2020-02-12T11:13:23&#43;08:00'/>
+<meta name="twitter:title" content="Pytorch学习笔记_3_构建一个神经网络">
+<meta name="twitter:description" content="Neural Networks   神经网络可以通过使用torch.nn包来创建
+  nn依赖于autograd来定义模型并求导。
+  一个nn.Module类包含各个层和一个forward(input)前向传播方法，该方法返回output
   例如这个分类数字图像的网络：
 这是个简单的前馈神经网络，它接受一个输入，然后一层接一层的传递，最后输出计算结果
 一个神经网络的典型训练过程：
  定义包含一些可学习的参数（或权重）的神经网络 在数据集上迭代 通过神经网络处理输入 计算损失函数（预测值与实际值的差值大小） 将梯度反向传播回网络的参数 更新网络参数，主要使用一个简单的更新法则：weight = weight - learning_rate * gradient   另参见：konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4
  定义网络 import torch import torch.nn as nn import torch.nn.functional as F class Net(nn.Module): def __init__(self): # 构造方法 super().__init__() # 复制并使用Net的父类的初始化方法，即先运行nn.Module的初始化函数 # 卷积层 self.conv1 = nn.Conv2d(1, 6, 5) self.conv2 = nn.Conv2d(6, 16, 5) # fc(full_connect)全连接函数，均为线性函数 y = Wx &#43; b self.">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/pytorch/" style="background-color: #2a9d8f; color: #fff;">
+                PyTorch
+            </a>
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/pytorch_3/">Pytorch学习笔记_3_构建一个神经网络</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Pytorch学习笔记_3_构建一个神经网络</h1>
-    <div class="post-meta">2020.2.12</div>
-  </header>
-  <div class="post-content">
 
-<h1 id="neural-networks">Neural Networks</h1>
+        <time class="article-time--published">Feb 12, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <h1 id="neural-networks">Neural Networks</h1>
 <ul>
-<li><p>神经网络可以通过使用<code>torch.nn</code>包来创建</p></li>
-
-<li><p><code>nn</code>依赖于<code>autograd</code>来定义模型并求导。</p></li>
-
-<li><p>一个<code>nn.Module</code>类包含各个层和一个<code>forward(input)</code>前向传播方法，该方法返回<code>output</code></p></li>
+<li>
+<p>神经网络可以通过使用<code>torch.nn</code>包来创建</p>
+</li>
+<li>
+<p><code>nn</code>依赖于<code>autograd</code>来定义模型并求导。</p>
+</li>
+<li>
+<p>一个<code>nn.Module</code>类包含各个层和一个<code>forward(input)</code>前向传播方法，该方法返回<code>output</code></p>
+</li>
 </ul>
-
 <p>例如这个分类数字图像的网络：</p>
-
-<p><img src="https://pytorch.org/tutorials/_images/mnist.png" alt="classifies digit images network" /></p>
-
+<p><img src="https://pytorch.org/tutorials/_images/mnist.png" alt="classifies digit images network"  /></p>
 <p>这是个简单的前馈神经网络，它接受一个输入，然后一层接一层的传递，最后输出计算结果</p>
-
 <p>一个神经网络的典型训练过程：</p>
-
 <ul>
 <li>定义包含一些可学习的参数（或权重）的神经网络</li>
 <li>在数据集上迭代</li>
@@ -88,287 +258,374 @@
 <li>将梯度反向传播回网络的参数</li>
 <li>更新网络参数，主要使用一个简单的更新法则：<code>weight = weight - learning_rate * gradient</code></li>
 </ul>
-
 <blockquote>
-<p>另参见：<a href="https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/">konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4</a></p>
+<p>另参见：<a class="link" href="https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/"  target="_blank" rel="noopener"
+    >konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4</a></p>
 </blockquote>
-
 <h1 id="定义网络">定义网络</h1>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
 
-<pre><code class="language-python">import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-class Net(nn.Module):
+<span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     
-    def __init__(self): # 构造方法
-        super().__init__() # 复制并使用Net的父类的初始化方法，即先运行nn.Module的初始化函数
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># 构造方法</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span> <span class="c1"># 复制并使用Net的父类的初始化方法，即先运行nn.Module的初始化函数</span>
         
-        # 卷积层
-        self.conv1 = nn.Conv2d(1, 6, 5) 
-        self.conv2 = nn.Conv2d(6, 16, 5) 
+        <span class="c1"># 卷积层</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> 
         
-        # fc(full_connect)全连接函数，均为线性函数 y = Wx + b
-        self.fc1 = nn.Linear(16 * 5 * 5, 120) 
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
+        <span class="c1"># fc(full_connect)全连接函数，均为线性函数 y = Wx + b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-    def forward(self, x): # 前向传播函数
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c1"># 前向传播函数</span>
         
-        # 将 x 放入卷积层 conv
-        # 经过激励函数 ReLu
-        # 使用2x2窗口进行最大池化 Max_poolinhg
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
-        x = F.max_pool2d(F.relu(self.conv2(x)), 2) # (2, 2)也可直接换作 2
+        <span class="c1"># 将 x 放入卷积层 conv</span>
+        <span class="c1"># 经过激励函数 ReLu</span>
+        <span class="c1"># 使用2x2窗口进行最大池化 Max_poolinhg</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># (2, 2)也可直接换作 2</span>
 
-        # view 将 x 展开成一维的向量，总特征数并不改变，为接下来的全连接作准备。
-        # view 的作用类似于Numpy中的reshape
-        x = x.view(-1, self.num_flat_features(x))
+        <span class="c1"># view 将 x 展开成一维的向量，总特征数并不改变，为接下来的全连接作准备。</span>
+        <span class="c1"># view 的作用类似于Numpy中的reshape</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_flat_features</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-        # 输入x经过 full_connect，再经过ReLU激活函数，然后更新x
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
+        <span class="c1"># 输入x经过 full_connect，再经过ReLU激活函数，然后更新x</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-        # 输入x经过 full_connect 然后更新x
-        x = self.fc3(x)
-        return x
+        <span class="c1"># 输入x经过 full_connect 然后更新x</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
 
-    def num_flat_features(self, x): # 计算x的总特征量(把每个数字都看作是一个特征)
-                                    # 比如 x 是4*2*2的张量，那么它的特征总量就是16。
+    <span class="k">def</span> <span class="nf">num_flat_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c1"># 计算x的总特征量(把每个数字都看作是一个特征)</span>
+                                    <span class="c1"># 比如 x 是4*2*2的张量，那么它的特征总量就是16。</span>
 
-        # Pytorch 仅接受批输入（一次性输入多张图片）
-        size = x.size()[1:]  # 考虑除了第一个维度以外的所有维度
+        <span class="c1"># Pytorch 仅接受批输入（一次性输入多张图片）</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># 考虑除了第一个维度以外的所有维度</span>
         
-        num_features = 1
-        for s in size:
-            num_features *= s
-        return num_features
+        <span class="n">num_features</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">size</span><span class="p">:</span>
+            <span class="n">num_features</span> <span class="o">*=</span> <span class="n">s</span>
+        <span class="k">return</span> <span class="n">num_features</span>
 
 
-net = Net()
-print(net)
-'''
-Output:
-Net(
-  (conv1): Conv2d(1, 6, kernel_size=(5, 5), stride=(1, 1))
-  (conv2): Conv2d(6, 16, kernel_size=(5, 5), stride=(1, 1))
-  (fc1): Linear(in_features=400, out_features=120, bias=True)
-  (fc2): Linear(in_features=120, out_features=84, bias=True)
-  (fc3): Linear(in_features=84, out_features=10, bias=True)
-)
-'''
-</code></pre>
-
-<blockquote>
-<p><code>super()</code>函数使用参考：<a href="konosuba.xyz">super()</a>
-<code>linear()</code>函数使用参考：<a href="konosuba.xyz">linear()</a>
+<span class="n">net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">Output:
+</span><span class="s1">Net(
+</span><span class="s1">  (conv1): Conv2d(1, 6, kernel_size=(5, 5), stride=(1, 1))
+</span><span class="s1">  (conv2): Conv2d(6, 16, kernel_size=(5, 5), stride=(1, 1))
+</span><span class="s1">  (fc1): Linear(in_features=400, out_features=120, bias=True)
+</span><span class="s1">  (fc2): Linear(in_features=120, out_features=84, bias=True)
+</span><span class="s1">  (fc3): Linear(in_features=84, out_features=10, bias=True)
+</span><span class="s1">)
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></div><blockquote>
+<p><code>super()</code>函数使用参考：<a class="link" href="konosuba.xyz" >super()</a>
+<code>linear()</code>函数使用参考：<a class="link" href="konosuba.xyz" >linear()</a>
 <code>relu</code></p>
 </blockquote>
-
 <p><strong>在模型中必须要定义 <code>forward</code> 函数</strong>，<code>backward</code> 函数（用来计算梯度）会被<code>autograd</code>自动创建。</p>
-
 <p>可以在 <code>forward</code> 函数中使用任何针对 <code>Tensor</code> 的操作。</p>
-
 <p><code>net.parameters()</code>返回可被学习的参数（权重）列表和值:</p>
-
-<pre><code class="language-python">params = list(net.parameters())
-print(len(params)) 
-print(params[0].size())  # conv1's .weight
-# Output:
-# 10
-# torch.Size([6, 1, 5, 5])
-</code></pre>
-
-<h1 id="测试网络">测试网络</h1>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">))</span> 
+<span class="k">print</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>  <span class="c1"># conv1&#39;s .weight</span>
+<span class="c1"># Output:</span>
+<span class="c1"># 10</span>
+<span class="c1"># torch.Size([6, 1, 5, 5])</span>
+</code></pre></div><h1 id="测试网络">测试网络</h1>
 <p>测试随机输入32×32。 注：这个网络（LeNet）期望的输入大小是32×32，如果使用MNIST数据集来训练这个网络，请把图片大小重新调整到32×32</p>
-
-<pre><code class="language-python">input = torch.randn(1, 1, 32, 32)
-out = net(input)
-print(out)
-# Output:
-# tensor([[-0.1102,  0.0936, -0.0787, -0.0155, -0.0480,  0.0496, -0.0683, -0.0112,
-#         -0.0889,  0.0134]], grad_fn=&lt;AddmmBackward&gt;)
-</code></pre>
-
-<h1 id="反向传播">反向传播</h1>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># tensor([[-0.1102,  0.0936, -0.0787, -0.0155, -0.0480,  0.0496, -0.0683, -0.0112,</span>
+<span class="c1">#         -0.0889,  0.0134]], grad_fn=&lt;AddmmBackward&gt;)</span>
+</code></pre></div><h1 id="反向传播">反向传播</h1>
 <p>将所有参数的梯度缓存清零，然后进行随机梯度的的反向传播：</p>
-
-<pre><code class="language-python">net.zero_grad()
-out.backward(torch.randn(1, 10))
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">net</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</code></pre></div><blockquote>
 <p><strong>Note</strong></p>
-
+</blockquote>
+<blockquote>
 <p><code>torch.nn</code> 只支持小批量输入。整个 <code>torch.nn</code> 包都只支持小批量样本，而不支持单个样本。</p>
-
+</blockquote>
+<blockquote>
 <p>例如，<code>nn.Conv2d</code> 接受一个4维的张量，</p>
-
+</blockquote>
+<blockquote>
 <p><code>每一维分别是sSamples * nChannels * Height * Width（样本数*通道数*高*宽）</code>。</p>
-
+</blockquote>
+<blockquote>
 <p>如果你有单个样本，只需使用 <code>input.unsqueeze(0)</code> 来添加其它的维数</p>
 </blockquote>
-
 <h1 id="损失函数">损失函数</h1>
-
 <p>损失函数接受一对 <code>(output, target)</code> 作为输入来计算一个值以估计网络的输出和目标值相差多少。</p>
-
 <blockquote>
 <p><code>output</code>为网络的输出，<code>target</code>为实际值</p>
 </blockquote>
-
 <p><code>nn</code>包中有很多不同的损失函数。</p>
-
 <p><code>nn.MSELoss</code>是一个比较简单的损失函数，它计算输出和目标间的均方误差:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">output</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 随机值作为样例</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 使target和output的shape相同</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
 
-<pre><code class="language-python">output = net(input)
-target = torch.randn(10)  # 随机值作为样例
-target = target.view(1, -1)  # 使target和output的shape相同
-criterion = nn.MSELoss()
-
-loss = criterion(output, target)
-print(loss)
-# Output:
-# tensor(1.1103, grad_fn=&lt;MseLossBackward&gt;)
-</code></pre>
-
-<p>现在，如果在反向过程中跟随<code>loss</code> ， 使用它的 <code>.grad_fn</code> 属性，将看到如下所示的计算图。</p>
-
+<span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># tensor(1.1103, grad_fn=&lt;MseLossBackward&gt;)</span>
+</code></pre></div><p>现在，如果在反向过程中跟随<code>loss</code> ， 使用它的 <code>.grad_fn</code> 属性，将看到如下所示的计算图。</p>
 <pre><code>input -&gt; conv2d -&gt; relu -&gt; maxpool2d -&gt; conv2d -&gt; relu -&gt; maxpool2d
           -&gt; view -&gt; linear -&gt; relu -&gt; linear -&gt; relu -&gt; linear
           -&gt; MSELoss
           -&gt; loss
-</code></pre>
-
-<p>所以，当我们调用 <code>loss.backward()</code>时,整张计算图都会根据<code>loss</code>进行微分，而且图中所有设置为<code>requires_grad=True</code>的张量将会拥有一个随着梯度累积的<code>.grad</code>张量。</p>
-
+</code></pre><p>所以，当我们调用 <code>loss.backward()</code>时,整张计算图都会根据<code>loss</code>进行微分，而且图中所有设置为<code>requires_grad=True</code>的张量将会拥有一个随着梯度累积的<code>.grad</code>张量。</p>
 <p>为了说明，让我们向后退几步:</p>
-
-<pre><code class="language-python">print(loss.grad_fn)  # MSELoss
-print(loss.grad_fn.next_functions[0][0])  # Linear
-print(loss.grad_fn.next_functions[0][0].next_functions[0][0])  # ReLU
-# Output:
-# &lt;MseLossBackward object at 0x0000021C605F3B08&gt;
-# &lt;AddmmBackward object at 0x0000021C605F3208&gt;
-# &lt;AccumulateGrad object at 0x0000021C605F3B08&gt;
-</code></pre>
-
-<h1 id="反向传播-1">反向传播</h1>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span>  <span class="c1"># MSELoss</span>
+<span class="k">print</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Linear</span>
+<span class="k">print</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># ReLU</span>
+<span class="c1"># Output:</span>
+<span class="c1"># &lt;MseLossBackward object at 0x0000021C605F3B08&gt;</span>
+<span class="c1"># &lt;AddmmBackward object at 0x0000021C605F3208&gt;</span>
+<span class="c1"># &lt;AccumulateGrad object at 0x0000021C605F3B08&gt;</span>
+</code></pre></div><h1 id="反向传播-1">反向传播</h1>
 <p>调用<code>loss.backward()</code>获得反向传播的误差。</p>
-
 <p>但是在调用前需要清除已存在的梯度，否则梯度将被累加到已存在的梯度。</p>
-
 <p>现在，我们将调用<code>loss.backward()</code>，并查看<code>conv1</code>层的偏差（bias）项在反向传播前后的梯度。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">net</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>     <span class="c1"># 清除梯度</span>
 
-<pre><code class="language-python">net.zero_grad()     # 清除梯度
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;conv1.bias.grad before backward&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
 
-print('conv1.bias.grad before backward')
-print(net.conv1.bias.grad)
+<span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-loss.backward()
-
-print('conv1.bias.grad after backward')
-print(net.conv1.bias.grad)
-''' 
-Output: 
-conv1.bias.grad before backward
-tensor([0., 0., 0., 0., 0., 0.])
-conv1.bias.grad after backward
-tensor([ 0.0242,  0.0145, -0.0015,  0.0144,  0.0084,  0.0309])
-'''
-</code></pre>
-
-<h1 id="更新权重">更新权重</h1>
-
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;conv1.bias.grad after backward&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="s1">&#39;&#39;&#39; 
+</span><span class="s1">Output: 
+</span><span class="s1">conv1.bias.grad before backward
+</span><span class="s1">tensor([0., 0., 0., 0., 0., 0.])
+</span><span class="s1">conv1.bias.grad after backward
+</span><span class="s1">tensor([ 0.0242,  0.0145, -0.0015,  0.0144,  0.0084,  0.0309])
+</span><span class="s1">&#39;&#39;&#39;</span>
+</code></pre></div><h1 id="更新权重">更新权重</h1>
 <p>在实践中最简单的权重更新规则是随机梯度下降（SGD）：</p>
-
 <pre><code> ``weight = weight - learning_rate * gradient``
 </code></pre>
-
 <p>我们可以使用简单的Python代码实现这个规则：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">sub_</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="n">learning_rate</span><span class="p">)</span>
+</code></pre></div><p>但是当使用神经网络是想要使用各种不同的更新规则时，比如SGD、Nesterov-SGD、Adam、RMSPROP等，PyTorch中构建了一个包<code>torch.optim</code>实现了所有的这些规则：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="kn">as</span> <span class="nn">optim</span>
 
-<pre><code class="language-python">
-learning_rate = 0.01
-for f in net.parameters():
-    f.data.sub_(f.grad.data * learning_rate)
-</code></pre>
+<span class="c1"># 创建优化器</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span> <span class="c1"># learning rate设为0.01</span>
 
-<p>但是当使用神经网络是想要使用各种不同的更新规则时，比如SGD、Nesterov-SGD、Adam、RMSPROP等，PyTorch中构建了一个包<code>torch.optim</code>实现了所有的这些规则：</p>
+<span class="c1"># 在训练循环中</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>   <span class="c1"># zero the gradient buffers</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>    <span class="c1"># Does the update</span>
+</code></pre></div>
+</section>
 
-<pre><code class="language-python">import torch.optim as optim
 
-# 创建优化器
-optimizer = optim.SGD(net.parameters(), lr=0.01) # learning rate设为0.01
-
-# 在训练循环中
-optimizer.zero_grad()   # zero the gradient buffers
-output = net(input)
-loss = criterion(output, target)
-loss.backward()
-optimizer.step()    # Does the update
-</code></pre>
-</div>
-  <footer class="post-footer">
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

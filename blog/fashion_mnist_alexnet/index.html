@@ -1,137 +1,318 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>AlexNet分类Fashion-MNIST(Pytorch实现) - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="这个notebook也同时发表在Kaggle上
-Fashion MNIST数据集 |Label | Class | |-|-| |0| T-shirt/top| |1| Trouser| |2| Pullover| |3| Dress| |4| Coat| |5| Sandal| |6| Shirt| |7| Sneaker| |8| Bag| |9| Ankle boot|
-准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.pyplot as plt from torchvision import transforms, datasets from torch.utils.data import Dataset, DataLoader EPOCHS = 20 BATCH_SIZE = 512 DEVICE = (&quot;cuda&quot; if torch.">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='这个notebook也同时发表在Kaggle上
+Fashion MNIST数据集    Label Class     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 Coat   5 Sandal   6 Shirt   7 Sneaker   8 Bag   9 Ankle boot    准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.'><title>AlexNet分类Fashion-MNIST(Pytorch实现)</title>
+
+<link rel='canonical' href='https://example.com/blog/fashion_mnist_alexnet/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='AlexNet分类Fashion-MNIST(Pytorch实现)'>
+<meta property='og:description' content='这个notebook也同时发表在Kaggle上
+Fashion MNIST数据集    Label Class     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 Coat   5 Sandal   6 Shirt   7 Sneaker   8 Bag   9 Ankle boot    准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.'>
+<meta property='og:url' content='https://example.com/blog/fashion_mnist_alexnet/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-03-08T23:03:09&#43;08:00'/><meta property='article:modified_time' content='2020-03-08T23:03:09&#43;08:00'/>
+<meta name="twitter:title" content="AlexNet分类Fashion-MNIST(Pytorch实现)">
+<meta name="twitter:description" content="这个notebook也同时发表在Kaggle上
+Fashion MNIST数据集    Label Class     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 Coat   5 Sandal   6 Shirt   7 Sneaker   8 Bag   9 Ankle boot    准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+            <a href="/categories/pytorch/" style="background-color: #2a9d8f; color: #fff;">
+                PyTorch
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/fashion_mnist_alexnet/">AlexNet分类Fashion-MNIST(Pytorch实现)</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">AlexNet分类Fashion-MNIST(Pytorch实现)</h1>
-    <div class="post-meta">2020.3.8</div>
-  </header>
-  <div class="post-content">
 
-<p>这个notebook也同时发表在<a href="https://www.kaggle.com/tiiktak/fashion-mnist-with-alexnet-in-pytorch-92-accuracy">Kaggle</a>上</p>
+        <time class="article-time--published">Mar 08, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p>这个notebook也同时发表在<a class="link" href="https://www.kaggle.com/tiiktak/fashion-mnist-with-alexnet-in-pytorch-92-accuracy"  target="_blank" rel="noopener"
+    >Kaggle</a>上</p>
 <h1 id="fashion-mnist数据集">Fashion MNIST数据集</h1>
-
-<p>|Label | Class |
-|-|-|
-|0| T-shirt/top|
-|1| Trouser|
-|2| Pullover|
-|3| Dress|
-|4| Coat|
-|5| Sandal|
-|6| Shirt|
-|7| Sneaker|
-|8| Bag|
-|9| Ankle boot|</p>
-
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>T-shirt/top</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Trouser</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pullover</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Dress</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Coat</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Sandal</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Shirt</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Sneaker</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Bag</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ankle boot</td>
+</tr>
+</tbody>
+</table>
 <h1 id="准备工作">准备工作</h1>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="kn">as</span> <span class="nn">optim</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
 
-<pre><code class="language-python">import os
-import torch
-import torch.nn.functional as F
-import torch.nn as nn
-import torch.optim as optim
-import numpy as np
-import pandas as pd
-from PIL import Image
-import matplotlib.pyplot as plt
-from torchvision import transforms, datasets
-from torch.utils.data import Dataset, DataLoader
 
+<span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">DEVICE</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;cuda&#34;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&#34;cpu&#34;</span><span class="p">)</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;T-shirt/top&#39;</span><span class="p">,</span> <span class="s1">&#39;Trouser&#39;</span><span class="p">,</span> <span class="s1">&#39;Pullover&#39;</span><span class="p">,</span> <span class="s1">&#39;Dress&#39;</span><span class="p">,</span> <span class="s1">&#39;Coat&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;Sandal&#39;</span><span class="p">,</span> <span class="s1">&#39;Shirt&#39;</span><span class="p">,</span> <span class="s1">&#39;Sneaker&#39;</span><span class="p">,</span> <span class="s1">&#39;Bag&#39;</span><span class="p">,</span> <span class="s1">&#39;Ankle boot&#39;</span><span class="p">]</span>
 
-EPOCHS = 20
-BATCH_SIZE = 512
-DEVICE = (&quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;)
-class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
-               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
-
-print(torch.__version__)
-print(DEVICE)
-</code></pre>
-
-<pre><code>1.4.0
+<span class="k">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+</code></pre></div><pre><code>1.4.0
 cuda
 </code></pre>
-
 <h1 id="加载数据">加载数据</h1>
-
 <p>有两种方式来加载 Fashion-MNIST dataset:</p>
-
 <ul>
 <li>使用官方在 <code>datasets.FashionMNIST</code>给出的数据集</li>
 <li>使用下载的原始csv数据集</li>
 </ul>
-
 <p>在这里我们选择第二种，因此需要建立我们自己的 <code>dataset</code></p>
+<p>首先 ，用<code>pd.read_csv</code>导入'.csv' 文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">train_csv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/fashion-mnist_train.csv&#39;</span><span class="p">)</span>
+<span class="n">test_csv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/fashion-mnist_test.csv&#39;</span><span class="p">)</span>
 
-<p>首先 ，用<code>pd.read_csv</code>导入&rsquo;.csv&rsquo; 文件</p>
-
-<pre><code class="language-python">train_csv = pd.read_csv('/content/fashion-mnist_train.csv')
-test_csv = pd.read_csv('/content/fashion-mnist_test.csv')
-
-print(train_csv.shape)
-print(test_csv.shape)
-</code></pre>
-
-<pre><code>(60000, 785)
+<span class="k">print</span><span class="p">(</span><span class="n">train_csv</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">test_csv</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div><pre><code>(60000, 785)
 (10000, 785)
 </code></pre>
-
-<pre><code class="language-python">print(train_csv.info())
-print(train_csv.head())
-</code></pre>
-
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">train_csv</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">train_csv</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div><pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 60000 entries, 0 to 59999
 Columns: 785 entries, label to pixel784
 dtypes: int64(785)
@@ -146,411 +327,502 @@ None
 
 [5 rows x 785 columns]
 </code></pre>
-
 <p>根据输出可知，第一列是每个图像的label，而每个图像由784个像素组成</p>
-
 <h2 id="建立dataset">建立Dataset</h2>
-
-<p>关于Dataset的有关内容在<a href="[https://konosuba.xyz/blog/pytorch_%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E8%BD%BD/](https://konosuba.xyz/blog/pytorch_数据集的创建和加载/)">这里</a>提到过</p>
-
+<p>关于Dataset的有关内容在<a class="link" href="[https://konosuba.xyz/blog/pytorch_%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E8%BD%BD/]%28https://konosuba.xyz/blog/pytorch_%e6%95%b0%e6%8d%ae%e9%9b%86%e7%9a%84%e5%88%9b%e5%bb%ba%e5%92%8c%e5%8a%a0%e8%bd%bd/%29" >这里</a>提到过</p>
 <p>我们需要建立一个继承自<code>Dataset</code>的类，其中必须定义函数<code>get_item()</code> &amp; <code>len()</code></p>
-
 <ul>
 <li><code>get_item()</code> 返回指定图像和label</li>
 <li><code>len()</code> 返回数据集中数据数量</li>
 </ul>
-
-<pre><code class="language-python"># 创建自己的Dataset
-class FashionDataset(Dataset):
-    def __init__(self, data, transform=None):       
-        self.fashion_MNIST = list(data.values)
-        self.transform = transform
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 创建自己的Dataset</span>
+<span class="k">class</span> <span class="nc">FashionDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">fashion_MNIST</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
         
-        label, image = [], []
+        <span class="n">label</span><span class="p">,</span> <span class="n">image</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
         
-        for i in self.fashion_MNIST:
-            label.append(i[0])
-            image.append(i[1:])
-        self.labels = np.asarray(label)
-        self.images = np.asarray(image).reshape(-1, 28, 28).astype('float32')
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fashion_MNIST</span><span class="p">:</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">image</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
         
-    def __len__(self):
-        return len(self.images)
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">)</span>
     
-    def __getitem__(self, idx):
-        # 返回指定行数据
-        label = self.labels[idx]
-        image = self.images[idx]        
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="c1"># 返回指定行数据</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>        
         
-        if self.transform is not None:
-            # 转换成PIL
-            pil_image = Image.fromarray(np.uint8(image)) 
-            image = self.transform(pil_image)
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># 转换成PIL</span>
+            <span class="n">pil_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">image</span><span class="p">))</span> 
+            <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">pil_image</span><span class="p">)</span>
             
-        return image, label
-</code></pre>
-
-<h2 id="transform">Transform</h2>
-
-<p>Transform有关的内容也在之前的blog中介绍过：<a href="https://konosuba.xyz/blog/pytorch_torchvision/#torchvision.transforms">blog:PYTORCH_TORCHVISION</a></p>
-
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span>
+</code></pre></div><h2 id="transform">Transform</h2>
+<p>Transform有关的内容也在之前的blog中介绍过：<a class="link" href="https://konosuba.xyz/blog/pytorch_torchvision/#torchvision.transforms"  target="_blank" rel="noopener"
+    >blog:PYTORCH_TORCHVISION</a></p>
 <p>我们打算使用AlexNet进行训练，AlexNet输入size为<code>227*227</code>，而Fashion-MNIST默认为<code>28*28</code>，故我们需要在<code>transform</code>中对image进行resize</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">AlexTransform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="mi">227</span><span class="p">,</span> <span class="mi">227</span><span class="p">)),</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.1307</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.3081</span><span class="p">,))</span>
+<span class="p">])</span>
+</code></pre></div><h2 id="dataloader">DataLoader</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">FashionDataset</span><span class="p">(</span><span class="n">train_csv</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">AlexTransform</span><span class="p">),</span> 
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<pre><code class="language-python">AlexTransform = transforms.Compose([
-    transforms.Resize((227, 227)),
-    transforms.ToTensor(),
-    transforms.Normalize((0.1307,), (0.3081,))
-])
-</code></pre>
-
-<h2 id="dataloader">DataLoader</h2>
-
-<pre><code class="language-python">train_loader = DataLoader(
-    FashionDataset(train_csv, transform=AlexTransform), 
-    batch_size=BATCH_SIZE, shuffle=True)
-
-test_loader = DataLoader(
-    FashionDataset(test_csv, transform=AlexTransform), 
-    batch_size=BATCH_SIZE, shuffle=True)
-</code></pre>
-
-<h2 id="查看图像">查看图像</h2>
-
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">FashionDataset</span><span class="p">(</span><span class="n">test_csv</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">AlexTransform</span><span class="p">),</span> 
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div><h2 id="查看图像">查看图像</h2>
 <p>这一步阔以略过，只是看看我们数据集中的图像罢了</p>
-
-<pre><code class="language-python">def matplotlib_imshow(img):
-    img = img.mean(dim=0)
-    img = img / 2 + 0.5     # unnormalize
-    npimg = img.numpy()
-    plt.imshow(npimg, cmap=&quot;Greys&quot;)
-
-
-dataiter = iter(train_loader)
-images, labels = dataiter.next()
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">matplotlib_imshow</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span>     <span class="c1"># unnormalize</span>
+    <span class="n">npimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">npimg</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&#34;Greys&#34;</span><span class="p">)</span>
 
 
-img_grid = torchvision.utils.make_grid(images[0])
+<span class="n">dataiter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">dataiter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 
 
-matplotlib_imshow(img_grid)
-print(class_names[labels[0]])
-</code></pre>
+<span class="n">img_grid</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-<pre><code>T-shirt/top
-</code></pre>
 
-<p><img src="https://i.loli.net/2020/03/08/nb9vXYywLkTiGaF.png" alt="" /></p>
-
+<span class="n">matplotlib_imshow</span><span class="p">(</span><span class="n">img_grid</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">class_names</span><span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</code></pre></div><pre><code>T-shirt/top
+</code></pre><p><img src="https://i.loli.net/2020/03/08/nb9vXYywLkTiGaF.png" alt=""  /></p>
 <h1 id="定义net">定义Net</h1>
+<p>AlexNet网络的相关介绍可以在这篇文章：<a class="link" href="[https://konosuba.xyz/blog/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Ccnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/]%28https://konosuba.xyz/blog/%e5%8d%b7%e7%a7%af%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9ccnn%e4%bb%a5%e5%8f%8a%e5%87%a0%e7%a7%8d%e7%bb%8f%e5%85%b8%e6%a8%a1%e5%9e%8b/%29" ><strong>卷积神经网络CNN以及几种经典模型</strong></a>中找到</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">fasion_mnist_alexnet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  <span class="c1"># 选用AlexNet网络</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">96</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">384</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">384</span><span class="p">,</span> <span class="mi">384</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv5</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">384</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
 
-<p>AlexNet网络的相关介绍可以在这篇文章：<a href="[https://konosuba.xyz/blog/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Ccnn%E4%BB%A5%E5%8F%8A%E5%87%A0%E7%A7%8D%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/](https://konosuba.xyz/blog/卷积神经网络cnn以及几种经典模型/)"><strong>卷积神经网络CNN以及几种经典模型</strong></a>中找到</p>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4096</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4096</span><span class="p">,</span> <span class="mi">4096</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4096</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-<pre><code class="language-python">class fasion_mnist_alexnet(nn.Module):  # 选用AlexNet网络
-    def __init__(self):
-        super().__init__()
-        self.conv1 = nn.Sequential(
-            nn.Conv2d(in_channels=1, out_channels=96, kernel_size=11, stride=4, padding=0),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=3, stride=2)
-        )
-        self.conv2 = nn.Sequential(
-            nn.Conv2d(96, 256, 5, 1, 2),
-            nn.ReLU(),
-            nn.MaxPool2d(3, 2)
-        )
-        self.conv3 = nn.Sequential(
-            nn.Conv2d(256, 384, 3, 1, 1),
-            nn.ReLU()
-        )
-        self.conv4 = nn.Sequential(
-            nn.Conv2d(384, 384, 3, 1, 1),
-            nn.ReLU()
-        )
-        self.conv5 = nn.Sequential(
-            nn.Conv2d(384, 256, 3, 1, 1),
-            nn.ReLU(),
-            nn.MaxPool2d(3, 2)
-        )
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv4</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv5</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-        self.fc1 = nn.Linear(256 * 6 * 6, 4096)
-        self.fc2 = nn.Linear(4096, 4096)
-        self.fc3 = nn.Linear(4096, 10)
+        <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>  <span class="c1"># 256*6*6 -&gt; 4096</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    def forward(self, x):
-        out = self.conv1(x)
-        out = self.conv2(out)
-        out = self.conv3(out)
-        out = self.conv4(out)
-        out = self.conv5(out)
-        out = out.view(out.size(0), -1)
+        <span class="k">return</span> <span class="n">out</span>
 
-        out = F.relu(self.fc1(out))  # 256*6*6 -&gt; 4096
-        out = F.dropout(out, 0.5)
-        out = F.relu(self.fc2(out))
-        out = F.dropout(out, 0.5)
-        out = self.fc3(out)
-        out = F.log_softmax(out, dim=1)
+</code></pre></div><h2 id="实例化model">实例化Model</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">model</span> <span class="o">=</span> <span class="n">fasion_mnist_alexnet</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">nll_loss</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+</code></pre></div><h2 id="训练函数">训练函数</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">optimer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">batch_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">30</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Train Epoch:{} [{}/{} ({:.0f}%)]</span><span class="se">\t</span><span class="s2">Loss: {:.6f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">),</span>
+                <span class="mf">100.</span> <span class="o">*</span> <span class="n">batch_idx</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="p">),</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+</code></pre></div><h2 id="测试函数">测试函数</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="n">test_loss</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">test_loss</span> <span class="o">+=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">correct</span> <span class="o">+=</span> <span class="n">pred</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">view_as</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
-        return out
+        <span class="n">test_loss</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>  <span class="c1"># loss之和除以data数量 -&gt; mean</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">Test set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">test_loss</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">),</span> <span class="mf">100.</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
 
-</code></pre>
-
-<h2 id="实例化model">实例化Model</h2>
-
-<pre><code class="language-python">model = fasion_mnist_alexnet().to(DEVICE)
-criterion = F.nll_loss
-optimizer = optim.Adam(model.parameters())
-</code></pre>
-
-<h2 id="训练函数">训练函数</h2>
-
-<pre><code class="language-python">def train(model, device, train_loader, optimer, epoch):
-    model.train()
-    for batch_idx, (data, target) in enumerate(train_loader):
-        target = target.type(torch.LongTensor)
-        data, target = data.to(device), target.to(device)
-        optimizer.zero_grad()
-        output = model(data)
-        loss = criterion(output, target)
-        loss.backward()
-        optimizer.step()
-        if (batch_idx + 1) % 30 == 0:
-            print(&quot;Train Epoch:{} [{}/{} ({:.0f}%)]\tLoss: {:.6f}&quot;.format(
-                epoch, batch_idx * len(data), len(train_loader.dataset),
-                100. * batch_idx / len(train_loader), loss.item()))
-</code></pre>
-
-<h2 id="测试函数">测试函数</h2>
-
-<pre><code class="language-python">
-def test(model, device, test_loader):
-    model.eval()
-    test_loss = 0
-    correct = 0
-    with torch.no_grad():
-        for data, target in test_loader:
-            data, target = data.to(device), target.to(device)
-            output = model(data)
-            test_loss += criterion(output, target, reduction='sum').item()
-            pred = output.max(1, keepdim=True)[1]
-            correct += pred.eq(target.view_as(pred)).sum().item()
-
-        test_loss /= len(test_loader.dataset)  # loss之和除以data数量 -&gt; mean
-        print(&quot;\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n&quot;.format(
-            test_loss, correct, len(test_loader.dataset), 100. * correct / len(test_loader.dataset)))
-        print('='*50)
-
-</code></pre>
-
-<h1 id="开始训练">开始训练</h1>
-
-<pre><code class="language-python">for epoch in range(1, EPOCHS+1):
-    train(model, DEVICE, train_loader, optimizer, epoch)
-    test(model, DEVICE, test_loader)
-</code></pre>
-
-<pre><code>Train Epoch:1 [14848/60000 (25%)]   Loss: 0.877214
-Train Epoch:1 [30208/60000 (50%)]   Loss: 0.644841
-Train Epoch:1 [45568/60000 (75%)]   Loss: 0.532848
+</code></pre></div><h1 id="开始训练">开始训练</h1>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">EPOCHS</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">DEVICE</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+    <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">DEVICE</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">)</span>
+</code></pre></div><pre><code>Train Epoch:1 [14848/60000 (25%)]	Loss: 0.877214
+Train Epoch:1 [30208/60000 (50%)]	Loss: 0.644841
+Train Epoch:1 [45568/60000 (75%)]	Loss: 0.532848
 
 Test set: Average loss: 0.4413, Accuracy: 8316/10000 (83%)
 
 ==================================================
-Train Epoch:2 [14848/60000 (25%)]   Loss: 0.433440
-Train Epoch:2 [30208/60000 (50%)]   Loss: 0.360927
-Train Epoch:2 [45568/60000 (75%)]   Loss: 0.368575
+Train Epoch:2 [14848/60000 (25%)]	Loss: 0.433440
+Train Epoch:2 [30208/60000 (50%)]	Loss: 0.360927
+Train Epoch:2 [45568/60000 (75%)]	Loss: 0.368575
 
 Test set: Average loss: 0.3194, Accuracy: 8838/10000 (88%)
 
 ==================================================
-Train Epoch:3 [14848/60000 (25%)]   Loss: 0.308415
-Train Epoch:3 [30208/60000 (50%)]   Loss: 0.224128
-Train Epoch:3 [45568/60000 (75%)]   Loss: 0.245119
+Train Epoch:3 [14848/60000 (25%)]	Loss: 0.308415
+Train Epoch:3 [30208/60000 (50%)]	Loss: 0.224128
+Train Epoch:3 [45568/60000 (75%)]	Loss: 0.245119
 
 Test set: Average loss: 0.2992, Accuracy: 8995/10000 (90%)
 
 ==================================================
-Train Epoch:4 [14848/60000 (25%)]   Loss: 0.272408
-Train Epoch:4 [30208/60000 (50%)]   Loss: 0.226366
-Train Epoch:4 [45568/60000 (75%)]   Loss: 0.274030
+Train Epoch:4 [14848/60000 (25%)]	Loss: 0.272408
+Train Epoch:4 [30208/60000 (50%)]	Loss: 0.226366
+Train Epoch:4 [45568/60000 (75%)]	Loss: 0.274030
 
 Test set: Average loss: 0.2753, Accuracy: 8973/10000 (90%)
 
 ==================================================
-Train Epoch:5 [14848/60000 (25%)]   Loss: 0.224429
-Train Epoch:5 [30208/60000 (50%)]   Loss: 0.237268
-Train Epoch:5 [45568/60000 (75%)]   Loss: 0.280958
+Train Epoch:5 [14848/60000 (25%)]	Loss: 0.224429
+Train Epoch:5 [30208/60000 (50%)]	Loss: 0.237268
+Train Epoch:5 [45568/60000 (75%)]	Loss: 0.280958
 
 Test set: Average loss: 0.2686, Accuracy: 9082/10000 (91%)
 
 ==================================================
-Train Epoch:6 [14848/60000 (25%)]   Loss: 0.217329
-Train Epoch:6 [30208/60000 (50%)]   Loss: 0.258806
-Train Epoch:6 [45568/60000 (75%)]   Loss: 0.179489
+Train Epoch:6 [14848/60000 (25%)]	Loss: 0.217329
+Train Epoch:6 [30208/60000 (50%)]	Loss: 0.258806
+Train Epoch:6 [45568/60000 (75%)]	Loss: 0.179489
 
 Test set: Average loss: 0.2273, Accuracy: 9180/10000 (92%)
 
 ==================================================
-Train Epoch:7 [14848/60000 (25%)]   Loss: 0.232198
-Train Epoch:7 [30208/60000 (50%)]   Loss: 0.193284
-Train Epoch:7 [45568/60000 (75%)]   Loss: 0.180621
+Train Epoch:7 [14848/60000 (25%)]	Loss: 0.232198
+Train Epoch:7 [30208/60000 (50%)]	Loss: 0.193284
+Train Epoch:7 [45568/60000 (75%)]	Loss: 0.180621
 
 Test set: Average loss: 0.2556, Accuracy: 9073/10000 (91%)
 
 ==================================================
-Train Epoch:8 [14848/60000 (25%)]   Loss: 0.202838
-Train Epoch:8 [30208/60000 (50%)]   Loss: 0.177613
-Train Epoch:8 [45568/60000 (75%)]   Loss: 0.166227
+Train Epoch:8 [14848/60000 (25%)]	Loss: 0.202838
+Train Epoch:8 [30208/60000 (50%)]	Loss: 0.177613
+Train Epoch:8 [45568/60000 (75%)]	Loss: 0.166227
 
 Test set: Average loss: 0.2537, Accuracy: 9090/10000 (91%)
 
 ==================================================
-Train Epoch:9 [14848/60000 (25%)]   Loss: 0.191794
-Train Epoch:9 [30208/60000 (50%)]   Loss: 0.179932
-Train Epoch:9 [45568/60000 (75%)]   Loss: 0.157028
+Train Epoch:9 [14848/60000 (25%)]	Loss: 0.191794
+Train Epoch:9 [30208/60000 (50%)]	Loss: 0.179932
+Train Epoch:9 [45568/60000 (75%)]	Loss: 0.157028
 
 Test set: Average loss: 0.2236, Accuracy: 9181/10000 (92%)
 
 ==================================================
-Train Epoch:10 [14848/60000 (25%)]  Loss: 0.201635
-Train Epoch:10 [30208/60000 (50%)]  Loss: 0.193036
-Train Epoch:10 [45568/60000 (75%)]  Loss: 0.133806
+Train Epoch:10 [14848/60000 (25%)]	Loss: 0.201635
+Train Epoch:10 [30208/60000 (50%)]	Loss: 0.193036
+Train Epoch:10 [45568/60000 (75%)]	Loss: 0.133806
 
 Test set: Average loss: 0.2228, Accuracy: 9207/10000 (92%)
 
 ==================================================
-Train Epoch:11 [14848/60000 (25%)]  Loss: 0.140554
-Train Epoch:11 [30208/60000 (50%)]  Loss: 0.195291
-Train Epoch:11 [45568/60000 (75%)]  Loss: 0.167740
+Train Epoch:11 [14848/60000 (25%)]	Loss: 0.140554
+Train Epoch:11 [30208/60000 (50%)]	Loss: 0.195291
+Train Epoch:11 [45568/60000 (75%)]	Loss: 0.167740
 
 Test set: Average loss: 0.2298, Accuracy: 9169/10000 (92%)
 
 ==================================================
-Train Epoch:12 [14848/60000 (25%)]  Loss: 0.145187
-Train Epoch:12 [30208/60000 (50%)]  Loss: 0.136410
-Train Epoch:12 [45568/60000 (75%)]  Loss: 0.148455
+Train Epoch:12 [14848/60000 (25%)]	Loss: 0.145187
+Train Epoch:12 [30208/60000 (50%)]	Loss: 0.136410
+Train Epoch:12 [45568/60000 (75%)]	Loss: 0.148455
 
 Test set: Average loss: 0.2208, Accuracy: 9244/10000 (92%)
 
 ==================================================
-Train Epoch:13 [14848/60000 (25%)]  Loss: 0.102129
-Train Epoch:13 [30208/60000 (50%)]  Loss: 0.119473
-Train Epoch:13 [45568/60000 (75%)]  Loss: 0.151384
+Train Epoch:13 [14848/60000 (25%)]	Loss: 0.102129
+Train Epoch:13 [30208/60000 (50%)]	Loss: 0.119473
+Train Epoch:13 [45568/60000 (75%)]	Loss: 0.151384
 
 Test set: Average loss: 0.2176, Accuracy: 9245/10000 (92%)
 
 ==================================================
-Train Epoch:14 [14848/60000 (25%)]  Loss: 0.085864
-Train Epoch:14 [30208/60000 (50%)]  Loss: 0.161960
-Train Epoch:14 [45568/60000 (75%)]  Loss: 0.173307
+Train Epoch:14 [14848/60000 (25%)]	Loss: 0.085864
+Train Epoch:14 [30208/60000 (50%)]	Loss: 0.161960
+Train Epoch:14 [45568/60000 (75%)]	Loss: 0.173307
 
 Test set: Average loss: 0.2276, Accuracy: 9210/10000 (92%)
 
 ==================================================
-Train Epoch:15 [14848/60000 (25%)]  Loss: 0.158055
-Train Epoch:15 [30208/60000 (50%)]  Loss: 0.164117
-Train Epoch:15 [45568/60000 (75%)]  Loss: 0.119916
+Train Epoch:15 [14848/60000 (25%)]	Loss: 0.158055
+Train Epoch:15 [30208/60000 (50%)]	Loss: 0.164117
+Train Epoch:15 [45568/60000 (75%)]	Loss: 0.119916
 
 Test set: Average loss: 0.2236, Accuracy: 9236/10000 (92%)
 
 ==================================================
-Train Epoch:16 [14848/60000 (25%)]  Loss: 0.120705
-Train Epoch:16 [30208/60000 (50%)]  Loss: 0.138526
-Train Epoch:16 [45568/60000 (75%)]  Loss: 0.132989
+Train Epoch:16 [14848/60000 (25%)]	Loss: 0.120705
+Train Epoch:16 [30208/60000 (50%)]	Loss: 0.138526
+Train Epoch:16 [45568/60000 (75%)]	Loss: 0.132989
 
 Test set: Average loss: 0.2330, Accuracy: 9241/10000 (92%)
 
 ==================================================
-Train Epoch:17 [14848/60000 (25%)]  Loss: 0.082980
-Train Epoch:17 [30208/60000 (50%)]  Loss: 0.142380
-Train Epoch:17 [45568/60000 (75%)]  Loss: 0.088001
+Train Epoch:17 [14848/60000 (25%)]	Loss: 0.082980
+Train Epoch:17 [30208/60000 (50%)]	Loss: 0.142380
+Train Epoch:17 [45568/60000 (75%)]	Loss: 0.088001
 
 Test set: Average loss: 0.2495, Accuracy: 9213/10000 (92%)
 
 ==================================================
-Train Epoch:18 [14848/60000 (25%)]  Loss: 0.106110
-Train Epoch:18 [30208/60000 (50%)]  Loss: 0.121420
-Train Epoch:18 [45568/60000 (75%)]  Loss: 0.102312
+Train Epoch:18 [14848/60000 (25%)]	Loss: 0.106110
+Train Epoch:18 [30208/60000 (50%)]	Loss: 0.121420
+Train Epoch:18 [45568/60000 (75%)]	Loss: 0.102312
 
 Test set: Average loss: 0.2547, Accuracy: 9251/10000 (93%)
 
 ==================================================
-Train Epoch:19 [14848/60000 (25%)]  Loss: 0.118317
-Train Epoch:19 [30208/60000 (50%)]  Loss: 0.113046
-Train Epoch:19 [45568/60000 (75%)]  Loss: 0.085053
+Train Epoch:19 [14848/60000 (25%)]	Loss: 0.118317
+Train Epoch:19 [30208/60000 (50%)]	Loss: 0.113046
+Train Epoch:19 [45568/60000 (75%)]	Loss: 0.085053
 
 Test set: Average loss: 0.2661, Accuracy: 9213/10000 (92%)
 
 ==================================================
-Train Epoch:20 [14848/60000 (25%)]  Loss: 0.103729
-Train Epoch:20 [30208/60000 (50%)]  Loss: 0.049429
-Train Epoch:20 [45568/60000 (75%)]  Loss: 0.109371
+Train Epoch:20 [14848/60000 (25%)]	Loss: 0.103729
+Train Epoch:20 [30208/60000 (50%)]	Loss: 0.049429
+Train Epoch:20 [45568/60000 (75%)]	Loss: 0.109371
 
 Test set: Average loss: 0.2729, Accuracy: 9230/10000 (92%)
 
 ==================================================
 </code></pre>
-
 <p>可见当进行10次训练后，我们模型的准确率就稳定在了92%，所以想要继续提升准确率就需要对模型进行改进</p>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

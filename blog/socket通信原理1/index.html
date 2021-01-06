@@ -1,96 +1,237 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Socket通信原理(1) - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
 TCP/IP、UDP 在开始之前，先听两个笑话😏
 TCP
-&gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &gt; “好的，我会给你讲一个TCP 的笑话。” &gt; “好的，我会听一个TCP 的笑话。” &gt; “你准备好听一个TCP 的笑话么？” &gt; “嗯，我准备好听一个TCP 的笑话” &gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？”  UDP
-&gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！  学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
+&amp;gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &amp;gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &amp;gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &amp;gt; “好的，我会给你讲一个TCP 的笑话。” &amp;gt; “好的，我会听一个TCP 的笑话。” &amp;gt; “你准备好听一个TCP 的笑话么？” &amp;gt; “嗯，我准备好听一个TCP 的笑话” &amp;gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &amp;gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &amp;gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？” UDP
+&amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ 学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
 TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种
 OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。
 从网络角度观察：
- 下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+  下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主
+  第四层作为上下两部分的桥梁，是整个网络体系结构中最关键的部分'><title>Socket通信原理(1)</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
+<link rel='canonical' href='https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/'>
 
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Socket通信原理(1)'>
+<meta property='og:description' content='最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
+TCP/IP、UDP 在开始之前，先听两个笑话😏
+TCP
+&amp;gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &amp;gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &amp;gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &amp;gt; “好的，我会给你讲一个TCP 的笑话。” &amp;gt; “好的，我会听一个TCP 的笑话。” &amp;gt; “你准备好听一个TCP 的笑话么？” &amp;gt; “嗯，我准备好听一个TCP 的笑话” &amp;gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &amp;gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &amp;gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？” UDP
+&amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ 学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
+TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种
+OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。
+从网络角度观察：
+  下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主
+  第四层作为上下两部分的桥梁，是整个网络体系结构中最关键的部分'>
+<meta property='og:url' content='https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='socket' /><meta property='article:published_time' content='2019-07-07T11:24:59&#43;08:00'/><meta property='article:modified_time' content='2019-07-07T11:24:59&#43;08:00'/>
+<meta name="twitter:title" content="Socket通信原理(1)">
+<meta name="twitter:description" content="最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
+TCP/IP、UDP 在开始之前，先听两个笑话😏
+TCP
+&amp;gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &amp;gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &amp;gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &amp;gt; “好的，我会给你讲一个TCP 的笑话。” &amp;gt; “好的，我会听一个TCP 的笑话。” &amp;gt; “你准备好听一个TCP 的笑话么？” &amp;gt; “嗯，我准备好听一个TCP 的笑话” &amp;gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &amp;gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &amp;gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？” UDP
+&amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ &amp;gt; 我给你们讲个UDP的笑话吧！ 学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
+TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种
+OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。
+从网络角度观察：
+  下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主
+  第四层作为上下两部分的桥梁，是整个网络体系结构中最关键的部分">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+
+    <h2 class="article-title">
+        <a href="/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/">Socket通信原理(1)</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Socket通信原理(1)</h1>
-    <div class="post-meta">2019.7.7</div>
-  </header>
-  <div class="post-content">
 
-<p>最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。</p>
+        <time class="article-time--published">Jul 07, 2019</time>
+    </footer></div>
+</header>
 
-<h1 id="tcp-ip-udp">TCP/IP、UDP</h1>
-
+    <section class="article-content">
+    <p>最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。</p>
+<h1 id="tcpipudp">TCP/IP、UDP</h1>
 <p>在开始之前，先听两个笑话😏</p>
-
 <p><strong>TCP</strong></p>
-
 <pre><code>&gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手
 
 &gt; “你好，你想听 TCP 的笑话么？” //第二次握手
@@ -110,10 +251,7 @@ OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其�
 &gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。”
 
 &gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？”
-</code></pre>
-
-<p><strong>UDP</strong></p>
-
+</code></pre><p><strong>UDP</strong></p>
 <pre><code>&gt; 我给你们讲个UDP的笑话吧！
 
 &gt; 我给你们讲个UDP的笑话吧！
@@ -121,194 +259,304 @@ OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其�
 &gt; 我给你们讲个UDP的笑话吧！
 
 &gt; 我给你们讲个UDP的笑话吧！
-</code></pre>
-
-<p>学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看</p>
-
+</code></pre><p>学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看</p>
 <p>TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种</p>
-
 <h2 id="osi七层模型">OSI七层模型</h2>
-
 <p>OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。</p>
-
-<p><img src="http://hi.csdn.net/attachment/201201/5/0_1325744597WM32.gif" alt="OSI" /></p>
-
+<p><img src="http://hi.csdn.net/attachment/201201/5/0_1325744597WM32.gif" alt="OSI"  /></p>
 <p>从网络角度观察：</p>
-
 <ul>
-<li><p>下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主</p></li>
-
-<li><p>第四层作为上下两部分的桥梁，是整个网络体系结构中最关键的部分</p></li>
-
-<li><p>上三层（会话层、表示层和应用层）则以提供用户与应用程序之间的信息和数据处理功能为主。</p></li>
+<li>
+<p>下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主</p>
+</li>
+<li>
+<p>第四层作为上下两部分的桥梁，是整个网络体系结构中最关键的部分</p>
+</li>
+<li>
+<p>上三层（会话层、表示层和应用层）则以提供用户与应用程序之间的信息和数据处理功能为主。</p>
+</li>
 </ul>
-
 <p>简言之，下4层主要完成通信子网的功能，上3层主要完成资源子网的功能</p>
-
 <h2 id="协议关系">协议关系</h2>
-
-<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/13620513.jpg" alt="TCP/IP与OSI" /></p>
-
-<p><img src="https://images.cnblogs.com/cnblogs_com/goodcandle/socket1.jpg" alt="协议" /></p>
-
+<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/13620513.jpg" alt="TCP/IP与OSI"  /></p>
+<p><img src="https://images.cnblogs.com/cnblogs_com/goodcandle/socket1.jpg" alt="协议"  /></p>
 <p>TCP/IP协议族包括应用层、运输层、网络层、链路层，分层后设计相对简单</p>
-
 <p><strong>数据链路层</strong>负责接收IP数据包并通过网络发送，或从网络上接受物理帧，抽出IP数据包，交给IP层</p>
-
 <p><strong>网络层</strong>负责相邻计算机之间的通信，功能包括：</p>
-
 <blockquote>
 <ul>
-<li><p>处理来自传输层的分组发送请求，收到请求后，将分组装入IP数据报，填充报头，选择去往信宿机的路径，然后将数据报发往适当的网络接口</p></li>
-
-<li><p>处理剩下的数据报，首先检查其合法性，然后进行寻径–假如该数据报已到达信宿机，则去掉报头，将剩下部分交给适当的传输协议；假如该数据报尚未到达信宿，则转发该数据报</p></li>
-
-<li><p>处理路径、流控、拥塞等问题</p></li>
+<li>处理来自传输层的分组发送请求，收到请求后，将分组装入IP数据报，填充报头，选择去往信宿机的路径，然后将数据报发往适当的网络接口</li>
 </ul>
 </blockquote>
-
+<blockquote>
+<ul>
+<li>处理剩下的数据报，首先检查其合法性，然后进行寻径–假如该数据报已到达信宿机，则去掉报头，将剩下部分交给适当的传输协议；假如该数据报尚未到达信宿，则转发该数据报</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>处理路径、流控、拥塞等问题</li>
+</ul>
+</blockquote>
 <p><strong>传输层</strong>提供应用程序间的通信，功能包括：</p>
-
 <blockquote>
 <ul>
-<li><p>格式化信息流</p></li>
-
-<li><p>提供可靠传输，TCP和UDP协议就是为了实现这个而存在</p></li>
+<li>格式化信息流</li>
 </ul>
 </blockquote>
-
+<blockquote>
+<ul>
+<li>提供可靠传输，TCP和UDP协议就是为了实现这个而存在</li>
+</ul>
+</blockquote>
 <p><strong>应用层</strong>为用户提供常用应用程序</p>
-
 <h1 id="tcp">TCP</h1>
-
 <p>TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议。</p>
-
 <p>TCP为了保证报文传输的可靠，给每个包一个序号，同时序号保证了传送到接收端实体的包的<strong>按序接受</strong></p>
-
 <p>接收端实体对已成功收到的字节发回一个相应的确认（ACK）， 如果发送端实体在合理的往返时延（RTT）内未收到确认，则对应数据将会被重传</p>
-
 <h2 id="建立连接">建立连接</h2>
-
 <p>使用<strong>三次握手</strong>协议建立连接，就如前面的笑话开始时的交流确认，客户端和服务端总共发送3个包以确认连接的建立</p>
-
-<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/38856241.jpg" alt="三次握手流程图" /></p>
-
+<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/38856241.jpg" alt="三次握手流程图"  /></p>
 <ul>
-<li><p>第一次握手：客户端SYN标志位置为1，随机产生一个值seq=J，并将该数据报发送给服务端，客户端进入SYS_SENT状态，等待服务端确认</p></li>
-
-<li><p>第二次握手：服务端收到数据包后由标志位SYN=1知道客户端请求建立连接，服务端将标志位、SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给客户端以确认连接请求，服务端进入SYN_RCVD状态。</p></li>
-
-<li><p>第三次握手：客户端收到确认后，检查ack是否为J+1，ACK是否为1，若正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给服务端，服务端检查ack是否为K+1，如果正确则连接建立成功，客户端和服务端进入ESTABLISHED状态，完成三次握手，随后就可以传输数据了</p></li>
+<li>
+<p>第一次握手：客户端SYN标志位置为1，随机产生一个值seq=J，并将该数据报发送给服务端，客户端进入SYS_SENT状态，等待服务端确认</p>
+</li>
+<li>
+<p>第二次握手：服务端收到数据包后由标志位SYN=1知道客户端请求建立连接，服务端将标志位、SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给客户端以确认连接请求，服务端进入SYN_RCVD状态。</p>
+</li>
+<li>
+<p>第三次握手：客户端收到确认后，检查ack是否为J+1，ACK是否为1，若正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给服务端，服务端检查ack是否为K+1，如果正确则连接建立成功，客户端和服务端进入ESTABLISHED状态，完成三次握手，随后就可以传输数据了</p>
+</li>
 </ul>
-
 <h2 id="断开连接">断开连接</h2>
-
 <p>断开一个TCP连接，需要客户端和服务端总共发送4个包以确认连接的断开。在Socket编程中，这一过程由客户端或服务端任一方执行close来触发，又称<strong>四次挥手</strong></p>
-
-<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/4410970.jpg" alt="四次挥手流程图" /></p>
-
+<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/4410970.jpg" alt="四次挥手流程图"  /></p>
 <ul>
-<li><p>第一次挥手：客户端发送一个FIN，用来关闭客户端到服务端的数据传送，客户端进入FIN_WAIT_1状态</p></li>
-
-<li><p>第二次挥手：服务端收到FIN后，发送一个ACK给客户端，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），服务端进入CLOSE_WAIT状态</p></li>
-
-<li><p>第三次挥手：服务端发送一个FIN，用来关闭服务端到客户端的数据传送，服务端进入LAST_ACK状态</p></li>
-
-<li><p>第四次挥手：客户端收到FIN后，客户端进入TIME_WAIT状态，紧接着发送一个ACK到服务端，确认序号为收到序号+1,服务端进入CLOSED状态，完成四次挥手</p></li>
+<li>
+<p>第一次挥手：客户端发送一个FIN，用来关闭客户端到服务端的数据传送，客户端进入FIN_WAIT_1状态</p>
+</li>
+<li>
+<p>第二次挥手：服务端收到FIN后，发送一个ACK给客户端，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），服务端进入CLOSE_WAIT状态</p>
+</li>
+<li>
+<p>第三次挥手：服务端发送一个FIN，用来关闭服务端到客户端的数据传送，服务端进入LAST_ACK状态</p>
+</li>
+<li>
+<p>第四次挥手：客户端收到FIN后，客户端进入TIME_WAIT状态，紧接着发送一个ACK到服务端，确认序号为收到序号+1,服务端进入CLOSED状态，完成四次挥手</p>
+</li>
 </ul>
-
 <h1 id="udp">UDP</h1>
-
 <p>非连接的协议，传输数据之前源端与终端不建立连接，当它想传送时就简单地去抓取来自应用程序的数据，并尽可能快地把它扔到网络上。</p>
-
 <p>在发送端，UDP传送数据的速度仅仅是受应用程序生成数据的速度、计算机的能力和传输带宽 的限制</p>
-
 <p>在接收端，UDP把每个消息段放在队列中，应用程序每次从队列中读一个消息段。</p>
-
 <p>相比TCP就是无需建立链接，结构简单，无法保证正确性，容易丢包</p>
-
-<hr />
-
+<hr>
 <h1 id="socket">Socket</h1>
-
 <p>前面的图中没有Socket存在，看下图：</p>
-
-<p><img src="https://images.cnblogs.com/cnblogs_com/goodcandle/socket2.jpg" alt="Socket" /></p>
-
-<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/7998721.jpg" alt="什么是Socket" /></p>
-
+<p><img src="https://images.cnblogs.com/cnblogs_com/goodcandle/socket2.jpg" alt="Socket"  /></p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2015/09/7998721.jpg" alt="什么是Socket"  /></p>
 <p>Socket是应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口。在设计模式中，Socket其实就是一个门面模式，它把复杂的TCP/IP协议族隐藏在Socket接口后面，对用户来说，一组简单的接口就是全部，让Socket去组织数据，以符合指定的协议。</p>
-
-<p><img src="https://images.cnblogs.com/cnblogs_com/goodcandle/socket3.jpg" alt="流程" /></p>
-
-<p><strong>服务器端：</strong>服务端先初始化Socket，然后与端口绑定(bind)，对端口进行监听(listen)，调用accept阻塞，等待客户端连接。</p>
-
-<p><strong>客户端：</strong>若有个客户端初始化一个Socket，然后连接服务器(connect)，如果连接成功，连接建立。</p>
-
+<p><img src="https://images.cnblogs.com/cnblogs_com/goodcandle/socket3.jpg" alt="流程"  /></p>
+<p>**服务器端：**服务端先初始化Socket，然后与端口绑定(bind)，对端口进行监听(listen)，调用accept阻塞，等待客户端连接。</p>
+<p>**客户端：**若有个客户端初始化一个Socket，然后连接服务器(connect)，如果连接成功，连接建立。</p>
 <p>客户端发送数据请求，服务端接收请求并处理请求，然后把回应数据发送给客户端，客户端读取数据，最后关闭连接，一次交互结束</p>
+<hr>
+<p>理论学习基本完成，接下来<a class="link" href="/blog/socket%e9%80%9a%e4%bf%a1%e5%8e%9f%e7%90%862" >在计算机本地实现通信</a></p>
 
-<hr />
+</section>
 
-<p>理论学习基本完成，接下来<a href="/blog/socket通信原理2">在计算机本地实现通信</a></p>
-</div>
-  <footer class="post-footer">
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+    <section class="article-tags">
+        
+            <a href="/tags/socket/">socket</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

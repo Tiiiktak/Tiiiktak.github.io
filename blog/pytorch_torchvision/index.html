@@ -1,210 +1,487 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Pytorch_torchvision - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。 - AlexNet - VGG - ResNet - SqueezeNet - DenseNet
-torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。
+ AlexNet VGG ResNet SqueezeNet DenseNet  torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
 torchvision.transforms 提供了一般的图像转换操作类，用作数据处理和数据增强
 其中都是常见的图像转换，可以通过Compose将他们链接在一起
-from torchvision import transforms as transforms transform = transforms.Compose([ transforms.RandomCrop(32, padding=4), #先四周填充0，在把图像随机裁剪成32*32 transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转 transforms.RandomRotation((-45,45)), #随机旋转 transforms.ToTensor(), transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差 ])  此外还有torchvision.transforms.functional模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
+from torchvision import transforms as transforms transform = transforms.Compose([ transforms.RandomCrop(32, padding=4), #先四周填充0，在把图像随机裁剪成32*32 transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转 transforms.RandomRotation((-45,45)), #随机旋转 transforms.ToTensor(), transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差 ]) 此外还有torchvision.transforms.functional 模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
 torchvision.transforms.Normalize(mean, std, inplace=False) 用均值和标准差对张量图像进行归一化。
-给定n个通道的均值: (M1,...,Mn) 和标准差:(S1,..,Sn), 这个转换将归一化输入torch.*Tensor的每个通道。例如: input[channel] = (input[channel] - mean[channel]) / std[channel]
+给定n个通道的均值: (M1,...,Mn) 和标准差: (S1,..,Sn), 这个转换将归一化输入torch.*Tensor的每个通道。例如: input[channel] = (input[channel] - mean[channel]) / std[channel]
  Note: 这种变换的作用不适当，即它不会改变输入张量
- torchvision.utils torchvision.">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+ torchvision.utils torchvision.utils.make_grid(tensor, nrow=8, padding=2, normalize=False, range=None, scale_each=False, pad_value=0) 创建图像网格，即将若干幅图像拼成一幅图像'><title>Pytorch_torchvision</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
+<link rel='canonical' href='https://example.com/blog/pytorch_torchvision/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch_torchvision'>
+<meta property='og:description' content='torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。
+ AlexNet VGG ResNet SqueezeNet DenseNet  torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
+torchvision.transforms 提供了一般的图像转换操作类，用作数据处理和数据增强
+其中都是常见的图像转换，可以通过Compose将他们链接在一起
+from torchvision import transforms as transforms transform = transforms.Compose([ transforms.RandomCrop(32, padding=4), #先四周填充0，在把图像随机裁剪成32*32 transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转 transforms.RandomRotation((-45,45)), #随机旋转 transforms.ToTensor(), transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差 ]) 此外还有torchvision.transforms.functional 模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
+torchvision.transforms.Normalize(mean, std, inplace=False) 用均值和标准差对张量图像进行归一化。
+给定n个通道的均值: (M1,...,Mn) 和标准差: (S1,..,Sn), 这个转换将归一化输入torch.*Tensor的每个通道。例如: input[channel] = (input[channel] - mean[channel]) / std[channel]
+ Note: 这种变换的作用不适当，即它不会改变输入张量
+ torchvision.utils torchvision.utils.make_grid(tensor, nrow=8, padding=2, normalize=False, range=None, scale_each=False, pad_value=0) 创建图像网格，即将若干幅图像拼成一幅图像'>
+<meta property='og:url' content='https://example.com/blog/pytorch_torchvision/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-14T00:19:28&#43;08:00'/><meta property='article:modified_time' content='2020-02-14T00:19:28&#43;08:00'/>
+<meta name="twitter:title" content="Pytorch_torchvision">
+<meta name="twitter:description" content="torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。
+ AlexNet VGG ResNet SqueezeNet DenseNet  torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
+torchvision.transforms 提供了一般的图像转换操作类，用作数据处理和数据增强
+其中都是常见的图像转换，可以通过Compose将他们链接在一起
+from torchvision import transforms as transforms transform = transforms.Compose([ transforms.RandomCrop(32, padding=4), #先四周填充0，在把图像随机裁剪成32*32 transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转 transforms.RandomRotation((-45,45)), #随机旋转 transforms.ToTensor(), transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差 ]) 此外还有torchvision.transforms.functional 模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
+torchvision.transforms.Normalize(mean, std, inplace=False) 用均值和标准差对张量图像进行归一化。
+给定n个通道的均值: (M1,...,Mn) 和标准差: (S1,..,Sn), 这个转换将归一化输入torch.*Tensor的每个通道。例如: input[channel] = (input[channel] - mean[channel]) / std[channel]
+ Note: 这种变换的作用不适当，即它不会改变输入张量
+ torchvision.utils torchvision.utils.make_grid(tensor, nrow=8, padding=2, normalize=False, range=None, scale_each=False, pad_value=0) 创建图像网格，即将若干幅图像拼成一幅图像">
+    </head>
+    <body class="article-page keep-sidebar">
     <script>
-      var _hmt = _hmt || [];
-      (function () {
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/pytorch/" style="background-color: #2a9d8f; color: #fff;">
+                PyTorch
+            </a>
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/pytorch_torchvision/">Pytorch_torchvision</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Feb 14, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="torchvisionmodels">torchvision.models</h1>
+<p>torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习
+torchvision.models模块的 子模块中包含以下模型结构。</p>
+<ul>
+<li>AlexNet</li>
+<li>VGG</li>
+<li>ResNet</li>
+<li>SqueezeNet</li>
+<li>DenseNet</li>
+</ul>
+<h1 id="torchvisiondatasets">torchvision.datasets</h1>
+<p>这其中所有的数据集都是<code>torch.utils.data.Dataset</code>的子类，它们都具有<code>__getitem__</code>和<code>__len__</code>实现的方法。因此，它们都可以传递给<code>torch.utils.data.DataLoader</code>，它使用<code>torch.multiprocessing</code>并行加载多个样本。</p>
+<h1 id="torchvisiontransforms">torchvision.transforms</h1>
+<p>提供了一般的图像转换操作类，用作数据处理和数据增强</p>
+<p>其中都是常见的图像转换，可以通过<code>Compose</code>将他们链接在一起</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span> <span class="k">as</span> <span class="n">transforms</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">RandomCrop</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>  <span class="c1">#先四周填充0，在把图像随机裁剪成32*32</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">RandomHorizontalFlip</span><span class="p">(),</span>  <span class="c1">#图像一半的概率翻转，一半的概率不翻转</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">RandomRotation</span><span class="p">((</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span><span class="mi">45</span><span class="p">)),</span> <span class="c1">#随机旋转</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.4914</span><span class="p">,</span> <span class="mf">0.4822</span><span class="p">,</span> <span class="mf">0.4465</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">)),</span> <span class="c1">#R,G,B每层的归一化用到的均值和方差</span>
+<span class="p">])</span>
+</code></pre></div><p>此外还有<code>torchvision.transforms.functional </code>模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助</p>
+<h2 id="torchvisiontransformsnormalizemean-std-inplacefalse">torchvision.transforms.Normalize(mean, std, inplace=False)</h2>
+<p>用均值和标准差对张量图像进行归一化。</p>
+<p>给定<code>n</code>个通道的均值: <code>(M1,...,Mn)</code> 和标准差:<code> (S1,..,Sn)</code>, 这个转换将归一化输入<code>torch.*Tensor</code>的每个通道。例如: <code>input[channel] = (input[channel] - mean[channel]) / std[channel]</code></p>
+<blockquote>
+<p>Note: 这种变换的作用不适当，即它不会改变输入张量</p>
+</blockquote>
+<h1 id="torchvisionutils">torchvision.utils</h1>
+<h2 id="torchvisionutilsmake_gridtensor-nrow8-padding2-normalizefalse-rangenone-scale_eachfalse-pad_value0">torchvision.utils.make_grid(tensor, nrow=8, padding=2, normalize=False, range=None, scale_each=False, pad_value=0)</h2>
+<p>创建图像网格，即将若干幅图像拼成一幅图像</p>
+<ul>
+<li>
+<p><code>tensor</code> (Tensor or list) – 四维 mini-batch Tensor 尺寸为 (B x C x H x W) 或一个所有图像大小相同的list</p>
+</li>
+<li>
+<p><code>nrow</code> (python:int, optional) – 网格中每行展示图像的数量。最后一行size为 (B / nrow, nrow)</p>
+</li>
+<li>
+<p><code>padding</code> (python:int, optional) – 填充量（多幅图像间距）</p>
+</li>
+<li>
+<p><code>normalize</code> (bool, optional) – 若为<code>True</code>, 根据由range范围指定的最大最小值，将图像归一化到(0, 1)</p>
+</li>
+<li>
+<p><code>range</code> (tuple, optional) – tuple (min, max) 用于归一化图像. min和max默认通过tensor计算</p>
+</li>
+<li>
+<p><code>scale_each</code> (bool, optional) – 若为<code>True</code>, 分别缩放该批图像中的每个图像，而不是缩放所有图像的(min, max)</p>
+</li>
+<li>
+<p><code>pad_value</code> (python:float, optional) – 填充值</p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
-        
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
-        
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
-    </header>
-    
-    <nav class="nav">
-      <ul class="menu">
-        
-        <li>
-          <a href="/about/">About</a>
-        </li>
-        
-      </ul>
-    </nav>
-    
-    <main class="main">
-
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Pytorch_torchvision</h1>
-    <div class="post-meta">2020.2.14</div>
-  </header>
-  <div class="post-content">
-
-<h1 id="torchvision-models">torchvision.models</h1>
-
-<p>torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习
-torchvision.models模块的 子模块中包含以下模型结构。
-- AlexNet
-- VGG
-- ResNet
-- SqueezeNet
-- DenseNet</p>
-
-<h1 id="torchvision-datasets">torchvision.datasets</h1>
-
-<p>这其中所有的数据集都是<code>torch.utils.data.Dataset</code>的子类，它们都具有<code>__getitem__</code>和<code>__len__</code>实现的方法。因此，它们都可以传递给<code>torch.utils.data.DataLoader</code>，它使用<code>torch.multiprocessing</code>并行加载多个样本。</p>
-
-<h1 id="torchvision-transforms">torchvision.transforms</h1>
-
-<p>提供了一般的图像转换操作类，用作数据处理和数据增强</p>
-
-<p>其中都是常见的图像转换，可以通过<code>Compose</code>将他们链接在一起</p>
-
-<pre><code class="language-python">from torchvision import transforms as transforms
-transform = transforms.Compose([
-    transforms.RandomCrop(32, padding=4),  #先四周填充0，在把图像随机裁剪成32*32
-    transforms.RandomHorizontalFlip(),  #图像一半的概率翻转，一半的概率不翻转
-    transforms.RandomRotation((-45,45)), #随机旋转
-    transforms.ToTensor(),
-    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差
-])
-</code></pre>
-
-<p>此外还有<code>torchvision.transforms.functional</code>模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助</p>
-
-<h2 id="torchvision-transforms-normalize-mean-std-inplace-false">torchvision.transforms.Normalize(mean, std, inplace=False)</h2>
-
-<p>用均值和标准差对张量图像进行归一化。</p>
-
-<p>给定<code>n</code>个通道的均值: <code>(M1,...,Mn)</code> 和标准差:<code>(S1,..,Sn)</code>, 这个转换将归一化输入<code>torch.*Tensor</code>的每个通道。例如: <code>input[channel] = (input[channel] - mean[channel]) / std[channel]</code></p>
-
-<blockquote>
-<p>Note: 这种变换的作用不适当，即它不会改变输入张量</p>
-</blockquote>
-
-<h1 id="torchvision-utils">torchvision.utils</h1>
-
-<h2 id="torchvision-utils-make-grid-tensor-nrow-8-padding-2-normalize-false-range-none-scale-each-false-pad-value-0">torchvision.utils.make_grid(tensor, nrow=8, padding=2, normalize=False, range=None, scale_each=False, pad_value=0)</h2>
-
-<p>创建图像网格，即将若干幅图像拼成一幅图像</p>
-
-<ul>
-<li><p><code>tensor</code> (Tensor or list) – 四维 mini-batch Tensor 尺寸为 (B x C x H x W) 或一个所有图像大小相同的list</p></li>
-
-<li><p><code>nrow</code> (python:int, optional) – 网格中每行展示图像的数量。最后一行size为 (B / nrow, nrow)</p></li>
-
-<li><p><code>padding</code> (python:int, optional) – 填充量（多幅图像间距）</p></li>
-
-<li><p><code>normalize</code> (bool, optional) – 若为<code>True</code>, 根据由range范围指定的最大最小值，将图像归一化到(0, 1)</p></li>
-
-<li><p><code>range</code> (tuple, optional) – tuple (min, max) 用于归一化图像. min和max默认通过tensor计算</p></li>
-
-<li><p><code>scale_each</code> (bool, optional) – 若为<code>True</code>, 分别缩放该批图像中的每个图像，而不是缩放所有图像的(min, max)</p></li>
-
-<li><p><code>pad_value</code> (python:float, optional) – 填充值</p></li>
-</ul>
-</div>
-  <footer class="post-footer">
-    
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
     })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
-</article>
-
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
 </script>
-</body>
+    </body>
 </html>
-

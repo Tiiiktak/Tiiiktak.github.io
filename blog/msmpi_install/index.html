@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
+安装过程会自动添加环境变量，可在PATH中看到
+step2. 配置 VS2019 新建一个空项目，新建一个属性表
+包含目录、库目录
+  包含目录里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Include;
+  库目录的里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;
+  【C/C&#43; 附加包含目录】：添加$(MSMPI_INC);$(MSMPI_INC)\x64
+  【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
+  【链接器-输入-附加依赖项】：添加msmpi.lib
+  step3. 测试 #include &amp;lt;iostream&amp;gt; #include &amp;lt;mpi.h&amp;gt;  int main(int argc, char* argv[]) { MPI_Init(&amp;amp;argc, &amp;amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &amp;lt;&amp;lt; &amp;#34;Receive from rank 0: &amp;#34; &amp;lt;&amp;lt; RecvNum &amp;lt;&amp;lt; std::endl; } MPI_Finalize(); return 0; }  image-20201116223527189'><title>MSMPI Visual Studio 2019 配置</title>
+
+<link rel='canonical' href='https://example.com/blog/msmpi_install/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MSMPI Visual Studio 2019 配置'>
+<meta property='og:description' content='Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
+安装过程会自动添加环境变量，可在PATH中看到
+step2. 配置 VS2019 新建一个空项目，新建一个属性表
+包含目录、库目录
+  包含目录里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Include;
+  库目录的里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;
+  【C/C&#43; 附加包含目录】：添加$(MSMPI_INC);$(MSMPI_INC)\x64
+  【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
+  【链接器-输入-附加依赖项】：添加msmpi.lib
+  step3. 测试 #include &amp;lt;iostream&amp;gt; #include &amp;lt;mpi.h&amp;gt;  int main(int argc, char* argv[]) { MPI_Init(&amp;amp;argc, &amp;amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &amp;lt;&amp;lt; &amp;#34;Receive from rank 0: &amp;#34; &amp;lt;&amp;lt; RecvNum &amp;lt;&amp;lt; std::endl; } MPI_Finalize(); return 0; }  image-20201116223527189'>
+<meta property='og:url' content='https://example.com/blog/msmpi_install/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='mpich' /><meta property='article:tag' content='作业' /><meta property='article:published_time' content='2020-11-16T22:14:03&#43;08:00'/><meta property='article:modified_time' content='2020-11-16T22:14:03&#43;08:00'/>
+<meta name="twitter:title" content="MSMPI Visual Studio 2019 配置">
+<meta name="twitter:description" content="Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
+安装过程会自动添加环境变量，可在PATH中看到
+step2. 配置 VS2019 新建一个空项目，新建一个属性表
+包含目录、库目录
+  包含目录里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Include;
+  库目录的里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;
+  【C/C&#43; 附加包含目录】：添加$(MSMPI_INC);$(MSMPI_INC)\x64
+  【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
+  【链接器-输入-附加依赖项】：添加msmpi.lib
+  step3. 测试 #include &amp;lt;iostream&amp;gt; #include &amp;lt;mpi.h&amp;gt;  int main(int argc, char* argv[]) { MPI_Init(&amp;amp;argc, &amp;amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &amp;lt;&amp;lt; &amp;#34;Receive from rank 0: &amp;#34; &amp;lt;&amp;lt; RecvNum &amp;lt;&amp;lt; std::endl; } MPI_Finalize(); return 0; }  image-20201116223527189">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/blog/msmpi_install/">MSMPI Visual Studio 2019 配置</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Nov 16, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <ul>
+<li>Windows 10</li>
+<li>Visual Studio 2019</li>
+<li>MSMPI  v10.1.2</li>
+</ul>
+<h2 id="step1-安装msmpi">step1. 安装MSMPI</h2>
+<p>前往<a class="link" href="https://www.microsoft.com/en-us/download/details.aspx?id=100593"  target="_blank" rel="noopener"
+    >官网</a>下载<code>.msi &amp; .exe</code>两个文件，按提示安装即可</p>
+<p>安装过程会自动添加环境变量，可在PATH中看到</p>
+<h2 id="step2-配置-vs2019">step2. 配置 VS2019</h2>
+<p>新建一个空项目，新建一个属性表</p>
+<p>包含目录、库目录</p>
+<ul>
+<li>
+<p>包含目录里面添加：<code>C:\Program Files (x86)\Microsoft SDKs\MPI\Include;</code></p>
+</li>
+<li>
+<p>库目录的里面添加：<code>C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;</code></p>
+</li>
+<li>
+<p>【C/C+   附加包含目录】：添加<code>$(MSMPI_INC);$(MSMPI_INC)\x64</code></p>
+</li>
+<li>
+<p>【链接器-常规-附加库目录】：添加<code>$(MSMPI_LIB64)</code></p>
+</li>
+<li>
+<p>【链接器-输入-附加依赖项】：添加<code>msmpi.lib</code></p>
+</li>
+</ul>
+<h2 id="step3-测试">step3. 测试</h2>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt; </span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;mpi.h&gt; </span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> 
+<span class="p">{</span> 
+	<span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span> 
+
+	<span class="kt">int</span> <span class="n">RankID</span><span class="p">;</span> 
+	<span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">RankID</span><span class="p">);</span> 
+
+	<span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">RankID</span><span class="p">)</span> 
+	<span class="p">{</span> 
+		<span class="kt">int</span> <span class="n">SendNum</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span> 
+		<span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SendNum</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span> 
+	<span class="p">}</span> 
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="n">RankID</span><span class="p">)</span> 
+	<span class="p">{</span> 
+		<span class="kt">int</span> <span class="n">RecvNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+		<span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RecvNum</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span> 
+		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Receive from rank 0: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">RecvNum</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> 
+	<span class="p">}</span> 
+
+	<span class="n">MPI_Finalize</span><span class="p">();</span> 
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span> 
+</code></pre></div><p><figure style="flex-grow: 2067; flex-basis: 4961px">
+		<a href="/blog/msmpi_install/image-20201116223527189.png" data-size="1199x58"><img src="/blog/msmpi_install/image-20201116223527189.png"
+				srcset="/blog/msmpi_install/image-20201116223527189_hu96ce04561745e124c9cc9b1b89a38f2d_8703_480x0_resize_box_2.png 480w, /blog/msmpi_install/image-20201116223527189_hu96ce04561745e124c9cc9b1b89a38f2d_8703_1024x0_resize_box_2.png 1024w"
+				width="1199"
+				height="58"
+				loading="lazy"
+				alt="image-20201116223527189">
+		</a>
+		
+		<figcaption>image-20201116223527189</figcaption>
+		
+	</figure></p>
+<h2 id="step4-配置vs调试指令和参数">step4. 配置VS调试指令和参数</h2>
+<p>VS【工程属性】</p>
+<ul>
+<li>调试 - 命令：<code>$(MSMPI_BIN)\mpiexec.exe</code></li>
+<li>调试 - 命令参数：<code>-n 2 $(TargetPath)</code></li>
+</ul>
+<p><figure style="flex-grow: 165; flex-basis: 397px">
+		<a href="/blog/msmpi_install/image-20201116224322302.png" data-size="908x548"><img src="/blog/msmpi_install/image-20201116224322302.png"
+				srcset="/blog/msmpi_install/image-20201116224322302_hu4e21d96276c4516b498ab66679dd8f2f_66227_480x0_resize_box_2.png 480w, /blog/msmpi_install/image-20201116224322302_hu4e21d96276c4516b498ab66679dd8f2f_66227_1024x0_resize_box_2.png 1024w"
+				width="908"
+				height="548"
+				loading="lazy"
+				alt="image-20201116224322302">
+		</a>
+		
+		<figcaption>image-20201116224322302</figcaption>
+		
+	</figure></p>
+<blockquote>
+<p><em>通过这种方法运行MPI多进程程序时，无法调试，如果需要调试，就需要将配置到工程里的指令删去才可。</em></p>
+</blockquote>
+<hr>
+<p>Reference：https://blog.csdn.net/u014516143/article/details/89316258</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mpich/">mpich</a>
+        
+            <a href="/tags/%E4%BD%9C%E4%B8%9A/">作业</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

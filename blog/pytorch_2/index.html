@@ -1,320 +1,578 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Pytorch学习笔记_2_Autograd自动求导机制 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
 autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
 通过一些示例来了解
 Tensor 张量 torch.tensor是这个包的核心类。
  设置.requires_grad为True，会追踪所有对于该张量的操作。计算完成后调用.backward()，可以自动计算所有的梯度，并自动累计到.grad属性中   事实上即使.requires_grad为True并不意味着.grad一定不为None
-  可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
- 为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad():中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
+   可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
+  为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad(): 中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
   Function类 Tensor 和 Function 互相连接并生成一个非循环图，它表示和存储了完整的计算历史。
 每个张量都有一个.grad_fn属性，对张量进行操作后，grad_fn会引用一个创建了这个Tensor类的Function对象（除非这个张量是用户手动创建的，此时，这个张量的 grad_fn 是 None）
  leaf Tensors 叶张量
-Tensor中有一属性is_leaf，当它为True有两种情况：
- 按照惯例，requires_grad = False 的 Tensor
- requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None
-  只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()
- 如果需要计算导数，可以在Tensor上调用.backward()：若Tensor是一个标量（即包含一个元素数据）则不需要为backward()指定任何参数， 但是如果它有更多的元素，需要指定一个gradient 参数来匹配张量的形状。
-x = torch.ones(2, 2, requires_grad=True) print(x) # Output: # tensor([[1.">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+  Tensor中有一属性is_leaf，当它为True有两种情况：
+   按照惯例，requires_grad = False 的 Tensor    requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None    只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()'><title>Pytorch学习笔记_2_Autograd自动求导机制</title>
+
+<link rel='canonical' href='https://example.com/blog/pytorch_2/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch学习笔记_2_Autograd自动求导机制'>
+<meta property='og:description' content='Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
+autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
+通过一些示例来了解
+Tensor 张量 torch.tensor是这个包的核心类。
+ 设置.requires_grad为True，会追踪所有对于该张量的操作。计算完成后调用.backward()，可以自动计算所有的梯度，并自动累计到.grad属性中   事实上即使.requires_grad为True并不意味着.grad一定不为None
+   可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
+  为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad(): 中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
+  Function类 Tensor 和 Function 互相连接并生成一个非循环图，它表示和存储了完整的计算历史。
+每个张量都有一个.grad_fn属性，对张量进行操作后，grad_fn会引用一个创建了这个Tensor类的Function对象（除非这个张量是用户手动创建的，此时，这个张量的 grad_fn 是 None）
+ leaf Tensors 叶张量
+  Tensor中有一属性is_leaf，当它为True有两种情况：
+   按照惯例，requires_grad = False 的 Tensor    requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None    只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()'>
+<meta property='og:url' content='https://example.com/blog/pytorch_2/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-11T17:25:19&#43;08:00'/><meta property='article:modified_time' content='2020-02-11T17:25:19&#43;08:00'/>
+<meta name="twitter:title" content="Pytorch学习笔记_2_Autograd自动求导机制">
+<meta name="twitter:description" content="Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
+autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
+通过一些示例来了解
+Tensor 张量 torch.tensor是这个包的核心类。
+ 设置.requires_grad为True，会追踪所有对于该张量的操作。计算完成后调用.backward()，可以自动计算所有的梯度，并自动累计到.grad属性中   事实上即使.requires_grad为True并不意味着.grad一定不为None
+   可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
+  为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad(): 中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
+  Function类 Tensor 和 Function 互相连接并生成一个非循环图，它表示和存储了完整的计算历史。
+每个张量都有一个.grad_fn属性，对张量进行操作后，grad_fn会引用一个创建了这个Tensor类的Function对象（除非这个张量是用户手动创建的，此时，这个张量的 grad_fn 是 None）
+ leaf Tensors 叶张量
+  Tensor中有一属性is_leaf，当它为True有两种情况：
+   按照惯例，requires_grad = False 的 Tensor    requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None    只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/pytorch/" style="background-color: #2a9d8f; color: #fff;">
+                PyTorch
+            </a>
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/pytorch_2/">Pytorch学习笔记_2_Autograd自动求导机制</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Pytorch学习笔记_2_Autograd自动求导机制</h1>
-    <div class="post-meta">2020.2.11</div>
-  </header>
-  <div class="post-content">
 
-<h1 id="autograd-自动求导机制">Autograd 自动求导机制</h1>
+        <time class="article-time--published">Feb 11, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <h1 id="autograd-自动求导机制">Autograd 自动求导机制</h1>
 <p>PyTorch 中所有神经网络的核心是 <code>autograd</code> 包。</p>
-
 <p><code>autograd</code> 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。</p>
-
 <p>通过一些示例来了解</p>
-
 <h2 id="tensor-张量">Tensor 张量</h2>
-
 <p><code>torch.tensor</code>是这个包的核心类。</p>
-
 <ul>
 <li>设置<code>.requires_grad</code>为<code>True</code>，会追踪所有对于该张量的操作。计算完成后调用<code>.backward()</code>，可以自动计算所有的梯度，并自动累计到<code>.grad</code>属性中</li>
 </ul>
-
 <blockquote>
 <p>事实上即使<code>.requires_grad</code>为<code>True</code>并不意味着<code>.grad</code>一定不为<code>None</code></p>
 </blockquote>
-
 <ul>
-<li><p>可以调用<code>.detach()</code>将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录</p></li>
-
-<li><p>为防止跟踪历史记录（和使用内存），可以将代码块包装在<code>with torch.no_grad():</code>中。这在评估模型时特别有用，因为模型可能具有<code>requires_grad = True</code>的可训练参数，但是我们不需要梯度计算。</p></li>
+<li>
+<p>可以调用<code>.detach()</code>将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录</p>
+</li>
+<li>
+<p>为防止跟踪历史记录（和使用内存），可以将代码块包装在<code>with torch.no_grad(): </code>中。这在评估模型时特别有用，因为模型可能具有<code>requires_grad = True</code>的可训练参数，但是我们不需要梯度计算。</p>
+</li>
 </ul>
-
 <h2 id="function类">Function类</h2>
-
 <p><code>Tensor</code> 和 <code>Function</code> 互相连接并生成一个<strong>非循环图</strong>，它表示和存储了完整的计算历史。</p>
-
 <p>每个张量都有一个<code>.grad_fn</code>属性，对张量进行操作后，<code>grad_fn</code>会引用一个创建了这个<code>Tensor</code>类的<code>Function</code>对象（除非这个张量是用户手动创建的，此时，这个张量的 <code>grad_fn</code> 是 <code>None</code>）</p>
-
 <blockquote>
 <p><strong>leaf Tensors 叶张量</strong></p>
-
+</blockquote>
+<blockquote>
 <p><code>Tensor</code>中有一属性<code>is_leaf</code>，当它为<code>True</code>有两种情况：</p>
-
+</blockquote>
+<blockquote>
 <ol>
-<li><p>按照惯例，<code>requires_grad = False</code> 的 Tensor</p></li>
-
-<li><p><code>requires_grad = True</code> 且由用户创建的 Tensor。这意味着它们不是操作的结果且<code>grad_fn = None</code></p></li>
+<li>按照惯例，<code>requires_grad = False</code> 的 Tensor</li>
 </ol>
-
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><code>requires_grad = True</code> 且由用户创建的 Tensor。这意味着它们不是操作的结果且<code>grad_fn = None</code></li>
+</ol>
+</blockquote>
+<blockquote>
 <p>只有leaf Tensors叶张量在反向传播时才会将本身的<code>grad</code>传入<code>backward()</code>的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的<code>grad</code>，可以使用<code>retain_grad()</code></p>
 </blockquote>
-
 <p>如果需要计算导数，可以在<code>Tensor</code>上调用<code>.backward()</code>：若<code>Tensor</code>是一个标量（即包含一个元素数据）则不需要为<code>backward()</code>指定任何参数， 但是如果它有更多的元素，需要指定一个<code>gradient</code> 参数来匹配张量的形状。</p>
-
-<pre><code class="language-python">x = torch.ones(2, 2, requires_grad=True)
-print(x) 
-# Output:
-# tensor([[1., 1.],
-#        [1., 1.]], requires_grad=True)
-y = x + 2
-print(y)
-# Output:
-# tensor([[3., 3.],
-#        [3., 3.]], grad_fn=&lt;AddBackward0&gt;)
-</code></pre>
-
-<p>此时，<code>y</code>已经被计算出来，<code>grad_fn</code>已经自动生成了</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; print(y.grad_fn)
-&lt;AddBackward0 object at 0x0000013D6C2AB848&gt;
-</code></pre>
-
-<p>对y进行操作</p>
-
-<pre><code class="language-python">z = y * y * 3
-out = z.mean()
-print(z, out)
-# Output:
-# tensor([[27., 27.],
-#        [27., 27.]], grad_fn=&lt;MulBackward0&gt;) # tensor(27., grad_fn=&lt;MeanBackward0&gt;)
-</code></pre>
-
-<p><code>.requires_grad_( ... )</code> 可以改变现有张量的 <code>requires_grad</code>属性。 如果没有指定的话，默认输入的flag是 <code>False</code></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+<span class="c1"># Output:</span>
+<span class="c1"># tensor([[1., 1.],</span>
+<span class="c1">#        [1., 1.]], requires_grad=True)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># tensor([[3., 3.],</span>
+<span class="c1">#        [3., 3.]], grad_fn=&lt;AddBackward0&gt;)</span>
+</code></pre></div><p>此时，<code>y</code>已经被计算出来，<code>grad_fn</code>已经自动生成了</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">AddBackward0</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x0000013D6C2AB848</span><span class="o">&gt;</span>
+</code></pre></div><p>对y进行操作</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># tensor([[27., 27.],</span>
+<span class="c1">#        [27., 27.]], grad_fn=&lt;MulBackward0&gt;) # tensor(27., grad_fn=&lt;MeanBackward0&gt;)</span>
+</code></pre></div><p><code>.requires_grad_( ... )</code> 可以改变现有张量的 <code>requires_grad</code>属性。 如果没有指定的话，默认输入的flag是 <code>False</code></p>
 <h2 id="gradients-梯度">Gradients 梯度</h2>
-
 <p>现在开始反向传播</p>
-
 <p>因为<code>out</code>是一个标量，因此不需要为<code>backward()</code>指定任何参数：</p>
-
-<pre><code class="language-python">out.backward()
-print(x.grad)
-# Output:
-# tensor([[4.5000, 4.5000],
-#        [4.5000, 4.5000]])
-</code></pre>
-
-<p><img src="https://i.loli.net/2020/02/11/JRZ72mT3tKjbgsE.png" alt="推导out.backward()" /></p>
-
-<p><img src="https://i.loli.net/2020/02/12/QqVlZ1HNuzP3Wfn.png" alt="雅可比矩阵" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># tensor([[4.5000, 4.5000],</span>
+<span class="c1">#        [4.5000, 4.5000]])</span>
+</code></pre></div><p><img src="https://i.loli.net/2020/02/11/JRZ72mT3tKjbgsE.png" alt="推导out.backward()"  /></p>
+<p><img src="https://i.loli.net/2020/02/12/QqVlZ1HNuzP3Wfn.png" alt="雅可比矩阵"  /></p>
 <p>现在让我们来看一个vector-Jacobian product的例子</p>
-
-<pre><code class="language-python">x = torch.randn(3, requires_grad=True)
-y = x * 2
-while y.data.norm() &lt; 1000:
-    y = y * 2
-print(y) 
-# Output:
-# tensor([ 293.4463,   50.6356, 1031.2501], grad_fn=&lt;MulBackward0&gt;)
-</code></pre>
-
-<blockquote>
-<p>此处<code>y.data.norm()</code>指y的范数，即(y_1^2 + &hellip; + y_n^2)^(<sup>1</sup>&frasl;<sub>2</sub>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">while</span> <span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> 
+<span class="c1"># Output:</span>
+<span class="c1"># tensor([ 293.4463,   50.6356, 1031.2501], grad_fn=&lt;MulBackward0&gt;)</span>
+</code></pre></div><blockquote>
+<p>此处<code>y.data.norm()</code>指y的范数，即(y_1^2 + &hellip; + y_n^2)^(1/2)</p>
 </blockquote>
-
 <p>在这个情形中，y不再是个标量。<code>torch.autograd</code>无法直接计算出完整的雅可比行列，但是如果我们只想要vector-Jacobian product，只需将向量作为参数传入<code>backward</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># tensor([5.1200e+01, 5.1200e+02, 5.1200e-02])</span>
+</code></pre></div><p>如果<code>.requires_grad=True</code>但是你又不希望进行autograd的计算， 那么可以将变量包裹在 <code>with torch.no_grad()</code>中:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span> <span class="c1"># True</span>
+<span class="k">print</span><span class="p">((</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span> <span class="c1"># True</span>
 
-<pre><code class="language-python">v = torch.tensor([0.1, 1.0, 0.0001], dtype=torch.float)
-y.backward(v)
-print(x.grad)
-# Output:
-# tensor([5.1200e+01, 5.1200e+02, 5.1200e-02])
-</code></pre>
-
-<p>如果<code>.requires_grad=True</code>但是你又不希望进行autograd的计算， 那么可以将变量包裹在 <code>with torch.no_grad()</code>中:</p>
-
-<pre><code class="language-python">print(x.requires_grad) # True
-print((x ** 2).requires_grad) # True
-
-with torch.no_grad():
-	print((x ** 2).requires_grad) # False
-</code></pre>
-
-<h2 id="autograd-过程">Autograd 过程</h2>
-
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+	<span class="k">print</span><span class="p">((</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span> <span class="c1"># False</span>
+</code></pre></div><h2 id="autograd-过程">Autograd 过程</h2>
 <h3 id="推导">推导</h3>
-
 <p><code>grad_fn</code>中有一属性<code>next_functions</code>，例如</p>
-
-<pre><code class="language-python">x = torch.rand(5, 5, requires_grad=True)
-y = torch.rand(5, 5, requires_grad=True)
-z = x**2 + y**3
-print(z.grad_fn) # &lt;AddBackward0 at 0x1426dca72c8&gt;
-print(z.grad_fn.next_functions) 
-# ((&lt;PowBackward0 at 0x1426dc923c8&gt;, 0), (&lt;PowBackward0 at 0x1426dc92b48&gt;, 0))
-</code></pre>
-
-<p>此处的<code>next_functions</code>是一个“tuple of tuple of PowBackward0 and int”</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span> <span class="c1"># &lt;AddBackward0 at 0x1426dca72c8&gt;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">)</span> 
+<span class="c1"># ((&lt;PowBackward0 at 0x1426dc923c8&gt;, 0), (&lt;PowBackward0 at 0x1426dc92b48&gt;, 0))</span>
+</code></pre></div><p>此处的<code>next_functions</code>是一个“tuple of tuple of PowBackward0 and int”</p>
 <p>内层第一个tuple就是x相关的操作记录，继续深入</p>
-
-<pre><code class="language-python">xg = z.grad_fn.next_functions[0][0]
-x_leaf = xg.next_functions[0][0]
-print(type(x_leaf)) # AccumulateGrad
-</code></pre>
-
-<p>在Pytorch的反向图计算中，<code>AccumulateGrad</code>类型代表的就是叶子节点类型，也就是计算图的终止节点。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">xg</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x_leaf</span> <span class="o">=</span> <span class="n">xg</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x_leaf</span><span class="p">))</span> <span class="c1"># AccumulateGrad</span>
+</code></pre></div><p>在Pytorch的反向图计算中，<code>AccumulateGrad</code>类型代表的就是叶子节点类型，也就是计算图的终止节点。</p>
 <p><code>AccumulateGrad</code>中有一个<code>.variable</code>指向叶子节点</p>
-
-<pre><code class="language-python">x_leaf.variable
-</code></pre>
-
-<p>这个<code>.variable</code>的属性就是我们的生成的变量<code>x</code></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x_leaf</span><span class="o">.</span><span class="n">variable</span>
+</code></pre></div><p>这个<code>.variable</code>的属性就是我们的生成的变量<code>x</code></p>
 <h3 id="流程">流程</h3>
-
 <ol>
 <li>当我们执行<code>z.backward()</code>时。这个操作将调用z里面的<code>grad_fn</code>属性，执行求导操作。</li>
-<li>这个操作将遍历<code>grad_fn</code>的<code>next_functions</code>，然后分别取出里面的<code>Function(AccumulateGrad)</code>，执行求导操作。这部分是一个<strong>递归</strong>的过程直到*最后类型为叶子节点*。</li>
+<li>这个操作将遍历<code>grad_fn</code>的<code>next_functions</code>，然后分别取出里面的<code>Function(AccumulateGrad)</code>，执行求导操作。这部分是一个<strong>递归</strong>的过程直到<em>最后类型为叶子节点</em>。</li>
 <li>计算出结果以后，将结果保存到他们对应的<code>variable</code> 变量所引用的对象（x和y）的<code>grad</code>属性中</li>
 <li>求导结束。所有的叶节点的<code>grad</code>变量都得到了相应的更新</li>
 </ol>
-
 <p>最终当我们执行完c.backward()之后，a和b里面的grad值就得到了更新。</p>
-
 <h2 id="拓展autograd">拓展Autograd</h2>
-
 <p>如果需要自定义autograd扩展新的功能，就需要扩展Function类。因为Function使用autograd来计算结果和梯度，并对操作历史进行编码。</p>
-
 <p>在Function类中最主要的方法就是<code>forward()</code>和<code>backward()</code>他们分别代表了前向传播和反向传播。</p>
-
 <p>一个自定义的Function需要一下三个方法：</p>
-
 <ul>
-<li><p><code>__init__</code> (optional)：如果这个操作需要额外的参数则需要定义这个Function的构造函数，不需要的话可以忽略。</p></li>
-
-<li><p><code>forward()</code>：执行前向传播的计算代码</p></li>
-
-<li><p><code>backward()</code>：反向传播时梯度计算的代码。 参数的个数和forward返回值的个数一样，每个参数代表传回到此操作的梯度。</p></li>
+<li>
+<p><code>__init__</code> (optional)：如果这个操作需要额外的参数则需要定义这个Function的构造函数，不需要的话可以忽略。</p>
+</li>
+<li>
+<p><code>forward()</code>：执行前向传播的计算代码</p>
+</li>
+<li>
+<p><code>backward()</code>：反向传播时梯度计算的代码。 参数的个数和forward返回值的个数一样，每个参数代表传回到此操作的梯度。</p>
+</li>
 </ul>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

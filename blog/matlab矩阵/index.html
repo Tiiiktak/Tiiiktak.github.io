@@ -1,333 +1,555 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>MATLAB学习_矩阵与向量操作 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算
 运算 现有一矩阵a:
-&gt;&gt; a = [1 2 3; 4 5 6; 7 8 10] a = 1 2 3 4 5 6 7 8 10  矩阵与常数相加
-&gt;&gt; a &#43; 10 ans = 11 12 13 14 15 16 17 18 20  &gt;&gt; sin(a) ans = 0.8415 0.9093 0.1411 -0.7568 -0.9589 -0.2794 0.6570 0.9894 -0.5440  转置矩阵 &gt;&gt;a&#39; ans = 1 4 7 2 5 8 3 6 10  逆矩阵 &gt;&gt; inv(a) ans = -0.">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+&amp;gt;&amp;gt; a = [1 2 3; 4 5 6; 7 8 10] a = 1 2 3 4 5 6 7 8 10 矩阵与常数相加
+&amp;gt;&amp;gt; a &#43; 10 ans = 11 12 13 14 15 16 17 18 20 &amp;gt;&amp;gt; sin(a) ans = 0.8415 0.9093 0.1411 -0.7568 -0.9589 -0.2794 0.6570 0.9894 -0.5440 转置矩阵 &amp;gt;&amp;gt;a&amp;#39; ans = 1 4 7 2 5 8 3 6 10 逆矩阵 &amp;gt;&amp;gt; inv(a) ans = -0.'><title>MATLAB学习_矩阵与向量操作</title>
+
+<link rel='canonical' href='https://example.com/blog/matlab%E7%9F%A9%E9%98%B5/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MATLAB学习_矩阵与向量操作'>
+<meta property='og:description' content='矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算
+运算 现有一矩阵a:
+&amp;gt;&amp;gt; a = [1 2 3; 4 5 6; 7 8 10] a = 1 2 3 4 5 6 7 8 10 矩阵与常数相加
+&amp;gt;&amp;gt; a &#43; 10 ans = 11 12 13 14 15 16 17 18 20 &amp;gt;&amp;gt; sin(a) ans = 0.8415 0.9093 0.1411 -0.7568 -0.9589 -0.2794 0.6570 0.9894 -0.5440 转置矩阵 &amp;gt;&amp;gt;a&amp;#39; ans = 1 4 7 2 5 8 3 6 10 逆矩阵 &amp;gt;&amp;gt; inv(a) ans = -0.'>
+<meta property='og:url' content='https://example.com/blog/matlab%E7%9F%A9%E9%98%B5/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-01-10T15:35:53&#43;08:00'/><meta property='article:modified_time' content='2020-01-10T15:35:53&#43;08:00'/>
+<meta name="twitter:title" content="MATLAB学习_矩阵与向量操作">
+<meta name="twitter:description" content="矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算
+运算 现有一矩阵a:
+&amp;gt;&amp;gt; a = [1 2 3; 4 5 6; 7 8 10] a = 1 2 3 4 5 6 7 8 10 矩阵与常数相加
+&amp;gt;&amp;gt; a &#43; 10 ans = 11 12 13 14 15 16 17 18 20 &amp;gt;&amp;gt; sin(a) ans = 0.8415 0.9093 0.1411 -0.7568 -0.9589 -0.2794 0.6570 0.9894 -0.5440 转置矩阵 &amp;gt;&amp;gt;a&amp;#39; ans = 1 4 7 2 5 8 3 6 10 逆矩阵 &amp;gt;&amp;gt; inv(a) ans = -0.">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/matlab/" style="background-color: #2a9d8f; color: #fff;">
+                MATLAB
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/matlab%E7%9F%A9%E9%98%B5/">MATLAB学习_矩阵与向量操作</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">MATLAB学习_矩阵与向量操作</h1>
-    <div class="post-meta">2020.1.10</div>
-  </header>
-  <div class="post-content">
 
-<p>矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算</p>
+        <time class="article-time--published">Jan 10, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p>矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算</p>
 <h2 id="运算">运算</h2>
-
 <p>现有一矩阵<code>a</code>:</p>
-
-<pre><code class="language-matlab">&gt;&gt; a = [1 2 3; 4 5 6; 7 8 10]
-a =
-     1     2     3
-     4     5     6
-     7     8     10
-</code></pre>
-
-<p>矩阵<strong>与常数相加</strong></p>
-
-<pre><code class="language-matlab">&gt;&gt; a + 10
-ans =
-    11    12    13
-    14    15    16
-    17    18    20
-</code></pre>
-
-<pre><code class="language-matlab">&gt;&gt; sin(a)
-ans =
-    0.8415    0.9093    0.1411
-   -0.7568   -0.9589   -0.2794
-    0.6570    0.9894   -0.5440
-</code></pre>
-
-<h3 id="转置矩阵">转置矩阵</h3>
-
-<pre><code class="language-matlab">&gt;&gt;a'
-ans =
-     1     4     7
-     2     5     8
-     3     6     10
-</code></pre>
-
-<h3 id="逆矩阵">逆矩阵</h3>
-
-<pre><code class="language-matlab">&gt;&gt; inv(a)
-ans =
-   -0.6667   -1.3333    1.0000
-   -0.6667    3.6667   -2.0000
-    1.0000   -2.0000    1.0000
-</code></pre>
-
-<h3 id="标准矩阵乘法">标准矩阵乘法</h3>
-
-<pre><code class="language-matlab">&gt;&gt; p = a*inv(a)
-p =
-    1.0000         0         0
-    0.0000    1.0000         0
-    0.0000   -0.0000    1.0000
-</code></pre>
-
-<p>请注意，p 不是整数值矩阵。MATLAB 将数字存储为浮点值，算术运算可以区分实际值与其浮点表示之间的细微差别。使用 <strong>format</strong> 命令可以显示更多小数位数：</p>
-
-<pre><code class="language-matlab">&gt;&gt; format long
-&gt;&gt; p = a*inv(a)
-p =
-   1.000000000000000                   0                   0
-   0.000000000000002   1.000000000000000                   0
-   0.000000000000002  -0.000000000000004   1.000000000000000
-</code></pre>
-
-<p>format 仅影响数字显示，而不影响 MATLAB 对数字的计算或保存方式。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">a</span> <span class="p">=</span>
+     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>
+     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>
+     <span class="mi">7</span>     <span class="mi">8</span>     <span class="mi">10</span>
+</code></pre></div><p>矩阵<strong>与常数相加</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="nb">ans</span> <span class="p">=</span>
+    <span class="mi">11</span>    <span class="mi">12</span>    <span class="mi">13</span>
+    <span class="mi">14</span>    <span class="mi">15</span>    <span class="mi">16</span>
+    <span class="mi">17</span>    <span class="mi">18</span>    <span class="mi">20</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">sin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+    <span class="mf">0.8415</span>    <span class="mf">0.9093</span>    <span class="mf">0.1411</span>
+   <span class="o">-</span><span class="mf">0.7568</span>   <span class="o">-</span><span class="mf">0.9589</span>   <span class="o">-</span><span class="mf">0.2794</span>
+    <span class="mf">0.6570</span>    <span class="mf">0.9894</span>   <span class="o">-</span><span class="mf">0.5440</span>
+</code></pre></div><h3 id="转置矩阵">转置矩阵</h3>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&#39;</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">1</span>     <span class="mi">4</span>     <span class="mi">7</span>
+     <span class="mi">2</span>     <span class="mi">5</span>     <span class="mi">8</span>
+     <span class="mi">3</span>     <span class="mi">6</span>     <span class="mi">10</span>
+</code></pre></div><h3 id="逆矩阵">逆矩阵</h3>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+   <span class="o">-</span><span class="mf">0.6667</span>   <span class="o">-</span><span class="mf">1.3333</span>    <span class="mf">1.0000</span>
+   <span class="o">-</span><span class="mf">0.6667</span>    <span class="mf">3.6667</span>   <span class="o">-</span><span class="mf">2.0000</span>
+    <span class="mf">1.0000</span>   <span class="o">-</span><span class="mf">2.0000</span>    <span class="mf">1.0000</span>
+</code></pre></div><h3 id="标准矩阵乘法">标准矩阵乘法</h3>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">p</span> <span class="p">=</span> <span class="n">a</span><span class="o">*</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">p</span> <span class="p">=</span>
+    <span class="mf">1.0000</span>         <span class="mi">0</span>         <span class="mi">0</span>
+    <span class="mf">0.0000</span>    <span class="mf">1.0000</span>         <span class="mi">0</span>
+    <span class="mf">0.0000</span>   <span class="o">-</span><span class="mf">0.0000</span>    <span class="mf">1.0000</span>
+</code></pre></div><p>请注意，p 不是整数值矩阵。MATLAB 将数字存储为浮点值，算术运算可以区分实际值与其浮点表示之间的细微差别。使用 <strong>format</strong> 命令可以显示更多小数位数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">format</span> <span class="n">long</span>
+<span class="o">&gt;&gt;</span> <span class="n">p</span> <span class="p">=</span> <span class="n">a</span><span class="o">*</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">p</span> <span class="p">=</span>
+   <span class="mf">1.000000000000000</span>                   <span class="mi">0</span>                   <span class="mi">0</span>
+   <span class="mf">0.000000000000002</span>   <span class="mf">1.000000000000000</span>                   <span class="mi">0</span>
+   <span class="mf">0.000000000000002</span>  <span class="o">-</span><span class="mf">0.000000000000004</span>   <span class="mf">1.000000000000000</span>
+</code></pre></div><p>format 仅影响数字显示，而不影响 MATLAB 对数字的计算或保存方式。</p>
 <h3 id="元素级乘法">元素级乘法</h3>
-
 <p>使用<code>.*</code>运算符</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">.*</span> <span class="mi">3</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">3</span>     <span class="mi">6</span>     <span class="mi">9</span>
+    <span class="mi">12</span>    <span class="mi">15</span>    <span class="mi">18</span>
+    <span class="mi">21</span>    <span class="mi">24</span>    <span class="mi">30</span>
 
-<pre><code class="language-matlab">&gt;&gt; a .* 3
-ans =
-     3     6     9
-    12    15    18
-    21    24    30
-
-&gt;&gt; a .* a
-ans =
-     1     4     9
-    16    25    36
-    49    64   100
-</code></pre>
-
-<p>乘法、除法和幂的矩阵运算符分别具有执行元素级运算的对应数组运算符。例如，计算 a 的各个元素的三次方：</p>
-
-<pre><code class="language-matlab">&gt;&gt; a .^ 3
-ans =
-           1           8          27
-          64         125         216
-         343         512        1000
-</code></pre>
-
-<h3 id="复数">复数</h3>
-
+<span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">.*</span> <span class="n">a</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">1</span>     <span class="mi">4</span>     <span class="mi">9</span>
+    <span class="mi">16</span>    <span class="mi">25</span>    <span class="mi">36</span>
+    <span class="mi">49</span>    <span class="mi">64</span>   <span class="mi">100</span>
+</code></pre></div><p>乘法、除法和幂的矩阵运算符分别具有执行元素级运算的对应数组运算符。例如，计算 a 的各个元素的三次方：</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">.^</span> <span class="mi">3</span>
+<span class="nb">ans</span> <span class="p">=</span>
+           <span class="mi">1</span>           <span class="mi">8</span>          <span class="mi">27</span>
+          <span class="mi">64</span>         <span class="mi">125</span>         <span class="mi">216</span>
+         <span class="mi">343</span>         <span class="mi">512</span>        <span class="mi">1000</span>
+</code></pre></div><h3 id="复数">复数</h3>
 <p>复数包含实部和虚部，虚数单位是 -1 的平方根。</p>
-
-<pre><code class="language-matlab">&gt;&gt; sqrt(-1)
-ans =
-   0.0000 + 1.0000i
-</code></pre>
-
-<p>要表示复数的虚部，请使用 i 或 j，例如：</p>
-
-<pre><code class="language-matlab">&gt;&gt; c = [3+4i, 4+3j; -i, 10j]
-c =
-   3.0000 + 4.0000i   4.0000 + 3.0000i
-   0.0000 - 1.0000i   0.0000 +10.0000i
-</code></pre>
-
-<h2 id="操作">操作</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+   <span class="mf">0.0000</span> <span class="o">+</span> <span class="mf">1.0000</span><span class="nb">i</span>
+</code></pre></div><p>要表示复数的虚部，请使用 i 或 j，例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="p">=</span> <span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="nb">i</span><span class="p">,</span> <span class="mi">4</span><span class="o">+</span><span class="mi">3</span><span class="nb">j</span><span class="p">;</span> <span class="o">-</span><span class="nb">i</span><span class="p">,</span> <span class="mi">10</span><span class="nb">j</span><span class="p">]</span>
+<span class="n">c</span> <span class="p">=</span>
+   <span class="mf">3.0000</span> <span class="o">+</span> <span class="mf">4.0000</span><span class="nb">i</span>   <span class="mf">4.0000</span> <span class="o">+</span> <span class="mf">3.0000</span><span class="nb">i</span>
+   <span class="mf">0.0000</span> <span class="o">-</span> <span class="mf">1.0000</span><span class="nb">i</span>   <span class="mf">0.0000</span> <span class="o">+</span><span class="mf">10.0000</span><span class="nb">i</span>
+</code></pre></div><h2 id="操作">操作</h2>
 <h3 id="获取尺寸">获取尺寸</h3>
-
-<pre><code class="language-matlab">&gt;&gt; size(a)
-ans =
-     3     3
-</code></pre>
-
-<p>实际上，<code>size()</code>命令返回的是一个 1×2 的矩阵，我们可以用<code>sz</code>来存放。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="nb">size</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">3</span>     <span class="mi">3</span>
+</code></pre></div><p>实际上，<code>size()</code>命令返回的是一个 1×2 的矩阵，我们可以用<code>sz</code>来存放。</p>
 <p>设置 <code>sz = size(a)</code></p>
-
 <p>因此  就是一个1×2的矩阵，第一个元素是3，第二个元素是3。</p>
-
 <p>也可以使用<code>length()</code>，它将返回最大维度的大小：</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">v</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="nb">length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">4</span>
 
-<pre><code class="language-matlab">&gt;&gt; v = [1 2 3 4];
-&gt;&gt; length(v)
-ans =
-     4
-
-&gt;&gt; length(a)
-ans =
-     3
-</code></pre>
-
-<h3 id="数组索引">数组索引</h3>
-
+<span class="o">&gt;&gt;</span> <span class="nb">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">3</span>
+</code></pre></div><h3 id="数组索引">数组索引</h3>
 <p>引用数组中的特定元素有两种方法。最常见的方法是指定行和列下标，例如</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">6</span>
+</code></pre></div><p>另一种方法不太常用，但有时非常有用，即使用单一下标按顺序向下遍历每一列，称为线性索引</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">6</span>
+</code></pre></div><p>如果尝试在赋值语句右侧引用数组外部元素，MATLAB 会引发错误。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+位置 <span class="mi">1</span> 处的索引超出数组边界<span class="p">(</span>不能超出 <span class="mi">3</span><span class="p">)</span>。
+</code></pre></div><p>不过，您可以在赋值语句左侧指定当前维外部的元素。数组大小会增大以便容纳新元素。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="p">=</span> <span class="mi">33</span>
+<span class="n">a</span> <span class="p">=</span>
+     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>     <span class="mi">0</span>     <span class="mi">0</span>
+     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>     <span class="mi">0</span>     <span class="mi">0</span>
+     <span class="mi">7</span>     <span class="mi">8</span>    <span class="mi">10</span>     <span class="mi">0</span>     <span class="mi">0</span>
+     <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">0</span>
+     <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">0</span>    <span class="mi">33</span>
 
-<pre><code class="language-matlab">&gt;&gt; a(2, 3)
-ans =
-     6
-</code></pre>
-
-<p>另一种方法不太常用，但有时非常有用，即使用单一下标按顺序向下遍历每一列，称为线性索引</p>
-
-<pre><code class="language-matlab">&gt;&gt; a(8)
-ans =
-     6
-</code></pre>
-
-<p>如果尝试在赋值语句右侧引用数组外部元素，MATLAB 会引发错误。</p>
-
-<pre><code class="language-matlab">&gt;&gt; a(5,5)
-位置 1 处的索引超出数组边界(不能超出 3)。
-</code></pre>
-
-<p>不过，您可以在赋值语句左侧指定当前维外部的元素。数组大小会增大以便容纳新元素。</p>
-
-<pre><code class="language-matlab">&gt;&gt; a(5, 5) = 33
-a =
-     1     2     3     0     0
-     4     5     6     0     0
-     7     8    10     0     0
-     0     0     0     0     0
-     0     0     0     0    33
-
-&gt;&gt; size(a)
-ans =
-     5     5
-</code></pre>
-
-<p>要<strong>引用多个数组元素</strong>，请使用冒号运算符，这使您可以指定一个格式为 start:end 的范围。</p>
-
-<pre><code class="language-matlab">&gt;&gt; a(1:3, 2:3)
-ans =
-     2     3
-     5     6
-     8    10
-</code></pre>
-
-<p>单独的冒号（没有起始值或结束值）指定该维中的所有元素。</p>
-
+<span class="o">&gt;&gt;</span> <span class="nb">size</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">5</span>     <span class="mi">5</span>
+</code></pre></div><p>要<strong>引用多个数组元素</strong>，请使用冒号运算符，这使您可以指定一个格式为 start:end 的范围。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">2</span>     <span class="mi">3</span>
+     <span class="mi">5</span>     <span class="mi">6</span>
+     <span class="mi">8</span>    <span class="mi">10</span>
+</code></pre></div><p>单独的冒号（没有起始值或结束值）指定该维中的所有元素。</p>
 <h3 id="串联">串联</h3>
-
 <p>串联是连接数组以便形成更大数组的过程。</p>
-
 <p>实际上，第一个数组是通过将其各个元素串联起来而构成的。成对的方括号 [] 即为串联运算符。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">]</span>
+<span class="n">A</span> <span class="p">=</span>
+     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>
+     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>
+     <span class="mi">7</span>     <span class="mi">8</span>    <span class="mi">10</span>     <span class="mi">7</span>     <span class="mi">8</span>    <span class="mi">10</span>
 
-<pre><code class="language-matlab">&gt;&gt; A = [a, a]
-A =
-     1     2     3     1     2     3
-     4     5     6     4     5     6
-     7     8    10     7     8    10
-
-&gt;&gt; A = [a; a]
-A =
-     1     2     3
-     4     5     6
-     7     8    10
-     1     2     3
-     4     5     6
-     7     8    10
-</code></pre>
-
-<blockquote>
-<p>参考<a href="https://ww2.mathworks.cn/help/matlab/learn_matlab">MATLAB快速入门</a></p>
+<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="n">a</span><span class="p">;</span> <span class="n">a</span><span class="p">]</span>
+<span class="n">A</span> <span class="p">=</span>
+     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>
+     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>
+     <span class="mi">7</span>     <span class="mi">8</span>    <span class="mi">10</span>
+     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>
+     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>
+     <span class="mi">7</span>     <span class="mi">8</span>    <span class="mi">10</span>
+</code></pre></div><blockquote>
+<p>参考<a class="link" href="https://ww2.mathworks.cn/help/matlab/learn_matlab"  target="_blank" rel="noopener"
+    >MATLAB快速入门</a></p>
 </blockquote>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

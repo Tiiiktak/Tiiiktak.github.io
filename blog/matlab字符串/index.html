@@ -1,203 +1,468 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>MATLAB学习_字符与字符串 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="字符串 创建 t = &quot;Hello, world&quot;;  如果文本包含双引号，请在定义中使用两个双引号。
-q = &quot;Something &quot;&quot;quoted&quot;&quot; and something else.&quot;  t 和 q 为数组。它们的数据类型是 string。
-&gt;&gt; whos t Name Size Bytes Class Attributes t 1x1 166 string   注意: 使用双引号创建字符串数组是在 R2017a 中引入的。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='字符串 创建 t = &amp;#34;Hello, world&amp;#34;; 如果文本包含双引号，请在定义中使用两个双引号。
+q = &amp;#34;Something &amp;#34;&amp;#34;quoted&amp;#34;&amp;#34; and something else.&amp;#34; t 和 q 为数组。它们的数据类型是 string。
+&amp;gt;&amp;gt; whos t Name Size Bytes Class Attributes t 1x1 166 string  注意: 使用双引号创建字符串数组是在 R2017a 中引入的。
  行末添加 使用&#43;运算符
-&gt;&gt; t &#43; &quot;!&quot; ans = &quot;Hello, world!&quot;  求长度 与数值数组类似，字符串数组可以有多个元素。
-&gt;&gt; A = [&quot;a&quot;,&quot;bb&quot;,&quot;ccc&quot;; &quot;dddd&quot;,&quot;eeeeee&quot;,&quot;fffffff&quot;] A = 2×3 string 数组 &quot;a&quot; &quot;bb&quot; &quot;ccc&quot; &quot;dddd&quot; &quot;eeeeee&quot; &quot;fffffff&quot;  使用 strlength 函数求数组中每个字符串的长度。">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+&amp;gt;&amp;gt; t &#43; &amp;#34;!&amp;#34; ans = &amp;#34;Hello, world!&amp;#34; 求长度 与数值数组类似，字符串数组可以有多个元素。
+&amp;gt;&amp;gt; A = [&amp;#34;a&amp;#34;,&amp;#34;bb&amp;#34;,&amp;#34;ccc&amp;#34;; &amp;#34;dddd&amp;#34;,&amp;#34;eeeeee&amp;#34;,&amp;#34;fffffff&amp;#34;] A = 2×3 string 数组 &amp;#34;a&amp;#34; &amp;#34;bb&amp;#34; &amp;#34;ccc&amp;#34; &amp;#34;dddd&amp;#34; &amp;#34;eeeeee&amp;#34; &amp;#34;fffffff&amp;#34; 使用 strlength 函数求数组中每个字符串的长度。
+&amp;gt;&amp;gt; strlength(A) ans = 1 2 3 4 6 7 字符 有时，字符表示的数据并不对应到文本，您可以将此类数据存储在数据类型为char 的字符数组中。字符数组使用单引号。'><title>MATLAB学习_字符与字符串</title>
+
+<link rel='canonical' href='https://example.com/blog/matlab%E5%AD%97%E7%AC%A6%E4%B8%B2/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MATLAB学习_字符与字符串'>
+<meta property='og:description' content='字符串 创建 t = &amp;#34;Hello, world&amp;#34;; 如果文本包含双引号，请在定义中使用两个双引号。
+q = &amp;#34;Something &amp;#34;&amp;#34;quoted&amp;#34;&amp;#34; and something else.&amp;#34; t 和 q 为数组。它们的数据类型是 string。
+&amp;gt;&amp;gt; whos t Name Size Bytes Class Attributes t 1x1 166 string  注意: 使用双引号创建字符串数组是在 R2017a 中引入的。
+ 行末添加 使用&#43;运算符
+&amp;gt;&amp;gt; t &#43; &amp;#34;!&amp;#34; ans = &amp;#34;Hello, world!&amp;#34; 求长度 与数值数组类似，字符串数组可以有多个元素。
+&amp;gt;&amp;gt; A = [&amp;#34;a&amp;#34;,&amp;#34;bb&amp;#34;,&amp;#34;ccc&amp;#34;; &amp;#34;dddd&amp;#34;,&amp;#34;eeeeee&amp;#34;,&amp;#34;fffffff&amp;#34;] A = 2×3 string 数组 &amp;#34;a&amp;#34; &amp;#34;bb&amp;#34; &amp;#34;ccc&amp;#34; &amp;#34;dddd&amp;#34; &amp;#34;eeeeee&amp;#34; &amp;#34;fffffff&amp;#34; 使用 strlength 函数求数组中每个字符串的长度。
+&amp;gt;&amp;gt; strlength(A) ans = 1 2 3 4 6 7 字符 有时，字符表示的数据并不对应到文本，您可以将此类数据存储在数据类型为char 的字符数组中。字符数组使用单引号。'>
+<meta property='og:url' content='https://example.com/blog/matlab%E5%AD%97%E7%AC%A6%E4%B8%B2/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-01-11T10:13:09&#43;08:00'/><meta property='article:modified_time' content='2020-01-11T10:13:09&#43;08:00'/>
+<meta name="twitter:title" content="MATLAB学习_字符与字符串">
+<meta name="twitter:description" content="字符串 创建 t = &amp;#34;Hello, world&amp;#34;; 如果文本包含双引号，请在定义中使用两个双引号。
+q = &amp;#34;Something &amp;#34;&amp;#34;quoted&amp;#34;&amp;#34; and something else.&amp;#34; t 和 q 为数组。它们的数据类型是 string。
+&amp;gt;&amp;gt; whos t Name Size Bytes Class Attributes t 1x1 166 string  注意: 使用双引号创建字符串数组是在 R2017a 中引入的。
+ 行末添加 使用&#43;运算符
+&amp;gt;&amp;gt; t &#43; &amp;#34;!&amp;#34; ans = &amp;#34;Hello, world!&amp;#34; 求长度 与数值数组类似，字符串数组可以有多个元素。
+&amp;gt;&amp;gt; A = [&amp;#34;a&amp;#34;,&amp;#34;bb&amp;#34;,&amp;#34;ccc&amp;#34;; &amp;#34;dddd&amp;#34;,&amp;#34;eeeeee&amp;#34;,&amp;#34;fffffff&amp;#34;] A = 2×3 string 数组 &amp;#34;a&amp;#34; &amp;#34;bb&amp;#34; &amp;#34;ccc&amp;#34; &amp;#34;dddd&amp;#34; &amp;#34;eeeeee&amp;#34; &amp;#34;fffffff&amp;#34; 使用 strlength 函数求数组中每个字符串的长度。
+&amp;gt;&amp;gt; strlength(A) ans = 1 2 3 4 6 7 字符 有时，字符表示的数据并不对应到文本，您可以将此类数据存储在数据类型为char 的字符数组中。字符数组使用单引号。">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/matlab/" style="background-color: #2a9d8f; color: #fff;">
+                MATLAB
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/matlab%E5%AD%97%E7%AC%A6%E4%B8%B2/">MATLAB学习_字符与字符串</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">MATLAB学习_字符与字符串</h1>
-    <div class="post-meta">2020.1.11</div>
-  </header>
-  <div class="post-content">
 
-<h1 id="字符串">字符串</h1>
+        <time class="article-time--published">Jan 11, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <h1 id="字符串">字符串</h1>
 <h2 id="创建">创建</h2>
-
-<pre><code class="language-matlab">t = &quot;Hello, world&quot;;
-</code></pre>
-
-<p>如果文本包含双引号，请在定义中使用两个双引号。</p>
-
-<pre><code class="language-matlab">q = &quot;Something &quot;&quot;quoted&quot;&quot; and something else.&quot;
-</code></pre>
-
-<p>t 和 q 为数组。它们的数据类型是 <strong>string</strong>。</p>
-
-<pre><code class="language-matlab">&gt;&gt; whos t
-  Name      Size            Bytes  Class     Attributes
-  t         1x1               166  string
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">t</span> <span class="p">=</span> &#34;<span class="n">Hello</span><span class="p">,</span> <span class="n">world</span>&#34;<span class="p">;</span>
+</code></pre></div><p>如果文本包含双引号，请在定义中使用两个双引号。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">q</span> <span class="p">=</span> &#34;<span class="n">Something</span> &#34;&#34;<span class="n">quoted</span>&#34;&#34; <span class="n">and</span> <span class="n">something</span> <span class="k">else</span><span class="p">.</span>&#34;
+</code></pre></div><p>t 和 q 为数组。它们的数据类型是 <strong>string</strong>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">whos</span> <span class="n">t</span>
+  <span class="n">Name</span>      <span class="n">Size</span>            <span class="n">Bytes</span>  <span class="n">Class</span>     <span class="n">Attributes</span>
+  <span class="n">t</span>         <span class="mi">1</span><span class="n">x1</span>               <span class="mi">166</span>  <span class="n">string</span>
+</code></pre></div><blockquote>
 <p>注意: 使用双引号创建字符串数组是在 R2017a 中引入的。</p>
 </blockquote>
-
 <h2 id="行末添加">行末添加</h2>
-
 <p>使用<code>+</code>运算符</p>
-
-<pre><code class="language-matlab">&gt;&gt; t + &quot;!&quot;
-ans = 
-    &quot;Hello, world!&quot;
-</code></pre>
-
-<h2 id="求长度">求长度</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">t</span> <span class="o">+</span> &#34;!&#34;
+<span class="nb">ans</span> <span class="p">=</span> 
+    &#34;<span class="n">Hello</span><span class="p">,</span> <span class="n">world</span>!&#34;
+</code></pre></div><h2 id="求长度">求长度</h2>
 <p>与数值数组类似，字符串数组可以有多个元素。</p>
-
-<pre><code class="language-matlab">&gt;&gt; A = [&quot;a&quot;,&quot;bb&quot;,&quot;ccc&quot;; &quot;dddd&quot;,&quot;eeeeee&quot;,&quot;fffffff&quot;]
-A = 
-  2×3 string 数组
-    &quot;a&quot;       &quot;bb&quot;        &quot;ccc&quot;    
-    &quot;dddd&quot;    &quot;eeeeee&quot;    &quot;fffffff&quot;
-</code></pre>
-
-<p>使用 <code>strlength</code> 函数求数组中每个字符串的长度。</p>
-
-<pre><code class="language-matlab">&gt;&gt; strlength(A)
-ans =
-     1     2     3
-     4     6     7
-</code></pre>
-
-<h1 id="字符">字符</h1>
-
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span>&#34;<span class="n">a</span>&#34;<span class="p">,</span>&#34;<span class="n">bb</span>&#34;<span class="p">,</span>&#34;<span class="n">ccc</span>&#34;<span class="p">;</span> &#34;<span class="n">dddd</span>&#34;<span class="p">,</span>&#34;<span class="n">eeeeee</span>&#34;<span class="p">,</span>&#34;<span class="n">fffffff</span>&#34;<span class="p">]</span>
+<span class="n">A</span> <span class="p">=</span> 
+  <span class="mi">2</span>×<span class="mi">3</span> <span class="n">string</span> 数组
+    &#34;<span class="n">a</span>&#34;       &#34;<span class="n">bb</span>&#34;        &#34;<span class="n">ccc</span>&#34;    
+    &#34;<span class="n">dddd</span>&#34;    &#34;<span class="n">eeeeee</span>&#34;    &#34;<span class="n">fffffff</span>&#34;
+</code></pre></div><p>使用 <code>strlength</code> 函数求数组中每个字符串的长度。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">strlength</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>
+     <span class="mi">4</span>     <span class="mi">6</span>     <span class="mi">7</span>
+</code></pre></div><h1 id="字符">字符</h1>
 <p>有时，字符表示的数据并不对应到文本，您可以将此类数据存储在数据类型为<strong>char</strong> 的<strong>字符数组</strong>中。字符数组使用<strong>单引号</strong>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">seq</span> <span class="p">=</span> <span class="s">&#39;ABCDEFG&#39;</span>
+<span class="n">seq</span> <span class="p">=</span>
+    <span class="s">&#39;ABCDEFG&#39;</span>
 
-<pre><code class="language-matlab">&gt;&gt; seq = 'ABCDEFG'
-seq =
-    'ABCDEFG'
+<span class="o">&gt;&gt;</span> <span class="n">whos</span> <span class="n">seq</span>
+  <span class="n">Name</span>      <span class="n">Size</span>            <span class="n">Bytes</span>  <span class="n">Class</span>    <span class="n">Attributes</span>
+  <span class="n">seq</span>       <span class="mi">1</span><span class="n">x7</span>                <span class="mi">14</span>  <span class="n">char</span>  
+</code></pre></div><p>数组的每个元素都包含单个字符。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">seq</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">ans</span> <span class="p">=</span>
+    <span class="s">&#39;D&#39;</span>
+</code></pre></div><p>使用方括号串联字符数组，就像串联数值数组一样。</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">seq2</span> <span class="p">=</span> <span class="p">[</span><span class="n">seq</span><span class="p">,</span> <span class="s">&#39;HIJKLMN&#39;</span><span class="p">]</span>
+<span class="n">seq2</span> <span class="p">=</span>
+    <span class="s">&#39;ABCDEFGHIJKLMN&#39;</span>
+</code></pre></div><p>接受 string 数据的所有 MATLAB 函数都能接受 char 数据，反之亦然</p>
 
-&gt;&gt; whos seq
-  Name      Size            Bytes  Class    Attributes
-  seq       1x7                14  char  
-</code></pre>
+</section>
 
-<p>数组的每个元素都包含单个字符。</p>
 
-<pre><code class="language-matlab">&gt;&gt; seq(4)
-ans =
-    'D'
-</code></pre>
-
-<p>使用方括号串联字符数组，就像串联数值数组一样。</p>
-
-<pre><code class="language-matlab">&gt;&gt; seq2 = [seq, 'HIJKLMN']
-seq2 =
-    'ABCDEFGHIJKLMN'
-</code></pre>
-
-<p>接受 string 数据的所有 MATLAB 函数都能接受 char 数据，反之亦然</p>
-</div>
-  <footer class="post-footer">
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

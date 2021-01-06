@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>正则化 Regularization - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过拟合(over-fitting)的问题，可能会导致它们效果很差。
-可以使用一种正则化(regularization)的技术来改善或减少过度拟合的问题
-在回归问题中  第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
- 第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到**过拟合(over-fitting)**的问题，可能会导致它们效果很差。
+可以使用一种**正则化(regularization)**的技术来改善或减少过度拟合的问题
+在回归问题中   第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
+  第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
   当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是过拟合，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。
 在分类问题中 就以多项式理解， x的次数越高，拟合的越好，但相应的预测的能力就可能变差。
 处理过拟合问题
@@ -27,195 +21,492 @@
 分类 L1正则化（Lasso回归） 损失函数基础上加上权重参数的绝对值
 L2正则化（岭回归） 损失函数基础上加上权重参数的平方和
 需要说明的是：L1 相比于 L2 会更容易获得稀疏解
-WHY-&gt;Click">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+WHY-&amp;gt;Click'><title>正则化 Regularization</title>
+
+<link rel='canonical' href='https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='正则化 Regularization'>
+<meta property='og:description' content='过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到**过拟合(over-fitting)**的问题，可能会导致它们效果很差。
+可以使用一种**正则化(regularization)**的技术来改善或减少过度拟合的问题
+在回归问题中   第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
+  第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
+  当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是过拟合，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。
+在分类问题中 就以多项式理解， x的次数越高，拟合的越好，但相应的预测的能力就可能变差。
+处理过拟合问题
+ 丢弃一些不能帮助我们正确预测的特征。可以是手工选择保留哪些特征，或者使用一些模型选择的算法来帮忙（例如PCA） 正则化。 保留所有的特征，但是减少参数的大小（magnitude）  代价函数 我们从之前的事例可以看出，正是那些高次项导致了过拟合的产生，所以我们可以通过让这些高次项的系数接近于0，我们就能很好的拟合。
+所以正则化的基本方法就是在一定程度上减小高次项系数即参数theta的值
+即在设定代价函数时，为高次项的系数设置一些惩罚，通过这样代价函数选择出的theta对预测结果的影响就比之前要小许多。
+但如果我们不知道要对哪一个参数进行惩罚，我们可以对所以特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。于是得到了一个较为简单的能防止过拟合问题的假设
+其中λ称为正则化参数（Regularization Parameter）。注：根据惯例，我们不对theta0进行惩罚。
+经过正则化处理的模型与原模型的可能对比如图：
+如果选择的正则化参数λ过大，则会把所有的参数都最小化了，导致模型变成 h(x) = theta0 ，也就是上图中红色直线所示的情况，造成欠拟合。
+对于正则化，我们要取一个合理的λ的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。
+正则化线性回归 正则化线性回归的代价函数为：
+如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对theta0进行正则化，所以梯度下降算法将分两种情形：
+分类 L1正则化（Lasso回归） 损失函数基础上加上权重参数的绝对值
+L2正则化（岭回归） 损失函数基础上加上权重参数的平方和
+需要说明的是：L1 相比于 L2 会更容易获得稀疏解
+WHY-&amp;gt;Click'>
+<meta property='og:url' content='https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-01-13T17:29:56&#43;08:00'/><meta property='article:modified_time' content='2020-01-13T17:29:56&#43;08:00'/>
+<meta name="twitter:title" content="正则化 Regularization">
+<meta name="twitter:description" content="过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到**过拟合(over-fitting)**的问题，可能会导致它们效果很差。
+可以使用一种**正则化(regularization)**的技术来改善或减少过度拟合的问题
+在回归问题中   第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
+  第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：
+  当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是过拟合，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。
+在分类问题中 就以多项式理解， x的次数越高，拟合的越好，但相应的预测的能力就可能变差。
+处理过拟合问题
+ 丢弃一些不能帮助我们正确预测的特征。可以是手工选择保留哪些特征，或者使用一些模型选择的算法来帮忙（例如PCA） 正则化。 保留所有的特征，但是减少参数的大小（magnitude）  代价函数 我们从之前的事例可以看出，正是那些高次项导致了过拟合的产生，所以我们可以通过让这些高次项的系数接近于0，我们就能很好的拟合。
+所以正则化的基本方法就是在一定程度上减小高次项系数即参数theta的值
+即在设定代价函数时，为高次项的系数设置一些惩罚，通过这样代价函数选择出的theta对预测结果的影响就比之前要小许多。
+但如果我们不知道要对哪一个参数进行惩罚，我们可以对所以特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。于是得到了一个较为简单的能防止过拟合问题的假设
+其中λ称为正则化参数（Regularization Parameter）。注：根据惯例，我们不对theta0进行惩罚。
+经过正则化处理的模型与原模型的可能对比如图：
+如果选择的正则化参数λ过大，则会把所有的参数都最小化了，导致模型变成 h(x) = theta0 ，也就是上图中红色直线所示的情况，造成欠拟合。
+对于正则化，我们要取一个合理的λ的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。
+正则化线性回归 正则化线性回归的代价函数为：
+如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对theta0进行正则化，所以梯度下降算法将分两种情形：
+分类 L1正则化（Lasso回归） 损失函数基础上加上权重参数的绝对值
+L2正则化（岭回归） 损失函数基础上加上权重参数的平方和
+需要说明的是：L1 相比于 L2 会更容易获得稀疏解
+WHY-&amp;gt;Click">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                机器学习
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%E6%AD%A3%E5%88%99%E5%8C%96/">正则化 Regularization</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">正则化 Regularization</h1>
-    <div class="post-meta">2020.1.13</div>
-  </header>
-  <div class="post-content">
 
-<h2 id="过拟合的问题">过拟合的问题</h2>
+        <time class="article-time--published">Jan 13, 2020</time>
+    </footer></div>
+</header>
 
-<p>到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到<strong>过拟合(over-fitting)</strong>的问题，可能会导致它们效果很差。</p>
-
-<p>可以使用一种<strong>正则化(regularization)</strong>的技术来改善或减少过度拟合的问题</p>
-
+    <section class="article-content">
+    <h2 id="过拟合的问题">过拟合的问题</h2>
+<p>到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到**过拟合(over-fitting)**的问题，可能会导致它们效果很差。</p>
+<p>可以使用一种**正则化(regularization)**的技术来改善或减少过度拟合的问题</p>
 <h3 id="在回归问题中">在回归问题中</h3>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHnm90.jpg" alt="回归问题过拟合" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHnm90.jpg" alt="回归问题过拟合"  /></p>
 <ul>
-<li><p>第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；</p></li>
-
-<li><p>第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：</p></li>
+<li>
+<p>第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；</p>
+</li>
+<li>
+<p>第三个模型是一个四次方的模型，过于强调拟合原始数据，而丢失了算法的本质：</p>
+</li>
 </ul>
-
 <p>当我们用第三个模型预测新数据，可以看出，若给出一个新的值使之预测，它将表现的很差，是<strong>过拟合</strong>，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎是最合适的。</p>
-
 <h3 id="在分类问题中">在分类问题中</h3>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHny4I.jpg" alt="分类问题过拟合" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHny4I.jpg" alt="分类问题过拟合"  /></p>
 <p>就以多项式理解， <code>x</code>的次数越高，拟合的越好，但相应的预测的能力就可能变差。</p>
-
 <p>处理过拟合问题</p>
-
 <ol>
 <li>丢弃一些不能帮助我们正确预测的特征。可以是手工选择保留哪些特征，或者使用一些模型选择的算法来帮忙（例如<strong>PCA</strong>）</li>
 <li>正则化。 保留所有的特征，但是减少参数的大小（<strong>magnitude</strong>）</li>
 </ol>
-
 <h2 id="代价函数">代价函数</h2>
-
 <p>我们从之前的事例可以看出，正是那些高次项导致了过拟合的产生，所以我们可以通过让这些高次项的系数接近于0，我们就能很好的拟合。</p>
-
 <p>所以正则化的基本方法就是在一定程度上减小高次项系数即参数<code>theta</code>的值</p>
-
 <p>即在设定代价函数时，为高次项的系数设置一些惩罚，通过这样代价函数选择出的<code>theta</code>对预测结果的影响就比之前要小许多。</p>
-
 <p>但如果我们不知道要对哪一个参数进行惩罚，我们可以对所以特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。于是得到了一个较为简单的能防止过拟合问题的假设</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHY2nI.png" alt="防止过拟合的假设" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHY2nI.png" alt="防止过拟合的假设"  /></p>
 <p>其中<code>λ</code>称为<strong>正则化参数（Regularization Parameter）</strong>。注：根据惯例，我们不对<code>theta0</code>进行惩罚。</p>
-
 <p>经过正则化处理的模型与原模型的可能对比如图：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHtmCD.png" alt="正则化前后对比" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHtmCD.png" alt="正则化前后对比"  /></p>
 <p>如果选择的正则化参数<code>λ</code>过大，则会把所有的参数都最小化了，导致模型变成 <code>h(x) = theta0</code> ，也就是上图中红色直线所示的情况，造成<strong>欠拟合</strong>。</p>
-
 <p>对于正则化，我们要取一个合理的<code>λ</code>的值，这样才能更好的应用正则化。 回顾一下代价函数，为了使用正则化，让我们把这些概念应用到到线性回归和逻辑回归中去，那么我们就可以让他们避免过度拟合了。</p>
-
 <h2 id="正则化线性回归">正则化线性回归</h2>
-
 <p>正则化线性回归的代价函数为：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHrjsO.png" alt="正则化线性回归的代价函数" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHrjsO.png" alt="正则化线性回归的代价函数"  /></p>
 <p>如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对<code>theta0</code>进行正则化，所以梯度下降算法将分两种情形：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHgAhj.png" alt="" /></p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/lHgmj0.png" alt="" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/lHgAhj.png" alt=""  /></p>
+<p><img src="https://s2.ax1x.com/2020/01/13/lHgmj0.png" alt=""  /></p>
 <h2 id="分类">分类</h2>
-
-<h3 id="l1正则化-lasso回归">L1正则化（Lasso回归）</h3>
-
+<h3 id="l1正则化lasso回归">L1正则化（Lasso回归）</h3>
 <p>损失函数基础上加上权重参数的绝对值</p>
-
-<p><img src="https://i.loli.net/2020/02/15/MZEiDqedNrFUfWu.png" alt="L1" /></p>
-
-<h3 id="l2正则化-岭回归">L2正则化（岭回归）</h3>
-
+<p><img src="https://i.loli.net/2020/02/15/MZEiDqedNrFUfWu.png" alt="L1"  /></p>
+<h3 id="l2正则化岭回归">L2正则化（岭回归）</h3>
 <p>损失函数基础上加上权重参数的平方和</p>
-
-<p><img src="https://i.loli.net/2020/02/15/D1HXA2Os8hIjaRZ.png" alt="L2" /></p>
-
+<p><img src="https://i.loli.net/2020/02/15/D1HXA2Os8hIjaRZ.png" alt="L2"  /></p>
 <p>需要说明的是：L1 相比于 L2 会更容易获得稀疏解</p>
+<p>WHY-&gt;<a class="link" href="https://www.zhihu.com/question/37096933/answer/70507353"  target="_blank" rel="noopener"
+    >Click</a></p>
 
-<p>WHY-&gt;<a href="https://www.zhihu.com/question/37096933/answer/70507353">Click</a></p>
-</div>
-  <footer class="post-footer">
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='1. Convert label to COCO format 使用官方提供的工具bdd100k2coco.py
+ 注意：使用bdd100k2coco分支下的文件，master中的该文件无法正常使用
+ 在使用前，还需要对该文件进行部分修改：
+# 将69行修改为	 image[&amp;#34;file_name&amp;#34;] = frame[&amp;#34;name&amp;#34;]&#43;&amp;#34;.jpg&amp;#34; # 在73行之后增加 frame = frame[&amp;#34;frames&amp;#34;][0] 之后按如下方式运行
+python bdd100k2coco.py -i {JSON文件夹路径} -o {输出一个coco json文件} -m {转换方式det or track，使用det即可} 调用两次分别将train、val数据集的label转换
+2. Set COCO-like directory tree 按如下目录结构保存我们的数据集
+data ├── annotations │ ├── instances_train2017.json # 训练集json │ ├── instances_val2017.json	# 验证集json ├── train2017 │ └── abcdefg-1234567.jpg │ └── ... ├── test2017 │ └── abcdefg-1234567.jpg │ └── ... ├── val2017 │ └── abcdefg-1234567.'><title>MMDetection中使用Mask-RCNN训练BDD100K数据集</title>
+
+<link rel='canonical' href='https://example.com/blog/bdd100k_mmdet_mask-rcnn/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MMDetection中使用Mask-RCNN训练BDD100K数据集'>
+<meta property='og:description' content='1. Convert label to COCO format 使用官方提供的工具bdd100k2coco.py
+ 注意：使用bdd100k2coco分支下的文件，master中的该文件无法正常使用
+ 在使用前，还需要对该文件进行部分修改：
+# 将69行修改为	 image[&amp;#34;file_name&amp;#34;] = frame[&amp;#34;name&amp;#34;]&#43;&amp;#34;.jpg&amp;#34; # 在73行之后增加 frame = frame[&amp;#34;frames&amp;#34;][0] 之后按如下方式运行
+python bdd100k2coco.py -i {JSON文件夹路径} -o {输出一个coco json文件} -m {转换方式det or track，使用det即可} 调用两次分别将train、val数据集的label转换
+2. Set COCO-like directory tree 按如下目录结构保存我们的数据集
+data ├── annotations │ ├── instances_train2017.json # 训练集json │ ├── instances_val2017.json	# 验证集json ├── train2017 │ └── abcdefg-1234567.jpg │ └── ... ├── test2017 │ └── abcdefg-1234567.jpg │ └── ... ├── val2017 │ └── abcdefg-1234567.'>
+<meta property='og:url' content='https://example.com/blog/bdd100k_mmdet_mask-rcnn/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-10-08T13:40:10&#43;08:00'/><meta property='article:modified_time' content='2020-10-08T13:40:10&#43;08:00'/>
+<meta name="twitter:title" content="MMDetection中使用Mask-RCNN训练BDD100K数据集">
+<meta name="twitter:description" content="1. Convert label to COCO format 使用官方提供的工具bdd100k2coco.py
+ 注意：使用bdd100k2coco分支下的文件，master中的该文件无法正常使用
+ 在使用前，还需要对该文件进行部分修改：
+# 将69行修改为	 image[&amp;#34;file_name&amp;#34;] = frame[&amp;#34;name&amp;#34;]&#43;&amp;#34;.jpg&amp;#34; # 在73行之后增加 frame = frame[&amp;#34;frames&amp;#34;][0] 之后按如下方式运行
+python bdd100k2coco.py -i {JSON文件夹路径} -o {输出一个coco json文件} -m {转换方式det or track，使用det即可} 调用两次分别将train、val数据集的label转换
+2. Set COCO-like directory tree 按如下目录结构保存我们的数据集
+data ├── annotations │ ├── instances_train2017.json # 训练集json │ ├── instances_val2017.json	# 验证集json ├── train2017 │ └── abcdefg-1234567.jpg │ └── ... ├── test2017 │ └── abcdefg-1234567.jpg │ └── ... ├── val2017 │ └── abcdefg-1234567.">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+            <a href="/categories/mmdetection/" style="background-color: #2a9d8f; color: #fff;">
+                MMDetection
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/bdd100k_mmdet_mask-rcnn/">MMDetection中使用Mask-RCNN训练BDD100K数据集</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Oct 08, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h2 id="1-convert-label-to-coco-format">1. Convert label to COCO format</h2>
+<p>使用官方提供的工具<code>bdd100k2coco.py</code></p>
+<blockquote>
+<p>注意：使用<a class="link" href="https://github.com/bdd100k/bdd100k/tree/bdd100k2coco"  target="_blank" rel="noopener"
+    >bdd100k2coco分支</a>下的文件，<code>master</code>中的该文件无法正常使用</p>
+</blockquote>
+<p>在使用前，还需要对该文件进行部分修改：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 将69行修改为	</span>
+<span class="n">image</span><span class="p">[</span><span class="s2">&#34;file_name&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="s2">&#34;name&#34;</span><span class="p">]</span><span class="o">+</span><span class="s2">&#34;.jpg&#34;</span>
+<span class="c1"># 在73行之后增加</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="s2">&#34;frames&#34;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div><p>之后按如下方式运行</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">python</span> <span class="n">bdd100k2coco</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">i</span> <span class="p">{</span><span class="n">JSON文件夹路径</span><span class="p">}</span> <span class="o">-</span><span class="n">o</span> <span class="p">{</span><span class="err">输出一个</span><span class="n">coco</span> <span class="n">json文件</span><span class="p">}</span> <span class="o">-</span><span class="n">m</span> <span class="p">{</span><span class="err">转换方式</span><span class="n">det</span> <span class="ow">or</span> <span class="n">track</span><span class="err">，使用</span><span class="n">det即可</span><span class="p">}</span>
+</code></pre></div><p>调用两次分别将train、val数据集的label转换</p>
+<h2 id="2--set-coco-like-directory-tree">2.  Set COCO-like directory tree</h2>
+<p>按如下目录结构保存我们的数据集</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">data</span>
+<span class="err">├──</span> <span class="n">annotations</span>
+<span class="err">│</span>   <span class="err">├──</span> <span class="n">instances_train2017</span><span class="o">.</span><span class="n">json</span> <span class="c1"># 训练集json</span>
+<span class="err">│</span>   <span class="err">├──</span> <span class="n">instances_val2017</span><span class="o">.</span><span class="n">json</span>	<span class="c1"># 验证集json</span>
+<span class="err">├──</span> <span class="n">train2017</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">abcdefg</span><span class="o">-</span><span class="mf">1234567.j</span><span class="n">pg</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="o">...</span>
+<span class="err">├──</span> <span class="n">test2017</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">abcdefg</span><span class="o">-</span><span class="mf">1234567.j</span><span class="n">pg</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="o">...</span>
+<span class="err">├──</span> <span class="n">val2017</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">abcdefg</span><span class="o">-</span><span class="mf">1234567.j</span><span class="n">pg</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="o">...</span>
+</code></pre></div><hr>
+<blockquote>
+<p>接下来进行数据集的定义，我们这里通过直接修改coco数据集定义文件进行操作</p>
+</blockquote>
+<h2 id="3-modify-relevant-documents">3. Modify relevant documents</h2>
+<h3 id="mmdetdatasetscocopy">./mmdet/datasets/coco.py</h3>
+<p>在<code>class CocoDataset(CustomDataset):</code>中，将CLASSES修改为你自己的数据集类别，如我们修改为BDD100K中的类别：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="n">CLASSES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;person&#34;</span><span class="p">,</span> <span class="s2">&#34;rider&#34;</span><span class="p">,</span> <span class="s2">&#34;car&#34;</span><span class="p">,</span> <span class="s2">&#34;bus&#34;</span><span class="p">,</span> <span class="s2">&#34;truck&#34;</span><span class="p">,</span> <span class="s2">&#34;bike&#34;</span><span class="p">,</span>
+               <span class="s2">&#34;motor&#34;</span><span class="p">,</span> <span class="s2">&#34;traffic light&#34;</span><span class="p">,</span> <span class="s2">&#34;traffic sign&#34;</span><span class="p">,</span> <span class="s2">&#34;train&#34;</span><span class="p">)</span>
+</code></pre></div><h3 id="mmdetcoreevaluationclass_namespy">./mmdet/core/evaluation/class_names.py</h3>
+<p>在<code>def coco_classes():</code>中，同样修改数据集类别</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">	<span class="k">return</span> <span class="p">[</span>
+        <span class="s2">&#34;pedestrian&#34;</span><span class="p">,</span> <span class="s2">&#34;rider&#34;</span><span class="p">,</span> <span class="s2">&#34;car&#34;</span><span class="p">,</span> <span class="s2">&#34;bus&#34;</span><span class="p">,</span> <span class="s2">&#34;truck&#34;</span><span class="p">,</span> <span class="s2">&#34;bicycle&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;motorcycle&#34;</span><span class="p">,</span> <span class="s2">&#34;traffic light&#34;</span><span class="p">,</span> <span class="s2">&#34;traffic sign&#34;</span><span class="p">,</span> <span class="s2">&#34;train&#34;</span>
+    <span class="p">]</span>
+</code></pre></div><h2 id="4-set-config-file">4. Set Config file</h2>
+<p>在这一步，我们可以从<code>./configs</code>文件夹中选取预训练的模型。</p>
+<p>我选择的是<code>mask_rcnn_r50_fpn_1x_coco.py</code>，可以看到该文件内容为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">_base_</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;../_base_/models/mask_rcnn_r50_fpn.py&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;../_base_/datasets/coco_instance.py&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;../_base_/schedules/schedule_1x.py&#39;</span><span class="p">,</span> <span class="s1">&#39;../_base_/default_runtime.py&#39;</span>
+<span class="p">]</span>
+</code></pre></div><p>为了便于修改参数，我将其中引用的各文件内容均复制到了一个新建的config文件<code>bdd100_mask_rcnn_r50_fpn_1x_coco.py</code>中</p>
+<blockquote>
+<p>Config文件中各参数含义可参考：<a class="link" href="https://blog.csdn.net/hajlyx/article/details/85991400"  target="_blank" rel="noopener"
+    >mmdetection的configs中的各项参数具体解释</a>和<a class="link" href="https://github.com/open-mmlab/mmdetection/blob/master/docs/config.md#an-example-of-mask-r-cnn"  target="_blank" rel="noopener"
+    >官方文档</a></p>
+</blockquote>
+<p>接下来开始修改参数</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># data path</span>
+<span class="n">dataset_type</span> <span class="o">=</span> <span class="s1">&#39;CocoDataset&#39;</span>
+<span class="n">data_root</span> <span class="o">=</span> <span class="s1">&#39;./data/&#39;</span>	<span class="c1"># 即数据集的根目录位置</span>
+
+<span class="c1"># model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">roi_head</span><span class="o">.</span><span class="n">bbox_head</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">=</span> <span class="mi">10</span> 	<span class="c1"># 即数据集中分类数量</span>
+
+<span class="c1"># set up working dir to save files and logs</span>
+<span class="n">work_dir</span> <span class="o">=</span> <span class="s1">&#39;./tutorial_exps&#39;</span>
+
+<span class="c1"># LR</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="o">/</span> <span class="mi">8</span> <span class="c1"># 默认值0.02对应8块GPU，若使用一块则为0.02/8</span>
+
+<span class="c1"># Epoches</span>
+<span class="n">total_epochs</span> <span class="o">=</span> <span class="mi">12</span> 	<span class="c1"># default:12</span>
+
+<span class="c1"># Multiple GPUs</span>
+<span class="n">gpu_ids</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>	<span class="c1"># GPU id</span>
+
+<span class="c1"># Batch Size</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sample_per_gpu</span> <span class="o">=</span> <span class="mi">5</span>		<span class="c1"># batch size of a single GPU</span>
+<span class="n">data</span><span class="o">.</span><span class="n">workers_per_gpu</span> <span class="o">=</span> <span class="mi">2</span> 	<span class="c1"># Worker to pre-fetch data for each single GPU</span>
+
+<span class="c1"># Evaluation Metric</span>
+<span class="n">evaluation</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;mAP&#39;</span>	<span class="c1"># 由于使用了自定义的数据集，因此修改评价指标</span>
+<span class="n">evaluation</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="mi">12</span>	<span class="c1"># 通过修改评价区间减少评价用时</span>
+
+<span class="c1"># Checpoint</span>
+<span class="n">checkpoint_config</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="mi">12</span>	<span class="c1"># 通过修改检查点保存间隔降低存储成本</span>
+</code></pre></div><h2 id="5-train">5. Train</h2>
+<h3 id="preference">Preference</h3>
+<h4 id="mmdetdatasetsbuilderpy">mmdet\datasets\builder.py</h4>
+<p>第131行，默认为<code>pin_memory=False</code></p>
+<p>修改为<code>pin_memory=True</code></p>
+<p>参考https://discuss.pytorch.org/t/when-to-set-pin-memory-to-true/19723</p>
+<h4 id="heading"></h4>
+<h3 id="single-gpu">Single GPU</h3>
+<p>使用<code>./tools/train.py</code>即可，如</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">python</span> <span class="o">./</span><span class="n">tools</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="o">./</span><span class="n">configs</span><span class="o">/</span><span class="n">bdd100_mask_rcnn_r50_fpn_1x_coco</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">gpus</span> <span class="mi">1</span> <span class="o">--</span><span class="n">validate</span> <span class="o">--</span><span class="n">work_dir</span> <span class="n">work_dirs</span>
+</code></pre></div><h3 id="multiple-gpus">Multiple GPUs</h3>
+<p>使用<code>./tools/dist_train.sh</code>即可进行多卡训练，如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">./tools/dist_train.sh <span class="o">{</span>config path<span class="o">}</span> <span class="o">{</span>gpu nums<span class="o">}</span>
+&gt; ./tools/dist_train.sh ./configs/bdd100_mask_rcnn_r50_fpn_1x_coco.py <span class="m">3</span>
+</code></pre></div><blockquote>
+<p>仍有问题待解决：</p>
+<ul>
+<li>虽然设置的是第1，2，3块GPU，但是实际运行后程序却尝试使用第0，1，2块GPU</li>
+<li>GPU内存占满，但是训练过程中GPU利用率（Volatile GPU-Util）较低，一直维持在40%左右-</li>
+<li>只训练了一个epoch就自动结束，尝试使用训练结果进行测试，也测试失败</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>参考：</p>
+<ul>
+<li><a href="https://blog.csdn.net/gaoyi135/article/details/90613895">https://blog.csdn.net/gaoyi135/article/details/90613895</a></li>
+<li><a href="https://blog.csdn.net/xiangxianghehe/article/details/89812058#commentsedit">https://blog.csdn.net/xiangxianghehe/article/details/89812058#commentsedit</a></li>
+<li><a href="https://blog.csdn.net/jy1023408440/article/details/104700435">https://blog.csdn.net/jy1023408440/article/details/104700435</a></li>
+</ul>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

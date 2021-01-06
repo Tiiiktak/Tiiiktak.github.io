@@ -16,32 +16,30 @@
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="list">
     <header class="header">
@@ -87,13 +85,13 @@
   <section class="entry-content">
    <p>[toc]
 Linux文件基本属性 在Linux中可以使用ll或者ls –l命令来显示一个文件的属性以及文件所属的用户和组，如：
-[root@www /]# ls -l total 64 dr-xr-xr-x 2 root root 4096 Dec 14 2012 bin dr-xr-xr-x 4 root root 4096 Apr 19 2012 boot ……  bin文件的第一个属性用d表示，d在Linux中代表该文件是一个目录文件 Linux中第一个字符代表这个文件时目录、文件、链接文件等 &gt;* 当为[d]则是目录 &gt;* 当为[-]则是文件 &gt;* 若是[l]则表示为链接文档(link file) &gt;* 若是[b]则表示为装置文件里面的可供储存的接口设备(可随机存取装置) &gt;* 若是[c]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)
-接下来的字符中，三个为一组，且均为『rwx』 的三个参数的组合。其中，[r]代表可读(read)、[w]代表可写(write)、[x]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[-]，如图
+[root@www /]# ls -l total 64 dr-xr-xr-x 2 root root 4096 Dec 14 2012 bin dr-xr-xr-x 4 root root 4096 Apr 19 2012 boot …… bin文件的第一个属性用d表示，d在Linux中代表该文件是一个目录文件 Linux中第一个字符代表这个文件时目录、文件、链接文件等
+  当为[d]则是目录 当为[-]则是文件 若是[l]则表示为链接文档(link file) 若是[b]则表示为装置文件里面的可供储存的接口设备(可随机存取装置) 若是[c]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)   接下来的字符中，三个为一组，且均为『rwx』 的三个参数的组合。其中，[r]代表可读(read)、[w]代表可写(write)、[x]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[-]，如图
 Linux链接 Linux链接分为硬链接（Hard Link）和软链接（Symbolic Link）。默认情况，ln命令创建硬链接
 硬链接 硬连接指通过索引节点来进行连接，多个文件名可以指向同一索引节点，删除其中任何一个不会影响其余文件名的访问，只有当最后一个连接被删除时，文件的数据块及其目录的连接才被释放
 软链接 即符号链接，类似于Windows中快捷方式。两个文件名指向两个不同的节点号，若被指向的文件删除，链接仍存在，但指向一个无效的链接
 Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。
-[root@www /]# ls -l total 64 drwxr-xr-x 2 root root 4096 Feb 15 14:46 cron drwxr-xr-x 3 mysql mysql 4096 Apr 21 2014 mysql ……  mysql 文件是一个目录文件，属主和属组都为 mysql，属主有可读、可写、可执行的权限；与属主同组的其他用户有可读和可执行的权限；其他用户也有可读和可执行的权限。...</p>
+[root@www /]# ls -l total 64 drwxr-xr-x 2 root root 4096 Feb 15 14:46 cron drwxr-xr-x 3 mysql mysql 4096 Apr 21 2014 mysql …… mysql 文件是一个目录文件，属主和属组都为 mysql，属主有可读、可写、可执行的权限；与属主同组的其他用户有可读和可执行的权限；其他用户也有可读和可执行的权限。...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.25</time>
@@ -109,18 +107,18 @@ Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组
    <p>Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
 运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
 运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序
-Linux共7种运行级别: &gt;* 运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 &gt;* 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 &gt;* 运行级别2：多用户状态(没有NFS) &gt;* 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 &gt;* 运行级别4：系统未使用，保留 &gt;* 运行级别5：X11控制台，登陆后进入图形GUI模式 &gt;* 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
-系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
+Linux共7种运行级别:
+  运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动   系统初始化 init配置文件中有一行：si::sysinit:/etc/rc.d/rc.sysinit，它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，主要完成一些系统初始化的工作，rc.sysinit是每个运行级别都要首先运行的重要脚本。
 主要完成的工作：激活交换分区，检查磁盘，加载硬件模块及其他一些需要优先执行的任务
 另外一行：15:5:wait:/etc/rc.d/rc 5，表示以5为参数运行/etc/rc.d/rc，/etc/rc.d/rc是一个Shell脚本，接受5作为参数，执行/etc/rc.d/rc5.d/目录下所有rc启动脚本，/etc/rc.d/rc5.d/目录中的这些启动脚本实际上都是一些连接文件，而不是真正的rc启动脚本，真正的rc启动脚本实际上都是放在/etc/rc.d/init.d/目录下。而这些rc启动脚本有着类似的用法，它们一般能接受start、stop、restart、status等参数。/etc/rc.d/rc5.d/中的rc启动脚本通常是K或S开头的连接文件，对于以 S 开头的启动脚本，将以start参数来运行。
 而如果发现存在相应的脚本也存在K打头的连接，而且已经处于运行态了(以/var/lock/subsys/下的文件作为标志)，则将首先以stop为参数停止这些已经启动了的守护进程，然后再重新运行。
 这样做是为了保证是当init改变运行级别时，所有相关的守护进程都将重启。
-至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的”System Services”来自行设定。
+至于在每个运行级中将运行哪些守护进程，用户可以通过chkconfig或setup中的&#34;System Services&#34;来自行设定。
 建立终端 rc执行完毕，返回init。此时基本系统环境已设置好，各种守护进程已启动。
 init接下来会打开6个终端，以便用户登录系统，即inittab中以下6行就是定义了6个终端：
-1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6  2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
-用户登录系统 常用三种登陆方式： * 命令行登陆 * ssh登陆 * 图形界面登陆
-命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。...</p>
+1:2345:respawn:/sbin/mingetty tty1 2:2345:respawn:/sbin/mingetty tty2 3:2345:respawn:/sbin/mingetty tty3 4:2345:respawn:/sbin/mingetty tty4 5:2345:respawn:/sbin/mingetty tty5 6:2345:respawn:/sbin/mingetty tty6 2、3、4、5的运行级别中都将以respawn方式运行mingetty程序，mingetty程序能打开终端、设置模式，同时显示文本登陆界面
+用户登录系统 常用三种登陆方式：
+ 命令行登陆 ssh登陆 图形界面登陆  命令行登陆 Linux的账号验证程序是login，login会接手mingetty传来的用户名作为用户名参数， 之后login对用户名进行分析：如果用户名不是 root，且存在/etc/nologin文件，login 将输出 nologin 文件的内容，然后退出。...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.24</time>
@@ -134,10 +132,11 @@ init接下来会打开6个终端，以便用户登录系统，即inittab中以�
   </header>
   <section class="entry-content">
    <p>类和实例 定义类 使用class关键字
-class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &#34;&#34;&#34;docstring for Student&#34;&#34;&#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score))  实例化 类名&#43;（）
-&gt;&gt;&gt; bob = Student(&#39;Bob&#39;, 98) &gt;&gt;&gt; bob.print_score() Bob: 98  创建实例后，可以自由地给一个实例变量绑定属性，如
-&gt;&gt;&gt; bob.school = &#39;SWUST&#39; &gt;&gt;&gt; bob.school &#39;SWUST&#39;  访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
-class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子类：...</p>
+class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &#34;&#34;&#34;docstring for Student&#34;&#34;&#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&#39;%s: %s&#39; % (self.name, self.score)) 实例化 类名&#43;（）
+&gt;&gt;&gt; bob = Student(&#39;Bob&#39;, 98) &gt;&gt;&gt; bob.print_score() Bob: 98 创建实例后，可以自由地给一个实例变量绑定属性，如
+&gt;&gt;&gt; bob.school = &#39;SWUST&#39; &gt;&gt;&gt; bob.school &#39;SWUST&#39; 访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
+class Animal(object): def run(self): print(&#39;Animal is running...&#39;) 子类：
+class Dog(Animal) pass 子类调用父类方法：...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.21</time>
@@ -155,13 +154,15 @@ class Animal(object): def run(self): print(&#39;Animal is running...&#39;)  子�
 而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的
 函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
 Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言
-高阶函数 Python中函数两个特性 &gt; ### 变量可以指向函数 函数本身可以赋值给变量，通过变量可以调用函数
-&gt;&gt;&gt; f = abs &gt;&gt;&gt; f(-10) 10   函数名是变量 把函数名看作变量，可将其指向其他对象，则无法调用原函数
-&gt;&gt;&gt; abs = 10 &gt;&gt;&gt; abs(-10) Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; TypeError: &#39;int&#39; object is not callable   传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
+高阶函数 Python中函数两个特性
+ 变量可以指向函数  函数本身可以赋值给变量，通过变量可以调用函数
+&gt;&gt;&gt; f = abs &gt;&gt;&gt; f(-10) 10  函数名是变量  把函数名看作变量，可将其指向其他对象，则无法调用原函数
+&gt;&gt;&gt; abs = 10 &gt;&gt;&gt; abs(-10) Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; TypeError: &#39;int&#39; object is not callable 传入函数 由于变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数
 一个最简单的高阶函数：
-def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
+def add(x, y, f) return f(x) &#43; f(y) 当调用add(-5, -6, abs)时，函数计算abs(-5)&#43;abs(-6)，返回11
  把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式
- Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回...</p>
+  Python内建高阶函数 map()函数 |map() 函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回
+def f(x): return x * x &gt;&gt;&gt; r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9]) &gt;&gt;&gt; list(r) [1, 4, 9, 16, 25, 36, 49, 64, 81] reduce()函数 |reduce 把一个函数作用在一个序列[x1, x2, x3, ....</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.21</time>
@@ -174,10 +175,10 @@ def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数�
     <h2>算法复杂度</h2>
   </header>
   <section class="entry-content">
-   <p> 算法复杂度  总共N个数据 一次操作记为O(1) N次操作记为O(n) 在大部分oj判题系统中时间限制为10^6 =1s  冒泡排序  操作次数: n&#43;(n-1)&#43;(n-2)&#43;…&#43;n(n-1)/2  快速排序  递归处理数组，每次将数组按照key值在其左右区分出来：比key小放左边，比key大放右边
- 例: 5 6 2 4 3 8 取首位（5）为key值
- 4 3 2 5 6 8
- 4 3 2 5 6 8
+   <p>算法复杂度  总共N个数据 一次操作记为O(1) N次操作记为O(n) 在大部分oj判题系统中时间限制为10^6 =1s  冒泡排序  操作次数: n&#43;(n-1)&#43;(n-2)&#43;…&#43;n(n-1)/2  快速排序   递归处理数组，每次将数组按照key值在其左右区分出来：比key小放左边，比key大放右边
+  例: 5 6 2 4 3 8   取首位（5）为key值
+  4 3 2 5 6 8
+  4 3 2 5 6 8
   ...</p>
   </section>
   <footer class="entry-footer">
@@ -191,10 +192,10 @@ def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数�
     <h2>Python中set集合</h2>
   </header>
   <section class="entry-content">
-   <p> set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
+   <p>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
 创建set 传入一个list，重复元素会被自动过滤，显示的顺序并不表示set是有序的
-&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3]) &gt;&gt;&gt; s {1, 2, 3}  添加元素 &gt;&gt;&gt; s.add(4) &gt;&gt;&gt; s {1, 2, 3, 4}  删除元素 &gt;&gt;&gt; s.remove(3) &gt;&gt;&gt; s {1, 2, 4}  交并集 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作
-&gt;&gt;&gt; s1 = set([1, 2, 3]) &gt;&gt;&gt; s2 = set([2, 3, 4]) &gt;&gt;&gt; s1 &amp; s2 {2, 3} &gt;&gt;&gt; s1 | s2 {1, 2, 3, 4}  ...</p>
+&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3]) &gt;&gt;&gt; s {1, 2, 3} 添加元素 &gt;&gt;&gt; s.add(4) &gt;&gt;&gt; s {1, 2, 3, 4} 删除元素 &gt;&gt;&gt; s.remove(3) &gt;&gt;&gt; s {1, 2, 4} 交并集 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作
+&gt;&gt;&gt; s1 = set([1, 2, 3]) &gt;&gt;&gt; s2 = set([2, 3, 4]) &gt;&gt;&gt; s1 &amp; s2 {2, 3} &gt;&gt;&gt; s1 | s2 {1, 2, 3, 4} ...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.20</time>
@@ -207,12 +208,12 @@ def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数�
     <h2>Python中dict字典</h2>
   </header>
   <section class="entry-content">
-   <p>dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度
-创建dict &gt;&gt;&gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85} &gt;&gt;&gt; d[&#39;Michael&#39;] 95  内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
+   <p>dict全称dictionary，在其他语言中也称为map，使用**键-值（key-value）**存储，具有极快的查找速度
+创建dict &gt;&gt;&gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85} &gt;&gt;&gt; d[&#39;Michael&#39;] 95 内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
 加入数据 把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：
-&gt;&gt;&gt; d[&#39;Tony&#39;] = 99 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  查询key是否存在 使用in &gt;&gt;&gt; &#39;Thomas&#39; in d False &gt;&gt;&gt; &#39;Bob&#39; in d True  使用get() 如果key不存在，返回None，或者自己指定的value
-&gt;&gt;&gt; d.get(&#39;Thomas&#39;) #返回None时Python交互环境不显示 &gt;&gt;&gt; d.get(&#39;Thomas&#39;, -1) -1  删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
-&gt;&gt;&gt; d.pop(&#39;Bob&#39;) 75 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99}  注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表...</p>
+&gt;&gt;&gt; d[&#39;Tony&#39;] = 99 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99} 查询key是否存在 使用in &gt;&gt;&gt; &#39;Thomas&#39; in d False &gt;&gt;&gt; &#39;Bob&#39; in d True 使用get() 如果key不存在，返回None，或者自己指定的value
+&gt;&gt;&gt; d.get(&#39;Thomas&#39;) #返回None时Python交互环境不显示 &gt;&gt;&gt; d.get(&#39;Thomas&#39;, -1) -1 删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
+&gt;&gt;&gt; d.pop(&#39;Bob&#39;) 75 &gt;&gt;&gt; d {&#39;Michael&#39;: 95, &#39;Tracy&#39;: 85, &#39;Tony&#39;: 99} 注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.20</time>
@@ -227,13 +228,13 @@ def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数�
   <section class="entry-content">
    <p>tuple和list非常类似，但是tuple一旦初始化就不能修改
 [toc]
-创建tuple &gt;&gt;&gt; classmates = (&#39;A&#39;, &#39;B&#39;, &#39;C&#39;)  此时，classmates这个tuple不能改变，它也没有append()，insert()这样的方法。
+创建tuple &gt;&gt;&gt; classmates = (&#39;A&#39;, &#39;B&#39;, &#39;C&#39;) 此时，classmates这个tuple不能改变，它也没有append()，insert()这样的方法。
 其他获取元素的方法和list是一样的，你可以正常地使用classmates[0]，classmates[-1]，但不能将其赋值为另外的元素。
 因为tuple不可变，所以代码更安全。如果可能，能用tuple代替list就尽量用tuple。
-空tuple &gt;&gt;&gt; t = () &gt;&gt;&gt; t ()  只有一个元素的tuple 错误写法 不能直接使用括号()!!!
-&gt;&gt;&gt; t = (1) &gt;&gt;&gt; t 1 #定义的不是tuble，而是一个数  正解 加一个逗号，消除歧义
-&gt;&gt;&gt; t = (1,) &gt;&gt;&gt; t (1,)  “可变”的tuble 当tuble中包含list元素时，仍然可以对list进行修改，tuble仍指向该list
-&gt;&gt;&gt; t = (1, [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;]) &gt;&gt;&gt; t[1][2] = &#39;a&#39; &gt;&gt;&gt; t (1, [&#39;x&#39;, &#39;a&#39;, &#39;z&#39;])  个人理解：tuble相当于一个指针数组，指向每个元素，对元素本身的更改并不会影响tuble的指向...</p>
+空tuple &gt;&gt;&gt; t = () &gt;&gt;&gt; t () 只有一个元素的tuple 错误写法 不能直接使用括号()!!!
+&gt;&gt;&gt; t = (1) &gt;&gt;&gt; t 1 #定义的不是tuble，而是一个数 正解 加一个逗号，消除歧义
+&gt;&gt;&gt; t = (1,) &gt;&gt;&gt; t (1,) “可变&#34;的tuble 当tuble中包含list元素时，仍然可以对list进行修改，tuble仍指向该list
+&gt;&gt;&gt; t = (1, [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;]) &gt;&gt;&gt; t[1][2] = &#39;a&#39; &gt;&gt;&gt; t (1, [&#39;x&#39;, &#39;a&#39;, &#39;z&#39;]) 个人理解：tuble相当于一个指针数组，指向每个元素，对元素本身的更改并不会影响tuble的指向...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.20</time>
@@ -248,10 +249,10 @@ def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数�
   <section class="entry-content">
    <p>Python常见数据类型——List列表 list是一种有序的集合，可随时增删元素
 [toc]
-创建list &gt;&gt;&gt; classmates = [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &gt;&gt;&gt; len(classmates) 3  访问某个位置元素 使用索引地址访问
-&gt;&gt;&gt; classmates[0] &#39;A&#39; &gt;&gt;&gt; classmates[-1] #返回最后一项元素 &#39;C&#39;  追加元素到末尾 &gt;&gt;&gt; classmates.append(&#39;D&#39;) &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  插入元素到指定位置 &gt;&gt;&gt; classmates.insert(1, &#39;Here&#39;) #在指定位置放入元素 &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;Here&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  删除元素 使用pop 指定索引地址删除，返回删除的值
-&gt;&gt;&gt; classmates.pop(0) &#39;A&#39; &gt;&gt;&gt; classmates [&#39;Here&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;]  使用del 指定索引地址删除，无返回值
-&gt;&gt;&gt; del classmates[1] &gt;&gt;&gt;classmates [&#39;Here&#39;, &#39;C&#39;, &#39;D&#39;]  使用remove 删除指定值的第一次出现，无返回值...</p>
+创建list &gt;&gt;&gt; classmates = [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] &gt;&gt;&gt; len(classmates) 3 访问某个位置元素 使用索引地址访问
+&gt;&gt;&gt; classmates[0] &#39;A&#39; &gt;&gt;&gt; classmates[-1] #返回最后一项元素 &#39;C&#39; 追加元素到末尾 &gt;&gt;&gt; classmates.append(&#39;D&#39;) &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;] 插入元素到指定位置 &gt;&gt;&gt; classmates.insert(1, &#39;Here&#39;) #在指定位置放入元素 &gt;&gt;&gt; classmates [&#39;A&#39;, &#39;Here&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;] 删除元素 使用pop 指定索引地址删除，返回删除的值
+&gt;&gt;&gt; classmates.pop(0) &#39;A&#39; &gt;&gt;&gt; classmates [&#39;Here&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;] 使用del 指定索引地址删除，无返回值
+&gt;&gt;&gt; del classmates[1] &gt;&gt;&gt;classmates [&#39;Here&#39;, &#39;C&#39;, &#39;D&#39;] 使用remove 删除指定值的第一次出现，无返回值...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.20</time>
@@ -291,7 +292,7 @@ def add(x, y, f) return f(x) &#43; f(y)  当调用add(-5, -6, abs)时，函数�
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>作业 on Tiiktak&#39;s</title>
+    <link>https://example.com/tags/%E4%BD%9C%E4%B8%9A/</link>
+    <description>Recent content in 作业 on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Nov 2020 09:20:26 +0800</lastBuildDate><atom:link href="https://example.com/tags/%E4%BD%9C%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mpich2_安装 Ubuntu 20.04LTS</title>
+      <link>https://example.com/blog/mpich2_ubuntu/</link>
+      <pubDate>Tue, 17 Nov 2020 09:20:26 +0800</pubDate>
+      
+      <guid>https://example.com/blog/mpich2_ubuntu/</guid>
+      <description> Ubuntu 20.04 LTS    sudo aptitude install mpich
+  mpiexec --version
+ image-20201117092421973 
+  new code
+#include &amp;#34;mpi.h&amp;#34;#include &amp;lt;stdio.h&amp;gt; int main(void) { int rankID; int sizeNum; MPI_Init(0, 0); MPI_Comm_size(MPI_COMM_WORLD, &amp;amp;sizeNum); MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;rankID); printf(&amp;#34;Hello world! %d of total = %d\n&amp;#34;, rankID, sizeNum); MPI_Finalize(); return 0; }   mpicc demo_1.c -o demo_1
+  mpirun -np 8 ./demo_1
+  </description>
+    </item>
+    
+    <item>
+      <title>MSMPI Visual Studio 2019 配置</title>
+      <link>https://example.com/blog/msmpi_install/</link>
+      <pubDate>Mon, 16 Nov 2020 22:14:03 +0800</pubDate>
+      
+      <guid>https://example.com/blog/msmpi_install/</guid>
+      <description>Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
+安装过程会自动添加环境变量，可在PATH中看到
+step2. 配置 VS2019 新建一个空项目，新建一个属性表
+包含目录、库目录
+  包含目录里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Include;
+  库目录的里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;
+  【C/C+ 附加包含目录】：添加$(MSMPI_INC);$(MSMPI_INC)\x64
+  【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
+  【链接器-输入-附加依赖项】：添加msmpi.lib
+  step3. 测试 #include &amp;lt;iostream&amp;gt; #include &amp;lt;mpi.h&amp;gt;  int main(int argc, char* argv[]) { MPI_Init(&amp;amp;argc, &amp;amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &amp;lt;&amp;lt; &amp;#34;Receive from rank 0: &amp;#34; &amp;lt;&amp;lt; RecvNum &amp;lt;&amp;lt; std::endl; } MPI_Finalize(); return 0; }  image-20201116223527189</description>
+    </item>
+    
+    <item>
+      <title>【课程作业】项目管理课程原型设计</title>
+      <link>https://example.com/blog/project_manage_course_prototype_design/</link>
+      <pubDate>Thu, 08 Oct 2020 13:58:14 +0800</pubDate>
+      
+      <guid>https://example.com/blog/project_manage_course_prototype_design/</guid>
+      <description>这是我的《软件过程与项目管理》 的期末作业，我们小组设计了一款校内出行APP，其中软件原型设计部分由我负责，使用PS和XD制作，在这里做个展示:laughing:
+主视觉 各页面 HOME HOME-弹窗 HOME-Tips MORE MORE-包车 ME </description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;解决假币问题</title>
+      <link>https://example.com/blog/%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 30 Dec 2019 20:35:42 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98/</guid>
+      <description>题目 一个袋子里有30个银币，其中一枚是假币，并且假币和真币一模一样，肉眼很难分辨，目前只知道假币比真币重量轻一点。请问，如何区分出假币？
+分析 首先为每个银币编号，然后将所有的银币等分为两份，放在天平的两边。这样就将区分30个银币的问题变为区别两堆银币的问题。
+因为假币分量较轻，因此天平较轻的一侧中一定包含假币。再将较轻的一侧中银币等分为两份，重复上述做法。直到剩下两枚银币，便可用天平直接找出假银币。类似于二分法
+代码 由于这个是自己做的一个练习题，没有使用OJ判题，所以自己利用随机数生成银币的重量和假币相关信息
+#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;ctime&amp;gt;using namespace std; void generate_seq(int coin[]) { srand(time(0)); int coin_weight = rand() % 100; int fake_weight = rand() % coin_weight; int fake_add = rand() % 30; for (int i = 1; i &amp;lt;= 30; i++) { if (i == fake_add) coin[i] = fake_weight; else coin[i] = coin_weight; } cout &amp;lt;&amp;lt; &amp;#34;fake_add=&amp;#34; &amp;lt;&amp;lt; fake_add &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;fake_weight=&amp;#34; &amp;lt;&amp;lt; fake_weight &amp;lt;&amp;lt; endl; } void show_seq(int coin[]) { for (int i = 1; i &amp;lt;= 30; i++) { cout &amp;lt;&amp;lt; coin[i] &amp;lt;&amp;lt; &amp;#34; &amp;#34;; } cout &amp;lt;&amp;lt; endl; } int find_fake(int coin[], int begin, int end) { if (begin == end) return begin; double mid = (begin + end) / 2; int weight_a = 0, weight_b = 0; if ((end - begin + 1) % 2 == 0) //可等分  { for (int i = begin; i &amp;lt;= (int)mid; i++) weight_a += coin[i]; for (int i = (int)mid + 1; i &amp;lt;= end; i++) weight_b += coin[i]; cout &amp;lt;&amp;lt; begin &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; end &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; mid &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; weight_a &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; weight_b &amp;lt;&amp;lt; endl; if (weight_a &amp;lt; weight_b) find_fake(coin, begin, (int)mid); else find_fake(coin, (int)mid+1, end); }else //不可等分，中间留一个mid  { for (int i = begin; i &amp;lt; mid; i++) weight_a += coin[i]; for (int i = mid + 1; i &amp;lt;= end; i++) weight_b += coin[i]; cout &amp;lt;&amp;lt; begin &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; end &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; mid &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; weight_a &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; weight_b &amp;lt;&amp;lt; endl; if (weight_a &amp;lt; weight_b) find_fake(coin, begin, (int)mid - 1); else if (weight_a &amp;gt; weight_b) find_fake(coin, (int)mid + 1, end); else return mid; } } int main() { //产生随机数列  int coin[31]; generate_seq(coin); //打印数列  show_seq(coin); //找  int fake_add = find_fake(coin, 1, 30); cout &amp;lt;&amp;lt; &amp;#34;fake_add=&amp;#34; &amp;lt;&amp;lt; fake_add &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;fake_weight=&amp;#34; &amp;lt;&amp;lt; coin[fake_add] &amp;lt;&amp;lt; endl; return 0; } </description>
+    </item>
+    
+    <item>
+      <title>【项目笔记】利用OpenCV的MLS图像扭曲变形实现</title>
+      <link>https://example.com/blog/image_warp_opencv_paper/</link>
+      <pubDate>Wed, 23 Oct 2019 23:25:14 +0800</pubDate>
+      
+      <guid>https://example.com/blog/image_warp_opencv_paper/</guid>
+      <description>引 这学期开学的时候实验室接了个项目，要做一个类似Adobe Illustrator中的“操纵扭曲”功能的Demo
+ 就像这样
+ 需求分析 可见需要实现的功能核心就是通过鼠标的拖拽对图像进行扭曲变形，这里的变形主要可以分为两类：
+  鼠标拖拽导致的普通变形
+  在某一固定锚点基础上的旋转式变形
+  确定方案 明确了这个后我便开始查阅资料，发现这篇paper 《Image Deformation Using Moving Least Squares》 中利用了MLS移动最小二乘来实现图像变形，其实现的效果和我们的目标极为相似，于是我也决定利用该算法来实现这个Demo
+由于要利用鼠标拖拽进行操作，便选择使用Qt来进行图形化界面设计，然鹅我以前也没有用过Qt，因此学习了一些Qt基本知识
+开始吧 明确了方案和目标后，便开始了漫长的学习+实践：
+  程序结构框架确定
+  核心算法实现
+  旋转式变形的实现
+  在进行到这里之后，发现程序无法实现对某个关节的单独拉伸，于是我们考虑寻找图像中的骨骼，在关节的交点添加一些锚点进行固定
+ 图形骨骼查找  实现效果 最终项目完成，实现了这些功能，如图是个小小的演示
+ 本文将会持续更新</description>
+    </item>
+    
+    <item>
+      <title>算法复杂度</title>
+      <link>https://example.com/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</link>
+      <pubDate>Fri, 21 Jun 2019 10:40:29 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</guid>
+      <description>算法复杂度  总共N个数据 一次操作记为O(1) N次操作记为O(n) 在大部分oj判题系统中时间限制为10^6 =1s  冒泡排序  操作次数: n+(n-1)+(n-2)+&amp;hellip;+n(n-1)/2  快速排序   递归处理数组，每次将数组按照key值在其左右区分出来：比key小放左边，比key大放右边
+  例: 5 6 2 4 3 8   取首位（5）为key值
+  4 3 2 5 6 8
+  4 3 2 5 6 8
+  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,349 +1,622 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
 因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
-树莓派-服务端 #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;thread&gt; #include &lt;opencv2/opencv.hpp&gt; using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; for (int i = 0; i &lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &lt; img_gray.">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &amp;lt; img_gray.rows; j&#43;&#43;) { double s = img_gray.'><title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
+<link rel='canonical' href='https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑'>
+<meta property='og:description' content='使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
+树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &amp;lt; img_gray.rows; j&#43;&#43;) { double s = img_gray.'>
+<meta property='og:url' content='https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='socket' /><meta property='article:published_time' content='2019-07-09T15:32:53&#43;08:00'/><meta property='article:modified_time' content='2019-07-09T15:32:53&#43;08:00'/>
+<meta name="twitter:title" content="利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑">
+<meta name="twitter:description" content="使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
+树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &amp;lt; img_gray.rows; j&#43;&#43;) { double s = img_gray.">
+    </head>
+    <body class="article-page keep-sidebar">
     <script>
-      var _hmt = _hmt || [];
-      (function () {
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="background-color: #2a9d8f; color: #fff;">
+                树莓派RaspBerry Pi
+            </a>
+        
+            <a href="/categories/opencv/" style="background-color: #2a9d8f; color: #fff;">
+                OpenCV
+            </a>
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/">利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jul 09, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上</p>
+<p>因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C++11中的thread库通过多线程实现程序</p>
+<h1 id="树莓派-服务端">树莓派-服务端</h1>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span> 
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> 
+<span class="cp">#define USEPORT 1234
+</span><span class="cp">#define T 20
+</span><span class="cp"></span><span class="n">Mat</span> <span class="n">FRAME</span><span class="p">;</span> 
+<span class="n">Point</span> <span class="n">PCENTER</span><span class="p">;</span> 
+
+<span class="c1">//灰度重心法函数
+</span><span class="c1"></span><span class="n">Point</span> <span class="nf">gray_center</span><span class="p">(</span><span class="n">Mat</span><span class="o">&amp;</span> <span class="n">img</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Mat</span> <span class="n">img_gray</span><span class="p">;</span> 
+	<span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">img_gray</span><span class="p">,</span> <span class="n">COLOR_BGR2GRAY</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> 
+	<span class="n">Point</span> <span class="n">Center</span><span class="p">;</span> 
+	<span class="kt">double</span> <span class="n">sumval</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+	<span class="n">MatIterator_</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span> <span class="n">it</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span> 
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="kt">double</span> <span class="n">s</span> <span class="o">=</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> 
+			<span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">)</span>
+				<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+			<span class="n">sumval</span> <span class="o">+=</span> <span class="n">s</span><span class="p">;</span> 
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">Center</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Center</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="kt">double</span> <span class="n">s</span> <span class="o">=</span> <span class="n">img_gray</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> 
+			<span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">)</span>
+				<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+			<span class="n">x</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">/</span> <span class="n">sumval</span><span class="p">;</span>
+			<span class="n">y</span> <span class="o">+=</span> <span class="n">j</span> <span class="o">*</span> <span class="n">s</span> <span class="o">/</span> <span class="n">sumval</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">Center</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">cvRound</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+	<span class="n">Center</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">cvRound</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">Center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//摄像头图像处理
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">cam_stand_by</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">VideoCapture</span> <span class="n">capture</span><span class="p">;</span> 
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">capture</span><span class="p">.</span><span class="n">isOpened</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;fail to open camera!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+		<span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> 
+	<span class="p">}</span>
+	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">capture</span> <span class="o">&gt;&gt;</span> <span class="n">FRAME</span><span class="p">;</span> 
+		<span class="n">PCENTER</span> <span class="o">=</span> <span class="n">gray_center</span><span class="p">(</span><span class="n">FRAME</span><span class="p">);</span> 
+		<span class="k">if</span> <span class="p">(</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+			<span class="k">break</span><span class="p">;</span> 
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="c1">//开启一个线程，并将其分离,使不阻塞主程序
+</span><span class="c1"></span>	<span class="kr">thread</span> <span class="n">cam_th</span><span class="p">(</span><span class="n">cam_stand_by</span><span class="p">);</span> 
+	<span class="n">cam_th</span><span class="p">.</span><span class="n">detach</span><span class="p">();</span> 
+<span class="c1">//启动服务端
+</span><span class="c1"></span>	<span class="kt">int</span> <span class="n">serverSock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> 
+	<span class="k">if</span> <span class="p">(</span><span class="n">serverSock</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;socket creation failed&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+		<span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> 
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;socket creation successfully&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+
+	<span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">serverAddr</span><span class="p">;</span> 
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">serverAddr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serverAddr</span><span class="p">));</span> 
+	<span class="n">serverAddr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span> 
+	<span class="n">serverAddr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">USEPORT</span><span class="p">);</span> 
+	<span class="n">serverAddr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_ANY</span><span class="p">);</span> 
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">serverSock</span><span class="p">,</span> 
+		<span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">serverAddr</span><span class="p">,</span> 
+		<span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Bind error, Port[&#34;</span><span class="o">&lt;&lt;</span> <span class="n">USEPORT</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;]&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+	       <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> 
+    <span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Bind successfully&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">serverSock</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Listen error!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Listening on port[&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">USEPORT</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;]&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+
+	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">struct</span> <span class="nc">sockaddr</span> <span class="n">clientAddr</span><span class="p">;</span> 
+		<span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="p">);</span> 
+		<span class="kt">int</span> <span class="n">clientSock</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">serverSock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">clientAddr</span><span class="p">,</span> <span class="p">(</span><span class="n">socklen_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">size</span><span class="p">);</span> 
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">****NEW client touched****&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+		<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">send</span><span class="p">(</span><span class="n">clientSock</span><span class="p">,</span> <span class="n">FRAME</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">FRAME</span><span class="p">.</span><span class="n">total</span><span class="p">()</span><span class="o">*</span><span class="n">FRAME</span><span class="p">.</span><span class="n">elemSize</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="k">break</span><span class="p">;</span>  
+			<span class="n">send</span><span class="p">(</span><span class="n">clientSock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">PCENTER</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span> 
+		<span class="p">}</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">==== CLIENT BREAK ====&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+		<span class="n">close</span><span class="p">(</span><span class="n">clientSock</span><span class="p">);</span> 
+	<span class="p">}</span>
+	<span class="n">close</span><span class="p">(</span><span class="n">serverSock</span><span class="p">);</span> 
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div><h1 id="pc-客户端">PC-客户端</h1>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt; //包含opencv</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;WinSock2.h&gt; //包含WinSock2.h头文件</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span> 
+<span class="cp">#pragma comment(lib, &#34;ws2_32.lib&#34;) </span><span class="c1">//加载 ws2_32.dll 
+</span><span class="c1"></span><span class="cp">#pragma warning(disable:4996)
+</span><span class="cp">#define imgSize 640*480*3 
+</span><span class="cp"></span><span class="c1">//图像大小，由于传输三通道彩色图，所以*3
+</span><span class="c1">//有尝试过每次由树莓派先传输图像大小到客户端，但出现了一些问题，所以直接在这里定义宏
+</span><span class="c1"></span><span class="k">constexpr</span> <span class="k">auto</span> <span class="n">RASPI_IP</span> <span class="o">=</span> <span class="s">&#34;192.168.1.119&#34;</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="c1">//****初始化
+</span><span class="c1"></span>	<span class="n">WSADATA</span> <span class="n">wsaData</span><span class="p">;</span>
+	<span class="n">WSAStartup</span><span class="p">(</span><span class="n">MAKEWORD</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">wsaData</span><span class="p">);</span>
+
+	<span class="c1">//****创建套接字
+</span><span class="c1"></span>	<span class="n">SOCKET</span> <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+	<span class="c1">//****创建sockAddr结构体
+</span><span class="c1"></span>	<span class="n">sockaddr_in</span> <span class="n">sockAddr</span><span class="p">;</span>
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockAddr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sockAddr</span><span class="p">));</span>
+	<span class="n">sockAddr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">PF_INET</span><span class="p">;</span>
+	<span class="n">sockAddr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">1234</span><span class="p">);</span>
+	<span class="n">sockAddr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">inet_addr</span><span class="p">(</span><span class="n">RASPI_IP</span><span class="p">);</span> <span class="c1">//树莓派的局域网IP
+</span><span class="c1"></span>
+<span class="c1">//****建立连接
+</span><span class="c1"></span>	<span class="n">connect</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="p">(</span><span class="n">SOCKADDR</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span> <span class="n">sockAddr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">SOCKADDR</span><span class="p">));</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;客户端发送链接请求&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">bytes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="c1">//****接收服务器传回的数据	
+</span><span class="c1"></span>	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;等待服务端发送信息..&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+		<span class="kt">char</span><span class="o">*</span> <span class="n">imgdata</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">imgSize</span><span class="p">];</span>
+		<span class="kt">char</span><span class="o">*</span> <span class="n">pointdata</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">MAXBYTE</span><span class="p">];</span>
+		<span class="c1">//recv(sock, imgdata, imgSize, NULL);
+</span><span class="c1"></span>		<span class="c1">//若直接使用recv接收，会有丢包情况出现，图片不完整
+</span><span class="c1"></span>		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">imgSize</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">bytes</span><span class="p">)</span> <span class="c1">//循环接收图片信息，防止没接收完
+</span><span class="c1"></span>		<span class="p">{</span>
+			<span class="k">if</span> <span class="p">((</span><span class="n">bytes</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">imgdata</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">imgSize</span> <span class="o">-</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Fail to recive&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+				<span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		
+		<span class="n">recv</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">pointdata</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span> <span class="c1">//接收重心Point信息
+</span><span class="c1"></span>		<span class="n">Point</span><span class="o">*</span> <span class="n">tack</span> <span class="o">=</span> <span class="p">(</span><span class="n">Point</span><span class="o">*</span><span class="p">)</span><span class="n">pointdata</span><span class="p">;</span> 
+		<span class="n">Point</span> <span class="n">center</span><span class="p">(</span><span class="n">tack</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">,</span> <span class="n">tack</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">);</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">tack</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">tack</span><span class="o">-&gt;</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+
+		<span class="n">Mat</span> <span class="n">img</span><span class="p">(</span><span class="n">Size</span><span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">imgdata</span><span class="p">);</span> 
+		<span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+		<span class="n">imshow</span><span class="p">(</span><span class="s">&#34;Gray_Center&#34;</span><span class="p">,</span> <span class="n">img</span><span class="p">);</span>
+		<span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="c1">//关闭套接字、终止使用 DLL
+</span><span class="c1"></span>	<span class="n">closesocket</span><span class="p">(</span><span class="n">sock</span><span class="p">);</span>
+	<span class="n">WSACleanup</span><span class="p">();</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="最终效果">最终效果</h1>
+<p><img src="https://i.loli.net/2019/07/17/5d2edce2d3c2b30360.png" alt="DONE"  /></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/socket/">socket</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
-        
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
-        
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
-    </header>
-    
-    <nav class="nav">
-      <ul class="menu">
-        
-        <li>
-          <a href="/about/">About</a>
-        </li>
-        
-      </ul>
-    </nav>
-    
-    <main class="main">
-
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</h1>
-    <div class="post-meta">2019.7.9</div>
-  </header>
-  <div class="post-content">
-
-<p>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上</p>
-
-<p>因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C++11中的thread库通过多线程实现程序</p>
-
-<h1 id="树莓派-服务端">树莓派-服务端</h1>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;unistd.h&gt;
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-#include &lt;sys/types.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;arpa/inet.h&gt;
-#include &lt;thread&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-using namespace cv; 
-using namespace std; 
-#define USEPORT 1234
-#define T 20
-Mat FRAME; 
-Point PCENTER; 
-
-//灰度重心法函数
-Point gray_center(Mat&amp; img)
-{
-	Mat img_gray; 
-	cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); 
-	Point Center; 
-	double sumval = 0; 
-	MatIterator_&lt;uchar&gt; it, end; 
-	for (int i = 0; i &lt; img_gray.cols; i++)
-	{
-		for (int j = 0; j &lt; img_gray.rows; j++)
-		{
-			double s = img_gray.at&lt;uchar&gt;(j, i); 
-			if (s &lt; T)
-				s = 0; 
-			sumval += s; 
-		}
-	}
-	Center.x = Center.y = 0;
-	double x = 0, y = 0;
-	for (int i = 0; i &lt; img_gray.cols; i++)
-	{
-		for (int j = 0; j &lt; img_gray.rows; j++)
-		{
-			double s = img_gray.at&lt;uchar&gt;(j, i); 
-			if (s &lt; T)
-				s = 0; 
-			x += i * s / sumval;
-			y += j * s / sumval;
-		}
-	}
-	Center.x = cvRound(x);
-	Center.y = cvRound(y);
-	return Center;
-}
-
-//摄像头图像处理
-void cam_stand_by()
-{
-	VideoCapture capture; 
-	if (!capture.isOpened())
-	{
-		cout &lt;&lt; &quot;fail to open camera!&quot; &lt;&lt; endl; 
-		exit(-1); 
-	}
-	while (1)
-	{
-		capture &gt;&gt; FRAME; 
-		PCENTER = gray_center(FRAME); 
-		if (waitKey(30) &gt;= 0)
-			break; 
-	}
-}
-
-int main()
-{
-//开启一个线程，并将其分离,使不阻塞主程序
-	thread cam_th(cam_stand_by); 
-	cam_th.detach(); 
-//启动服务端
-	int serverSock = socket(AF_INET, SOCK_STREAM, 0); 
-	if (serverSock &lt; 0)
-	{
-		cout &lt;&lt; &quot;socket creation failed&quot; &lt;&lt; endl; 
-		exit(-1); 
-	}
-	cout &lt;&lt; &quot;socket creation successfully&quot; &lt;&lt; endl; 
-
-	struct sockaddr_in serverAddr; 
-	memset(&amp;serverAddr, 0, sizeof(serverAddr)); 
-	serverAddr.sin_family = AF_INET; 
-	serverAddr.sin_port = htons(USEPORT); 
-	serverAddr.sin_addr.s_addr = htonl(INADDR_ANY); 
-
-	if (bind(serverSock, 
-		(struct sockaddr*)&amp;serverAddr, 
-		sizeof(struct sockaddr)) == -1)
-	{
-		cout &lt;&lt; &quot;Bind error, Port[&quot;&lt;&lt; USEPORT &lt;&lt; &quot;]&quot; &lt;&lt; endl; 
-	       exit(-1); 
-    }
-	cout &lt;&lt; &quot;Bind successfully&quot; &lt;&lt; endl; 
-
-	if (listen(serverSock, 10) == -1)
-	{
-		cout &lt;&lt; &quot;Listen error!&quot; &lt;&lt; endl; 
-	}
-	cout &lt;&lt; &quot;Listening on port[&quot; &lt;&lt; USEPORT &lt;&lt; &quot;]&quot; &lt;&lt; endl; 
-
-	while (1)
-	{
-		struct sockaddr clientAddr; 
-		int size = sizeof(struct sockaddr); 
-		int clientSock = accept(serverSock, (struct sockaddr*)&amp;clientAddr, (socklen_t*)&amp;size); 
-		cout &lt;&lt; &quot;\n****NEW client touched****&quot; &lt;&lt; endl; 
-		while (1)
-		{
-			if (send(clientSock, FRAME.data, FRAME.total()*FRAME.elemSize(), 0) &lt; 0)
-				break;  
-			send(clientSock, &amp;PCENTER, sizeof(Point), 0); 
-		}
-		cout &lt;&lt; &quot;\n==== CLIENT BREAK ====&quot; &lt;&lt; endl; 
-		close(clientSock); 
-	}
-	close(serverSock); 
-	return 0; 
-}
-</code></pre>
-
-<h1 id="pc-客户端">PC-客户端</h1>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;opencv2/opencv.hpp&gt; //包含opencv
-#include &lt;WinSock2.h&gt; //包含WinSock2.h头文件
-using namespace std;
-using namespace cv; 
-#pragma comment(lib, &quot;ws2_32.lib&quot;) //加载 ws2_32.dll 
-#pragma warning(disable:4996)
-#define imgSize 640*480*3 
-//图像大小，由于传输三通道彩色图，所以*3
-//有尝试过每次由树莓派先传输图像大小到客户端，但出现了一些问题，所以直接在这里定义宏
-constexpr auto RASPI_IP = &quot;192.168.1.119&quot;;
-
-int main()
-{
-	//****初始化
-	WSADATA wsaData;
-	WSAStartup(MAKEWORD(2, 2), &amp;wsaData);
-
-	//****创建套接字
-	SOCKET sock = socket(PF_INET, SOCK_STREAM, 0);
-
-	//****创建sockAddr结构体
-	sockaddr_in sockAddr;
-	memset(&amp;sockAddr, 0, sizeof(sockAddr));
-	sockAddr.sin_family = PF_INET;
-	sockAddr.sin_port = htons(1234);
-	sockAddr.sin_addr.s_addr = inet_addr(RASPI_IP); //树莓派的局域网IP
-
-//****建立连接
-	connect(sock, (SOCKADDR*)&amp; sockAddr, sizeof(SOCKADDR));
-	cout &lt;&lt; &quot;客户端发送链接请求&quot; &lt;&lt; endl;
-	int bytes = 0;
-	//****接收服务器传回的数据	
-	while (1)
-	{
-		cout &lt;&lt; &quot;等待服务端发送信息..&quot; &lt;&lt; endl;
-
-		char* imgdata = new char[imgSize];
-		char* pointdata = new char[MAXBYTE];
-		//recv(sock, imgdata, imgSize, NULL);
-		//若直接使用recv接收，会有丢包情况出现，图片不完整
-		for (int i = 0; i &lt; imgSize; i += bytes) //循环接收图片信息，防止没接收完
-		{
-			if ((bytes = recv(sock, imgdata + i, imgSize - i, 0)) == -1)
-			{
-				cout &lt;&lt; &quot;Fail to recive&quot; &lt;&lt; endl;
-				exit(-1);
-			}
-		}
-		
-		recv(sock, pointdata, sizeof(Point), NULL); //接收重心Point信息
-		Point* tack = (Point*)pointdata; 
-		Point center(tack-&gt;x, tack-&gt;y);
-		cout &lt;&lt; tack-&gt;x &lt;&lt; &quot; &quot; &lt;&lt; tack-&gt;y &lt;&lt; endl; 
-
-		Mat img(Size(640, 480), CV_8UC3, imgdata); 
-		circle(img, center, 6, Scalar(0, 255, 0), -1);
-
-		imshow(&quot;Gray_Center&quot;, img);
-		waitKey(1);
-	}
-
-	//关闭套接字、终止使用 DLL
-	closesocket(sock);
-	WSACleanup();
-
-	return 0;
-}
-</code></pre>
-
-<h1 id="最终效果">最终效果</h1>
-
-<p><img src="https://i.loli.net/2019/07/17/5d2edce2d3c2b30360.png" alt="DONE" /></p>
-</div>
-  <footer class="post-footer">
-    
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
     })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
-</article>
-
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
 </script>
-</body>
+    </body>
 </html>
-

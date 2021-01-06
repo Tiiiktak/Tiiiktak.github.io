@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on Tiiktak&#39;s</title>
+    <link>https://example.com/tags/shell/</link>
+    <description>Recent content in shell on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Jun 2019 15:38:32 +0800</lastBuildDate><atom:link href="https://example.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Shell学习</title>
+      <link>https://example.com/blog/shell%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 26 Jun 2019 15:38:32 +0800</pubDate>
+      
+      <guid>https://example.com/blog/shell%E5%AD%A6%E4%B9%A0/</guid>
+      <description>Shell脚本 是一种为shell编写的脚本程序
+使用文本编辑器既能编写，拓展名不影响脚本执行
+实例：
+#!/bin/bash echo &amp;#34;Hello World&amp;#34;  #!告诉系统这个脚本需要什么解释器执行
+ 运行脚本 作为可执行程序 将代码保存后，给文件添加可执行权限+x
+chmod +x ./test.sh # ./test.sh #执行脚本 作为解释器参数 直接运行解释器，将文件作为其参数 这种方式不需要在文件开头指定解释器信息
+/bin/sh test.sh Shell变量 定义变量 your_name=&amp;#34;Tom&amp;#34; **注意：**等号不能有空格
+使用变量 在变量前加美元符号$ 还可在变量外添加大括号{}
+echo $your_name echo ${your_name} 只读变量 使用readonly命令将变量定义为只读变量，值不能被改变
+url=&amp;#34;baidu.com&amp;#34; readonly url 删除变量 使用unset变量删除变量
+unset url Shell字符串 可用单引号，或双引号，也可不用引号
+单引号  单引号内任何字符都会原样输出，单引号字符串中变量无效 单引号字符串中不能出现单独一个的单引号，但可成对出现  双引号  双引号里可以有变量 双引号里可以出现转义字符  拼接字符串 text1=&amp;#39;123&amp;#39; text2=&amp;#39;456&amp;#39; echo ${text1}${text2} #输出123456 字符串长度 str1=&amp;#34;abcd&amp;#34; echo ${#str1} #输出4 提取子字符串 从字符串第2个字符开始截取4个字符：</description>
+    </item>
+    
+  </channel>
+</rss>

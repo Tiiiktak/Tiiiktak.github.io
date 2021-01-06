@@ -1,129 +1,263 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Vim学习 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="vim分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode），底线命令（Last line mode）
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='vim分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode），底线命令（Last line mode）
 命令模式 此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。
 常用命令：
  i 切换到输入模式，以输入字符 x 删除当前光标所在处的字符 : 切换到底线命令模式，以在最底一行输入命令  命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令
 输入模式 常用：
- Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令： * q 退出程序 * w 保存文件
-vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
+ Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令：
+ q 退出程序 w 保存文件  vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
+ [Ctrl]&#43;[f] 下一页 [Ctrl]&#43;[b] 上一页 [Ctrl]&#43;[d] 向下半页 [Ctrl]&#43;[u] 向上半页 0 移动到该行最前面字符处 $ 移动到该行最后字符处 G 移动到档案最后一行 nG 一赌东道档案第n行 gg 移动到档案第一行  搜索替换  /word 向光标之下寻找名称为word的字符串 ？word 向光标之上寻找名称为word的字符串 n 重复前一个搜寻的动作 N 反向进行前一个搜寻动作 :n1,n2s/word1/word2/g 在n1与n2行之间寻找word1字符串，并用word2取代 :1,$s/word1/word2/g 或 :%s/word1/word2/g 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 :1,$s/word1/word2/gc 或 :%s/word1/word2/gc 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2，并显示提示字符确认  删除、复制、粘贴  x,X x相当于del，X相当于Backspace dd 删除光标所在行 ndd 删除光标所在向下n行 d1G 删除光标所在到第一行所有数据 dG 删除光标所在到最后一行所有数据 yy 复制光标所在行 nyy 复制光标所在的向下n行 p,P p为将已复制的数据在光标下一行粘贴，P为粘贴在上一行 u 撤销 [Ctrl]&#43;r 重做 .'><title>Vim学习</title>
+
+<link rel='canonical' href='https://example.com/blog/vim%E5%AD%A6%E4%B9%A0/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Vim学习'>
+<meta property='og:description' content='vim分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode），底线命令（Last line mode）
+命令模式 此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。
+常用命令：
+ i 切换到输入模式，以输入字符 x 删除当前光标所在处的字符 : 切换到底线命令模式，以在最底一行输入命令  命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令
+输入模式 常用：
+ Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令：
+ q 退出程序 w 保存文件  vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
+ [Ctrl]&#43;[f] 下一页 [Ctrl]&#43;[b] 上一页 [Ctrl]&#43;[d] 向下半页 [Ctrl]&#43;[u] 向上半页 0 移动到该行最前面字符处 $ 移动到该行最后字符处 G 移动到档案最后一行 nG 一赌东道档案第n行 gg 移动到档案第一行  搜索替换  /word 向光标之下寻找名称为word的字符串 ？word 向光标之上寻找名称为word的字符串 n 重复前一个搜寻的动作 N 反向进行前一个搜寻动作 :n1,n2s/word1/word2/g 在n1与n2行之间寻找word1字符串，并用word2取代 :1,$s/word1/word2/g 或 :%s/word1/word2/g 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 :1,$s/word1/word2/gc 或 :%s/word1/word2/gc 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2，并显示提示字符确认  删除、复制、粘贴  x,X x相当于del，X相当于Backspace dd 删除光标所在行 ndd 删除光标所在向下n行 d1G 删除光标所在到第一行所有数据 dG 删除光标所在到最后一行所有数据 yy 复制光标所在行 nyy 复制光标所在的向下n行 p,P p为将已复制的数据在光标下一行粘贴，P为粘贴在上一行 u 撤销 [Ctrl]&#43;r 重做 .'>
+<meta property='og:url' content='https://example.com/blog/vim%E5%AD%A6%E4%B9%A0/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-06-26T10:33:16&#43;08:00'/><meta property='article:modified_time' content='2019-06-26T10:33:16&#43;08:00'/>
+<meta name="twitter:title" content="Vim学习">
+<meta name="twitter:description" content="vim分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode），底线命令（Last line mode）
+命令模式 此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。
+常用命令：
+ i 切换到输入模式，以输入字符 x 删除当前光标所在处的字符 : 切换到底线命令模式，以在最底一行输入命令  命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令
+输入模式 常用：
+ Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令：
+ q 退出程序 w 保存文件  vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
  [Ctrl]&#43;[f] 下一页 [Ctrl]&#43;[b] 上一页 [Ctrl]&#43;[d] 向下半页 [Ctrl]&#43;[u] 向上半页 0 移动到该行最前面字符处 $ 移动到该行最后字符处 G 移动到档案最后一行 nG 一赌东道档案第n行 gg 移动到档案第一行  搜索替换  /word 向光标之下寻找名称为word的字符串 ？word 向光标之上寻找名称为word的字符串 n 重复前一个搜寻的动作 N 反向进行前一个搜寻动作 :n1,n2s/word1/word2/g 在n1与n2行之间寻找word1字符串，并用word2取代 :1,$s/word1/word2/g 或 :%s/word1/word2/g 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 :1,$s/word1/word2/gc 或 :%s/word1/word2/gc 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2，并显示提示字符确认  删除、复制、粘贴  x,X x相当于del，X相当于Backspace dd 删除光标所在行 ndd 删除光标所在向下n行 d1G 删除光标所在到第一行所有数据 dG 删除光标所在到最后一行所有数据 yy 复制光标所在行 nyy 复制光标所在的向下n行 p,P p为将已复制的数据在光标下一行粘贴，P为粘贴在上一行 u 撤销 [Ctrl]&#43;r 重做 .">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+    </head>
+    <body class="article-page keep-sidebar">
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
 
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/vim%E5%AD%A6%E4%B9%A0/">Vim学习</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Vim学习</h1>
-    <div class="post-meta">2019.6.26</div>
-  </header>
-  <div class="post-content">
 
-<p><img src="https://bl4tqa.bl.files.1drv.com/y4mcmHzQgxxtfA6CCUgyJayLWoRW8OAWSyuVw3JKRcYuJa0xhG7PtGBWT15n6mf7bBqZDxQslemwAZrZojYuWarDsb-ukBsmcNb8WB1e1byilK8eduQSjkbjQ-cp8PPZR4nsq_dtgS0Kuv5ZW_ygxIJxDiy6FkmpPzFGVE5R7B1F3dW7XPL8T_rBRkBVEf_W7xOYhRssMifmmOcZWw7VNOHMg?width=1024&amp;height=724&amp;cropmode=none" alt="键盘图" /></p>
+        <time class="article-time--published">Jun 26, 2019</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p><img src="https://bl4tqa.bl.files.1drv.com/y4mcmHzQgxxtfA6CCUgyJayLWoRW8OAWSyuVw3JKRcYuJa0xhG7PtGBWT15n6mf7bBqZDxQslemwAZrZojYuWarDsb-ukBsmcNb8WB1e1byilK8eduQSjkbjQ-cp8PPZR4nsq_dtgS0Kuv5ZW_ygxIJxDiy6FkmpPzFGVE5R7B1F3dW7XPL8T_rBRkBVEf_W7xOYhRssMifmmOcZWw7VNOHMg?width=1024&amp;height=724&amp;cropmode=none" alt="键盘图"  /></p>
 <p>vim分为三种模式，分别是<strong>命令模式（Command mode），输入模式（Insert mode），底线命令（Last line
- mode）</strong></p>
-
+mode）</strong></p>
 <h2 id="命令模式">命令模式</h2>
-
 <p>此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。</p>
-
 <p>常用命令：</p>
-
 <ul>
 <li><code>i</code> 切换到输入模式，以输入字符</li>
 <li><code>x</code> 删除当前光标所在处的字符</li>
 <li><code>:</code> 切换到底线命令模式，以在最底一行输入命令</li>
 </ul>
-
 <p>命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令</p>
-
 <h2 id="输入模式">输入模式</h2>
-
 <p>常用：</p>
-
 <ul>
 <li><code>Esc</code> 退出输入模式，切换到命令模式</li>
 <li><code>Insert</code> 切换光标为输入/替换模式，光标变成竖线/下划线</li>
 </ul>
-
 <h2 id="底线命令模式">底线命令模式</h2>
-
-<p>基本命令：
-* q 退出程序
-* w 保存文件</p>
-
-<p><img src="https://bzpvsg.bl.files.1drv.com/y4maST4_GSqnZ50z6aXCCWhjzwPgIkxVt4hQDB7zIR7EEjYnrXHgWCKmA_dNAg_bm8WOEtRobPRE_tW2_ojpbbpQwzHECS3UqJMoh_PK26PCo5mTFd7OFY4nzk4PIlt-CPfmXi9hR5XfMHLhoXLjfGcVxVxPdroSYLSA2JZUiVwq4omUzbvBO8AHnm-XwpI6b9yNRCEXz22n5_Zx0tGQ27-Rw?width=787&amp;height=531&amp;cropmode=none" alt="vim工作模式" /></p>
-
+<p>基本命令：</p>
+<ul>
+<li>q 退出程序</li>
+<li>w 保存文件</li>
+</ul>
+<p><img src="https://bzpvsg.bl.files.1drv.com/y4maST4_GSqnZ50z6aXCCWhjzwPgIkxVt4hQDB7zIR7EEjYnrXHgWCKmA_dNAg_bm8WOEtRobPRE_tW2_ojpbbpQwzHECS3UqJMoh_PK26PCo5mTFd7OFY4nzk4PIlt-CPfmXi9hR5XfMHLhoXLjfGcVxVxPdroSYLSA2JZUiVwq4omUzbvBO8AHnm-XwpI6b9yNRCEXz22n5_Zx0tGQ27-Rw?width=787&amp;height=531&amp;cropmode=none" alt="vim工作模式"  /></p>
 <h2 id="vim按键">vim按键</h2>
-
 <h3 id="移动光标">移动光标</h3>
-
 <p>要进行多次移动，例如向下移动30行，可使用<code>30↓</code>的组合按键</p>
-
 <ul>
 <li><code>[Ctrl]+[f]</code> 下一页</li>
 <li><code>[Ctrl]+[b]</code> 上一页</li>
@@ -135,9 +269,7 @@ vim按键 移动光标 要进行多次移动，例如向下移动30行，可使�
 <li><code>nG</code> 一赌东道档案第n行</li>
 <li><code>gg</code> 移动到档案第一行</li>
 </ul>
-
 <h3 id="搜索替换">搜索替换</h3>
-
 <ul>
 <li><code>/word</code> 向光标之下寻找名称为<code>word</code>的字符串</li>
 <li><code>？word</code> 向光标之上寻找名称为<code>word</code>的字符串</li>
@@ -149,9 +281,7 @@ vim按键 移动光标 要进行多次移动，例如向下移动30行，可使�
 <li><code>:1,$s/word1/word2/gc</code> 或 <code>:%s/word1/word2/gc</code>
 从第一行到最后一行寻找 <code>word1</code> 字符串，并将该字符串取代为 <code>word2</code>，并显示提示字符确认</li>
 </ul>
-
-<h3 id="删除-复制-粘贴">删除、复制、粘贴</h3>
-
+<h3 id="删除复制粘贴">删除、复制、粘贴</h3>
 <ul>
 <li><code>x,X</code> <code>x</code>相当于<code>del</code>，<code>X</code>相当于<code>Backspace</code></li>
 <li><code>dd</code> 删除光标所在行</li>
@@ -165,18 +295,14 @@ vim按键 移动光标 要进行多次移动，例如向下移动30行，可使�
 <li><code>[Ctrl]+r</code> 重做</li>
 <li><code>.</code> 重复前一动作</li>
 </ul>
-
 <h3 id="一般模式切换到编辑模式">一般模式切换到编辑模式</h3>
-
 <ul>
 <li><code>i,I</code> <code>i</code>为『从目前光标所在处输入』， <code>I</code>为『在目前所在行的第一个非空格符处开始输入』</li>
-<li><code>a,A</code> <code>a</code> 为『从目前光标所在的下一个字符处开始输入』， <code>A</code>为『从光标所在行的最后一个字符处开始输入』</li>
+<li><code>a,A</code> <code>a</code> 为『从目前光标所在的下一个字符处开始输入』， <code>A </code>为『从光标所在行的最后一个字符处开始输入』</li>
 <li><code>o,O</code> <code>o</code> 为『在目前光标所在的下一行处输入新的一行』, O 为在目前光标所在处的上一行输入新的一行</li>
 <li><code>r,R</code> <code>r</code> 会取代光标所在字符一次，<code>R</code>会一直取代光标所在的文字，直到按下<code>[Esc]</code></li>
 </ul>
-
 <h3 id="一般模式切换到命令模式">一般模式切换到命令模式</h3>
-
 <ul>
 <li><code>:w!</code> 若文档为只读属性，强制写入该文档，不过仍与权限有关</li>
 <li><code>:q!</code> 离开而不存储文档</li>
@@ -189,65 +315,195 @@ vim按键 移动光标 要进行多次移动，例如向下移动30行，可使�
 <li><code>:set nu</code> 显示行号，在每一行的前缀显示该行行号</li>
 <li><code>:set nonu</code> 取消行号</li>
 </ul>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

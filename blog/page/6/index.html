@@ -16,32 +16,30 @@
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="list">
     <header class="header">
@@ -88,17 +86,17 @@
    <p>引 这学期开学的时候实验室接了个项目，要做一个类似Adobe Illustrator中的“操纵扭曲”功能的Demo
  就像这样
  需求分析 可见需要实现的功能核心就是通过鼠标的拖拽对图像进行扭曲变形，这里的变形主要可以分为两类：
- 鼠标拖拽导致的普通变形
- 在某一固定锚点基础上的旋转式变形
+  鼠标拖拽导致的普通变形
+  在某一固定锚点基础上的旋转式变形
   确定方案 明确了这个后我便开始查阅资料，发现这篇paper 《Image Deformation Using Moving Least Squares》 中利用了MLS移动最小二乘来实现图像变形，其实现的效果和我们的目标极为相似，于是我也决定利用该算法来实现这个Demo
 由于要利用鼠标拖拽进行操作，便选择使用Qt来进行图形化界面设计，然鹅我以前也没有用过Qt，因此学习了一些Qt基本知识
 开始吧 明确了方案和目标后，便开始了漫长的学习&#43;实践：
- 程序结构框架确定
- 核心算法实现
- 旋转式变形的实现
+  程序结构框架确定
+  核心算法实现
+  旋转式变形的实现
   在进行到这里之后，发现程序无法实现对某个关节的单独拉伸，于是我们考虑寻找图像中的骨骼，在关节的交点添加一些锚点进行固定
  图形骨骼查找  实现效果 最终项目完成，实现了这些功能，如图是个小小的演示
-本文将会持续更新...</p>
+ 本文将会持续更新...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.10.23</time>
@@ -159,7 +157,8 @@ AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能
 三种额外玩法 除了这个万物皆可喵的网页之外，喵妮卡所在的Google Magenta团队还用Sketch-RNN创作了几个不同的涂鸦应用。
 9×N种预测，总能猜中你的心 你涂鸦的每一笔，都被我预料到了。
 无论你画了个啥，我都能猜出你接下来准备如何下笔。
-并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。...</p>
+并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。
+而且我还能选择不同的美术风格，通过调整temperature，数值越接近1，我的画风越抽象、越狂放不羁；...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.10.20</time>
@@ -174,10 +173,10 @@ AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能
   <section class="entry-content">
    <p>今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
 公式 已知摄氏度转换成华氏度有数学公式：
-f = c * 1.8 &#43; 32  而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
+f = c * 1.8 &#43; 32 而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
 import dependencies 导入依赖项 需要引入TensorFlow与NumPy库构建神经网络
-from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np  还需要引入logging以记录日志
-import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR)  Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
+from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np 还需要引入logging以记录日志
+import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR) Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
 celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&#34;{} degrees Celsius = {} degrees Fahrenheit&#34;....</p>
   </section>
   <footer class="entry-footer">
@@ -195,20 +194,20 @@ celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = n
 先看看题
 题目 数值运算
 描述 获得用户输入的一个字符串，格式如下：
-M OP N  其中，M和N是任何数字，OP代表一种操作，表示为如下四种：&#43;, -, *, /（加减乘除）
+M OP N 其中，M和N是任何数字，OP代表一种操作，表示为如下四种：&#43;, -, *, /（加减乘除）
 根据OP，输出M OP N‬的运算结果，统一保留小数点后两位
 注意：M和OP、OP和N之间可以存在多个空格，不考虑输入错误情况
-示例输入‪ 10 &#43; 100 1 / 20  示例输出 110.00 0.05  解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
+示例输入‪ 10 &#43; 100 1 / 20 示例输出 110.00 0.05 解答 我最开始的想法是读入字符串，然后根据空格分为M、OP和N，之后再转换为int型进行计算
 然而，我却完全忘记了Python有着eval()的存在….
 eval() |eval()函数用来执行一个字符串表达式，并返回表达式的值 ‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫
-eval(expression[, globals[, locals]])   参数
-expression – 表达式
-globals – 变量作用域，全局命名空间，若被提供，必须是一个字典对象
-locals – 变量作用域，局部命名空间，若被提供，可以是任何映射对象
+eval(expression[, globals[, locals]])  参数
+  expression – 表达式
+  globals – 变量作用域，全局命名空间，若被提供，必须是一个字典对象
+  locals – 变量作用域，局部命名空间，若被提供，可以是任何映射对象
  可见，使用eval()后，就不需要我们自己对用户输入的算式进行处理，只需要直接调用，函数会自动帮我们计算结果
 之后根据题意，我们还要将运算结果保留两位小数，这时format()就派上了用场
 format() 这是一种格式化字符串的函数，基本语法是使用{}和: ‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬‪‬‪‬‪‬‪‬‪‬‮ |format()‫‬‪‬‪函数‬‪‬‪‬可以接受不限个参数，位置可以不按顺序
-&gt;&gt;&gt; &#34;{} {}&#34;.format(&#34;hello&#34;, &#34;world&#34;) # 不设置指定位置，按默认顺序 &#39;hello world&#39; &gt;&gt;&gt; &#34;{0} {1}&#34;.format(&#34;hello&#34;, &#34;world&#34;) # 设置指定位置 &#39;hello world&#39; &gt;&gt;&gt; &#34;{1} {0} {1}&#34;....</p>
+&gt;&gt;&gt; &#34;{} {}&#34;.format(&#34;hello&#34;, &#34;world&#34;) # 不设置指定位置，按默认顺序 &#39;hello world&#39; &gt;&gt;&gt; &#34;{0} {1}&#34;....</p>
   </section>
   <footer class="entry-footer">
     <time>2019.10.10</time>
@@ -240,8 +239,8 @@ format() 这是一种格式化字符串的函数，基本语法是使用{}和: �
     <h2>Python文本进度条</h2>
   </header>
   <section class="entry-content">
-   <p> 一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
-代码 import time scale = 50 # 进度条长度 print(&#34;&gt;&gt;执行开始\n&#34;) start = time.perf_counter() # 开始时刻 for i in range(scale&#43;1): a = &#39;|&#39; * i b = &#39;.&#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&#34;\r{:^3.0f}% [{}&gt;&gt;{}] {:.2f}s&#34;.format(c, a, b, dur), end=&#39;&#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&#34;\n\n&gt;&gt;执行结束&#34;)  效果 ...</p>
+   <p>一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
+代码 import time scale = 50 # 进度条长度 print(&#34;&gt;&gt;执行开始\n&#34;) start = time.perf_counter() # 开始时刻 for i in range(scale&#43;1): a = &#39;|&#39; * i b = &#39;.&#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&#34;\r{:^3.0f}% [{}&gt;&gt;{}] {:.2f}s&#34;.format(c, a, b, dur), end=&#39;&#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&#34;\n\n&gt;&gt;执行结束&#34;) 效果 ...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.9.19</time>
@@ -259,7 +258,7 @@ format() 这是一种格式化字符串的函数，基本语法是使用{}和: �
 如下面代码中的错误，用at()获取矩阵元素时错误的使用了double类型。这种错误不是语法错误，因此在编译时编译器不会提醒。在程序运行时，at()函数获取到的不是期望的(i,j)位置处的元素，数据已经越界，但是运行时也未必会报错。这样的错误使得你的程序忽而看上去正常，忽而弹出“段错误”，特别是在代码规模很大时，难以查错。
 如果使用Mat_类，那么就可以在变量声明时确定元素的类型， 访问元素时不再需要指定元素类型，即使得代码简洁，又减少了出错的可能性。
 上面代码可以用Mat_实现，实现代码如下面例程里的第二个双重for循环。
-#include &lt;iostream&gt; #include &#34;opencv2/opencv.hpp&#34; #include &lt;stdio.h&gt; using namespace std; using namespace cv; int main(int argc,char* argv[]) { Mat M(600, 800, CV_8UC1); for(int i = 0; i &lt; M.rows; &#43;&#43;i) { //获取指针时需要指定类型 uchar *p = M.ptr&lt;uchar&gt;(i); for(int j = 0; j &lt; M.cols; &#43;&#43;j) { double d1 = (double)((i &#43; j) % 255); //用at读像素时，需要指定类型 M.at&lt;uchar&gt;(i, j) = d1; double d2 = M.at&lt;uchar&gt;(i, j); } } //在变量声明时，指定矩阵元素类型 Mat_&lt;uchar&gt; M1 = (Mat_&lt;uchar&gt;&amp;)M; for(int i = 0; i &lt; M1....</p>
+#include &lt;iostream&gt;#include &#34;opencv2/opencv.hpp&#34;#include &lt;stdio.h&gt;using namespace std; using namespace cv; int main(int argc,char* argv[]) { Mat M(600, 800, CV_8UC1); for(int i = 0; i &lt; M.rows; &#43;&#43;i) { //获取指针时需要指定类型  uchar *p = M.ptr&lt;uchar&gt;(i); for(int j = 0; j &lt; M.cols; &#43;&#43;j) { double d1 = (double)((i &#43; j) % 255); //用at读像素时，需要指定类型  M.at&lt;uchar&gt;(i, j) = d1; double d2 = M.at&lt;uchar&gt;(i, j); } } //在变量声明时，指定矩阵元素类型  Mat_&lt;uchar&gt; M1 = (Mat_&lt;uchar&gt;&amp;)M; for(int i = 0; i &lt; M1....</p>
   </section>
   <footer class="entry-footer">
     <time>2019.9.18</time>
@@ -272,7 +271,7 @@ format() 这是一种格式化字符串的函数，基本语法是使用{}和: �
     <h2>Python split()函数</h2>
   </header>
   <section class="entry-content">
-   <p>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  原型 str.split(str=&#34;&#34;, num=string.count(str))  |split()函数通过指定分隔符对字符串进行切片
+   <p>原型 str.split(str=&#34;&#34;, num=string.count(str)) |split()函数通过指定分隔符对字符串进行切片
 参数 若参数str无指定值。默认为所有的空字符，包括空格、\n、\t等
 若参数num有指定值，则分割num&#43;1个子字符串，若无指定值，默认-1，即分隔所有
 返回值 返回分割后的字符串列表...</p>
@@ -304,13 +303,13 @@ The Zen of Python, by Tim Peters Beautiful is better than ugly. Explicit is bett
   <section class="entry-content">
    <p>Python内置了读写文件的函数，用法与C兼容
 读文件 open() 使用内置的open()函数，传入文件名和标识符：
-&gt;&gt;&gt; f = open(&#39;test.txt&#39;, &#39;r&#39;)  若文件不存在，open()函数会抛出一个IOError的错误，并给出错误码和详细信息
-Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; FileNotFoundError: [Errno 2] No such file or directory: &#39;test.txt&#39;  read() 打开成功后，使用read()一次性读取文件的全部内容，Python将内容读到内存中，用str对象存储
+&gt;&gt;&gt; f = open(&#39;test.txt&#39;, &#39;r&#39;) 若文件不存在，open()函数会抛出一个IOError的错误，并给出错误码和详细信息
+Traceback (most recent call last): File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt; FileNotFoundError: [Errno 2] No such file or directory: &#39;test.txt&#39; read() 打开成功后，使用read()一次性读取文件的全部内容，Python将内容读到内存中，用str对象存储
 readline() |readline()可以每次读取一行的内容
 readlines() |readlines()一次读取所有内容并按行返回list
 close() 使用完毕后，需要调用close()关闭文件
 with语句 为避免忘记调用close()，Python引入with语句自动调用close()
-with open(&#39;test.txt&#39;, &#39;r&#39;) as f: print(f.read())  写文件 与读文件类似，唯一区别是传入标识符&#39;w&#39;或&#39;wb&#39;表示写文本文件或写二进制文件
+with open(&#39;test.txt&#39;, &#39;r&#39;) as f: print(f.read()) 写文件 与读文件类似，唯一区别是传入标识符&#39;w&#39;或&#39;wb&#39;表示写文本文件或写二进制文件
 所有标识符定义及其意义见官方文档
 file-like Object (file object文件对象) 在Python中，像open()函数返回的这种有read()或write()方法的对象统称为file-like Object（或file object）
 共有三种类别的文件对象：原始二进制文件, 缓冲二进制文件 以及 文本文件，创建文件对象的规范方式是使用open()函数。...</p>
@@ -338,7 +337,7 @@ file-like Object (file object文件对象) 在Python中，像open()函数返回�
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

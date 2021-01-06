@@ -9,12 +9,12 @@
     
     <meta name="description" content="自定义函数 MATLAB可以在单独的.m文件中定义函数
 比如有一文件myadd.m，文件中内容为
-function y = myadd(a, b) % 这里可以写函数的使用说明，前面以%开头 % 在工作区中，help myadd将显示此处的说明 y = a &#43; b; end %可以略去  第一行function y = myadd(a, b) 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量y里。
+function y = myadd(a, b) % 这里可以写函数的使用说明，前面以%开头 % 在工作区中，help myadd将显示此处的说明 y = a &#43; b; end %可以略去 第一行function y = myadd(a, b) 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量y里。
 另外，还可以得知这个函数有两个参数a和b，以及定义的函数体，即 y = a &#43; b
  myadd是函数名。以m文件定义的函数必须保存为函数名的形式
-要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。
+  要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。
  调用方式 只需在MATLAB中直接使用函数名调用，MATLAB会自动在其搜索路径中找到对应.m文件，例如
-&gt;&gt; c = myadd(1, 2) c = 3  MORE MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为
+&gt;&gt; c = myadd(1, 2) c = 3 MORE MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为
 [y1, y2...] = function_name(x1, x2...)">
     <meta name="author" content="">
     
@@ -24,32 +24,30 @@ function y = myadd(a, b) % 这里可以写函数的使用说明，前面以%开�
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="single">
     <header class="header">
@@ -81,47 +79,32 @@ function y = myadd(a, b) % 这里可以写函数的使用说明，前面以%开�
     <h1 class="post-title">MATLAB学习_函数</h1>
     <div class="post-meta">2020.1.11</div>
   </header>
-  <div class="post-content">
-
-<h1 id="自定义函数">自定义函数</h1>
-
+  <div class="post-content"><h1 id="自定义函数">自定义函数</h1>
 <p>MATLAB可以在单独的<code>.m</code>文件中定义函数</p>
-
 <p>比如有一文件<code>myadd.m</code>，文件中内容为</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#66d9ef">function</span> y = <span style="color:#a6e22e">myadd</span>(a, b)
 
-<pre><code class="language-matlab">function y = myadd(a, b)
+<span style="color:#75715e">% 这里可以写函数的使用说明，前面以%开头</span>
+<span style="color:#75715e">% 在工作区中，help myadd将显示此处的说明</span>
 
-% 这里可以写函数的使用说明，前面以%开头
-% 在工作区中，help myadd将显示此处的说明
+y = a <span style="color:#f92672">+</span> b;
 
-y = a + b;
-
-end %可以略去
-</code></pre>
-
-<p>第一行<code>function y = myadd(a, b)</code> 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量<code>y</code>里。</p>
-
+<span style="color:#66d9ef">end</span> <span style="color:#75715e">%可以略去</span>
+</code></pre></div><p>第一行<code>function y = myadd(a, b)</code> 告诉 MATLAB，这个函数将返回一个值，并且返回的这个值将被存放于变量<code>y</code>里。</p>
 <p>另外，还可以得知这个函数有两个参数<code>a</code>和<code>b</code>，以及定义的函数体，即 <code>y = a + b</code></p>
-
 <blockquote>
 <p>myadd是函数名。以m文件定义的函数必须保存为函数名的形式</p>
-
+</blockquote>
+<blockquote>
 <p>要使用 myadd函数，该函数必须在 Matlab 的搜索路径中。</p>
 </blockquote>
-
 <h2 id="调用方式">调用方式</h2>
-
 <p>只需在MATLAB中直接使用函数名调用，MATLAB会自动在其搜索路径中找到对应<code>.m</code>文件，例如</p>
-
-<pre><code class="language-matlab">&gt;&gt; c = myadd(1, 2)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> c = myadd(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)
 c =
-     3
-</code></pre>
-
-<h2 id="more">MORE</h2>
-
+     <span style="color:#ae81ff">3</span>
+</code></pre></div><h2 id="more">MORE</h2>
 <p>MATLAB中允许定义的函数返回值是多个值或多个参数，只需在定义函数时写为</p>
-
 <p><code>[y1, y2...] = function_name(x1, x2...)</code></p>
 </div>
   <footer class="post-footer">
@@ -151,7 +134,7 @@ c =
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

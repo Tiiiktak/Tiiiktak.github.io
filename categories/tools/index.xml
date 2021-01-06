@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tools on Tiiktak&#39;s</title>
+    <link>https://example.com/categories/tools/</link>
+    <description>Recent content in Tools on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Dec 2020 15:49:53 +0800</lastBuildDate><atom:link href="https://example.com/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Linux中使用Clash科学上网</title>
+      <link>https://example.com/blog/clash_linux_tutorial/</link>
+      <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
+      
+      <guid>https://example.com/blog/clash_linux_tutorial/</guid>
+      <description>安装  下载amd64文件：https://github.com/Dreamacro/clash/releases/ gzip -f -d linux-amd64-clash.gz 下载配置文件config.yaml到~/.config/clash 下载mmdb文件到~/.config/clash  配置（每次使用前）  ./clash启动 浏览器进入127.0.0.1:9090，Clash控制面板 选择一个节点 进入Ubuntu设置，网络设置，代理 Method设为Manual HTTP Proxy、HTTPs Proxy设置为127.0.0.1:7890 Socks Host设置为127.0.0.1:7891  wget配置代理  修改/etc/wgetrc，其中  https_proxy = http://127.0.0.1:7890/ http_proxy = http://127.0.0.1:7890/ ftp_proxy = http://127.0.0.1:7890/ 使用时，wget --proxy=on https://xxxx即可  </description>
+    </item>
+    
+    <item>
+      <title>YAML与TOML</title>
+      <link>https://example.com/blog/yaml_and_toml/</link>
+      <pubDate>Thu, 09 Jan 2020 20:34:31 +0800</pubDate>
+      
+      <guid>https://example.com/blog/yaml_and_toml/</guid>
+      <description>YAML YAML 是 &amp;ldquo;YAML Ain&amp;rsquo;t a Markup Language&amp;rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&amp;ldquo;Yet Another Markup Language&amp;rdquo;（仍是一种标记语言）。
+YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲
+YAML 的配置文件后缀为 .yml
+基本语法  大小写敏感 使用缩进表示层级关系 缩进不允许使用tab，只允许空格 缩进的空格数不重要，只要相同层级的元素左对齐即可 &amp;lsquo;#&amp;lsquo;表示注释  数据类型  对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary） 数组：一组按次序排列的值，又称为序列（sequence） / 列表（list） 纯量（scalars）：单个的、不可再分的值  对象 对象键值对使用冒号结构表示 key: value，冒号后面要加一个空格。
+TOML TOML的全称是 &amp;ldquo;Tom&amp;rsquo;s Obvious, Minimal Language&amp;rdquo;，因为它的作者是 GitHub　联合创始人　Tom Preston-Werner 。
+TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可以无歧义地被映射为哈希表，从而被多种语言解析。
+基本语法  大小写敏感 同样使用缩进表示层级关系 缩进可以使用空格，也可以使用Tab 可以在数组中换行 &amp;lsquo;#&amp;lsquo;表示注释  对象 对象键值对使用等号的结构 key = value
+字符串 字符串和 JSON 的定义一致，只有一点除外：　TOML 要求使用　UTF-8 编码。</description>
+    </item>
+    
+    <item>
+      <title>百度搜索资源平台用crul做链接主动推送</title>
+      <link>https://example.com/blog/crul_baidu_post/</link>
+      <pubDate>Tue, 03 Dec 2019 21:33:22 +0800</pubDate>
+      
+      <guid>https://example.com/blog/crul_baidu_post/</guid>
+      <description>引 最近在百度站长平台加入了这个博客，由于之前在Google上都是直接提交sitemap地址，但是在百度索引sitemap实在太慢了，所以还是选择使用它推荐的crul主动推送方式，在这做个记录
+在Windows上安装配置crul 进入curl的官网下载最新的Windows版的binary the curl project安装包
+下载完成后解压到任意目录下
+之后进入系统属性-&amp;gt;高级系统设置-&amp;gt;高级-&amp;gt;环境变量-&amp;gt;系统变量
+新建一个变量，命名为curl，变量值选择之前解压的文件夹-&amp;gt;bin文件夹-&amp;gt;curl.exe
+一路保存
+之后打开cmd，敲入curl，输出如图，则配置成功
+使用curl推送链接 由于使用curl推送链接需要一个只有链接地址的文件，然而sitemap很明显不符合这个条件，所以需要先利用这个在线工具将网站中的链接提取出来
+如图，将图中右侧框中的链接复制到一个新建的txt文档，命名为urls.txt
+然后在cmd中进入txt文件所在目录，执行百度搜索资源平台给的推送命令，例如：
+如果有类似以下的输出，则说明推送成功！
+{ &amp;#34;remain&amp;#34;:4999998, &amp;#34;success&amp;#34;:2, &amp;#34;not_same_site&amp;#34;:[], &amp;#34;not_valid&amp;#34;:[] } 在服务器自动推送 很明显，现在这种必须要每次手动推送，很耗费能量，所以之后会试着在网站服务器端配置自动推送，这样才是真正的自动推送嘛</description>
+    </item>
+    
+    <item>
+      <title>Tesseract-OCR样本训练方法</title>
+      <link>https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/</link>
+      <pubDate>Wed, 20 Nov 2019 19:29:52 +0800</pubDate>
+      
+      <guid>https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/</guid>
+      <description>我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。
+安装jTessBoxEditor 可以在这里下载到最新版安装包
+把下载得到的压缩包解压到任意位置，双击其中的train.bat文件，等待一会，弹出窗口就可以开始训练了
+制作训练样本 生成tif文件 打开软件，选择Tools-&amp;gt;Merge TIFF，文件类型选择ALL Image Files，选择所有要训练的样本图片，打开
+之后会又弹出窗口，文件名需要自己设定，注意要按照格式设置：
+[lang].[fontname].exp[num].tif
+其中lang为语言名称，fontname为字体名称，num为序号。这三项都可以自己定义
+这里我们设置为captcha.font.exp0.tif，文件类型TIFF，保存
+生成box文件 将之前生成的captcha.font.exp0.tif复制到Tesseract-OCR的安装目录
+打开cmd进入安装目录，执行命令
+tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox 将.box文件和.tif文件放在同一文件夹
+手动调整 打开jTessBoxEditor工具，点击Box Editor-&amp;gt;Open，选择打开之前生成的.box文件
+软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果
+全部修改完成后，选择Save保存即可
+训练 先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入
+captcha 0 0 0 0 0 这里全取值为0，表示字体不是粗体、斜体等等
+之后在命令行分别运行命令：
+shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr 之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
+生成语言库 命令
+combine_tessdata.exe captcha. 会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
+使用训练结果 在调用tesseract或pytesseract时，只需添加参数lang=&amp;ldquo;captcha&amp;rdquo;（我们的字体名），程序就会自动调用啦</description>
+    </item>
+    
+    <item>
+      <title>Tesseract-OCR安装与python中使用</title>
+      <link>https://example.com/blog/tesseract%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Wed, 20 Nov 2019 18:15:12 +0800</pubDate>
+      
+      <guid>https://example.com/blog/tesseract%E5%AE%89%E8%A3%85/</guid>
+      <description>安装Tesseract-OCR 在官网下载最新的Windows安装包，双击运行
+根据需要选择，一路Next，直到这个页面
+在Additional language data(download)中选择要下载的其他语言的数据，之后程序会自动下载。一直到安装成功
+配置环境变量 进入高级系统设置，选择高级-&amp;gt;环境变量
+选中系统变量中Path-&amp;gt;编辑
+新建一项，地址为Tesseract-OCR的安装目录即可（例如C:\Program Files\Tesseract-OCR）
+可以通过在控制台中输入tesseract命令来检查是否配置成功，输出如图即表示成功
+配置Python 直接使用pip install pytesseract进行安装
+pytesseract 功能  get_tesseract_version　返回系统中安装的Tesseract版本。 image_to_string　将图像上的Tesseract OCR运行结果返回到字符串 image_to_boxes　返回包含已识别字符及其框边界的结果 image_to_data　返回包含框边界，置信度和其他信息的结果 image_to_osd　返回包含有关方向和脚本检测的信息的结果  参数 image_to_data(image, lang=None, config=&#39;&#39;, nice=0, output_type=Output.STRING)  image object　图像对象 lang String，Tesseract　语言代码字符串 config String　任何其他配置为字符串，例如：config=&#39;&amp;ndash;psm 6&#39; nice Integer　修改Tesseract运行的处理器优先级。Windows不支持。 output_type　类属性，指定输出的类型，默认为string。  简单实例 识别一张图像中字符并直接输出
+import pytesseract im = &amp;#34;C:/Users/1/Desktop/test.jpg&amp;#34; result = pytesseract.image_to_string(im) print(result) 这样识别到的字符就会转化成字符串输出</description>
+    </item>
+    
+    <item>
+      <title>【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</title>
+      <link>https://example.com/blog/reprint_magic_sketchpad/</link>
+      <pubDate>Sun, 20 Oct 2019 00:45:31 +0800</pubDate>
+      
+      <guid>https://example.com/blog/reprint_magic_sketchpad/</guid>
+      <description>最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下
+原文发表于2018-12-19
+这两天，一个“魔法画板”在国外传疯了。
+AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能装满好几个美术馆。
+这个画板背后，可不是一个普通的画画AI。它，会脑补。
+随便画一笔，就能得到一只猫：
+画个圆圈，变成猫：
+画个三角，变成猫：
+画个方块，变成猫：
+真是万物皆可喵喵。
+当然，你也可以不让它画猫，改成画狗。只要你设定了一个绘画的目标，之后随便画一笔，AI就能脑补出余下的画面。
+这个“魔法”，是来自谷歌的吸猫少女Monica Dinculescu用Sketch RNN开发的。
+因为她爱猫成痴，不仅自己头像是和自家喵子的合影，连个人主页域名都叫Meowni.ca，我们就叫她喵妮卡好了。
+所以，受到创作者的影响，这个AI默认属性为吸猫爱好者，但除了猫之外，AI也会脑补许多其他内容，脑洞很大。
+发布之后，众人竞相玩耍，好评如潮，2000多人点赞。
+有人让AI画了满屏的骷髅，说，好美啊！
+谷歌大佬David Ha也表示，他已经试过用各种基本形状来教导AI画羊了。
+不止有魔力，还可以加戏 喵妮卡给应用起名为魔法画板 (Magic Sketchpad) ，也名副其实。
+毕竟，只要画一笔，妈咪妈咪哄！一整张图就出现在眼前。
+△ 你想要什么样的美人鱼？
+而且，只要按一下选择栏左边的刷新按钮，AI就会根据刚才那一笔，不断为你展现新的画法。
+一共有100多种东西可以画，青蛙，秋千，直升飞机，连龙猫里的猫巴士都有。
+我是一只豆豆眼的猫头鹰：
+我是一只很鬼魅的仙人掌：
+为了这100多种选项，都能找到合适的色彩来诠释，画板还提供了18种颜色的画笔。
+这样一来，就有数不清的排列组合。有大胆想法的小伙伴们，可以在魔法画板上尽情加戏了。
+在你开始表演之前，量子位先抛抛砖：
+鲸鱼喷出的不一定是水，也有可能是花。
+牙刷上方温柔的曲线不一定是牙膏，也有可能是蜗牛。
+另外，如果你还没想到，除了排列组合之外，还可以鬼畜啊。
+一头鲸鱼喷水没什么，十几头鲸一起喷，就很有节奏感了 (误) 。
+一个人做瑜伽太孤单了，十几个人一起做，姿态各不相同，清明瑜伽图岂不美哉？
+不过虽然好玩，量子位似乎还是发现了一个bug，像猫巴士 (Catbus) 这种组合选项：画方成车，画圆成猫，无法兼顾。那么，怎样才能一步生成下面这样的效果呢？
+想要体验一下的盆友，传送门照例在文末~
+人家是有背景的 可能你已经发觉了，它的画风很像的谷歌推出的Quick, Draw!，中文名为“猜画小歌”。
+是的，他们是一家人。
+喵妮卡在推特上说了，她的魔法画板使用的就是Quick, Draw!数据集。
+这个数据集里面，有5000万张画，分为345个类别。每一张画，都记录了画画的整个过程：画笔运动的方向，何时提笔，何时停止绘画。
+如果你玩过猜画小歌，那这个数据集里，也有你的一份贡献。
+既然使用的是Quick, Draw!数据集，模型基本上没有什么悬念。
+正是Sketch-RNN。这是一个用Quick, Draw！数据集训练出来循环神经网络（RNN）。目标是让AI以类似人类的方式来画画，并概括出抽象的概念。
+模型有这样的能力，做出来魔法画板也就没有那么难了。
+你随手画个圈，就是为Sketch-RNN输入了一个序列，它可以根据这个序列和你选择要画的东西，预测接下来的序列：也就是补完这幅画。
+虽然画风奇特，但画啥就有点像啥。
+具体的实现代码，喵妮卡也全部放出来了。（传送门在文末。）
+三种额外玩法 除了这个万物皆可喵的网页之外，喵妮卡所在的Google Magenta团队还用Sketch-RNN创作了几个不同的涂鸦应用。
+9×N种预测，总能猜中你的心 你涂鸦的每一笔，都被我预料到了。
+无论你画了个啥，我都能猜出你接下来准备如何下笔。
+并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。
+而且我还能选择不同的美术风格，通过调整temperature，数值越接近1，我的画风越抽象、越狂放不羁；</description>
+    </item>
+    
+    <item>
+      <title>Python文本进度条</title>
+      <link>https://example.com/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</link>
+      <pubDate>Thu, 19 Sep 2019 20:59:58 +0800</pubDate>
+      
+      <guid>https://example.com/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</guid>
+      <description> Update：使用python库tqdm轻松实现
+ 一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
+代码 import time scale = 50 # 进度条长度 print(&amp;#34;&amp;gt;&amp;gt;执行开始\n&amp;#34;) start = time.perf_counter() # 开始时刻 for i in range(scale+1): a = &amp;#39;|&amp;#39; * i b = &amp;#39;.&amp;#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&amp;#34;\r{:^3.0f}% [{}&amp;gt;&amp;gt;{}] {:.2f}s&amp;#34;.format(c, a, b, dur), end=&amp;#39;&amp;#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&amp;#34;\n\n&amp;gt;&amp;gt;执行结束&amp;#34;) 效果 </description>
+    </item>
+    
+  </channel>
+</rss>

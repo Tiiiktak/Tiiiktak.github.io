@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>树莓派RaspBerry Pi on Tiiktak&#39;s</title>
+    <link>https://example.com/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+    <description>Recent content in 树莓派RaspBerry Pi on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Apr 2020 11:25:47 +0800</lastBuildDate><atom:link href="https://example.com/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>树莓派4B安装opencv以及错误解决</title>
+      <link>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</link>
+      <pubDate>Mon, 27 Apr 2020 11:25:47 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</guid>
+      <description>更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
+ 主要参考opencv官网文档和博客树莓派+Opencv（一）图像处理
+树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
+下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev 在4B上安装时遇到libgtk2.0-dev安装失败的问题：
+这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
+在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
+ 其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
+ 下载源码 从GitHub下载：
+opencv
+opencv_contrib
+两个都下载.zip压缩包即可
+解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0 创建一个build文件夹用于编译 mkdir build cd build 运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
+ cmake-gui 选择源码路径和编译路径后点击Configure
+之后在中间的选择框中找到项目BUILD_TESTS，把它的复选框取消
+ 这一步是因为后面编译过程中，总是由于opencv_test_xxx这类项目导致编译失败，因此我在这里将它取消
+ 之后点击Generate生成，最后输出如图所示则可以进行下一步</description>
+    </item>
+    
+    <item>
+      <title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</title>
+      <link>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
+      <pubDate>Tue, 09 Jul 2019 15:32:53 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
+      <description>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
+因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C++11中的thread库通过多线程实现程序
+树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i++) { for (int j = 0; j &amp;lt; img_gray.rows; j++) { double s = img_gray.</description>
+    </item>
+    
+    <item>
+      <title>Socket通信原理(3)</title>
+      <link>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</link>
+      <pubDate>Mon, 08 Jul 2019 15:38:20 +0800</pubDate>
+      
+      <guid>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</guid>
+      <description>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
+这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
+服务端-树莓派 socket_server_sms.cpp #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;using namespace std; #define USEPORT 1234  int main() { //****创建套接字 	int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET 	//Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF 	if (serverSock &amp;lt; 0) { cout &amp;lt;&amp;lt; &amp;#34;socket creation failed&amp;#34; &amp;lt;&amp;lt; endl; exit(-1); } cout &amp;lt;&amp;lt; &amp;#34;socket creation successfully&amp;#34; &amp;lt;&amp;lt; endl; //****绑定ip和端口 	struct sockaddr_in serverAddr; memset(&amp;amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr.sin_port = htons(USEPORT); //INADDR_ANY绑定所有IP 	serverAddr.</description>
+    </item>
+    
+    <item>
+      <title>Socket通信原理(2)</title>
+      <link>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</link>
+      <pubDate>Mon, 08 Jul 2019 13:21:57 +0800</pubDate>
+      
+      <guid>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</guid>
+      <description>本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
+ 系统：Windows 10
+  软件：Visual studio 2019
+  语言：C++
+  Socket通信实现步骤   创建ServerSocket和Socket
+  打开连接到的Socket的输入/输出流
+  按照协议对Socket进行读/写操作
+  关闭输入/输出流和Socket
+  本文的程序由服务端发送信息到客户端，若用户输入quit则结束客户端与服务端程序
+服务端Server 由于Windows下的socket程序依赖Winsock.dll或ws2_32.dll，所以必须提前加载
+#include &amp;lt;iostream&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;winsock2.h&amp;gt; //包含socket的头文件#pragma comment (lib, &amp;#34;ws2_32.lib&amp;#34;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA 	WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 	//-&amp;gt;MSKEWORD(2,2)主版本号2，副版本号2 	if (WSAStartup(MAKEWORD(2, 2), &amp;amp;wsaData) != 0)	{	return 0; } //****创建套接字 	SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&amp;gt;IPv6，PF_INET-&amp;gt;IPv4 	//参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM 	//参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 	//判断无效套接字 	if (servSock == INVALID_SOCKET) { cout &amp;lt;&amp;lt; &amp;#34;socket error!</description>
+    </item>
+    
+    <item>
+      <title>树莓派配置摄像头</title>
+      <link>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</link>
+      <pubDate>Mon, 01 Jul 2019 15:27:39 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</guid>
+      <description>注意：树莓派插电时千万不要插拔摄像头！据说十有八九摄像头会GG，我差点就中招了
+安装驱动 首先使用ls指令查看是否加载到了对应的video device设备：
+ls -al /etc 没有看到设备开始安装驱动
+添加驱动设备到文件夹 sudo vim /etc/modules 在文件末尾添加
+bcm2835-v412 修改raspberry的启动配置 进入管理中心开启pi camera
+sudo raspi-config 选择interfacing option
+开启Camera后重启
+检查/dev ls -al /dev/ | grep video 有video设备则成功
+使用树莓派摄像头 使用raspistill指令
+测试 raspistill -o image.jpg  在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
+ raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为&#39;-&#39;，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720 错误 在第一次成功调用后，之后再次调用时多次报错：
+mmal: No data received from sensor. Check all connections, including the Sunny one on the camera board 网上说导致该问题的原因有：</description>
+    </item>
+    
+    <item>
+      <title>灰度重心法</title>
+      <link>https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</guid>
+      <description>概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫密度质心算法。
+将灰度值分布中的质心记作光条纹的中心
+对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
+灰度重心法公式 型心法 只可用于二值图像
+灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
+代码：
+#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 	int i, j; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; //获取图像各点灰度值总和 	for (it = img_gray.begin&amp;lt;uchar&amp;gt;(), end = img_gray.end&amp;lt;uchar&amp;gt;(); it != end; it++) { ((*it) &amp;gt; T) ? sumval += (*it) : NULL; //小于阈值，取0 	} Center.</description>
+    </item>
+    
+  </channel>
+</rss>

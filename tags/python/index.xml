@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Tiiktak&#39;s</title>
+    <link>https://example.com/tags/python/</link>
+    <description>Recent content in Python on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 21 Jun 2019 15:23:06 +0800</lastBuildDate><atom:link href="https://example.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python面向对象</title>
+      <link>https://example.com/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Fri, 21 Jun 2019 15:23:06 +0800</pubDate>
+      
+      <guid>https://example.com/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+      <description>类和实例 定义类 使用class关键字
+class Student(object): #class 类名(继承类) 无继承类则使用object,也可省略 &amp;#34;&amp;#34;&amp;#34;docstring for Student&amp;#34;&amp;#34;&amp;#34; def __init__(self, name, score): #初始属性，第一个参数永远是self，表示创建的实例本身 super (Student, self).__init__() self.name = name self.score = score def print_score(self) print(&amp;#39;%s: %s&amp;#39; % (self.name, self.score)) 实例化 类名+（）
+&amp;gt;&amp;gt;&amp;gt; bob = Student(&amp;#39;Bob&amp;#39;, 98) &amp;gt;&amp;gt;&amp;gt; bob.print_score() Bob: 98 创建实例后，可以自由地给一个实例变量绑定属性，如
+&amp;gt;&amp;gt;&amp;gt; bob.school = &amp;#39;SWUST&amp;#39; &amp;gt;&amp;gt;&amp;gt; bob.school &amp;#39;SWUST&amp;#39; 访问限制  private私有变量：变量名以__开头 注意：__name__外部可以访问，是特殊变量  继承和多态 基类：
+class Animal(object): def run(self): print(&amp;#39;Animal is running...&amp;#39;) 子类：
+class Dog(Animal) pass 子类调用父类方法：</description>
+    </item>
+    
+  </channel>
+</rss>

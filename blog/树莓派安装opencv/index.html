@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>树莓派4B安装opencv以及错误解决 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
  主要参考opencv官网文档和博客树莓派&#43;Opencv（一）图像处理
 树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
-下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev  在4B上安装时遇到libgtk2.0-dev安装失败的问题：
+下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev 在4B上安装时遇到libgtk2.0-dev安装失败的问题：
 这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
 在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
  其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
@@ -18,319 +12,580 @@
 opencv
 opencv_contrib
 两个都下载.zip压缩包即可
-解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0  创建一个build文件夹用于编译 mkdir build cd build  运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
- cmake-gui  选择源码路径和编译路径后点击Configure">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0 创建一个build文件夹用于编译 mkdir build cd build 运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
+ cmake-gui 选择源码路径和编译路径后点击Configure
+之后在中间的选择框中找到项目BUILD_TESTS，把它的复选框取消
+ 这一步是因为后面编译过程中，总是由于opencv_test_xxx这类项目导致编译失败，因此我在这里将它取消
+ 之后点击Generate生成，最后输出如图所示则可以进行下一步'><title>树莓派4B安装opencv以及错误解决</title>
+
+<link rel='canonical' href='https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='树莓派4B安装opencv以及错误解决'>
+<meta property='og:description' content='更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
+ 主要参考opencv官网文档和博客树莓派&#43;Opencv（一）图像处理
+树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
+下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev 在4B上安装时遇到libgtk2.0-dev安装失败的问题：
+这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
+在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
+ 其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
+ 下载源码 从GitHub下载：
+opencv
+opencv_contrib
+两个都下载.zip压缩包即可
+解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0 创建一个build文件夹用于编译 mkdir build cd build 运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
+ cmake-gui 选择源码路径和编译路径后点击Configure
+之后在中间的选择框中找到项目BUILD_TESTS，把它的复选框取消
+ 这一步是因为后面编译过程中，总是由于opencv_test_xxx这类项目导致编译失败，因此我在这里将它取消
+ 之后点击Generate生成，最后输出如图所示则可以进行下一步'>
+<meta property='og:url' content='https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-04-27T11:25:47&#43;08:00'/><meta property='article:modified_time' content='2020-04-27T11:25:47&#43;08:00'/>
+<meta name="twitter:title" content="树莓派4B安装opencv以及错误解决">
+<meta name="twitter:description" content="更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
+ 主要参考opencv官网文档和博客树莓派&#43;Opencv（一）图像处理
+树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
+下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev 在4B上安装时遇到libgtk2.0-dev安装失败的问题：
+这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
+在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
+ 其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
+ 下载源码 从GitHub下载：
+opencv
+opencv_contrib
+两个都下载.zip压缩包即可
+解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0 创建一个build文件夹用于编译 mkdir build cd build 运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
+ cmake-gui 选择源码路径和编译路径后点击Configure
+之后在中间的选择框中找到项目BUILD_TESTS，把它的复选框取消
+ 这一步是因为后面编译过程中，总是由于opencv_test_xxx这类项目导致编译失败，因此我在这里将它取消
+ 之后点击Generate生成，最后输出如图所示则可以进行下一步">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="background-color: #2a9d8f; color: #fff;">
+                树莓派RaspBerry Pi
+            </a>
+        
+            <a href="/categories/opencv/" style="background-color: #2a9d8f; color: #fff;">
+                OpenCV
+            </a>
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/">树莓派4B安装opencv以及错误解决</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">树莓派4B安装opencv以及错误解决</h1>
-    <div class="post-meta">2020.4.27</div>
-  </header>
-  <div class="post-content">
 
-<blockquote>
+        <time class="article-time--published">Apr 27, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <blockquote>
 <p>更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下</p>
 </blockquote>
-
-<p>主要参考opencv官网<a href="https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html">文档</a>和博客<a href="https://blog.csdn.net/naohmurderer/article/details/84780455">树莓派+Opencv（一）图像处理</a></p>
-
-<p>树莓派4B上安装参考：<a href="https://blog.csdn.net/qq_43762614/article/details/102760414?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-4&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-4">树莓派4B 安装opencv完整教程基于python3（各种错误解决）</a></p>
-
+<p>主要参考opencv官网<a class="link" href="https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html"  target="_blank" rel="noopener"
+    >文档</a>和博客<a class="link" href="https://blog.csdn.net/naohmurderer/article/details/84780455"  target="_blank" rel="noopener"
+    >树莓派+Opencv（一）图像处理</a></p>
+<p>树莓派4B上安装参考：<a class="link" href="https://blog.csdn.net/qq_43762614/article/details/102760414?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-4&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-4"  target="_blank" rel="noopener"
+    >树莓派4B 安装opencv完整教程基于python3（各种错误解决）</a></p>
 <h1 id="下载安装依赖项">下载安装依赖项</h1>
-
-<pre><code class="language-sh">sudo apt-get install build-essential
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install build-essential
 sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
 sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
-</code></pre>
-
-<p>在4B上安装时遇到<code>libgtk2.0-dev</code>安装失败的问题：</p>
-
+</code></pre></div><p>在4B上安装时遇到<code>libgtk2.0-dev</code>安装失败的问题：</p>
 <p>这是因为依赖项版本太高了，需要降级安装。所以可以使用命令<code>sudo aptitude install libgtk2.0-dev</code>来进行安装</p>
-
 <p>在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入<code>n</code>否定它，之后给出第二个方案是降级安装，输入<code>Y</code>使用该方案</p>
-
 <blockquote>
 <p>其中<code>aptitude</code>是一个类似<code>apt-get</code>的包管理工具，但是它能更好处理依赖问题，支持降级安装</p>
 </blockquote>
-
 <h1 id="下载源码">下载源码</h1>
-
 <p>从GitHub下载：</p>
-
-<p><a href="https://github.com/opencv/opencv/releases">opencv</a></p>
-
-<p><a href="https://github.com/opencv/opencv_contrib/releases">opencv_contrib</a></p>
-
+<p><a class="link" href="https://github.com/opencv/opencv/releases"  target="_blank" rel="noopener"
+    >opencv</a></p>
+<p><a class="link" href="https://github.com/opencv/opencv_contrib/releases"  target="_blank" rel="noopener"
+    >opencv_contrib</a></p>
 <p>两个都下载<code>.zip</code>压缩包即可</p>
-
 <h1 id="解压源码并进入文件夹">解压源码并进入文件夹</h1>
-
-<pre><code class="language-sh">unzip opencv-4.3.0.zip
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">unzip opencv-4.3.0.zip
 unzip opencv_contrib-4.3.0.zip
-cd opencv-4.3.0
-</code></pre>
-
-<h1 id="创建一个build文件夹用于编译">创建一个build文件夹用于编译</h1>
-
-<pre><code class="language-sh">mkdir build
-cd build
-</code></pre>
-
-<h1 id="运行cmake-gui">运行cmake-gui</h1>
-
+<span class="nb">cd</span> opencv-4.3.0
+</code></pre></div><h1 id="创建一个build文件夹用于编译">创建一个build文件夹用于编译</h1>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir build
+<span class="nb">cd</span> build
+</code></pre></div><h1 id="运行cmake-gui">运行cmake-gui</h1>
 <blockquote>
 <p>这一步其实也可以直接使用<code>cmake</code>配合各类参数，不过我觉得图形化界面方便一点</p>
 </blockquote>
-
-<pre><code class="language-sh">cmake-gui
-</code></pre>
-
-<p>选择源码路径和编译路径后点击<code>Configure</code></p>
-
-<p><img src="https://1jdjmg.bl.files.1drv.com/y4mM9sX-i_YBkO1rf2NCPi9-EwKQnZH2HPOlryh4R_W-lvxyK63Vp7D2lGhMvbrx8S4ORyj6PMwnuHuSK9IyfhjUd0ZXeWMbU3EaaiqRP-9BUx8IzaBmHmanlK9_buf_XhlT4p2PpXXreZwGiNPCeGu3wAkKSp6VAzu0q0v7E9ru1OhKAfb8k_wiBU68YGgTkR87Gut3Ub2gxH12eMefGV2fQ?width=665&amp;height=726&amp;cropmode=none" alt="cmake-gui" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cmake-gui
+</code></pre></div><p>选择源码路径和编译路径后点击<code>Configure</code></p>
+<p><img src="https://1jdjmg.bl.files.1drv.com/y4mM9sX-i_YBkO1rf2NCPi9-EwKQnZH2HPOlryh4R_W-lvxyK63Vp7D2lGhMvbrx8S4ORyj6PMwnuHuSK9IyfhjUd0ZXeWMbU3EaaiqRP-9BUx8IzaBmHmanlK9_buf_XhlT4p2PpXXreZwGiNPCeGu3wAkKSp6VAzu0q0v7E9ru1OhKAfb8k_wiBU68YGgTkR87Gut3Ub2gxH12eMefGV2fQ?width=665&amp;height=726&amp;cropmode=none" alt="cmake-gui"  /></p>
 <p>之后在中间的选择框中找到项目<code>BUILD_TESTS</code>，把它的复选框取消</p>
-
 <blockquote>
 <p>这一步是因为后面编译过程中，总是由于<code>opencv_test_xxx</code>这类项目导致编译失败，因此我在这里将它取消</p>
 </blockquote>
-
 <p>之后点击<code>Generate</code>生成，最后输出如图所示则可以进行下一步</p>
-
-<p><img src="https://bwvx1q.bl.files.1drv.com/y4m4o5FXBFor6_InGIVOHKTZ8hNPs-OmlK6TYAfgeD4b_YhRbAW3-CzEWbFnb9FjPDVCP_O8HuzOfnUJFMhp4ueBgKkuBLbIsTmonJmwzBsNKegn1j1af23hLe5FQwUWyhmyNe7dkgxbhj1nuaWgiO016HZaZxCf6gion5OSSRlMvjdJvhaQxVdjR16YY7dzFxuURblHeEE2Nbw8wlDcNOqmQ?width=735&amp;height=726&amp;cropmode=none" alt="generate" /></p>
-
+<p><img src="https://bwvx1q.bl.files.1drv.com/y4m4o5FXBFor6_InGIVOHKTZ8hNPs-OmlK6TYAfgeD4b_YhRbAW3-CzEWbFnb9FjPDVCP_O8HuzOfnUJFMhp4ueBgKkuBLbIsTmonJmwzBsNKegn1j1af23hLe5FQwUWyhmyNe7dkgxbhj1nuaWgiO016HZaZxCf6gion5OSSRlMvjdJvhaQxVdjR16YY7dzFxuURblHeEE2Nbw8wlDcNOqmQ?width=735&amp;height=726&amp;cropmode=none" alt="generate"  /></p>
 <h1 id="编译">编译</h1>
-
 <p>在<code>build</code>目录执行<code>make</code>开始编译，<code>-j</code>表示使用多少线程进行编译，不加数字代表不限制（很容易出问题，不推荐）</p>
-
 <p>之前使用树莓派3B我选择的<code>-j1</code>，用时约3小时；现在4B我选的是<code>-j4</code>，用时约半个小时</p>
-
-<pre><code class="language-sh">sudo make -j4
-</code></pre>
-
-<p><img src="https://cnoyea.bl.files.1drv.com/y4mskZoTEaDwLwpQaKSe83p6ipcG12GNUV1l31yTOJtFMOQqWQChM1e30c_opNkFOD-lm50VlDMiwKc3FBjKGdCtsXU10i8HdJL5fMk2ZBughbHH_Qqw8Xn2nmxBVOrUcHhIoA_D5rPjSkeIohg_VXRbniSV_RF6OFylmJXAb767QYmXLnhEv8rcPT39sS3aWkxwZyMwVmM4TdLKCsLiOnmfQ?width=761&amp;height=834&amp;cropmode=none" alt="make" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo make -j4
+</code></pre></div><p><img src="https://cnoyea.bl.files.1drv.com/y4mskZoTEaDwLwpQaKSe83p6ipcG12GNUV1l31yTOJtFMOQqWQChM1e30c_opNkFOD-lm50VlDMiwKc3FBjKGdCtsXU10i8HdJL5fMk2ZBughbHH_Qqw8Xn2nmxBVOrUcHhIoA_D5rPjSkeIohg_VXRbniSV_RF6OFylmJXAb767QYmXLnhEv8rcPT39sS3aWkxwZyMwVmM4TdLKCsLiOnmfQ?width=761&amp;height=834&amp;cropmode=none" alt="make"  /></p>
 <h2 id="问题">问题</h2>
-
 <p>我的4B在这一步就遇到了一个问题，如图</p>
-
-<p><img src="https://i.loli.net/2020/04/27/VknXU49ymfC67ix.png" style="zoom:80%;" /></p>
-
+<p><!-- raw HTML omitted --></p>
 <p>（这个图我是找的其他人的，不过错误都是一样的）</p>
-
 <p>这是一个包丢失的问题，解决方案：</p>
-
 <blockquote>
 <p>可以在一个大佬的百度云盘里下载</p>
-
 <p>将所有带<code>i</code>结尾的文件全部都拷贝到<code>opencv_contrib/modules/xfeatures2d/src/</code> 路径下即可
 树莓派安装opencv时丢失的文件：
-链接：<a href="https://pan.baidu.com/s/1xi6_5NuTFiP4SD649FgIJw">https://pan.baidu.com/s/1xi6_5NuTFiP4SD649FgIJw</a>
+链接：https://pan.baidu.com/s/1xi6_5NuTFiP4SD649FgIJw
 提取码：mbsj
-原文链接：<a href="https://blog.csdn.net/weixin_43308627/article/details/97814927">https://blog.csdn.net/weixin_43308627/article/details/97814927</a></p>
+原文链接：https://blog.csdn.net/weixin_43308627/article/details/97814927</p>
 </blockquote>
-
 <p>之后重新<code>make</code>就可以再次开始</p>
-
 <h1 id="安装库">安装库</h1>
-
 <p>在<code>build</code>目录执行</p>
-
-<pre><code class="language-sh">sudo make install
-</code></pre>
-
-<p>完成后opencv就已经配好了</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo make install
+</code></pre></div><p>完成后opencv就已经配好了</p>
 <h1 id="测试">测试</h1>
-
 <h2 id="python运行">Python运行</h2>
-
-<p>使用<a href="https://blog.csdn.net/leaves_joe/article/details/67656340">这里</a>提供的测试程序测试opencv是否正常</p>
-
-<pre><code class="language-python"># -*- coding:utf-8 -*-
-import cv2
-import numpy as np
-cv2.namedWindow(&quot;gray&quot;)
-img = np.zeros((512,512),np.uint8)#生成一张空的灰度图像
-cv2.line(img,(0,0),(511,511),255,5)#绘制一条白色直线
-cv2.imshow(&quot;gray&quot;,img)#显示图像
-#循环等待，按q键退出
-while True:
-	key=cv2.waitKey(1)
-	if key==ord(&quot;q&quot;):
-		break
-cv2.destoryWindow(&quot;gray&quot;)
-</code></pre>
-
-<p>最后运行正常，如图</p>
-
-<p><img src="https://azpwsg.bl.files.1drv.com/y4mvDMgOaIoh-v1yLocQJXFIyoXP_QISC_wFE599ue20PatmgGqFJrymrLUGmiqj-7YFRbIztfLN8T4K9qVNY892VhsshjUO5pXn0_UlSZaPx4coZSxq7pH_iZS-TG9wrtWlNH4yrlLiCJ0W17GkagsyRSgwnz17f5bBbRNPNdZvmw_OB2I-J4SQVVTm0dBEqZTKw1raV51rRTkfkrn5vylBQ?width=1026&amp;height=807&amp;cropmode=none" alt="python-opencv" /></p>
-
-<h2 id="c-运行">C++运行</h2>
-
+<p>使用<a class="link" href="https://blog.csdn.net/leaves_joe/article/details/67656340"  target="_blank" rel="noopener"
+    >这里</a>提供的测试程序测试opencv是否正常</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&#34;gray&#34;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">512</span><span class="p">,</span><span class="mi">512</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="c1">#生成一张空的灰度图像</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">511</span><span class="p">,</span><span class="mi">511</span><span class="p">),</span><span class="mi">255</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="c1">#绘制一条白色直线</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&#34;gray&#34;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span><span class="c1">#显示图像</span>
+<span class="c1">#循环等待，按q键退出</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+	<span class="n">key</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">key</span><span class="o">==</span><span class="nb">ord</span><span class="p">(</span><span class="s2">&#34;q&#34;</span><span class="p">):</span>
+		<span class="k">break</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destoryWindow</span><span class="p">(</span><span class="s2">&#34;gray&#34;</span><span class="p">)</span>
+</code></pre></div><p>最后运行正常，如图</p>
+<p><img src="https://azpwsg.bl.files.1drv.com/y4mvDMgOaIoh-v1yLocQJXFIyoXP_QISC_wFE599ue20PatmgGqFJrymrLUGmiqj-7YFRbIztfLN8T4K9qVNY892VhsshjUO5pXn0_UlSZaPx4coZSxq7pH_iZS-TG9wrtWlNH4yrlLiCJ0W17GkagsyRSgwnz17f5bBbRNPNdZvmw_OB2I-J4SQVVTm0dBEqZTKw1raV51rRTkfkrn5vylBQ?width=1026&amp;height=807&amp;cropmode=none" alt="python-opencv"  /></p>
+<h2 id="c运行">C++运行</h2>
 <p>先使用cmake编译，再使用make编译</p>
-
 <h3 id="编写cpp代码">编写cpp代码</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> 
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span> 
 
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-using namespace std; 
-using namespace cv; 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="n">Mat</span> <span class="n">img</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s">&#34;image.jpg&#34;</span><span class="p">);</span> 
+	<span class="k">if</span> <span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;error!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+		<span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="n">namedWindow</span><span class="p">(</span><span class="s">&#34;image1&#34;</span><span class="p">,</span> <span class="n">WINDOW_NORMAL</span><span class="p">);</span> 
+	<span class="n">namedWindow</span><span class="p">(</span><span class="s">&#34;image2&#34;</span><span class="p">,</span> <span class="n">WINDOW_NORMAL</span><span class="p">);</span> 
+	<span class="n">imshow</span><span class="p">(</span><span class="s">&#34;image1&#34;</span><span class="p">,</span> <span class="n">img</span><span class="p">);</span> 
+	<span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">COLOR_BGR2GRAY</span><span class="p">);</span> 
+	<span class="n">blur</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">Size</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span> 
+	<span class="n">Mat</span> <span class="n">edges</span><span class="p">;</span> 
+	<span class="n">Canny</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> 
+	<span class="n">imshow</span><span class="p">(</span><span class="s">&#34;image2&#34;</span><span class="p">,</span> <span class="n">edges</span><span class="p">);</span> 
 
-int main(int argc, char const *argv[])
-{
-	Mat img = imread(&quot;image.jpg&quot;); 
-	if (img.empty())
-	{
-		cout &lt;&lt; &quot;error!&quot; &lt;&lt; endl; 
-		exit(0)
-	}
-	namedWindow(&quot;image1&quot;, WINDOW_NORMAL); 
-	namedWindow(&quot;image2&quot;, WINDOW_NORMAL); 
-	imshow(&quot;image1&quot;, img); 
-	cvtColor(img, img, COLOR_BGR2GRAY); 
-	blur(img, img, Size(7, 7)); 
-	Mat edges; 
-	Canny(img, edges, 3, 9, 3); 
-	imshow(&quot;image2&quot;, edges); 
-
-	waitKey(0); 
-	return 0; 
-}
-</code></pre>
-
-<h3 id="在同目录创建cmakelists-txt文件">在同目录创建CMakeLists.txt文件</h3>
-
+	<span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> 
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div><h3 id="在同目录创建cmakeliststxt文件">在同目录创建CMakeLists.txt文件</h3>
 <p>内容：</p>
-
-<pre><code class="language-sh">cmake_minimum_required(VERSION 2.6)
-project(test_opencv) #项目名 可改
-find_package(OpenCV REQUIRED)
-add_executable(test_opencv test_opencv.cpp) 
-	#项目名和cpp文件名
-target_link_libraries(test_opencv ${OpenCV_LIBS}) #项目名
-</code></pre>
-
-<h3 id="之后就能用cmake编译啦">之后就能用cmake编译啦</h3>
-
-<pre><code class="language-sh">cmake .
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cmake_minimum_required<span class="o">(</span>VERSION 2.6<span class="o">)</span>
+project<span class="o">(</span>test_opencv<span class="o">)</span> <span class="c1">#项目名 可改</span>
+find_package<span class="o">(</span>OpenCV REQUIRED<span class="o">)</span>
+add_executable<span class="o">(</span>test_opencv test_opencv.cpp<span class="o">)</span> 
+	<span class="c1">#项目名和cpp文件名</span>
+target_link_libraries<span class="o">(</span>test_opencv <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="o">)</span> <span class="c1">#项目名</span>
+</code></pre></div><h3 id="之后就能用cmake编译啦">之后就能用cmake编译啦</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cmake .
 make
-</code></pre>
-
-<h3 id="运行">运行</h3>
-
+</code></pre></div><h3 id="运行">运行</h3>
 <p>编译完成后，使<code>ls</code>查看目录下文件</p>
-
-<p><img src="https://cnobea.bl.files.1drv.com/y4mpCnCgVaeQl4nHlJl8IqyEH8Hbo43ipHFvuy2J8qJyiLaU9s-u85gfhGgs5WOrTt8Qo8sjR82InUUR3MzNP8XdTIHhAglx5BI1toCNMpaQm8iSuPymSni2ZiOrr1lOAlYqHr0FSaUDke_ifubVOfO2hM-gckqR-hCJRidTtsD6YmmAQkqUdIhV6dSIu1ARV82ZJ6zxOsvInV4VxmO6wWH0w?width=619&amp;height=53&amp;cropmode=none" alt="ls-opencv_test" /></p>
-
+<p><img src="https://cnobea.bl.files.1drv.com/y4mpCnCgVaeQl4nHlJl8IqyEH8Hbo43ipHFvuy2J8qJyiLaU9s-u85gfhGgs5WOrTt8Qo8sjR82InUUR3MzNP8XdTIHhAglx5BI1toCNMpaQm8iSuPymSni2ZiOrr1lOAlYqHr0FSaUDke_ifubVOfO2hM-gckqR-hCJRidTtsD6YmmAQkqUdIhV6dSIu1ARV82ZJ6zxOsvInV4VxmO6wWH0w?width=619&amp;height=53&amp;cropmode=none" alt="ls-opencv_test"  /></p>
 <p>绿色的就是编译生成的文件</p>
-
 <p>运行试试</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">./opencvtest
+</code></pre></div><p><img src="C:%5cUsers%5c1%5cDesktop%5c1111.png" alt="opencv&#43;cpp_test"  /></p>
+<p>于是树莓派的opencv终于安装完成啦，接下来就要<a class="link" href="https://tiiiktak.github.io/blog/%e6%a0%91%e8%8e%93%e6%b4%be%e9%85%8d%e7%bd%ae%e6%91%84%e5%83%8f%e5%a4%b4"  target="_blank" rel="noopener"
+    >调用树莓派摄像头</a>啦</p>
 
-<pre><code class="language-sh">./opencvtest
-</code></pre>
+</section>
 
-<p><img src="C:Users1Desktop1111.png" alt="opencv+cpp_test" /></p>
 
-<p>于是树莓派的opencv终于安装完成啦，接下来就要<a href="https://tiiiktak.github.io/blog/树莓派配置摄像头">调用树莓派摄像头</a>啦</p>
-</div>
-  <footer class="post-footer">
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

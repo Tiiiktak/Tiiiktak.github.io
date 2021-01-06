@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下
 原文发表于2018-12-19
 这两天，一个“魔法画板”在国外传疯了。
 AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能装满好几个美术馆。
@@ -55,344 +49,620 @@ AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能
 三种额外玩法 除了这个万物皆可喵的网页之外，喵妮卡所在的Google Magenta团队还用Sketch-RNN创作了几个不同的涂鸦应用。
 9×N种预测，总能猜中你的心 你涂鸦的每一笔，都被我预料到了。
 无论你画了个啥，我都能猜出你接下来准备如何下笔。
-并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。
+而且我还能选择不同的美术风格，通过调整temperature，数值越接近1，我的画风越抽象、越狂放不羁；'><title>【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</title>
+
+<link rel='canonical' href='https://example.com/blog/reprint_magic_sketchpad/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输'>
+<meta property='og:description' content='最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下
+原文发表于2018-12-19
+这两天，一个“魔法画板”在国外传疯了。
+AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能装满好几个美术馆。
+这个画板背后，可不是一个普通的画画AI。它，会脑补。
+随便画一笔，就能得到一只猫：
+画个圆圈，变成猫：
+画个三角，变成猫：
+画个方块，变成猫：
+真是万物皆可喵喵。
+当然，你也可以不让它画猫，改成画狗。只要你设定了一个绘画的目标，之后随便画一笔，AI就能脑补出余下的画面。
+这个“魔法”，是来自谷歌的吸猫少女Monica Dinculescu用Sketch RNN开发的。
+因为她爱猫成痴，不仅自己头像是和自家喵子的合影，连个人主页域名都叫Meowni.ca，我们就叫她喵妮卡好了。
+所以，受到创作者的影响，这个AI默认属性为吸猫爱好者，但除了猫之外，AI也会脑补许多其他内容，脑洞很大。
+发布之后，众人竞相玩耍，好评如潮，2000多人点赞。
+有人让AI画了满屏的骷髅，说，好美啊！
+谷歌大佬David Ha也表示，他已经试过用各种基本形状来教导AI画羊了。
+不止有魔力，还可以加戏 喵妮卡给应用起名为魔法画板 (Magic Sketchpad) ，也名副其实。
+毕竟，只要画一笔，妈咪妈咪哄！一整张图就出现在眼前。
+△ 你想要什么样的美人鱼？
+而且，只要按一下选择栏左边的刷新按钮，AI就会根据刚才那一笔，不断为你展现新的画法。
+一共有100多种东西可以画，青蛙，秋千，直升飞机，连龙猫里的猫巴士都有。
+我是一只豆豆眼的猫头鹰：
+我是一只很鬼魅的仙人掌：
+为了这100多种选项，都能找到合适的色彩来诠释，画板还提供了18种颜色的画笔。
+这样一来，就有数不清的排列组合。有大胆想法的小伙伴们，可以在魔法画板上尽情加戏了。
+在你开始表演之前，量子位先抛抛砖：
+鲸鱼喷出的不一定是水，也有可能是花。
+牙刷上方温柔的曲线不一定是牙膏，也有可能是蜗牛。
+另外，如果你还没想到，除了排列组合之外，还可以鬼畜啊。
+一头鲸鱼喷水没什么，十几头鲸一起喷，就很有节奏感了 (误) 。
+一个人做瑜伽太孤单了，十几个人一起做，姿态各不相同，清明瑜伽图岂不美哉？
+不过虽然好玩，量子位似乎还是发现了一个bug，像猫巴士 (Catbus) 这种组合选项：画方成车，画圆成猫，无法兼顾。那么，怎样才能一步生成下面这样的效果呢？
+想要体验一下的盆友，传送门照例在文末~
+人家是有背景的 可能你已经发觉了，它的画风很像的谷歌推出的Quick, Draw!，中文名为“猜画小歌”。
+是的，他们是一家人。
+喵妮卡在推特上说了，她的魔法画板使用的就是Quick, Draw!数据集。
+这个数据集里面，有5000万张画，分为345个类别。每一张画，都记录了画画的整个过程：画笔运动的方向，何时提笔，何时停止绘画。
+如果你玩过猜画小歌，那这个数据集里，也有你的一份贡献。
+既然使用的是Quick, Draw!数据集，模型基本上没有什么悬念。
+正是Sketch-RNN。这是一个用Quick, Draw！数据集训练出来循环神经网络（RNN）。目标是让AI以类似人类的方式来画画，并概括出抽象的概念。
+模型有这样的能力，做出来魔法画板也就没有那么难了。
+你随手画个圈，就是为Sketch-RNN输入了一个序列，它可以根据这个序列和你选择要画的东西，预测接下来的序列：也就是补完这幅画。
+虽然画风奇特，但画啥就有点像啥。
+具体的实现代码，喵妮卡也全部放出来了。（传送门在文末。）
+三种额外玩法 除了这个万物皆可喵的网页之外，喵妮卡所在的Google Magenta团队还用Sketch-RNN创作了几个不同的涂鸦应用。
+9×N种预测，总能猜中你的心 你涂鸦的每一笔，都被我预料到了。
+无论你画了个啥，我都能猜出你接下来准备如何下笔。
+并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。
+而且我还能选择不同的美术风格，通过调整temperature，数值越接近1，我的画风越抽象、越狂放不羁；'>
+<meta property='og:url' content='https://example.com/blog/reprint_magic_sketchpad/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-10-20T00:45:31&#43;08:00'/><meta property='article:modified_time' content='2019-10-20T00:45:31&#43;08:00'/>
+<meta name="twitter:title" content="【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输">
+<meta name="twitter:description" content="最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下
+原文发表于2018-12-19
+这两天，一个“魔法画板”在国外传疯了。
+AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能装满好几个美术馆。
+这个画板背后，可不是一个普通的画画AI。它，会脑补。
+随便画一笔，就能得到一只猫：
+画个圆圈，变成猫：
+画个三角，变成猫：
+画个方块，变成猫：
+真是万物皆可喵喵。
+当然，你也可以不让它画猫，改成画狗。只要你设定了一个绘画的目标，之后随便画一笔，AI就能脑补出余下的画面。
+这个“魔法”，是来自谷歌的吸猫少女Monica Dinculescu用Sketch RNN开发的。
+因为她爱猫成痴，不仅自己头像是和自家喵子的合影，连个人主页域名都叫Meowni.ca，我们就叫她喵妮卡好了。
+所以，受到创作者的影响，这个AI默认属性为吸猫爱好者，但除了猫之外，AI也会脑补许多其他内容，脑洞很大。
+发布之后，众人竞相玩耍，好评如潮，2000多人点赞。
+有人让AI画了满屏的骷髅，说，好美啊！
+谷歌大佬David Ha也表示，他已经试过用各种基本形状来教导AI画羊了。
+不止有魔力，还可以加戏 喵妮卡给应用起名为魔法画板 (Magic Sketchpad) ，也名副其实。
+毕竟，只要画一笔，妈咪妈咪哄！一整张图就出现在眼前。
+△ 你想要什么样的美人鱼？
+而且，只要按一下选择栏左边的刷新按钮，AI就会根据刚才那一笔，不断为你展现新的画法。
+一共有100多种东西可以画，青蛙，秋千，直升飞机，连龙猫里的猫巴士都有。
+我是一只豆豆眼的猫头鹰：
+我是一只很鬼魅的仙人掌：
+为了这100多种选项，都能找到合适的色彩来诠释，画板还提供了18种颜色的画笔。
+这样一来，就有数不清的排列组合。有大胆想法的小伙伴们，可以在魔法画板上尽情加戏了。
+在你开始表演之前，量子位先抛抛砖：
+鲸鱼喷出的不一定是水，也有可能是花。
+牙刷上方温柔的曲线不一定是牙膏，也有可能是蜗牛。
+另外，如果你还没想到，除了排列组合之外，还可以鬼畜啊。
+一头鲸鱼喷水没什么，十几头鲸一起喷，就很有节奏感了 (误) 。
+一个人做瑜伽太孤单了，十几个人一起做，姿态各不相同，清明瑜伽图岂不美哉？
+不过虽然好玩，量子位似乎还是发现了一个bug，像猫巴士 (Catbus) 这种组合选项：画方成车，画圆成猫，无法兼顾。那么，怎样才能一步生成下面这样的效果呢？
+想要体验一下的盆友，传送门照例在文末~
+人家是有背景的 可能你已经发觉了，它的画风很像的谷歌推出的Quick, Draw!，中文名为“猜画小歌”。
+是的，他们是一家人。
+喵妮卡在推特上说了，她的魔法画板使用的就是Quick, Draw!数据集。
+这个数据集里面，有5000万张画，分为345个类别。每一张画，都记录了画画的整个过程：画笔运动的方向，何时提笔，何时停止绘画。
+如果你玩过猜画小歌，那这个数据集里，也有你的一份贡献。
+既然使用的是Quick, Draw!数据集，模型基本上没有什么悬念。
+正是Sketch-RNN。这是一个用Quick, Draw！数据集训练出来循环神经网络（RNN）。目标是让AI以类似人类的方式来画画，并概括出抽象的概念。
+模型有这样的能力，做出来魔法画板也就没有那么难了。
+你随手画个圈，就是为Sketch-RNN输入了一个序列，它可以根据这个序列和你选择要画的东西，预测接下来的序列：也就是补完这幅画。
+虽然画风奇特，但画啥就有点像啥。
+具体的实现代码，喵妮卡也全部放出来了。（传送门在文末。）
+三种额外玩法 除了这个万物皆可喵的网页之外，喵妮卡所在的Google Magenta团队还用Sketch-RNN创作了几个不同的涂鸦应用。
+9×N种预测，总能猜中你的心 你涂鸦的每一笔，都被我预料到了。
+无论你画了个啥，我都能猜出你接下来准备如何下笔。
+并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。
+而且我还能选择不同的美术风格，通过调整temperature，数值越接近1，我的画风越抽象、越狂放不羁；">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/tools/" style="background-color: #2a9d8f; color: #fff;">
+                Tools
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/reprint_magic_sketchpad/">【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</h1>
-    <div class="post-meta">2019.10.20</div>
-  </header>
-  <div class="post-content">
 
-<p><em>最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下</em></p>
+        <time class="article-time--published">Oct 20, 2019</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p><em>最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下</em></p>
 <p><em>原文发表于2018-12-19</em></p>
-
 <p>这两天，一个“魔法画板”在国外传疯了。</p>
-
 <p>AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能装满好几个美术馆。</p>
-
 <p>这个画板背后，可不是一个普通的画画AI。它，会脑补。</p>
-
 <p>随便画一笔，就能得到一只猫：</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuxGibU2lMm70jH2z7nfia7AleltcncrQWJh41xx1JxaZxbCa8icw7dhS8w/640?wx_fmt=gif" alt="image_1" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuxGibU2lMm70jH2z7nfia7AleltcncrQWJh41xx1JxaZxbCa8icw7dhS8w/640?wx_fmt=gif" alt="image_1"  /></p>
 <p>画个圆圈，变成猫：</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBurZS3tVH5jQ0ZiaAibt9HVugpP5OkUXptnzcm1X9CZPEDOGc9D8PIclicA/640?wx_fmt=gif" alt="image_2" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBurZS3tVH5jQ0ZiaAibt9HVugpP5OkUXptnzcm1X9CZPEDOGc9D8PIclicA/640?wx_fmt=gif" alt="image_2"  /></p>
 <p>画个三角，变成猫：</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBurBk8MmIsPe7CzJiacic9qA2YTkVsBgJibQExTLk7n2gIQUTYE9wXVaf2Q/640?wx_fmt=gif" alt="image_3" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBurBk8MmIsPe7CzJiacic9qA2YTkVsBgJibQExTLk7n2gIQUTYE9wXVaf2Q/640?wx_fmt=gif" alt="image_3"  /></p>
 <p>画个方块，变成猫：</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBu03PsA6UqVLz6ib1PSZHa45cCPzoaAMtfc6wNkJbVrp3TpYWOXeicbX4w/640?wx_fmt=gif" alt="image_4" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBu03PsA6UqVLz6ib1PSZHa45cCPzoaAMtfc6wNkJbVrp3TpYWOXeicbX4w/640?wx_fmt=gif" alt="image_4"  /></p>
 <p>真是万物皆可喵喵。</p>
-
 <p>当然，你也可以不让它画猫，改成画狗。只要你设定了一个绘画的目标，之后随便画一笔，AI就能脑补出余下的画面。</p>
-
 <p>这个“魔法”，是来自谷歌的吸猫少女Monica Dinculescu用Sketch RNN开发的。</p>
-
 <p>因为她爱猫成痴，不仅自己头像是和自家喵子的合影，连个人主页域名都叫Meowni.ca，我们就叫她喵妮卡好了。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_jpg/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuMktn2H1OQmdQX789ucJ8n0RE1vxNFibicrgBwpFg4wCOy9Bmq2RnRM0A/640?wx_fmt=jpeg" alt="image_5" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_jpg/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuMktn2H1OQmdQX789ucJ8n0RE1vxNFibicrgBwpFg4wCOy9Bmq2RnRM0A/640?wx_fmt=jpeg" alt="image_5"  /></p>
 <p>所以，受到创作者的影响，这个AI默认属性为吸猫爱好者，但除了猫之外，AI也会脑补许多其他内容，脑洞很大。</p>
-
 <p>发布之后，众人竞相玩耍，好评如潮，2000多人点赞。</p>
-
 <p>有人让AI画了满屏的骷髅，说，好美啊！</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBug83j0mMY7G4SpnSHgXsia2Qibc2lpWRAuw892JdXjiczlX5vLOzYnF4Dw/640?wx_fmt=png" alt="image_6" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBug83j0mMY7G4SpnSHgXsia2Qibc2lpWRAuw892JdXjiczlX5vLOzYnF4Dw/640?wx_fmt=png" alt="image_6"  /></p>
 <p>谷歌大佬David Ha也表示，他已经试过用各种基本形状来教导AI画羊了。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuiczCiaIsO8Zj3fwrotkMJia4viak9Bc6derbeDtSzoicTRMjiaRxCN7WwqXQ/640?wx_fmt=png" alt="image_7" /></p>
-
-<h2 id="不止有魔力-还可以加戏">不止有魔力，还可以加戏</h2>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuiczCiaIsO8Zj3fwrotkMJia4viak9Bc6derbeDtSzoicTRMjiaRxCN7WwqXQ/640?wx_fmt=png" alt="image_7"  /></p>
+<h2 id="不止有魔力还可以加戏">不止有魔力，还可以加戏</h2>
 <p>喵妮卡给应用起名为魔法画板 (Magic Sketchpad) ，也名副其实。</p>
-
 <p>毕竟，只要画一笔，妈咪妈咪哄！一整张图就出现在眼前。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuN5XqlAPpnBPoia8ibABjGzaCpWbD6rNBKRKcufVOu0jIw2J9AbV6mcrw/640?wx_fmt=gif" alt="image_8" />
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuN5XqlAPpnBPoia8ibABjGzaCpWbD6rNBKRKcufVOu0jIw2J9AbV6mcrw/640?wx_fmt=gif" alt="image_8"  />
 △ 你想要什么样的美人鱼？</p>
-
 <p>而且，只要按一下选择栏左边的刷新按钮，AI就会根据刚才那一笔，不断为你展现新的画法。</p>
-
 <p>一共有100多种东西可以画，青蛙，秋千，直升飞机，连龙猫里的猫巴士都有。</p>
-
 <p>我是一只豆豆眼的猫头鹰：</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuOLrj49KxWylC8AYY93GkJs7puUholiaKGibpfgqsZAelCf9ejb94fFvQ/640?wx_fmt=gif" alt="image_9" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuOLrj49KxWylC8AYY93GkJs7puUholiaKGibpfgqsZAelCf9ejb94fFvQ/640?wx_fmt=gif" alt="image_9"  /></p>
 <p>我是一只很鬼魅的仙人掌：</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBupMo2AGmE7Yot4ElpjovVmy6nnkjKFx4n8UjiaLJdgGMa8YZnKtDEI9Q/640?wx_fmt=gif" alt="image_10" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBupMo2AGmE7Yot4ElpjovVmy6nnkjKFx4n8UjiaLJdgGMa8YZnKtDEI9Q/640?wx_fmt=gif" alt="image_10"  /></p>
 <p>为了这100多种选项，都能找到合适的色彩来诠释，画板还提供了18种颜色的画笔。</p>
-
 <p>这样一来，就有数不清的排列组合。有大胆想法的小伙伴们，可以在魔法画板上尽情加戏了。</p>
-
 <p>在你开始表演之前，量子位先抛抛砖：</p>
-
 <p>鲸鱼喷出的不一定是水，也有可能是花。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuoeiaia4mwZg3ScH354PUuxXRPRhAUHdIjvsdxHYZnWwB7DW3lGVWXvRw/640?wx_fmt=gif" alt="image_11" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuoeiaia4mwZg3ScH354PUuxXRPRhAUHdIjvsdxHYZnWwB7DW3lGVWXvRw/640?wx_fmt=gif" alt="image_11"  /></p>
 <p>牙刷上方温柔的曲线不一定是牙膏，也有可能是蜗牛。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuucBs5ESFIfxrwSFKpbbBdQJVxeI0QsjibjSY0V35oLdHkt9x8HKQkFA/640?wx_fmt=gif" alt="image_12" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuucBs5ESFIfxrwSFKpbbBdQJVxeI0QsjibjSY0V35oLdHkt9x8HKQkFA/640?wx_fmt=gif" alt="image_12"  /></p>
 <p>另外，如果你还没想到，除了排列组合之外，还可以鬼畜啊。</p>
-
 <p>一头鲸鱼喷水没什么，十几头鲸一起喷，就很有节奏感了 (误) 。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBulicDgciaT6icaxoicTFYwic8Hkt3jhH3aAzDpVMhRBG1Lg8GSS4gnPtZM2g/640?wx_fmt=png" alt="image_13" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBulicDgciaT6icaxoicTFYwic8Hkt3jhH3aAzDpVMhRBG1Lg8GSS4gnPtZM2g/640?wx_fmt=png" alt="image_13"  /></p>
 <p>一个人做瑜伽太孤单了，十几个人一起做，姿态各不相同，清明瑜伽图岂不美哉？</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBup2fvGDa7yyX9or28SxjBNhEXicDyqG7Tjp32XicpXVApJYBvHLnsPasg/640?wx_fmt=png" alt="image_14" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBup2fvGDa7yyX9or28SxjBNhEXicDyqG7Tjp32XicpXVApJYBvHLnsPasg/640?wx_fmt=png" alt="image_14"  /></p>
 <p>不过虽然好玩，量子位似乎还是发现了一个bug，像猫巴士 (Catbus) 这种组合选项：画方成车，画圆成猫，无法兼顾。那么，怎样才能一步生成下面这样的效果呢？</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBueyg5wKAX5CIupJoRg58OHfWjeJfNAtKlGWPIQzCff4zicsE9u6q0ic4A/640?wx_fmt=png" alt="image_15" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBueyg5wKAX5CIupJoRg58OHfWjeJfNAtKlGWPIQzCff4zicsE9u6q0ic4A/640?wx_fmt=png" alt="image_15"  /></p>
 <p>想要体验一下的盆友，传送门照例在文末~</p>
-
 <h2 id="人家是有背景的">人家是有背景的</h2>
-
 <p>可能你已经发觉了，它的画风很像的谷歌推出的Quick, Draw!，中文名为“猜画小歌”。</p>
-
 <p>是的，他们是一家人。</p>
-
 <p>喵妮卡在推特上说了，她的魔法画板使用的就是Quick, Draw!数据集。</p>
-
 <p>这个数据集里面，有5000万张画，分为345个类别。每一张画，都记录了画画的整个过程：画笔运动的方向，何时提笔，何时停止绘画。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_jpg/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBugmUIQrcXah4CcFhqJJQYDV4OibkAzGDzxDUdtCcVrIONjw1C9ibafJAA/640?wx_fmt=jpeg" alt="image_16" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_jpg/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBugmUIQrcXah4CcFhqJJQYDV4OibkAzGDzxDUdtCcVrIONjw1C9ibafJAA/640?wx_fmt=jpeg" alt="image_16"  /></p>
 <p>如果你玩过猜画小歌，那这个数据集里，也有你的一份贡献。</p>
-
 <p>既然使用的是Quick, Draw!数据集，模型基本上没有什么悬念。</p>
-
 <p>正是Sketch-RNN。这是一个用Quick, Draw！数据集训练出来循环神经网络（RNN）。目标是让AI以类似人类的方式来画画，并概括出抽象的概念。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_jpg/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBucU3n5EK2cXVdWMXVItHLns6gDic6B4mKg5vt8lCibYQPBgDQ9AepFBwg/640?wx_fmt=jpeg" alt="image_17" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_jpg/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBucU3n5EK2cXVdWMXVItHLns6gDic6B4mKg5vt8lCibYQPBgDQ9AepFBwg/640?wx_fmt=jpeg" alt="image_17"  /></p>
 <p>模型有这样的能力，做出来魔法画板也就没有那么难了。</p>
-
 <p>你随手画个圈，就是为Sketch-RNN输入了一个序列，它可以根据这个序列和你选择要画的东西，预测接下来的序列：也就是补完这幅画。</p>
-
 <p>虽然画风奇特，但画啥就有点像啥。</p>
-
 <p>具体的实现代码，喵妮卡也全部放出来了。（传送门在文末。）</p>
-
 <h2 id="三种额外玩法">三种额外玩法</h2>
-
 <p>除了这个万物皆可喵的网页之外，喵妮卡所在的Google Magenta团队还用Sketch-RNN创作了几个不同的涂鸦应用。</p>
-
 <p>9×N种预测，总能猜中你的心
 你涂鸦的每一笔，都被我预料到了。</p>
-
 <p>无论你画了个啥，我都能猜出你接下来准备如何下笔。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBu5L0hd7IV3J61RQNeRuXaEtwEdfUQzsSAfsLLWSQ57QX2DJxW0Mm5Zg/640?wx_fmt=gif" alt="image_18" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBu5L0hd7IV3J61RQNeRuXaEtwEdfUQzsSAfsLLWSQ57QX2DJxW0Mm5Zg/640?wx_fmt=gif" alt="image_18"  /></p>
 <p>并且，我有无数种方案，只要点击predict，就可以出现新的9种图案。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBu5EUjltNya68cUBMibf37dM9XHdeoOsYmNvpuVYZfwCqUTQpkLah71nw/640?wx_fmt=gif" alt="image_19" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBu5EUjltNya68cUBMibf37dM9XHdeoOsYmNvpuVYZfwCqUTQpkLah71nw/640?wx_fmt=gif" alt="image_19"  /></p>
 <p>而且我还能选择不同的美术风格，通过调整temperature，数值越接近1，我的画风越抽象、越狂放不羁；</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBupHJWWZdrkvblF7QwiaqgqWzmlD0Mrzk4ia5eP7TicM6qAJtLF1CXGEqMQ/640?wx_fmt=png" alt="image_20" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBupHJWWZdrkvblF7QwiaqgqWzmlD0Mrzk4ia5eP7TicM6qAJtLF1CXGEqMQ/640?wx_fmt=png" alt="image_20"  /></p>
 <p>数值越接近0，我的画风越写实，下笔婉转，基本符合小学美术的要求。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuVrEY4Q4y50g9YQiaCouKqa1Fqia2zIFmVbhzdQgVibZBxfVp0F29R3s1Q/640?wx_fmt=png" alt="image_21" /></p>
-
-<h3 id="不同图像-一键生成渐变效果">不同图像，一键生成渐变效果</h3>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuVrEY4Q4y50g9YQiaCouKqa1Fqia2zIFmVbhzdQgVibZBxfVp0F29R3s1Q/640?wx_fmt=png" alt="image_21"  /></p>
+<h3 id="不同图像一键生成渐变效果">不同图像，一键生成渐变效果</h3>
 <p>和GAN的许多应用Demo一样，Sketch-RNN也可以实现“渐变”功能。</p>
-
 <p>比如，我们随机选了两个公交车的图案，图案的美术风格依然由“狂放度”temperature决定。</p>
-
 <p>之后，点击Interpolate!就可以实现插值效果，也就是两个图案渐变过程的每一帧变化图案。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuojtaAZsHicPWmq9AOwV9APibv5QproRh5NxHkf4icOurgK7vDianHbZKbw/640?wx_fmt=gif" alt="image_22" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuojtaAZsHicPWmq9AOwV9APibv5QproRh5NxHkf4icOurgK7vDianHbZKbw/640?wx_fmt=gif" alt="image_22"  /></p>
 <p>###我画得跟你一样</p>
-
 <p>这个玩法用上了变分自动编码器（Variational Auto-Encoder，VAE）</p>
-
 <p>VAE在这里的应用，是“模仿你画画”。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuU3VQNfjR56oRCAe0n2KdsrhVz3TPVuWFuzYUKvlOjBPwLm1qsMVXfA/640?wx_fmt=gif" alt="image_23" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuU3VQNfjR56oRCAe0n2KdsrhVz3TPVuWFuzYUKvlOjBPwLm1qsMVXfA/640?wx_fmt=gif" alt="image_23"  /></p>
 <p>比如，画一只猫猫，画完之后点击auto-encode，就可以模仿你的笔触，画出各种不同的猫。</p>
-
 <p>不过，在不同品类上，似乎学得不太像。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuuxKXDVo2icWytkUWA0D0S2BZnJBGs99UaOGHbV4JV7vwFDcd11SPyIw/640?wx_fmt=png" alt="image_24" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuuxKXDVo2icWytkUWA0D0S2BZnJBGs99UaOGHbV4JV7vwFDcd11SPyIw/640?wx_fmt=png" alt="image_24"  /></p>
 <p>可能是贡献数据集的那些外国人，不认识“王”字，对小脑斧的理解跟我们不太一样吧。</p>
-
 <p>另外，这个AI很有个性，非常坚持自己的看法。</p>
-
 <p>比如选中菠萝pineapple，你非要画一个苹果，它也不相信你画的就是菠萝。</p>
-
-<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuYjJrZ1O8b5nY0YTVg7cMxSsuuvo2uUicWBk7rdqsW12QU49Ns04sktQ/640?wx_fmt=gif" alt="image_25" /></p>
-
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_gif/YicUhk5aAGtCFM2D0ic1Oy6xlEVllv7zBuYjJrZ1O8b5nY0YTVg7cMxSsuuvo2uUicWBk7rdqsW12QU49Ns04sktQ/640?wx_fmt=gif" alt="image_25"  /></p>
 <p>△ “图样，本AI见过的菠萝多了去了，不要拿苹果糊弄我”
 真是“投之以苹果，报之以菠萝”。</p>
-
 <h2 id="传送门">传送门</h2>
-
 <h3 id="魔法画板">魔法画板</h3>
-
 <p>亲测手机可玩</p>
-
 <p><a href="https://magic-sketchpad.glitch.me/">https://magic-sketchpad.glitch.me/</a></p>
-
 <p>实现代码：</p>
-
 <p><a href="https://glitch.com/edit/#!/magic-sketchpad?path=README.md:1:0">https://glitch.com/edit/#!/magic-sketchpad?path=README.md:1:0</a></p>
-
 <h3 id="其他可玩demo">其他可玩Demo</h3>
-
 <p>多预测：</p>
-
 <p><a href="https://magenta.tensorflow.org/assets/sketch_rnn_demo/multi_predict.html">https://magenta.tensorflow.org/assets/sketch_rnn_demo/multi_predict.html</a></p>
-
 <p>插值：</p>
-
 <p><a href="https://magenta.tensorflow.org/assets/sketch_rnn_demo/interp.html">https://magenta.tensorflow.org/assets/sketch_rnn_demo/interp.html</a></p>
-
 <p>变分自动编码器（VAE）：</p>
-
 <p><a href="https://magenta.tensorflow.org/assets/sketch_rnn_demo/multi_vae.html">https://magenta.tensorflow.org/assets/sketch_rnn_demo/multi_vae.html</a></p>
-
 <p>背后的Sketch-RNN
 Sketch-RNN论文：</p>
-
 <p><a href="https://arxiv.org/abs/1704.03477">https://arxiv.org/abs/1704.03477</a></p>
-
 <p>Google博客：</p>
-
 <p><a href="https://ai.googleblog.com/2017/04/teaching-machines-to-draw.html">https://ai.googleblog.com/2017/04/teaching-machines-to-draw.html</a></p>
-
 <p>Magenta博客：</p>
-
 <p><a href="https://magenta.tensorflow.org/sketch-rnn-demo">https://magenta.tensorflow.org/sketch-rnn-demo</a></p>
-
-<hr />
-
+<hr>
 <p>版权声明：本文为CSDN博主「量子位」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。</p>
-
 <p>原文链接：</p>
-
 <p><a href="https://blog.csdn.net/yH0VLDe8VG8ep9VGe/article/details/85110781">https://blog.csdn.net/yH0VLDe8VG8ep9VGe/article/details/85110781</a></p>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

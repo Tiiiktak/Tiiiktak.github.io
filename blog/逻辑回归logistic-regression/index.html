@@ -16,7 +16,7 @@
 假说表示 我们引入一个新的模型，逻辑回归，该模型的输出变量范围始终在0和1之间。
 逻辑回归模型的假设是：h_theta(x) = g(theta&#39;X) 其中:X代表特征向量，g代表逻辑函数（logistic function)是一个常用的S形函数（Sigmoid function），公式为：g(z) = 1 / (1 &#43; exp(-z)
 Python代码实现
-import numpy as np def sigmoid(z): return 1 / (1 &#43; np.exp(-z))  该函数图像为
+import numpy as np def sigmoid(z): return 1 / (1 &#43; np.exp(-z)) 该函数图像为
 合起来，我们得到逻辑回归模型的假设：
 对模型的理解：g(z) = 1 / (1 &#43; exp(-z)
 h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计算输出变量=1的可能性（estimated probablity）即h_theta(x) = P(y=1 | x;theta)">
@@ -28,32 +28,30 @@ h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计�
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="single">
     <header class="header">
@@ -85,274 +83,166 @@ h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计�
     <h1 class="post-title">逻辑回归Logistic Regression</h1>
     <div class="post-meta">2020.1.13</div>
   </header>
-  <div class="post-content">
-
-<h2 id="分类问题">分类问题</h2>
-
+  <div class="post-content"><h2 id="分类问题">分类问题</h2>
 <p>在分类问题中，我们需要预测的变量<code>y</code>是离散的值，我们将学习一种叫做逻辑回归 (Logistic Regression) 的算法</p>
-
 <p>在分类问题中，我们尝试预测的是结果是否属于某一个类（例如正确或错误）。</p>
-
-<p>将因变量(dependent variable)可能属于的两个类分别称为<strong>负向类（negative class）</strong>和<strong>正向类（positive class）</strong>，则因变量<code>y ∈ 0,1</code>  ，其中 <code>0</code> 表示负向类，<code>1</code> 表示正向类。</p>
-
+<p>将因变量(dependent variable)可能属于的两个类分别称为<strong>负向类（negative class）<strong>和</strong>正向类（positive class）</strong>，则因变量<code>y ∈ 0,1</code>  ，其中 <code>0</code> 表示负向类，<code>1</code> 表示正向类。</p>
 <p>如果我们要用线性回归算法来解决一个分类问题，对于分类，<code>y</code>取值为 0 或者1，但如果你使用的是线性回归，那么假设函数的输出值可能远大于 1，或者远小于0，即使所有训练样本的标签<code>y</code>都等于 0 或 1。尽管我们知道标签应该取值0 或者1，但是如果算法得到的值远大于1或者远小于0的话，就会感觉很奇怪。</p>
-
 <p>所以我们在接下来的要研究的算法就叫做逻辑回归算法，这个算法的性质是：<strong>它的输出值永远在0到 1 之间</strong></p>
-
 <p>逻辑回归算法是<strong>分类算法</strong>，我们将它作为分类算法使用。有时候可能因为这个算法的名字中出现了“回归”使你感到困惑，但逻辑回归算法实际上真的是一种分类算法</p>
-
 <h2 id="假说表示">假说表示</h2>
-
 <p>我们引入一个新的模型，逻辑回归，该模型的输出变量范围始终在0和1之间。</p>
-
 <p>逻辑回归模型的假设是：<code>h_theta(x) = g(theta'X)</code> 其中:<code>X</code>代表特征向量，<code>g</code>代表逻辑函数（logistic function)是一个常用的S形函数（Sigmoid function），公式为：<code>g(z) = 1 / (1 + exp(-z)</code></p>
-
 <p>Python代码实现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 
-<pre><code class="language-py">import numpy as np
-
-def sigmoid(z):
-    return 1 / (1 + np.exp(-z))
-</code></pre>
-
-<p>该函数图像为</p>
-
-<p><img src="https://i.loli.net/2020/01/12/C8sjLIo3F1p5gtP.png" alt="sigmoid_function" /></p>
-
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sigmoid</span>(z):
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>z))
+</code></pre></div><p>该函数图像为</p>
+<p><img src="https://i.loli.net/2020/01/12/C8sjLIo3F1p5gtP.png" alt="sigmoid_function"></p>
 <p>合起来，我们得到逻辑回归模型的假设：</p>
-
 <p>对模型的理解：<code>g(z) = 1 / (1 + exp(-z)</code></p>
-
 <p><code>h_theta(x)</code>的作用是，对于给定的输入变量，根据选择的参数计算输出变量=1的可能性（estimated probablity）即<code>h_theta(x) = P(y=1 | x;theta)</code></p>
-
 <p>例如，如果对于给定的<code>x</code>，通过已经确定的参数计算得出<code>h_theta(x) = 0.7</code>，则表示有70%的几率为正向类，相应地为负向类的几率为1-0.7=0.3。</p>
-
 <h2 id="判定边界">判定边界</h2>
-
 <p>决策边界(decision boundary)这个概念能更好地帮助我们理解逻辑回归的假设函数在计算什么。</p>
-
-<p><img src="https://i.loli.net/2020/01/12/NTLZx6EkpMD95gd.png" alt="" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/NTLZx6EkpMD95gd.png" alt=""></p>
 <p>逻辑回归中，我们预测：</p>
-
 <ul>
 <li>当<code>h(x) &gt;= 0.5</code>时，预测<code>y = 1</code></li>
 <li>当<code>h(x) &lt; 0.5</code>时，预测<code>y = 0</code></li>
 </ul>
-
 <p>根据上面绘制出的S形函数图像，我们知道当</p>
-
 <ul>
 <li><code>z = 0</code>时<code>g(z) = 0.5</code></li>
 <li><code>z &gt; 0</code>时<code>g(z) &gt; 0.5</code></li>
 <li><code>z &lt; 0</code>时<code>g(z) &lt; 0.5</code></li>
 </ul>
-
 <p>又 <code>z = theta'x</code>，即：<code>theta'x &gt;= 0</code>时，预测<code>y = 1</code>；<code>theta'x &lt; 0</code>时，预测<code>y =0</code></p>
-
 <p>现在假设我们有一个模型：</p>
-
-<p><img src="https://i.loli.net/2020/01/12/hC3wVWkyYsRHpXe.png" alt="decision boundary" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/hC3wVWkyYsRHpXe.png" alt="decision boundary"></p>
 <p>并且参数<code>theta</code>是向量<code>[-3 1 1]</code>，则当<code>-3+x1+x2&gt;-0</code>，即<code>x1+x2&gt;=3</code>时，模型将预测<code>y = 1</code>。我们可以绘制直线<code>x1 + x2 = 3</code>，这条线时我们模型的分界线，将预测为<code>1</code>的区域和预测为<code>0</code>的区域分隔开</p>
-
-<p><img src="https://i.loli.net/2020/01/12/COyuLzaENc5b8VT.jpg" alt="" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/COyuLzaENc5b8VT.jpg" alt=""></p>
 <p>假使我们的数据呈现这样的分布情况，怎样的模型才能适合呢？</p>
-
-<p><img src="https://i.loli.net/2020/01/12/cHUofNRVzvFY13O.jpg" alt="" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/cHUofNRVzvFY13O.jpg" alt=""></p>
 <p>因为需要用曲线才能分隔<code>y = 0</code>的区域和<code>y = 1</code>的区域，我们需要二次方特征：</p>
-
 <p><code>h_theta(x) = g(theta0 + theta1x1 + theta2x2 + theta3x1^2 + theta4x2^2)</code></p>
-
 <p>则我们得到的判定边界恰好是圆点在原点且半径为1的圆形。</p>
-
 <p>我们可以用非常复杂的模型来适应非常复杂形状的判定边界。</p>
-
 <h2 id="代价函数">代价函数</h2>
-
 <p>我们要介绍如何拟合逻辑回归模型的参数<code>theta</code>。具体来说，要定义用来拟合参数的优化目标或者叫代价函数，这便是监督学习问题中的逻辑回归模型的拟合问题。</p>
-
-<p><img src="https://i.loli.net/2020/01/12/c2ysOmpk7YqJgGZ.png" alt="拟合代价函数" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/c2ysOmpk7YqJgGZ.png" alt="拟合代价函数"></p>
 <p>对于线性回归模型，我们定义的代价函数是所有模型误差的平方和。理论上来说，我们也可以对逻辑回归模型沿用这个定义，但是问题在于，当我们将<code>h_theta(x)</code>带入到这样定义了的代价函数中时，我们得到的代价函数将是一个<strong>非凸函数（non-convexfunction）</strong>（左图）。</p>
-
-<p><img src="https://i.loli.net/2020/01/12/CVjyuqpzbig4Zr7.jpg" alt="非凸函数与凸函数" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/CVjyuqpzbig4Zr7.jpg" alt="非凸函数与凸函数"></p>
 <p>这意味着我们的代价函数有<strong>许多局部最小值</strong>，这将影响梯度下降算法寻找全局最小值。</p>
-
 <p>在线性回归中，代价函数为</p>
-
-<p><img src="https://i.loli.net/2020/01/07/9gAqCplvsBV1FmU.png" alt="多变量代价函数" /></p>
-
+<p><img src="https://i.loli.net/2020/01/07/9gAqCplvsBV1FmU.png" alt="多变量代价函数"></p>
 <p>重新定义<strong>逻辑回归的代价函数</strong>为</p>
-
-<p><img src="https://i.loli.net/2020/01/12/vH3AkVmJnYapQOI.png" alt="逻辑回归代价函数" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/vH3AkVmJnYapQOI.png" alt="逻辑回归代价函数"></p>
 <p><code>h(x)</code>与<code>Cost(h(x), y)</code>之间的关系如图所示</p>
-
-<p><img src="https://i.loli.net/2020/01/12/XE9RGg6HUDi5fK2.png" alt="h()与cost()" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/XE9RGg6HUDi5fK2.png" alt="h()与cost()"></p>
 <p>这样构建的函数的特点是：</p>
-
 <ul>
 <li>当实际的<code>y=1</code>且<code>h(x)</code>也为 1 时误差为 0</li>
 <li>当<code>y=1</code>但<code>h(x)</code>不为1时误差随着<code>h(x)</code>变小而变大；</li>
 <li>当实际的<code>y=0</code>且<code>h(x)</code>也为 0 时代价为 0</li>
 <li>当<code>y=0</code>但<code>h(x)</code>不为 0 时误差随着<code>h(x)</code>的变大而变大。</li>
 </ul>
-
 <p>将构建的<code>Cost(h(x), y)</code>简化如下</p>
-
 <p><code>Cost(h(x),y) = -y*log(h(x)) - (1-y)*log(1-h(x))</code></p>
-
 <p>带入代价函数得</p>
-
-<p><img src="https://i.loli.net/2020/01/12/BVjRhkAwnrdlW2K.png" alt="拟合函数" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/BVjRhkAwnrdlW2K.png" alt="拟合函数"></p>
 <p>Python实现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 
-<pre><code class="language-py">import numpy as np
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(theta, X, y):
 
-def cost(theta, X, y):
-
-    theta = np.matrix(theta)
-    X = np.matrix(X)
-    y = np.matrix(y)
-    first = np.multiply(-y, np.log(sigmoid(X* theta.T)))
-    second = np.multiply((1 - y), np.log(1 - sigmoid(X* theta.T)))
-    return np.sum(first - second) / (len(X))
-</code></pre>
-
-<p>在得到这样一个代价函数以后，我们便可以用<strong>梯度下降</strong>算法来求得能使代价函数最小的参数了。算法为：</p>
-
-<p><img src="https://i.loli.net/2020/01/12/FBltDqc1aNOoRkT.png" alt="逻辑回归_梯度下降" /></p>
-
+    theta <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>matrix(theta)
+    X <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>matrix(X)
+    y <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>matrix(y)
+    first <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>multiply(<span style="color:#f92672">-</span>y, np<span style="color:#f92672">.</span>log(sigmoid(X<span style="color:#f92672">*</span> theta<span style="color:#f92672">.</span>T)))
+    second <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>multiply((<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> y), np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> sigmoid(X<span style="color:#f92672">*</span> theta<span style="color:#f92672">.</span>T)))
+    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>sum(first <span style="color:#f92672">-</span> second) <span style="color:#f92672">/</span> (len(X))
+</code></pre></div><p>在得到这样一个代价函数以后，我们便可以用<strong>梯度下降</strong>算法来求得能使代价函数最小的参数了。算法为：</p>
+<p><img src="https://i.loli.net/2020/01/12/FBltDqc1aNOoRkT.png" alt="逻辑回归_梯度下降"></p>
 <p>我们定义了单训练样本的代价函数，凸性分析的内容是超出这门课的范围的，但是可以证明我们所选的代价值函数会给我们一个凸优化问题。代价函数<code>J(theta)</code>会是一个凸函数，并且没有局部最优值。</p>
-
 <blockquote>
 <p>推导过程如下:</p>
-
-<p><img src="https://i.loli.net/2020/01/12/8NBDvk7ltC5jbry.png" alt="推导过程" /></p>
-
+</blockquote>
+<blockquote>
+<p><img src="https://i.loli.net/2020/01/12/8NBDvk7ltC5jbry.png" alt="推导过程"></p>
+</blockquote>
+<blockquote>
 <p>注：虽然得到的梯度下降算法表面上看上去与线性回归的梯度下降算法一样，但是这里的<code>h_theta(x) = g(theta'X)</code>与线性回归中不同，所以实际上是不一样的。另外，在运行梯度下降算法之前，进行特征缩放依旧是非常必要的。</p>
 </blockquote>
-
-<p>一些梯度下降算法之外的选择： 除了梯度下降算法以外，还有一些常被用来令代价函数最小的算法，这些算法更加复杂和优越，而且通常不需要人工选择学习率，通常比梯度下降算法要更加快速。这些算法有：<strong>共轭梯度（Conjugate Gradient）</strong>，<strong>局部优化法(Broyden fletcher goldfarb shann,BFGS)</strong>和<strong>有限内存局部优化法(LBFGS)</strong>，fminunc是 matlab中的一个最小值优化函数，使用时我们需要提供代价函数和每个参数的求导，下面是 matlab 中使用 fminunc 函数的代码示例：</p>
-
-<pre><code class="language-matlab">function [jVal, gradient] = costFunction(theta)
+<p>一些梯度下降算法之外的选择： 除了梯度下降算法以外，还有一些常被用来令代价函数最小的算法，这些算法更加复杂和优越，而且通常不需要人工选择学习率，通常比梯度下降算法要更加快速。这些算法有：<strong>共轭梯度（Conjugate Gradient）</strong>，<strong>局部优化法(Broyden fletcher goldfarb shann,BFGS)<strong>和</strong>有限内存局部优化法(LBFGS)</strong>，fminunc是 matlab中的一个最小值优化函数，使用时我们需要提供代价函数和每个参数的求导，下面是 matlab 中使用 fminunc 函数的代码示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#66d9ef">function</span> [jVal, gradient] = <span style="color:#a6e22e">costFunction</span>(theta)
 ​
-    jVal = [...code to compute J(theta)...];
-    gradient = [...code to compute derivative of J(theta)...];
+    jVal = [<span style="color:#75715e">...code to compute J(theta)...];</span>
+    gradient = [<span style="color:#75715e">...code to compute derivative of J(theta)...];</span>
     
-end
+<span style="color:#66d9ef">end</span>
     
-options = optimset('GradObj', 'on', 'MaxIter', '100');
+options = optimset(<span style="color:#e6db74">&#39;GradObj&#39;</span>, <span style="color:#e6db74">&#39;on&#39;</span>, <span style="color:#e6db74">&#39;MaxIter&#39;</span>, <span style="color:#e6db74">&#39;100&#39;</span>);
     
-initialTheta = zeros(2,1);
+initialTheta = zeros(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>);
     
 [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
-</code></pre>
-
-<h2 id="简化的成本函数和梯度下降">简化的成本函数和梯度下降</h2>
-
+</code></pre></div><h2 id="简化的成本函数和梯度下降">简化的成本函数和梯度下降</h2>
 <p>我们将会找出一种稍微简单一点的方法来写代价函数，来替换我们现在用的方法。同时我们还要弄清楚如何运用梯度下降法，来拟合出逻辑回归的参数。</p>
-
-<p><img src="https://i.loli.net/2020/01/13/slNZHjgM8AVIkCw.png" alt="" /></p>
-
+<p><img src="https://i.loli.net/2020/01/13/slNZHjgM8AVIkCw.png" alt=""></p>
 <p>根据这个代价函数，为了拟合出参数，我们需要找到能使<code>J(theta)</code>尽量小的参数<code>theta</code>，</p>
-
 <p>如果我们给出一个新的样本，假如某个特征<code>x</code>，我们可以用拟合训练样本的参数<code>theta</code>，来输出对假设的预测。们假设的输出，实际上就是这个概率值：<code>p(y = 1|x;theta)</code>，即关于<code>x</code>以<code>theta</code>为参数，<code>y=1</code>的概率，可以认为我们的假设就是估计<code>y=1</code>的概率</p>
-
 <p>最小化代价函数的方法，是使用<strong>梯度下降法(gradient descent)</strong>。这是我们的代价函数：</p>
-
-<p><img src="https://i.loli.net/2020/01/12/BVjRhkAwnrdlW2K.png" alt="拟合函数" /></p>
-
+<p><img src="https://i.loli.net/2020/01/12/BVjRhkAwnrdlW2K.png" alt="拟合函数"></p>
 <p>如果我们要最小化这个关于<code>theta</code>的函数值，这就是我们通常用的梯度下降法的模板。</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/l72mtJ.png" alt="梯度下降模板" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/l72mtJ.png" alt="梯度下降模板"></p>
 <p>我们要反复更新每个参数，用这个式子来更新，就是用它自己减去学习率<code>alpha</code>乘以后面的微分项。求导后得到：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/l7ceDU.png" alt="梯度下降带alpha" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/l7ceDU.png" alt="梯度下降带alpha"></p>
 <p>如果我们有n个特征，也就是<code>theta = [theta0, theta1, theta2 ... thetan]'</code>，参数向量<code>theta</code>包括<code>theta0</code>一直到<code>theta n</code>，那么我们旧需要用这个实在来同时更新所有<code>theta</code>值</p>
-
 <p>我们之前在谈线性回归时讲到的特征缩放，我们看到了特征缩放是如何提高梯度下降的收敛速度的，这个特征缩放的方法，也适用于逻辑回归。如果你的特征范围差距很大的话，那么应用特征缩放的方法，同样也可以让逻辑回归中，梯度下降收敛更快。</p>
-
 <h2 id="高级优化">高级优化</h2>
-
 <p>这一节，我们学习一些高级优化算法和一些高级的优化概念，利用这些方法，我们就能够使通过梯度下降，进行逻辑回归的速度大大提高，而这也将使算法更加适合解决大型的机器学习问题</p>
-
 <p>比如<strong>共轭梯度法</strong>，<strong>BFGS (变尺度法)</strong> 和 <strong>L-BFGS (限制变尺度法)</strong></p>
-
 <p>如何使用这些算法：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/l7bicD.png" alt="高级优化示例" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/l7bicD.png" alt="高级优化示例"></p>
 <p>假如我们有一个含两个参数得问题，这两个参数是<code>theta0</code>和<code>theta1</code>，通过这个代价函数，我们可以得到<code>theta0</code>和<code>theta1</code>的值，如果我们不知道<code>J(theta)</code>的最小值，可以使用这样一个MATLAB函数</p>
-
-<pre><code class="language-matlab">function [jVal, gradient]=costFunction(theta)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#66d9ef">function</span> [jVal, gradient]=<span style="color:#a6e22e">costFunction</span>(theta)
     
-　　jVal=(theta(1)-5)^2+(theta(2)-5)^2;
+　　jVal=(theta(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>)^<span style="color:#ae81ff">2</span><span style="color:#f92672">+</span>(theta(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>)^<span style="color:#ae81ff">2</span>;
     
-　　gradient=zeros(2,1);
+　　gradient=zeros(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>);
     
-　　gradient(1)=2*(theta(1)-5);
+　　gradient(<span style="color:#ae81ff">1</span>)=<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>(theta(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>);
     
-　　gradient(2)=2*(theta(2)-5);
+　　gradient(<span style="color:#ae81ff">2</span>)=<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>(theta(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>);
     
-end
-</code></pre>
-
-<p>这样就计算出这个代价函数，函数返回的第二个值是梯度值，梯度值应该是一个2×1的向量，梯度向量的两个元素对应这里的两个偏导数项，运行这个costFunction 函数后，你就可以调用高级的优化函数，这个函数叫 fminunc，它表示 MATLAB 里无约束最小化函数。调用它的方式如下：</p>
-
-<pre><code class="language-matlab">options=optimset('GradObj','on','MaxIter',100);
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>这样就计算出这个代价函数，函数返回的第二个值是梯度值，梯度值应该是一个2×1的向量，梯度向量的两个元素对应这里的两个偏导数项，运行这个costFunction 函数后，你就可以调用高级的优化函数，这个函数叫 fminunc，它表示 MATLAB 里无约束最小化函数。调用它的方式如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab">options=optimset(<span style="color:#e6db74">&#39;GradObj&#39;</span>,<span style="color:#e6db74">&#39;on&#39;</span>,<span style="color:#e6db74">&#39;MaxIter&#39;</span>,<span style="color:#ae81ff">100</span>);
 ​
-initialTheta=zeros(2,1);
+initialTheta=zeros(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>);
     
 [optTheta, functionVal, exitFlag]=fminunc(@costFunction, initialTheta, options);
-</code></pre>
-
-<p>要设置几个options，这个 options 变量作为一个数据结构可以存储你想要的options，所以 GradObj 和On，这里设置梯度目标参数为打开(on)，这意味着你现在确实要给这个算法提供一个梯度，然后设置最大迭代次数，比方说100，我们给出一个<code>theta</code>的猜测初始值，它是一个2×1的向量，那么这个命令就调用fminunc，这个@符号表示指向我们刚刚定义的costFunction 函数的指针。如果你调用它，它就会使用众多高级优化算法中的一个，当然你也可以把它当成梯度下降，只不过它能自动选择学习速率<code>alpha</code>，你不需要自己来做。然后它会尝试使用这些高级的优化算法，就像加强版的梯度下降法，为你找到最佳的<code>theta</code>值。</p>
-
-<p>这个关于<code>theta</code>的 <code>costFunction</code> 函数，它计算出代价函数 <code>jval</code> 以及梯度 <code>gradient</code>，<code>gradient</code> 有两个元素，是代价函数对于<code>theta(1)</code> 和 <code>theta(2)</code>这两个参数的偏导数。</p>
-
-<h2 id="多类别分类-一对多">多类别分类：一对多</h2>
-
+</code></pre></div><p>要设置几个options，这个 options 变量作为一个数据结构可以存储你想要的options，所以 GradObj 和On，这里设置梯度目标参数为打开(on)，这意味着你现在确实要给这个算法提供一个梯度，然后设置最大迭代次数，比方说100，我们给出一个<code>theta</code>的猜测初始值，它是一个2×1的向量，那么这个命令就调用fminunc，这个@符号表示指向我们刚刚定义的costFunction 函数的指针。如果你调用它，它就会使用众多高级优化算法中的一个，当然你也可以把它当成梯度下降，只不过它能自动选择学习速率<code>alpha</code>，你不需要自己来做。然后它会尝试使用这些高级的优化算法，就像加强版的梯度下降法，为你找到最佳的<code>theta</code>值。</p>
+<p>这个关于<code>theta</code>的 <code>costFunction</code> 函数，它计算出代价函数 <code>jval</code> 以及梯度 <code>gradient</code>，<code>gradient</code> 有两个元素，是代价函数对于<code> theta(1)</code> 和 <code>theta(2)</code>这两个参数的偏导数。</p>
+<h2 id="多类别分类一对多">多类别分类：一对多</h2>
 <p>对于一个二元分类问题，我们的数据看起来可能是像这样</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/l7LotI.png" alt="二分类问题" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/l7LotI.png" alt="二分类问题"></p>
 <p>对于一个多类分类问题，我们的数据集或许看起来像这样：</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/l7Lb1f.png" alt="多分类问题" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/l7Lb1f.png" alt="多分类问题"></p>
 <p>我们现在已经知道如何进行二元分类，可以使用逻辑回归，对于直线或许你也知道，可以将数据集一分为二为正类和负类。用一对多的分类思想，我们可以将其用在多类分类问题上。</p>
-
-<p>下面将介绍如何进行一对多的分类工作，有时这个方法也被称为&rdquo;一对余&rdquo;方法。</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/l7OFjU.png" alt="分类标记" /></p>
-
+<p>下面将介绍如何进行一对多的分类工作，有时这个方法也被称为&quot;一对余&quot;方法。</p>
+<p><img src="https://s2.ax1x.com/2020/01/13/l7OFjU.png" alt="分类标记"></p>
 <p>现在我们有一个训练集，好比上图表示的有3个类别，我们用三角形表示 <code>y=1</code> ，方框表示 <code>y=2</code>，叉叉表示 <code>y=3</code>。我们下面要做的就是使用一个训练集，将其分成3个二元分类问题。</p>
-
 <p>我们创建一个新的训练集，如下图所示的那样，我们要拟合出一个合适的分类器。</p>
-
-<p><img src="https://s2.ax1x.com/2020/01/13/l7OK9x.png" alt="创建新的训练集" /></p>
-
+<p><img src="https://s2.ax1x.com/2020/01/13/l7OK9x.png" alt="创建新的训练集"></p>
 <p>这里的三角形是正样本，而圆形代表负样本。可以这样想，设置三角形的值为1，圆形的值为0，下面我们来训练一个标准的逻辑回归分类器，这样我们就得到一个正边界。</p>
-
 <p>为了能实现这样的转变，我们将多个类中的一个类标记为正向类<code>(y=1)</code>，然后将其他所有类都标记为负向类，这个模型记作<code>h1(x)</code>。接着，类似地第我们选择另一个类标记为正向类<code>(y=2)</code>，再将其它类都标记为负向类，将这个模型记作<code>h2(x)</code>,依此类推。 最后我们得到一系列的模型简记为：<code>hi(x) = p(y=i|x;theta)</code> 其中：<code>i = (1, 2, 3... k)</code></p>
-
 <p>最后，在我们需要做预测时，我们将所有的分类机都运行一遍，然后对每一个输入变量，都选择最高可能性的输出变量。</p>
-
 <p>我们要做的就是在我们三个分类器里面输入<code>x</code>，然后我们选择一个让<code>hi(x)</code>最大的<code>i</code></p>
-
 <p>选择出哪一个分类器是可信度最高效果最好的，那么就可认为得到一个正确的分类，无论<code>i</code>值是多少，我们都有最高的概率值，我们预测<code>y</code>就是那个值。这就是多类别分类问题，以及一对多的方法，通过这个小方法，你现在也可以将逻辑回归分类器用在多类分类的问题上。</p>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>转自<a href="http://www.ai-start.com/ml2014/html/week3.html">ai-start.com/ml2014/html/week3</a></p>
 </blockquote>
@@ -384,7 +274,7 @@ initialTheta=zeros(2,1);
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

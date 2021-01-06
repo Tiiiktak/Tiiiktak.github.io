@@ -1,214 +1,506 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Tesseract-OCR样本训练方法 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。
 安装jTessBoxEditor 可以在这里下载到最新版安装包
 把下载得到的压缩包解压到任意位置，双击其中的train.bat文件，等待一会，弹出窗口就可以开始训练了
-制作训练样本 生成tif文件 打开软件，选择Tools-&gt;Merge TIFF，文件类型选择ALL Image Files，选择所有要训练的样本图片，打开
+制作训练样本 生成tif文件 打开软件，选择Tools-&amp;gt;Merge TIFF，文件类型选择ALL Image Files，选择所有要训练的样本图片，打开
 之后会又弹出窗口，文件名需要自己设定，注意要按照格式设置：
 [lang].[fontname].exp[num].tif
 其中lang为语言名称，fontname为字体名称，num为序号。这三项都可以自己定义
 这里我们设置为captcha.font.exp0.tif，文件类型TIFF，保存
 生成box文件 将之前生成的captcha.font.exp0.tif复制到Tesseract-OCR的安装目录
 打开cmd进入安装目录，执行命令
-tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox  将.box文件和.tif文件放在同一文件夹
-手动调整 打开jTessBoxEditor工具，点击Box Editor-&gt;Open，选择打开之前生成的.box文件
+tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox 将.box文件和.tif文件放在同一文件夹
+手动调整 打开jTessBoxEditor工具，点击Box Editor-&amp;gt;Open，选择打开之前生成的.box文件
 软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果
 全部修改完成后，选择Save保存即可
 训练 先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入
-captcha 0 0 0 0 0  这里全取值为0，表示字体不是粗体、斜体等等
+captcha 0 0 0 0 0 这里全取值为0，表示字体不是粗体、斜体等等
 之后在命令行分别运行命令：
-shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr  之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
+shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr 之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
 生成语言库 命令
-combine_tessdata.exe captcha.  会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
-使用训练结果 在调用tesseract或pytesseract时，只需添加参数lang=&ldquo;captcha&rdquo;（我们的字体名），程序就会自动调用啦">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+combine_tessdata.exe captcha. 会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
+使用训练结果 在调用tesseract或pytesseract时，只需添加参数lang=&amp;ldquo;captcha&amp;rdquo;（我们的字体名），程序就会自动调用啦'><title>Tesseract-OCR样本训练方法</title>
+
+<link rel='canonical' href='https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Tesseract-OCR样本训练方法'>
+<meta property='og:description' content='我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。
+安装jTessBoxEditor 可以在这里下载到最新版安装包
+把下载得到的压缩包解压到任意位置，双击其中的train.bat文件，等待一会，弹出窗口就可以开始训练了
+制作训练样本 生成tif文件 打开软件，选择Tools-&amp;gt;Merge TIFF，文件类型选择ALL Image Files，选择所有要训练的样本图片，打开
+之后会又弹出窗口，文件名需要自己设定，注意要按照格式设置：
+[lang].[fontname].exp[num].tif
+其中lang为语言名称，fontname为字体名称，num为序号。这三项都可以自己定义
+这里我们设置为captcha.font.exp0.tif，文件类型TIFF，保存
+生成box文件 将之前生成的captcha.font.exp0.tif复制到Tesseract-OCR的安装目录
+打开cmd进入安装目录，执行命令
+tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox 将.box文件和.tif文件放在同一文件夹
+手动调整 打开jTessBoxEditor工具，点击Box Editor-&amp;gt;Open，选择打开之前生成的.box文件
+软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果
+全部修改完成后，选择Save保存即可
+训练 先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入
+captcha 0 0 0 0 0 这里全取值为0，表示字体不是粗体、斜体等等
+之后在命令行分别运行命令：
+shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr 之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
+生成语言库 命令
+combine_tessdata.exe captcha. 会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
+使用训练结果 在调用tesseract或pytesseract时，只需添加参数lang=&amp;ldquo;captcha&amp;rdquo;（我们的字体名），程序就会自动调用啦'>
+<meta property='og:url' content='https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-11-20T19:29:52&#43;08:00'/><meta property='article:modified_time' content='2019-11-20T19:29:52&#43;08:00'/>
+<meta name="twitter:title" content="Tesseract-OCR样本训练方法">
+<meta name="twitter:description" content="我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。
+安装jTessBoxEditor 可以在这里下载到最新版安装包
+把下载得到的压缩包解压到任意位置，双击其中的train.bat文件，等待一会，弹出窗口就可以开始训练了
+制作训练样本 生成tif文件 打开软件，选择Tools-&amp;gt;Merge TIFF，文件类型选择ALL Image Files，选择所有要训练的样本图片，打开
+之后会又弹出窗口，文件名需要自己设定，注意要按照格式设置：
+[lang].[fontname].exp[num].tif
+其中lang为语言名称，fontname为字体名称，num为序号。这三项都可以自己定义
+这里我们设置为captcha.font.exp0.tif，文件类型TIFF，保存
+生成box文件 将之前生成的captcha.font.exp0.tif复制到Tesseract-OCR的安装目录
+打开cmd进入安装目录，执行命令
+tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox 将.box文件和.tif文件放在同一文件夹
+手动调整 打开jTessBoxEditor工具，点击Box Editor-&amp;gt;Open，选择打开之前生成的.box文件
+软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果
+全部修改完成后，选择Save保存即可
+训练 先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入
+captcha 0 0 0 0 0 这里全取值为0，表示字体不是粗体、斜体等等
+之后在命令行分别运行命令：
+shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr 之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
+生成语言库 命令
+combine_tessdata.exe captcha. 会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
+使用训练结果 在调用tesseract或pytesseract时，只需添加参数lang=&amp;ldquo;captcha&amp;rdquo;（我们的字体名），程序就会自动调用啦">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+            <a href="/categories/tools/" style="background-color: #2a9d8f; color: #fff;">
+                Tools
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/tesseract%E8%AE%AD%E7%BB%83/">Tesseract-OCR样本训练方法</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Tesseract-OCR样本训练方法</h1>
-    <div class="post-meta">2019.11.20</div>
-  </header>
-  <div class="post-content">
 
-<p>我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。</p>
+        <time class="article-time--published">Nov 20, 2019</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p>我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。</p>
 <h2 id="安装jtessboxeditor">安装jTessBoxEditor</h2>
-
-<p>可以在<a href="https://sourceforge.net/projects/vietocr/files/jTessBoxEditor/">这里</a>下载到最新版安装包</p>
-
+<p>可以在<a class="link" href="https://sourceforge.net/projects/vietocr/files/jTessBoxEditor/"  target="_blank" rel="noopener"
+    >这里</a>下载到最新版安装包</p>
 <p>把下载得到的压缩包解压到任意位置，双击其中的<code>train.bat</code>文件，等待一会，弹出窗口就可以开始训练了</p>
-
-<p><img src="https://img-blog.csdnimg.cn/20181105163427524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N5bHNqYW5l,size_16,color_FFFFFF,t_70" alt="jTessBoxEditor窗口" /></p>
-
+<p><img src="https://img-blog.csdnimg.cn/20181105163427524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N5bHNqYW5l,size_16,color_FFFFFF,t_70" alt="jTessBoxEditor窗口"  /></p>
 <h2 id="制作训练样本">制作训练样本</h2>
-
 <h3 id="生成tif文件">生成tif文件</h3>
-
 <p>打开软件，选择<code>Tools</code>-&gt;<code>Merge TIFF</code>，文件类型选择<code>ALL Image Files</code>，选择所有要训练的样本图片，打开</p>
-
 <p>之后会又弹出窗口，文件名需要自己设定，注意要按照格式设置：</p>
-
 <p>[lang].[fontname].exp[num].tif</p>
-
 <p>其中lang为语言名称，fontname为字体名称，num为序号。这三项都可以自己定义</p>
-
 <p>这里我们设置为<code>captcha.font.exp0.tif</code>，文件类型<code>TIFF</code>，保存</p>
-
 <h3 id="生成box文件">生成box文件</h3>
-
 <p>将之前生成的<code>captcha.font.exp0.tif</code>复制到Tesseract-OCR的安装目录</p>
-
 <p>打开cmd进入安装目录，执行命令</p>
-
 <pre><code>tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox 
-</code></pre>
-
-<p>将.box文件和.tif文件放在同一文件夹</p>
-
+</code></pre><p>将.box文件和.tif文件放在同一文件夹</p>
 <h3 id="手动调整">手动调整</h3>
-
 <p>打开jTessBoxEditor工具，点击<code>Box Editor</code>-&gt;<code>Open</code>，选择打开之前生成的.box文件</p>
-
 <p>软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果</p>
-
 <p>全部修改完成后，选择Save保存即可</p>
-
 <h3 id="训练">训练</h3>
-
 <p>先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入</p>
-
 <pre><code>captcha 0 0 0 0 0
-</code></pre>
-
-<p>这里全取值为0，表示字体不是粗体、斜体等等</p>
-
+</code></pre><p>这里全取值为0，表示字体不是粗体、斜体等等</p>
 <p>之后在命令行分别运行命令：</p>
-
 <pre><code>shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr
 
 mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr
 
 cntraining.exe captcha.font.exp0.tr
-</code></pre>
-
-<p>之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀<code>captcha.</code>，也就是我们的字体名</p>
-
+</code></pre><p>之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀<code>captcha.</code>，也就是我们的字体名</p>
 <h3 id="生成语言库">生成语言库</h3>
-
 <p>命令</p>
-
 <pre><code>combine_tessdata.exe captcha.
-</code></pre>
-
-<p>会生成一个<code>captcha.traineddata</code>文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可</p>
-
+</code></pre><p>会生成一个<code>captcha.traineddata</code>文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可</p>
 <h2 id="使用训练结果">使用训练结果</h2>
-
 <p>在调用tesseract或pytesseract时，只需添加参数lang=&ldquo;captcha&rdquo;（我们的字体名），程序就会自动调用啦</p>
-</div>
-  <footer class="post-footer">
+
+</section>
+
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

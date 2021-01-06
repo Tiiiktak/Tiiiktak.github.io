@@ -16,32 +16,30 @@
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="list">
     <header class="header">
@@ -86,8 +84,8 @@
   </header>
   <section class="entry-content">
    <p>Python中可以使用断言assert,logging等来进行调试
-断言 def fun(s): n = int(s) assert n != 0, &#39;n is zero!&#39; return 10 / n def main(): fun(&#39;0&#39;)  若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
-Traceback (most recent call last): File &#34;hello.py&#34;, line 12, in &lt;module&gt; main() File &#34;hello.py&#34;, line 9, in main fun(&#39;0&#39;) File &#34;hello.py&#34;, line 4, in fun assert n != 0, &#39;n is zero!&#39; AssertionError: n is zero!  在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
+断言 def fun(s): n = int(s) assert n != 0, &#39;n is zero!&#39; return 10 / n def main(): fun(&#39;0&#39;) 若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
+Traceback (most recent call last): File &#34;hello.py&#34;, line 12, in &lt;module&gt; main() File &#34;hello.py&#34;, line 9, in main fun(&#39;0&#39;) File &#34;hello.py&#34;, line 4, in fun assert n != 0, &#39;n is zero!&#39; AssertionError: n is zero! 在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
 ..path:&gt; python -O hello.py Traceback (most recent call last): File &#34;hello....</p>
   </section>
   <footer class="entry-footer">
@@ -102,14 +100,14 @@ Traceback (most recent call last): File &#34;hello.py&#34;, line 12, in &lt;modu
   </header>
   <section class="entry-content">
    <p>在Python中也同样使用try...except...finally...的错误处理机制
-try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;)  当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
+try except try: print(&#39;try...&#39;) r = 10/0 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) finally: print(&#39;finally...&#39;) print(&#39;END&#39;) 当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
 上面的代码中有一个除0的错误，运行结果:
-try... except: division by zero finally... END  当计算r后，捕捉到ZeroDivisionError错误，执行 except语句段，之后执行finally
+try... except: division by zero finally... END 当计算r后，捕捉到ZeroDivisionError错误，执行	except语句段，之后执行finally
 else 可以在except后面加上else，当没有错误发生时将执行else语句块
-try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) else: print(&#39;no error&#39;) print(&#39;END&#39;)  结果:
-try... result: 2.0 no error END   Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
- 常见错误类型及继承关系（中文）：官方文档 ```
-  优势 使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用fun()，fun()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理...</p>
+try: print(&#39;try...&#39;) r = 10/5 print(&#39;result:&#39;, r) except ZeroDivisionError as e: print(&#39;except:&#39;, e) else: print(&#39;no error&#39;) print(&#39;END&#39;) 结果:
+try... result: 2.0 no error END  Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
+  常见错误类型及继承关系（中文）：官方文档
+  ## 优势 使用```try...except```捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数```main()```调用```fun()```，```fun()```调用```bar()```，结果```bar()```出错了，这时，只要```main()```捕获到了，就可以处理 ```py def fun(s): return 10/int(s) def bar(s): return fun(s) * 2 def main(): try: print(&#39;try....</p>
   </section>
   <footer class="entry-footer">
     <time>2019.9.6</time>
@@ -124,7 +122,7 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
   <section class="entry-content">
    <p>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
 因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
-树莓派-服务端 #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;thread&gt; #include &lt;opencv2/opencv.hpp&gt; using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; for (int i = 0; i &lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &lt; img_gray....</p>
+树莓派-服务端 #include &lt;iostream&gt;#include &lt;unistd.h&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;sys/types.h&gt;#include &lt;sys/socket.h&gt;#include &lt;netinet/in.h&gt;#include &lt;arpa/inet.h&gt;#include &lt;thread&gt;#include &lt;opencv2/opencv.hpp&gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; for (int i = 0; i &lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &lt; img_gray.rows; j&#43;&#43;) { double s = img_gray....</p>
   </section>
   <footer class="entry-footer">
     <time>2019.7.9</time>
@@ -139,7 +137,7 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
   <section class="entry-content">
    <p>本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别
 这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息
-服务端-树莓派 socket_server_sms.cpp #include &lt;iostream&gt; #include &lt;unistd.h&gt; #include &lt;cstring&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; using namespace std; #define USEPORT 1234 int main() { //****创建套接字 int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET //Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF if (serverSock &lt; 0) { cout &lt;&lt; &#34;socket creation failed&#34; &lt;&lt; endl; exit(-1); } cout &lt;&lt; &#34;socket creation successfully&#34; &lt;&lt; endl; //****绑定ip和端口 struct sockaddr_in serverAddr; memset(&amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr....</p>
+服务端-树莓派 socket_server_sms.cpp #include &lt;iostream&gt;#include &lt;unistd.h&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;sys/types.h&gt;#include &lt;sys/socket.h&gt;#include &lt;netinet/in.h&gt;#include &lt;arpa/inet.h&gt;using namespace std; #define USEPORT 1234  int main() { //****创建套接字 	int serverSock = socket(AF_INET, SOCK_STREAM, 0); //Windows中，AF_INET==PF_INET 	//Linux中，不同的版本这两者有微小差别.对于BSD是AF,对于POSIX是PF 	if (serverSock &lt; 0) { cout &lt;&lt; &#34;socket creation failed&#34; &lt;&lt; endl; exit(-1); } cout &lt;&lt; &#34;socket creation successfully&#34; &lt;&lt; endl; //****绑定ip和端口 	struct sockaddr_in serverAddr; memset(&amp;serverAddr, 0, sizeof(serverAddr)); serverAddr.sin_family = AF_INET; serverAddr.sin_port = htons(USEPORT); //INADDR_ANY绑定所有IP 	serverAddr....</p>
   </section>
   <footer class="entry-footer">
     <time>2019.7.8</time>
@@ -154,15 +152,15 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
   <section class="entry-content">
    <p>本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
  系统：Windows 10
-软件：Visual studio 2019
-语言：C&#43;&#43;
- Socket通信实现步骤  创建ServerSocket和Socket
- 打开连接到的Socket的输入/输出流
- 按照协议对Socket进行读/写操作
- 关闭输入/输出流和Socket
+  软件：Visual studio 2019
+  语言：C&#43;&#43;
+  Socket通信实现步骤   创建ServerSocket和Socket
+  打开连接到的Socket的输入/输出流
+  按照协议对Socket进行读/写操作
+  关闭输入/输出流和Socket
   本文的程序由服务端发送信息到客户端，若用户输入quit则结束客户端与服务端程序
 服务端Server 由于Windows下的socket程序依赖Winsock.dll或ws2_32.dll，所以必须提前加载
-#include &lt;iostream&gt; #include &lt;string&gt; #include &lt;winsock2.h&gt; //包含socket的头文件 #pragma comment (lib, &#34;ws2_32.lib&#34;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 //-&gt;MSKEWORD(2,2)主版本号2，副版本号2 if (WSAStartup(MAKEWORD(2, 2), &amp;wsaData) != 0)	{	return 0; } //****创建套接字 SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&gt;IPv6，PF_INET-&gt;IPv4 //参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM //参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 //判断无效套接字 if (servSock == INVALID_SOCKET) { cout &lt;&lt; &#34;socket error!...</p>
+#include &lt;iostream&gt;#include &lt;string&gt;#include &lt;winsock2.h&gt; //包含socket的头文件#pragma comment (lib, &#34;ws2_32.lib&#34;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA 	WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 	//-&gt;MSKEWORD(2,2)主版本号2，副版本号2 	if (WSAStartup(MAKEWORD(2, 2), &amp;wsaData) != 0)	{	return 0; } //****创建套接字 	SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&gt;IPv6，PF_INET-&gt;IPv4 	//参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM 	//参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 	//判断无效套接字 	if (servSock == INVALID_SOCKET) { cout &lt;&lt; &#34;socket error!...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.7.8</time>
@@ -178,12 +176,13 @@ try... result: 2.0 no error END   Python的错误是一个class，所有错误�
    <p>最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。
 TCP/IP、UDP 在开始之前，先听两个笑话😏
 TCP
-&gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &gt; “好的，我会给你讲一个TCP 的笑话。” &gt; “好的，我会听一个TCP 的笑话。” &gt; “你准备好听一个TCP 的笑话么？” &gt; “嗯，我准备好听一个TCP 的笑话” &gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？”  UDP
-&gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！  学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
+&gt; “嗨，我想听一个 TCP 的笑话。” //第一次握手 &gt; “你好，你想听 TCP 的笑话么？” //第二次握手 &gt; “嗯，我想听一个 TCP 的笑话。” //第三次握手 &gt; “好的，我会给你讲一个TCP 的笑话。” &gt; “好的，我会听一个TCP 的笑话。” &gt; “你准备好听一个TCP 的笑话么？” &gt; “嗯，我准备好听一个TCP 的笑话” &gt; “OK，那我要发 TCP 笑话了。大概有 10 秒，20 个字。” &gt; “嗯，我准备收你那个 10 秒时长，20 个字的笑话了。” &gt; “抱歉，你的链接超时了。你好，你想听 TCP 的笑话么？” UDP
+&gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ &gt; 我给你们讲个UDP的笑话吧！ 学完之后，发现这两个笑话很好的表示出了两种协议的通信方式，来看看
 TCP/IP，即传输控制协议/网间协议，是互联网相关各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP/IP 族内的协议。UDP是与TCP相对应的协议，属于TCP/IP协议族中的一种
 OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其中的几层，在七层模型中，每一层都提供一个特殊 的网络功能。
 从网络角度观察：
- 下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主...</p>
+  下面四层（物理层、数据链路层、网络层和传输层）主要提供数据传输和交换功能， 即以节点到节点之间的通信为主
+  第四层作为上下两部分的桥梁，是整个网络体系结构中最关键的部分...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.7.7</time>
@@ -198,16 +197,16 @@ OSI七层模型 OSI是一个理想的模型，一般的网络系统只涉及其�
   <section class="entry-content">
    <p>注意：树莓派插电时千万不要插拔摄像头！据说十有八九摄像头会GG，我差点就中招了
 安装驱动 首先使用ls指令查看是否加载到了对应的video device设备：
-ls -al /etc  没有看到设备开始安装驱动
-添加驱动设备到文件夹 sudo vim /etc/modules  在文件末尾添加
-bcm2835-v412  修改raspberry的启动配置 进入管理中心开启pi camera
-sudo raspi-config  选择interfacing option
+ls -al /etc 没有看到设备开始安装驱动
+添加驱动设备到文件夹 sudo vim /etc/modules 在文件末尾添加
+bcm2835-v412 修改raspberry的启动配置 进入管理中心开启pi camera
+sudo raspi-config 选择interfacing option
 开启Camera后重启
-检查/dev ls -al /dev/ | grep video  有video设备则成功
+检查/dev ls -al /dev/ | grep video 有video设备则成功
 使用树莓派摄像头 使用raspistill指令
-测试 raspistill -o image.jpg   在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
- raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为’-‘，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720  错误 在第一次成功调用后，之后再次调用时多次报错：
-mmal: No data received from sensor....</p>
+测试 raspistill -o image.jpg  在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
+ raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为&#39;-&#39;，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720 错误 在第一次成功调用后，之后再次调用时多次报错：
+mmal: No data received from sensor. Check all connections, including the Sunny one on the camera board 网上说导致该问题的原因有：...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.7.1</time>
@@ -220,13 +219,13 @@ mmal: No data received from sensor....</p>
     <h2>灰度重心法</h2>
   </header>
   <section class="entry-content">
-   <p>概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫*密度质心算法*。
+   <p>概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫密度质心算法。
 将灰度值分布中的质心记作光条纹的中心
 对于M * N大小的图像f，像素的灰度值凡是超过阈值T的均参与重心处理，于是重心坐标为：
 灰度重心法公式 型心法 只可用于二值图像
 灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
 代码：
-#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 int i, j; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; //获取图像各点灰度值总和 for (it = img_gray.begin&lt;uchar&gt;(), end = img_gray.end&lt;uchar&gt;(); it != end; it&#43;&#43;) { ((*it) &gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 } Center....</p>
+#define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 	int i, j; double sumval = 0; MatIterator_&lt;uchar&gt; it, end; //获取图像各点灰度值总和 	for (it = img_gray.begin&lt;uchar&gt;(), end = img_gray.end&lt;uchar&gt;(); it != end; it&#43;&#43;) { ((*it) &gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 	} Center....</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.28</time>
@@ -242,13 +241,15 @@ mmal: No data received from sensor....</p>
    <p>Shell脚本 是一种为shell编写的脚本程序
 使用文本编辑器既能编写，拓展名不影响脚本执行
 实例：
-#!/bin/bash echo &#34;Hello World&#34;   ### 运行脚本 #### 作为可执行程序 将代码保存后，给文件添加可执行权限```&#43;x``` ```sh chmod &#43;x ./test.sh # ./test.sh #执行脚本  作为解释器参数  直接运行解释器，将文件作为其参数 这种方式不需要在文件开头指定解释器信息
-/bin/sh test.sh  Shell变量 定义变量 your_name=&#34;Tom&#34;  注意：等号不能有空格
+#!/bin/bash echo &#34;Hello World&#34;  #!告诉系统这个脚本需要什么解释器执行
+ 运行脚本 作为可执行程序 将代码保存后，给文件添加可执行权限&#43;x
+chmod &#43;x ./test.sh # ./test.sh #执行脚本 作为解释器参数 直接运行解释器，将文件作为其参数 这种方式不需要在文件开头指定解释器信息
+/bin/sh test.sh Shell变量 定义变量 your_name=&#34;Tom&#34; **注意：**等号不能有空格
 使用变量 在变量前加美元符号$ 还可在变量外添加大括号{}
-echo $your_name echo ${your_name}  只读变量 使用readonly命令将变量定义为只读变量，值不能被改变
-url=&#34;baidu.com&#34; readonly url  删除变量 使用unset变量删除变量
-unset url  Shell字符串 可用单引号，或双引号，也可不用引号
-单引号  单引号内任何字符都会原样输出，单引号字符串中变量无效 单引号字符串中不能出现单独一个的单引号，但可成对出现  双引号  双引号里可以有变量 双引号里可以出现转义字符  拼接字符串 text1=&#39;123&#39; text2=&#39;456&#39; echo ${text1}${text2} #输出123456  字符串长度 str1=&#34;abcd&#34; echo ${#str1} #输出4  提取子字符串 从字符串第2个字符开始截取4个字符：...</p>
+echo $your_name echo ${your_name} 只读变量 使用readonly命令将变量定义为只读变量，值不能被改变
+url=&#34;baidu.com&#34; readonly url 删除变量 使用unset变量删除变量
+unset url Shell字符串 可用单引号，或双引号，也可不用引号
+单引号  单引号内任何字符都会原样输出，单引号字符串中变量无效 单引号字符串中不能出现单独一个的单引号，但可成对出现  双引号  双引号里可以有变量 双引号里可以出现转义字符  拼接字符串 text1=&#39;123&#39; text2=&#39;456&#39; echo ${text1}${text2} #输出123456 字符串长度 str1=&#34;abcd&#34; echo ${#str1} #输出4 提取子字符串 从字符串第2个字符开始截取4个字符：...</p>
   </section>
   <footer class="entry-footer">
     <time>2019.6.26</time>
@@ -266,8 +267,8 @@ unset url  Shell字符串 可用单引号，或双引号，也可不用引号
 常用命令：
  i 切换到输入模式，以输入字符 x 删除当前光标所在处的字符 : 切换到底线命令模式，以在最底一行输入命令  命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令
 输入模式 常用：
- Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令： * q 退出程序 * w 保存文件
-vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
+ Esc 退出输入模式，切换到命令模式 Insert 切换光标为输入/替换模式，光标变成竖线/下划线  底线命令模式 基本命令：
+ q 退出程序 w 保存文件  vim按键 移动光标 要进行多次移动，例如向下移动30行，可使用30↓的组合按键
  [Ctrl]&#43;[f] 下一页 [Ctrl]&#43;[b] 上一页 [Ctrl]&#43;[d] 向下半页 [Ctrl]&#43;[u] 向上半页 0 移动到该行最前面字符处 $ 移动到该行最后字符处 G 移动到档案最后一行 nG 一赌东道档案第n行 gg 移动到档案第一行  搜索替换  /word 向光标之下寻找名称为word的字符串 ？word 向光标之上寻找名称为word的字符串 n 重复前一个搜寻的动作 N 反向进行前一个搜寻动作 :n1,n2s/word1/word2/g 在n1与n2行之间寻找word1字符串，并用word2取代 :1,$s/word1/word2/g 或 :%s/word1/word2/g 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 :1,$s/word1/word2/gc 或 :%s/word1/word2/gc 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2，并显示提示字符确认  删除、复制、粘贴  x,X x相当于del，X相当于Backspace dd 删除光标所在行 ndd 删除光标所在向下n行 d1G 删除光标所在到第一行所有数据 dG 删除光标所在到最后一行所有数据 yy 复制光标所在行 nyy 复制光标所在的向下n行 p,P p为将已复制的数据在光标下一行粘贴，P为粘贴在上一行 u 撤销 [Ctrl]&#43;r 重做 ....</p>
   </section>
   <footer class="entry-footer">
@@ -293,7 +294,7 @@ vim按键 移动光标 要进行多次移动，例如向下移动30行，可使�
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Pytorch中的梯度下降及优化 - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="在PyTorch中使用Mini-batch这种方法进行训练
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在PyTorch中使用Mini-batch这种方法进行训练
 Mini-batch的梯度下降法 对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中
 所以我们会把大数据集分成小数据集，一部分一部分的训练，这个训练子集即称为Mini-batch。
 对于普通的梯度下降法，一个epoch只能进行一次梯度下降；而对于Mini-batch梯度下降法，一个epoch可以进行Mini-batch的个数次梯度下降。
@@ -15,193 +9,496 @@ Mini-batch的梯度下降法 对整个训练集进行梯度下降法的时候，
  如果训练样本的大小比较小时，能够一次性的读取到内存中，那我们就不需要使用Mini-batch 如果训练样本的大小比较大时，一次读入不到内存或者现存中，那我们必须要使用 Mini-batch来分批的计算 Mini-batch size的计算规则如下，在内存允许的最大情况下使用2的N次方个size  torch.optim torch.optim是一个实现了各种优化算法的库。大部分常用优化算法都有实现
 torch.optim.SGD  Stochastic Gradient Descent
  随机梯度下降算法，带有动量(momentum)的算法作为一个可选参数可以进行设置
- 可以把动量看作惯性：当你跑起来，由于惯性的存在你跑起来会比刚起步加速的时候更轻松，当你跑过头，想调头往回跑，惯性会让你拖着你。 在普通的梯度下降法的方向相同，则会加速。反之，则会减速。 加了动量的优势： 1. 加速收敛 2. 提高精度（减少收敛过程中的振荡）
- SGD(params, lr=&lt;required parameter&gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False)  torch.optim.RMSprop  Root Mean Square Prop
- 均方根传递。也是一种可以*加快梯度下降*的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快
-相较于gradient descent with momentum，RMSprop的思想是: * 对于梯度震动较大的项，在下降时，减小其下降速度； * 对于震动幅度小的项，在下降时，加速其下降速度。
-torch.optim.Adam Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法
+ 可以把动量看作惯性：当你跑起来，由于惯性的存在你跑起来会比刚起步加速的时候更轻松，当你跑过头，想调头往回跑，惯性会让你拖着你。 在普通的梯度下降法的方向相同，则会加速。反之，则会减速。 加了动量的优势：
+ 加速收敛 提高精度（减少收敛过程中的振荡）   SGD(params, lr=&amp;lt;required parameter&amp;gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False) torch.optim.RMSprop  Root Mean Square Prop
+ 均方根传递。也是一种可以加快梯度下降的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快
+相较于gradient descent with momentum，RMSprop的思想是:
+ 对于梯度震动较大的项，在下降时，减小其下降速度； 对于震动幅度小的项，在下降时，加速其下降速度。  torch.optim.Adam Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法
 它能基于训练数据迭代地更新神经网络权重
 详细介绍
 e.d.
-# 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法 optimizer = torch.">
-    <meta name="author" content="">
-    
-    <link href="https://www.konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://www.konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://www.konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://www.konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://www.konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-  </head>
-  <body class="single">
-    <header class="header">
-      <div class="wrap">
+# 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, betas=(0.'><title>Pytorch中的梯度下降及优化</title>
+
+<link rel='canonical' href='https://example.com/blog/pytorch_gradient_descent/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch中的梯度下降及优化'>
+<meta property='og:description' content='在PyTorch中使用Mini-batch这种方法进行训练
+Mini-batch的梯度下降法 对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中
+所以我们会把大数据集分成小数据集，一部分一部分的训练，这个训练子集即称为Mini-batch。
+对于普通的梯度下降法，一个epoch只能进行一次梯度下降；而对于Mini-batch梯度下降法，一个epoch可以进行Mini-batch的个数次梯度下降。
+普通的batch梯度下降法和Mini-batch梯度下降法代价函数的变化趋势，如下图所示：
+ 如果训练样本的大小比较小时，能够一次性的读取到内存中，那我们就不需要使用Mini-batch 如果训练样本的大小比较大时，一次读入不到内存或者现存中，那我们必须要使用 Mini-batch来分批的计算 Mini-batch size的计算规则如下，在内存允许的最大情况下使用2的N次方个size  torch.optim torch.optim是一个实现了各种优化算法的库。大部分常用优化算法都有实现
+torch.optim.SGD  Stochastic Gradient Descent
+ 随机梯度下降算法，带有动量(momentum)的算法作为一个可选参数可以进行设置
+ 可以把动量看作惯性：当你跑起来，由于惯性的存在你跑起来会比刚起步加速的时候更轻松，当你跑过头，想调头往回跑，惯性会让你拖着你。 在普通的梯度下降法的方向相同，则会加速。反之，则会减速。 加了动量的优势：
+ 加速收敛 提高精度（减少收敛过程中的振荡）   SGD(params, lr=&amp;lt;required parameter&amp;gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False) torch.optim.RMSprop  Root Mean Square Prop
+ 均方根传递。也是一种可以加快梯度下降的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快
+相较于gradient descent with momentum，RMSprop的思想是:
+ 对于梯度震动较大的项，在下降时，减小其下降速度； 对于震动幅度小的项，在下降时，加速其下降速度。  torch.optim.Adam Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法
+它能基于训练数据迭代地更新神经网络权重
+详细介绍
+e.d.
+# 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, betas=(0.'>
+<meta property='og:url' content='https://example.com/blog/pytorch_gradient_descent/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-15T17:46:54&#43;08:00'/><meta property='article:modified_time' content='2020-02-15T17:46:54&#43;08:00'/>
+<meta name="twitter:title" content="Pytorch中的梯度下降及优化">
+<meta name="twitter:description" content="在PyTorch中使用Mini-batch这种方法进行训练
+Mini-batch的梯度下降法 对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中
+所以我们会把大数据集分成小数据集，一部分一部分的训练，这个训练子集即称为Mini-batch。
+对于普通的梯度下降法，一个epoch只能进行一次梯度下降；而对于Mini-batch梯度下降法，一个epoch可以进行Mini-batch的个数次梯度下降。
+普通的batch梯度下降法和Mini-batch梯度下降法代价函数的变化趋势，如下图所示：
+ 如果训练样本的大小比较小时，能够一次性的读取到内存中，那我们就不需要使用Mini-batch 如果训练样本的大小比较大时，一次读入不到内存或者现存中，那我们必须要使用 Mini-batch来分批的计算 Mini-batch size的计算规则如下，在内存允许的最大情况下使用2的N次方个size  torch.optim torch.optim是一个实现了各种优化算法的库。大部分常用优化算法都有实现
+torch.optim.SGD  Stochastic Gradient Descent
+ 随机梯度下降算法，带有动量(momentum)的算法作为一个可选参数可以进行设置
+ 可以把动量看作惯性：当你跑起来，由于惯性的存在你跑起来会比刚起步加速的时候更轻松，当你跑过头，想调头往回跑，惯性会让你拖着你。 在普通的梯度下降法的方向相同，则会加速。反之，则会减速。 加了动量的优势：
+ 加速收敛 提高精度（减少收敛过程中的振荡）   SGD(params, lr=&amp;lt;required parameter&amp;gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False) torch.optim.RMSprop  Root Mean Square Prop
+ 均方根传递。也是一种可以加快梯度下降的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快
+相较于gradient descent with momentum，RMSprop的思想是:
+ 对于梯度震动较大的项，在下降时，减小其下降速度； 对于震动幅度小的项，在下降时，加速其下降速度。  torch.optim.Adam Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法
+它能基于训练数据迭代地更新神经网络权重
+详细介绍
+e.d.
+# 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, betas=(0.">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
         
-        <p class="logo"><a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></p>
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
         
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
-    
-    <nav class="nav">
-      <ul class="menu">
+
+    <ol class="menu" id="main-menu">
         
-        <li>
-          <a href="/about/">About</a>
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
         </li>
         
-      </ul>
-    </nav>
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
     
-    <main class="main">
+    <header class="article-category">
+        
+            <a href="/categories/pytorch/" style="background-color: #2a9d8f; color: #fff;">
+                PyTorch
+            </a>
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="background-color: #2a9d8f; color: #fff;">
+                深度学习
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/pytorch_gradient_descent/">Pytorch中的梯度下降及优化</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
 
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">Pytorch中的梯度下降及优化</h1>
-    <div class="post-meta">2020.2.15</div>
-  </header>
-  <div class="post-content">
 
-<p>在PyTorch中使用Mini-batch这种方法进行训练</p>
+        <time class="article-time--published">Feb 15, 2020</time>
+    </footer></div>
+</header>
 
+    <section class="article-content">
+    <p>在PyTorch中使用Mini-batch这种方法进行训练</p>
 <h1 id="mini-batch的梯度下降法">Mini-batch的梯度下降法</h1>
-
 <p>对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，<em>如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中</em></p>
-
 <p>所以我们会把<strong>大数据集分成小数据集</strong>，一部分一部分的训练，这个训练子集即称为<strong>Mini-batch</strong>。</p>
-
 <p>对于普通的梯度下降法，一个epoch只能进行一次梯度下降；而对于Mini-batch梯度下降法，一个epoch可以进行Mini-batch的个数次梯度下降。</p>
-
-<p><img src="https://i.loli.net/2020/02/15/UTSkuqHRdx8soQm.png" alt="" /></p>
-
+<p><img src="https://i.loli.net/2020/02/15/UTSkuqHRdx8soQm.png" alt=""  /></p>
 <p>普通的batch梯度下降法和Mini-batch梯度下降法代价函数的变化趋势，如下图所示：</p>
-
-<p><img src="https://i.loli.net/2020/02/15/WRa63Ksy8hfqN1k.png" alt="" /></p>
-
+<p><img src="https://i.loli.net/2020/02/15/WRa63Ksy8hfqN1k.png" alt=""  /></p>
 <ul>
 <li>如果训练样本的大小比较小时，能够一次性的读取到内存中，那我们就不需要使用Mini-batch</li>
 <li>如果训练样本的大小比较大时，一次读入不到内存或者现存中，那我们必须要使用 Mini-batch来分批的计算</li>
 <li>Mini-batch size的计算规则如下，在内存允许的最大情况下使用2的N次方个size</li>
 </ul>
-
-<p><img src="https://i.loli.net/2020/02/15/ED6iNjwZWydu8Y4.png" alt="" /></p>
-
-<h1 id="torch-optim">torch.optim</h1>
-
+<p><img src="https://i.loli.net/2020/02/15/ED6iNjwZWydu8Y4.png" alt=""  /></p>
+<h1 id="torchoptim">torch.optim</h1>
 <p><code>torch.optim</code>是一个实现了各种优化算法的库。大部分常用优化算法都有实现</p>
-
-<h2 id="torch-optim-sgd">torch.optim.SGD</h2>
-
+<h2 id="torchoptimsgd">torch.optim.SGD</h2>
 <blockquote>
 <p>Stochastic Gradient Descent</p>
 </blockquote>
-
 <p>随机梯度下降算法，带有动量(momentum)的算法作为一个可选参数可以进行设置</p>
-
 <blockquote>
 <p>可以把动量看作惯性：当你跑起来，由于惯性的存在你跑起来会比刚起步加速的时候更轻松，当你跑过头，想调头往回跑，惯性会让你拖着你。
 在普通的梯度下降法的方向相同，则会加速。反之，则会减速。
-加了动量的优势：
-1. 加速收敛
-2. 提高精度（减少收敛过程中的振荡）</p>
+加了动量的优势：</p>
+<ol>
+<li>加速收敛</li>
+<li>提高精度（减少收敛过程中的振荡）</li>
+</ol>
 </blockquote>
-
-<pre><code class="language-python">SGD(params, lr=&lt;required parameter&gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False)
-</code></pre>
-
-<h2 id="torch-optim-rmsprop">torch.optim.RMSprop</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">SGD</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">lr</span><span class="o">=&lt;</span><span class="n">required</span> <span class="n">parameter</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dampening</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nesterov</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div><h2 id="torchoptimrmsprop">torch.optim.RMSprop</h2>
 <blockquote>
 <p>Root Mean Square Prop</p>
 </blockquote>
-
-<p>均方根传递。也是一种可以*加快梯度下降*的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快</p>
-
-<p>相较于gradient descent with momentum，RMSprop的思想是:
-* 对于梯度震动较大的项，在下降时，减小其下降速度；
-* 对于震动幅度小的项，在下降时，加速其下降速度。</p>
-
-<h2 id="torch-optim-adam">torch.optim.Adam</h2>
-
+<p>均方根传递。也是一种可以<em>加快梯度下降</em>的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快</p>
+<p>相较于gradient descent with momentum，RMSprop的思想是:</p>
+<ul>
+<li>对于梯度震动较大的项，在下降时，减小其下降速度；</li>
+<li>对于震动幅度小的项，在下降时，加速其下降速度。</li>
+</ul>
+<h2 id="torchoptimadam">torch.optim.Adam</h2>
 <p>Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法</p>
-
 <p>它能基于训练数据迭代地更新神经网络权重</p>
-
-<p><a href="https://www.cnblogs.com/yifdu25/p/8183587.html">详细介绍</a></p>
-
+<p><a class="link" href="https://www.cnblogs.com/yifdu25/p/8183587.html"  target="_blank" rel="noopener"
+    >详细介绍</a></p>
 <p>e.d.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">betas</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">),</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">)</span>
+</code></pre></div>
+</section>
 
-<pre><code class="language-python"># 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001, betas=(0.9, 0.999), eps=1e-08)
-</code></pre>
-</div>
-  <footer class="post-footer">
+
+    <footer class="article-footer">
     
-  </footer>
-  
-  
-  
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_shortname = 'tiiktak';
-    (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the
-    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  
-  
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
 </article>
 
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://www.konosuba.xyz">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://www.konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://www.konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-</body>
-</html>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
 
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

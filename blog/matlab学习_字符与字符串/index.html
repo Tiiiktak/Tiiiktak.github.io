@@ -7,12 +7,13 @@
     
     <title>MATLAB学习_字符与字符串 - Tiiktak&#39;s</title>
     
-    <meta name="description" content="字符串 创建 t = &quot;Hello, world&quot;;  如果文本包含双引号，请在定义中使用两个双引号。
-q = &quot;Something &quot;&quot;quoted&quot;&quot; and something else.&quot;  t 和 q 为数组。它们的数据类型是 string。
-&gt;&gt; whos t Name Size Bytes Class Attributes t 1x1 166 string   注意: 使用双引号创建字符串数组是在 R2017a 中引入的。
+    <meta name="description" content="字符串 创建 t = &#34;Hello, world&#34;; 如果文本包含双引号，请在定义中使用两个双引号。
+q = &#34;Something &#34;&#34;quoted&#34;&#34; and something else.&#34; t 和 q 为数组。它们的数据类型是 string。
+&gt;&gt; whos t Name Size Bytes Class Attributes t 1x1 166 string  注意: 使用双引号创建字符串数组是在 R2017a 中引入的。
  行末添加 使用&#43;运算符
-&gt;&gt; t &#43; &quot;!&quot; ans = &quot;Hello, world!&quot;  求长度 与数值数组类似，字符串数组可以有多个元素。
-&gt;&gt; A = [&quot;a&quot;,&quot;bb&quot;,&quot;ccc&quot;; &quot;dddd&quot;,&quot;eeeeee&quot;,&quot;fffffff&quot;] A = 2×3 string 数组 &quot;a&quot; &quot;bb&quot; &quot;ccc&quot; &quot;dddd&quot; &quot;eeeeee&quot; &quot;fffffff&quot;  使用 strlength 函数求数组中每个字符串的长度。">
+&gt;&gt; t &#43; &#34;!&#34; ans = &#34;Hello, world!&#34; 求长度 与数值数组类似，字符串数组可以有多个元素。
+&gt;&gt; A = [&#34;a&#34;,&#34;bb&#34;,&#34;ccc&#34;; &#34;dddd&#34;,&#34;eeeeee&#34;,&#34;fffffff&#34;] A = 2×3 string 数组 &#34;a&#34; &#34;bb&#34; &#34;ccc&#34; &#34;dddd&#34; &#34;eeeeee&#34; &#34;fffffff&#34; 使用 strlength 函数求数组中每个字符串的长度。
+&gt;&gt; strlength(A) ans = 1 2 3 4 6 7 字符 有时，字符表示的数据并不对应到文本，您可以将此类数据存储在数据类型为char 的字符数组中。字符数组使用单引号。">
     <meta name="author" content="">
     
     <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
@@ -21,32 +22,30 @@ q = &quot;Something &quot;&quot;quoted&quot;&quot; and something else.&quot;  t 
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="single">
     <header class="header">
@@ -78,87 +77,53 @@ q = &quot;Something &quot;&quot;quoted&quot;&quot; and something else.&quot;  t 
     <h1 class="post-title">MATLAB学习_字符与字符串</h1>
     <div class="post-meta">2020.1.11</div>
   </header>
-  <div class="post-content">
-
-<h1 id="字符串">字符串</h1>
-
+  <div class="post-content"><h1 id="字符串">字符串</h1>
 <h2 id="创建">创建</h2>
-
-<pre><code class="language-matlab">t = &quot;Hello, world&quot;;
-</code></pre>
-
-<p>如果文本包含双引号，请在定义中使用两个双引号。</p>
-
-<pre><code class="language-matlab">q = &quot;Something &quot;&quot;quoted&quot;&quot; and something else.&quot;
-</code></pre>
-
-<p>t 和 q 为数组。它们的数据类型是 <strong>string</strong>。</p>
-
-<pre><code class="language-matlab">&gt;&gt; whos t
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab">t = &#34;Hello, world&#34;;
+</code></pre></div><p>如果文本包含双引号，请在定义中使用两个双引号。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab">q = &#34;Something &#34;&#34;quoted&#34;&#34; and something <span style="color:#66d9ef">else</span>.&#34;
+</code></pre></div><p>t 和 q 为数组。它们的数据类型是 <strong>string</strong>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> whos t
   Name      Size            Bytes  Class     Attributes
-  t         1x1               166  string
-</code></pre>
-
-<blockquote>
+  t         <span style="color:#ae81ff">1</span>x1               <span style="color:#ae81ff">166</span>  string
+</code></pre></div><blockquote>
 <p>注意: 使用双引号创建字符串数组是在 R2017a 中引入的。</p>
 </blockquote>
-
 <h2 id="行末添加">行末添加</h2>
-
 <p>使用<code>+</code>运算符</p>
-
-<pre><code class="language-matlab">&gt;&gt; t + &quot;!&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> t <span style="color:#f92672">+</span> &#34;!&#34;
 ans = 
-    &quot;Hello, world!&quot;
-</code></pre>
-
-<h2 id="求长度">求长度</h2>
-
+    &#34;Hello, world!&#34;
+</code></pre></div><h2 id="求长度">求长度</h2>
 <p>与数值数组类似，字符串数组可以有多个元素。</p>
-
-<pre><code class="language-matlab">&gt;&gt; A = [&quot;a&quot;,&quot;bb&quot;,&quot;ccc&quot;; &quot;dddd&quot;,&quot;eeeeee&quot;,&quot;fffffff&quot;]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> A = [&#34;a&#34;,&#34;bb&#34;,&#34;ccc&#34;; &#34;dddd&#34;,&#34;eeeeee&#34;,&#34;fffffff&#34;]
 A = 
-  2×3 string 数组
-    &quot;a&quot;       &quot;bb&quot;        &quot;ccc&quot;    
-    &quot;dddd&quot;    &quot;eeeeee&quot;    &quot;fffffff&quot;
-</code></pre>
-
-<p>使用 <code>strlength</code> 函数求数组中每个字符串的长度。</p>
-
-<pre><code class="language-matlab">&gt;&gt; strlength(A)
+  <span style="color:#ae81ff">2</span>×<span style="color:#ae81ff">3</span> string 数组
+    &#34;a&#34;       &#34;bb&#34;        &#34;ccc&#34;    
+    &#34;dddd&#34;    &#34;eeeeee&#34;    &#34;fffffff&#34;
+</code></pre></div><p>使用 <code>strlength</code> 函数求数组中每个字符串的长度。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> strlength(A)
 ans =
-     1     2     3
-     4     6     7
-</code></pre>
-
-<h1 id="字符">字符</h1>
-
+     <span style="color:#ae81ff">1</span>     <span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">3</span>
+     <span style="color:#ae81ff">4</span>     <span style="color:#ae81ff">6</span>     <span style="color:#ae81ff">7</span>
+</code></pre></div><h1 id="字符">字符</h1>
 <p>有时，字符表示的数据并不对应到文本，您可以将此类数据存储在数据类型为<strong>char</strong> 的<strong>字符数组</strong>中。字符数组使用<strong>单引号</strong>。</p>
-
-<pre><code class="language-matlab">&gt;&gt; seq = 'ABCDEFG'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> seq = <span style="color:#e6db74">&#39;ABCDEFG&#39;</span>
 seq =
-    'ABCDEFG'
+    <span style="color:#e6db74">&#39;ABCDEFG&#39;</span>
 
-&gt;&gt; whos seq
+<span style="color:#f92672">&gt;&gt;</span> whos seq
   Name      Size            Bytes  Class    Attributes
-  seq       1x7                14  char  
-</code></pre>
-
-<p>数组的每个元素都包含单个字符。</p>
-
-<pre><code class="language-matlab">&gt;&gt; seq(4)
+  seq       <span style="color:#ae81ff">1</span>x7                <span style="color:#ae81ff">14</span>  char  
+</code></pre></div><p>数组的每个元素都包含单个字符。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> seq(<span style="color:#ae81ff">4</span>)
 ans =
-    'D'
-</code></pre>
-
-<p>使用方括号串联字符数组，就像串联数值数组一样。</p>
-
-<pre><code class="language-matlab">&gt;&gt; seq2 = [seq, 'HIJKLMN']
+    <span style="color:#e6db74">&#39;D&#39;</span>
+</code></pre></div><p>使用方括号串联字符数组，就像串联数值数组一样。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> seq2 = [seq, <span style="color:#e6db74">&#39;HIJKLMN&#39;</span>]
 seq2 =
-    'ABCDEFGHIJKLMN'
-</code></pre>
-
-<p>接受 string 数据的所有 MATLAB 函数都能接受 char 数据，反之亦然</p>
+    <span style="color:#e6db74">&#39;ABCDEFGHIJKLMN&#39;</span>
+</code></pre></div><p>接受 string 数据的所有 MATLAB 函数都能接受 char 数据，反之亦然</p>
 </div>
   <footer class="post-footer">
     
@@ -187,7 +152,7 @@ seq2 =
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>深度学习 on Tiiktak&#39;s</title>
+    <link>https://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 深度学习 on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Dec 2020 15:52:48 +0800</lastBuildDate><atom:link href="https://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MMDetection单机多卡训练出现问题</title>
+      <link>https://example.com/blog/mmdet_multiple_gpu_error/</link>
+      <pubDate>Mon, 28 Dec 2020 15:52:48 +0800</pubDate>
+      
+      <guid>https://example.com/blog/mmdet_multiple_gpu_error/</guid>
+      <description>使用的命令：
+CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh ${CONFIG_FILE} 4 --resume-from ${CHECKPOINT_FILE} 出现问题：
+ 模型train 1 epoch后挂掉，报错信息：  RuntimeError: replicas_[0].size() == rebuilt_param_indices_.size() INTERNAL ASSERT FAILED at &amp;#34;/pytorch/torch/csrc/distributed/c10d/reducer.cpp&amp;#34;:1326, please report a bug to PyTorch. rebuilt parameter indices size is not same as original model parameters size.321 versus 629160  pytorch github issue:https://github.com/pytorch/pytorch/issues/47050 mmcv issue: https://github.com/open-mmlab/mmcv/issues/636#issuecomment-722436575 解决方案：安装1.6版本pytorch，并重装mmcv  pip uninstall mmcv-full pip install mmcv-full python setup.py install </description>
+    </item>
+    
+    <item>
+      <title>MMDetection中使用Mask-RCNN训练BDD100K数据集</title>
+      <link>https://example.com/blog/bdd100k_mmdet_mask-rcnn/</link>
+      <pubDate>Thu, 08 Oct 2020 13:40:10 +0800</pubDate>
+      
+      <guid>https://example.com/blog/bdd100k_mmdet_mask-rcnn/</guid>
+      <description>1. Convert label to COCO format 使用官方提供的工具bdd100k2coco.py
+ 注意：使用bdd100k2coco分支下的文件，master中的该文件无法正常使用
+ 在使用前，还需要对该文件进行部分修改：
+# 将69行修改为	 image[&amp;#34;file_name&amp;#34;] = frame[&amp;#34;name&amp;#34;]+&amp;#34;.jpg&amp;#34; # 在73行之后增加 frame = frame[&amp;#34;frames&amp;#34;][0] 之后按如下方式运行
+python bdd100k2coco.py -i {JSON文件夹路径} -o {输出一个coco json文件} -m {转换方式det or track，使用det即可} 调用两次分别将train、val数据集的label转换
+2. Set COCO-like directory tree 按如下目录结构保存我们的数据集
+data ├── annotations │ ├── instances_train2017.json # 训练集json │ ├── instances_val2017.json	# 验证集json ├── train2017 │ └── abcdefg-1234567.jpg │ └── ... ├── test2017 │ └── abcdefg-1234567.jpg │ └── ... ├── val2017 │ └── abcdefg-1234567.</description>
+    </item>
+    
+    <item>
+      <title>MMDetection安装过程记录</title>
+      <link>https://example.com/blog/mmdet_install/</link>
+      <pubDate>Mon, 05 Oct 2020 13:37:51 +0800</pubDate>
+      
+      <guid>https://example.com/blog/mmdet_install/</guid>
+      <description>记录自本人安装过程，环境建议：
+ Linux or macOS (Windows is not currently officially supported) Python 3.6+ PyTorch 1.3+ CUDA 9.2+ (If you build PyTorch from source, CUDA 9.0 is also compatible) GCC 5+  1. torch &amp;amp; torchvision 我使用的是 torch 1.5.1 + torchvision 0.6.1
+pip install torch==1.5.1 torchvision==0.6.1 [-i https://pypi.douban.com/simple]
+ https://pytorch.org/get-started/previous-versions/
+ 2. mmcv pip install mmcv-full
+3. mmdetection git clone https://github.com/open-mmlab/mmdetection.git cd mmdetection pip install -r requirements/build.txt pip install -v -e .</description>
+    </item>
+    
+    <item>
+      <title>AlexNet分类Fashion-MNIST(Pytorch实现)</title>
+      <link>https://example.com/blog/fashion_mnist_alexnet/</link>
+      <pubDate>Sun, 08 Mar 2020 23:03:09 +0800</pubDate>
+      
+      <guid>https://example.com/blog/fashion_mnist_alexnet/</guid>
+      <description>这个notebook也同时发表在Kaggle上
+Fashion MNIST数据集    Label Class     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 Coat   5 Sandal   6 Shirt   7 Sneaker   8 Bag   9 Ankle boot    准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.</description>
+    </item>
+    
+    <item>
+      <title>循环神经网络RNN以及几种经典模型</title>
+      <link>https://example.com/blog/rnn/</link>
+      <pubDate>Wed, 19 Feb 2020 22:47:20 +0800</pubDate>
+      
+      <guid>https://example.com/blog/rnn/</guid>
+      <description>RNN简介 现实世界中，很多元素都是相互连接的，比如室外的温度是随着气候的变化而周期性的变化的、我们的语言也需要通过上下文的关系来确认所表达的含义。但是机器要做到这一步就相当得难了。因此，就有了现在的循环神经网络，他的本质是：拥有记忆的能力，并且会根据这些记忆的内容来进行推断。因此，他的输出就依赖于当前的输入和记忆。
+网络结构及原理 循环神经网络的基本结构特别简单，就是将网络的输出保存在一个记忆单元中，这个记忆单元和下一次的输入一起进入神经网络中。
+一个最简单的循环神经网络在输入时的结构示意图：
+RNN 可以被看做是同一神经网络的多次赋值，每个神经网络模块会把消息传递给下一个，我们将这个图的结构展开:
+根据循环神经网络的结构也可以看出它在处理序列类型的数据上具有天然的优势。因为网络本身就是 一个序列结构，这也是所有循环神经网络最本质的结构。
+我们可以用下面的公式来表示循环神经网络的计算方法：
+总结图：
+Pytorch中 pytorch 中使用 nn.RNN 类来搭建基于序列的循环神经网络，它的构造函数有以下几个参数：
+ input_size：输入数据X的特征值的数目。 hidden_size：隐藏层的神经元数量，也就是隐藏层的特征数量。 num_layers：循环神经网络的层数，默认值是 1。 bias：默认为 True，如果为 false 则表示神经元不使用 bias 偏移参数。 batch_first：如果设置为 True，则输入数据的维度中第一个维度就是 batch 值，默认为 False。默认情况下第一个维度是序列的长度， 第二个维度才是batch，第三个维度是特征数目。 dropout：如果不为空，则表示最后跟一个 dropout 层抛弃部分数据，抛弃数据的比例由该参数指定  RNN 中最主要的参数是 input_size 和 hidden_size，这两个参数务必要搞清楚。其余的参数通常不用设置，采用默认值就可以了。
+rnn = torch.nn.RNN(20,50,2) input = torch.randn(100 , 32 , 20) h_0 =torch.randn(2 , 32 , 50) output,hn=rnn(input ,h_0) print(output.size(),hn.size()) &amp;#39;&amp;#39;&amp;#39; torch.Size([100, 32, 50]) torch.Size([2, 32, 50]) &amp;#39;&amp;#39;&amp;#39;  一文搞懂RNN（循环神经网络）基础篇</description>
+    </item>
+    
+    <item>
+      <title>卷积神经网络CNN以及几种经典模型</title>
+      <link>https://example.com/blog/cnn/</link>
+      <pubDate>Tue, 18 Feb 2020 18:43:39 +0800</pubDate>
+      
+      <guid>https://example.com/blog/cnn/</guid>
+      <description>简介  CNN -&amp;gt; Convolutional Neural Network
+ 卷积神经网络是由一个或多个卷积层和顶端的全连通层（也可以使用1x1的卷积层作为最终的输出）组成的一种前馈神经网络
+基本概念 局部感受野(Local Receptive Fields) 一般的神经网络往往会把图像的每一个像素点连接到全连接的每一个神经元中，而卷积神经网络则是把每一个隐藏节点只连接到图像的某个局部区域，从而减少参数训练的数量。
+例如，一张1024×720的图像，使用9×9的感受野，则只需要81个权值参数。对于一般的视觉也是如此，当观看一张图像时，更多的时候关注的是局部。
+共享权值(Shared Weights) 在卷积神经网络的卷积层中，神经元对应的权值是相同的，由于权值相同，因此可以减少训练的参数量。共享的权值和偏置也被称作卷积核或滤波器
+池化(Pooling) 由于待处理的图像往往都较大，而实际处理时没必要直接对原图进行分析，最主要的是要能够有效获得图像的特征。因此可以采用类似图像压缩的思想，对图像进行卷积之后，通过一个下采样过程来调整图像的大小
+ 什么是下采样？ 上采样、下采样到底是个啥
+ 结构组成 我们通过卷积的计算操作来提取图像局部的特征，每一层都会计算出一些局部特征，这些局部特征再汇总到下一层，这样一层一层的传递下去，特征由小变大，最后在通过这些局部的特征对图片进行处理，这样大大提高了计算效率，也提高了准确度。
+卷积层 提取特征
+卷积计算  动图来源于：stanford.edu, Feature extraction using convolution
+  NOTE: 深度学习中的卷积与信号处理中的卷积略有不同，深度学习中的卷积略去了翻转的步骤（因为起初卷积核是随机生成的，没有方向）
+  输入矩阵大小 n 卷积核大小 f 边界填充 (p)adding，指在原矩阵周围填充的层数 步长 (s)tride  计算公式
+卷积结果大小：(n - f + 2p) / s + 1向下取整
+多个卷积核 在每一个卷积层我们会设置多个卷积核，代表多个不同的特征，这些特征就是需要传递到下一层的输出，训练的过程就是训练不同的核
+激活函数 引入非线性关系
+由于卷积的操作是线性的，所以需要使用进行激活，通常使用Relu
+池化层 减少参数数量
+通过减少卷积层之间的连接，降低运算复杂程度。
+池化层一般放在卷积层后面，所以池化层池化的是卷积层的输出
+一般使用的有最大池化max-pooling和平均池化mean-pooling</description>
+    </item>
+    
+    <item>
+      <title>Pytorch中的激活函数</title>
+      <link>https://example.com/blog/pytorch_activation_function/</link>
+      <pubDate>Sat, 15 Feb 2020 18:43:29 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_activation_function/</guid>
+      <description>介绍神经网络的时候已经说到，神经元会对化学物质的刺激进行，当达到一定程度的时候，神经元才会兴奋，并向其他神经元发送信息。神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件。
+为什么激活函数都是非线性的 因为如果使用线性的激活函数，那么input跟output之间的关系始终为线性的，这样完全可以不使用网络结构，直接使用线性组合即可。
+所以需要激活函数来引入非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中，增加了神经网络模型泛化的特性。
+一般只有在输出层有极小的可能性使用线性激活函数，在隐含层都使用非线性激活函数.
+常见的激活函数 # 初始化一些信息 import torch import torch.nn.functional as F import matplotlib.pyplot as plt import numpy as np x= torch.linspace(-10,10,60) Sigmoid 函数 g(z) = a = 1 / (1 + e^(-z)) g&amp;#39;(z) = a&amp;#39; = a (1 - a) 在sigmod函数中我们可以看到，其输出是在(0,1)这个开区间，它能够把输入的连续实值变换为0和1之间的输出，如果是非常大的负数，那么输出就是0；如果是非常大的正数输出就是1，起到了抑制的作用。
+ax = plt.gca() ax.spines[&amp;#39;right&amp;#39;].set_color(&amp;#39;none&amp;#39;) ax.spines[&amp;#39;top&amp;#39;].set_color(&amp;#39;none&amp;#39;) ax.xaxis.set_ticks_position(&amp;#39;bottom&amp;#39;) ax.spines[&amp;#39;bottom&amp;#39;].set_position((&amp;#39;data&amp;#39;, 0)) ax.yaxis.set_ticks_position(&amp;#39;left&amp;#39;) ax.spines[&amp;#39;left&amp;#39;].set_position((&amp;#39;data&amp;#39;, 0)) plt.ylim((0, 1)) sigmod=torch.sigmoid(x) plt.plot(x.numpy(),sigmod.numpy()) 但是sigmod由于需要进行指数运算（这个对于计算机来说是比较慢，相比relu），再加上函数输出不是以0为中心的（这样会使权重更新效率降低），当输入稍微远离了坐标原点，函数的梯度就变得很小了（几乎为零）。
+在神经网络反向传播的过程中不利于权重的优化，这个问题叫做梯度饱和，也可以叫梯度弥散。这些不足，所以现在使用到sigmod基本很少了，基本上只有在做二元分类（0，1）时的输出层才会使用。
+Tanh 函数 tanh是双曲正切函数，输出区间是在(-1,1)之间，而且整个函数是以0为中心的
+ax = plt.gca() ax.spines[&amp;#39;right&amp;#39;].set_color(&amp;#39;none&amp;#39;) ax.spines[&amp;#39;top&amp;#39;].set_color(&amp;#39;none&amp;#39;) ax.xaxis.set_ticks_position(&amp;#39;bottom&amp;#39;) ax.</description>
+    </item>
+    
+    <item>
+      <title>Pytorch中的梯度下降及优化</title>
+      <link>https://example.com/blog/pytorch_gradient_descent/</link>
+      <pubDate>Sat, 15 Feb 2020 17:46:54 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_gradient_descent/</guid>
+      <description>在PyTorch中使用Mini-batch这种方法进行训练
+Mini-batch的梯度下降法 对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中
+所以我们会把大数据集分成小数据集，一部分一部分的训练，这个训练子集即称为Mini-batch。
+对于普通的梯度下降法，一个epoch只能进行一次梯度下降；而对于Mini-batch梯度下降法，一个epoch可以进行Mini-batch的个数次梯度下降。
+普通的batch梯度下降法和Mini-batch梯度下降法代价函数的变化趋势，如下图所示：
+ 如果训练样本的大小比较小时，能够一次性的读取到内存中，那我们就不需要使用Mini-batch 如果训练样本的大小比较大时，一次读入不到内存或者现存中，那我们必须要使用 Mini-batch来分批的计算 Mini-batch size的计算规则如下，在内存允许的最大情况下使用2的N次方个size  torch.optim torch.optim是一个实现了各种优化算法的库。大部分常用优化算法都有实现
+torch.optim.SGD  Stochastic Gradient Descent
+ 随机梯度下降算法，带有动量(momentum)的算法作为一个可选参数可以进行设置
+ 可以把动量看作惯性：当你跑起来，由于惯性的存在你跑起来会比刚起步加速的时候更轻松，当你跑过头，想调头往回跑，惯性会让你拖着你。 在普通的梯度下降法的方向相同，则会加速。反之，则会减速。 加了动量的优势：
+ 加速收敛 提高精度（减少收敛过程中的振荡）   SGD(params, lr=&amp;lt;required parameter&amp;gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False) torch.optim.RMSprop  Root Mean Square Prop
+ 均方根传递。也是一种可以加快梯度下降的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快
+相较于gradient descent with momentum，RMSprop的思想是:
+ 对于梯度震动较大的项，在下降时，减小其下降速度； 对于震动幅度小的项，在下降时，加速其下降速度。  torch.optim.Adam Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法
+它能基于训练数据迭代地更新神经网络权重
+详细介绍
+e.d.
+# 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, betas=(0.</description>
+    </item>
+    
+    <item>
+      <title>Pytorch中的损失函数Loss Function</title>
+      <link>https://example.com/blog/pytorch_loss_function/</link>
+      <pubDate>Sat, 15 Feb 2020 15:33:34 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_loss_function/</guid>
+      <description>由于Pytorch中使用mini-batch进行计算，因此其损失函数的计算结果会对mini-batch取平均
+常见的Pytorch中内置的损失函数有：
+nn.L1Loss 计算input与output的差的绝对值，input与output应该是同一维度，得到的loss也是相应维度
+nn.NLLLoss  Negative Log Likelihood
+ class torch.nn.NLLLoss(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction=&amp;#39;mean&amp;#39;) 常用于多分类任务。在NLLLoss输入input之前，我们需要对input进行log_softmax处理(即将input转换成概率分布的形式，并且取对数，底数为e)
+计算公式
+loss(input, class) = -input[class] NLLLoss中如果传递了weight参数，会对损失进行加权，公式就变成了
+loss(input, class) = -weight[class] * input[class] nn.MSELoss  Mean Square Error
+ 计算input与ouput之间的均方差
+nn.CrossEntropyLoss 多分类用的交叉熵损失合函数，将LogSoftMax和nn.NLLLoss集成到一个类中，nn.CrossEntropyLoss可以自动对input进行logSoftMax操作，可以理解为CrossEntropyLoss()=log_softmax() + NLLLoss()
+传入weight参数后
+一般多分类的情况会使用这个损失函数
+nn.BCELoss  Binary Cross Entropy
+ 计算input与output之间的二进制交叉熵
+添加weight后
+用的时候需要在该层前面加上 Sigmoid 函数</description>
+    </item>
+    
+    <item>
+      <title>Pytorch_数据集的创建和加载</title>
+      <link>https://example.com/blog/pytorch_dataset_dataloader/</link>
+      <pubDate>Sat, 15 Feb 2020 01:08:09 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_dataset_dataloader/</guid>
+      <description>PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。
+可以通过dataset定义数据集，并使用Datalorder载入和遍历数据集
+Dataset Dataset是一个抽象类，为了能够方便的读取，需要将要使用的数据包装为Dataset类。
+自定义的Dataset需要继承它并且实现两个成员方法：
+ __getitem__() 该方法定义用索引(0 到 len(self))获取一条数据或一个样本 __len__() 该方法返回数据集的总长度  下面使用kaggle上的一个竞赛bluebook for bulldozers自定义一个数据集，用里面的数据字典来做说明（因为条数少）
+from torch.utils.data import Dataset import pandas as pd #定义一个数据集 class BulldozerDataset(Dataset): # 实现初始化方法，在初始化的时候将数据读载入 def __init__(self, csv_file): self.df=pd.read_csv(csv_file) # 返回df的长度 def __len__(self): return len(self.df) # 根据 idx 返回一行数据 def __getitem__(self, idx): return self.df.iloc[idx].SalePrice 至此，我们的数据集已经定义完成了，我们可以实例话一个对象访问他
+ds_demo = BulldozerDataset(&amp;#39;median_benchhmark.csv&amp;#39;) print(len(ds_demo)) # 11573 print(ds_demo[0]) # 24000.0 Dataloader DataLoader为我们提供了对Dataset的读取操作，常用参数有：batch_size(每个batch的大小)、 shuffle(是否进行shuffle操作)、 num_workers(加载数据的时候使用几个子进程)。下面做一个简单的操作
+dl = torch.utils.data.DataLoader(ds_demo, batch_size=10, shuffle=True, num_workers=0) DataLoader返回的是一个可迭代对象，我们可以使用迭代器分次获取数据
+idata=iter(dl) print(next(idata)) # Output: # tensor([24000.</description>
+    </item>
+    
+    <item>
+      <title>Pytorch_torchvision</title>
+      <link>https://example.com/blog/pytorch_torchvision/</link>
+      <pubDate>Fri, 14 Feb 2020 00:19:28 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_torchvision/</guid>
+      <description>torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。
+ AlexNet VGG ResNet SqueezeNet DenseNet  torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
+torchvision.transforms 提供了一般的图像转换操作类，用作数据处理和数据增强
+其中都是常见的图像转换，可以通过Compose将他们链接在一起
+from torchvision import transforms as transforms transform = transforms.Compose([ transforms.RandomCrop(32, padding=4), #先四周填充0，在把图像随机裁剪成32*32 transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转 transforms.RandomRotation((-45,45)), #随机旋转 transforms.ToTensor(), transforms.Normalize((0.4914, 0.4822, 0.4465), (0.229, 0.224, 0.225)), #R,G,B每层的归一化用到的均值和方差 ]) 此外还有torchvision.transforms.functional 模块，可对转换进行细粒度控制，这对于要构建一个更复杂的 transformation pipeline（例如在segmentation tasks分段任务中）很有帮助
+torchvision.transforms.Normalize(mean, std, inplace=False) 用均值和标准差对张量图像进行归一化。
+给定n个通道的均值: (M1,...,Mn) 和标准差: (S1,..,Sn), 这个转换将归一化输入torch.*Tensor的每个通道。例如: input[channel] = (input[channel] - mean[channel]) / std[channel]
+ Note: 这种变换的作用不适当，即它不会改变输入张量
+ torchvision.utils torchvision.utils.make_grid(tensor, nrow=8, padding=2, normalize=False, range=None, scale_each=False, pad_value=0) 创建图像网格，即将若干幅图像拼成一幅图像</description>
+    </item>
+    
+    <item>
+      <title>Pytorch学习笔记_4_训练一个分类器</title>
+      <link>https://example.com/blog/pytorch_4/</link>
+      <pubDate>Thu, 13 Feb 2020 18:37:46 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_4/</guid>
+      <description>关于数据 一般来说，对于图像、文本、音频或视频数据，可以使用标准的Python包来将这些数据加载为numpy array，之后可以将这些array转换为torch.*Tensor
+ 对于图像，Pillow、OpenCV包 音频，scipy、librosa包 文本，可以使用原始Python和Cython加载，或NLKT和SpaCy  特别的，对于视觉任务，有一个包torchvision，其中包含了处理类似Imagnet, CIFAR10, MNIST等常见数据集的方法，以及图像转换器，如torchvision.datasets和torch.utils.data.DataLoader
+torchvision包不仅提供了巨大的便利，也避免了代码的重复。
+在这里使用CIFAR10数据集，它有如下10个类别 ：‘airplane’, ‘automobile’, ‘bird’, ‘cat’, ‘deer’, ‘dog’, ‘frog’, ‘horse’, ‘ship’, ‘truck’。
+CIFAR-10的图像都是 3x32x32 大小的，即，3颜色通道，32x32像素。
+训练一个图像分类器  使用torchvision加载和归一化CIFAR10训练集和测试集 定义一个卷积神经网络 定义损失函数 用训练集训练网络 用测试集测试网络  1.读取和归一化 CIFAR10 使用torchvision可以非常容易得加载CIFAR10
+import torch import torchvision import torchvision.transforms as transforms torchvision的输出是 [0,1]的PILImage图像，把它转化为归一化范围为[-1, 1]的张量
+transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]) # 下载数据并加载到loader中 trainset = torchvision.datasets.CIFAR10(root=&amp;#39;./data&amp;#39;, train=True, download=True, transform=transform) trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2) testset = torchvision.</description>
+    </item>
+    
+    <item>
+      <title>Pytorch_linear</title>
+      <link>https://example.com/blog/pytorch_linear/</link>
+      <pubDate>Wed, 12 Feb 2020 23:13:53 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_linear/</guid>
+      <description>Linear 对输入数据应用线性变换：y = xA^T + b
+torch.nn.Linear(in_features, out_features, bias=True) 参数  in_features 每个输入样本的大小 out_features 每个输出样本的大小 bias 若为False，layer不会学习附加偏差b  shape   输入: (N, ∗, H_in)，其中 ∗ 代表任意数量的附加维度，H_in = in_features
+  输出: (N, *, H_out)，除了最后一个维度，其余都与输入相同，H_out = out_features
+  </description>
+    </item>
+    
+    <item>
+      <title>Pytorch_nn.Conv2d</title>
+      <link>https://example.com/blog/pytorch_conv2d/</link>
+      <pubDate>Wed, 12 Feb 2020 22:22:18 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_conv2d/</guid>
+      <description>Conv2d torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode=&amp;#39;zeros&amp;#39;)  in_channels 输入数据通道数 out_channels 输出数据通道数 kennel_size 卷积核大小，int或tuple stride 步长 padding 每个维度零填充的数量 dilation 内核点之间的距离，也称à trous algorithm groups 控制inputs与outputs间的连接    groups=1，所有输入都卷积到输出 groups=2，并排设置两个conv层，每个层查看一半的输入通道，并生成一半的输出通道，然后将两者连接起来 groups=in_channels，每个输入通道都有它自己的filter，size为[out_channels/in_channels]   </description>
+    </item>
+    
+    <item>
+      <title>Pytorch学习笔记_3_构建一个神经网络</title>
+      <link>https://example.com/blog/pytorch_3/</link>
+      <pubDate>Wed, 12 Feb 2020 11:13:23 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_3/</guid>
+      <description>Neural Networks   神经网络可以通过使用torch.nn包来创建
+  nn依赖于autograd来定义模型并求导。
+  一个nn.Module类包含各个层和一个forward(input)前向传播方法，该方法返回output
+  例如这个分类数字图像的网络：
+这是个简单的前馈神经网络，它接受一个输入，然后一层接一层的传递，最后输出计算结果
+一个神经网络的典型训练过程：
+ 定义包含一些可学习的参数（或权重）的神经网络 在数据集上迭代 通过神经网络处理输入 计算损失函数（预测值与实际值的差值大小） 将梯度反向传播回网络的参数 更新网络参数，主要使用一个简单的更新法则：weight = weight - learning_rate * gradient   另参见：konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4
+ 定义网络 import torch import torch.nn as nn import torch.nn.functional as F class Net(nn.Module): def __init__(self): # 构造方法 super().__init__() # 复制并使用Net的父类的初始化方法，即先运行nn.Module的初始化函数 # 卷积层 self.conv1 = nn.Conv2d(1, 6, 5) self.conv2 = nn.Conv2d(6, 16, 5) # fc(full_connect)全连接函数，均为线性函数 y = Wx + b self.</description>
+    </item>
+    
+    <item>
+      <title>Pytorch学习笔记_2_Autograd自动求导机制</title>
+      <link>https://example.com/blog/pytorch_2/</link>
+      <pubDate>Tue, 11 Feb 2020 17:25:19 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_2/</guid>
+      <description>Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
+autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
+通过一些示例来了解
+Tensor 张量 torch.tensor是这个包的核心类。
+ 设置.requires_grad为True，会追踪所有对于该张量的操作。计算完成后调用.backward()，可以自动计算所有的梯度，并自动累计到.grad属性中   事实上即使.requires_grad为True并不意味着.grad一定不为None
+   可以调用.detach()将该张量与计算历史记录分离，并禁止跟踪它将来的计算记录
+  为防止跟踪历史记录（和使用内存），可以将代码块包装在with torch.no_grad(): 中。这在评估模型时特别有用，因为模型可能具有requires_grad = True的可训练参数，但是我们不需要梯度计算。
+  Function类 Tensor 和 Function 互相连接并生成一个非循环图，它表示和存储了完整的计算历史。
+每个张量都有一个.grad_fn属性，对张量进行操作后，grad_fn会引用一个创建了这个Tensor类的Function对象（除非这个张量是用户手动创建的，此时，这个张量的 grad_fn 是 None）
+ leaf Tensors 叶张量
+  Tensor中有一属性is_leaf，当它为True有两种情况：
+   按照惯例，requires_grad = False 的 Tensor    requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None    只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()</description>
+    </item>
+    
+    <item>
+      <title>Pytorch学习笔记_1_tensor张量</title>
+      <link>https://example.com/blog/pytorch_1/</link>
+      <pubDate>Tue, 11 Feb 2020 14:46:14 +0800</pubDate>
+      
+      <guid>https://example.com/blog/pytorch_1/</guid>
+      <description>Tensors Tensors与Numpy中的ndarrays类似
+torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
+&amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]]) 后者可以创建shape相同，属性不同的对象
+&amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]) 获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性</description>
+    </item>
+    
+    <item>
+      <title>训练神经网络的基本步骤</title>
+      <link>https://example.com/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</link>
+      <pubDate>Fri, 07 Feb 2020 00:09:57 +0800</pubDate>
+      
+      <guid>https://example.com/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</guid>
+      <description>1. 选择一种网络结构 即选择神经元之间的连通模式
+  输入层与输出层单元个数由具体特征决定
+  隐藏层通常默认为1层；若为多层，则每个隐藏层单元个数应相等。通常隐藏层单元数越多越好
+  隐藏层单元数应与输入特征数相匹配
+  2. 随机初始化权重 通常把权重值初始化为接近0的很小的数
+3. 执行前向传播FP算法 获得对应于每一个 xi 的 h_theta(xi)​
+4. 通过代码计算出代价函数 J(theta) 5. 执行反向传播算法 获得 J(theta) 对于 theta 的偏导​，即
+ 步骤 3-5
+   6. 进行梯度检查   比较 通过反向传播得到的偏导数 与 通过数值计算得到的估计值
+  确保两种方法得到基本接近的两个值​
+  注意在检查完毕后关闭梯度检查
+  7. 利用最优化算法与反向传播算法最小化 J(theta) 比如，使用最小梯度法</description>
+    </item>
+    
+    <item>
+      <title>Tesseract-OCR样本训练方法</title>
+      <link>https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/</link>
+      <pubDate>Wed, 20 Nov 2019 19:29:52 +0800</pubDate>
+      
+      <guid>https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/</guid>
+      <description>我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。
+安装jTessBoxEditor 可以在这里下载到最新版安装包
+把下载得到的压缩包解压到任意位置，双击其中的train.bat文件，等待一会，弹出窗口就可以开始训练了
+制作训练样本 生成tif文件 打开软件，选择Tools-&amp;gt;Merge TIFF，文件类型选择ALL Image Files，选择所有要训练的样本图片，打开
+之后会又弹出窗口，文件名需要自己设定，注意要按照格式设置：
+[lang].[fontname].exp[num].tif
+其中lang为语言名称，fontname为字体名称，num为序号。这三项都可以自己定义
+这里我们设置为captcha.font.exp0.tif，文件类型TIFF，保存
+生成box文件 将之前生成的captcha.font.exp0.tif复制到Tesseract-OCR的安装目录
+打开cmd进入安装目录，执行命令
+tesseract.exe num.font.exp0.tif num.font.exp0 batch.nochop makebox 将.box文件和.tif文件放在同一文件夹
+手动调整 打开jTessBoxEditor工具，点击Box Editor-&amp;gt;Open，选择打开之前生成的.box文件
+软件中便会显示Tesseract自动标记识别的字符，接下来就需手动调整每一张的字符框和识别结果
+全部修改完成后，选择Save保存即可
+训练 先新建一个名为font_properties的文件，注意，只是文件，没有后缀！打开后，内容输入
+captcha 0 0 0 0 0 这里全取值为0，表示字体不是粗体、斜体等等
+之后在命令行分别运行命令：
+shapeclustering.exe -F font_properties -U unicharset captcha.font.exp0.tr mftraining.exe -F font_properties -U unicharset captcha.font.exp0.tr cntraining.exe captcha.font.exp0.tr 之后给文件 inttemp，normproto，pffmtable，shapetable，unicharset 添加前缀captcha.，也就是我们的字体名
+生成语言库 命令
+combine_tessdata.exe captcha. 会生成一个captcha.traineddata文件，将其复制到Tesseract-OCR安装目录中的tessdata文件夹即可
+使用训练结果 在调用tesseract或pytesseract时，只需添加参数lang=&amp;ldquo;captcha&amp;rdquo;（我们的字体名），程序就会自动调用啦</description>
+    </item>
+    
+    <item>
+      <title>Tesseract-OCR安装与python中使用</title>
+      <link>https://example.com/blog/tesseract%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Wed, 20 Nov 2019 18:15:12 +0800</pubDate>
+      
+      <guid>https://example.com/blog/tesseract%E5%AE%89%E8%A3%85/</guid>
+      <description>安装Tesseract-OCR 在官网下载最新的Windows安装包，双击运行
+根据需要选择，一路Next，直到这个页面
+在Additional language data(download)中选择要下载的其他语言的数据，之后程序会自动下载。一直到安装成功
+配置环境变量 进入高级系统设置，选择高级-&amp;gt;环境变量
+选中系统变量中Path-&amp;gt;编辑
+新建一项，地址为Tesseract-OCR的安装目录即可（例如C:\Program Files\Tesseract-OCR）
+可以通过在控制台中输入tesseract命令来检查是否配置成功，输出如图即表示成功
+配置Python 直接使用pip install pytesseract进行安装
+pytesseract 功能  get_tesseract_version　返回系统中安装的Tesseract版本。 image_to_string　将图像上的Tesseract OCR运行结果返回到字符串 image_to_boxes　返回包含已识别字符及其框边界的结果 image_to_data　返回包含框边界，置信度和其他信息的结果 image_to_osd　返回包含有关方向和脚本检测的信息的结果  参数 image_to_data(image, lang=None, config=&#39;&#39;, nice=0, output_type=Output.STRING)  image object　图像对象 lang String，Tesseract　语言代码字符串 config String　任何其他配置为字符串，例如：config=&#39;&amp;ndash;psm 6&#39; nice Integer　修改Tesseract运行的处理器优先级。Windows不支持。 output_type　类属性，指定输出的类型，默认为string。  简单实例 识别一张图像中字符并直接输出
+import pytesseract im = &amp;#34;C:/Users/1/Desktop/test.jpg&amp;#34; result = pytesseract.image_to_string(im) print(result) 这样识别到的字符就会转化成字符串输出</description>
+    </item>
+    
+    <item>
+      <title>第一个TensorFlow模型：摄氏度转换为华氏度</title>
+      <link>https://example.com/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</link>
+      <pubDate>Fri, 11 Oct 2019 20:33:51 +0800</pubDate>
+      
+      <guid>https://example.com/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</guid>
+      <description>今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
+公式 已知摄氏度转换成华氏度有数学公式：
+f = c * 1.8 + 32 而我们就要在不告知模型这个公式的前提下，通过告知一系列对应的摄氏度与华氏度样例，来训练它以实现摄氏度转华氏度这一功能
+import dependencies 导入依赖项 需要引入TensorFlow与NumPy库构建神经网络
+from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np 还需要引入logging以记录日志
+import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR) Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
+celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&amp;#34;{} degrees Celsius = {} degrees Fahrenheit&amp;#34;.</description>
+    </item>
+    
+  </channel>
+</rss>

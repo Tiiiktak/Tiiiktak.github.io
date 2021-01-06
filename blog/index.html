@@ -1,306 +1,636 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>Posts - Tiiktak&#39;s</title>
-    
-    <meta name="description" content="Hey You">
-    <meta name="author" content="">
-    
-    <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
-    <link href="https://konosuba.xyz/css/style.css" rel="stylesheet">
-    
-    <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
-    <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
-    
-    <meta name="generator" content="Hugo 0.55.6" />
-    
-    <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
-    
-    
-    
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。'><title>Blogs</title>
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
+<link rel='canonical' href='https://example.com/blog/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Blogs'>
+<meta property='og:description' content='每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。'>
+<meta property='og:url' content='https://example.com/blog/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2020-12-28T15:52:48&#43;08:00 '/>
+<meta name="twitter:title" content="Blogs">
+<meta name="twitter:description" content="每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。"><link rel="alternate" type="application/rss&#43;xml" href="https://example.com/blog/index.xml">
+    </head>
+    <body class="">
     <script>
-      var _hmt = _hmt || [];
-      (function () {
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <h3 class="section-title">
+        
+            Section
+        
+    </h3>
+
+    <div class="section-card">
+        <div class="section-details">
+            <h3 class="section-count">81 pages</h3>
+            <h1 class="section-term">Blogs</h1>
+            
+        </div>
+    </div>
+
+    
+    
+    
+    
+    
+    <section class="article-list--compact">
+        
+            <article>
+    <a href="/blog/mmdet_multiple_gpu_error/">
+        <div class="article-details">
+            <h2 class="article-title">MMDetection单机多卡训练出现问题</h2>
+            <footer class="article-time">
+                <time datetime='2020-12-28T15:52:48&#43;08:00'>Dec 28, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/clash_linux_tutorial/">
+        <div class="article-details">
+            <h2 class="article-title">在Linux中使用Clash科学上网</h2>
+            <footer class="article-time">
+                <time datetime='2020-12-28T15:49:53&#43;08:00'>Dec 28, 2020</time>
+            </footer>
+        </div>
+            <div class="article-image">
+                <img src="/blog/clash_linux_tutorial/111_hudf87a6e899bd8dba888e085cac1d822c_31212_120x120_fill_box_smart1_2.png" 
+                        width="120"
+                        height="120" 
+                        loading="lazy">
+                
+            </div>
+        
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/mpich2_ubuntu/">
+        <div class="article-details">
+            <h2 class="article-title">Mpich2_安装 Ubuntu 20.04LTS</h2>
+            <footer class="article-time">
+                <time datetime='2020-11-17T09:20:26&#43;08:00'>Nov 17, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/msmpi_install/">
+        <div class="article-details">
+            <h2 class="article-title">MSMPI Visual Studio 2019 配置</h2>
+            <footer class="article-time">
+                <time datetime='2020-11-16T22:14:03&#43;08:00'>Nov 16, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/project_manage_course_prototype_design/">
+        <div class="article-details">
+            <h2 class="article-title">【课程作业】项目管理课程原型设计</h2>
+            <footer class="article-time">
+                <time datetime='2020-10-08T13:58:14&#43;08:00'>Oct 08, 2020</time>
+            </footer>
+        </div>
+            <div class="article-image">
+                <img src="/blog/project_manage_course_prototype_design/title_hu07c02ab2cdb630130b1382d2e9238068_4201951_120x120_fill_box_smart1_2.png" 
+                        width="120"
+                        height="120" 
+                        loading="lazy">
+                
+            </div>
+        
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/bdd100k_mmdet_mask-rcnn/">
+        <div class="article-details">
+            <h2 class="article-title">MMDetection中使用Mask-RCNN训练BDD100K数据集</h2>
+            <footer class="article-time">
+                <time datetime='2020-10-08T13:40:10&#43;08:00'>Oct 08, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/mmdet_install/">
+        <div class="article-details">
+            <h2 class="article-title">MMDetection安装过程记录</h2>
+            <footer class="article-time">
+                <time datetime='2020-10-05T13:37:51&#43;08:00'>Oct 05, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/show_python_installation_path/">
+        <div class="article-details">
+            <h2 class="article-title">查看当前使用的Python的安装路径</h2>
+            <footer class="article-time">
+                <time datetime='2020-09-25T19:22:57&#43;08:00'>Sep 25, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/difference_between_opencv_pyopencv_libopencv/">
+        <div class="article-details">
+            <h2 class="article-title">python库opencv,py-opencv,libopencv的区别</h2>
+            <footer class="article-time">
+                <time datetime='2020-07-07T23:52:11&#43;08:00'>Jul 07, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/">
+        <div class="article-details">
+            <h2 class="article-title">树莓派4B安装opencv以及错误解决</h2>
+            <footer class="article-time">
+                <time datetime='2020-04-27T11:25:47&#43;08:00'>Apr 27, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/fashion_mnist_alexnet/">
+        <div class="article-details">
+            <h2 class="article-title">AlexNet分类Fashion-MNIST(Pytorch实现)</h2>
+            <footer class="article-time">
+                <time datetime='2020-03-08T23:03:09&#43;08:00'>Mar 08, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/rnn/">
+        <div class="article-details">
+            <h2 class="article-title">循环神经网络RNN以及几种经典模型</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-19T22:47:20&#43;08:00'>Feb 19, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/cnn/">
+        <div class="article-details">
+            <h2 class="article-title">卷积神经网络CNN以及几种经典模型</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-18T18:43:39&#43;08:00'>Feb 18, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_activation_function/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch中的激活函数</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-15T18:43:29&#43;08:00'>Feb 15, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_gradient_descent/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch中的梯度下降及优化</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-15T17:46:54&#43;08:00'>Feb 15, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_loss_function/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch中的损失函数Loss Function</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-15T15:33:34&#43;08:00'>Feb 15, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_dataset_dataloader/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch_数据集的创建和加载</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-15T01:08:09&#43;08:00'>Feb 15, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_torchvision/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch_torchvision</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-14T00:19:28&#43;08:00'>Feb 14, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_4/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch学习笔记_4_训练一个分类器</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-13T18:37:46&#43;08:00'>Feb 13, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+            <article>
+    <a href="/blog/pytorch_linear/">
+        <div class="article-details">
+            <h2 class="article-title">Pytorch_linear</h2>
+            <footer class="article-time">
+                <time datetime='2020-02-12T23:13:53&#43;08:00'>Feb 12, 2020</time>
+            </footer>
+        </div>
+    </a>
+</article>
+        
+    </section>
+    <nav class='pagination'>
+        
+        
+
+        
+            
+                <span class='page-link current'>1</span>
+                
+            
+            
+                    <a class='page-link' href='/blog/page/2/'>2</a>
+                
+            
+            
+                    
+                        
+                        <span class='page-link dots'>&hellip;</span>
+                    
+                
+            
+            
+                    
+                
+            
+            
+                    <a class='page-link' href='/blog/page/5/'>5</a>
+                
+            
+    </nav>
+
+<footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+            </main>
+    
+    
+    <aside class="sidebar right-sidebar sticky">
+        
+            <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+        
+            <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">归档</h2>
+
+        
+        
+        
+        
+        
+        <div class="widget-archive--list">
+            <div class="archives-year">
+                    <a href="/archives/#2020">
+                        
+                            <span class="year">2020</span>
+                            <span class="count">45</span>
+                        
+                    </a> 
+                </div>
+            <div class="archives-year">
+                    <a href="/archives/#2019">
+                        
+                            <span class="year">2019</span>
+                            <span class="count">36</span>
+                        
+                    </a> 
+                </div>
+            
+        </div>
+    </section>
+        
+            <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">标签云</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/tags/%E4%BD%9C%E4%B8%9A/" class="font_size_6">
+                作业
+            </a>
+        
+            <a href="/tags/socket/" class="font_size_4">
+                socket
+            </a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="font_size_3">
+                算法
+            </a>
+        
+            <a href="/tags/mpich/" class="font_size_2">
+                mpich
+            </a>
+        
+            <a href="/tags/java/" class="font_size_1">
+                java
+            </a>
+        
+            <a href="/tags/linux/" class="font_size_1">
+                linux
+            </a>
+        
+            <a href="/tags/python/" class="font_size_1">
+                Python
+            </a>
+        
+            <a href="/tags/shell/" class="font_size_1">
+                shell
+            </a>
+        
+            <a href="/tags/%E8%AE%BE%E8%AE%A1/" class="font_size_1">
+                设计
+            </a>
+        
+    </div>
+</section>
+        
+    </aside>
+
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-  </head>
-  <body class="list">
-    <header class="header">
-      <div class="wrap">
-        
-        <p class="logo"><a href="https://konosuba.xyz/">Tiiktak&#39;s</a></p>
-        
-        
-        <button class="menu-toggle" type="button"></button>
-        
-      </div>
-    </header>
-    
-    <nav class="nav">
-      <ul class="menu">
-        
-        <li>
-          <a href="/about/">About</a>
-        </li>
-        
-      </ul>
-    </nav>
-    
-    <main class="main">
-
-
-
-<header class="page-header">
-  <h1>
-  Posts
-  </h1>
-</header>
-
-
-
-
-
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>MMDetection单击多卡训练出现问题</h2>
-  </header>
-  <section class="entry-content">
-   <p>使用的命令：
-CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh ${CONFIG_FILE} 4 --resume-from ${CHECKPOINT_FILE}  出现问题：
- 模型train 1 epoch后挂掉，报错信息：  RuntimeError: replicas_[0].size() == rebuilt_param_indices_.size() INTERNAL ASSERT FAILED at &#34;/pytorch/torch/csrc/distributed/c10d/reducer.cpp&#34;:1326, please report a bug to PyTorch. rebuilt parameter indices size is not same as original model parameters size.321 versus 629160   pytorch github issue:https://github.com/pytorch/pytorch/issues/47050 mmcv issue: https://github.com/open-mmlab/mmcv/issues/636#issuecomment-722436575 解决方案：安装1.6版本pytorch，并重装mmcv
-pip uninstall mmcv-full pip install mmcv-full python setup.py install   ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.12.28</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/mmdetection%E5%8D%95%E5%87%BB%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>在Linux中使用Clash科学上网</h2>
-  </header>
-  <section class="entry-content">
-   <p> 安装  下载amd64文件：https://github.com/Dreamacro/clash/releases/ gzip -f -d linux-amd64-clash.gz 下载配置文件config.yaml到~/.config/clash 下载mmdb文件到~/.config/clash  配置（每次使用前）  ./clash启动 浏览器进入127.0.0.1:9090，Clash控制面板 选择一个节点 进入Ubuntu设置，网络设置，代理 Method设为Manual HTTP Proxy、HTTPs Proxy设置为127.0.0.1:7890 Socks Host设置为127.0.0.1:7891  wget配置代理  修改/etc/wgetrc，其中
-https_proxy = http://127.0.0.1:7890/ http_proxy = http://127.0.0.1:7890/ ftp_proxy = http://127.0.0.1:7890/  使用时，wget --proxy=on https://xxxx即可
-  ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.12.28</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E5%9C%A8linux%E4%B8%AD%E4%BD%BF%E7%94%A8clash%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>Mpich2_安装 Ubuntu 20.04LTS</h2>
-  </header>
-  <section class="entry-content">
-   <p> Ubuntu 20.04 LTS   sudo aptitude install mpich
- mpiexec --version
-   new code  #include &#34;mpi.h&#34; #include &lt;stdio.h&gt; int main(void) { int rankID; int sizeNum; MPI_Init(0, 0); MPI_Comm_size(MPI_COMM_WORLD, &amp;sizeNum); MPI_Comm_rank(MPI_COMM_WORLD, &amp;rankID); printf(&#34;Hello world! %d of total = %d\n&#34;, rankID, sizeNum); MPI_Finalize(); return 0; }   mpicc demo_1.c -o demo_1
- mpirun -np 8 ./demo_1
-  ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.11.17</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/mpich2_%E5%AE%89%E8%A3%85-ubuntu-20.04lts/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>MSMPI Visual Studio 2019 配置</h2>
-  </header>
-  <section class="entry-content">
-   <p>Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp; .exe两个文件，按提示安装即可
-安装过程会自动添加环境变量，可在PATH中看到
-step2. 配置 VS2019 新建一个空项目，新建一个属性表
-包含目录、库目录
- 包含目录里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Include; 库目录的里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;
- 【C/C&#43; 附加包含目录】：添加$(MSMPI_INC);$(MSMPI_INC)\x64
- 【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
- 【链接器-输入-附加依赖项】：添加msmpi.lib
-  step3. 测试 #include &lt;iostream&gt; #include &lt;mpi.h&gt; int main(int argc, char* argv[]) { MPI_Init(&amp;argc, &amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &lt;&lt; &#34;Receive from rank 0: &#34; &lt;&lt; RecvNum &lt;&lt; std::endl; } MPI_Finalize(); return 0; }  step4....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.11.16</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/msmpi-visual-studio-2019-%E9%85%8D%E7%BD%AE/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>【课程作业】项目管理课程原型设计</h2>
-  </header>
-  <section class="entry-content">
-   <p> 这是我的《软件过程与项目管理》 的期末作业，我们小组设计了一款校内出行APP，其中软件原型设计部分由我负责，使用PS和XD制作，在这里做个展示:laughing:
-主视觉 各页面 HOME HOME-弹窗 HOME-Tips MORE MORE-包车 ME ...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.10.8</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>MMDet中使用Mask-RCNN训练BDD100K数据集</h2>
-  </header>
-  <section class="entry-content">
-   <p>1. Convert label to COCO format 使用官方提供的工具bdd100k2coco.py
- 注意：使用bdd100k2coco分支下的文件，master中的该文件无法正常使用
- 在使用前，还需要对该文件进行部分修改：
-# 将69行修改为	image[&#34;file_name&#34;] = frame[&#34;name&#34;]&#43;&#34;.jpg&#34; # 在73行之后增加 frame = frame[&#34;frames&#34;][0]  之后按如下方式运行
-python bdd100k2coco.py -i {JSON文件夹路径} -o {输出一个coco json文件} -m {转换方式det or track，使用det即可}  调用两次分别将train、val数据集的label转换
-2. Set COCO-like directory tree 按如下目录结构保存我们的数据集
-data ├── annotations │ ├── instances_train2017.json # 训练集json │ ├── instances_val2017.json	# 验证集json ├── train2017 │ └── abcdefg-1234567.jpg │ └── ... ├── test2017 │ └── abcdefg-1234567.jpg │ └── ....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.10.8</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/mmdet%E4%B8%AD%E4%BD%BF%E7%94%A8mask-rcnn%E8%AE%AD%E7%BB%83bdd100k%E6%95%B0%E6%8D%AE%E9%9B%86/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>MMDet安装过程记录</h2>
-  </header>
-  <section class="entry-content">
-   <p>记录自本人安装过程，环境建议：
- Linux or macOS (Windows is not currently officially supported) Python 3.6&#43; PyTorch 1.3&#43; CUDA 9.2&#43; (If you build PyTorch from source, CUDA 9.0 is also compatible) GCC 5&#43;  1. torch &amp; torchvision 我使用的是 torch 1.5.1 &#43; torchvision 0.6.1
-pip install torch==1.5.1 torchvision==0.6.1 [-i https://pypi.douban.com/simple]
- https://pytorch.org/get-started/previous-versions/
- 2. mmcv pip install mmcv-full
-3. mmdetection git clone https://github.com/open-mmlab/mmdetection.git cd mmdetection pip install -r requirements/build.txt pip install -v -e ....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.10.5</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/mmdet%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>查看当前使用的Python的安装路径</h2>
-  </header>
-  <section class="entry-content">
-   <p>如题，代码如下：
-import sys python_path = sys.executable print(python_path)  如图：...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.9.25</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E4%BD%BF%E7%94%A8%E7%9A%84python%E7%9A%84%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>python库opencv,py-opencv,libopencv的区别</h2>
-  </header>
-  <section class="entry-content">
-   <p>通常我们在Python中安装OpenCV都是直接用pip install opencv-python
-今天想用Anaconda Navigator安装的时候，在面板中搜索到有libopencv, opencv, py-opencv共三个包，而且三者的描述都是同样的’Computer vision and machine learning software library‘，瞬间迷惑:laughing:
-找到介绍如下：
- OpenCV is computer vision a library written using highly optimized C/C&#43;&#43; code. It makes use of multiprocessing in the background. It has a collection of a large number of algorithms tested and verifiend by the developers. The best thing about this is it’s FREE under the BSD license. libopencv is only a metapackage. These packages do not contain actual software, they simply depend on other packages to be installed....</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.7.7</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/python%E5%BA%93opencvpy-opencvlibopencv%E7%9A%84%E5%8C%BA%E5%88%AB/"></a>
-</article>
-
-<article class="post-entry">
-  <header class="entry-header">
-    <h2>树莓派4B安装opencv以及错误解决</h2>
-  </header>
-  <section class="entry-content">
-   <p>更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
- 主要参考opencv官网文档和博客树莓派&#43;Opencv（一）图像处理
-树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
-下载安装依赖项 sudo apt-get install build-essential sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev  在4B上安装时遇到libgtk2.0-dev安装失败的问题：
-这是因为依赖项版本太高了，需要降级安装。所以可以使用命令sudo aptitude install libgtk2.0-dev来进行安装
-在安装过程中，首先会给出一个方案提示是否接受，第一个给出的方案是保留原依赖项，我们要输入n否定它，之后给出第二个方案是降级安装，输入Y使用该方案
- 其中aptitude是一个类似apt-get的包管理工具，但是它能更好处理依赖问题，支持降级安装
- 下载源码 从GitHub下载：
-opencv
-opencv_contrib
-两个都下载.zip压缩包即可
-解压源码并进入文件夹 unzip opencv-4.3.0.zip unzip opencv_contrib-4.3.0.zip cd opencv-4.3.0  创建一个build文件夹用于编译 mkdir build cd build  运行cmake-gui  这一步其实也可以直接使用cmake配合各类参数，不过我觉得图形化界面方便一点
- cmake-gui  选择源码路径和编译路径后点击Configure...</p>
-  </section>
-  <footer class="entry-footer">
-    <time>2020.4.27</time>
-  </footer>
-  <a class="entry-link" href="https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE4b%E5%AE%89%E8%A3%85opencv%E4%BB%A5%E5%8F%8A%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/"></a>
-</article>
-
-
-
-
-<footer class="page-footer">
-  <nav class="pagination">
-    
-    
-    <a class="next" href="/blog/page/2/">Next Page →</a>
-    
-  </nav>
-</footer>
-
-
-</main>
-<footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
-  <span>&middot;</span>
-  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
-  <span>&middot;</span>
-  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
-</footer>
-<script src="https://konosuba.xyz/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-<script src="https://konosuba.xyz/js/highlight.min.js" data-no-instant></script>
-<script data-no-instant>
-  let body;
-  function menuToggleListener() {
-    body.classList.toggle('blur');
-  }
-  function setMenuToggleListener() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (!menuToggle) return;
-    body = document.querySelector('body');
-    menuToggle.addEventListener('click', menuToggleListener);
-  }
-
-  hljs.initHighlightingOnLoad();
-  setMenuToggleListener();
-
-  InstantClick.on('change', function () {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-    setMenuToggleListener();
-  });
+    })();
 </script>
-</body>
+    </body>
 </html>
-

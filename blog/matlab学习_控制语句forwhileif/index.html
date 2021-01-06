@@ -7,10 +7,10 @@
     
     <title>MATLAB学习_控制语句:for,while,if - Tiiktak&#39;s</title>
     
-    <meta name="description" content=" for循环 首先我们定义一个向量v = zeros(10, 1)
-接着我们写一个 “for&rdquo; 循环，让v等于 1 到 10。设v(i)等于 2 的i次方，循环最后写上“end”。
-&gt;&gt; for i = 1:10 v(i) = 2^i; end &gt;&gt; v v = 2 4 8 16 32 64 128 256 512 1024  同样也可以使用break，continue语句
-while &gt;&gt; i = 1 &gt;&gt; while true, v(i) = 999; i = i&#43;1; if i == 6, break; end; end; &gt;&gt; i i = 6  if-else &gt;&gt; if i == 5, disp(&quot;hello&quot;); elseif i == 4, disp(&quot;world&quot;); else disp(&quot;hello, world&quot;); end; hello, world &gt;&gt;  ">
+    <meta name="description" content="for循环 首先我们定义一个向量v = zeros(10, 1)
+接着我们写一个 “for&quot; 循环，让v等于 1 到 10。设v(i)等于 2 的i次方，循环最后写上“end”。
+&gt;&gt; for i = 1:10 v(i) = 2^i; end &gt;&gt; v v = 2 4 8 16 32 64 128 256 512 1024 同样也可以使用break，continue语句
+while &gt;&gt; i = 1 &gt;&gt; while true, v(i) = 999; i = i&#43;1; if i == 6, break; end; end; &gt;&gt; i i = 6 if-else &gt;&gt; if i == 5, disp(&#34;hello&#34;); elseif i == 4, disp(&#34;world&#34;); else disp(&#34;hello, world&#34;); end; hello, world &gt;&gt; ">
     <meta name="author" content="">
     
     <link href="https://konosuba.xyz/css/github-gist.min.css" rel="stylesheet">
@@ -19,32 +19,30 @@ while &gt;&gt; i = 1 &gt;&gt; while true, v(i) = 999; i = i&#43;1; if i == 6, br
     <link rel="apple-touch-icon" href="https://konosuba.xyz/img/apple-touch-icon.png">
     <link rel="icon" href="https://konosuba.xyz/img/favicon.ico">
     
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="alternate" type="application/atom+xml" href="https://konosuba.xyz/index.xml" title="Tiiktak&#39;s">
     
     
     
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-141514532-1');
-    </script>
-    
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
+    gtag('config', 'UA-141514532-1');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
+    })();
+</script>
   </head>
   <body class="single">
     <header class="header">
@@ -76,61 +74,48 @@ while &gt;&gt; i = 1 &gt;&gt; while true, v(i) = 999; i = i&#43;1; if i == 6, br
     <h1 class="post-title">MATLAB学习_控制语句:for,while,if</h1>
     <div class="post-meta">2020.1.11</div>
   </header>
-  <div class="post-content">
-
-<h2 id="for循环">for循环</h2>
-
+  <div class="post-content"><h2 id="for循环">for循环</h2>
 <p>首先我们定义一个向量<code>v = zeros(10, 1)</code></p>
-
-<p>接着我们写一个 “for&rdquo; 循环，让<code>v</code>等于 1 到 10。设<code>v(i)</code>等于 2 的<code>i</code>次方，循环最后写上“end”。</p>
-
-<pre><code class="language-matlab">&gt;&gt; for i = 1:10
-v(i) = 2^i;
-end
-&gt;&gt; v
+<p>接着我们写一个 “for&quot; 循环，让<code>v</code>等于 1 到 10。设<code>v(i)</code>等于 2 的<code>i</code>次方，循环最后写上“end”。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> <span style="color:#66d9ef">for</span> i = <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">10</span>
+v(i) = <span style="color:#ae81ff">2</span>^i;
+<span style="color:#66d9ef">end</span>
+<span style="color:#f92672">&gt;&gt;</span> v
 v =
-           2
-           4
-           8
-          16
-          32
-          64
-         128
-         256
-         512
-        1024
-</code></pre>
-
-<p>同样也可以使用<code>break</code>，<code>continue</code>语句</p>
-
+           <span style="color:#ae81ff">2</span>
+           <span style="color:#ae81ff">4</span>
+           <span style="color:#ae81ff">8</span>
+          <span style="color:#ae81ff">16</span>
+          <span style="color:#ae81ff">32</span>
+          <span style="color:#ae81ff">64</span>
+         <span style="color:#ae81ff">128</span>
+         <span style="color:#ae81ff">256</span>
+         <span style="color:#ae81ff">512</span>
+        <span style="color:#ae81ff">1024</span>
+</code></pre></div><p>同样也可以使用<code>break</code>，<code>continue</code>语句</p>
 <h2 id="while">while</h2>
-
-<pre><code class="language-matlab">&gt;&gt; i = 1
-&gt;&gt; while true,
-     v(i) = 999;
-     i = i+1;
-     if i == 6,
-       break;
-     end;
-   end;
-&gt;&gt; i
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> i = <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">&gt;&gt;</span> <span style="color:#66d9ef">while</span> true,
+     v(i) = <span style="color:#ae81ff">999</span>;
+     i = i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+     <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>,
+       <span style="color:#66d9ef">break</span>;
+     <span style="color:#66d9ef">end</span>;
+   <span style="color:#66d9ef">end</span>;
+<span style="color:#f92672">&gt;&gt;</span> i
 i =
-     6
-</code></pre>
-
-<h2 id="if-else">if-else</h2>
-
-<pre><code class="language-matlab">&gt;&gt; if i == 5,
-     disp(&quot;hello&quot;);
-   elseif i == 4,
-     disp(&quot;world&quot;);
-   else
-     disp(&quot;hello, world&quot;);
-   end;
+     <span style="color:#ae81ff">6</span>
+</code></pre></div><h2 id="if-else">if-else</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>,
+     disp(&#34;hello&#34;);
+   <span style="color:#66d9ef">elseif</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>,
+     disp(&#34;world&#34;);
+   <span style="color:#66d9ef">else</span>
+     disp(&#34;hello, world&#34;);
+   <span style="color:#66d9ef">end</span>;
 hello, world
-&gt;&gt;
-</code></pre>
-</div>
+<span style="color:#f92672">&gt;&gt;</span>
+</code></pre></div></div>
   <footer class="post-footer">
     
   </footer>
@@ -158,7 +143,7 @@ hello, world
 
 </main>
 <footer class="footer">
-  <span>&copy; 2020 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
+  <span>&copy; 2021 <a href="https://konosuba.xyz/">Tiiktak&#39;s</a></span>
   <span>&middot;</span>
   <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
   <span>&middot;</span>

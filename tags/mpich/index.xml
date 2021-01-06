@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mpich on Tiiktak&#39;s</title>
+    <link>https://example.com/tags/mpich/</link>
+    <description>Recent content in mpich on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Nov 2020 09:20:26 +0800</lastBuildDate><atom:link href="https://example.com/tags/mpich/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mpich2_安装 Ubuntu 20.04LTS</title>
+      <link>https://example.com/blog/mpich2_ubuntu/</link>
+      <pubDate>Tue, 17 Nov 2020 09:20:26 +0800</pubDate>
+      
+      <guid>https://example.com/blog/mpich2_ubuntu/</guid>
+      <description> Ubuntu 20.04 LTS    sudo aptitude install mpich
+  mpiexec --version
+ image-20201117092421973 
+  new code
+#include &amp;#34;mpi.h&amp;#34;#include &amp;lt;stdio.h&amp;gt; int main(void) { int rankID; int sizeNum; MPI_Init(0, 0); MPI_Comm_size(MPI_COMM_WORLD, &amp;amp;sizeNum); MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;rankID); printf(&amp;#34;Hello world! %d of total = %d\n&amp;#34;, rankID, sizeNum); MPI_Finalize(); return 0; }   mpicc demo_1.c -o demo_1
+  mpirun -np 8 ./demo_1
+  </description>
+    </item>
+    
+    <item>
+      <title>MSMPI Visual Studio 2019 配置</title>
+      <link>https://example.com/blog/msmpi_install/</link>
+      <pubDate>Mon, 16 Nov 2020 22:14:03 +0800</pubDate>
+      
+      <guid>https://example.com/blog/msmpi_install/</guid>
+      <description>Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
+安装过程会自动添加环境变量，可在PATH中看到
+step2. 配置 VS2019 新建一个空项目，新建一个属性表
+包含目录、库目录
+  包含目录里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Include;
+  库目录的里面添加：C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;
+  【C/C+ 附加包含目录】：添加$(MSMPI_INC);$(MSMPI_INC)\x64
+  【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
+  【链接器-输入-附加依赖项】：添加msmpi.lib
+  step3. 测试 #include &amp;lt;iostream&amp;gt; #include &amp;lt;mpi.h&amp;gt;  int main(int argc, char* argv[]) { MPI_Init(&amp;amp;argc, &amp;amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &amp;lt;&amp;lt; &amp;#34;Receive from rank 0: &amp;#34; &amp;lt;&amp;lt; RecvNum &amp;lt;&amp;lt; std::endl; } MPI_Finalize(); return 0; }  image-20201116223527189</description>
+    </item>
+    
+  </channel>
+</rss>
