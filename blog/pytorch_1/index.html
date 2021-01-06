@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Tensors Tensors与Numpy中的ndarrays类似
 torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
 &amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]]) 后者可以创建shape相同，属性不同的对象
 &amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]) 获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性'><title>Pytorch学习笔记_1_tensor张量</title>
 
-<link rel='canonical' href='https://example.com/blog/pytorch_1/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/pytorch_1/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch学习笔记_1_tensor张量'>
 <meta property='og:description' content='Tensors Tensors与Numpy中的ndarrays类似
 torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
 &amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]]) 后者可以创建shape相同，属性不同的对象
 &amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x) tensor([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; torch.ones_like(x, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]) 获得size 使用size方法与Numpy的shape属性返回的相同，张量也支持shape属性'>
-<meta property='og:url' content='https://example.com/blog/pytorch_1/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/pytorch_1/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-11T14:46:14&#43;08:00'/><meta property='article:modified_time' content='2020-02-11T14:46:14&#43;08:00'/>
 <meta name="twitter:title" content="Pytorch学习笔记_1_tensor张量">
@@ -70,7 +70,7 @@ torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

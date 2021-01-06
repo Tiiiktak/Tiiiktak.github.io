@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='dict全称dictionary，在其他语言中也称为map，使用**键-值（key-value）**存储，具有极快的查找速度
 创建dict &amp;gt;&amp;gt;&amp;gt; d = {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Bob&amp;#39;: 75, &amp;#39;Tracy&amp;#39;: 85} &amp;gt;&amp;gt;&amp;gt; d[&amp;#39;Michael&amp;#39;] 95 内部实现方法 先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。
@@ -8,7 +8,7 @@
 &amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;) #返回None时Python交互环境不显示 &amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;, -1) -1 删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
 &amp;gt;&amp;gt;&amp;gt; d.pop(&amp;#39;Bob&amp;#39;) 75 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表'><title>Python中dict字典</title>
 
-<link rel='canonical' href='https://example.com/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python中dict字典'>
 <meta property='og:description' content='dict全称dictionary，在其他语言中也称为map，使用**键-值（key-value）**存储，具有极快的查找速度
@@ -17,7 +17,7 @@
 &amp;gt;&amp;gt;&amp;gt; d[&amp;#39;Tony&amp;#39;] = 99 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Bob&amp;#39;: 75, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 查询key是否存在 使用in &amp;gt;&amp;gt;&amp;gt; &amp;#39;Thomas&amp;#39; in d False &amp;gt;&amp;gt;&amp;gt; &amp;#39;Bob&amp;#39; in d True 使用get() 如果key不存在，返回None，或者自己指定的value
 &amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;) #返回None时Python交互环境不显示 &amp;gt;&amp;gt;&amp;gt; d.get(&amp;#39;Thomas&amp;#39;, -1) -1 删除key 删除一个key，用pop(key)方法，对应的value也会从dict中删除，返回删除的value
 &amp;gt;&amp;gt;&amp;gt; d.pop(&amp;#39;Bob&amp;#39;) 75 &amp;gt;&amp;gt;&amp;gt; d {&amp;#39;Michael&amp;#39;: 95, &amp;#39;Tracy&amp;#39;: 85, &amp;#39;Tony&amp;#39;: 99} 注意 dict内部存放顺序与key放入顺序无关 dict的key必须是不可变对象 实质：哈希表'>
-<meta property='og:url' content='https://example.com/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-06-20T15:15:34&#43;08:00'/><meta property='article:modified_time' content='2019-06-20T15:15:34&#43;08:00'/>
 <meta name="twitter:title" content="Python中dict字典">
@@ -76,7 +76,7 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

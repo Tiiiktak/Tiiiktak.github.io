@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
 autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
@@ -14,7 +14,7 @@ Tensor 张量 torch.tensor是这个包的核心类。
   Tensor中有一属性is_leaf，当它为True有两种情况：
    按照惯例，requires_grad = False 的 Tensor    requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None    只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()'><title>Pytorch学习笔记_2_Autograd自动求导机制</title>
 
-<link rel='canonical' href='https://example.com/blog/pytorch_2/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/pytorch_2/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch学习笔记_2_Autograd自动求导机制'>
 <meta property='og:description' content='Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
@@ -29,7 +29,7 @@ Tensor 张量 torch.tensor是这个包的核心类。
  leaf Tensors 叶张量
   Tensor中有一属性is_leaf，当它为True有两种情况：
    按照惯例，requires_grad = False 的 Tensor    requires_grad = True 且由用户创建的 Tensor。这意味着它们不是操作的结果且grad_fn = None    只有leaf Tensors叶张量在反向传播时才会将本身的grad传入backward()的运算中。要想得到non-leaf Tensors非叶张量在反向传播时的grad，可以使用retain_grad()'>
-<meta property='og:url' content='https://example.com/blog/pytorch_2/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/pytorch_2/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-11T17:25:19&#43;08:00'/><meta property='article:modified_time' content='2020-02-11T17:25:19&#43;08:00'/>
 <meta name="twitter:title" content="Pytorch学习笔记_2_Autograd自动求导机制">
@@ -94,7 +94,7 @@ Tensor 张量 torch.tensor是这个包的核心类。
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

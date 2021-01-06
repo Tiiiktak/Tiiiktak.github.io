@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
 因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
 树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &amp;lt; img_gray.rows; j&#43;&#43;) { double s = img_gray.'><title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</title>
 
-<link rel='canonical' href='https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑'>
 <meta property='og:description' content='使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
 因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C&#43;&#43;11中的thread库通过多线程实现程序
 树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i&#43;&#43;) { for (int j = 0; j &amp;lt; img_gray.rows; j&#43;&#43;) { double s = img_gray.'>
-<meta property='og:url' content='https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='socket' /><meta property='article:published_time' content='2019-07-09T15:32:53&#43;08:00'/><meta property='article:modified_time' content='2019-07-09T15:32:53&#43;08:00'/>
 <meta name="twitter:title" content="利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑">
@@ -67,7 +67,7 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

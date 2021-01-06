@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='tuple和list非常类似，但是tuple一旦初始化就不能修改
 [toc]
@@ -11,7 +11,7 @@
 &amp;gt;&amp;gt;&amp;gt; t = (1,) &amp;gt;&amp;gt;&amp;gt; t (1,) &amp;ldquo;可变&amp;quot;的tuble 当tuble中包含list元素时，仍然可以对list进行修改，tuble仍指向该list
 &amp;gt;&amp;gt;&amp;gt; t = (1, [&amp;#39;x&amp;#39;, &amp;#39;y&amp;#39;, &amp;#39;z&amp;#39;]) &amp;gt;&amp;gt;&amp;gt; t[1][2] = &amp;#39;a&amp;#39; &amp;gt;&amp;gt;&amp;gt; t (1, [&amp;#39;x&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;z&amp;#39;]) 个人理解：tuble相当于一个指针数组，指向每个元素，对元素本身的更改并不会影响tuble的指向'><title>Python常见数据类型——Tuple元组</title>
 
-<link rel='canonical' href='https://example.com/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python常见数据类型——Tuple元组'>
 <meta property='og:description' content='tuple和list非常类似，但是tuple一旦初始化就不能修改
@@ -23,7 +23,7 @@
 &amp;gt;&amp;gt;&amp;gt; t = (1) &amp;gt;&amp;gt;&amp;gt; t 1 #定义的不是tuble，而是一个数 正解 加一个逗号，消除歧义
 &amp;gt;&amp;gt;&amp;gt; t = (1,) &amp;gt;&amp;gt;&amp;gt; t (1,) &amp;ldquo;可变&amp;quot;的tuble 当tuble中包含list元素时，仍然可以对list进行修改，tuble仍指向该list
 &amp;gt;&amp;gt;&amp;gt; t = (1, [&amp;#39;x&amp;#39;, &amp;#39;y&amp;#39;, &amp;#39;z&amp;#39;]) &amp;gt;&amp;gt;&amp;gt; t[1][2] = &amp;#39;a&amp;#39; &amp;gt;&amp;gt;&amp;gt; t (1, [&amp;#39;x&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;z&amp;#39;]) 个人理解：tuble相当于一个指针数组，指向每个元素，对元素本身的更改并不会影响tuble的指向'>
-<meta property='og:url' content='https://example.com/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-06-20T13:46:10&#43;08:00'/><meta property='article:modified_time' content='2019-06-20T13:46:10&#43;08:00'/>
 <meta name="twitter:title" content="Python常见数据类型——Tuple元组">
@@ -85,7 +85,7 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

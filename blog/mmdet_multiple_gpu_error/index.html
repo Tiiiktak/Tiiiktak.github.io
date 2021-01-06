@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用的命令：
 CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh ${CONFIG_FILE} 4 --resume-from ${CHECKPOINT_FILE} 出现问题：
  模型train 1 epoch后挂掉，报错信息：  RuntimeError: replicas_[0].size() == rebuilt_param_indices_.size() INTERNAL ASSERT FAILED at &amp;#34;/pytorch/torch/csrc/distributed/c10d/reducer.cpp&amp;#34;:1326, please report a bug to PyTorch. rebuilt parameter indices size is not same as original model parameters size.321 versus 629160  pytorch github issue:https://github.com/pytorch/pytorch/issues/47050 mmcv issue: https://github.com/open-mmlab/mmcv/issues/636#issuecomment-722436575 解决方案：安装1.6版本pytorch，并重装mmcv  pip uninstall mmcv-full pip install mmcv-full python setup.py install '><title>MMDetection单机多卡训练出现问题</title>
 
-<link rel='canonical' href='https://example.com/blog/mmdet_multiple_gpu_error/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/mmdet_multiple_gpu_error/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MMDetection单机多卡训练出现问题'>
 <meta property='og:description' content='使用的命令：
 CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh ${CONFIG_FILE} 4 --resume-from ${CHECKPOINT_FILE} 出现问题：
  模型train 1 epoch后挂掉，报错信息：  RuntimeError: replicas_[0].size() == rebuilt_param_indices_.size() INTERNAL ASSERT FAILED at &amp;#34;/pytorch/torch/csrc/distributed/c10d/reducer.cpp&amp;#34;:1326, please report a bug to PyTorch. rebuilt parameter indices size is not same as original model parameters size.321 versus 629160  pytorch github issue:https://github.com/pytorch/pytorch/issues/47050 mmcv issue: https://github.com/open-mmlab/mmcv/issues/636#issuecomment-722436575 解决方案：安装1.6版本pytorch，并重装mmcv  pip uninstall mmcv-full pip install mmcv-full python setup.py install '>
-<meta property='og:url' content='https://example.com/blog/mmdet_multiple_gpu_error/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/mmdet_multiple_gpu_error/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-12-28T15:52:48&#43;08:00'/><meta property='article:modified_time' content='2020-12-28T15:52:48&#43;08:00'/>
 <meta name="twitter:title" content="MMDetection单机多卡训练出现问题">
@@ -67,7 +67,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh ${CONFIG_FILE} 4 --resume-fro
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

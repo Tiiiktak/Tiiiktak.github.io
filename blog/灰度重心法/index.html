@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫密度质心算法。
 将灰度值分布中的质心记作光条纹的中心
@@ -9,7 +9,7 @@
 代码：
 #define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 	int i, j; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; //获取图像各点灰度值总和 	for (it = img_gray.begin&amp;lt;uchar&amp;gt;(), end = img_gray.end&amp;lt;uchar&amp;gt;(); it != end; it&#43;&#43;) { ((*it) &amp;gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 	} Center.'><title>灰度重心法</title>
 
-<link rel='canonical' href='https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='灰度重心法'>
 <meta property='og:description' content='概念 对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按目标光强分布求出光强权重质心坐标作为跟踪点，也叫密度质心算法。
@@ -19,7 +19,7 @@
 灰度重心法version 1 灰度重心法version 2 使用Visual Studio 2019测试 根据灰度重心法version 1找光斑中心
 代码：
 #define T 20 //根据实际情况设定固定阈值 Point grayCenter(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; //中心点 	int i, j; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; //获取图像各点灰度值总和 	for (it = img_gray.begin&amp;lt;uchar&amp;gt;(), end = img_gray.end&amp;lt;uchar&amp;gt;(); it != end; it&#43;&#43;) { ((*it) &amp;gt; T) ? sumval &#43;= (*it) : NULL; //小于阈值，取0 	} Center.'>
-<meta property='og:url' content='https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-06-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-06-28T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="灰度重心法">
@@ -79,7 +79,7 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

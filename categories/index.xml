@@ -2,107 +2,107 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Tiiktak&#39;s</title>
-    <link>https://example.com/categories/</link>
+    <link>https://konosuba.xyz/categories/</link>
     <description>Recent content in Categories on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 28 Dec 2020 15:52:48 +0800</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>cn</language>
+    <lastBuildDate>Mon, 28 Dec 2020 15:52:48 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MMDetection</title>
-      <link>https://example.com/categories/mmdetection/</link>
+      <link>https://konosuba.xyz/categories/mmdetection/</link>
       <pubDate>Mon, 28 Dec 2020 15:52:48 +0800</pubDate>
       
-      <guid>https://example.com/categories/mmdetection/</guid>
+      <guid>https://konosuba.xyz/categories/mmdetection/</guid>
       <description></description>
     </item>
     
     <item>
       <title>深度学习</title>
-      <link>https://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://konosuba.xyz/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Mon, 28 Dec 2020 15:52:48 +0800</pubDate>
       
-      <guid>https://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://konosuba.xyz/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://example.com/categories/linux/</link>
+      <link>https://konosuba.xyz/categories/linux/</link>
       <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
       
-      <guid>https://example.com/categories/linux/</guid>
+      <guid>https://konosuba.xyz/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tools</title>
-      <link>https://example.com/categories/tools/</link>
+      <link>https://konosuba.xyz/categories/tools/</link>
       <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
       
-      <guid>https://example.com/categories/tools/</guid>
+      <guid>https://konosuba.xyz/categories/tools/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://example.com/categories/python/</link>
+      <link>https://konosuba.xyz/categories/python/</link>
       <pubDate>Fri, 25 Sep 2020 19:22:57 +0800</pubDate>
       
-      <guid>https://example.com/categories/python/</guid>
+      <guid>https://konosuba.xyz/categories/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OpenCV</title>
-      <link>https://example.com/categories/opencv/</link>
+      <link>https://konosuba.xyz/categories/opencv/</link>
       <pubDate>Tue, 07 Jul 2020 23:52:11 +0800</pubDate>
       
-      <guid>https://example.com/categories/opencv/</guid>
+      <guid>https://konosuba.xyz/categories/opencv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>树莓派RaspBerry Pi</title>
-      <link>https://example.com/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+      <link>https://konosuba.xyz/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
       <pubDate>Mon, 27 Apr 2020 11:25:47 +0800</pubDate>
       
-      <guid>https://example.com/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
+      <guid>https://konosuba.xyz/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PyTorch</title>
-      <link>https://example.com/categories/pytorch/</link>
+      <link>https://konosuba.xyz/categories/pytorch/</link>
       <pubDate>Sun, 08 Mar 2020 23:03:09 +0800</pubDate>
       
-      <guid>https://example.com/categories/pytorch/</guid>
+      <guid>https://konosuba.xyz/categories/pytorch/</guid>
       <description></description>
     </item>
     
     <item>
       <title>机器学习</title>
-      <link>https://example.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://konosuba.xyz/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Fri, 07 Feb 2020 01:04:44 +0800</pubDate>
       
-      <guid>https://example.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://konosuba.xyz/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MATLAB</title>
-      <link>https://example.com/categories/matlab/</link>
+      <link>https://konosuba.xyz/categories/matlab/</link>
       <pubDate>Sat, 11 Jan 2020 15:35:44 +0800</pubDate>
       
-      <guid>https://example.com/categories/matlab/</guid>
+      <guid>https://konosuba.xyz/categories/matlab/</guid>
       <description></description>
     </item>
     
     <item>
       <title>TensoFlow</title>
-      <link>https://example.com/categories/tensorflow/</link>
+      <link>https://konosuba.xyz/categories/tensorflow/</link>
       <pubDate>Fri, 11 Oct 2019 20:33:51 +0800</pubDate>
       
-      <guid>https://example.com/categories/tensorflow/</guid>
+      <guid>https://konosuba.xyz/categories/tensorflow/</guid>
       <description></description>
     </item>
     

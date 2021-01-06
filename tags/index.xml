@@ -2,89 +2,89 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Tiiktak&#39;s</title>
-    <link>https://example.com/tags/</link>
+    <link>https://konosuba.xyz/tags/</link>
     <description>Recent content in Tags on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 17 Nov 2020 09:20:26 +0800</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>cn</language>
+    <lastBuildDate>Tue, 17 Nov 2020 09:20:26 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>linux</title>
-      <link>https://example.com/tags/linux/</link>
+      <link>https://konosuba.xyz/tags/linux/</link>
       <pubDate>Tue, 17 Nov 2020 09:20:26 +0800</pubDate>
       
-      <guid>https://example.com/tags/linux/</guid>
+      <guid>https://konosuba.xyz/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mpich</title>
-      <link>https://example.com/tags/mpich/</link>
+      <link>https://konosuba.xyz/tags/mpich/</link>
       <pubDate>Tue, 17 Nov 2020 09:20:26 +0800</pubDate>
       
-      <guid>https://example.com/tags/mpich/</guid>
+      <guid>https://konosuba.xyz/tags/mpich/</guid>
       <description></description>
     </item>
     
     <item>
       <title>作业</title>
-      <link>https://example.com/tags/%E4%BD%9C%E4%B8%9A/</link>
+      <link>https://konosuba.xyz/tags/%E4%BD%9C%E4%B8%9A/</link>
       <pubDate>Tue, 17 Nov 2020 09:20:26 +0800</pubDate>
       
-      <guid>https://example.com/tags/%E4%BD%9C%E4%B8%9A/</guid>
+      <guid>https://konosuba.xyz/tags/%E4%BD%9C%E4%B8%9A/</guid>
       <description></description>
     </item>
     
     <item>
       <title>设计</title>
-      <link>https://example.com/tags/%E8%AE%BE%E8%AE%A1/</link>
+      <link>https://konosuba.xyz/tags/%E8%AE%BE%E8%AE%A1/</link>
       <pubDate>Thu, 08 Oct 2020 13:58:14 +0800</pubDate>
       
-      <guid>https://example.com/tags/%E8%AE%BE%E8%AE%A1/</guid>
+      <guid>https://konosuba.xyz/tags/%E8%AE%BE%E8%AE%A1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>java</title>
-      <link>https://example.com/tags/java/</link>
+      <link>https://konosuba.xyz/tags/java/</link>
       <pubDate>Sun, 12 Jan 2020 21:00:17 +0800</pubDate>
       
-      <guid>https://example.com/tags/java/</guid>
+      <guid>https://konosuba.xyz/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>算法</title>
-      <link>https://example.com/tags/%E7%AE%97%E6%B3%95/</link>
+      <link>https://konosuba.xyz/tags/%E7%AE%97%E6%B3%95/</link>
       <pubDate>Mon, 30 Dec 2019 20:35:42 +0800</pubDate>
       
-      <guid>https://example.com/tags/%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://konosuba.xyz/tags/%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     
     <item>
       <title>socket</title>
-      <link>https://example.com/tags/socket/</link>
+      <link>https://konosuba.xyz/tags/socket/</link>
       <pubDate>Tue, 09 Jul 2019 15:32:53 +0800</pubDate>
       
-      <guid>https://example.com/tags/socket/</guid>
+      <guid>https://konosuba.xyz/tags/socket/</guid>
       <description></description>
     </item>
     
     <item>
       <title>shell</title>
-      <link>https://example.com/tags/shell/</link>
+      <link>https://konosuba.xyz/tags/shell/</link>
       <pubDate>Wed, 26 Jun 2019 15:38:32 +0800</pubDate>
       
-      <guid>https://example.com/tags/shell/</guid>
+      <guid>https://konosuba.xyz/tags/shell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://example.com/tags/python/</link>
+      <link>https://konosuba.xyz/tags/python/</link>
       <pubDate>Fri, 21 Jun 2019 15:23:06 +0800</pubDate>
       
-      <guid>https://example.com/tags/python/</guid>
+      <guid>https://konosuba.xyz/tags/python/</guid>
       <description></description>
     </item>
     

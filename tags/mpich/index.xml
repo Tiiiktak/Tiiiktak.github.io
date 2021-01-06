@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>mpich on Tiiktak&#39;s</title>
-    <link>https://example.com/tags/mpich/</link>
+    <link>https://konosuba.xyz/tags/mpich/</link>
     <description>Recent content in mpich on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 17 Nov 2020 09:20:26 +0800</lastBuildDate><atom:link href="https://example.com/tags/mpich/index.xml" rel="self" type="application/rss+xml" />
+    <language>cn</language>
+    <lastBuildDate>Tue, 17 Nov 2020 09:20:26 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/tags/mpich/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mpich2_安装 Ubuntu 20.04LTS</title>
-      <link>https://example.com/blog/mpich2_ubuntu/</link>
+      <link>https://konosuba.xyz/blog/mpich2_ubuntu/</link>
       <pubDate>Tue, 17 Nov 2020 09:20:26 +0800</pubDate>
       
-      <guid>https://example.com/blog/mpich2_ubuntu/</guid>
+      <guid>https://konosuba.xyz/blog/mpich2_ubuntu/</guid>
       <description> Ubuntu 20.04 LTS    sudo aptitude install mpich
   mpiexec --version
  image-20201117092421973 
@@ -24,10 +24,10 @@
     
     <item>
       <title>MSMPI Visual Studio 2019 配置</title>
-      <link>https://example.com/blog/msmpi_install/</link>
+      <link>https://konosuba.xyz/blog/msmpi_install/</link>
       <pubDate>Mon, 16 Nov 2020 22:14:03 +0800</pubDate>
       
-      <guid>https://example.com/blog/msmpi_install/</guid>
+      <guid>https://konosuba.xyz/blog/msmpi_install/</guid>
       <description>Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
 安装过程会自动添加环境变量，可在PATH中看到
 step2. 配置 VS2019 新建一个空项目，新建一个属性表

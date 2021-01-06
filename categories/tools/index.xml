@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tools on Tiiktak&#39;s</title>
-    <link>https://example.com/categories/tools/</link>
+    <link>https://konosuba.xyz/categories/tools/</link>
     <description>Recent content in Tools on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 28 Dec 2020 15:49:53 +0800</lastBuildDate><atom:link href="https://example.com/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <language>cn</language>
+    <lastBuildDate>Mon, 28 Dec 2020 15:49:53 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在Linux中使用Clash科学上网</title>
-      <link>https://example.com/blog/clash_linux_tutorial/</link>
+      <link>https://konosuba.xyz/blog/clash_linux_tutorial/</link>
       <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
       
-      <guid>https://example.com/blog/clash_linux_tutorial/</guid>
+      <guid>https://konosuba.xyz/blog/clash_linux_tutorial/</guid>
       <description>安装  下载amd64文件：https://github.com/Dreamacro/clash/releases/ gzip -f -d linux-amd64-clash.gz 下载配置文件config.yaml到~/.config/clash 下载mmdb文件到~/.config/clash  配置（每次使用前）  ./clash启动 浏览器进入127.0.0.1:9090，Clash控制面板 选择一个节点 进入Ubuntu设置，网络设置，代理 Method设为Manual HTTP Proxy、HTTPs Proxy设置为127.0.0.1:7890 Socks Host设置为127.0.0.1:7891  wget配置代理  修改/etc/wgetrc，其中  https_proxy = http://127.0.0.1:7890/ http_proxy = http://127.0.0.1:7890/ ftp_proxy = http://127.0.0.1:7890/ 使用时，wget --proxy=on https://xxxx即可  </description>
     </item>
     
     <item>
       <title>YAML与TOML</title>
-      <link>https://example.com/blog/yaml_and_toml/</link>
+      <link>https://konosuba.xyz/blog/yaml_and_toml/</link>
       <pubDate>Thu, 09 Jan 2020 20:34:31 +0800</pubDate>
       
-      <guid>https://example.com/blog/yaml_and_toml/</guid>
+      <guid>https://konosuba.xyz/blog/yaml_and_toml/</guid>
       <description>YAML YAML 是 &amp;ldquo;YAML Ain&amp;rsquo;t a Markup Language&amp;rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&amp;ldquo;Yet Another Markup Language&amp;rdquo;（仍是一种标记语言）。
 YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲
 YAML 的配置文件后缀为 .yml
@@ -34,10 +34,10 @@ TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可�
     
     <item>
       <title>百度搜索资源平台用crul做链接主动推送</title>
-      <link>https://example.com/blog/crul_baidu_post/</link>
+      <link>https://konosuba.xyz/blog/crul_baidu_post/</link>
       <pubDate>Tue, 03 Dec 2019 21:33:22 +0800</pubDate>
       
-      <guid>https://example.com/blog/crul_baidu_post/</guid>
+      <guid>https://konosuba.xyz/blog/crul_baidu_post/</guid>
       <description>引 最近在百度站长平台加入了这个博客，由于之前在Google上都是直接提交sitemap地址，但是在百度索引sitemap实在太慢了，所以还是选择使用它推荐的crul主动推送方式，在这做个记录
 在Windows上安装配置crul 进入curl的官网下载最新的Windows版的binary the curl project安装包
 下载完成后解压到任意目录下
@@ -54,10 +54,10 @@ TOML 的目标是成为一个极简的配置文件格式，TOML 被设计成可�
     
     <item>
       <title>Tesseract-OCR样本训练方法</title>
-      <link>https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/</link>
+      <link>https://konosuba.xyz/blog/tesseract%E8%AE%AD%E7%BB%83/</link>
       <pubDate>Wed, 20 Nov 2019 19:29:52 +0800</pubDate>
       
-      <guid>https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/</guid>
+      <guid>https://konosuba.xyz/blog/tesseract%E8%AE%AD%E7%BB%83/</guid>
       <description>我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。
 安装jTessBoxEditor 可以在这里下载到最新版安装包
 把下载得到的压缩包解压到任意位置，双击其中的train.bat文件，等待一会，弹出窗口就可以开始训练了
@@ -83,10 +83,10 @@ combine_tessdata.exe captcha. 会生成一个captcha.traineddata文件，将其�
     
     <item>
       <title>Tesseract-OCR安装与python中使用</title>
-      <link>https://example.com/blog/tesseract%E5%AE%89%E8%A3%85/</link>
+      <link>https://konosuba.xyz/blog/tesseract%E5%AE%89%E8%A3%85/</link>
       <pubDate>Wed, 20 Nov 2019 18:15:12 +0800</pubDate>
       
-      <guid>https://example.com/blog/tesseract%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://konosuba.xyz/blog/tesseract%E5%AE%89%E8%A3%85/</guid>
       <description>安装Tesseract-OCR 在官网下载最新的Windows安装包，双击运行
 根据需要选择，一路Next，直到这个页面
 在Additional language data(download)中选择要下载的其他语言的数据，之后程序会自动下载。一直到安装成功
@@ -101,10 +101,10 @@ import pytesseract im = &amp;#34;C:/Users/1/Desktop/test.jpg&amp;#34; result = p
     
     <item>
       <title>【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</title>
-      <link>https://example.com/blog/reprint_magic_sketchpad/</link>
+      <link>https://konosuba.xyz/blog/reprint_magic_sketchpad/</link>
       <pubDate>Sun, 20 Oct 2019 00:45:31 +0800</pubDate>
       
-      <guid>https://example.com/blog/reprint_magic_sketchpad/</guid>
+      <guid>https://konosuba.xyz/blog/reprint_magic_sketchpad/</guid>
       <description>最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下
 原文发表于2018-12-19
 这两天，一个“魔法画板”在国外传疯了。
@@ -159,10 +159,10 @@ AI圈内外的灵魂画手们玩到根本停不下来，创造的惊喜画作能
     
     <item>
       <title>Python文本进度条</title>
-      <link>https://example.com/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</link>
+      <link>https://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</link>
       <pubDate>Thu, 19 Sep 2019 20:59:58 +0800</pubDate>
       
-      <guid>https://example.com/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</guid>
+      <guid>https://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</guid>
       <description> Update：使用python库tqdm轻松实现
  一个小程序，用Python在控制台中打印进度条，主要使用time库对时间进行控制，利用了\r转义符使光标回到当前行首的特性，通过多次打印进度条实现动画效果
 代码 import time scale = 50 # 进度条长度 print(&amp;#34;&amp;gt;&amp;gt;执行开始\n&amp;#34;) start = time.perf_counter() # 开始时刻 for i in range(scale+1): a = &amp;#39;|&amp;#39; * i b = &amp;#39;.&amp;#39; * (scale - i) c = (i / scale) * 100 dur = time.perf_counter() - start # 当前用时 print(&amp;#34;\r{:^3.0f}% [{}&amp;gt;&amp;gt;{}] {:.2f}s&amp;#34;.format(c, a, b, dur), end=&amp;#39;&amp;#39;) # 打印进度条 time.sleep(0.1) # 休息时间，调整速度 print(&amp;#34;\n\n&amp;gt;&amp;gt;执行结束&amp;#34;) 效果 </description>

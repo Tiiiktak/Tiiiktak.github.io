@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
 安装过程会自动添加环境变量，可在PATH中看到
@@ -12,7 +12,7 @@ step2. 配置 VS2019 新建一个空项目，新建一个属性表
   【链接器-输入-附加依赖项】：添加msmpi.lib
   step3. 测试 #include &amp;lt;iostream&amp;gt; #include &amp;lt;mpi.h&amp;gt;  int main(int argc, char* argv[]) { MPI_Init(&amp;amp;argc, &amp;amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &amp;lt;&amp;lt; &amp;#34;Receive from rank 0: &amp;#34; &amp;lt;&amp;lt; RecvNum &amp;lt;&amp;lt; std::endl; } MPI_Finalize(); return 0; }  image-20201116223527189'><title>MSMPI Visual Studio 2019 配置</title>
 
-<link rel='canonical' href='https://example.com/blog/msmpi_install/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/msmpi_install/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='MSMPI Visual Studio 2019 配置'>
 <meta property='og:description' content='Windows 10 Visual Studio 2019 MSMPI v10.1.2  step1. 安装MSMPI 前往官网下载.msi &amp;amp; .exe两个文件，按提示安装即可
@@ -25,7 +25,7 @@ step2. 配置 VS2019 新建一个空项目，新建一个属性表
   【链接器-常规-附加库目录】：添加$(MSMPI_LIB64)
   【链接器-输入-附加依赖项】：添加msmpi.lib
   step3. 测试 #include &amp;lt;iostream&amp;gt; #include &amp;lt;mpi.h&amp;gt;  int main(int argc, char* argv[]) { MPI_Init(&amp;amp;argc, &amp;amp;argv); int RankID; MPI_Comm_rank(MPI_COMM_WORLD, &amp;amp;RankID); if (0 == RankID) { int SendNum = 16; MPI_Send(&amp;amp;SendNum, 1, MPI_INT, 1, 0, MPI_COMM_WORLD); } else if (1 == RankID) { int RecvNum = 0; MPI_Recv(&amp;amp;RecvNum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE); std::cout &amp;lt;&amp;lt; &amp;#34;Receive from rank 0: &amp;#34; &amp;lt;&amp;lt; RecvNum &amp;lt;&amp;lt; std::endl; } MPI_Finalize(); return 0; }  image-20201116223527189'>
-<meta property='og:url' content='https://example.com/blog/msmpi_install/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/msmpi_install/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='mpich' /><meta property='article:tag' content='作业' /><meta property='article:published_time' content='2020-11-16T22:14:03&#43;08:00'/><meta property='article:modified_time' content='2020-11-16T22:14:03&#43;08:00'/>
 <meta name="twitter:title" content="MSMPI Visual Studio 2019 配置">
@@ -88,7 +88,7 @@ step2. 配置 VS2019 新建一个空项目，新建一个属性表
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

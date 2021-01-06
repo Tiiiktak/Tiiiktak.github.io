@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='关于数据 一般来说，对于图像、文本、音频或视频数据，可以使用标准的Python包来将这些数据加载为numpy array，之后可以将这些array转换为torch.*Tensor
  对于图像，Pillow、OpenCV包 音频，scipy、librosa包 文本，可以使用原始Python和Cython加载，或NLKT和SpaCy  特别的，对于视觉任务，有一个包torchvision，其中包含了处理类似Imagnet, CIFAR10, MNIST等常见数据集的方法，以及图像转换器，如torchvision.datasets和torch.utils.data.DataLoader
@@ -10,7 +10,7 @@ CIFAR-10的图像都是 3x32x32 大小的，即，3颜色通道，32x32像素。
 import torch import torchvision import torchvision.transforms as transforms torchvision的输出是 [0,1]的PILImage图像，把它转化为归一化范围为[-1, 1]的张量
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]) # 下载数据并加载到loader中 trainset = torchvision.datasets.CIFAR10(root=&amp;#39;./data&amp;#39;, train=True, download=True, transform=transform) trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2) testset = torchvision.'><title>Pytorch学习笔记_4_训练一个分类器</title>
 
-<link rel='canonical' href='https://example.com/blog/pytorch_4/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/pytorch_4/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch学习笔记_4_训练一个分类器'>
 <meta property='og:description' content='关于数据 一般来说，对于图像、文本、音频或视频数据，可以使用标准的Python包来将这些数据加载为numpy array，之后可以将这些array转换为torch.*Tensor
@@ -21,7 +21,7 @@ CIFAR-10的图像都是 3x32x32 大小的，即，3颜色通道，32x32像素。
 训练一个图像分类器  使用torchvision加载和归一化CIFAR10训练集和测试集 定义一个卷积神经网络 定义损失函数 用训练集训练网络 用测试集测试网络  1.读取和归一化 CIFAR10 使用torchvision可以非常容易得加载CIFAR10
 import torch import torchvision import torchvision.transforms as transforms torchvision的输出是 [0,1]的PILImage图像，把它转化为归一化范围为[-1, 1]的张量
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]) # 下载数据并加载到loader中 trainset = torchvision.datasets.CIFAR10(root=&amp;#39;./data&amp;#39;, train=True, download=True, transform=transform) trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2) testset = torchvision.'>
-<meta property='og:url' content='https://example.com/blog/pytorch_4/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/pytorch_4/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-13T18:37:46&#43;08:00'/><meta property='article:modified_time' content='2020-02-13T18:37:46&#43;08:00'/>
 <meta name="twitter:title" content="Pytorch学习笔记_4_训练一个分类器">
@@ -82,7 +82,7 @@ transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tiiktak&#39;s</title>
-        <link>https://example.com/</link>
+        <link>https://konosuba.xyz/</link>
         <description>Recent content on Tiiktak&#39;s</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
-        <lastBuildDate>Mon, 28 Dec 2020 15:52:48 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>cn</language>
+        <lastBuildDate>Mon, 28 Dec 2020 15:52:48 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>MMDetection单机多卡训练出现问题</title>
-        <link>https://example.com/blog/mmdet_multiple_gpu_error/</link>
+        <link>https://konosuba.xyz/blog/mmdet_multiple_gpu_error/</link>
         <pubDate>Mon, 28 Dec 2020 15:52:48 +0800</pubDate>
         
-        <guid>https://example.com/blog/mmdet_multiple_gpu_error/</guid>
+        <guid>https://konosuba.xyz/blog/mmdet_multiple_gpu_error/</guid>
         <description>&lt;p&gt;使用的命令：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;nv&#34;&gt;CUDA_VISIBLE_DEVICES&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0,1,2,3 ./tools/dist_train.sh &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;CONFIG_FILE&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; --resume-from &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;CHECKPOINT_FILE&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;出现问题：&lt;/p&gt;
@@ -33,11 +33,11 @@ python setup.py install
         </item>
         <item>
         <title>在Linux中使用Clash科学上网</title>
-        <link>https://example.com/blog/clash_linux_tutorial/</link>
+        <link>https://konosuba.xyz/blog/clash_linux_tutorial/</link>
         <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
         
-        <guid>https://example.com/blog/clash_linux_tutorial/</guid>
-        <description>&lt;img src="https://example.com/blog/clash_linux_tutorial/111.png" alt="Featured image of post 在Linux中使用Clash科学上网" /&gt;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+        <guid>https://konosuba.xyz/blog/clash_linux_tutorial/</guid>
+        <description>&lt;img src="https://konosuba.xyz/blog/clash_linux_tutorial/111.png" alt="Featured image of post 在Linux中使用Clash科学上网" /&gt;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;下载amd64文件：https://github.com/Dreamacro/clash/releases/&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;gzip -f -d linux-amd64-clash.gz&lt;/code&gt;&lt;/li&gt;
@@ -68,10 +68,10 @@ ftp_proxy = http://127.0.0.1:7890/
         </item>
         <item>
         <title>Mpich2_安装 Ubuntu 20.04LTS</title>
-        <link>https://example.com/blog/mpich2_ubuntu/</link>
+        <link>https://konosuba.xyz/blog/mpich2_ubuntu/</link>
         <pubDate>Tue, 17 Nov 2020 09:20:26 +0800</pubDate>
         
-        <guid>https://example.com/blog/mpich2_ubuntu/</guid>
+        <guid>https://konosuba.xyz/blog/mpich2_ubuntu/</guid>
         <description>&lt;ul&gt;
 &lt;li&gt;Ubuntu 20.04 LTS&lt;/li&gt;
 &lt;/ul&gt;
@@ -82,8 +82,8 @@ ftp_proxy = http://127.0.0.1:7890/
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;mpiexec --version&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;figure style=&#34;flex-grow: 452; flex-basis: 1085px&#34;&gt;
-		&lt;a href=&#34;https://example.com/blog/mpich2_ubuntu/image-20201117092421973.png&#34; data-size=&#34;909x201&#34;&gt;&lt;img src=&#34;https://example.com/blog/mpich2_ubuntu/image-20201117092421973.png&#34;
-				srcset=&#34;https://example.com/blog/mpich2_ubuntu/image-20201117092421973_hu34da94b6c55bf7f95459f19be39109a0_25961_480x0_resize_box_2.png 480w, https://example.com/blog/mpich2_ubuntu/image-20201117092421973_hu34da94b6c55bf7f95459f19be39109a0_25961_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://konosuba.xyz/blog/mpich2_ubuntu/image-20201117092421973.png&#34; data-size=&#34;909x201&#34;&gt;&lt;img src=&#34;https://konosuba.xyz/blog/mpich2_ubuntu/image-20201117092421973.png&#34;
+				srcset=&#34;https://konosuba.xyz/blog/mpich2_ubuntu/image-20201117092421973_hu34da94b6c55bf7f95459f19be39109a0_25961_480x0_resize_box_2.png 480w, https://konosuba.xyz/blog/mpich2_ubuntu/image-20201117092421973_hu34da94b6c55bf7f95459f19be39109a0_25961_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;909&#34;
 				height=&#34;201&#34;
 				loading=&#34;lazy&#34;
@@ -122,10 +122,10 @@ ftp_proxy = http://127.0.0.1:7890/
         </item>
         <item>
         <title>MSMPI Visual Studio 2019 配置</title>
-        <link>https://example.com/blog/msmpi_install/</link>
+        <link>https://konosuba.xyz/blog/msmpi_install/</link>
         <pubDate>Mon, 16 Nov 2020 22:14:03 +0800</pubDate>
         
-        <guid>https://example.com/blog/msmpi_install/</guid>
+        <guid>https://konosuba.xyz/blog/msmpi_install/</guid>
         <description>&lt;ul&gt;
 &lt;li&gt;Windows 10&lt;/li&gt;
 &lt;li&gt;Visual Studio 2019&lt;/li&gt;
@@ -182,8 +182,8 @@ ftp_proxy = http://127.0.0.1:7890/
 	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; 
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;figure style=&#34;flex-grow: 2067; flex-basis: 4961px&#34;&gt;
-		&lt;a href=&#34;https://example.com/blog/msmpi_install/image-20201116223527189.png&#34; data-size=&#34;1199x58&#34;&gt;&lt;img src=&#34;https://example.com/blog/msmpi_install/image-20201116223527189.png&#34;
-				srcset=&#34;https://example.com/blog/msmpi_install/image-20201116223527189_hu96ce04561745e124c9cc9b1b89a38f2d_8703_480x0_resize_box_2.png 480w, https://example.com/blog/msmpi_install/image-20201116223527189_hu96ce04561745e124c9cc9b1b89a38f2d_8703_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://konosuba.xyz/blog/msmpi_install/image-20201116223527189.png&#34; data-size=&#34;1199x58&#34;&gt;&lt;img src=&#34;https://konosuba.xyz/blog/msmpi_install/image-20201116223527189.png&#34;
+				srcset=&#34;https://konosuba.xyz/blog/msmpi_install/image-20201116223527189_hu96ce04561745e124c9cc9b1b89a38f2d_8703_480x0_resize_box_2.png 480w, https://konosuba.xyz/blog/msmpi_install/image-20201116223527189_hu96ce04561745e124c9cc9b1b89a38f2d_8703_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;1199&#34;
 				height=&#34;58&#34;
 				loading=&#34;lazy&#34;
@@ -200,8 +200,8 @@ ftp_proxy = http://127.0.0.1:7890/
 &lt;li&gt;调试 - 命令参数：&lt;code&gt;-n 2 $(TargetPath)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure style=&#34;flex-grow: 165; flex-basis: 397px&#34;&gt;
-		&lt;a href=&#34;https://example.com/blog/msmpi_install/image-20201116224322302.png&#34; data-size=&#34;908x548&#34;&gt;&lt;img src=&#34;https://example.com/blog/msmpi_install/image-20201116224322302.png&#34;
-				srcset=&#34;https://example.com/blog/msmpi_install/image-20201116224322302_hu4e21d96276c4516b498ab66679dd8f2f_66227_480x0_resize_box_2.png 480w, https://example.com/blog/msmpi_install/image-20201116224322302_hu4e21d96276c4516b498ab66679dd8f2f_66227_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://konosuba.xyz/blog/msmpi_install/image-20201116224322302.png&#34; data-size=&#34;908x548&#34;&gt;&lt;img src=&#34;https://konosuba.xyz/blog/msmpi_install/image-20201116224322302.png&#34;
+				srcset=&#34;https://konosuba.xyz/blog/msmpi_install/image-20201116224322302_hu4e21d96276c4516b498ab66679dd8f2f_66227_480x0_resize_box_2.png 480w, https://konosuba.xyz/blog/msmpi_install/image-20201116224322302_hu4e21d96276c4516b498ab66679dd8f2f_66227_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;908&#34;
 				height=&#34;548&#34;
 				loading=&#34;lazy&#34;
@@ -220,11 +220,11 @@ ftp_proxy = http://127.0.0.1:7890/
         </item>
         <item>
         <title>【课程作业】项目管理课程原型设计</title>
-        <link>https://example.com/blog/project_manage_course_prototype_design/</link>
+        <link>https://konosuba.xyz/blog/project_manage_course_prototype_design/</link>
         <pubDate>Thu, 08 Oct 2020 13:58:14 +0800</pubDate>
         
-        <guid>https://example.com/blog/project_manage_course_prototype_design/</guid>
-        <description>&lt;img src="https://example.com/blog/project_manage_course_prototype_design/title.png" alt="Featured image of post 【课程作业】项目管理课程原型设计" /&gt;&lt;p&gt;这是我的《软件过程与项目管理》 的期末作业，我们小组设计了一款校内出行APP，其中软件原型设计部分由我负责，使用PS和XD制作，在这里做个展示:laughing:&lt;/p&gt;
+        <guid>https://konosuba.xyz/blog/project_manage_course_prototype_design/</guid>
+        <description>&lt;img src="https://konosuba.xyz/blog/project_manage_course_prototype_design/title.png" alt="Featured image of post 【课程作业】项目管理课程原型设计" /&gt;&lt;p&gt;这是我的《软件过程与项目管理》 的期末作业，我们小组设计了一款校内出行APP，其中软件原型设计部分由我负责，使用PS和XD制作，在这里做个展示:laughing:&lt;/p&gt;
 &lt;h2 id=&#34;主视觉&#34;&gt;主视觉&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://ar4fsa.bl.files.1drv.com/y4me3W00d2L_AJan-D3_RvjmPll11rG92fUdAv5W2ZejtatJXju5-FbypZENDrE-u55aK1n1QEzKY9NxhndFpSIam3erljh_XXMIW712JlBJuR_NnptAk1-cREBwoiogHLNK6dvrzzzAH-NLiiO6DX9n2ptHD69Qnz_6tkGgGnkjXzWLTcygGNibyHTwBGVbAuFY6OFZJ-jNZZuP8AuPOi-QA?width=5000&amp;amp;height=2814&amp;amp;cropmode=none&#34; alt=&#34;main&#34;  /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;各页面&#34;&gt;各页面&lt;/h2&gt;
@@ -244,10 +244,10 @@ ftp_proxy = http://127.0.0.1:7890/
         </item>
         <item>
         <title>MMDetection中使用Mask-RCNN训练BDD100K数据集</title>
-        <link>https://example.com/blog/bdd100k_mmdet_mask-rcnn/</link>
+        <link>https://konosuba.xyz/blog/bdd100k_mmdet_mask-rcnn/</link>
         <pubDate>Thu, 08 Oct 2020 13:40:10 +0800</pubDate>
         
-        <guid>https://example.com/blog/bdd100k_mmdet_mask-rcnn/</guid>
+        <guid>https://konosuba.xyz/blog/bdd100k_mmdet_mask-rcnn/</guid>
         <description>&lt;h2 id=&#34;1-convert-label-to-coco-format&#34;&gt;1. Convert label to COCO format&lt;/h2&gt;
 &lt;p&gt;使用官方提供的工具&lt;code&gt;bdd100k2coco.py&lt;/code&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -370,10 +370,10 @@ ftp_proxy = http://127.0.0.1:7890/
         </item>
         <item>
         <title>MMDetection安装过程记录</title>
-        <link>https://example.com/blog/mmdet_install/</link>
+        <link>https://konosuba.xyz/blog/mmdet_install/</link>
         <pubDate>Mon, 05 Oct 2020 13:37:51 +0800</pubDate>
         
-        <guid>https://example.com/blog/mmdet_install/</guid>
+        <guid>https://konosuba.xyz/blog/mmdet_install/</guid>
         <description>&lt;p&gt;记录自本人安装过程，环境建议：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Linux or macOS  (Windows is not currently officially supported)&lt;/li&gt;
@@ -409,8 +409,8 @@ checkpoints
 &lt;pre&gt;&lt;code&gt;python demo/image_demo.py demo/demo.jpg configs/mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco.py checkpoints/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth 
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;若安装成功，会显示如下图像：&lt;/p&gt;
 &lt;p&gt;&lt;figure style=&#34;flex-grow: 147; flex-basis: 354px&#34;&gt;
-		&lt;a href=&#34;https://example.com/blog/mmdet_install/image-20200925142629606.png&#34; data-size=&#34;781x529&#34;&gt;&lt;img src=&#34;https://example.com/blog/mmdet_install/image-20200925142629606.png&#34;
-				srcset=&#34;https://example.com/blog/mmdet_install/image-20200925142629606_hu6b9dcd272ac889c2c8f034aea50dfe57_751538_480x0_resize_box_2.png 480w, https://example.com/blog/mmdet_install/image-20200925142629606_hu6b9dcd272ac889c2c8f034aea50dfe57_751538_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://konosuba.xyz/blog/mmdet_install/image-20200925142629606.png&#34; data-size=&#34;781x529&#34;&gt;&lt;img src=&#34;https://konosuba.xyz/blog/mmdet_install/image-20200925142629606.png&#34;
+				srcset=&#34;https://konosuba.xyz/blog/mmdet_install/image-20200925142629606_hu6b9dcd272ac889c2c8f034aea50dfe57_751538_480x0_resize_box_2.png 480w, https://konosuba.xyz/blog/mmdet_install/image-20200925142629606_hu6b9dcd272ac889c2c8f034aea50dfe57_751538_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;781&#34;
 				height=&#34;529&#34;
 				loading=&#34;lazy&#34;
@@ -428,10 +428,10 @@ checkpoints
         </item>
         <item>
         <title>查看当前使用的Python的安装路径</title>
-        <link>https://example.com/blog/show_python_installation_path/</link>
+        <link>https://konosuba.xyz/blog/show_python_installation_path/</link>
         <pubDate>Fri, 25 Sep 2020 19:22:57 +0800</pubDate>
         
-        <guid>https://example.com/blog/show_python_installation_path/</guid>
+        <guid>https://konosuba.xyz/blog/show_python_installation_path/</guid>
         <description>&lt;p&gt;如题，代码如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;sys&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;python_path&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sys&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;executable&lt;/span&gt;
@@ -442,10 +442,10 @@ checkpoints
         </item>
         <item>
         <title>python库opencv,py-opencv,libopencv的区别</title>
-        <link>https://example.com/blog/difference_between_opencv_pyopencv_libopencv/</link>
+        <link>https://konosuba.xyz/blog/difference_between_opencv_pyopencv_libopencv/</link>
         <pubDate>Tue, 07 Jul 2020 23:52:11 +0800</pubDate>
         
-        <guid>https://example.com/blog/difference_between_opencv_pyopencv_libopencv/</guid>
+        <guid>https://konosuba.xyz/blog/difference_between_opencv_pyopencv_libopencv/</guid>
         <description>&lt;p&gt;通常我们在Python中安装OpenCV都是直接用&lt;code&gt;pip install opencv-python&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;今天想用Anaconda Navigator安装的时候，在面板中搜索到有&lt;code&gt;libopencv&lt;/code&gt;, &lt;code&gt;opencv&lt;/code&gt;, &lt;code&gt;py-opencv&lt;/code&gt;共三个包，而且三者的描述都是同样的’Computer vision and machine learning software library‘，瞬间迷惑:laughing:&lt;/p&gt;
 &lt;p&gt;找到介绍如下：&lt;/p&gt;
@@ -464,10 +464,10 @@ checkpoints
         </item>
         <item>
         <title>树莓派4B安装opencv以及错误解决</title>
-        <link>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</link>
+        <link>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</link>
         <pubDate>Mon, 27 Apr 2020 11:25:47 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</guid>
+        <guid>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -607,10 +607,10 @@ make
         </item>
         <item>
         <title>AlexNet分类Fashion-MNIST(Pytorch实现)</title>
-        <link>https://example.com/blog/fashion_mnist_alexnet/</link>
+        <link>https://konosuba.xyz/blog/fashion_mnist_alexnet/</link>
         <pubDate>Sun, 08 Mar 2020 23:03:09 +0800</pubDate>
         
-        <guid>https://example.com/blog/fashion_mnist_alexnet/</guid>
+        <guid>https://konosuba.xyz/blog/fashion_mnist_alexnet/</guid>
         <description>&lt;p&gt;这个notebook也同时发表在&lt;a class=&#34;link&#34; href=&#34;https://www.kaggle.com/tiiktak/fashion-mnist-with-alexnet-in-pytorch-92-accuracy&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Kaggle&lt;/a&gt;上&lt;/p&gt;
 &lt;h1 id=&#34;fashion-mnist数据集&#34;&gt;Fashion MNIST数据集&lt;/h1&gt;
@@ -1033,10 +1033,10 @@ Test set: Average loss: 0.2729, Accuracy: 9230/10000 (92%)
         </item>
         <item>
         <title>循环神经网络RNN以及几种经典模型</title>
-        <link>https://example.com/blog/rnn/</link>
+        <link>https://konosuba.xyz/blog/rnn/</link>
         <pubDate>Wed, 19 Feb 2020 22:47:20 +0800</pubDate>
         
-        <guid>https://example.com/blog/rnn/</guid>
+        <guid>https://konosuba.xyz/blog/rnn/</guid>
         <description>&lt;h1 id=&#34;rnn简介&#34;&gt;RNN简介&lt;/h1&gt;
 &lt;p&gt;现实世界中，很多元素都是相互连接的，比如室外的温度是随着气候的变化而周期性的变化的、我们的语言也需要通过上下文的关系来确认所表达的含义。但是机器要做到这一步就相当得难了。因此，就有了现在的循环神经网络，他的本质是：&lt;em&gt;拥有记忆的能力，并且会根据这些记忆的内容来进行推断&lt;/em&gt;。因此，他的输出就依赖于当前的输入和记忆。&lt;/p&gt;
 &lt;h1 id=&#34;网络结构及原理&#34;&gt;网络结构及原理&lt;/h1&gt;
@@ -1205,10 +1205,10 @@ Test set: Average loss: 0.2729, Accuracy: 9230/10000 (92%)
         </item>
         <item>
         <title>卷积神经网络CNN以及几种经典模型</title>
-        <link>https://example.com/blog/cnn/</link>
+        <link>https://konosuba.xyz/blog/cnn/</link>
         <pubDate>Tue, 18 Feb 2020 18:43:39 +0800</pubDate>
         
-        <guid>https://example.com/blog/cnn/</guid>
+        <guid>https://konosuba.xyz/blog/cnn/</guid>
         <description>&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;CNN -&amp;gt; Convolutional Neural Network&lt;/p&gt;
@@ -1516,10 +1516,10 @@ Test set: Average loss: 0.2729, Accuracy: 9230/10000 (92%)
         </item>
         <item>
         <title>Pytorch中的激活函数</title>
-        <link>https://example.com/blog/pytorch_activation_function/</link>
+        <link>https://konosuba.xyz/blog/pytorch_activation_function/</link>
         <pubDate>Sat, 15 Feb 2020 18:43:29 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_activation_function/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_activation_function/</guid>
         <description>&lt;p&gt;介绍神经网络的时候已经说到，神经元会对化学物质的刺激进行，当达到一定程度的时候，神经元才会兴奋，并向其他神经元发送信息。神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件。&lt;/p&gt;
 &lt;h1 id=&#34;为什么激活函数都是非线性的&#34;&gt;为什么激活函数都是非线性的&lt;/h1&gt;
 &lt;p&gt;因为如果使用线性的激活函数，那么input跟output之间的关系始终为线性的，这样完全可以不使用网络结构，直接使用线性组合即可。&lt;/p&gt;
@@ -1607,10 +1607,10 @@ Test set: Average loss: 0.2729, Accuracy: 9230/10000 (92%)
         </item>
         <item>
         <title>Pytorch中的梯度下降及优化</title>
-        <link>https://example.com/blog/pytorch_gradient_descent/</link>
+        <link>https://konosuba.xyz/blog/pytorch_gradient_descent/</link>
         <pubDate>Sat, 15 Feb 2020 17:46:54 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_gradient_descent/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_gradient_descent/</guid>
         <description>&lt;p&gt;在PyTorch中使用Mini-batch这种方法进行训练&lt;/p&gt;
 &lt;h1 id=&#34;mini-batch的梯度下降法&#34;&gt;Mini-batch的梯度下降法&lt;/h1&gt;
 &lt;p&gt;对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，&lt;em&gt;如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中&lt;/em&gt;&lt;/p&gt;
@@ -1664,10 +1664,10 @@ Test set: Average loss: 0.2729, Accuracy: 9230/10000 (92%)
         </item>
         <item>
         <title>Pytorch中的损失函数Loss Function</title>
-        <link>https://example.com/blog/pytorch_loss_function/</link>
+        <link>https://konosuba.xyz/blog/pytorch_loss_function/</link>
         <pubDate>Sat, 15 Feb 2020 15:33:34 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_loss_function/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_loss_function/</guid>
         <description>&lt;p&gt;由于Pytorch中使用mini-batch进行计算，因此其损失函数的计算结果会对mini-batch取平均&lt;/p&gt;
 &lt;p&gt;常见的Pytorch中内置的损失函数有：&lt;/p&gt;
 &lt;h1 id=&#34;nnl1loss&#34;&gt;nn.L1Loss&lt;/h1&gt;
@@ -1709,10 +1709,10 @@ Test set: Average loss: 0.2729, Accuracy: 9230/10000 (92%)
         </item>
         <item>
         <title>Pytorch_数据集的创建和加载</title>
-        <link>https://example.com/blog/pytorch_dataset_dataloader/</link>
+        <link>https://konosuba.xyz/blog/pytorch_dataset_dataloader/</link>
         <pubDate>Sat, 15 Feb 2020 01:08:09 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_dataset_dataloader/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_dataset_dataloader/</guid>
         <description>&lt;p&gt;PyTorch通过&lt;code&gt;torch.utils.data&lt;/code&gt;对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。&lt;/p&gt;
 &lt;p&gt;可以通过&lt;strong&gt;dataset定义数据集&lt;/strong&gt;，并使用&lt;strong&gt;Datalorder载入和遍历数据集&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;dataset&#34;&gt;Dataset&lt;/h1&gt;
@@ -1761,10 +1761,10 @@ Test set: Average loss: 0.2729, Accuracy: 9230/10000 (92%)
         </item>
         <item>
         <title>Pytorch_torchvision</title>
-        <link>https://example.com/blog/pytorch_torchvision/</link>
+        <link>https://konosuba.xyz/blog/pytorch_torchvision/</link>
         <pubDate>Fri, 14 Feb 2020 00:19:28 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_torchvision/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_torchvision/</guid>
         <description>&lt;h1 id=&#34;torchvisionmodels&#34;&gt;torchvision.models&lt;/h1&gt;
 &lt;p&gt;torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习
 torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
@@ -1825,10 +1825,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>Pytorch学习笔记_4_训练一个分类器</title>
-        <link>https://example.com/blog/pytorch_4/</link>
+        <link>https://konosuba.xyz/blog/pytorch_4/</link>
         <pubDate>Thu, 13 Feb 2020 18:37:46 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_4/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_4/</guid>
         <description>&lt;h1 id=&#34;关于数据&#34;&gt;关于数据&lt;/h1&gt;
 &lt;p&gt;一般来说，对于图像、文本、音频或视频数据，可以使用标准的Python包来将这些数据加载为&lt;code&gt;numpy array&lt;/code&gt;，之后可以将这些&lt;code&gt;array&lt;/code&gt;转换为&lt;code&gt;torch.*Tensor&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -2054,10 +2054,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>Pytorch_linear</title>
-        <link>https://example.com/blog/pytorch_linear/</link>
+        <link>https://konosuba.xyz/blog/pytorch_linear/</link>
         <pubDate>Wed, 12 Feb 2020 23:13:53 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_linear/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_linear/</guid>
         <description>&lt;h1 id=&#34;linear&#34;&gt;Linear&lt;/h1&gt;
 &lt;p&gt;对输入数据应用线性变换：&lt;code&gt;y = xA^T + b&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;torch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Linear&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in_features&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out_features&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bias&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -2080,10 +2080,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>Pytorch_nn.Conv2d</title>
-        <link>https://example.com/blog/pytorch_conv2d/</link>
+        <link>https://konosuba.xyz/blog/pytorch_conv2d/</link>
         <pubDate>Wed, 12 Feb 2020 22:22:18 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_conv2d/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_conv2d/</guid>
         <description>&lt;h1 id=&#34;conv2d&#34;&gt;Conv2d&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;torch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Conv2d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in_channels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out_channels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;kernel_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;stride&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
     &lt;span class=&#34;n&#34;&gt;padding&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dilation&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;groups&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bias&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;padding_mode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;zeros&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -2107,10 +2107,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>Python面向对象_super()函数</title>
-        <link>https://example.com/blog/python_super/</link>
+        <link>https://konosuba.xyz/blog/python_super/</link>
         <pubDate>Wed, 12 Feb 2020 17:12:47 +0800</pubDate>
         
-        <guid>https://example.com/blog/python_super/</guid>
+        <guid>https://konosuba.xyz/blog/python_super/</guid>
         <description>&lt;h1 id=&#34;super&#34;&gt;super()&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;super()&lt;/code&gt;是用于**调用父类（超类）**的一个方法&lt;/p&gt;
 &lt;p&gt;用于解决多重继承问题：直接用类名调用父类方法在使用单继承时没有问题，但若使用多继承，会涉及到查找顺序（MRO）、重复调用（钻石继承）等问题&lt;/p&gt;
@@ -2162,10 +2162,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>Pytorch学习笔记_3_构建一个神经网络</title>
-        <link>https://example.com/blog/pytorch_3/</link>
+        <link>https://konosuba.xyz/blog/pytorch_3/</link>
         <pubDate>Wed, 12 Feb 2020 11:13:23 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_3/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_3/</guid>
         <description>&lt;h1 id=&#34;neural-networks&#34;&gt;Neural Networks&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -2373,10 +2373,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>Pytorch学习笔记_2_Autograd自动求导机制</title>
-        <link>https://example.com/blog/pytorch_2/</link>
+        <link>https://konosuba.xyz/blog/pytorch_2/</link>
         <pubDate>Tue, 11 Feb 2020 17:25:19 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_2/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_2/</guid>
         <description>&lt;h1 id=&#34;autograd-自动求导机制&#34;&gt;Autograd 自动求导机制&lt;/h1&gt;
 &lt;p&gt;PyTorch 中所有神经网络的核心是 &lt;code&gt;autograd&lt;/code&gt; 包。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;autograd&lt;/code&gt; 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。&lt;/p&gt;
@@ -2519,10 +2519,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>Pytorch学习笔记_1_tensor张量</title>
-        <link>https://example.com/blog/pytorch_1/</link>
+        <link>https://konosuba.xyz/blog/pytorch_1/</link>
         <pubDate>Tue, 11 Feb 2020 14:46:14 +0800</pubDate>
         
-        <guid>https://example.com/blog/pytorch_1/</guid>
+        <guid>https://konosuba.xyz/blog/pytorch_1/</guid>
         <description>&lt;h1 id=&#34;tensors&#34;&gt;Tensors&lt;/h1&gt;
 &lt;p&gt;Tensors与Numpy中的ndarrays类似&lt;/p&gt;
 &lt;h2 id=&#34;torchnew_-与-torch_like&#34;&gt;torch.new_* 与 torch.*_like&lt;/h2&gt;
@@ -2619,10 +2619,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>神经网络模型的学习曲线</title>
-        <link>https://example.com/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</link>
+        <link>https://konosuba.xyz/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</link>
         <pubDate>Fri, 07 Feb 2020 01:04:44 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</guid>
         <description>&lt;h2 id=&#34;学习曲线样本数量与误差&#34;&gt;学习曲线：样本数量与误差&lt;/h2&gt;
 &lt;p&gt;绘制 样本数量m 与 训练误差、交叉验证误差 的关系曲线&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/02/07/J8TLsrpvUAP6Z9M.png&#34; alt=&#34;学习曲线&#34;  /&gt;&lt;/p&gt;
@@ -2634,10 +2634,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>【应用机器学习】正则化与偏差、方差</title>
-        <link>https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</link>
+        <link>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</link>
         <pubDate>Fri, 07 Feb 2020 00:56:29 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</guid>
+        <guid>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</guid>
         <description>&lt;p&gt;在我们在训练模型的过程中，一般会使用一些正则化方法来防止过拟合。&lt;/p&gt;
 &lt;p&gt;但是我们可能会正则化的程度太高或太小了，即我们在选择&lt;code&gt;λ&lt;/code&gt;的值时也需要思考与之前&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/blog/%E5%BA%94%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%9B%86/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;选择多项式模型次数&lt;/a&gt;类似的问题。&lt;/p&gt;
@@ -2672,10 +2672,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>【应用机器学习】诊断偏差与方差</title>
-        <link>https://example.com/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</link>
+        <link>https://konosuba.xyz/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</link>
         <pubDate>Fri, 07 Feb 2020 00:51:21 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</guid>
+        <guid>https://konosuba.xyz/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</guid>
         <description>&lt;p&gt;当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是&lt;strong&gt;欠拟合&lt;/strong&gt;，要么是&lt;strong&gt;过拟合&lt;/strong&gt;问题。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/02/07/xDYTKo1zMdRn3Zq.jpg&#34; alt=&#34;欠拟合与过拟合&#34;  /&gt;&lt;/p&gt;
 &lt;p&gt;我们通常会通过将训练集和交叉验证集的代价函数误差与多项式的次数绘制在同一张图表上来帮助分析：&lt;/p&gt;
@@ -2715,10 +2715,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>【应用机器学习】模型选择和训练、验证、测试集</title>
-        <link>https://example.com/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</link>
+        <link>https://konosuba.xyz/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</link>
         <pubDate>Fri, 07 Feb 2020 00:41:34 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</guid>
+        <guid>https://konosuba.xyz/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</guid>
         <description>&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/02/07/kJugfep6RPCcmyB.png&#34; alt=&#34;过拟合&#34;  /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;1-重新划分数据集&#34;&gt;1. 重新划分数据集&lt;/h2&gt;
 &lt;p&gt;其中&lt;strong&gt;60%作为训练集&lt;/strong&gt;，&lt;strong&gt;20%作为交叉验证集&lt;/strong&gt;（cross validation），&lt;strong&gt;20%作为测试集&lt;/strong&gt;&lt;/p&gt;
@@ -2733,10 +2733,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>【应用机器学习】评估一个假设</title>
-        <link>https://example.com/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</link>
+        <link>https://konosuba.xyz/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</link>
         <pubDate>Fri, 07 Feb 2020 00:34:04 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</guid>
+        <guid>https://konosuba.xyz/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</guid>
         <description>&lt;h1 id=&#34;检验是否过拟合&#34;&gt;检验是否过拟合&lt;/h1&gt;
 &lt;h2 id=&#34;将数据分成训练集和测试集&#34;&gt;将数据分成训练集和测试集&lt;/h2&gt;
 &lt;p&gt;通常用70%的数据作为训练集，用剩下30%的数据作为测试集。&lt;/p&gt;
@@ -2756,10 +2756,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>训练神经网络的基本步骤</title>
-        <link>https://example.com/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</link>
+        <link>https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</link>
         <pubDate>Fri, 07 Feb 2020 00:09:57 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</guid>
+        <guid>https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</guid>
         <description>&lt;h2 id=&#34;1-选择一种网络结构&#34;&gt;1. 选择一种网络结构&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;即选择神经元之间的连通模式&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/02/07/jDcJ6YSUd9mxsoi.png&#34; alt=&#34;神经元连通模式示例&#34;  /&gt;&lt;/p&gt;
@@ -2807,10 +2807,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>正则化 Regularization</title>
-        <link>https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96/</link>
+        <link>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96/</link>
         <pubDate>Mon, 13 Jan 2020 17:29:56 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96/</guid>
+        <guid>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96/</guid>
         <description>&lt;h2 id=&#34;过拟合的问题&#34;&gt;过拟合的问题&lt;/h2&gt;
 &lt;p&gt;到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到**过拟合(over-fitting)**的问题，可能会导致它们效果很差。&lt;/p&gt;
 &lt;p&gt;可以使用一种**正则化(regularization)**的技术来改善或减少过度拟合的问题&lt;/p&gt;
@@ -2864,10 +2864,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>逻辑回归Logistic Regression</title>
-        <link>https://example.com/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</link>
+        <link>https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</link>
         <pubDate>Mon, 13 Jan 2020 16:07:34 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</guid>
+        <guid>https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</guid>
         <description>&lt;h2 id=&#34;分类问题&#34;&gt;分类问题&lt;/h2&gt;
 &lt;p&gt;在分类问题中，我们需要预测的变量&lt;code&gt;y&lt;/code&gt;是离散的值，我们将学习一种叫做逻辑回归 (Logistic Regression) 的算法&lt;/p&gt;
 &lt;p&gt;在分类问题中，我们尝试预测的是结果是否属于某一个类（例如正确或错误）。&lt;/p&gt;
@@ -3036,10 +3036,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>Java入门</title>
-        <link>https://example.com/blog/java%E5%85%A5%E9%97%A8/</link>
+        <link>https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/</link>
         <pubDate>Sun, 12 Jan 2020 21:00:17 +0800</pubDate>
         
-        <guid>https://example.com/blog/java%E5%85%A5%E9%97%A8/</guid>
+        <guid>https://konosuba.xyz/blog/java%E5%85%A5%E9%97%A8/</guid>
         <description>&lt;h1 id=&#34;java-开发环境配置&#34;&gt;Java 开发环境配置&lt;/h1&gt;
 &lt;p&gt;首先我们需要下载java开发工具包JDK，&lt;a class=&#34;link&#34; href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;下载地址&lt;/a&gt;&lt;/p&gt;
@@ -3091,10 +3091,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>MATLAB学习_函数</title>
-        <link>https://example.com/blog/matlab%E5%87%BD%E6%95%B0/</link>
+        <link>https://konosuba.xyz/blog/matlab%E5%87%BD%E6%95%B0/</link>
         <pubDate>Sat, 11 Jan 2020 15:35:44 +0800</pubDate>
         
-        <guid>https://example.com/blog/matlab%E5%87%BD%E6%95%B0/</guid>
+        <guid>https://konosuba.xyz/blog/matlab%E5%87%BD%E6%95%B0/</guid>
         <description>&lt;h1 id=&#34;自定义函数&#34;&gt;自定义函数&lt;/h1&gt;
 &lt;p&gt;MATLAB可以在单独的&lt;code&gt;.m&lt;/code&gt;文件中定义函数&lt;/p&gt;
 &lt;p&gt;比如有一文件&lt;code&gt;myadd.m&lt;/code&gt;，文件中内容为&lt;/p&gt;
@@ -3126,10 +3126,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>MATLAB学习_控制语句:for,while,if</title>
-        <link>https://example.com/blog/matlab%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</link>
+        <link>https://konosuba.xyz/blog/matlab%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</link>
         <pubDate>Sat, 11 Jan 2020 15:02:35 +0800</pubDate>
         
-        <guid>https://example.com/blog/matlab%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</guid>
+        <guid>https://konosuba.xyz/blog/matlab%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</guid>
         <description>&lt;h2 id=&#34;for循环&#34;&gt;for循环&lt;/h2&gt;
 &lt;p&gt;首先我们定义一个向量&lt;code&gt;v = zeros(10, 1)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;接着我们写一个 “for&amp;quot; 循环，让&lt;code&gt;v&lt;/code&gt;等于 1 到 10。设&lt;code&gt;v(i)&lt;/code&gt;等于 2 的&lt;code&gt;i&lt;/code&gt;次方，循环最后写上“end”。&lt;/p&gt;
@@ -3175,10 +3175,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>MATLAB学习_数据绘图</title>
-        <link>https://example.com/blog/matlab%E7%BB%98%E5%9B%BE/</link>
+        <link>https://konosuba.xyz/blog/matlab%E7%BB%98%E5%9B%BE/</link>
         <pubDate>Sat, 11 Jan 2020 10:28:08 +0800</pubDate>
         
-        <guid>https://example.com/blog/matlab%E7%BB%98%E5%9B%BE/</guid>
+        <guid>https://konosuba.xyz/blog/matlab%E7%BB%98%E5%9B%BE/</guid>
         <description>&lt;p&gt;当开发学习算法时，往往几个简单的图，可以让你更好地理解算法的内容，并且可以完整地检查下算法是否正常运行，是否达到了算法的目的。&lt;/p&gt;
 &lt;h2 id=&#34;二维绘图&#34;&gt;二维绘图&lt;/h2&gt;
 &lt;p&gt;我们先来快速生成一些数据用来绘图。&lt;/p&gt;
@@ -3257,10 +3257,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>MATLAB学习_字符与字符串</title>
-        <link>https://example.com/blog/matlab%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+        <link>https://konosuba.xyz/blog/matlab%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
         <pubDate>Sat, 11 Jan 2020 10:13:09 +0800</pubDate>
         
-        <guid>https://example.com/blog/matlab%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+        <guid>https://konosuba.xyz/blog/matlab%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
         <description>&lt;h1 id=&#34;字符串&#34;&gt;字符串&lt;/h1&gt;
 &lt;h2 id=&#34;创建&#34;&gt;创建&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &amp;#34;&lt;span class=&#34;n&#34;&gt;Hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;world&lt;/span&gt;&amp;#34;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
@@ -3312,10 +3312,10 @@ torchvision.models模块的 子模块中包含以下模型结构。&lt;/p&gt;
         </item>
         <item>
         <title>MATLAB学习_操作数据</title>
-        <link>https://example.com/blog/matlab%E6%93%8D%E4%BD%9C/</link>
+        <link>https://konosuba.xyz/blog/matlab%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Fri, 10 Jan 2020 17:55:20 +0800</pubDate>
         
-        <guid>https://example.com/blog/matlab%E6%93%8D%E4%BD%9C/</guid>
+        <guid>https://konosuba.xyz/blog/matlab%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;h2 id=&#34;文件操作&#34;&gt;文件操作&lt;/h2&gt;
 &lt;h3 id=&#34;导入文件&#34;&gt;导入文件&lt;/h3&gt;
 &lt;p&gt;当我们打开 MATLAB 时，我们通常已经在一个默认路径中，这个路径是 MATLAB 的安装位置，使用 &lt;code&gt;pwd&lt;/code&gt; 命令可以显示出 MATLAB 当前所处路径。&lt;/p&gt;
@@ -3373,10 +3373,10 @@ ans =
         </item>
         <item>
         <title>MATLAB学习_矩阵与向量操作</title>
-        <link>https://example.com/blog/matlab%E7%9F%A9%E9%98%B5/</link>
+        <link>https://konosuba.xyz/blog/matlab%E7%9F%A9%E9%98%B5/</link>
         <pubDate>Fri, 10 Jan 2020 15:35:53 +0800</pubDate>
         
-        <guid>https://example.com/blog/matlab%E7%9F%A9%E9%98%B5/</guid>
+        <guid>https://konosuba.xyz/blog/matlab%E7%9F%A9%E9%98%B5/</guid>
         <description>&lt;p&gt;矩阵与向量的创建在上一篇文章中已经提到，所以这里直接进行操作和运算&lt;/p&gt;
 &lt;h2 id=&#34;运算&#34;&gt;运算&lt;/h2&gt;
 &lt;p&gt;现有一矩阵&lt;code&gt;a&lt;/code&gt;:&lt;/p&gt;
@@ -3524,10 +3524,10 @@ ans =
         </item>
         <item>
         <title>YAML与TOML</title>
-        <link>https://example.com/blog/yaml_and_toml/</link>
+        <link>https://konosuba.xyz/blog/yaml_and_toml/</link>
         <pubDate>Thu, 09 Jan 2020 20:34:31 +0800</pubDate>
         
-        <guid>https://example.com/blog/yaml_and_toml/</guid>
+        <guid>https://konosuba.xyz/blog/yaml_and_toml/</guid>
         <description>&lt;h1 id=&#34;yaml&#34;&gt;YAML&lt;/h1&gt;
 &lt;p&gt;YAML 是 &amp;ldquo;YAML Ain&amp;rsquo;t a Markup Language&amp;rdquo;（YAML 不是一种标记语言）的递归缩写。有趣的是，在开发的这种语言时，YAML 的意思其实是：&amp;ldquo;Yet Another Markup Language&amp;rdquo;（仍是一种标记语言）。&lt;/p&gt;
 &lt;p&gt;YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲&lt;/p&gt;
@@ -3585,10 +3585,10 @@ ans =
         </item>
         <item>
         <title>多变量线性回归</title>
-        <link>https://example.com/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+        <link>https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
         <pubDate>Tue, 07 Jan 2020 19:48:31 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
         <description>&lt;h2 id=&#34;多变量梯度下降&#34;&gt;多变量梯度下降&lt;/h2&gt;
 &lt;p&gt;与单变量线性回归类似，在多变量线性回归中，我们也构建一个代价函数，则这个代价函数是所有建模误差的平方和，即：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/01/07/9gAqCplvsBV1FmU.png&#34; alt=&#34;多变量代价函数&#34;  /&gt;&lt;/p&gt;
@@ -3683,10 +3683,10 @@ ans =
         </item>
         <item>
         <title>降低损失：梯度下降法</title>
-        <link>https://example.com/blog/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/</link>
+        <link>https://konosuba.xyz/blog/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/</link>
         <pubDate>Tue, 07 Jan 2020 17:16:04 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/</guid>
+        <guid>https://konosuba.xyz/blog/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/</guid>
         <description>&lt;h2 id=&#34;梯度下降&#34;&gt;梯度下降&lt;/h2&gt;
 &lt;p&gt;梯度下降是一个用来求函数最小值的算法，在这里我们将使用梯度下降算法来求出代价函数（损失函数）&lt;code&gt;J(w1, w2)&lt;/code&gt;的最小值&lt;/p&gt;
 &lt;p&gt;假设我们有时间和计算资源来计算权重值&lt;code&gt;w1&lt;/code&gt;的所有可能值的损失。对于回归问题，所产生的损失与&lt;code&gt;w1&lt;/code&gt;的图形始终是碗状图，如下所示：&lt;/p&gt;
@@ -3742,10 +3742,10 @@ ans =
         </item>
         <item>
         <title>单变量线性回归</title>
-        <link>https://example.com/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+        <link>https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
         <pubDate>Tue, 07 Jan 2020 16:09:48 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
         <description>&lt;h2 id=&#34;线性回归&#34;&gt;线性回归&lt;/h2&gt;
 &lt;p&gt;线性回归是解决回归问题最基本的一个方法。其实质就是找到一条直线能尽可能多的使已知的离散值分布在其周围（二维坐标系中）&lt;/p&gt;
 &lt;p&gt;就像这样：&lt;/p&gt;
@@ -3781,10 +3781,10 @@ ans =
         </item>
         <item>
         <title>分类(classification)与回归(regression)的区别与关系</title>
-        <link>https://example.com/blog/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/</link>
+        <link>https://konosuba.xyz/blog/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/</link>
         <pubDate>Mon, 06 Jan 2020 15:45:03 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/</guid>
         <description>&lt;p&gt;分类与回归是监督学习中的两个主要任务，它们即对应了监督学习中“学习”的部分&lt;/p&gt;
 &lt;p&gt;分类模型与回归模型的本质其实一样。&lt;strong&gt;分类模型可将回归模型的输出离散化，回归模型也可将分类模型的输出连续化&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -3831,10 +3831,10 @@ ans =
         </item>
         <item>
         <title>C&#43;&#43;解决假币问题</title>
-        <link>https://example.com/blog/%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98/</link>
+        <link>https://konosuba.xyz/blog/%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98/</link>
         <pubDate>Mon, 30 Dec 2019 20:35:42 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%81%87%E5%B8%81%E9%97%AE%E9%A2%98/</guid>
         <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;一个袋子里有30个银币，其中一枚是假币，并且假币和真币一模一样，肉眼很难分辨，目前只知道假币比真币重量轻一点。请问，如何区分出假币？&lt;/p&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
@@ -3932,10 +3932,10 @@ ans =
         </item>
         <item>
         <title>百度搜索资源平台用crul做链接主动推送</title>
-        <link>https://example.com/blog/crul_baidu_post/</link>
+        <link>https://konosuba.xyz/blog/crul_baidu_post/</link>
         <pubDate>Tue, 03 Dec 2019 21:33:22 +0800</pubDate>
         
-        <guid>https://example.com/blog/crul_baidu_post/</guid>
+        <guid>https://konosuba.xyz/blog/crul_baidu_post/</guid>
         <description>&lt;h2 id=&#34;引&#34;&gt;引&lt;/h2&gt;
 &lt;p&gt;最近在百度站长平台加入了这个博客，由于之前在Google上都是直接提交sitemap地址，但是在百度索引sitemap实在太慢了，所以还是选择使用它推荐的crul主动推送方式，在这做个记录&lt;/p&gt;
 &lt;h2 id=&#34;在windows上安装配置crul&#34;&gt;在Windows上安装配置crul&lt;/h2&gt;
@@ -3969,10 +3969,10 @@ ans =
         </item>
         <item>
         <title>Tesseract-OCR样本训练方法</title>
-        <link>https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/</link>
+        <link>https://konosuba.xyz/blog/tesseract%E8%AE%AD%E7%BB%83/</link>
         <pubDate>Wed, 20 Nov 2019 19:29:52 +0800</pubDate>
         
-        <guid>https://example.com/blog/tesseract%E8%AE%AD%E7%BB%83/</guid>
+        <guid>https://konosuba.xyz/blog/tesseract%E8%AE%AD%E7%BB%83/</guid>
         <description>&lt;p&gt;我们通常使用jTessBoxEditor训练工具进行训练，由于该工具是用Java开发的，所以在安装这个软件之前要保证电脑中有Java环境，这里就不介绍了。&lt;/p&gt;
 &lt;h2 id=&#34;安装jtessboxeditor&#34;&gt;安装jTessBoxEditor&lt;/h2&gt;
 &lt;p&gt;可以在&lt;a class=&#34;link&#34; href=&#34;https://sourceforge.net/projects/vietocr/files/jTessBoxEditor/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -4016,10 +4016,10 @@ cntraining.exe captcha.font.exp0.tr
         </item>
         <item>
         <title>Tesseract-OCR安装与python中使用</title>
-        <link>https://example.com/blog/tesseract%E5%AE%89%E8%A3%85/</link>
+        <link>https://konosuba.xyz/blog/tesseract%E5%AE%89%E8%A3%85/</link>
         <pubDate>Wed, 20 Nov 2019 18:15:12 +0800</pubDate>
         
-        <guid>https://example.com/blog/tesseract%E5%AE%89%E8%A3%85/</guid>
+        <guid>https://konosuba.xyz/blog/tesseract%E5%AE%89%E8%A3%85/</guid>
         <description>&lt;h2 id=&#34;安装tesseract-ocr&#34;&gt;安装Tesseract-OCR&lt;/h2&gt;
 &lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://github.com/UB-Mannheim/tesseract/wiki&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;官网&lt;/a&gt;下载最新的Windows安装包，双击运行&lt;/p&gt;
@@ -4065,10 +4065,10 @@ cntraining.exe captcha.font.exp0.tr
         </item>
         <item>
         <title>利用MLS移动最小二乘法对图像变形</title>
-        <link>https://example.com/blog/mls/</link>
+        <link>https://konosuba.xyz/blog/mls/</link>
         <pubDate>Thu, 07 Nov 2019 13:58:04 +0800</pubDate>
         
-        <guid>https://example.com/blog/mls/</guid>
+        <guid>https://konosuba.xyz/blog/mls/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;这是我的&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/blog/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0%E5%88%A9%E7%94%A8opencv%E7%9A%84mls%E5%9B%BE%E5%83%8F%E6%89%AD%E6%9B%B2%E5%8F%98%E5%BD%A2%E5%AE%9E%E7%8E%B0/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;【项目笔记】利用OpenCV的MLS图像扭曲变形实现&lt;/a&gt;中的第一部分&lt;/p&gt;
@@ -4197,10 +4197,10 @@ cntraining.exe captcha.font.exp0.tr
         </item>
         <item>
         <title>【项目笔记】利用OpenCV的MLS图像扭曲变形实现</title>
-        <link>https://example.com/blog/image_warp_opencv_paper/</link>
+        <link>https://konosuba.xyz/blog/image_warp_opencv_paper/</link>
         <pubDate>Wed, 23 Oct 2019 23:25:14 +0800</pubDate>
         
-        <guid>https://example.com/blog/image_warp_opencv_paper/</guid>
+        <guid>https://konosuba.xyz/blog/image_warp_opencv_paper/</guid>
         <description>&lt;h2 id=&#34;引&#34;&gt;引&lt;/h2&gt;
 &lt;p&gt;这学期开学的时候实验室接了个项目，要做一个类似Adobe Illustrator中的“操纵扭曲”功能的Demo&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4221,23 +4221,23 @@ cntraining.exe captcha.font.exp0.tr
 &lt;h2 id=&#34;确定方案&#34;&gt;确定方案&lt;/h2&gt;
 &lt;p&gt;明确了这个后我便开始查阅资料，发现这篇paper &lt;strong&gt;《Image Deformation Using Moving Least Squares》&lt;/strong&gt; 中利用了&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8mls%E7%A7%BB%E5%8A%A8%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%AF%B9%E5%9B%BE%E5%83%8F%E5%8F%98%E5%BD%A2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;MLS移动最小二乘&lt;/a&gt;来实现图像变形，其实现的效果和我们的目标极为相似，于是我也决定利用该算法来实现这个Demo&lt;/p&gt;
-&lt;p&gt;由于要利用鼠标拖拽进行操作，便选择使用Qt来进行图形化界面设计，然鹅我以前也没有用过Qt，因此学习了一些&lt;a class=&#34;link&#34; href=&#34;https://example.com/&#34; &gt;Qt基本知识&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;由于要利用鼠标拖拽进行操作，便选择使用Qt来进行图形化界面设计，然鹅我以前也没有用过Qt，因此学习了一些&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/&#34; &gt;Qt基本知识&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;开始吧&#34;&gt;开始吧&lt;/h2&gt;
 &lt;p&gt;明确了方案和目标后，便开始了漫长的学习+实践：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://example.com/&#34; &gt;程序结构框架确定&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/&#34; &gt;程序结构框架确定&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://example.com/&#34; &gt;核心算法实现&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/&#34; &gt;核心算法实现&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://example.com/&#34; &gt;旋转式变形的实现&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/&#34; &gt;旋转式变形的实现&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;在进行到这里之后，发现程序无法实现对某个关节的单独拉伸，于是我们考虑寻找图像中的骨骼，在关节的交点添加一些锚点进行固定&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://example.com/&#34; &gt;图形骨骼查找&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/&#34; &gt;图形骨骼查找&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;实现效果&#34;&gt;实现效果&lt;/h2&gt;
 &lt;p&gt;最终项目完成，实现了这些功能，如图是个小小的演示&lt;/p&gt;
@@ -4248,10 +4248,10 @@ cntraining.exe captcha.font.exp0.tr
         </item>
         <item>
         <title>【转载】谷歌小姐姐搞出魔法画板：你随便画，补不齐算AI输</title>
-        <link>https://example.com/blog/reprint_magic_sketchpad/</link>
+        <link>https://konosuba.xyz/blog/reprint_magic_sketchpad/</link>
         <pubDate>Sun, 20 Oct 2019 00:45:31 +0800</pubDate>
         
-        <guid>https://example.com/blog/reprint_magic_sketchpad/</guid>
+        <guid>https://konosuba.xyz/blog/reprint_magic_sketchpad/</guid>
         <description>&lt;p&gt;&lt;em&gt;最近在研究手绘图形识别相关的内容，想起了这篇去年的文章，研究的内容也大致差不多，考虑使用Google的循环神经网络，于是转载过来记录一下&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;原文发表于2018-12-19&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;这两天，一个“魔法画板”在国外传疯了。&lt;/p&gt;
@@ -4374,10 +4374,10 @@ Sketch-RNN论文：&lt;/p&gt;
         </item>
         <item>
         <title>第一个TensorFlow模型：摄氏度转换为华氏度</title>
-        <link>https://example.com/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</link>
+        <link>https://konosuba.xyz/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</link>
         <pubDate>Fri, 11 Oct 2019 20:33:51 +0800</pubDate>
         
-        <guid>https://example.com/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</guid>
+        <guid>https://konosuba.xyz/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/</guid>
         <description>&lt;p&gt;今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下&lt;/p&gt;
 &lt;h2 id=&#34;公式&#34;&gt;公式&lt;/h2&gt;
 &lt;p&gt;已知摄氏度转换成华氏度有数学公式：&lt;/p&gt;
@@ -4548,10 +4548,10 @@ Sketch-RNN论文：&lt;/p&gt;
         </item>
         <item>
         <title>Python中eval()与format()</title>
-        <link>https://example.com/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</link>
+        <link>https://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</link>
         <pubDate>Thu, 10 Oct 2019 20:37:31 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</guid>
+        <guid>https://konosuba.xyz/blog/python%E4%B8%ADeval%E4%B8%8Eformat/</guid>
         <description>&lt;p&gt;今天在做mooc课程《Python语言程序设计》的练习题时，遇到一道题，硬生生纠结了半个小时，结果发现答案居然只是短短的两行，这功力不够果然还是不行啊，用C的思维去写Python怕是要纠结死🤔&lt;/p&gt;
 &lt;p&gt;先看看题&lt;/p&gt;
 &lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
@@ -4621,10 +4621,10 @@ Sketch-RNN论文：&lt;/p&gt;
         </item>
         <item>
         <title>ML学习速率</title>
-        <link>https://example.com/blog/%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/</link>
+        <link>https://konosuba.xyz/blog/%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/</link>
         <pubDate>Thu, 26 Sep 2019 11:12:23 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/</guid>
         <description>&lt;p&gt;在梯度下降算法中，我们用梯度乘以一个称为&lt;strong&gt;学习速率&lt;/strong&gt;（有时也称为步长）的标量，以确定下一个点的位置。例如，如果梯度大小为 2.5，学习速率为 0.01，则梯度下降法算法会选择距离前一个点 0.025 的位置作为下一个点。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;超参数&lt;/strong&gt;是编程人员在机器学习算法中用于调整的旋钮。大多数机器学习编程人员会花费相当多的时间来调整学习速率。如果&lt;strong&gt;学习速率过小&lt;/strong&gt;，就会花费太长的学习时间：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/09/26/29tGAgzwQMy7NBs.png&#34; alt=&#34;学习速率过小&#34;  /&gt;
@@ -4639,10 +4639,10 @@ Sketch-RNN论文：&lt;/p&gt;
         </item>
         <item>
         <title>Python文本进度条</title>
-        <link>https://example.com/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</link>
+        <link>https://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</link>
         <pubDate>Thu, 19 Sep 2019 20:59:58 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</guid>
+        <guid>https://konosuba.xyz/blog/python%E6%96%87%E6%9C%AC%E8%BF%9B%E5%BA%A6%E6%9D%A1/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;Update：使用python库&lt;code&gt;tqdm&lt;/code&gt;轻松实现&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -4668,10 +4668,10 @@ Sketch-RNN论文：&lt;/p&gt;
         </item>
         <item>
         <title>为什么要定义Mat_类</title>
-        <link>https://example.com/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</link>
+        <link>https://konosuba.xyz/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</link>
         <pubDate>Wed, 18 Sep 2019 21:09:06 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</guid>
+        <guid>https://konosuba.xyz/blog/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9A%E4%B9%89mat_%E7%B1%BB/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;内容摘自《OpenCV入门教程》&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -4724,10 +4724,10 @@ Sketch-RNN论文：&lt;/p&gt;
         </item>
         <item>
         <title>Python split()函数</title>
-        <link>https://example.com/blog/python_split%E5%87%BD%E6%95%B0/</link>
+        <link>https://konosuba.xyz/blog/python_split%E5%87%BD%E6%95%B0/</link>
         <pubDate>Mon, 16 Sep 2019 20:13:56 +0800</pubDate>
         
-        <guid>https://example.com/blog/python_split%E5%87%BD%E6%95%B0/</guid>
+        <guid>https://konosuba.xyz/blog/python_split%E5%87%BD%E6%95%B0/</guid>
         <description>&lt;!-- raw HTML omitted --&gt;
 &lt;h2 id=&#34;原型&#34;&gt;原型&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
@@ -4741,10 +4741,10 @@ Sketch-RNN论文：&lt;/p&gt;
         </item>
         <item>
         <title>Zen of Python -Python之禅</title>
-        <link>https://example.com/blog/zen_of_python/</link>
+        <link>https://konosuba.xyz/blog/zen_of_python/</link>
         <pubDate>Sat, 07 Sep 2019 21:07:51 +0800</pubDate>
         
-        <guid>https://example.com/blog/zen_of_python/</guid>
+        <guid>https://konosuba.xyz/blog/zen_of_python/</guid>
         <description>&lt;p&gt;在浏览Python官方文档时无意发现了这个彩蛋，只需在终端中&lt;code&gt;import this&lt;/code&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;The Zen of Python, by Tim Peters
 
@@ -4829,10 +4829,10 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
         </item>
         <item>
         <title>Python文件操作</title>
-        <link>https://example.com/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
+        <link>https://konosuba.xyz/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Sat, 07 Sep 2019 20:31:38 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
+        <guid>https://konosuba.xyz/blog/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;p&gt;Python内置了读写文件的函数，用法与C兼容&lt;/p&gt;
 &lt;h2 id=&#34;读文件&#34;&gt;读文件&lt;/h2&gt;
 &lt;h3 id=&#34;open&#34;&gt;open()&lt;/h3&gt;
@@ -4868,10 +4868,10 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
         </item>
         <item>
         <title>Python调试</title>
-        <link>https://example.com/blog/python%E8%B0%83%E8%AF%95/</link>
+        <link>https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/</link>
         <pubDate>Sat, 07 Sep 2019 19:08:46 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E8%B0%83%E8%AF%95/</guid>
+        <guid>https://konosuba.xyz/blog/python%E8%B0%83%E8%AF%95/</guid>
         <description>&lt;p&gt;Python中可以使用断言&lt;code&gt;assert&lt;/code&gt;,&lt;code&gt;logging&lt;/code&gt;等来进行调试&lt;/p&gt;
 &lt;h2 id=&#34;断言&#34;&gt;断言&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;fun&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
@@ -4949,10 +4949,10 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
         </item>
         <item>
         <title>Python错误处理</title>
-        <link>https://example.com/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</link>
+        <link>https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</link>
         <pubDate>Fri, 06 Sep 2019 19:14:26 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</guid>
+        <guid>https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</guid>
         <description>&lt;p&gt;在Python中也同样使用&lt;code&gt;try...except...finally...&lt;/code&gt;的错误处理机制&lt;/p&gt;
 &lt;h1 id=&#34;try&#34;&gt;try&lt;/h1&gt;
 &lt;h2 id=&#34;except&#34;&gt;except&lt;/h2&gt;
@@ -5086,10 +5086,10 @@ finally...
         </item>
         <item>
         <title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</title>
-        <link>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
+        <link>https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
         <pubDate>Tue, 09 Jul 2019 15:32:53 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
         <description>&lt;p&gt;使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上&lt;/p&gt;
 &lt;p&gt;因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C++11中的thread库通过多线程实现程序&lt;/p&gt;
 &lt;h1 id=&#34;树莓派-服务端&#34;&gt;树莓派-服务端&lt;/h1&gt;
@@ -5293,10 +5293,10 @@ finally...
         </item>
         <item>
         <title>Socket通信原理(3)</title>
-        <link>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</link>
+        <link>https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</link>
         <pubDate>Mon, 08 Jul 2019 15:38:20 +0800</pubDate>
         
-        <guid>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</guid>
+        <guid>https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%863/</guid>
         <description>&lt;p&gt;本文主要内容为树莓派与PC在局域网内的基于TCP的Socket通信，由于树莓派是Linux系统，而PC是Windows系统，所以要注意一些区别&lt;/p&gt;
 &lt;p&gt;这里将树莓派作为服务器端，PC作为客户端，连接后服务端向客户端发送信息&lt;/p&gt;
 &lt;h1 id=&#34;服务端-树莓派-socket_server_smscpp&#34;&gt;服务端-树莓派 socket_server_sms.cpp&lt;/h1&gt;
@@ -5436,15 +5436,15 @@ make
 &lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/07/08/5d230d963f6ba15253.png&#34; alt=&#34;test&#34;  /&gt;&lt;/p&gt;
 &lt;p&gt;测试成功&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;树莓派与计算机简单通信成功，接下来是通过树莓派传送摄像头图像和使用&lt;a class=&#34;link&#34; href=&#34;https://example.com/blog/%e7%81%b0%e5%ba%a6%e9%87%8d%e5%bf%83%e6%b3%95&#34; &gt;灰度重心法&lt;/a&gt;找到的光斑中心信息到计算机&lt;/p&gt;
+&lt;p&gt;树莓派与计算机简单通信成功，接下来是通过树莓派传送摄像头图像和使用&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/blog/%e7%81%b0%e5%ba%a6%e9%87%8d%e5%bf%83%e6%b3%95&#34; &gt;灰度重心法&lt;/a&gt;找到的光斑中心信息到计算机&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>Socket通信原理(2)</title>
-        <link>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</link>
+        <link>https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</link>
         <pubDate>Mon, 08 Jul 2019 13:21:57 +0800</pubDate>
         
-        <guid>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</guid>
+        <guid>https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/</guid>
         <description>&lt;p&gt;本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;系统：Windows 10&lt;/p&gt;
@@ -5630,15 +5630,15 @@ make
 &lt;p&gt;输入quit，客户端和服务端均结束&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.loli.net/2019/07/08/5d22f24fe1fab71022.png&#34; alt=&#34;结束&#34;  /&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;实现成功，接下来要测试&lt;a class=&#34;link&#34; href=&#34;https://example.com/blog/socket%e9%80%9a%e4%bf%a1%e5%8e%9f%e7%90%863&#34; &gt;树莓派与PC在局域网内的Socket通信&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;实现成功，接下来要测试&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/blog/socket%e9%80%9a%e4%bf%a1%e5%8e%9f%e7%90%863&#34; &gt;树莓派与PC在局域网内的Socket通信&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>Socket通信原理(1)</title>
-        <link>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</link>
+        <link>https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</link>
         <pubDate>Sun, 07 Jul 2019 11:24:59 +0800</pubDate>
         
-        <guid>https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</guid>
+        <guid>https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%861/</guid>
         <description>&lt;p&gt;最近在捣鼓树莓派，实验室要用树莓派做图像处理后回传数据到计算机，所以开始学习socket相关知识，这一篇文章主要是计算机网络通信基础。&lt;/p&gt;
 &lt;h1 id=&#34;tcpipudp&#34;&gt;TCP/IP、UDP&lt;/h1&gt;
 &lt;p&gt;在开始之前，先听两个笑话😏&lt;/p&gt;
@@ -5772,15 +5772,15 @@ make
 &lt;p&gt;**客户端：**若有个客户端初始化一个Socket，然后连接服务器(connect)，如果连接成功，连接建立。&lt;/p&gt;
 &lt;p&gt;客户端发送数据请求，服务端接收请求并处理请求，然后把回应数据发送给客户端，客户端读取数据，最后关闭连接，一次交互结束&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;理论学习基本完成，接下来&lt;a class=&#34;link&#34; href=&#34;https://example.com/blog/socket%e9%80%9a%e4%bf%a1%e5%8e%9f%e7%90%862&#34; &gt;在计算机本地实现通信&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;理论学习基本完成，接下来&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/blog/socket%e9%80%9a%e4%bf%a1%e5%8e%9f%e7%90%862&#34; &gt;在计算机本地实现通信&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>树莓派配置摄像头</title>
-        <link>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</link>
+        <link>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</link>
         <pubDate>Mon, 01 Jul 2019 15:27:39 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</guid>
+        <guid>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE%E6%91%84%E5%83%8F%E5%A4%B4/</guid>
         <description>&lt;p&gt;&lt;em&gt;注意：树莓派插电时千万不要插拔摄像头！据说十有八九摄像头会GG，我差点就中招了&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;安装驱动&#34;&gt;安装驱动&lt;/h1&gt;
 &lt;p&gt;首先使用ls指令查看是否加载到了对应的video device设备：&lt;/p&gt;
@@ -5883,10 +5883,10 @@ make
         </item>
         <item>
         <title>灰度重心法</title>
-        <link>https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</link>
+        <link>https://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</link>
         <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</guid>
+        <guid>https://konosuba.xyz/blog/%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E6%B3%95/</guid>
         <description>&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
 &lt;p&gt;对于亮度不均匀的目标（如光斑，光条纹），灰度重心法可按&lt;strong&gt;目标光强分布&lt;/strong&gt;求出&lt;strong&gt;光强权重质心坐标&lt;/strong&gt;作为&lt;strong&gt;跟踪点&lt;/strong&gt;，也叫&lt;em&gt;密度质心算法&lt;/em&gt;。&lt;/p&gt;
 &lt;p&gt;将灰度值分布中的质心记作光条纹的中心&lt;/p&gt;
@@ -5951,10 +5951,10 @@ make
         </item>
         <item>
         <title>Shell学习</title>
-        <link>https://example.com/blog/shell%E5%AD%A6%E4%B9%A0/</link>
+        <link>https://konosuba.xyz/blog/shell%E5%AD%A6%E4%B9%A0/</link>
         <pubDate>Wed, 26 Jun 2019 15:38:32 +0800</pubDate>
         
-        <guid>https://example.com/blog/shell%E5%AD%A6%E4%B9%A0/</guid>
+        <guid>https://konosuba.xyz/blog/shell%E5%AD%A6%E4%B9%A0/</guid>
         <description>&lt;h2 id=&#34;shell脚本&#34;&gt;Shell脚本&lt;/h2&gt;
 &lt;p&gt;是一种为shell编写的脚本程序&lt;/p&gt;
 &lt;p&gt;使用文本编辑器既能编写，&lt;strong&gt;拓展名不影响脚本执行&lt;/strong&gt;&lt;/p&gt;
@@ -6105,10 +6105,10 @@ $@	与$* 相同，但是使用时加引号，并在引号中返回每个参数�
         </item>
         <item>
         <title>Vim学习</title>
-        <link>https://example.com/blog/vim%E5%AD%A6%E4%B9%A0/</link>
+        <link>https://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/</link>
         <pubDate>Wed, 26 Jun 2019 10:33:16 +0800</pubDate>
         
-        <guid>https://example.com/blog/vim%E5%AD%A6%E4%B9%A0/</guid>
+        <guid>https://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/</guid>
         <description>&lt;p&gt;&lt;img src=&#34;https://bl4tqa.bl.files.1drv.com/y4mcmHzQgxxtfA6CCUgyJayLWoRW8OAWSyuVw3JKRcYuJa0xhG7PtGBWT15n6mf7bBqZDxQslemwAZrZojYuWarDsb-ukBsmcNb8WB1e1byilK8eduQSjkbjQ-cp8PPZR4nsq_dtgS0Kuv5ZW_ygxIJxDiy6FkmpPzFGVE5R7B1F3dW7XPL8T_rBRkBVEf_W7xOYhRssMifmmOcZWw7VNOHMg?width=1024&amp;amp;height=724&amp;amp;cropmode=none&#34; alt=&#34;键盘图&#34;  /&gt;&lt;/p&gt;
 &lt;p&gt;vim分为三种模式，分别是&lt;strong&gt;命令模式（Command mode），输入模式（Insert mode），底线命令（Last line
 mode）&lt;/strong&gt;&lt;/p&gt;
@@ -6198,10 +6198,10 @@ mode）&lt;/strong&gt;&lt;/p&gt;
         </item>
         <item>
         <title>Linux文件</title>
-        <link>https://example.com/blog/linux%E6%96%87%E4%BB%B6/</link>
+        <link>https://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/</link>
         <pubDate>Tue, 25 Jun 2019 13:23:08 +0800</pubDate>
         
-        <guid>https://example.com/blog/linux%E6%96%87%E4%BB%B6/</guid>
+        <guid>https://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/</guid>
         <description>&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h2 id=&#34;linux文件基本属性&#34;&gt;Linux文件基本属性&lt;/h2&gt;
 &lt;p&gt;在Linux中可以使用&lt;code&gt;ll&lt;/code&gt;或者&lt;code&gt;ls –l&lt;/code&gt;命令来显示一个&lt;strong&gt;文件的属性以及文件所属的用户和组&lt;/strong&gt;，如：&lt;/p&gt;
@@ -6463,10 +6463,10 @@ mode）&lt;/strong&gt;&lt;/p&gt;
         </item>
         <item>
         <title>Linux操作学习 系统启动及目录</title>
-        <link>https://example.com/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</link>
+        <link>https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</link>
         <pubDate>Mon, 24 Jun 2019 11:51:27 +0800</pubDate>
         
-        <guid>https://example.com/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</guid>
+        <guid>https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</guid>
         <description>&lt;h2 id=&#34;linux系统启动过程&#34;&gt;Linux系统启动过程&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
@@ -6593,10 +6593,10 @@ mode）&lt;/strong&gt;&lt;/p&gt;
         </item>
         <item>
         <title>Python面向对象</title>
-        <link>https://example.com/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+        <link>https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
         <pubDate>Fri, 21 Jun 2019 15:23:06 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+        <guid>https://konosuba.xyz/blog/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
         <description>&lt;h1 id=&#34;类和实例&#34;&gt;类和实例&lt;/h1&gt;
 &lt;h2 id=&#34;定义类&#34;&gt;定义类&lt;/h2&gt;
 &lt;p&gt;使用&lt;code&gt;class&lt;/code&gt;关键字&lt;/p&gt;
@@ -6670,10 +6670,10 @@ False
         </item>
         <item>
         <title>Python函数式编程</title>
-        <link>https://example.com/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
+        <link>https://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
         <pubDate>Fri, 21 Jun 2019 10:50:55 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
+        <guid>https://konosuba.xyz/blog/python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
         <description>&lt;p&gt;[toc]&lt;/p&gt;
 &lt;h2 id=&#34;什么是函数式编程&#34;&gt;什么是函数式编程？&lt;/h2&gt;
 &lt;p&gt;函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。&lt;/p&gt;
@@ -6880,10 +6880,10 @@ False
         </item>
         <item>
         <title>算法复杂度</title>
-        <link>https://example.com/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</link>
+        <link>https://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</link>
         <pubDate>Fri, 21 Jun 2019 10:40:29 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</guid>
+        <guid>https://konosuba.xyz/blog/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</guid>
         <description>&lt;h1 id=&#34;算法复杂度&#34;&gt;算法复杂度&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;总共N个数据&lt;/li&gt;
@@ -6917,10 +6917,10 @@ False
         </item>
         <item>
         <title>Python中set集合</title>
-        <link>https://example.com/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/</link>
+        <link>https://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/</link>
         <pubDate>Thu, 20 Jun 2019 16:18:07 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/</guid>
+        <guid>https://konosuba.xyz/blog/python%E4%B8%ADset%E9%9B%86%E5%90%88/</guid>
         <description>&lt;p&gt;set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。&lt;/p&gt;
 &lt;h2 id=&#34;创建set&#34;&gt;创建set&lt;/h2&gt;
 &lt;p&gt;传入一个list，重复元素会被自动过滤，显示的顺序并不表示set是有序的&lt;/p&gt;
@@ -6947,10 +6947,10 @@ False
         </item>
         <item>
         <title>Python中dict字典</title>
-        <link>https://example.com/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/</link>
+        <link>https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/</link>
         <pubDate>Thu, 20 Jun 2019 15:15:34 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/</guid>
+        <guid>https://konosuba.xyz/blog/python%E4%B8%ADdict%E5%AD%97%E5%85%B8/</guid>
         <description>&lt;p&gt;dict全称dictionary，在其他语言中也称为map，使用**键-值（key-value）**存储，具有极快的查找速度&lt;/p&gt;
 &lt;h2 id=&#34;创建dict&#34;&gt;创建dict&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Michael&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;95&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;75&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Tracy&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;85&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -7033,10 +7033,10 @@ False
         </item>
         <item>
         <title>Python常见数据类型——Tuple元组</title>
-        <link>https://example.com/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/</link>
+        <link>https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/</link>
         <pubDate>Thu, 20 Jun 2019 13:46:10 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/</guid>
+        <guid>https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btuple%E5%85%83%E7%BB%84/</guid>
         <description>&lt;p&gt;tuple和list非常类似，但是tuple&lt;strong&gt;一旦初始化就不能修改&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;[toc]&lt;/p&gt;
 &lt;h2 id=&#34;创建tuple&#34;&gt;创建tuple&lt;/h2&gt;
@@ -7070,10 +7070,10 @@ False
         </item>
         <item>
         <title>Python常见数据类型——List列表</title>
-        <link>https://example.com/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/</link>
+        <link>https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/</link>
         <pubDate>Thu, 20 Jun 2019 13:44:48 +0800</pubDate>
         
-        <guid>https://example.com/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/</guid>
+        <guid>https://konosuba.xyz/blog/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Blist%E5%88%97%E8%A1%A8/</guid>
         <description>&lt;h1 id=&#34;python常见数据类型list列表&#34;&gt;Python常见数据类型——List列表&lt;/h1&gt;
 &lt;p&gt;list是一种有序的集合，可随时增删元素&lt;/p&gt;
 &lt;p&gt;[toc]&lt;/p&gt;
@@ -7200,10 +7200,10 @@ reverse &amp;ndash; 排序规则，reverse = True 降序， reverse = False 升�
         </item>
         <item>
         <title>图像基础-图像矩阵</title>
-        <link>https://example.com/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</link>
+        <link>https://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</link>
         <pubDate>Thu, 06 Jun 2019 00:35:00 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5/</guid>
         <description>&lt;p&gt;数字图像数据可以用矩阵来表示，因此可以采用矩阵理论和矩阵算法对数字图像进行分析和处理。&lt;/p&gt;
 &lt;p&gt;在使用OpenCV时，要特别注意其坐标轴与普通x-y轴的转换，我在实际使用过程中就经常在这上面翻车，还是不熟练&lt;/p&gt;
 &lt;p&gt;图为坐标对照图，转自CSDN，具体忘了&lt;/p&gt;
@@ -7212,10 +7212,10 @@ reverse &amp;ndash; 排序规则，reverse = True 降序， reverse = False 升�
         </item>
         <item>
         <title>图像基础-图像分类</title>
-        <link>https://example.com/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</link>
+        <link>https://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</link>
         <pubDate>Thu, 06 Jun 2019 00:00:49 +0800</pubDate>
         
-        <guid>https://example.com/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</guid>
+        <guid>https://konosuba.xyz/blog/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</guid>
         <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;部分内容引用 &lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/u012771236/article/details/35630903&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;CSDN爬金字塔的人&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;

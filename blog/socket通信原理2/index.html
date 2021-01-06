@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
  系统：Windows 10
@@ -13,7 +13,7 @@
 服务端Server 由于Windows下的socket程序依赖Winsock.dll或ws2_32.dll，所以必须提前加载
 #include &amp;lt;iostream&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;winsock2.h&amp;gt; //包含socket的头文件#pragma comment (lib, &amp;#34;ws2_32.lib&amp;#34;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA 	WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 	//-&amp;gt;MSKEWORD(2,2)主版本号2，副版本号2 	if (WSAStartup(MAKEWORD(2, 2), &amp;amp;wsaData) != 0)	{	return 0; } //****创建套接字 	SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&amp;gt;IPv6，PF_INET-&amp;gt;IPv4 	//参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM 	//参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 	//判断无效套接字 	if (servSock == INVALID_SOCKET) { cout &amp;lt;&amp;lt; &amp;#34;socket error!'><title>Socket通信原理(2)</title>
 
-<link rel='canonical' href='https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Socket通信原理(2)'>
 <meta property='og:description' content='本文主要是在计算机本地使用基于TCP协议的Socket建立服务端与客户端的连接与基本通信
@@ -27,7 +27,7 @@
   本文的程序由服务端发送信息到客户端，若用户输入quit则结束客户端与服务端程序
 服务端Server 由于Windows下的socket程序依赖Winsock.dll或ws2_32.dll，所以必须提前加载
 #include &amp;lt;iostream&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;winsock2.h&amp;gt; //包含socket的头文件#pragma comment (lib, &amp;#34;ws2_32.lib&amp;#34;)	//加载 ws2_32.dll #pragma warning(disable:4996) using namespace std; int main() { //****初始化WSA 	WSADATA wsaData;	//初始化WSAStartup()函数(规范的版本号，指向WSADATA结构体的指针)，向操作系统说明要使用哪个库的文件 	//-&amp;gt;MSKEWORD(2,2)主版本号2，副版本号2 	if (WSAStartup(MAKEWORD(2, 2), &amp;amp;wsaData) != 0)	{	return 0; } //****创建套接字 	SOCKET servSock = socket(PF_INET, SOCK_STREAM, 0); //参数1，IP地址类型,PF_INET6-&amp;gt;IPv6，PF_INET-&amp;gt;IPv4 	//参数2，数据传输方式,SOCK_STREAM 和 SOCK_DGRAM 	//参数3，传输协议,IPPROTO_TCP 和 IPPTOTO_UDP,写0系统会自动计算处使用那种协议 	//判断无效套接字 	if (servSock == INVALID_SOCKET) { cout &amp;lt;&amp;lt; &amp;#34;socket error!'>
-<meta property='og:url' content='https://example.com/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/socket%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%862/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='socket' /><meta property='article:published_time' content='2019-07-08T13:21:57&#43;08:00'/><meta property='article:modified_time' content='2019-07-08T13:21:57&#43;08:00'/>
 <meta name="twitter:title" content="Socket通信原理(2)">
@@ -91,7 +91,7 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

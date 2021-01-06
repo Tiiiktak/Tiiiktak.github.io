@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>机器学习 on Tiiktak&#39;s</title>
-    <link>https://example.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+    <link>https://konosuba.xyz/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
     <description>Recent content in 机器学习 on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 07 Feb 2020 01:04:44 +0800</lastBuildDate><atom:link href="https://example.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <language>cn</language>
+    <lastBuildDate>Fri, 07 Feb 2020 01:04:44 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>神经网络模型的学习曲线</title>
-      <link>https://example.com/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</link>
+      <link>https://konosuba.xyz/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</link>
       <pubDate>Fri, 07 Feb 2020 01:04:44 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</guid>
+      <guid>https://konosuba.xyz/blog/%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF/</guid>
       <description>学习曲线：样本数量与误差 绘制 样本数量m 与 训练误差、交叉验证误差 的关系曲线
 高偏差（欠拟合）high bias 高方差（过拟合）high variance </description>
     </item>
     
     <item>
       <title>【应用机器学习】正则化与偏差、方差</title>
-      <link>https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</link>
+      <link>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</link>
       <pubDate>Fri, 07 Feb 2020 00:56:29 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</guid>
+      <guid>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E5%81%8F%E5%B7%AE%E6%96%B9%E5%B7%AE/</guid>
       <description>在我们在训练模型的过程中，一般会使用一些正则化方法来防止过拟合。
 但是我们可能会正则化的程度太高或太小了，即我们在选择λ的值时也需要思考与之前选择多项式模型次数类似的问题。
 我们选择一系列的想要测试的λ值，比如这里选择 0-10之间的值，通常呈现2倍关系（如：0,0.01,0.02,0.04,0.08,0.15,0.32,0.64,1.28,2.56,5.12,10 共12个）。
@@ -39,10 +39,10 @@
     
     <item>
       <title>【应用机器学习】诊断偏差与方差</title>
-      <link>https://example.com/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</link>
+      <link>https://konosuba.xyz/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</link>
       <pubDate>Fri, 07 Feb 2020 00:51:21 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</guid>
+      <guid>https://konosuba.xyz/blog/%E8%AF%8A%E6%96%AD%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/</guid>
       <description>当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是欠拟合，要么是过拟合问题。
 我们通常会通过将训练集和交叉验证集的代价函数误差与多项式的次数绘制在同一张图表上来帮助分析：
   对于训练集，当 d 较小时，模型拟合程度更低，误差较大；随着d 的增长，拟合程度提高，误差减小。
@@ -56,10 +56,10 @@
     
     <item>
       <title>【应用机器学习】模型选择和训练、验证、测试集</title>
-      <link>https://example.com/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</link>
+      <link>https://konosuba.xyz/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</link>
       <pubDate>Fri, 07 Feb 2020 00:41:34 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</guid>
+      <guid>https://konosuba.xyz/blog/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</guid>
       <description>1. 重新划分数据集 其中60%作为训练集，20%作为交叉验证集（cross validation），20%作为测试集
 2. 可以计算出三类数据的误差函数 3. 使用交叉验证集选择模型 选出交叉验证误差最小的一个模型
 4. 利用测试集计算出推广误差 </description>
@@ -67,10 +67,10 @@
     
     <item>
       <title>【应用机器学习】评估一个假设</title>
-      <link>https://example.com/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</link>
+      <link>https://konosuba.xyz/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</link>
       <pubDate>Fri, 07 Feb 2020 00:34:04 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</guid>
+      <guid>https://konosuba.xyz/blog/%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E5%81%87%E8%AE%BE/</guid>
       <description>检验是否过拟合 将数据分成训练集和测试集 通常用70%的数据作为训练集，用剩下30%的数据作为测试集。
 很重要的一点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行洗牌，然后再分成训练集和测试集。
 使用训练集对模型进行训练 可以得到一系列参数 theta
@@ -81,10 +81,10 @@
     
     <item>
       <title>训练神经网络的基本步骤</title>
-      <link>https://example.com/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</link>
+      <link>https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</link>
       <pubDate>Fri, 07 Feb 2020 00:09:57 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</guid>
+      <guid>https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</guid>
       <description>1. 选择一种网络结构 即选择神经元之间的连通模式
   输入层与输出层单元个数由具体特征决定
   隐藏层通常默认为1层；若为多层，则每个隐藏层单元个数应相等。通常隐藏层单元数越多越好
@@ -101,10 +101,10 @@
     
     <item>
       <title>正则化 Regularization</title>
-      <link>https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96/</link>
+      <link>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96/</link>
       <pubDate>Mon, 13 Jan 2020 17:29:56 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E6%AD%A3%E5%88%99%E5%8C%96/</guid>
+      <guid>https://konosuba.xyz/blog/%E6%AD%A3%E5%88%99%E5%8C%96/</guid>
       <description>过拟合的问题 到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到**过拟合(over-fitting)**的问题，可能会导致它们效果很差。
 可以使用一种**正则化(regularization)**的技术来改善或减少过度拟合的问题
 在回归问题中   第一个模型是一个线性模型，欠拟合，不能很好地适应我们的训练集；
@@ -130,10 +130,10 @@ WHY-&amp;gt;Click</description>
     
     <item>
       <title>逻辑回归Logistic Regression</title>
-      <link>https://example.com/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</link>
+      <link>https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</link>
       <pubDate>Mon, 13 Jan 2020 16:07:34 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</guid>
+      <guid>https://konosuba.xyz/blog/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</guid>
       <description>分类问题 在分类问题中，我们需要预测的变量y是离散的值，我们将学习一种叫做逻辑回归 (Logistic Regression) 的算法
 在分类问题中，我们尝试预测的是结果是否属于某一个类（例如正确或错误）。
 将因变量(dependent variable)可能属于的两个类分别称为负向类（negative class）和正向类（positive class），则因变量y ∈ 0,1 ，其中 0 表示负向类，1 表示正向类。
@@ -151,10 +151,10 @@ h_theta(x)的作用是，对于给定的输入变量，根据选择的参数计�
     
     <item>
       <title>多变量线性回归</title>
-      <link>https://example.com/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+      <link>https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
       <pubDate>Tue, 07 Jan 2020 19:48:31 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+      <guid>https://konosuba.xyz/blog/%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
       <description>多变量梯度下降 与单变量线性回归类似，在多变量线性回归中，我们也构建一个代价函数，则这个代价函数是所有建模误差的平方和，即：
 其中：
 我们的目标和单变量线性回归问题中一样，是要找出使得代价函数最小的一系列参数。 多变量线性回归的批量梯度下降算法为：
@@ -175,10 +175,10 @@ alpha = 0.01, 0.03, 0.1, 0.3, 1, 3, 10
     
     <item>
       <title>降低损失：梯度下降法</title>
-      <link>https://example.com/blog/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/</link>
+      <link>https://konosuba.xyz/blog/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/</link>
       <pubDate>Tue, 07 Jan 2020 17:16:04 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/</guid>
+      <guid>https://konosuba.xyz/blog/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/</guid>
       <description>梯度下降 梯度下降是一个用来求函数最小值的算法，在这里我们将使用梯度下降算法来求出代价函数（损失函数）J(w1, w2)的最小值
 假设我们有时间和计算资源来计算权重值w1的所有可能值的损失。对于回归问题，所产生的损失与w1的图形始终是碗状图，如下所示：
 图中的最低点，即斜率正好为 0的位置。这个最小值就是损失函数收敛之处。
@@ -209,10 +209,10 @@ theta0:=theta0，并更新theta1:=theta1
     
     <item>
       <title>单变量线性回归</title>
-      <link>https://example.com/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+      <link>https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
       <pubDate>Tue, 07 Jan 2020 16:09:48 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+      <guid>https://konosuba.xyz/blog/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
       <description>线性回归 线性回归是解决回归问题最基本的一个方法。其实质就是找到一条直线能尽可能多的使已知的离散值分布在其周围（二维坐标系中）
 就像这样：
 或者是在三维坐标中，找到一个面来逼近
@@ -235,10 +235,10 @@ h(x) = y = wx + b
     
     <item>
       <title>分类(classification)与回归(regression)的区别与关系</title>
-      <link>https://example.com/blog/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/</link>
+      <link>https://konosuba.xyz/blog/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/</link>
       <pubDate>Mon, 06 Jan 2020 15:45:03 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/</guid>
+      <guid>https://konosuba.xyz/blog/%E5%88%86%E7%B1%BB%E4%B8%8E%E5%9B%9E%E5%BD%92/</guid>
       <description>分类与回归是监督学习中的两个主要任务，它们即对应了监督学习中“学习”的部分
 分类模型与回归模型的本质其实一样。分类模型可将回归模型的输出离散化，回归模型也可将分类模型的输出连续化
  例如：
@@ -263,10 +263,10 @@ Logistic Recognition 逻辑回归 一般作为分类问题的首选算法，logi
     
     <item>
       <title>ML学习速率</title>
-      <link>https://example.com/blog/%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/</link>
+      <link>https://konosuba.xyz/blog/%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/</link>
       <pubDate>Thu, 26 Sep 2019 11:12:23 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/</guid>
+      <guid>https://konosuba.xyz/blog/%E5%AD%A6%E4%B9%A0%E9%80%9F%E7%8E%87/</guid>
       <description>在梯度下降算法中，我们用梯度乘以一个称为学习速率（有时也称为步长）的标量，以确定下一个点的位置。例如，如果梯度大小为 2.5，学习速率为 0.01，则梯度下降法算法会选择距离前一个点 0.025 的位置作为下一个点。
 超参数是编程人员在机器学习算法中用于调整的旋钮。大多数机器学习编程人员会花费相当多的时间来调整学习速率。如果学习速率过小，就会花费太长的学习时间：
 相同的 U 形曲线。很多点都相互非常接近，它们的轨迹朝着 U 形底部缓慢前进。

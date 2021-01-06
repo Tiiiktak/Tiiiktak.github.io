@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on Tiiktak&#39;s</title>
-    <link>https://example.com/categories/linux/</link>
+    <link>https://konosuba.xyz/categories/linux/</link>
     <description>Recent content in Linux on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 28 Dec 2020 15:49:53 +0800</lastBuildDate><atom:link href="https://example.com/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <language>cn</language>
+    <lastBuildDate>Mon, 28 Dec 2020 15:49:53 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在Linux中使用Clash科学上网</title>
-      <link>https://example.com/blog/clash_linux_tutorial/</link>
+      <link>https://konosuba.xyz/blog/clash_linux_tutorial/</link>
       <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
       
-      <guid>https://example.com/blog/clash_linux_tutorial/</guid>
+      <guid>https://konosuba.xyz/blog/clash_linux_tutorial/</guid>
       <description>安装  下载amd64文件：https://github.com/Dreamacro/clash/releases/ gzip -f -d linux-amd64-clash.gz 下载配置文件config.yaml到~/.config/clash 下载mmdb文件到~/.config/clash  配置（每次使用前）  ./clash启动 浏览器进入127.0.0.1:9090，Clash控制面板 选择一个节点 进入Ubuntu设置，网络设置，代理 Method设为Manual HTTP Proxy、HTTPs Proxy设置为127.0.0.1:7890 Socks Host设置为127.0.0.1:7891  wget配置代理  修改/etc/wgetrc，其中  https_proxy = http://127.0.0.1:7890/ http_proxy = http://127.0.0.1:7890/ ftp_proxy = http://127.0.0.1:7890/ 使用时，wget --proxy=on https://xxxx即可  </description>
     </item>
     
     <item>
       <title>MMDetection安装过程记录</title>
-      <link>https://example.com/blog/mmdet_install/</link>
+      <link>https://konosuba.xyz/blog/mmdet_install/</link>
       <pubDate>Mon, 05 Oct 2020 13:37:51 +0800</pubDate>
       
-      <guid>https://example.com/blog/mmdet_install/</guid>
+      <guid>https://konosuba.xyz/blog/mmdet_install/</guid>
       <description>记录自本人安装过程，环境建议：
  Linux or macOS (Windows is not currently officially supported) Python 3.6+ PyTorch 1.3+ CUDA 9.2+ (If you build PyTorch from source, CUDA 9.0 is also compatible) GCC 5+  1. torch &amp;amp; torchvision 我使用的是 torch 1.5.1 + torchvision 0.6.1
 pip install torch==1.5.1 torchvision==0.6.1 [-i https://pypi.douban.com/simple]
@@ -32,10 +32,10 @@ pip install torch==1.5.1 torchvision==0.6.1 [-i https://pypi.douban.com/simple]
     
     <item>
       <title>树莓派4B安装opencv以及错误解决</title>
-      <link>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</link>
+      <link>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</link>
       <pubDate>Mon, 27 Apr 2020 11:25:47 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</guid>
+      <guid>https://konosuba.xyz/blog/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85opencv/</guid>
       <description>更新于2020/4/27 更新：换了个树莓派4B，安装opencv的时候遇到了一些之前没碰到的问题，在这里记录一下
  主要参考opencv官网文档和博客树莓派+Opencv（一）图像处理
 树莓派4B上安装参考：树莓派4B 安装opencv完整教程基于python3（各种错误解决）
@@ -56,10 +56,10 @@ opencv_contrib
     
     <item>
       <title>利用opencv与Socket实现树莓派获取摄像头视频和灰度重心发送到电脑</title>
-      <link>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
+      <link>https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</link>
       <pubDate>Tue, 09 Jul 2019 15:32:53 +0800</pubDate>
       
-      <guid>https://example.com/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
+      <guid>https://konosuba.xyz/blog/%E5%88%A9%E7%94%A8opencv%E4%B8%8Esocket%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E5%92%8C%E7%81%B0%E5%BA%A6%E9%87%8D%E5%BF%83%E5%8F%91%E9%80%81%E5%88%B0%E7%94%B5%E8%84%91/</guid>
       <description>使用树莓派原装CSI摄像头录制视频并利用灰度重心法获取重心，将图像和重心数据通过Socket实时传输到电脑上
 因为需要实现程序一启动便打开摄像头计算数据，同时启动Socket服务器等待客户端连接，所以利用C++11中的thread库通过多线程实现程序
 树莓派-服务端 #include &amp;lt;iostream&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;sys/types.h&amp;gt;#include &amp;lt;sys/socket.h&amp;gt;#include &amp;lt;netinet/in.h&amp;gt;#include &amp;lt;arpa/inet.h&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;opencv2/opencv.hpp&amp;gt;using namespace cv; using namespace std; #define USEPORT 1234 #define T 20 Mat FRAME; Point PCENTER; //灰度重心法函数 Point gray_center(Mat&amp;amp; img) { Mat img_gray; cvtColor(img, img_gray, COLOR_BGR2GRAY, 0); Point Center; double sumval = 0; MatIterator_&amp;lt;uchar&amp;gt; it, end; for (int i = 0; i &amp;lt; img_gray.cols; i++) { for (int j = 0; j &amp;lt; img_gray.rows; j++) { double s = img_gray.</description>
@@ -67,10 +67,10 @@ opencv_contrib
     
     <item>
       <title>Vim学习</title>
-      <link>https://example.com/blog/vim%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 26 Jun 2019 10:33:16 +0800</pubDate>
       
-      <guid>https://example.com/blog/vim%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://konosuba.xyz/blog/vim%E5%AD%A6%E4%B9%A0/</guid>
       <description>vim分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode），底线命令（Last line mode）
 命令模式 此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。
 常用命令：
@@ -83,10 +83,10 @@ opencv_contrib
     
     <item>
       <title>Linux文件</title>
-      <link>https://example.com/blog/linux%E6%96%87%E4%BB%B6/</link>
+      <link>https://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/</link>
       <pubDate>Tue, 25 Jun 2019 13:23:08 +0800</pubDate>
       
-      <guid>https://example.com/blog/linux%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://konosuba.xyz/blog/linux%E6%96%87%E4%BB%B6/</guid>
       <description>[toc]
 Linux文件基本属性 在Linux中可以使用ll或者ls –l命令来显示一个文件的属性以及文件所属的用户和组，如：
 [root@www /]# ls -l total 64 dr-xr-xr-x 2 root root 4096 Dec 14 2012 bin dr-xr-xr-x 4 root root 4096 Apr 19 2012 boot …… bin文件的第一个属性用d表示，d在Linux中代表该文件是一个目录文件 Linux中第一个字符代表这个文件时目录、文件、链接文件等
@@ -100,10 +100,10 @@ Linux文件属主和属组 Linux系统按文件所有者、文件所有者同组
     
     <item>
       <title>Linux操作学习 系统启动及目录</title>
-      <link>https://example.com/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</link>
+      <link>https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Mon, 24 Jun 2019 11:51:27 +0800</pubDate>
       
-      <guid>https://example.com/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</guid>
+      <guid>https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</guid>
       <description>Linux系统启动过程   内核的引导 运行init 系统初始化 建立终端 用户登录系统   内核的引导 计算机接通电源，BIOS开机自检，启动操作系统，操作系统接管硬件后，首先读入/boot目录下的内核文件
 运行init init进程是所有进程的起点，没有它任何进程都不会启动。init程序首先需要读取配置文件/etc/inittab
 运行级别 Linux允许为不同的场合，分配不同的开机启动程序，即“运行级别”(runlevel)。启动时根据运行级别，确定要运行哪些程序

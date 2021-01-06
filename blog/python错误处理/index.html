@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在Python中也同样使用try...except...finally...的错误处理机制
 try except try: print(&amp;#39;try...&amp;#39;) r = 10/0 print(&amp;#39;result:&amp;#39;, r) except ZeroDivisionError as e: print(&amp;#39;except:&amp;#39;, e) finally: print(&amp;#39;finally...&amp;#39;) print(&amp;#39;END&amp;#39;) 当认为某一块代码有错误时，就可以用try来运行该段代码，若执行出错，则后续代码不会执行，而会跳转到except块，执行完except后，若后续有finally片段，则执行finally块
@@ -11,7 +11,7 @@ try... result: 2.0 no error END  Python的错误是一个class，所有错误类
   常见错误类型及继承关系（中文）：官方文档
   ## 优势 使用```try...except```捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数```main()```调用```fun()```，```fun()```调用```bar()```，结果```bar()```出错了，这时，只要```main()```捕获到了，就可以处理 ​```py def fun(s): return 10/int(s) def bar(s): return fun(s) * 2 def main(): try: print(&#39;try.'><title>Python错误处理</title>
 
-<link rel='canonical' href='https://example.com/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python错误处理'>
 <meta property='og:description' content='在Python中也同样使用try...except...finally...的错误处理机制
@@ -23,7 +23,7 @@ try: print(&amp;#39;try...&amp;#39;) r = 10/5 print(&amp;#39;result:&amp;#39;, r
 try... result: 2.0 no error END  Python的错误是一个class，所有错误类型都继承自BaseException，故使用except时需注意它会也会捕获该类型的子类。
   常见错误类型及继承关系（中文）：官方文档
   ## 优势 使用```try...except```捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数```main()```调用```fun()```，```fun()```调用```bar()```，结果```bar()```出错了，这时，只要```main()```捕获到了，就可以处理 ​```py def fun(s): return 10/int(s) def bar(s): return fun(s) * 2 def main(): try: print(&#39;try.'>
-<meta property='og:url' content='https://example.com/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/python%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-09-06T19:14:26&#43;08:00'/><meta property='article:modified_time' content='2019-09-06T19:14:26&#43;08:00'/>
 <meta name="twitter:title" content="Python错误处理">
@@ -85,7 +85,7 @@ try... result: 2.0 no error END  Python的错误是一个class，所有错误类
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

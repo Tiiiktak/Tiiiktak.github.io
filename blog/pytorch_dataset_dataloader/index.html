@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。
 可以通过dataset定义数据集，并使用Datalorder载入和遍历数据集
@@ -11,7 +11,7 @@ ds_demo = BulldozerDataset(&amp;#39;median_benchhmark.csv&amp;#39;) print(len(ds
 dl = torch.utils.data.DataLoader(ds_demo, batch_size=10, shuffle=True, num_workers=0) DataLoader返回的是一个可迭代对象，我们可以使用迭代器分次获取数据
 idata=iter(dl) print(next(idata)) # Output: # tensor([24000.'><title>Pytorch_数据集的创建和加载</title>
 
-<link rel='canonical' href='https://example.com/blog/pytorch_dataset_dataloader/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/pytorch_dataset_dataloader/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Pytorch_数据集的创建和加载'>
 <meta property='og:description' content='PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。
@@ -23,7 +23,7 @@ from torch.utils.data import Dataset import pandas as pd #定义一个数据集 
 ds_demo = BulldozerDataset(&amp;#39;median_benchhmark.csv&amp;#39;) print(len(ds_demo)) # 11573 print(ds_demo[0]) # 24000.0 Dataloader DataLoader为我们提供了对Dataset的读取操作，常用参数有：batch_size(每个batch的大小)、 shuffle(是否进行shuffle操作)、 num_workers(加载数据的时候使用几个子进程)。下面做一个简单的操作
 dl = torch.utils.data.DataLoader(ds_demo, batch_size=10, shuffle=True, num_workers=0) DataLoader返回的是一个可迭代对象，我们可以使用迭代器分次获取数据
 idata=iter(dl) print(next(idata)) # Output: # tensor([24000.'>
-<meta property='og:url' content='https://example.com/blog/pytorch_dataset_dataloader/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/pytorch_dataset_dataloader/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2020-02-15T01:08:09&#43;08:00'/><meta property='article:modified_time' content='2020-02-15T01:08:09&#43;08:00'/>
 <meta name="twitter:title" content="Pytorch_数据集的创建和加载">
@@ -85,7 +85,7 @@ idata=iter(dl) print(next(idata)) # Output: # tensor([24000.">
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

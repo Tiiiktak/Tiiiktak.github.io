@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="cn">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
 公式 已知摄氏度转换成华氏度有数学公式：
@@ -9,7 +9,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR) Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
 celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&amp;#34;{} degrees Celsius = {} degrees Fahrenheit&amp;#34;.'><title>第一个TensorFlow模型：摄氏度转换为华氏度</title>
 
-<link rel='canonical' href='https://example.com/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/'>
+<link rel='canonical' href='https://konosuba.xyz/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='第一个TensorFlow模型：摄氏度转换为华氏度'>
 <meta property='og:description' content='今天开始在看Udacity上的TensorFlow入门课程，其中构建的第一个神经网络模型就是将摄氏度转换成华氏度，于是在这里记录一下
@@ -19,7 +19,7 @@ import dependencies 导入依赖项 需要引入TensorFlow与NumPy库构建神�
 from __future__ import absolute_import, division, print_function, unicode_literals import tensorflow as tf import numpy as np 还需要引入logging以记录日志
 import logging logger = tf.get_logger() #返回tf的日志实例 logger.setLevel(logging.ERROR) Set up training data 建立训练数据 由于在这里我们使用的是监督式机器学习，所以准备两组链表celsius_q和fahrenheit_a分别代表摄氏温度与对应华氏温度，用来训练模型
 celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float) for i,c in enumerate(celsius_q): print(&amp;#34;{} degrees Celsius = {} degrees Fahrenheit&amp;#34;.'>
-<meta property='og:url' content='https://example.com/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/'>
+<meta property='og:url' content='https://konosuba.xyz/blog/tensorflow%E5%B0%86%E6%91%84%E6%B0%8F%E5%BA%A6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%8E%E6%B0%8F%E5%BA%A6/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:published_time' content='2019-10-11T20:33:51&#43;08:00'/><meta property='article:modified_time' content='2019-10-11T20:33:51&#43;08:00'/>
 <meta name="twitter:title" content="第一个TensorFlow模型：摄氏度转换为华氏度">
@@ -79,7 +79,7 @@ celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float) fahrenheit_a = n
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Tiiktak&#39;s</a></h1>
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
         <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
     </header>
 

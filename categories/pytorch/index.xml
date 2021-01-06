@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PyTorch on Tiiktak&#39;s</title>
-    <link>https://example.com/categories/pytorch/</link>
+    <link>https://konosuba.xyz/categories/pytorch/</link>
     <description>Recent content in PyTorch on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 08 Mar 2020 23:03:09 +0800</lastBuildDate><atom:link href="https://example.com/categories/pytorch/index.xml" rel="self" type="application/rss+xml" />
+    <language>cn</language>
+    <lastBuildDate>Sun, 08 Mar 2020 23:03:09 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/pytorch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AlexNet分类Fashion-MNIST(Pytorch实现)</title>
-      <link>https://example.com/blog/fashion_mnist_alexnet/</link>
+      <link>https://konosuba.xyz/blog/fashion_mnist_alexnet/</link>
       <pubDate>Sun, 08 Mar 2020 23:03:09 +0800</pubDate>
       
-      <guid>https://example.com/blog/fashion_mnist_alexnet/</guid>
+      <guid>https://konosuba.xyz/blog/fashion_mnist_alexnet/</guid>
       <description>这个notebook也同时发表在Kaggle上
 Fashion MNIST数据集    Label Class     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 Coat   5 Sandal   6 Shirt   7 Sneaker   8 Bag   9 Ankle boot    准备工作 import os import torch import torch.nn.functional as F import torch.nn as nn import torch.optim as optim import numpy as np import pandas as pd from PIL import Image import matplotlib.</description>
     </item>
     
     <item>
       <title>循环神经网络RNN以及几种经典模型</title>
-      <link>https://example.com/blog/rnn/</link>
+      <link>https://konosuba.xyz/blog/rnn/</link>
       <pubDate>Wed, 19 Feb 2020 22:47:20 +0800</pubDate>
       
-      <guid>https://example.com/blog/rnn/</guid>
+      <guid>https://konosuba.xyz/blog/rnn/</guid>
       <description>RNN简介 现实世界中，很多元素都是相互连接的，比如室外的温度是随着气候的变化而周期性的变化的、我们的语言也需要通过上下文的关系来确认所表达的含义。但是机器要做到这一步就相当得难了。因此，就有了现在的循环神经网络，他的本质是：拥有记忆的能力，并且会根据这些记忆的内容来进行推断。因此，他的输出就依赖于当前的输入和记忆。
 网络结构及原理 循环神经网络的基本结构特别简单，就是将网络的输出保存在一个记忆单元中，这个记忆单元和下一次的输入一起进入神经网络中。
 一个最简单的循环神经网络在输入时的结构示意图：
@@ -37,10 +37,10 @@ rnn = torch.nn.RNN(20,50,2) input = torch.randn(100 , 32 , 20) h_0 =torch.randn(
     
     <item>
       <title>Pytorch中的激活函数</title>
-      <link>https://example.com/blog/pytorch_activation_function/</link>
+      <link>https://konosuba.xyz/blog/pytorch_activation_function/</link>
       <pubDate>Sat, 15 Feb 2020 18:43:29 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_activation_function/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_activation_function/</guid>
       <description>介绍神经网络的时候已经说到，神经元会对化学物质的刺激进行，当达到一定程度的时候，神经元才会兴奋，并向其他神经元发送信息。神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件。
 为什么激活函数都是非线性的 因为如果使用线性的激活函数，那么input跟output之间的关系始终为线性的，这样完全可以不使用网络结构，直接使用线性组合即可。
 所以需要激活函数来引入非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中，增加了神经网络模型泛化的特性。
@@ -54,10 +54,10 @@ ax = plt.gca() ax.spines[&amp;#39;right&amp;#39;].set_color(&amp;#39;none&amp;#3
     
     <item>
       <title>Pytorch中的梯度下降及优化</title>
-      <link>https://example.com/blog/pytorch_gradient_descent/</link>
+      <link>https://konosuba.xyz/blog/pytorch_gradient_descent/</link>
       <pubDate>Sat, 15 Feb 2020 17:46:54 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_gradient_descent/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_gradient_descent/</guid>
       <description>在PyTorch中使用Mini-batch这种方法进行训练
 Mini-batch的梯度下降法 对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中
 所以我们会把大数据集分成小数据集，一部分一部分的训练，这个训练子集即称为Mini-batch。
@@ -79,10 +79,10 @@ e.d.
     
     <item>
       <title>Pytorch中的损失函数Loss Function</title>
-      <link>https://example.com/blog/pytorch_loss_function/</link>
+      <link>https://konosuba.xyz/blog/pytorch_loss_function/</link>
       <pubDate>Sat, 15 Feb 2020 15:33:34 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_loss_function/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_loss_function/</guid>
       <description>由于Pytorch中使用mini-batch进行计算，因此其损失函数的计算结果会对mini-batch取平均
 常见的Pytorch中内置的损失函数有：
 nn.L1Loss 计算input与output的差的绝对值，input与output应该是同一维度，得到的loss也是相应维度
@@ -103,10 +103,10 @@ nn.BCELoss  Binary Cross Entropy
     
     <item>
       <title>Pytorch_数据集的创建和加载</title>
-      <link>https://example.com/blog/pytorch_dataset_dataloader/</link>
+      <link>https://konosuba.xyz/blog/pytorch_dataset_dataloader/</link>
       <pubDate>Sat, 15 Feb 2020 01:08:09 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_dataset_dataloader/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_dataset_dataloader/</guid>
       <description>PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。
 可以通过dataset定义数据集，并使用Datalorder载入和遍历数据集
 Dataset Dataset是一个抽象类，为了能够方便的读取，需要将要使用的数据包装为Dataset类。
@@ -120,10 +120,10 @@ idata=iter(dl) print(next(idata)) # Output: # tensor([24000.</description>
     
     <item>
       <title>Pytorch_torchvision</title>
-      <link>https://example.com/blog/pytorch_torchvision/</link>
+      <link>https://konosuba.xyz/blog/pytorch_torchvision/</link>
       <pubDate>Fri, 14 Feb 2020 00:19:28 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_torchvision/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_torchvision/</guid>
       <description>torchvision.models torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者在进行迁移学习 torchvision.models模块的 子模块中包含以下模型结构。
  AlexNet VGG ResNet SqueezeNet DenseNet  torchvision.datasets 这其中所有的数据集都是torch.utils.data.Dataset的子类，它们都具有__getitem__和__len__实现的方法。因此，它们都可以传递给torch.utils.data.DataLoader，它使用torch.multiprocessing并行加载多个样本。
 torchvision.transforms 提供了一般的图像转换操作类，用作数据处理和数据增强
@@ -137,10 +137,10 @@ torchvision.transforms.Normalize(mean, std, inplace=False) 用均值和标准差
     
     <item>
       <title>Pytorch学习笔记_4_训练一个分类器</title>
-      <link>https://example.com/blog/pytorch_4/</link>
+      <link>https://konosuba.xyz/blog/pytorch_4/</link>
       <pubDate>Thu, 13 Feb 2020 18:37:46 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_4/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_4/</guid>
       <description>关于数据 一般来说，对于图像、文本、音频或视频数据，可以使用标准的Python包来将这些数据加载为numpy array，之后可以将这些array转换为torch.*Tensor
  对于图像，Pillow、OpenCV包 音频，scipy、librosa包 文本，可以使用原始Python和Cython加载，或NLKT和SpaCy  特别的，对于视觉任务，有一个包torchvision，其中包含了处理类似Imagnet, CIFAR10, MNIST等常见数据集的方法，以及图像转换器，如torchvision.datasets和torch.utils.data.DataLoader
 torchvision包不仅提供了巨大的便利，也避免了代码的重复。
@@ -153,10 +153,10 @@ transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5
     
     <item>
       <title>Pytorch_linear</title>
-      <link>https://example.com/blog/pytorch_linear/</link>
+      <link>https://konosuba.xyz/blog/pytorch_linear/</link>
       <pubDate>Wed, 12 Feb 2020 23:13:53 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_linear/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_linear/</guid>
       <description>Linear 对输入数据应用线性变换：y = xA^T + b
 torch.nn.Linear(in_features, out_features, bias=True) 参数  in_features 每个输入样本的大小 out_features 每个输出样本的大小 bias 若为False，layer不会学习附加偏差b  shape   输入: (N, ∗, H_in)，其中 ∗ 代表任意数量的附加维度，H_in = in_features
   输出: (N, *, H_out)，除了最后一个维度，其余都与输入相同，H_out = out_features
@@ -165,19 +165,19 @@ torch.nn.Linear(in_features, out_features, bias=True) 参数  in_features 每个
     
     <item>
       <title>Pytorch_nn.Conv2d</title>
-      <link>https://example.com/blog/pytorch_conv2d/</link>
+      <link>https://konosuba.xyz/blog/pytorch_conv2d/</link>
       <pubDate>Wed, 12 Feb 2020 22:22:18 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_conv2d/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_conv2d/</guid>
       <description>Conv2d torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode=&amp;#39;zeros&amp;#39;)  in_channels 输入数据通道数 out_channels 输出数据通道数 kennel_size 卷积核大小，int或tuple stride 步长 padding 每个维度零填充的数量 dilation 内核点之间的距离，也称à trous algorithm groups 控制inputs与outputs间的连接    groups=1，所有输入都卷积到输出 groups=2，并排设置两个conv层，每个层查看一半的输入通道，并生成一半的输出通道，然后将两者连接起来 groups=in_channels，每个输入通道都有它自己的filter，size为[out_channels/in_channels]   </description>
     </item>
     
     <item>
       <title>Pytorch学习笔记_3_构建一个神经网络</title>
-      <link>https://example.com/blog/pytorch_3/</link>
+      <link>https://konosuba.xyz/blog/pytorch_3/</link>
       <pubDate>Wed, 12 Feb 2020 11:13:23 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_3/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_3/</guid>
       <description>Neural Networks   神经网络可以通过使用torch.nn包来创建
   nn依赖于autograd来定义模型并求导。
   一个nn.Module类包含各个层和一个forward(input)前向传播方法，该方法返回output
@@ -190,10 +190,10 @@ torch.nn.Linear(in_features, out_features, bias=True) 参数  in_features 每个
     
     <item>
       <title>Pytorch学习笔记_2_Autograd自动求导机制</title>
-      <link>https://example.com/blog/pytorch_2/</link>
+      <link>https://konosuba.xyz/blog/pytorch_2/</link>
       <pubDate>Tue, 11 Feb 2020 17:25:19 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_2/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_2/</guid>
       <description>Autograd 自动求导机制 PyTorch 中所有神经网络的核心是 autograd 包。
 autograd 包为张量上的所有操作提供了自动求导。它是一个在运行时定义的框架，可以通过代码的运行来决定反向传播的过程，并且每次迭代可以是不同的。
 通过一些示例来了解
@@ -210,10 +210,10 @@ Tensor 张量 torch.tensor是这个包的核心类。
     
     <item>
       <title>Pytorch学习笔记_1_tensor张量</title>
-      <link>https://example.com/blog/pytorch_1/</link>
+      <link>https://konosuba.xyz/blog/pytorch_1/</link>
       <pubDate>Tue, 11 Feb 2020 14:46:14 +0800</pubDate>
       
-      <guid>https://example.com/blog/pytorch_1/</guid>
+      <guid>https://konosuba.xyz/blog/pytorch_1/</guid>
       <description>Tensors Tensors与Numpy中的ndarrays类似
 torch.new_* 与 torch.*_like 前者创建的对象会保持原有的属性（如dtype），但shape不同
 &amp;gt;&amp;gt;&amp;gt; x = torch.zeros(5, 3, dtype=torch.double) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3) tensor([[1., 1., 1.], [1., 1., 1.]], dtype=torch.float64) &amp;gt;&amp;gt;&amp;gt; x.new_ones(2, 3, dtype=torch.long) tensor([[1, 1, 1], [1, 1, 1]]) 后者可以创建shape相同，属性不同的对象
