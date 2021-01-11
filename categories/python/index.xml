@@ -6,7 +6,19 @@
     <description>Recent content in Python on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Fri, 25 Sep 2020 19:22:57 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Jan 2021 17:12:47 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python虚拟环境 venv</title>
+      <link>https://konosuba.xyz/blog/python_venv/</link>
+      <pubDate>Fri, 08 Jan 2021 17:12:47 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/python_venv/</guid>
+      <description>创建虚拟环境 先cd到项目文件夹
+python -m venv &amp;lt;虚拟环境名&amp;gt;将新建一个与虚拟环境同名文件夹
+激活虚拟环境 source &amp;lt;虚拟环境名&amp;gt;/bin/activate命令行前方显示(&amp;lt;虚拟环境名&amp;gt;)
+退出虚拟环境 deactivate</description>
+    </item>
+    
     <item>
       <title>查看当前使用的Python的安装路径</title>
       <link>https://konosuba.xyz/blog/show_python_installation_path/</link>

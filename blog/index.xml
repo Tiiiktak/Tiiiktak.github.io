@@ -6,7 +6,35 @@
     <description>Recent content in Blogs on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Mon, 28 Dec 2020 15:52:48 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jan 2021 19:47:20 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用FPN实现内网穿透，公网访问内网服务器</title>
+      <link>https://konosuba.xyz/blog/frp_ssh/</link>
+      <pubDate>Mon, 11 Jan 2021 19:47:20 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/frp_ssh/</guid>
+      <description>fpn  https://github.com/fatedier/frp
+ 公网服务器配置 公网服务器运行服务端程序
+需要frps 与frps.ini两个文件即可，其中.ini为配置文件：
+[common]bind_port = 7000	# 与客户端进行绑定的端口设置自启动 sudo vim /etc/systemd/system/frps.service	# 服务名即为frps修改文件内容如下：
+[Unit]Description=frps daemonAfter=syslog.target network.targetWants=network.target[Service]Type=simpleExecStart={path/to/frps} -c {path/to/frps.ini}	# 注意使用绝对路径Restart= alwaysRestartSec=1min[Install]WantedBy=multi-user.target之后
+#启动frpssystemctl daemon-reloadsystemctl start frps#设置为开机启动systemctl enable frps内网客户端配置 实验室服务器作为客户端
+需要frpc与frpc.ini两个文件，其中.ini为配置文件：
+[common]server_addr = &amp;lt;服务器公网ip&amp;gt;server_port = 7000	# 与frps.ini 文件中 bind_port 相同[ssh]type = tcplocal_ip = 127.</description>
+    </item>
+    
+    <item>
+      <title>Python虚拟环境 venv</title>
+      <link>https://konosuba.xyz/blog/python_venv/</link>
+      <pubDate>Fri, 08 Jan 2021 17:12:47 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/python_venv/</guid>
+      <description>创建虚拟环境 先cd到项目文件夹
+python -m venv &amp;lt;虚拟环境名&amp;gt;将新建一个与虚拟环境同名文件夹
+激活虚拟环境 source &amp;lt;虚拟环境名&amp;gt;/bin/activate命令行前方显示(&amp;lt;虚拟环境名&amp;gt;)
+退出虚拟环境 deactivate</description>
+    </item>
+    
     <item>
       <title>MMDetection单机多卡训练出现问题</title>
       <link>https://konosuba.xyz/blog/mmdet_multiple_gpu_error/</link>
