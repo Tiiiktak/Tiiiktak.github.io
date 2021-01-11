@@ -6,7 +6,105 @@
         <description>Recent content on Tiiktak&#39;s</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>cn</language>
-        <lastBuildDate>Mon, 28 Dec 2020 15:52:48 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Jan 2021 19:47:20 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>使用FPN实现内网穿透，公网访问内网服务器</title>
+        <link>https://konosuba.xyz/blog/frp_ssh/</link>
+        <pubDate>Mon, 11 Jan 2021 19:47:20 +0800</pubDate>
+        
+        <guid>https://konosuba.xyz/blog/frp_ssh/</guid>
+        <description>&lt;h1 id=&#34;fpn&#34;&gt;fpn&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/fatedier/frp&#34;&gt;https://github.com/fatedier/frp&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;公网服务器配置&#34;&gt;公网服务器配置&lt;/h1&gt;
+&lt;p&gt;公网服务器运行服务端程序&lt;/p&gt;
+&lt;p&gt;需要&lt;code&gt;frps&lt;/code&gt; 与&lt;code&gt;frps.ini&lt;/code&gt;两个文件即可，其中&lt;code&gt;.ini&lt;/code&gt;为配置文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[common]
+bind_port = 7000	# 与客户端进行绑定的端口
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;设置自启动&#34;&gt;设置自启动&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;sudo vim /etc/systemd/system/frps.service	# 服务名即为frps
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改文件内容如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[Unit]
+Description=frps daemon
+After=syslog.target  network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart={path/to/frps} -c {path/to/frps.ini}	# 注意使用绝对路径
+Restart= always
+RestartSec=1min
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之后&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#启动frps
+systemctl daemon-reload
+systemctl start frps
+
+#设置为开机启动
+systemctl enable frps
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;内网客户端配置&#34;&gt;内网客户端配置&lt;/h1&gt;
+&lt;p&gt;实验室服务器作为客户端&lt;/p&gt;
+&lt;p&gt;需要&lt;code&gt;frpc&lt;/code&gt;与&lt;code&gt;frpc.ini&lt;/code&gt;两个文件，其中&lt;code&gt;.ini&lt;/code&gt;为配置文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[common]
+server_addr = &amp;lt;服务器公网ip&amp;gt;
+server_port = 7000	# 与frps.ini 文件中 bind_port 相同
+
+[ssh]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 22
+remote_port = 6000	# 服务端监听该端口，并转发到客户端
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;设置自启动-1&#34;&gt;设置自启动&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;sudo vim /etc/systemd/system/frpc.service
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;[Unit]
+Description=frpc daemon
+After=syslog.target  network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart={path/to/frpc} -c {path/to/frpc.ini}	# 注意使用绝对路径
+Restart= always
+RestartSec=1min
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;#启动frpc
+systemctl daemon-reload
+systemctl start frpc
+
+#设置为开机启动
+systemctl enable frpc
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;usage&#34;&gt;Usage&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;ssh -oPort=&amp;lt;remote_port&amp;gt; user_name@&amp;lt;server_addr&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;Reference&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dengxj.blog.csdn.net/article/details/88952420?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&amp;amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&#34;&gt;https://dengxj.blog.csdn.net/article/details/88952420?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&amp;amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>Python虚拟环境 venv</title>
+        <link>https://konosuba.xyz/blog/python_venv/</link>
+        <pubDate>Fri, 08 Jan 2021 17:12:47 +0800</pubDate>
+        
+        <guid>https://konosuba.xyz/blog/python_venv/</guid>
+        <description>&lt;h2 id=&#34;创建虚拟环境&#34;&gt;创建虚拟环境&lt;/h2&gt;
+&lt;p&gt;先&lt;code&gt;cd&lt;/code&gt;到项目文件夹&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python -m venv &amp;lt;虚拟环境名&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;将新建一个与虚拟环境同名文件夹&lt;/p&gt;
+&lt;h2 id=&#34;激活虚拟环境&#34;&gt;激活虚拟环境&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;source &amp;lt;虚拟环境名&amp;gt;/bin/activate
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;命令行前方显示&lt;code&gt;(&amp;lt;虚拟环境名&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;退出虚拟环境&#34;&gt;退出虚拟环境&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;</description>
+        </item>
+        <item>
         <title>MMDetection单机多卡训练出现问题</title>
         <link>https://konosuba.xyz/blog/mmdet_multiple_gpu_error/</link>
         <pubDate>Mon, 28 Dec 2020 15:52:48 +0800</pubDate>

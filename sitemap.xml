@@ -9,12 +9,42 @@
   
   <url>
     <loc>https://konosuba.xyz/blog/</loc>
-    <lastmod>2020-12-28T15:52:48+08:00</lastmod>
+    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/categories/</loc>
-    <lastmod>2020-12-28T15:52:48+08:00</lastmod>
+    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/categories/linux/</loc>
+    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/</loc>
+    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/categories/tools/</loc>
+    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/frp_ssh/</loc>
+    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/categories/python/</loc>
+    <lastmod>2021-01-08T17:12:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/python_venv/</loc>
+    <lastmod>2021-01-08T17:12:47+08:00</lastmod>
   </url>
   
   <url>
@@ -28,23 +58,8 @@
   </url>
   
   <url>
-    <loc>https://konosuba.xyz/</loc>
-    <lastmod>2020-12-28T15:52:48+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://konosuba.xyz/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-12-28T15:52:48+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/categories/linux/</loc>
-    <lastmod>2020-12-28T15:49:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/categories/tools/</loc>
-    <lastmod>2020-12-28T15:49:53+08:00</lastmod>
   </url>
   
   <url>
@@ -100,11 +115,6 @@
   <url>
     <loc>https://konosuba.xyz/blog/mmdet_install/</loc>
     <lastmod>2020-10-05T13:37:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/categories/python/</loc>
-    <lastmod>2020-09-25T19:22:57+08:00</lastmod>
   </url>
   
   <url>
