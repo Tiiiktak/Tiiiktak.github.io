@@ -130,12 +130,12 @@ python setup.py install
 &lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         <item>
-        <title>在Linux中使用Clash科学上网</title>
+        <title>在Linux中使用Clash</title>
         <link>https://konosuba.xyz/blog/clash_linux_tutorial/</link>
         <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
         
         <guid>https://konosuba.xyz/blog/clash_linux_tutorial/</guid>
-        <description>&lt;img src="https://konosuba.xyz/blog/clash_linux_tutorial/111.png" alt="Featured image of post 在Linux中使用Clash科学上网" /&gt;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+        <description>&lt;img src="https://konosuba.xyz/blog/clash_linux_tutorial/111.png" alt="Featured image of post 在Linux中使用Clash" /&gt;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;下载amd64文件：https://github.com/Dreamacro/clash/releases/&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;gzip -f -d linux-amd64-clash.gz&lt;/code&gt;&lt;/li&gt;

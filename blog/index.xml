@@ -47,7 +47,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh ${CONFIG_FILE} 4 --resume-fro
     </item>
     
     <item>
-      <title>在Linux中使用Clash科学上网</title>
+      <title>在Linux中使用Clash</title>
       <link>https://konosuba.xyz/blog/clash_linux_tutorial/</link>
       <pubDate>Mon, 28 Dec 2020 15:49:53 +0800</pubDate>
       
