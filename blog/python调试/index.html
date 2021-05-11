@@ -20,14 +20,38 @@ Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in 
 <meta name="twitter:description" content="Python中可以使用断言assert,logging等来进行调试
 断言 def fun(s): n = int(s) assert n != 0, &amp;#39;n is zero!&amp;#39; return 10 / n def main(): fun(&amp;#39;0&amp;#39;) 若assert后面的语句不为True，则assert会抛出异常AssertionError，并显示后一句&#39;n is zero&#39;:
 Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in &amp;lt;module&amp;gt; main() File &amp;#34;hello.py&amp;#34;, line 9, in main fun(&amp;#39;0&amp;#39;) File &amp;#34;hello.py&amp;#34;, line 4, in fun assert n != 0, &amp;#39;n is zero!&amp;#39; AssertionError: n is zero! 在我们不需要使用assert时可以在启动Python解释器时，添加-O(大写字母O)参数来关闭断言：
-..path:&amp;gt; python -O hello.py Traceback (most recent call last): File &amp;#34;hello.">
+..path:&amp;gt; python -O hello.py Traceback (most recent call last): File &amp;#34;hello."><style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "<https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap>";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
     </head>
     <body class="article-page keep-sidebar">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
             if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
+                localStorage.setItem(colorSchemeKey, "dark");
             }
         })();
     </script><script>
@@ -66,7 +90,7 @@ Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in 
                 
 
                 
-                    <span class="emoji">🍥</span>
+                    <span class="emoji">🎈</span>
                 
             </figure>
         
@@ -99,7 +123,7 @@ Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in 
         
 
         <li >
-            <a href='/about'>
+            <a href='/about/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -117,7 +141,7 @@ Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in 
         
 
         <li >
-            <a href='/archives'>
+            <a href='/archives/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -136,7 +160,7 @@ Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in 
         
 
         <li >
-            <a href='/search'>
+            <a href='/search/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -148,15 +172,6 @@ Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in 
 
                 
                 <span>Search</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/about/'>
-                
-                <span>About</span>
             </a>
         </li>
         
@@ -372,7 +387,7 @@ Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in 
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -438,18 +453,29 @@ Traceback (most recent call last): File &amp;#34;hello.py&amp;#34;, line 12, in 
 
     </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
 
             </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
-    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

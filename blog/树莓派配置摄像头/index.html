@@ -44,14 +44,38 @@ sudo raspi-config 选择interfacing option
 使用树莓派摄像头 使用raspistill指令
 测试 raspistill -o image.jpg  在使用hdml线连接lcd屏和树莓派时运行，显示屏会显示几秒钟摄像头的实时画面，但使用VNC连接时并不会有实时画面
  raspistill相关  -v：查看调试信息 -w：图像宽度 -h：图像高度 -rot：图像旋转角度，仅支持0，90，180，270度 -o：图像输出地址，若文件名为&#39;-&#39;，将输出发送至标准输出设备 -t：获取图像前等待时间，默认为5000，即5秒 -tl：多久执行一次图像抓取  生成.h246文件 raspistill -o mykeychain.h264 -t 10000 -w 1280 -h 720 错误 在第一次成功调用后，之后再次调用时多次报错：
-mmal: No data received from sensor. Check all connections, including the Sunny one on the camera board 网上说导致该问题的原因有：">
+mmal: No data received from sensor. Check all connections, including the Sunny one on the camera board 网上说导致该问题的原因有："><style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "<https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap>";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
     </head>
     <body class="article-page keep-sidebar">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
             if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
+                localStorage.setItem(colorSchemeKey, "dark");
             }
         })();
     </script><script>
@@ -90,7 +114,7 @@ mmal: No data received from sensor. Check all connections, including the Sunny o
                 
 
                 
-                    <span class="emoji">🍥</span>
+                    <span class="emoji">🎈</span>
                 
             </figure>
         
@@ -123,7 +147,7 @@ mmal: No data received from sensor. Check all connections, including the Sunny o
         
 
         <li >
-            <a href='/about'>
+            <a href='/about/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -141,7 +165,7 @@ mmal: No data received from sensor. Check all connections, including the Sunny o
         
 
         <li >
-            <a href='/archives'>
+            <a href='/archives/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -160,7 +184,7 @@ mmal: No data received from sensor. Check all connections, including the Sunny o
         
 
         <li >
-            <a href='/search'>
+            <a href='/search/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -172,15 +196,6 @@ mmal: No data received from sensor. Check all connections, including the Sunny o
 
                 
                 <span>Search</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/about/'>
-                
-                <span>About</span>
             </a>
         </li>
         
@@ -333,7 +348,7 @@ mmal: No data received from sensor. Check all connections, including the Sunny o
 <p>VNC连接：</p>
 <p><img src="https://nqd97q.bl.files.1drv.com/y4m2DHh3L6QzoZ5FiLnzP2WBIE1e-QrYPK6SX_bCxZ2bcb0kyvJ9KD51LWfoDfnouWtcy47q1VY7Uxjqeq_vYTd22na0erHBYdAse1qtcg3AqPsq1Tr6u6Mh_LASanfUmDubNkHVulgz7xIAb5Du7OJUT6poGMxO-KGGwDnOuIWE8DkF05kGvd_4emMwxzbHtpbXiQtz7wItLXcmvwaT8GOrQ?width=1026&amp;height=800&amp;cropmode=none" alt="video-cpp-vnc"  /></p>
 <p>HDMI连接：</p>
-<p><img src="" alt="video-cpp-hdmi"  /></p>
+<p><img src="/" alt="video-cpp-hdmi"  /></p>
 <h2 id="python调用">Python调用</h2>
 <p>参考<a class="link" href="https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/5"  target="_blank" rel="noopener"
     >官网指南</a></p>
@@ -421,7 +436,7 @@ mmal: No data received from sensor. Check all connections, including the Sunny o
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -487,18 +502,29 @@ mmal: No data received from sensor. Check all connections, including the Sunny o
 
     </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
 
             </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
-    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

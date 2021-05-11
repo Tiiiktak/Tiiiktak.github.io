@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>树莓派 on Tiiktak&#39;s</title>
+    <link>https://konosuba.xyz/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+    <description>Recent content in 树莓派 on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Thu, 11 Feb 2021 12:14:03 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>树莓派4B安装Pytorch, torchvision</title>
+      <link>https://konosuba.xyz/blog/raspberripi_pytorch_install/</link>
+      <pubDate>Thu, 11 Feb 2021 12:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/raspberripi_pytorch_install/</guid>
+      <description>Install Pytorch  Raspberry Pi 4B Linux raspberrypi 4.19.75-v7l+ #1270 SMP Tue Sep 24 18:51:41 BST 2019 armv7l GNU/Linux 2G RAM 16G DISK  增加交换内存   关闭内存交换: sudo dphys-swapfile swapoff
+  修改配置文件 sudo vim /etc/dphys-swapfile，设置CONF_SWAPSIZE=4096
+ 这里虽然设置为4096，但free -m 查看仍然只有2G交换内存
+   开启内存交换：sudo dphys-swapfile swapon
+  检查：free -m，若swap无变换可尝试重启
+  Pytorch依赖项 sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-yaml libatlas-base-devsudo apt-get install cython3 libatlas-base-dev m4 libblas-dev cmakesudo apt-get install python3-dev python3-setuptools python3-wheel python3-pillow python3-numpypip3 install numpy pyyamlFor raspberry pi 4 there may be an issue with the gcc and g++ version.</description>
+    </item>
+    
+    <item>
+      <title>树莓派4B安装ncnn</title>
+      <link>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</link>
+      <pubDate>Wed, 10 Feb 2021 22:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</guid>
+      <description>1. clone ncnn code git clone https://github.com/Tencent/ncnn.git cd ncnn git submodule update --init 2. build cd ncnn mkdir -p build cd build sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils libopencv-dev cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_SYSTEM_GLSLANG=ON -DNCNN_BUILD_EXAMPLES=ON -DCMAKE_TOOLCHAIN_FILE=../toolchains/pi3.toolchain.cmake -DPI3=ON ..  遇到如下问题：
+CMake Warning at CMakeLists.txt:163 (message):GLSLANG_TARGET_DIR must be defined! NCNN_SYSTEM_GLSLANG will be turned off.CMake Error at CMakeLists.txt:188 (message):The submodules were not downloaded! Please update submodules with &amp;quot;gitsubmodule update --init&amp;quot; and try again.</description>
+    </item>
+    
+  </channel>
+</rss>

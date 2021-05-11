@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='1. clone ncnn code git clone https://github.com/Tencent/ncnn.git cd ncnn git submodule update --init 2. build cd ncnn mkdir -p build cd build sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils libopencv-dev cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_SYSTEM_GLSLANG=ON -DNCNN_BUILD_EXAMPLES=ON -DCMAKE_TOOLCHAIN_FILE=../toolchains/pi3.toolchain.cmake -DPI3=ON ..  遇到如下问题：
+CMake Warning at CMakeLists.txt:163 (message):GLSLANG_TARGET_DIR must be defined! NCNN_SYSTEM_GLSLANG will be turned off.CMake Error at CMakeLists.txt:188 (message):The submodules were not downloaded! Please update submodules with &amp;quot;gitsubmodule update --init&amp;quot; and try again.'><title>树莓派4B安装ncnn</title>
+
+<link rel='canonical' href='https://konosuba.xyz/blog/raspberrypi_ncnn_install/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='树莓派4B安装ncnn'>
+<meta property='og:description' content='1. clone ncnn code git clone https://github.com/Tencent/ncnn.git cd ncnn git submodule update --init 2. build cd ncnn mkdir -p build cd build sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils libopencv-dev cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_SYSTEM_GLSLANG=ON -DNCNN_BUILD_EXAMPLES=ON -DCMAKE_TOOLCHAIN_FILE=../toolchains/pi3.toolchain.cmake -DPI3=ON ..  遇到如下问题：
+CMake Warning at CMakeLists.txt:163 (message):GLSLANG_TARGET_DIR must be defined! NCNN_SYSTEM_GLSLANG will be turned off.CMake Error at CMakeLists.txt:188 (message):The submodules were not downloaded! Please update submodules with &amp;quot;gitsubmodule update --init&amp;quot; and try again.'>
+<meta property='og:url' content='https://konosuba.xyz/blog/raspberrypi_ncnn_install/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='ncnn' /><meta property='article:tag' content='树莓派' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2021-02-10T22:14:03&#43;08:00'/><meta property='article:modified_time' content='2021-02-10T22:14:03&#43;08:00'/>
+<meta name="twitter:title" content="树莓派4B安装ncnn">
+<meta name="twitter:description" content="1. clone ncnn code git clone https://github.com/Tencent/ncnn.git cd ncnn git submodule update --init 2. build cd ncnn mkdir -p build cd build sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils libopencv-dev cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_SYSTEM_GLSLANG=ON -DNCNN_BUILD_EXAMPLES=ON -DCMAKE_TOOLCHAIN_FILE=../toolchains/pi3.toolchain.cmake -DPI3=ON ..  遇到如下问题：
+CMake Warning at CMakeLists.txt:163 (message):GLSLANG_TARGET_DIR must be defined! NCNN_SYSTEM_GLSLANG will be turned off.CMake Error at CMakeLists.txt:188 (message):The submodules were not downloaded! Please update submodules with &amp;quot;gitsubmodule update --init&amp;quot; and try again."><style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "<https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap>";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🎈</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="background-color: #2a9d8f; color: #fff;">
+                树莓派RaspBerry Pi
+            </a>
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux
+            </a>
+        
+            <a href="/categories/ncnn/" style="background-color: #2a9d8f; color: #fff;">
+                ncnn
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/raspberrypi_ncnn_install/">树莓派4B安装ncnn</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Feb 10, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h2 id="1-clone-ncnn-code">1. clone ncnn code</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">git clone https://github.com/Tencent/ncnn.git
+<span class="nb">cd</span> ncnn
+git submodule update --init
+</code></pre></div><h2 id="2-build">2. build</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ncnn
+mkdir -p build
+<span class="nb">cd</span> build
+
+sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils libopencv-dev
+
+cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DNCNN_VULKAN<span class="o">=</span>ON -DNCNN_SYSTEM_GLSLANG<span class="o">=</span>ON -DNCNN_BUILD_EXAMPLES<span class="o">=</span>ON -DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>../toolchains/pi3.toolchain.cmake -DPI3<span class="o">=</span>ON ..
+</code></pre></div><blockquote>
+<p>遇到如下问题：</p>
+<pre><code>CMake Warning at CMakeLists.txt:163 (message):
+GLSLANG_TARGET_DIR must be defined! NCNN_SYSTEM_GLSLANG will be turned off.
+
+
+CMake Error at CMakeLists.txt:188 (message):
+The submodules were not downloaded! Please update submodules with &quot;git
+submodule update --init&quot; and try again.
+
+
+-- Configuring incomplete, errors occurred!
+See also &quot;/home/pi/ncnn/ncnn_master/ncnn/build/CMakeFiles/CMakeOutput.log&quot;.
+</code></pre><p>这是因为部分依赖包不存在，再次运行<code> git submodule update --init</code>即可</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"> make -j4
+</code></pre></div><p><figure style="flex-grow: 703; flex-basis: 1688px">
+		<a href="/blog/raspberrypi_ncnn_install/index.assets/build-done.png" data-size="577x82"><img src="/blog/raspberrypi_ncnn_install/index.assets/build-done.png"
+				srcset="/blog/raspberrypi_ncnn_install/index.assets/build-done_hu6e205f36978e00011bc9ec04c69320a0_6358_480x0_resize_box_2.png 480w, /blog/raspberrypi_ncnn_install/index.assets/build-done_hu6e205f36978e00011bc9ec04c69320a0_6358_1024x0_resize_box_2.png 1024w"
+				width="577"
+				height="82"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<h2 id="3-test">3. test</h2>
+<h3 id="test1">Test1</h3>
+<pre><code>build $ cd ../examples/
+examples $ ../build/examples/squeezenet ../images/256-ncnn.png
+</code></pre><p>Result</p>
+<pre><code>vkCreateInstance failed -9
+vkCreateInstance failed -9
+532 = 0.165951
+920 = 0.094098
+716 = 0.062193
+</code></pre><h3 id="test2">Test2</h3>
+<pre><code>examples $ cd ../benchmark/
+benchmark $ ../build/benchmark/benchncnn 10 $(nproc) 0 -1
+</code></pre><p>Result</p>
+<pre><code>loop_count = 10
+num_threads = 4
+powersave = 0
+gpu_device = -1
+cooling_down = 1
+          squeezenet  min =   59.54  max =   78.24  avg =   61.93
+     squeezenet_int8  min =   68.22  max =  136.60  avg =   75.22
+           mobilenet  min =   82.28  max =  103.96  avg =   86.50
+      mobilenet_int8  min =  102.12  max =  127.61  avg =  105.56
+        mobilenet_v2  min =   72.07  max =   78.58  avg =   73.41
+        mobilenet_v3  min =   58.79  max =   62.76  avg =   59.56
+          shufflenet  min =   39.38  max =   39.76  avg =   39.56
+       shufflenet_v2  min =   30.91  max =   62.75  avg =   34.47
+             mnasnet  min =   62.02  max =   63.65  avg =   63.10
+     proxylessnasnet  min =   63.72  max =   78.89  avg =   65.54
+     efficientnet_b0  min =   97.13  max =  134.88  avg =  101.45
+        regnety_400m  min =   78.38  max =  112.27  avg =   82.46
+           blazeface  min =   11.84  max =   12.11  avg =   11.98
+           googlenet  min =  175.91  max =  226.33  avg =  187.03
+      googlenet_int8  min =  160.86  max =  174.87  avg =  163.83
+            resnet18  min =  226.30  max =  256.77  avg =  231.41
+       resnet18_int8  min =  137.44  max =  172.20  avg =  144.58
+             alexnet  min =  175.46  max =  187.97  avg =  178.70
+               vgg16  min =  966.03  max = 1200.06  avg = 1021.94
+          vgg16_int8  min = 1198.49  max = 1241.05  avg = 1216.26
+            resnet50  min =  466.87  max =  511.23  avg =  483.53
+       resnet50_int8  min =  332.21  max =  380.04  avg =  344.77
+      squeezenet_ssd  min =  178.27  max =  232.75  avg =  187.56
+ squeezenet_ssd_int8  min =  195.93  max =  227.62  avg =  202.93
+       mobilenet_ssd  min =  175.19  max =  197.45  avg =  182.97
+  mobilenet_ssd_int8  min =  172.96  max =  207.40  avg =  181.28
+      mobilenet_yolo  min =  426.78  max =  526.93  avg =  463.47
+  mobilenetv2_yolov3  min =  248.95  max =  274.25  avg =  255.45
+         yolov4-tiny  min =  329.52  max =  369.67  avg =  342.12
+</code></pre><blockquote>
+<p><em>参考：</em></p>
+<ul>
+<li>
+<p><a class="link" href="https://github.com/Tencent/ncnn/wiki/how-to-build#build-for-linux"  target="_blank" rel="noopener"
+    >ncnn wiki build-for-linux</a></p>
+</li>
+<li>
+<p><a class="link" href="https://blog.csdn.net/yz2zcx/article/details/105463147"  target="_blank" rel="noopener"
+    >树莓派安装ncnn</a></p>
+</li>
+</ul>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/ncnn/">ncnn</a>
+        
+            <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+        
+            <a href="/tags/linux/">linux</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

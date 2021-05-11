@@ -101,7 +101,7 @@ format() 这是一种格式化字符串的函数，基本语法是使用{}和: �
       <pubDate>Mon, 16 Sep 2019 20:13:56 +0800</pubDate>
       
       <guid>https://konosuba.xyz/blog/python_split%E5%87%BD%E6%95%B0/</guid>
-      <description>原型 str.split(str=&amp;#34;&amp;#34;, num=string.count(str)) |split()函数通过指定分隔符对字符串进行切片
+      <description>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  原型 str.split(str=&amp;#34;&amp;#34;, num=string.count(str)) |split()函数通过指定分隔符对字符串进行切片
 参数 若参数str无指定值。默认为所有的空字符，包括空格、\n、\t等
 若参数num有指定值，则分割num+1个子字符串，若无指定值，默认-1，即分隔所有
 返回值 返回分割后的字符串列表</description>

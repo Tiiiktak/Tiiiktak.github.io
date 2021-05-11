@@ -23,14 +23,38 @@
 分析 首先为每个银币编号，然后将所有的银币等分为两份，放在天平的两边。这样就将区分30个银币的问题变为区别两堆银币的问题。
 因为假币分量较轻，因此天平较轻的一侧中一定包含假币。再将较轻的一侧中银币等分为两份，重复上述做法。直到剩下两枚银币，便可用天平直接找出假银币。类似于二分法
 代码 由于这个是自己做的一个练习题，没有使用OJ判题，所以自己利用随机数生成银币的重量和假币相关信息
-#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;ctime&amp;gt;using namespace std; void generate_seq(int coin[]) { srand(time(0)); int coin_weight = rand() % 100; int fake_weight = rand() % coin_weight; int fake_add = rand() % 30; for (int i = 1; i &amp;lt;= 30; i&#43;&#43;) { if (i == fake_add) coin[i] = fake_weight; else coin[i] = coin_weight; } cout &amp;lt;&amp;lt; &amp;#34;fake_add=&amp;#34; &amp;lt;&amp;lt; fake_add &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;fake_weight=&amp;#34; &amp;lt;&amp;lt; fake_weight &amp;lt;&amp;lt; endl; } void show_seq(int coin[]) { for (int i = 1; i &amp;lt;= 30; i&#43;&#43;) { cout &amp;lt;&amp;lt; coin[i] &amp;lt;&amp;lt; &amp;#34; &amp;#34;; } cout &amp;lt;&amp;lt; endl; } int find_fake(int coin[], int begin, int end) { if (begin == end) return begin; double mid = (begin &#43; end) / 2; int weight_a = 0, weight_b = 0; if ((end - begin &#43; 1) % 2 == 0) //可等分  { for (int i = begin; i &amp;lt;= (int)mid; i&#43;&#43;) weight_a &#43;= coin[i]; for (int i = (int)mid &#43; 1; i &amp;lt;= end; i&#43;&#43;) weight_b &#43;= coin[i]; cout &amp;lt;&amp;lt; begin &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; end &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; mid &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; weight_a &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; weight_b &amp;lt;&amp;lt; endl; if (weight_a &amp;lt; weight_b) find_fake(coin, begin, (int)mid); else find_fake(coin, (int)mid&#43;1, end); }else //不可等分，中间留一个mid  { for (int i = begin; i &amp;lt; mid; i&#43;&#43;) weight_a &#43;= coin[i]; for (int i = mid &#43; 1; i &amp;lt;= end; i&#43;&#43;) weight_b &#43;= coin[i]; cout &amp;lt;&amp;lt; begin &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; end &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; mid &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; weight_a &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; weight_b &amp;lt;&amp;lt; endl; if (weight_a &amp;lt; weight_b) find_fake(coin, begin, (int)mid - 1); else if (weight_a &amp;gt; weight_b) find_fake(coin, (int)mid &#43; 1, end); else return mid; } } int main() { //产生随机数列  int coin[31]; generate_seq(coin); //打印数列  show_seq(coin); //找  int fake_add = find_fake(coin, 1, 30); cout &amp;lt;&amp;lt; &amp;#34;fake_add=&amp;#34; &amp;lt;&amp;lt; fake_add &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;fake_weight=&amp;#34; &amp;lt;&amp;lt; coin[fake_add] &amp;lt;&amp;lt; endl; return 0; } ">
+#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;ctime&amp;gt;using namespace std; void generate_seq(int coin[]) { srand(time(0)); int coin_weight = rand() % 100; int fake_weight = rand() % coin_weight; int fake_add = rand() % 30; for (int i = 1; i &amp;lt;= 30; i&#43;&#43;) { if (i == fake_add) coin[i] = fake_weight; else coin[i] = coin_weight; } cout &amp;lt;&amp;lt; &amp;#34;fake_add=&amp;#34; &amp;lt;&amp;lt; fake_add &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;fake_weight=&amp;#34; &amp;lt;&amp;lt; fake_weight &amp;lt;&amp;lt; endl; } void show_seq(int coin[]) { for (int i = 1; i &amp;lt;= 30; i&#43;&#43;) { cout &amp;lt;&amp;lt; coin[i] &amp;lt;&amp;lt; &amp;#34; &amp;#34;; } cout &amp;lt;&amp;lt; endl; } int find_fake(int coin[], int begin, int end) { if (begin == end) return begin; double mid = (begin &#43; end) / 2; int weight_a = 0, weight_b = 0; if ((end - begin &#43; 1) % 2 == 0) //可等分  { for (int i = begin; i &amp;lt;= (int)mid; i&#43;&#43;) weight_a &#43;= coin[i]; for (int i = (int)mid &#43; 1; i &amp;lt;= end; i&#43;&#43;) weight_b &#43;= coin[i]; cout &amp;lt;&amp;lt; begin &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; end &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; mid &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; weight_a &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; weight_b &amp;lt;&amp;lt; endl; if (weight_a &amp;lt; weight_b) find_fake(coin, begin, (int)mid); else find_fake(coin, (int)mid&#43;1, end); }else //不可等分，中间留一个mid  { for (int i = begin; i &amp;lt; mid; i&#43;&#43;) weight_a &#43;= coin[i]; for (int i = mid &#43; 1; i &amp;lt;= end; i&#43;&#43;) weight_b &#43;= coin[i]; cout &amp;lt;&amp;lt; begin &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; end &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; mid &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; weight_a &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; weight_b &amp;lt;&amp;lt; endl; if (weight_a &amp;lt; weight_b) find_fake(coin, begin, (int)mid - 1); else if (weight_a &amp;gt; weight_b) find_fake(coin, (int)mid &#43; 1, end); else return mid; } } int main() { //产生随机数列  int coin[31]; generate_seq(coin); //打印数列  show_seq(coin); //找  int fake_add = find_fake(coin, 1, 30); cout &amp;lt;&amp;lt; &amp;#34;fake_add=&amp;#34; &amp;lt;&amp;lt; fake_add &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;fake_weight=&amp;#34; &amp;lt;&amp;lt; coin[fake_add] &amp;lt;&amp;lt; endl; return 0; } "><style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "<https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap>";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
     </head>
     <body class="article-page keep-sidebar">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
             if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
+                localStorage.setItem(colorSchemeKey, "dark");
             }
         })();
     </script><script>
@@ -69,7 +93,7 @@
                 
 
                 
-                    <span class="emoji">🍥</span>
+                    <span class="emoji">🎈</span>
                 
             </figure>
         
@@ -102,7 +126,7 @@
         
 
         <li >
-            <a href='/about'>
+            <a href='/about/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -120,7 +144,7 @@
         
 
         <li >
-            <a href='/archives'>
+            <a href='/archives/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -139,7 +163,7 @@
         
 
         <li >
-            <a href='/search'>
+            <a href='/search/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -151,15 +175,6 @@
 
                 
                 <span>Search</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/about/'>
-                
-                <span>About</span>
             </a>
         </li>
         
@@ -395,7 +410,7 @@
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -461,18 +476,29 @@
 
     </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
 
             </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
-    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

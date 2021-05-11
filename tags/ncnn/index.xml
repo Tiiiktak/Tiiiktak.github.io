@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ncnn on Tiiktak&#39;s</title>
+    <link>https://konosuba.xyz/tags/ncnn/</link>
+    <description>Recent content in ncnn on Tiiktak&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Wed, 10 Feb 2021 22:14:03 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/tags/ncnn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>树莓派4B安装ncnn</title>
+      <link>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</link>
+      <pubDate>Wed, 10 Feb 2021 22:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</guid>
+      <description>1. clone ncnn code git clone https://github.com/Tencent/ncnn.git cd ncnn git submodule update --init 2. build cd ncnn mkdir -p build cd build sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils libopencv-dev cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_SYSTEM_GLSLANG=ON -DNCNN_BUILD_EXAMPLES=ON -DCMAKE_TOOLCHAIN_FILE=../toolchains/pi3.toolchain.cmake -DPI3=ON ..  遇到如下问题：
+CMake Warning at CMakeLists.txt:163 (message):GLSLANG_TARGET_DIR must be defined! NCNN_SYSTEM_GLSLANG will be turned off.CMake Error at CMakeLists.txt:188 (message):The submodules were not downloaded! Please update submodules with &amp;quot;gitsubmodule update --init&amp;quot; and try again.</description>
+    </item>
+    
+  </channel>
+</rss>

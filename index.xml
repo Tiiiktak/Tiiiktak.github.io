@@ -6,7 +6,287 @@
         <description>Recent content on Tiiktak&#39;s</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>cn</language>
-        <lastBuildDate>Mon, 11 Jan 2021 19:47:20 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 30 Mar 2021 18:33:16 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>使用vnc查看Ubuntu服务器的远程桌面</title>
+        <link>https://konosuba.xyz/blog/vnc_ubuntu_server/</link>
+        <pubDate>Tue, 30 Mar 2021 18:33:16 +0800</pubDate>
+        
+        <guid>https://konosuba.xyz/blog/vnc_ubuntu_server/</guid>
+        <description>&lt;h2 id=&#34;1-安装桌面&#34;&gt;1. 安装桌面&lt;/h2&gt;
+&lt;h2 id=&#34;2-安装gnome-session-flashback&#34;&gt;2. 安装gnome-session-flashback：&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install gnome-session-flashback
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;3-安装vnc-server&#34;&gt;3. 安装VNC Server&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install tigervnc-standalone-server tigervnc-xorg-extension
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;4-vnc配置桌面环境&#34;&gt;4. VNC配置桌面环境&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;vim ~/.vnc/xstartup
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;#!/bin/sh                                                                       
+ 
+unset SESSION_MANAGER
+#unset DBUS_SESSION_BUS_ADDRESS #测试中发现如果去掉该行注释 桌面不会出现
+export XKL_XMODMAP_DISABLE=1
+export XDG_CURRENT_DESKTOP=&amp;quot;GNOME-Flashback:GNOME&amp;quot;
+export XDG_MENU_PREFIX=&amp;quot;gnome-flashback-&amp;quot;
+[ -x /etc/vnc/xstartup ] &amp;amp;&amp;amp; exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] &amp;amp;&amp;amp; xrdb $HOME/.Xresources
+xsetroot -solid grey    #设置背景色
+vncconfig -iconic &amp;amp;
+gnome-terminal &amp;amp;        #连接后会直接打开一个terminal窗口
+nautilus &amp;amp;              #连接后会直接打开一个文件窗口
+gnome-session --session=gnome-flashback-metacity --disable-acceleration-check &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;sudo chmod +x  ~/.vnc/xstartup
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;5-start&#34;&gt;5. Start&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;vncserver :2 -localhost no  #2为端口号，no表示非局域网内账户也可访问
+ 
+vncserver -kill :2    #关闭
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;参考：&lt;/em&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/zjkuabjt/article/details/112028775&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Ubuntu 20.04 安装gnome桌面VNC_zjkuabjt的博客-CSDN博客&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>树莓派4B安装Pytorch, torchvision</title>
+        <link>https://konosuba.xyz/blog/raspberripi_pytorch_install/</link>
+        <pubDate>Thu, 11 Feb 2021 12:14:03 +0800</pubDate>
+        
+        <guid>https://konosuba.xyz/blog/raspberripi_pytorch_install/</guid>
+        <description>&lt;h1 id=&#34;install-pytorch&#34;&gt;Install Pytorch&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi 4B&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Linux raspberrypi 4.19.75-v7l+ #1270 SMP Tue Sep 24 18:51:41 BST 2019 armv7l GNU/Linux&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2G RAM&lt;/li&gt;
+&lt;li&gt;16G DISK&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;增加交换内存&#34;&gt;增加交换内存&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;关闭内存交换: &lt;code&gt;sudo dphys-swapfile swapoff&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改配置文件 &lt;code&gt;sudo vim /etc/dphys-swapfile&lt;/code&gt;，设置&lt;code&gt;CONF_SWAPSIZE=4096&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里虽然设置为4096，但&lt;code&gt;free -m&lt;/code&gt; 查看仍然只有2G交换内存&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;开启内存交换：&lt;code&gt;sudo dphys-swapfile swapon&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检查：&lt;code&gt;free -m&lt;/code&gt;，若swap无变换可尝试重启&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;pytorch依赖项&#34;&gt;Pytorch依赖项&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-yaml libatlas-base-dev
+sudo apt-get install cython3 libatlas-base-dev m4 libblas-dev cmake
+sudo apt-get install python3-dev python3-setuptools python3-wheel python3-pillow python3-numpy
+
+pip3 install numpy pyyaml
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;For raspberry pi 4 there may be an issue with the gcc and g++ version. Install an older version and use it&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install gcc-4.9 g++-4.9
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;NO_CUDA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;NO_DISTRIBUTED&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;NO_MKLDNN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;NO_NNPACK&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;NO_QNNPACK&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;download-pytorch&#34;&gt;Download Pytorch&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;git clone --recursive https://github.com/pytorch/pytorch
+cd pytorch
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;--recursive&lt;/code&gt;：循环克隆项目，即将该项目引用的项目同时克隆&lt;/p&gt;
+&lt;p&gt;国内GitHub clone太慢：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;尝试&lt;a class=&#34;link&#34; href=&#34;https://gitee.com/mirrors/pytorch&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;码云镜像&lt;/a&gt; ，虽然下载Pytorch仓库很快，但由于依赖库仍然是GitHub地址，依然无法clone 成功&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://konosuba.xyz/blog/clash_linux_tutorial/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;启动Clash代理&lt;/a&gt;，&lt;code&gt;git config --global http.proxy socks5://127.0.0.1:7890&lt;/code&gt;，提速明显&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;git checkout v1.6.0
+
+git submodule update --init  --recursive
+git submodule update --remote third_party/protobuf
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;build-pytorch&#34;&gt;Build Pytorch&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;python3 setup.py bdist_wheel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样将build一个wheel文件，保存在&lt;code&gt;pytorch/dist&lt;/code&gt;中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; dist
+pip3 install ./torch-1.6.0-xxx_linux_armv71.whl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;pip3 install torch-1.6.0a0+b31f58d-cp37-cp37m-linux_armv7l.whl
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;figure style=&#34;flex-grow: 282; flex-basis: 677px&#34;&gt;
+		&lt;a href=&#34;https://konosuba.xyz/blog/raspberripi_pytorch_install/image-20210105090248603.png&#34; data-size=&#34;966x342&#34;&gt;&lt;img src=&#34;https://konosuba.xyz/blog/raspberripi_pytorch_install/image-20210105090248603.png&#34;
+				srcset=&#34;https://konosuba.xyz/blog/raspberripi_pytorch_install/image-20210105090248603_hu8cc6f4283d8e15612ec98a0f2e576478_43689_480x0_resize_box_2.png 480w, https://konosuba.xyz/blog/raspberripi_pytorch_install/image-20210105090248603_hu8cc6f4283d8e15612ec98a0f2e576478_43689_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;966&#34;
+				height=&#34;342&#34;
+				loading=&#34;lazy&#34;
+				&gt;
+		&lt;/a&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;check&#34;&gt;Check&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;python3
+&amp;gt;&amp;gt;&amp;gt; import torch
+&amp;gt;&amp;gt;&amp;gt; import numpy as np
+&amp;gt;&amp;gt;&amp;gt; a = torch.from_numpy(np.random.randn(1, 100))
+&amp;gt;&amp;gt;&amp;gt; print(a)
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;install-torchvision&#34;&gt;Install Torchvision&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/pytorch/vision.git
+pip3 install pillow
+cd vision
+git checkout v0.7.0-rc4	# pytorch 1.6 对应 torchvision 0.7
+git submodule update --init --recursive
+python3 setup.py bdist_wheel
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;ERROR&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/home/pi/Pytorch/vision/torchvision/csrc/cpu/decoder/defs.h:12:10: fatal error: libavcodec/avcodec.h: 没有 那个文件或目录
+#include &amp;lt;libavcodec/avcodec.h&amp;gt;
+       ^~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+error: command &#39;arm-linux-gnueabihf-gcc&#39; failed with exit status 1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;将&lt;code&gt;setup.py&lt;/code&gt;中178行&lt;code&gt;if has_ffmpeg&lt;/code&gt;改为&lt;code&gt;if False&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;pip3 install torchvision-0.7.0a0+78ed10c-cp37-cp37m-linux_armv7l.whl
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;figure style=&#34;flex-grow: 302; flex-basis: 726px&#34;&gt;
+		&lt;a href=&#34;https://konosuba.xyz/blog/raspberripi_pytorch_install/image-20210105093630245.png&#34; data-size=&#34;1011x334&#34;&gt;&lt;img src=&#34;https://konosuba.xyz/blog/raspberripi_pytorch_install/image-20210105093630245.png&#34;
+				srcset=&#34;https://konosuba.xyz/blog/raspberripi_pytorch_install/image-20210105093630245_hub9bc294461f4c1e964e0ab027ba4e41b_37330_480x0_resize_box_2.png 480w, https://konosuba.xyz/blog/raspberripi_pytorch_install/image-20210105093630245_hub9bc294461f4c1e964e0ab027ba4e41b_37330_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;1011&#34;
+				height=&#34;334&#34;
+				loading=&#34;lazy&#34;
+				&gt;
+		&lt;/a&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;参考：&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000027079852&#34;&gt;https://segmentfault.com/a/1190000027079852&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gist.github.com/akaanirban/621e63237e63bb169126b537d7a1d979&#34;&gt;https://gist.github.com/akaanirban/621e63237e63bb169126b537d7a1d979&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;**已编译whl安装包: **&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;torch v1.6.0 + torchvision v0.7.0&lt;/li&gt;
+&lt;li&gt;torch v1.7.0 + torchvision v0.8.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;务必使用对应版本！&lt;a class=&#34;link&#34; href=&#34;https://share.weiyun.com/an3lBOqS&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;微云 code: tiktak&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>树莓派4B安装ncnn</title>
+        <link>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</link>
+        <pubDate>Wed, 10 Feb 2021 22:14:03 +0800</pubDate>
+        
+        <guid>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</guid>
+        <description>&lt;h2 id=&#34;1-clone-ncnn-code&#34;&gt;1. clone ncnn code&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;git clone https://github.com/Tencent/ncnn.git
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ncnn
+git submodule update --init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;2-build&#34;&gt;2. build&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ncnn
+mkdir -p build
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; build
+
+sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils libopencv-dev
+
+cmake -DCMAKE_BUILD_TYPE&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Release -DNCNN_VULKAN&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ON -DNCNN_SYSTEM_GLSLANG&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ON -DNCNN_BUILD_EXAMPLES&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ON -DCMAKE_TOOLCHAIN_FILE&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;../toolchains/pi3.toolchain.cmake -DPI3&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ON ..
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;遇到如下问题：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CMake Warning at CMakeLists.txt:163 (message):
+GLSLANG_TARGET_DIR must be defined! NCNN_SYSTEM_GLSLANG will be turned off.
+
+
+CMake Error at CMakeLists.txt:188 (message):
+The submodules were not downloaded! Please update submodules with &amp;quot;git
+submodule update --init&amp;quot; and try again.
+
+
+-- Configuring incomplete, errors occurred!
+See also &amp;quot;/home/pi/ncnn/ncnn_master/ncnn/build/CMakeFiles/CMakeOutput.log&amp;quot;.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这是因为部分依赖包不存在，再次运行&lt;code&gt; git submodule update --init&lt;/code&gt;即可&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; make -j4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;figure style=&#34;flex-grow: 703; flex-basis: 1688px&#34;&gt;
+		&lt;a href=&#34;https://konosuba.xyz/blog/raspberrypi_ncnn_install/index.assets/build-done.png&#34; data-size=&#34;577x82&#34;&gt;&lt;img src=&#34;https://konosuba.xyz/blog/raspberrypi_ncnn_install/index.assets/build-done.png&#34;
+				srcset=&#34;https://konosuba.xyz/blog/raspberrypi_ncnn_install/index.assets/build-done_hu6e205f36978e00011bc9ec04c69320a0_6358_480x0_resize_box_2.png 480w, https://konosuba.xyz/blog/raspberrypi_ncnn_install/index.assets/build-done_hu6e205f36978e00011bc9ec04c69320a0_6358_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;577&#34;
+				height=&#34;82&#34;
+				loading=&#34;lazy&#34;
+				&gt;
+		&lt;/a&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-test&#34;&gt;3. test&lt;/h2&gt;
+&lt;h3 id=&#34;test1&#34;&gt;Test1&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;build $ cd ../examples/
+examples $ ../build/examples/squeezenet ../images/256-ncnn.png
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Result&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vkCreateInstance failed -9
+vkCreateInstance failed -9
+532 = 0.165951
+920 = 0.094098
+716 = 0.062193
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;test2&#34;&gt;Test2&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;examples $ cd ../benchmark/
+benchmark $ ../build/benchmark/benchncnn 10 $(nproc) 0 -1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Result&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;loop_count = 10
+num_threads = 4
+powersave = 0
+gpu_device = -1
+cooling_down = 1
+          squeezenet  min =   59.54  max =   78.24  avg =   61.93
+     squeezenet_int8  min =   68.22  max =  136.60  avg =   75.22
+           mobilenet  min =   82.28  max =  103.96  avg =   86.50
+      mobilenet_int8  min =  102.12  max =  127.61  avg =  105.56
+        mobilenet_v2  min =   72.07  max =   78.58  avg =   73.41
+        mobilenet_v3  min =   58.79  max =   62.76  avg =   59.56
+          shufflenet  min =   39.38  max =   39.76  avg =   39.56
+       shufflenet_v2  min =   30.91  max =   62.75  avg =   34.47
+             mnasnet  min =   62.02  max =   63.65  avg =   63.10
+     proxylessnasnet  min =   63.72  max =   78.89  avg =   65.54
+     efficientnet_b0  min =   97.13  max =  134.88  avg =  101.45
+        regnety_400m  min =   78.38  max =  112.27  avg =   82.46
+           blazeface  min =   11.84  max =   12.11  avg =   11.98
+           googlenet  min =  175.91  max =  226.33  avg =  187.03
+      googlenet_int8  min =  160.86  max =  174.87  avg =  163.83
+            resnet18  min =  226.30  max =  256.77  avg =  231.41
+       resnet18_int8  min =  137.44  max =  172.20  avg =  144.58
+             alexnet  min =  175.46  max =  187.97  avg =  178.70
+               vgg16  min =  966.03  max = 1200.06  avg = 1021.94
+          vgg16_int8  min = 1198.49  max = 1241.05  avg = 1216.26
+            resnet50  min =  466.87  max =  511.23  avg =  483.53
+       resnet50_int8  min =  332.21  max =  380.04  avg =  344.77
+      squeezenet_ssd  min =  178.27  max =  232.75  avg =  187.56
+ squeezenet_ssd_int8  min =  195.93  max =  227.62  avg =  202.93
+       mobilenet_ssd  min =  175.19  max =  197.45  avg =  182.97
+  mobilenet_ssd_int8  min =  172.96  max =  207.40  avg =  181.28
+      mobilenet_yolo  min =  426.78  max =  526.93  avg =  463.47
+  mobilenetv2_yolov3  min =  248.95  max =  274.25  avg =  255.45
+         yolov4-tiny  min =  329.52  max =  369.67  avg =  342.12
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;参考：&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/Tencent/ncnn/wiki/how-to-build#build-for-linux&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ncnn wiki build-for-linux&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/yz2zcx/article/details/105463147&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;树莓派安装ncnn&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
         <title>使用FPN实现内网穿透，公网访问内网服务器</title>
         <link>https://konosuba.xyz/blog/frp_ssh/</link>
         <pubDate>Mon, 11 Jan 2021 19:47:20 +0800</pubDate>
@@ -618,7 +898,7 @@ unzip opencv_contrib-4.3.0.zip
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cnoyea.bl.files.1drv.com/y4mskZoTEaDwLwpQaKSe83p6ipcG12GNUV1l31yTOJtFMOQqWQChM1e30c_opNkFOD-lm50VlDMiwKc3FBjKGdCtsXU10i8HdJL5fMk2ZBughbHH_Qqw8Xn2nmxBVOrUcHhIoA_D5rPjSkeIohg_VXRbniSV_RF6OFylmJXAb767QYmXLnhEv8rcPT39sS3aWkxwZyMwVmM4TdLKCsLiOnmfQ?width=761&amp;amp;height=834&amp;amp;cropmode=none&#34; alt=&#34;make&#34;  /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;问题&#34;&gt;问题&lt;/h2&gt;
 &lt;p&gt;我的4B在这一步就遇到了一个问题，如图&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/04/27/VknXU49ymfC67ix.png&#34; style=&#34;zoom:80%;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;（这个图我是找的其他人的，不过错误都是一样的）&lt;/p&gt;
 &lt;p&gt;这是一个包丢失的问题，解决方案：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -698,7 +978,7 @@ make
 &lt;p&gt;绿色的就是编译生成的文件&lt;/p&gt;
 &lt;p&gt;运行试试&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;./opencvtest
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5c1%5cDesktop%5c1111.png&#34; alt=&#34;opencv&amp;#43;cpp_test&#34;  /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://konosuba.xyz/C:%5cUsers%5c1%5cDesktop%5c1111.png&#34; alt=&#34;opencv&amp;#43;cpp_test&#34;  /&gt;&lt;/p&gt;
 &lt;p&gt;于是树莓派的opencv终于安装完成啦，接下来就要&lt;a class=&#34;link&#34; href=&#34;https://tiiiktak.github.io/blog/%e6%a0%91%e8%8e%93%e6%b4%be%e9%85%8d%e7%bd%ae%e6%91%84%e5%83%8f%e5%a4%b4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;调用树莓派摄像头&lt;/a&gt;啦&lt;/p&gt;
 </description>
@@ -4826,7 +5106,7 @@ Sketch-RNN论文：&lt;/p&gt;
         <pubDate>Mon, 16 Sep 2019 20:13:56 +0800</pubDate>
         
         <guid>https://konosuba.xyz/blog/python_split%E5%87%BD%E6%95%B0/</guid>
-        <description>&lt;!-- raw HTML omitted --&gt;
+        <description>&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt; &lt;script&gt; (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true }); &lt;/script&gt;
 &lt;h2 id=&#34;原型&#34;&gt;原型&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;|&lt;code&gt;split()&lt;/code&gt;函数通过指定分隔符对字符串进行切片&lt;/p&gt;
@@ -5970,7 +6250,7 @@ make
 &lt;p&gt;VNC连接：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://nqd97q.bl.files.1drv.com/y4m2DHh3L6QzoZ5FiLnzP2WBIE1e-QrYPK6SX_bCxZ2bcb0kyvJ9KD51LWfoDfnouWtcy47q1VY7Uxjqeq_vYTd22na0erHBYdAse1qtcg3AqPsq1Tr6u6Mh_LASanfUmDubNkHVulgz7xIAb5Du7OJUT6poGMxO-KGGwDnOuIWE8DkF05kGvd_4emMwxzbHtpbXiQtz7wItLXcmvwaT8GOrQ?width=1026&amp;amp;height=800&amp;amp;cropmode=none&#34; alt=&#34;video-cpp-vnc&#34;  /&gt;&lt;/p&gt;
 &lt;p&gt;HDMI连接：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;&#34; alt=&#34;video-cpp-hdmi&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://konosuba.xyz/&#34; alt=&#34;video-cpp-hdmi&#34;  /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;python调用&#34;&gt;Python调用&lt;/h2&gt;
 &lt;p&gt;参考&lt;a class=&#34;link&#34; href=&#34;https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;官网指南&lt;/a&gt;&lt;/p&gt;

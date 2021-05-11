@@ -4,27 +4,82 @@
   
   <url>
     <loc>https://konosuba.xyz/about/</loc>
-    <lastmod>2019-04-09T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/blog/</loc>
-    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+    <lastmod>2021-03-30T18:33:16+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/categories/</loc>
-    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+    <lastmod>2021-03-30T18:33:16+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/categories/linux/</loc>
-    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+    <lastmod>2021-03-30T18:33:16+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/</loc>
-    <lastmod>2021-01-11T19:47:20+08:00</lastmod>
+    <lastmod>2021-03-30T18:33:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/vnc_ubuntu_server/</loc>
+    <lastmod>2021-03-30T18:33:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/tags/python/</loc>
+    <lastmod>2021-02-11T12:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/categories/pytorch/</loc>
+    <lastmod>2021-02-11T12:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/tags/</loc>
+    <lastmod>2021-02-11T12:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</loc>
+    <lastmod>2021-02-11T12:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/raspberripi_pytorch_install/</loc>
+    <lastmod>2021-02-11T12:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</loc>
+    <lastmod>2021-02-11T12:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/tags/linux/</loc>
+    <lastmod>2021-02-10T22:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/tags/ncnn/</loc>
+    <lastmod>2021-02-10T22:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/categories/ncnn/</loc>
+    <lastmod>2021-02-10T22:14:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</loc>
+    <lastmod>2021-02-10T22:14:03+08:00</lastmod>
   </url>
   
   <url>
@@ -68,22 +123,12 @@
   </url>
   
   <url>
-    <loc>https://konosuba.xyz/tags/linux/</loc>
-    <lastmod>2020-11-17T09:20:26+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://konosuba.xyz/tags/mpich/</loc>
     <lastmod>2020-11-17T09:20:26+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/blog/mpich2_ubuntu/</loc>
-    <lastmod>2020-11-17T09:20:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/tags/</loc>
     <lastmod>2020-11-17T09:20:26+08:00</lastmod>
   </url>
   
@@ -138,17 +183,7 @@
   </url>
   
   <url>
-    <loc>https://konosuba.xyz/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</loc>
-    <lastmod>2020-04-27T11:25:47+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://konosuba.xyz/blog/fashion_mnist_alexnet/</loc>
-    <lastmod>2020-03-08T23:03:09+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/categories/pytorch/</loc>
     <lastmod>2020-03-08T23:03:09+08:00</lastmod>
   </url>
   
@@ -495,11 +530,6 @@
   <url>
     <loc>https://konosuba.xyz/blog/linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%8F%8A%E7%9B%AE%E5%BD%95/</loc>
     <lastmod>2019-06-24T11:51:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/tags/python/</loc>
-    <lastmod>2019-06-21T15:23:06+08:00</lastmod>
   </url>
   
   <url>

@@ -6,7 +6,40 @@
     <description>Recent content in Blogs on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Mon, 11 Jan 2021 19:47:20 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Mar 2021 18:33:16 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用vnc查看Ubuntu服务器的远程桌面</title>
+      <link>https://konosuba.xyz/blog/vnc_ubuntu_server/</link>
+      <pubDate>Tue, 30 Mar 2021 18:33:16 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/vnc_ubuntu_server/</guid>
+      <description>1. 安装桌面 2. 安装gnome-session-flashback： sudo apt-get install gnome-session-flashback3. 安装VNC Server sudo apt-get install tigervnc-standalone-server tigervnc-xorg-extension4. VNC配置桌面环境 vim ~/.vnc/xstartup#!/bin/sh unset SESSION_MANAGER#unset DBUS_SESSION_BUS_ADDRESS #测试中发现如果去掉该行注释 桌面不会出现export XKL_XMODMAP_DISABLE=1export XDG_CURRENT_DESKTOP=&amp;quot;GNOME-Flashback:GNOME&amp;quot;export XDG_MENU_PREFIX=&amp;quot;gnome-flashback-&amp;quot;[ -x /etc/vnc/xstartup ] &amp;amp;&amp;amp; exec /etc/vnc/xstartup[ -r $HOME/.Xresources ] &amp;amp;&amp;amp; xrdb $HOME/.Xresourcesxsetroot -solid grey #设置背景色vncconfig -iconic &amp;amp;gnome-terminal &amp;amp; #连接后会直接打开一个terminal窗口nautilus &amp;amp; #连接后会直接打开一个文件窗口gnome-session --session=gnome-flashback-metacity --disable-acceleration-check &amp;amp;sudo chmod +x ~/.vnc/xstartup5. Start vncserver :2 -localhost no #2为端口号，no表示非局域网内账户也可访问vncserver -kill :2 #关闭  参考：Ubuntu 20.</description>
+    </item>
+    
+    <item>
+      <title>树莓派4B安装Pytorch, torchvision</title>
+      <link>https://konosuba.xyz/blog/raspberripi_pytorch_install/</link>
+      <pubDate>Thu, 11 Feb 2021 12:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/raspberripi_pytorch_install/</guid>
+      <description>Install Pytorch  Raspberry Pi 4B Linux raspberrypi 4.19.75-v7l+ #1270 SMP Tue Sep 24 18:51:41 BST 2019 armv7l GNU/Linux 2G RAM 16G DISK  增加交换内存   关闭内存交换: sudo dphys-swapfile swapoff
+  修改配置文件 sudo vim /etc/dphys-swapfile，设置CONF_SWAPSIZE=4096
+ 这里虽然设置为4096，但free -m 查看仍然只有2G交换内存
+   开启内存交换：sudo dphys-swapfile swapon
+  检查：free -m，若swap无变换可尝试重启
+  Pytorch依赖项 sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-yaml libatlas-base-devsudo apt-get install cython3 libatlas-base-dev m4 libblas-dev cmakesudo apt-get install python3-dev python3-setuptools python3-wheel python3-pillow python3-numpypip3 install numpy pyyamlFor raspberry pi 4 there may be an issue with the gcc and g++ version.</description>
+    </item>
+    
+    <item>
+      <title>树莓派4B安装ncnn</title>
+      <link>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</link>
+      <pubDate>Wed, 10 Feb 2021 22:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/blog/raspberrypi_ncnn_install/</guid>
+      <description>1. clone ncnn code git clone https://github.com/Tencent/ncnn.git cd ncnn git submodule update --init 2. build cd ncnn mkdir -p build cd build sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils libopencv-dev cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_SYSTEM_GLSLANG=ON -DNCNN_BUILD_EXAMPLES=ON -DCMAKE_TOOLCHAIN_FILE=../toolchains/pi3.toolchain.cmake -DPI3=ON ..  遇到如下问题：
+CMake Warning at CMakeLists.txt:163 (message):GLSLANG_TARGET_DIR must be defined! NCNN_SYSTEM_GLSLANG will be turned off.CMake Error at CMakeLists.txt:188 (message):The submodules were not downloaded! Please update submodules with &amp;quot;gitsubmodule update --init&amp;quot; and try again.</description>
+    </item>
+    
     <item>
       <title>使用FPN实现内网穿透，公网访问内网服务器</title>
       <link>https://konosuba.xyz/blog/frp_ssh/</link>
@@ -1100,7 +1133,7 @@ format() 这是一种格式化字符串的函数，基本语法是使用{}和: �
       <pubDate>Mon, 16 Sep 2019 20:13:56 +0800</pubDate>
       
       <guid>https://konosuba.xyz/blog/python_split%E5%87%BD%E6%95%B0/</guid>
-      <description>原型 str.split(str=&amp;#34;&amp;#34;, num=string.count(str)) |split()函数通过指定分隔符对字符串进行切片
+      <description>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: &#34;ca-pub-9673215637005333&#34;, enable_page_level_ads: true });  原型 str.split(str=&amp;#34;&amp;#34;, num=string.count(str)) |split()函数通过指定分隔符对字符串进行切片
 参数 若参数str无指定值。默认为所有的空字符，包括空格、\n、\t等
 若参数num有指定值，则分割num+1个子字符串，若无指定值，默认-1，即分隔所有
 返回值 返回分割后的字符串列表</description>

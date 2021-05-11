@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Install Pytorch  Raspberry Pi 4B Linux raspberrypi 4.19.75-v7l&#43; #1270 SMP Tue Sep 24 18:51:41 BST 2019 armv7l GNU/Linux 2G RAM 16G DISK  增加交换内存   关闭内存交换: sudo dphys-swapfile swapoff
+  修改配置文件 sudo vim /etc/dphys-swapfile，设置CONF_SWAPSIZE=4096
+ 这里虽然设置为4096，但free -m 查看仍然只有2G交换内存
+   开启内存交换：sudo dphys-swapfile swapon
+  检查：free -m，若swap无变换可尝试重启
+  Pytorch依赖项 sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-yaml libatlas-base-devsudo apt-get install cython3 libatlas-base-dev m4 libblas-dev cmakesudo apt-get install python3-dev python3-setuptools python3-wheel python3-pillow python3-numpypip3 install numpy pyyamlFor raspberry pi 4 there may be an issue with the gcc and g&#43;&#43; version.'><title>树莓派4B安装Pytorch, torchvision</title>
+
+<link rel='canonical' href='https://konosuba.xyz/blog/raspberripi_pytorch_install/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='树莓派4B安装Pytorch, torchvision'>
+<meta property='og:description' content='Install Pytorch  Raspberry Pi 4B Linux raspberrypi 4.19.75-v7l&#43; #1270 SMP Tue Sep 24 18:51:41 BST 2019 armv7l GNU/Linux 2G RAM 16G DISK  增加交换内存   关闭内存交换: sudo dphys-swapfile swapoff
+  修改配置文件 sudo vim /etc/dphys-swapfile，设置CONF_SWAPSIZE=4096
+ 这里虽然设置为4096，但free -m 查看仍然只有2G交换内存
+   开启内存交换：sudo dphys-swapfile swapon
+  检查：free -m，若swap无变换可尝试重启
+  Pytorch依赖项 sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-yaml libatlas-base-devsudo apt-get install cython3 libatlas-base-dev m4 libblas-dev cmakesudo apt-get install python3-dev python3-setuptools python3-wheel python3-pillow python3-numpypip3 install numpy pyyamlFor raspberry pi 4 there may be an issue with the gcc and g&#43;&#43; version.'>
+<meta property='og:url' content='https://konosuba.xyz/blog/raspberripi_pytorch_install/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='Python' /><meta property='article:tag' content='树莓派' /><meta property='article:published_time' content='2021-02-11T12:14:03&#43;08:00'/><meta property='article:modified_time' content='2021-02-11T12:14:03&#43;08:00'/>
+<meta name="twitter:title" content="树莓派4B安装Pytorch, torchvision">
+<meta name="twitter:description" content="Install Pytorch  Raspberry Pi 4B Linux raspberrypi 4.19.75-v7l&#43; #1270 SMP Tue Sep 24 18:51:41 BST 2019 armv7l GNU/Linux 2G RAM 16G DISK  增加交换内存   关闭内存交换: sudo dphys-swapfile swapoff
+  修改配置文件 sudo vim /etc/dphys-swapfile，设置CONF_SWAPSIZE=4096
+ 这里虽然设置为4096，但free -m 查看仍然只有2G交换内存
+   开启内存交换：sudo dphys-swapfile swapon
+  检查：free -m，若swap无变换可尝试重启
+  Pytorch依赖项 sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-yaml libatlas-base-devsudo apt-get install cython3 libatlas-base-dev m4 libblas-dev cmakesudo apt-get install python3-dev python3-setuptools python3-wheel python3-pillow python3-numpypip3 install numpy pyyamlFor raspberry pi 4 there may be an issue with the gcc and g&#43;&#43; version."><style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "<https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap>";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🎈</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/pytorch/" style="background-color: #2a9d8f; color: #fff;">
+                PyTorch
+            </a>
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux
+            </a>
+        
+            <a href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="background-color: #2a9d8f; color: #fff;">
+                树莓派RaspBerry Pi
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/raspberripi_pytorch_install/">树莓派4B安装Pytorch, torchvision</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Feb 11, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="install-pytorch">Install Pytorch</h1>
+<ul>
+<li>Raspberry Pi 4B</li>
+<li><code>Linux raspberrypi 4.19.75-v7l+ #1270 SMP Tue Sep 24 18:51:41 BST 2019 armv7l GNU/Linux</code></li>
+<li>2G RAM</li>
+<li>16G DISK</li>
+</ul>
+<h2 id="增加交换内存">增加交换内存</h2>
+<ol>
+<li>
+<p>关闭内存交换: <code>sudo dphys-swapfile swapoff</code></p>
+</li>
+<li>
+<p>修改配置文件 <code>sudo vim /etc/dphys-swapfile</code>，设置<code>CONF_SWAPSIZE=4096</code></p>
+<blockquote>
+<p>这里虽然设置为4096，但<code>free -m</code> 查看仍然只有2G交换内存</p>
+</blockquote>
+</li>
+<li>
+<p>开启内存交换：<code>sudo dphys-swapfile swapon</code></p>
+</li>
+<li>
+<p>检查：<code>free -m</code>，若swap无变换可尝试重启</p>
+</li>
+</ol>
+<h2 id="pytorch依赖项">Pytorch依赖项</h2>
+<pre><code>sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-yaml libatlas-base-dev
+sudo apt-get install cython3 libatlas-base-dev m4 libblas-dev cmake
+sudo apt-get install python3-dev python3-setuptools python3-wheel python3-pillow python3-numpy
+
+pip3 install numpy pyyaml
+</code></pre><p><strong>For raspberry pi 4 there may be an issue with the gcc and g++ version. Install an older version and use it</strong></p>
+<pre><code>sudo apt-get install gcc-4.9 g++-4.9
+</code></pre><h2 id="设置环境变量">设置环境变量</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">NO_CUDA</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">NO_DISTRIBUTED</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">NO_MKLDNN</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">NO_NNPACK</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">NO_QNNPACK</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div><h2 id="download-pytorch">Download Pytorch</h2>
+<pre><code>git clone --recursive https://github.com/pytorch/pytorch
+cd pytorch
+</code></pre><blockquote>
+<p><code>--recursive</code>：循环克隆项目，即将该项目引用的项目同时克隆</p>
+<p>国内GitHub clone太慢：</p>
+<ul>
+<li>
+<p>尝试<a class="link" href="https://gitee.com/mirrors/pytorch"  target="_blank" rel="noopener"
+    >码云镜像</a> ，虽然下载Pytorch仓库很快，但由于依赖库仍然是GitHub地址，依然无法clone 成功</p>
+</li>
+<li>
+<p><a class="link" href="https://konosuba.xyz/blog/clash_linux_tutorial/"  target="_blank" rel="noopener"
+    >启动Clash代理</a>，<code>git config --global http.proxy socks5://127.0.0.1:7890</code>，提速明显</p>
+</li>
+</ul>
+</blockquote>
+<pre><code>git checkout v1.6.0
+
+git submodule update --init  --recursive
+git submodule update --remote third_party/protobuf
+</code></pre><h2 id="build-pytorch">Build Pytorch</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">python3 setup.py bdist_wheel
+</code></pre></div><p>这样将build一个wheel文件，保存在<code>pytorch/dist</code>中</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> dist
+pip3 install ./torch-1.6.0-xxx_linux_armv71.whl
+</code></pre></div><h2 id="install">Install</h2>
+<pre><code>pip3 install torch-1.6.0a0+b31f58d-cp37-cp37m-linux_armv7l.whl
+</code></pre><p><figure style="flex-grow: 282; flex-basis: 677px">
+		<a href="/blog/raspberripi_pytorch_install/image-20210105090248603.png" data-size="966x342"><img src="/blog/raspberripi_pytorch_install/image-20210105090248603.png"
+				srcset="/blog/raspberripi_pytorch_install/image-20210105090248603_hu8cc6f4283d8e15612ec98a0f2e576478_43689_480x0_resize_box_2.png 480w, /blog/raspberripi_pytorch_install/image-20210105090248603_hu8cc6f4283d8e15612ec98a0f2e576478_43689_1024x0_resize_box_2.png 1024w"
+				width="966"
+				height="342"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<h2 id="check">Check</h2>
+<pre><code>python3
+&gt;&gt;&gt; import torch
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; a = torch.from_numpy(np.random.randn(1, 100))
+&gt;&gt;&gt; print(a)
+</code></pre><h1 id="install-torchvision">Install Torchvision</h1>
+<pre><code>git clone https://github.com/pytorch/vision.git
+pip3 install pillow
+cd vision
+git checkout v0.7.0-rc4	# pytorch 1.6 对应 torchvision 0.7
+git submodule update --init --recursive
+python3 setup.py bdist_wheel
+</code></pre><blockquote>
+<p>ERROR</p>
+<pre><code>/home/pi/Pytorch/vision/torchvision/csrc/cpu/decoder/defs.h:12:10: fatal error: libavcodec/avcodec.h: 没有 那个文件或目录
+#include &lt;libavcodec/avcodec.h&gt;
+       ^~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+error: command 'arm-linux-gnueabihf-gcc' failed with exit status 1
+</code></pre><p>将<code>setup.py</code>中178行<code>if has_ffmpeg</code>改为<code>if False</code></p>
+</blockquote>
+<pre><code>pip3 install torchvision-0.7.0a0+78ed10c-cp37-cp37m-linux_armv7l.whl
+</code></pre><p><figure style="flex-grow: 302; flex-basis: 726px">
+		<a href="/blog/raspberripi_pytorch_install/image-20210105093630245.png" data-size="1011x334"><img src="/blog/raspberripi_pytorch_install/image-20210105093630245.png"
+				srcset="/blog/raspberripi_pytorch_install/image-20210105093630245_hub9bc294461f4c1e964e0ab027ba4e41b_37330_480x0_resize_box_2.png 480w, /blog/raspberripi_pytorch_install/image-20210105093630245_hub9bc294461f4c1e964e0ab027ba4e41b_37330_1024x0_resize_box_2.png 1024w"
+				width="1011"
+				height="334"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<blockquote>
+<p><em>参考：</em></p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000027079852">https://segmentfault.com/a/1190000027079852</a></li>
+<li><a href="https://gist.github.com/akaanirban/621e63237e63bb169126b537d7a1d979">https://gist.github.com/akaanirban/621e63237e63bb169126b537d7a1d979</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>**已编译whl安装包: **</p>
+<ul>
+<li>torch v1.6.0 + torchvision v0.7.0</li>
+<li>torch v1.7.0 + torchvision v0.8.0</li>
+</ul>
+<p>务必使用对应版本！<a class="link" href="https://share.weiyun.com/an3lBOqS"  target="_blank" rel="noopener"
+    >微云 code: tiktak</a></p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/python/">Python</a>
+        
+            <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>

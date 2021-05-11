@@ -6,13 +6,40 @@
     <description>Recent content in Categories on Tiiktak&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Mon, 11 Jan 2021 19:47:20 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Mar 2021 18:33:16 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
       <link>https://konosuba.xyz/categories/linux/</link>
-      <pubDate>Mon, 11 Jan 2021 19:47:20 +0800</pubDate>
+      <pubDate>Tue, 30 Mar 2021 18:33:16 +0800</pubDate>
       
       <guid>https://konosuba.xyz/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PyTorch</title>
+      <link>https://konosuba.xyz/categories/pytorch/</link>
+      <pubDate>Thu, 11 Feb 2021 12:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/categories/pytorch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>树莓派RaspBerry Pi</title>
+      <link>https://konosuba.xyz/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+      <pubDate>Thu, 11 Feb 2021 12:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ncnn</title>
+      <link>https://konosuba.xyz/categories/ncnn/</link>
+      <pubDate>Wed, 10 Feb 2021 22:14:03 +0800</pubDate>
+      
+      <guid>https://konosuba.xyz/categories/ncnn/</guid>
       <description></description>
     </item>
     
@@ -58,24 +85,6 @@
       <pubDate>Tue, 07 Jul 2020 23:52:11 +0800</pubDate>
       
       <guid>https://konosuba.xyz/categories/opencv/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>树莓派RaspBerry Pi</title>
-      <link>https://konosuba.xyz/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
-      <pubDate>Mon, 27 Apr 2020 11:25:47 +0800</pubDate>
-      
-      <guid>https://konosuba.xyz/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PyTorch</title>
-      <link>https://konosuba.xyz/categories/pytorch/</link>
-      <pubDate>Sun, 08 Mar 2020 23:03:09 +0800</pubDate>
-      
-      <guid>https://konosuba.xyz/categories/pytorch/</guid>
       <description></description>
     </item>
     

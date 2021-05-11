@@ -56,14 +56,38 @@ opencv_contrib
  cmake-gui 选择源码路径和编译路径后点击Configure
 之后在中间的选择框中找到项目BUILD_TESTS，把它的复选框取消
  这一步是因为后面编译过程中，总是由于opencv_test_xxx这类项目导致编译失败，因此我在这里将它取消
- 之后点击Generate生成，最后输出如图所示则可以进行下一步">
+ 之后点击Generate生成，最后输出如图所示则可以进行下一步"><style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "<https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap>";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
     </head>
     <body class="article-page keep-sidebar">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
             if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
+                localStorage.setItem(colorSchemeKey, "dark");
             }
         })();
     </script><script>
@@ -102,7 +126,7 @@ opencv_contrib
                 
 
                 
-                    <span class="emoji">🍥</span>
+                    <span class="emoji">🎈</span>
                 
             </figure>
         
@@ -135,7 +159,7 @@ opencv_contrib
         
 
         <li >
-            <a href='/about'>
+            <a href='/about/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -153,7 +177,7 @@ opencv_contrib
         
 
         <li >
-            <a href='/archives'>
+            <a href='/archives/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -172,7 +196,7 @@ opencv_contrib
         
 
         <li >
-            <a href='/search'>
+            <a href='/search/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -184,15 +208,6 @@ opencv_contrib
 
                 
                 <span>Search</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/about/'>
-                
-                <span>About</span>
             </a>
         </li>
         
@@ -314,7 +329,7 @@ unzip opencv_contrib-4.3.0.zip
 </code></pre></div><p><img src="https://cnoyea.bl.files.1drv.com/y4mskZoTEaDwLwpQaKSe83p6ipcG12GNUV1l31yTOJtFMOQqWQChM1e30c_opNkFOD-lm50VlDMiwKc3FBjKGdCtsXU10i8HdJL5fMk2ZBughbHH_Qqw8Xn2nmxBVOrUcHhIoA_D5rPjSkeIohg_VXRbniSV_RF6OFylmJXAb767QYmXLnhEv8rcPT39sS3aWkxwZyMwVmM4TdLKCsLiOnmfQ?width=761&amp;height=834&amp;cropmode=none" alt="make"  /></p>
 <h2 id="问题">问题</h2>
 <p>我的4B在这一步就遇到了一个问题，如图</p>
-<p><!-- raw HTML omitted --></p>
+<p><img src="https://i.loli.net/2020/04/27/VknXU49ymfC67ix.png" style="zoom:80%;" /></p>
 <p>（这个图我是找的其他人的，不过错误都是一样的）</p>
 <p>这是一个包丢失的问题，解决方案：</p>
 <blockquote>
@@ -394,7 +409,7 @@ make
 <p>绿色的就是编译生成的文件</p>
 <p>运行试试</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">./opencvtest
-</code></pre></div><p><img src="C:%5cUsers%5c1%5cDesktop%5c1111.png" alt="opencv&#43;cpp_test"  /></p>
+</code></pre></div><p><img src="/C:%5cUsers%5c1%5cDesktop%5c1111.png" alt="opencv&#43;cpp_test"  /></p>
 <p>于是树莓派的opencv终于安装完成啦，接下来就要<a class="link" href="https://tiiiktak.github.io/blog/%e6%a0%91%e8%8e%93%e6%b4%be%e9%85%8d%e7%bd%ae%e6%91%84%e5%83%8f%e5%a4%b4"  target="_blank" rel="noopener"
     >调用树莓派摄像头</a>啦</p>
 
@@ -478,7 +493,7 @@ make
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -544,18 +559,29 @@ make
 
     </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
 
             </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
-    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
