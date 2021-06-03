@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='一、实验目的   熟练使用面向对象设计原则对系统进行重构；
+  熟练使用面向对象编程语言（JAVA或C&#43;&#43;）实现几种常见的设计模式，包括简单工厂模式、工厂方法模式、抽象工厂模式、适配器模式、外观模式、模板方法模式和建造者模式，理解每一种设计模式的模式动机，掌握模式结构，学习如何在软件开发中使用这些模式。
+  二、实验要求   选择合适的面向对象设计原则对系统进行重构，正确无误地绘制重构之后的类图；
+  结合实例，正确无误地绘制应用模式后的UML图；
+  应用相应的模式实现实例，要求代码运行正确，给出运行结果。
+  三、实验内容 1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
+在该图形库中，每个图形类（如Circle、Triangle等）的init()方法用于初始化所创建的图形，setColor()方法用于给图形设置边框颜色，fill()方法用于给图形设置填充颜色，setSize()方法用于设置图形的大小，display()方法用于显示图形。
+客户类(Client)在使用该图形库时发现存在如下问题：
+  由于在创建窗口时每次只需要使用图形库中的一种图形，因此在更换图形时需要修改客户类源代码；
+  在图形库中增加并使用新的图形时需要修改客户类源代码；
+  客户类在每次使用图形对象之前需要先创建图形对象，有些图形的创建过程较为复杂，导致客户类代码冗长且难以维护。
+  现需要根据面向对象设计原则对该系统进行重构，要求如下：
+  隔离图形的创建和使用，将图形的创建过程封装在专门的类中，客户类在使用图形时无须直接创建图形对象，甚至不需要关心具体图形类类名；
+  客户类能够方便地更换图形或使用新增图形，无须针对具体图形类编程，符合开闭原则。
+  绘制重构之后的类图并说明在重构过程中所运用的面向对象设计原则。
+重构之后的类图 重构过程中所使用的面向对象设计原则及简要说明 采用了工厂方法模式，所谓工厂模式则是定义一个用于创建对象的接口，但是让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到子类。使用了开闭原则，单一职责原则。
+2. 设计一个可以创建不同几何形状(Shape)，如圆形(Circle)、矩形(Rectangle)和三角形(Triangle)等的绘图工具类，每个几何图形均具有绘制Draw()和擦除Erase()两个方法，要求在绘制不支持的几何图形时，抛出一个UnsupportedShapeException异常，绘制类图并编程模拟实现。
+类图 3. 某软件公司为新开发的智能手机控制与管理软件提供了一键备份功能，通过该功能可以将原本存储在手机中的通信录、短信、照片、歌曲等资料一次性全部拷贝到移动存储介质（例如MMC卡或SD卡）中。在实现过程中需要与多个已有的类进行交互，例如通讯录管理类、短信管理类等，为了降低系统的耦合度，试设计并编程模拟实现该一键备份功能。
+类图 4. 现需要设计一个程序来读取多种不同类型的图片格式，针对每一种图片格式都设计一个图片读取器(ImageReader)，如GIF图片读取器(GifReader)用于读取GIF格式的图片、JPG图片读取器(JpgReader)用于读取JPG格式的图片。图片读取器对象通过图片读取器工厂ImageReaderFactory来创建，ImageReaderFactory是一个抽象类，用于定义创建图片读取器的工厂方法，其子类GifReaderFactory和JpgReaderFactory用于创建具体的图片读取器对象。试设计该程序，绘制类图并编程模拟实现。需充分考虑系统的灵活性和可扩展性
+类图 5. 现有一个接口DataOperation定义了排序方法sort(int[]) 和查找方法search(int[], int)，已知类QuickSort的quickSort(int[])方法实现了快速排序算法，类BinarySearch 的binarySearch(int[], int)方法实现了二分查找算法。如何在不修改源代码的情况下，使DataOperation接口可以复用类QuickSort和类BinarySearch的方法。请选用合适的模式编写程序模拟该场景。
+类图 6. 请设计并实现一个“电脑配置商店”的小程序，要求如下：
+  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。'><title>【课程作业】软件设计模式实验一</title>
+
+<link rel='canonical' href='https://konosuba.xyz/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='【课程作业】软件设计模式实验一'>
+<meta property='og:description' content='一、实验目的   熟练使用面向对象设计原则对系统进行重构；
+  熟练使用面向对象编程语言（JAVA或C&#43;&#43;）实现几种常见的设计模式，包括简单工厂模式、工厂方法模式、抽象工厂模式、适配器模式、外观模式、模板方法模式和建造者模式，理解每一种设计模式的模式动机，掌握模式结构，学习如何在软件开发中使用这些模式。
+  二、实验要求   选择合适的面向对象设计原则对系统进行重构，正确无误地绘制重构之后的类图；
+  结合实例，正确无误地绘制应用模式后的UML图；
+  应用相应的模式实现实例，要求代码运行正确，给出运行结果。
+  三、实验内容 1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
+在该图形库中，每个图形类（如Circle、Triangle等）的init()方法用于初始化所创建的图形，setColor()方法用于给图形设置边框颜色，fill()方法用于给图形设置填充颜色，setSize()方法用于设置图形的大小，display()方法用于显示图形。
+客户类(Client)在使用该图形库时发现存在如下问题：
+  由于在创建窗口时每次只需要使用图形库中的一种图形，因此在更换图形时需要修改客户类源代码；
+  在图形库中增加并使用新的图形时需要修改客户类源代码；
+  客户类在每次使用图形对象之前需要先创建图形对象，有些图形的创建过程较为复杂，导致客户类代码冗长且难以维护。
+  现需要根据面向对象设计原则对该系统进行重构，要求如下：
+  隔离图形的创建和使用，将图形的创建过程封装在专门的类中，客户类在使用图形时无须直接创建图形对象，甚至不需要关心具体图形类类名；
+  客户类能够方便地更换图形或使用新增图形，无须针对具体图形类编程，符合开闭原则。
+  绘制重构之后的类图并说明在重构过程中所运用的面向对象设计原则。
+重构之后的类图 重构过程中所使用的面向对象设计原则及简要说明 采用了工厂方法模式，所谓工厂模式则是定义一个用于创建对象的接口，但是让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到子类。使用了开闭原则，单一职责原则。
+2. 设计一个可以创建不同几何形状(Shape)，如圆形(Circle)、矩形(Rectangle)和三角形(Triangle)等的绘图工具类，每个几何图形均具有绘制Draw()和擦除Erase()两个方法，要求在绘制不支持的几何图形时，抛出一个UnsupportedShapeException异常，绘制类图并编程模拟实现。
+类图 3. 某软件公司为新开发的智能手机控制与管理软件提供了一键备份功能，通过该功能可以将原本存储在手机中的通信录、短信、照片、歌曲等资料一次性全部拷贝到移动存储介质（例如MMC卡或SD卡）中。在实现过程中需要与多个已有的类进行交互，例如通讯录管理类、短信管理类等，为了降低系统的耦合度，试设计并编程模拟实现该一键备份功能。
+类图 4. 现需要设计一个程序来读取多种不同类型的图片格式，针对每一种图片格式都设计一个图片读取器(ImageReader)，如GIF图片读取器(GifReader)用于读取GIF格式的图片、JPG图片读取器(JpgReader)用于读取JPG格式的图片。图片读取器对象通过图片读取器工厂ImageReaderFactory来创建，ImageReaderFactory是一个抽象类，用于定义创建图片读取器的工厂方法，其子类GifReaderFactory和JpgReaderFactory用于创建具体的图片读取器对象。试设计该程序，绘制类图并编程模拟实现。需充分考虑系统的灵活性和可扩展性
+类图 5. 现有一个接口DataOperation定义了排序方法sort(int[]) 和查找方法search(int[], int)，已知类QuickSort的quickSort(int[])方法实现了快速排序算法，类BinarySearch 的binarySearch(int[], int)方法实现了二分查找算法。如何在不修改源代码的情况下，使DataOperation接口可以复用类QuickSort和类BinarySearch的方法。请选用合适的模式编写程序模拟该场景。
+类图 6. 请设计并实现一个“电脑配置商店”的小程序，要求如下：
+  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。'>
+<meta property='og:url' content='https://konosuba.xyz/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/'>
+<meta property='og:site_name' content='Tiiktak&#39;s'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='作业' /><meta property='article:published_time' content='2021-05-31T11:25:47&#43;08:00'/><meta property='article:modified_time' content='2021-05-31T11:25:47&#43;08:00'/>
+<meta name="twitter:title" content="【课程作业】软件设计模式实验一">
+<meta name="twitter:description" content="一、实验目的   熟练使用面向对象设计原则对系统进行重构；
+  熟练使用面向对象编程语言（JAVA或C&#43;&#43;）实现几种常见的设计模式，包括简单工厂模式、工厂方法模式、抽象工厂模式、适配器模式、外观模式、模板方法模式和建造者模式，理解每一种设计模式的模式动机，掌握模式结构，学习如何在软件开发中使用这些模式。
+  二、实验要求   选择合适的面向对象设计原则对系统进行重构，正确无误地绘制重构之后的类图；
+  结合实例，正确无误地绘制应用模式后的UML图；
+  应用相应的模式实现实例，要求代码运行正确，给出运行结果。
+  三、实验内容 1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
+在该图形库中，每个图形类（如Circle、Triangle等）的init()方法用于初始化所创建的图形，setColor()方法用于给图形设置边框颜色，fill()方法用于给图形设置填充颜色，setSize()方法用于设置图形的大小，display()方法用于显示图形。
+客户类(Client)在使用该图形库时发现存在如下问题：
+  由于在创建窗口时每次只需要使用图形库中的一种图形，因此在更换图形时需要修改客户类源代码；
+  在图形库中增加并使用新的图形时需要修改客户类源代码；
+  客户类在每次使用图形对象之前需要先创建图形对象，有些图形的创建过程较为复杂，导致客户类代码冗长且难以维护。
+  现需要根据面向对象设计原则对该系统进行重构，要求如下：
+  隔离图形的创建和使用，将图形的创建过程封装在专门的类中，客户类在使用图形时无须直接创建图形对象，甚至不需要关心具体图形类类名；
+  客户类能够方便地更换图形或使用新增图形，无须针对具体图形类编程，符合开闭原则。
+  绘制重构之后的类图并说明在重构过程中所运用的面向对象设计原则。
+重构之后的类图 重构过程中所使用的面向对象设计原则及简要说明 采用了工厂方法模式，所谓工厂模式则是定义一个用于创建对象的接口，但是让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到子类。使用了开闭原则，单一职责原则。
+2. 设计一个可以创建不同几何形状(Shape)，如圆形(Circle)、矩形(Rectangle)和三角形(Triangle)等的绘图工具类，每个几何图形均具有绘制Draw()和擦除Erase()两个方法，要求在绘制不支持的几何图形时，抛出一个UnsupportedShapeException异常，绘制类图并编程模拟实现。
+类图 3. 某软件公司为新开发的智能手机控制与管理软件提供了一键备份功能，通过该功能可以将原本存储在手机中的通信录、短信、照片、歌曲等资料一次性全部拷贝到移动存储介质（例如MMC卡或SD卡）中。在实现过程中需要与多个已有的类进行交互，例如通讯录管理类、短信管理类等，为了降低系统的耦合度，试设计并编程模拟实现该一键备份功能。
+类图 4. 现需要设计一个程序来读取多种不同类型的图片格式，针对每一种图片格式都设计一个图片读取器(ImageReader)，如GIF图片读取器(GifReader)用于读取GIF格式的图片、JPG图片读取器(JpgReader)用于读取JPG格式的图片。图片读取器对象通过图片读取器工厂ImageReaderFactory来创建，ImageReaderFactory是一个抽象类，用于定义创建图片读取器的工厂方法，其子类GifReaderFactory和JpgReaderFactory用于创建具体的图片读取器对象。试设计该程序，绘制类图并编程模拟实现。需充分考虑系统的灵活性和可扩展性
+类图 5. 现有一个接口DataOperation定义了排序方法sort(int[]) 和查找方法search(int[], int)，已知类QuickSort的quickSort(int[])方法实现了快速排序算法，类BinarySearch 的binarySearch(int[], int)方法实现了二分查找算法。如何在不修改源代码的情况下，使DataOperation接口可以复用类QuickSort和类BinarySearch的方法。请选用合适的模式编写程序模拟该场景。
+类图 6. 请设计并实现一个“电脑配置商店”的小程序，要求如下：
+  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。"><style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "<https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap>";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+    </head>
+    <body class="article-page keep-sidebar">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended ">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1d1fe176dd879a425067b8d2a78bfc4d_5239_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🎈</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://konosuba.xyz">Tiiktak&#39;s</a></h1>
+        <h2 class="site-description">每当心情郁闷的时候，用手托腮就好，手臂会因为帮上忙而开心的。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/">【课程作业】软件设计模式实验一</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">May 31, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h2 id="一实验目的">一、实验目的</h2>
+<ol>
+<li>
+<p>熟练使用面向对象设计原则对系统进行重构；</p>
+</li>
+<li>
+<p>熟练使用面向对象编程语言（JAVA或C++）实现几种常见的设计模式，包括简单工厂模式、工厂方法模式、抽象工厂模式、适配器模式、外观模式、模板方法模式和建造者模式，理解每一种设计模式的模式动机，掌握模式结构，学习如何在软件开发中使用这些模式。</p>
+</li>
+</ol>
+<h2 id="二实验要求">二、实验要求</h2>
+<ol>
+<li>
+<p>选择合适的面向对象设计原则对系统进行重构，正确无误地绘制重构之后的类图；</p>
+</li>
+<li>
+<p>结合实例，正确无误地绘制应用模式后的UML图；</p>
+</li>
+<li>
+<p>应用相应的模式实现实例，要求代码运行正确，给出运行结果。</p>
+</li>
+</ol>
+<h2 id="三实验内容">三、实验内容</h2>
+<h3 id="1">1.</h3>
+<p>在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示</p>
+<p><img src="https://files.konosuba.xyz/images/20210603171906.png" alt=""  /></p>
+<p>在该图形库中，每个图形类（如<code>Circle</code>、<code>Triangle</code>等）的<code>init()</code>方法用于初始化所创建的图形，<code>setColor()</code>方法用于给图形设置边框颜色，fill()方法用于给图形设置填充颜色，<code>setSize()</code>方法用于设置图形的大小，display()方法用于显示图形。</p>
+<p>客户类(<code>Client</code>)在使用该图形库时发现存在如下问题：</p>
+<ol>
+<li>
+<p>由于在创建窗口时每次只需要使用图形库中的一种图形，因此在更换图形时需要修改客户类源代码；</p>
+</li>
+<li>
+<p>在图形库中增加并使用新的图形时需要修改客户类源代码；</p>
+</li>
+<li>
+<p>客户类在每次使用图形对象之前需要先创建图形对象，有些图形的创建过程较为复杂，导致客户类代码冗长且难以维护。</p>
+</li>
+</ol>
+<p>现需要根据面向对象设计原则对该系统进行重构，要求如下：</p>
+<ol>
+<li>
+<p>隔离图形的创建和使用，将图形的创建过程封装在专门的类中，客户类在使用图形时无须直接创建图形对象，甚至不需要关心具体图形类类名；</p>
+</li>
+<li>
+<p>客户类能够方便地更换图形或使用新增图形，无须针对具体图形类编程，符合开闭原则。</p>
+</li>
+</ol>
+<p>绘制重构之后的类图并说明在重构过程中所运用的面向对象设计原则。</p>
+<h4 id="重构之后的类图">重构之后的类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172030.png" alt=""  /></p>
+<h4 id="重构过程中所使用的面向对象设计原则及简要说明">重构过程中所使用的面向对象设计原则及简要说明</h4>
+<p>采用了工厂方法模式，所谓工厂模式则是定义一个用于创建对象的接口，但是让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到子类。使用了开闭原则，单一职责原则。</p>
+<h3 id="2">2.</h3>
+<p>设计一个可以创建不同几何形状(<code>Shape</code>)，如圆形(<code>Circle</code>)、矩形(<code>Rectangle</code>)和三角形(<code>Triangle</code>)等的绘图工具类，每个几何图形均具有绘制<code>Draw()</code>和擦除<code>Erase()</code>两个方法，要求在绘制不支持的几何图形时，抛出一个<code>UnsupportedShapeException</code>异常，绘制类图并编程模拟实现。</p>
+<h4 id="类图">类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172126.png" alt=""  /></p>
+<h3 id="3">3.</h3>
+<p>某软件公司为新开发的智能手机控制与管理软件提供了一键备份功能，通过该功能可以将原本存储在手机中的通信录、短信、照片、歌曲等资料一次性全部拷贝到移动存储介质（例如MMC卡或SD卡）中。在实现过程中需要与多个已有的类进行交互，例如通讯录管理类、短信管理类等，为了降低系统的耦合度，试设计并编程模拟实现该一键备份功能。</p>
+<h4 id="类图-1">类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172206.png" alt=""  /></p>
+<h3 id="4">4.</h3>
+<p>现需要设计一个程序来读取多种不同类型的图片格式，针对每一种图片格式都设计一个图片读取器(<code>ImageReader</code>)，如GIF图片读取器(<code>GifReader</code>)用于读取GIF格式的图片、JPG图片读取器(<code>JpgReader</code>)用于读取JPG格式的图片。图片读取器对象通过图片读取器工厂<code>ImageReaderFactory</code>来创建，<code>ImageReaderFactory</code>是一个抽象类，用于定义创建图片读取器的工厂方法，其子类<code>GifReaderFactory</code>和<code>JpgReaderFactory</code>用于创建具体的图片读取器对象。试设计该程序，绘制类图并编程模拟实现。需充分考虑系统的灵活性和可扩展性</p>
+<h4 id="类图-2">类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172250.png" alt=""  /></p>
+<h4 id="5">5.</h4>
+<p>现有一个接口<code>DataOperation</code>定义了排序方法<code>sort(int[])</code> 和查找方法<code>search(int[], int)</code>，已知类<code>QuickSort</code>的<code>quickSort(int[])</code>方法实现了快速排序算法，类<code>BinarySearch </code>的<code>binarySearch(int[], int)</code>方法实现了二分查找算法。如何在不修改源代码的情况下，使<code>DataOperation</code>接口可以复用类<code>QuickSort</code>和类<code>BinarySearch</code>的方法。请选用合适的模式编写程序模拟该场景。</p>
+<h4 id="类图-3">类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172340.png" alt=""  /></p>
+<h3 id="6">6.</h3>
+<p>请设计并实现一个“电脑配置商店”的小程序，要求如下：</p>
+<ol>
+<li>
+<p>电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。</p>
+</li>
+<li>
+<p>根据配置方案可以显示具体配置信息。</p>
+</li>
+<li>
+<p>根据配置方案可以显示价格。</p>
+</li>
+</ol>
+<h4 id="类图-4">类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172411.png" alt=""  /></p>
+<h3 id="7">7.</h3>
+<p>某软件公司要为某银行的业务支撑系统开发一个利息计算模块，利息的计算流程如下：</p>
+<ol>
+<li>
+<p>系统根据账号和密码验证用户信息，如果用户信息错误，则系统显示出错提示。</p>
+</li>
+<li>
+<p>如果用户信息正确，则根据用户类型的不同使用不同的利息计算公式计算利息（如活期账户和定期账户具有不同的利息计算公式）。</p>
+</li>
+<li>
+<p>系统显示利息。</p>
+</li>
+</ol>
+<p>现请使用模板方法模式设计该利息计算模块。</p>
+<h4 id="类图-5">类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172444.png" alt=""  /></p>
+<h3 id="8">8.</h3>
+<p>某游戏软件中人物角色包括多种类型，不同类型的人物角色，其性别、脸型、服装、发型等外部特性有所差异，使用建造者模式创建人物角色对象，要求绘制类图并编码实现。</p>
+<h4 id="类图-6">类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172508.png" alt=""  /></p>
+<h3 id="9">9.</h3>
+<p>现在需要设计一款格斗类游戏软件，为了适应不同等级玩家的需要，游戏特地安排了三个难度级别：</p>
+<ol>
+<li>
+<p>初等级别：敌方士兵反应迟钝，怪兽步履缓慢，即便是初学者也能够很轻松地取胜；</p>
+</li>
+<li>
+<p>中间级别：敌方士兵反应适度，怪兽步履速度中等，中级玩家有可能取胜；</p>
+</li>
+<li>
+<p>高难级别：敌方士兵反映敏捷，怪兽狰狞狡诈，就算是高级玩家也难逃被击毙的厄运。</p>
+</li>
+</ol>
+<p>该游戏软件需要具备良好的灵活性和可扩展性，玩家可以自由选择不同的难度等级，开发人员可以在不修改既有代码的基础上增加新的难度级别。试设计该游戏软件，绘制类图并编程模拟实现。</p>
+<h4 id="类图-7">类图</h4>
+<p><img src="https://files.konosuba.xyz/images/20210603172555.png" alt=""  /></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E4%BD%9C%E4%B8%9A/">作业</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "tiiktak" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Tiiktak&#39;s
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141514532-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141514532-1');
+</script>
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0121c6813b611028681cd70e85594cb6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </body>
+</html>
