@@ -9,21 +9,31 @@
   
   <url>
     <loc>https://konosuba.xyz/blog/</loc>
-    <lastmod>2021-03-30T18:33:16+08:00</lastmod>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/categories/</loc>
-    <lastmod>2021-03-30T18:33:16+08:00</lastmod>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://konosuba.xyz/categories/linux/</loc>
-    <lastmod>2021-03-30T18:33:16+08:00</lastmod>
+    <loc>https://konosuba.xyz/categories/opencv/</loc>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/</loc>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/%E5%85%A8%E6%B0%91%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</loc>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/categories/linux/</loc>
     <lastmod>2021-03-30T18:33:16+08:00</lastmod>
   </url>
   
@@ -165,11 +175,6 @@
   <url>
     <loc>https://konosuba.xyz/blog/show_python_installation_path/</loc>
     <lastmod>2020-09-25T19:22:57+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/categories/opencv/</loc>
-    <lastmod>2020-07-07T23:52:11+08:00</lastmod>
   </url>
   
   <url>
