@@ -8,15 +8,14 @@
     <language>cn</language>
     <lastBuildDate>Thu, 03 Jun 2021 11:25:47 +0800</lastBuildDate><atom:link href="https://konosuba.xyz/categories/opencv/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>利用OpenCV和C&#43;&#43;实现的&#39;全民飞机大战&#39;小游戏</title>
+      <title>【课程作业】利用OpenCV和C&#43;&#43;实现的&#39;全民飞机大战&#39;小游戏</title>
       <link>https://konosuba.xyz/blog/%E5%85%A8%E6%B0%91%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</link>
       <pubDate>Thu, 03 Jun 2021 11:25:47 +0800</pubDate>
       
       <guid>https://konosuba.xyz/blog/%E5%85%A8%E6%B0%91%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</guid>
       <description>项目简介 博主大二课程《软件项目开发与实践》期末设计，在此做个记录
 实际完成时间2020.7
-类图  
-演示视频   源代码后续有时间整理后会公布在GitHub上
+类图 演示视频   源代码后续有时间整理后会公布在GitHub上
  </description>
     </item>
     

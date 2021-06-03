@@ -23,12 +23,22 @@
   </url>
   
   <url>
+    <loc>https://konosuba.xyz/tags/</loc>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://konosuba.xyz/</loc>
     <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/blog/%E5%85%A8%E6%B0%91%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</loc>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/tags/%E4%BD%9C%E4%B8%9A/</loc>
     <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
@@ -49,11 +59,6 @@
   
   <url>
     <loc>https://konosuba.xyz/categories/pytorch/</loc>
-    <lastmod>2021-02-11T12:14:03+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/tags/</loc>
     <lastmod>2021-02-11T12:14:03+08:00</lastmod>
   </url>
   
@@ -139,11 +144,6 @@
   
   <url>
     <loc>https://konosuba.xyz/blog/mpich2_ubuntu/</loc>
-    <lastmod>2020-11-17T09:20:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/tags/%E4%BD%9C%E4%B8%9A/</loc>
     <lastmod>2020-11-17T09:20:26+08:00</lastmod>
   </url>
   
