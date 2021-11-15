@@ -48,12 +48,12 @@
   </url>
   
   <url>
-    <loc>https://konosuba.xyz/blog/%E5%85%A8%E6%B0%91%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</loc>
+    <loc>https://konosuba.xyz/tags/%E4%BD%9C%E4%B8%9A/</loc>
     <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://konosuba.xyz/tags/%E4%BD%9C%E4%B8%9A/</loc>
+    <loc>https://konosuba.xyz/blog/%E5%85%A8%E6%B0%91%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</loc>
     <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
@@ -425,11 +425,6 @@
   <url>
     <loc>https://konosuba.xyz/blog/image_warp_opencv_paper/</loc>
     <lastmod>2019-10-23T23:25:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/blog/reprint_magic_sketchpad/</loc>
-    <lastmod>2019-10-20T00:45:31+08:00</lastmod>
   </url>
   
   <url>
