@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="cn">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='一、实验目的   熟练使用面向对象设计原则对系统进行重构；
-  熟练使用面向对象编程语言（JAVA或C&#43;&#43;）实现几种常见的设计模式，包括简单工厂模式、工厂方法模式、抽象工厂模式、适配器模式、外观模式、模板方法模式和建造者模式，理解每一种设计模式的模式动机，掌握模式结构，学习如何在软件开发中使用这些模式。
-  二、实验要求   选择合适的面向对象设计原则对系统进行重构，正确无误地绘制重构之后的类图；
-  结合实例，正确无误地绘制应用模式后的UML图；
-  应用相应的模式实现实例，要求代码运行正确，给出运行结果。
-  三、实验内容 1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
 在该图形库中，每个图形类（如Circle、Triangle等）的init()方法用于初始化所创建的图形，setColor()方法用于给图形设置边框颜色，fill()方法用于给图形设置填充颜色，setSize()方法用于设置图形的大小，display()方法用于显示图形。
 客户类(Client)在使用该图形库时发现存在如下问题：
   由于在创建窗口时每次只需要使用图形库中的一种图形，因此在更换图形时需要修改客户类源代码；
@@ -22,17 +17,19 @@
 类图 4. 现需要设计一个程序来读取多种不同类型的图片格式，针对每一种图片格式都设计一个图片读取器(ImageReader)，如GIF图片读取器(GifReader)用于读取GIF格式的图片、JPG图片读取器(JpgReader)用于读取JPG格式的图片。图片读取器对象通过图片读取器工厂ImageReaderFactory来创建，ImageReaderFactory是一个抽象类，用于定义创建图片读取器的工厂方法，其子类GifReaderFactory和JpgReaderFactory用于创建具体的图片读取器对象。试设计该程序，绘制类图并编程模拟实现。需充分考虑系统的灵活性和可扩展性
 类图 5. 现有一个接口DataOperation定义了排序方法sort(int[]) 和查找方法search(int[], int)，已知类QuickSort的quickSort(int[])方法实现了快速排序算法，类BinarySearch 的binarySearch(int[], int)方法实现了二分查找算法。如何在不修改源代码的情况下，使DataOperation接口可以复用类QuickSort和类BinarySearch的方法。请选用合适的模式编写程序模拟该场景。
 类图 6. 请设计并实现一个“电脑配置商店”的小程序，要求如下：
-  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。'><title>【课程作业】软件设计模式实验一</title>
+  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。
+  根据配置方案可以显示具体配置信息。
+  根据配置方案可以显示价格。
+  类图 7. 某软件公司要为某银行的业务支撑系统开发一个利息计算模块，利息的计算流程如下：
+  系统根据账号和密码验证用户信息，如果用户信息错误，则系统显示出错提示。
+  如果用户信息正确，则根据用户类型的不同使用不同的利息计算公式计算利息（如活期账户和定期账户具有不同的利息计算公式）。
+  系统显示利息。
+  现请使用模板方法模式设计该利息计算模块。'><title>软件设计模式</title>
 
 <link rel='canonical' href='https://konosuba.xyz/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='【课程作业】软件设计模式实验一'>
-<meta property='og:description' content='一、实验目的   熟练使用面向对象设计原则对系统进行重构；
-  熟练使用面向对象编程语言（JAVA或C&#43;&#43;）实现几种常见的设计模式，包括简单工厂模式、工厂方法模式、抽象工厂模式、适配器模式、外观模式、模板方法模式和建造者模式，理解每一种设计模式的模式动机，掌握模式结构，学习如何在软件开发中使用这些模式。
-  二、实验要求   选择合适的面向对象设计原则对系统进行重构，正确无误地绘制重构之后的类图；
-  结合实例，正确无误地绘制应用模式后的UML图；
-  应用相应的模式实现实例，要求代码运行正确，给出运行结果。
-  三、实验内容 1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='软件设计模式'>
+<meta property='og:description' content='1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
 在该图形库中，每个图形类（如Circle、Triangle等）的init()方法用于初始化所创建的图形，setColor()方法用于给图形设置边框颜色，fill()方法用于给图形设置填充颜色，setSize()方法用于设置图形的大小，display()方法用于显示图形。
 客户类(Client)在使用该图形库时发现存在如下问题：
   由于在创建窗口时每次只需要使用图形库中的一种图形，因此在更换图形时需要修改客户类源代码；
@@ -48,17 +45,19 @@
 类图 4. 现需要设计一个程序来读取多种不同类型的图片格式，针对每一种图片格式都设计一个图片读取器(ImageReader)，如GIF图片读取器(GifReader)用于读取GIF格式的图片、JPG图片读取器(JpgReader)用于读取JPG格式的图片。图片读取器对象通过图片读取器工厂ImageReaderFactory来创建，ImageReaderFactory是一个抽象类，用于定义创建图片读取器的工厂方法，其子类GifReaderFactory和JpgReaderFactory用于创建具体的图片读取器对象。试设计该程序，绘制类图并编程模拟实现。需充分考虑系统的灵活性和可扩展性
 类图 5. 现有一个接口DataOperation定义了排序方法sort(int[]) 和查找方法search(int[], int)，已知类QuickSort的quickSort(int[])方法实现了快速排序算法，类BinarySearch 的binarySearch(int[], int)方法实现了二分查找算法。如何在不修改源代码的情况下，使DataOperation接口可以复用类QuickSort和类BinarySearch的方法。请选用合适的模式编写程序模拟该场景。
 类图 6. 请设计并实现一个“电脑配置商店”的小程序，要求如下：
-  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。'>
+  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。
+  根据配置方案可以显示具体配置信息。
+  根据配置方案可以显示价格。
+  类图 7. 某软件公司要为某银行的业务支撑系统开发一个利息计算模块，利息的计算流程如下：
+  系统根据账号和密码验证用户信息，如果用户信息错误，则系统显示出错提示。
+  如果用户信息正确，则根据用户类型的不同使用不同的利息计算公式计算利息（如活期账户和定期账户具有不同的利息计算公式）。
+  系统显示利息。
+  现请使用模板方法模式设计该利息计算模块。'>
 <meta property='og:url' content='https://konosuba.xyz/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/'>
 <meta property='og:site_name' content='Tiiktak&#39;s'>
-<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='作业' /><meta property='article:published_time' content='2021-05-31T11:25:47&#43;08:00'/><meta property='article:modified_time' content='2021-05-31T11:25:47&#43;08:00'/>
-<meta name="twitter:title" content="【课程作业】软件设计模式实验一">
-<meta name="twitter:description" content="一、实验目的   熟练使用面向对象设计原则对系统进行重构；
-  熟练使用面向对象编程语言（JAVA或C&#43;&#43;）实现几种常见的设计模式，包括简单工厂模式、工厂方法模式、抽象工厂模式、适配器模式、外观模式、模板方法模式和建造者模式，理解每一种设计模式的模式动机，掌握模式结构，学习如何在软件开发中使用这些模式。
-  二、实验要求   选择合适的面向对象设计原则对系统进行重构，正确无误地绘制重构之后的类图；
-  结合实例，正确无误地绘制应用模式后的UML图；
-  应用相应的模式实现实例，要求代码运行正确，给出运行结果。
-  三、实验内容 1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
+<meta property='og:type' content='article'><meta property='article:section' content='Blog' /><meta property='article:tag' content='作业' /><meta property='article:published_time' content='2020-05-31T11:25:47&#43;08:00'/><meta property='article:modified_time' content='2020-05-31T11:25:47&#43;08:00'/>
+<meta name="twitter:title" content="软件设计模式">
+<meta name="twitter:description" content="1. 在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示
 在该图形库中，每个图形类（如Circle、Triangle等）的init()方法用于初始化所创建的图形，setColor()方法用于给图形设置边框颜色，fill()方法用于给图形设置填充颜色，setSize()方法用于设置图形的大小，display()方法用于显示图形。
 客户类(Client)在使用该图形库时发现存在如下问题：
   由于在创建窗口时每次只需要使用图形库中的一种图形，因此在更换图形时需要修改客户类源代码；
@@ -74,7 +73,14 @@
 类图 4. 现需要设计一个程序来读取多种不同类型的图片格式，针对每一种图片格式都设计一个图片读取器(ImageReader)，如GIF图片读取器(GifReader)用于读取GIF格式的图片、JPG图片读取器(JpgReader)用于读取JPG格式的图片。图片读取器对象通过图片读取器工厂ImageReaderFactory来创建，ImageReaderFactory是一个抽象类，用于定义创建图片读取器的工厂方法，其子类GifReaderFactory和JpgReaderFactory用于创建具体的图片读取器对象。试设计该程序，绘制类图并编程模拟实现。需充分考虑系统的灵活性和可扩展性
 类图 5. 现有一个接口DataOperation定义了排序方法sort(int[]) 和查找方法search(int[], int)，已知类QuickSort的quickSort(int[])方法实现了快速排序算法，类BinarySearch 的binarySearch(int[], int)方法实现了二分查找算法。如何在不修改源代码的情况下，使DataOperation接口可以复用类QuickSort和类BinarySearch的方法。请选用合适的模式编写程序模拟该场景。
 类图 6. 请设计并实现一个“电脑配置商店”的小程序，要求如下：
-  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。"><style>
+  电脑由CPU、主板、显卡、内存、硬盘等配件组合而成。现电脑配置有两种配置方案。
+  根据配置方案可以显示具体配置信息。
+  根据配置方案可以显示价格。
+  类图 7. 某软件公司要为某银行的业务支撑系统开发一个利息计算模块，利息的计算流程如下：
+  系统根据账号和密码验证用户信息，如果用户信息错误，则系统显示出错提示。
+  如果用户信息正确，则根据用户类型的不同使用不同的利息计算公式计算利息（如活期账户和定期账户具有不同的利息计算公式）。
+  系统显示利息。
+  现请使用模板方法模式设计该利息计算模块。"><style>
     :root {
         --article-font-family: "Noto Serif SC", var(--base-font-family);
     }
@@ -262,7 +268,7 @@
     
 
     <h2 class="article-title">
-        <a href="/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/">【课程作业】软件设计模式实验一</a>
+        <a href="/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/">软件设计模式</a>
     </h2>
 
     <footer class="article-time">
@@ -274,34 +280,12 @@
 
 
 
-        <time class="article-time--published">May 31, 2021</time>
+        <time class="article-time--published">May 31, 2020</time>
     </footer></div>
 </header>
 
     <section class="article-content">
-    <h2 id="一实验目的">一、实验目的</h2>
-<ol>
-<li>
-<p>熟练使用面向对象设计原则对系统进行重构；</p>
-</li>
-<li>
-<p>熟练使用面向对象编程语言（JAVA或C++）实现几种常见的设计模式，包括简单工厂模式、工厂方法模式、抽象工厂模式、适配器模式、外观模式、模板方法模式和建造者模式，理解每一种设计模式的模式动机，掌握模式结构，学习如何在软件开发中使用这些模式。</p>
-</li>
-</ol>
-<h2 id="二实验要求">二、实验要求</h2>
-<ol>
-<li>
-<p>选择合适的面向对象设计原则对系统进行重构，正确无误地绘制重构之后的类图；</p>
-</li>
-<li>
-<p>结合实例，正确无误地绘制应用模式后的UML图；</p>
-</li>
-<li>
-<p>应用相应的模式实现实例，要求代码运行正确，给出运行结果。</p>
-</li>
-</ol>
-<h2 id="三实验内容">三、实验内容</h2>
-<h3 id="1">1.</h3>
+    <h3 id="1">1.</h3>
 <p>在某图形库API中提供了多种矢量图模板，用户可以基于这些矢量图创建不同的显示图形，图形库设计人员设计的初始类图如下所示</p>
 <p><img src="https://files.konosuba.xyz/images/20210603171906.png" alt=""  /></p>
 <p>在该图形库中，每个图形类（如<code>Circle</code>、<code>Triangle</code>等）的<code>init()</code>方法用于初始化所创建的图形，<code>setColor()</code>方法用于给图形设置边框颜色，fill()方法用于给图形设置填充颜色，<code>setSize()</code>方法用于设置图形的大小，display()方法用于显示图形。</p>
@@ -476,18 +460,20 @@
 
     <footer class="site-footer">
     <section class="copyright">
-        &copy; 
+        &copy;
         
-            2019 - 
+            2019 -
         
         2021 Tiiktak&#39;s
     </section>
-    
+
     <section class="powerby">
         
-            蜀ICP备19030250号 <br/>
+            <a href=https://beian.miit.gov.cn target="_blank" rel="noopener">
+                蜀ICP备19030250号</a> <br />
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+                data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

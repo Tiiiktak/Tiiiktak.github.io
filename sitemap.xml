@@ -9,41 +9,26 @@
   
   <url>
     <loc>https://konosuba.xyz/blog/</loc>
-    <lastmod>2021-06-24T13:58:14+08:00</lastmod>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/categories/</loc>
-    <lastmod>2021-06-24T13:58:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/tags/</loc>
-    <lastmod>2021-06-24T13:58:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/</loc>
-    <lastmod>2021-06-24T13:58:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/categories/%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2021-06-24T13:58:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/blog/%E7%9B%98%E7%82%B9%E5%A4%A7%E5%AD%A6%E8%AE%BE%E8%AE%A1%E4%BD%9C%E5%93%81/</loc>
-    <lastmod>2021-06-24T13:58:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/tags/%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2021-06-24T13:58:14+08:00</lastmod>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://konosuba.xyz/categories/opencv/</loc>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/tags/</loc>
+    <lastmod>2021-06-03T11:25:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/</loc>
     <lastmod>2021-06-03T11:25:47+08:00</lastmod>
   </url>
   
@@ -55,11 +40,6 @@
   <url>
     <loc>https://konosuba.xyz/blog/%E5%85%A8%E6%B0%91%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</loc>
     <lastmod>2021-06-03T11:25:47+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://konosuba.xyz/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/</loc>
-    <lastmod>2021-05-31T11:25:47+08:00</lastmod>
   </url>
   
   <url>
@@ -173,11 +153,6 @@
   </url>
   
   <url>
-    <loc>https://konosuba.xyz/blog/project_manage_course_prototype_design/</loc>
-    <lastmod>2020-10-08T13:58:14+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://konosuba.xyz/blog/bdd100k_mmdet_mask-rcnn/</loc>
     <lastmod>2020-10-08T13:40:10+08:00</lastmod>
   </url>
@@ -195,6 +170,26 @@
   <url>
     <loc>https://konosuba.xyz/blog/difference_between_opencv_pyopencv_libopencv/</loc>
     <lastmod>2020-07-07T23:52:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/categories/%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2020-06-23T13:58:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/project_manage_course_prototype_design/</loc>
+    <lastmod>2020-06-23T13:58:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/tags/%E8%AE%BE%E8%AE%A1/</loc>
+    <lastmod>2020-06-23T13:58:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C%E4%B8%80/</loc>
+    <lastmod>2020-05-31T11:25:47+08:00</lastmod>
   </url>
   
   <url>
@@ -310,6 +305,11 @@
   <url>
     <loc>https://konosuba.xyz/blog/%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4/</loc>
     <lastmod>2020-02-07T00:09:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://konosuba.xyz/blog/%E7%9B%98%E7%82%B9%E5%A4%A7%E5%AD%A6%E8%AE%BE%E8%AE%A1%E4%BD%9C%E5%93%81/</loc>
+    <lastmod>2020-01-24T13:58:14+08:00</lastmod>
   </url>
   
   <url>
